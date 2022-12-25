@@ -9,10 +9,27 @@
 
 namespace ikan {
   
+  namespace applicaiton_utils {
+    
+#ifdef IK_DEBUG_FEATURE
+    /// This function returns the Operating System Type as string
+    /// - Parameter os: OS Type in iKan Enum
+    static std::string GetOsNameAsString(OperatingSystem os) {
+      switch (os) {
+        case OperatingSystem::Mac : return "MAC OS";
+        case OperatingSystem::None :
+        default:
+          IK_ASSERT(false, "Invalid OS Type");
+      }
+    }
+#endif
+    
+  } // namespace applicaiton_utils
+  
   Application *Application::instance_ = nullptr;
 
   Application::Application(const Specification& spec)
-  : specification_(std::move(spec)) {
+  : specification_(spec) {
     // If instance already created then abort the application as multiple
     // instacnes should not be therer
     IK_CORE_ASSERT(!instance_, "Application already exists !!!");
@@ -27,6 +44,17 @@ namespace ikan {
     // NOTE: Creating the Renderer Data Memory in very begining as this will
     // setup the Renderer API to be used to create any Renderer Implementation
     Renderer::CreateRendererData(specification_.rendering_api);
+
+    // Create window instance
+    window_ = Window::Create(specification_.os, specification_.window_specification);
+    
+    // Set the application callback to window
+    window_->SetEventFunction(IK_BIND_EVENT_FN(Application::EventHandler));
+    
+    // Decorate Window
+    window_->SetResizable(specification_.resizable);
+    if (specification_.start_maximized)
+      window_->Maximize();
     
     // Create Memroy for Renderer Data
     Renderer::Initialize();
@@ -90,13 +118,15 @@ namespace ikan {
   }
   Application::Specification::Specification(const Application::Specification& other)
   : name(other.name), client_asset_path(other.client_asset_path),
-  rendering_api(other.rendering_api), window_specification(other.window_specification) {
+  rendering_api(other.rendering_api), window_specification(other.window_specification),
+  os(other.os), start_maximized(other.start_maximized), resizable(other.resizable) {
     IK_CORE_TRACE("Copying Application Specification ...");
   }
   
   Application::Specification::Specification(Application::Specification&& other)
   : name(other.name), client_asset_path(other.client_asset_path),
-  rendering_api(other.rendering_api), window_specification(other.window_specification) {
+  rendering_api(other.rendering_api), os(other.os), window_specification(other.window_specification),
+  start_maximized(other.start_maximized), resizable(other.resizable) {
     IK_CORE_TRACE("Moving Application Specification ...");
   }
   
@@ -106,7 +136,11 @@ namespace ikan {
     name = other.name;
     client_asset_path = other.client_asset_path;
     rendering_api = other.rendering_api;
+    os = other.os;
     window_specification = other.window_specification;
+    start_maximized = other.start_maximized;
+    resizable = other.resizable;
+
     return *this;
   }
   
@@ -116,7 +150,11 @@ namespace ikan {
     name = other.name;
     client_asset_path = other.client_asset_path;
     rendering_api = other.rendering_api;
+    os = other.os;
     window_specification = other.window_specification;
+    start_maximized = other.start_maximized;
+    resizable = other.resizable;
+
     return *this;
   }
   
@@ -126,6 +164,9 @@ namespace ikan {
     IK_CORE_INFO("  Name                 | {0}", name);
     IK_CORE_INFO("  Client Asset Path    | {0}", client_asset_path.c_str());
     IK_CORE_INFO("  Rewndering API       | {0}", renderer_utils::GetRendererApiName(rendering_api));
+    IK_CORE_INFO("  Operating System     | {0}", applicaiton_utils::GetOsNameAsString(os));
+    IK_CORE_INFO("  Window Maximized     | {0}", start_maximized);
+    IK_CORE_INFO("  Window Resizable     | {0}", resizable);
   }
 
 }

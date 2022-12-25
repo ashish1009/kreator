@@ -38,6 +38,8 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   application_spec.client_asset_path = "../../../kreator/sandbox/assets/";
   application_spec.rendering_api = ikan::Renderer::Api::OpenGl;
   
+  application_spec.os = ikan::OperatingSystem::Mac;
+  
   // Window Specification
   application_spec.window_specification.title = "Untitled Window";
   application_spec.window_specification.width = 1200;
@@ -45,6 +47,9 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   application_spec.window_specification.v_sync = true;
   application_spec.window_specification.fullscreen = false;
   application_spec.window_specification.decorated = true;
+  
+  application_spec.resizable = true;
+  application_spec.start_maximized = false;
   
   // Create the instance of applciaiton based on the type of suppored applucaiton
   std::vector<std::shared_ptr<ikan::Layer>> layers;

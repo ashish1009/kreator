@@ -31,7 +31,10 @@ namespace ikan {
       std::string name = "iKan";
       std::string client_asset_path;
       Renderer::Api rendering_api = Renderer::Api::None;
+      OperatingSystem os = OperatingSystem::None;
       Window::Specification window_specification;
+      bool start_maximized = true;
+      bool resizable = true;
 
       // default constructor and destructors
       Specification();
@@ -111,6 +114,7 @@ namespace ikan {
     // -----------------
     Application::Specification specification_;
     LayerStack layer_stack_;
+    std::unique_ptr<Window> window_;
     bool is_running_ = true;
     
     /// Static instance of singleton Application

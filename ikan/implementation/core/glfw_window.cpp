@@ -6,8 +6,23 @@
 //
 
 #include "glfw_window.hpp"
+#include "platform/mac_os/mac_os_window.hpp"
 
 namespace ikan {
+  
+  // ----------------------------
+  // Window API
+  // ----------------------------
+  std::unique_ptr<Window> Window::Create(OperatingSystem os,
+                                         const Specification& specificaiton) {
+    switch (os) {
+      case OperatingSystem::Mac:
+        return std::make_unique<MacWindow>(std::move(specificaiton));
+      case OperatingSystem::None:
+      default:
+        IK_CORE_ASSERT(false, "Provided OS Not Suported !!!");
+    }
+  }
  
   // ----------------------------
   // Window Specification
