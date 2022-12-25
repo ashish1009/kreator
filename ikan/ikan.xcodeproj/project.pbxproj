@@ -723,6 +723,7 @@
 					"${PROJECT_DIR}/vendors/glfw/glfw/include",
 					"${PROJECT_DIR}/vendors/open_gl/glad/include",
 					"${PROJECT_DIR}/vendors/imgui/imgui",
+					"${PROJECT_DIR}/vendors/glm",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -748,6 +749,7 @@
 					"${PROJECT_DIR}/vendors/glfw/glfw/include",
 					"${PROJECT_DIR}/vendors/open_gl/glad/include",
 					"${PROJECT_DIR}/vendors/imgui/imgui",
+					"${PROJECT_DIR}/vendors/glm",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
