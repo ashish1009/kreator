@@ -42,6 +42,8 @@
 		B2FC400B29588C8200447A1A /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2FC3F8929588C1B00447A1A /* libglfw.a */; };
 		B2FC40162958B09000447A1A /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC40142958B09000447A1A /* renderer.cpp */; };
 		B2FC40172958B09000447A1A /* renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC40152958B09000447A1A /* renderer.hpp */; };
+		B2FC401D2958B6AC00447A1A /* glfw_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC401B2958B6AC00447A1A /* glfw_window.cpp */; };
+		B2FC401E2958B6AC00447A1A /* glfw_window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC401C2958B6AC00447A1A /* glfw_window.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,8 @@
 		B2FC3F8429588C1B00447A1A /* glfw.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = glfw.xcodeproj; path = glfw/glfw.xcodeproj; sourceTree = "<group>"; };
 		B2FC40142958B09000447A1A /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		B2FC40152958B09000447A1A /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
+		B2FC401B2958B6AC00447A1A /* glfw_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = glfw_window.cpp; sourceTree = "<group>"; };
+		B2FC401C2958B6AC00447A1A /* glfw_window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = glfw_window.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 			children = (
 				B2250CE42958639D0067C43B /* core */,
 				B2FC400F2958B01900447A1A /* renderer */,
+				B2FC40182958B63E00447A1A /* platform */,
 			);
 			path = implementation;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 				B2FC3E99295886FE00447A1A /* mouse_codes.h */,
 				B2FC3EAE295888DA00447A1A /* layer.hpp */,
 				B2FC3EB22958892200447A1A /* layer_stack.hpp */,
+				B2FC401C2958B6AC00447A1A /* glfw_window.hpp */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -169,6 +175,7 @@
 				B2250CE829586A690067C43B /* utils */,
 				B2250CD9295861BF0067C43B /* core_application.cpp */,
 				B2FC3EB12958892200447A1A /* layer_stack.cpp */,
+				B2FC401B2958B6AC00447A1A /* glfw_window.cpp */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -307,6 +314,29 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
+		B2FC40182958B63E00447A1A /* platform */ = {
+			isa = PBXGroup;
+			children = (
+				B2FC401A2958B65600447A1A /* mac_os */,
+				B2FC40192958B64C00447A1A /* open_gl */,
+			);
+			path = platform;
+			sourceTree = "<group>";
+		};
+		B2FC40192958B64C00447A1A /* open_gl */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = open_gl;
+			sourceTree = "<group>";
+		};
+		B2FC401A2958B65600447A1A /* mac_os */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = mac_os;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -319,6 +349,7 @@
 				B2FC3E862958796F00447A1A /* ikan_headers.h in Headers */,
 				B2FC3EA92958880800447A1A /* event.hpp in Headers */,
 				B2FC3EAB2958880800447A1A /* application_event.hpp in Headers */,
+				B2FC401E2958B6AC00447A1A /* glfw_window.hpp in Headers */,
 				B2250CE729586A660067C43B /* asserts.h in Headers */,
 				B2FC3EAA2958880800447A1A /* mouse_event.hpp in Headers */,
 				B2FC40172958B09000447A1A /* renderer.hpp in Headers */,
@@ -413,6 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2FC3EA2295887FF00447A1A /* mouse_event.cpp in Sources */,
+				B2FC401D2958B6AC00447A1A /* glfw_window.cpp in Sources */,
 				B2FC3E8D2958839600447A1A /* time_step.cpp in Sources */,
 				B2FC3E892958826C00447A1A /* profiler.cpp in Sources */,
 				B2FC3E95295884A400447A1A /* asset_manager.cpp in Sources */,

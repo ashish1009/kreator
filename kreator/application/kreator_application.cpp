@@ -22,5 +22,13 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   application_spec.client_asset_path = "../../../kreator/sandbox/assets/";
   application_spec.rendering_api = ikan::Renderer::Api::OpenGl;
   
+  // Window Specification
+  application_spec.window_specification.title = "Untitled Window";
+  application_spec.window_specification.width = 1200;
+  application_spec.window_specification.height = 800;
+  application_spec.window_specification.v_sync = true;
+  application_spec.window_specification.fullscreen = false;
+  application_spec.window_specification.decorated = true;
+
   return std::make_unique<KreatorApp>(application_spec);
 }

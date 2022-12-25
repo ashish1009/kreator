@@ -90,13 +90,13 @@ namespace ikan {
   }
   Application::Specification::Specification(const Application::Specification& other)
   : name(other.name), client_asset_path(other.client_asset_path),
-  rendering_api(other.rendering_api) {
+  rendering_api(other.rendering_api), window_specification(other.window_specification) {
     IK_CORE_TRACE("Copying Application Specification ...");
   }
   
   Application::Specification::Specification(Application::Specification&& other)
   : name(other.name), client_asset_path(other.client_asset_path),
-  rendering_api(other.rendering_api) {
+  rendering_api(other.rendering_api), window_specification(other.window_specification) {
     IK_CORE_TRACE("Moving Application Specification ...");
   }
   
@@ -106,6 +106,7 @@ namespace ikan {
     name = other.name;
     client_asset_path = other.client_asset_path;
     rendering_api = other.rendering_api;
+    window_specification = other.window_specification;
     return *this;
   }
   
@@ -115,6 +116,7 @@ namespace ikan {
     name = other.name;
     client_asset_path = other.client_asset_path;
     rendering_api = other.rendering_api;
+    window_specification = other.window_specification;
     return *this;
   }
   

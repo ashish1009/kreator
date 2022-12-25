@@ -9,6 +9,7 @@
 
 #include "core/events/application_event.hpp"
 #include "core/layer_stack.hpp"
+#include "core/glfw_window.hpp"
 #include "renderer/utils/renderer.hpp"
 
 namespace ikan {
@@ -30,6 +31,7 @@ namespace ikan {
       std::string name = "iKan";
       std::string client_asset_path;
       Renderer::Api rendering_api = Renderer::Api::None;
+      Window::Specification window_specification;
 
       // default constructor and destructors
       Specification();
