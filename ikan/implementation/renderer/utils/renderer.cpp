@@ -6,6 +6,7 @@
 //
 
 #include "renderer.hpp"
+#include "renderer/utils/renderer_api.hpp"
 
 namespace ikan {
   
@@ -30,12 +31,14 @@ namespace ikan {
     friend class Renderer;
   public:
     Renderer::Api api = Renderer::Api::None;
-    
+    std::unique_ptr<RendererAPI> renderer_api_instance;
+
     /// This function uodate the renderer API
     /// - Parameter new_api: Rendere APU
     void SetApi(Renderer::Api new_api) {
       IK_CORE_INFO("Rsetting the Renderer API as {0} ...", renderer_utils::GetRendererApiName(api));
       api = new_api;
+      renderer_api_instance = RendererAPI::Create();
     }
     
   private:
@@ -52,16 +55,31 @@ namespace ikan {
   
   RendererData* Renderer::renderer_data_ = nullptr;
   
+  // -------------------------------------------------------------------------
+  // Fundamentals
+  // -------------------------------------------------------------------------
   void Renderer::CreateRendererData(Renderer::Api api) {
     renderer_data_ = new RendererData(api);
   }
   
   void Renderer::Initialize() {
-    
+    // Create Renderer Data
+    renderer_data_->renderer_api_instance = RendererAPI::Create();
   }
   
   void Renderer::Shutdown() {
     delete renderer_data_;
+  }
+  
+  // -------------------------------------------------------------------------
+  // Renderer API
+  // -------------------------------------------------------------------------
+  void Renderer::SetApi(Renderer::Api api) {
+    renderer_data_->SetApi(api);
+  }
+  
+  Renderer::Api Renderer::GetApi() {
+    return renderer_data_->api;
   }
   
   // -------------------------------------------------------------------------

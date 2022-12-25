@@ -49,6 +49,10 @@
 		B2FC40282958BBC500447A1A /* open_gl_renderer_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC40262958BBC500447A1A /* open_gl_renderer_context.cpp */; };
 		B2FC40292958BBC500447A1A /* open_gl_renderer_context.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC40272958BBC500447A1A /* open_gl_renderer_context.hpp */; };
 		B2FC405B2958BCA500447A1A /* libglad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2FC40462958BC3800447A1A /* libglad.a */; };
+		B2FC405E2958BD0900447A1A /* open_gl_renderer_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC405C2958BD0900447A1A /* open_gl_renderer_api.cpp */; };
+		B2FC405F2958BD0900447A1A /* open_gl_renderer_api.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC405D2958BD0900447A1A /* open_gl_renderer_api.hpp */; };
+		B2FC40622958BD6100447A1A /* renderer_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC40602958BD6100447A1A /* renderer_api.cpp */; };
+		B2FC40632958BD6100447A1A /* renderer_api.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC40612958BD6100447A1A /* renderer_api.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +116,10 @@
 		B2FC40262958BBC500447A1A /* open_gl_renderer_context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_renderer_context.cpp; sourceTree = "<group>"; };
 		B2FC40272958BBC500447A1A /* open_gl_renderer_context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_renderer_context.hpp; sourceTree = "<group>"; };
 		B2FC40412958BC3800447A1A /* glad.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = glad.xcodeproj; path = open_gl/glad/glad.xcodeproj; sourceTree = "<group>"; };
+		B2FC405C2958BD0900447A1A /* open_gl_renderer_api.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_renderer_api.cpp; sourceTree = "<group>"; };
+		B2FC405D2958BD0900447A1A /* open_gl_renderer_api.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_renderer_api.hpp; sourceTree = "<group>"; };
+		B2FC40602958BD6100447A1A /* renderer_api.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_api.cpp; sourceTree = "<group>"; };
+		B2FC40612958BD6100447A1A /* renderer_api.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_api.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				B2FC40152958B09000447A1A /* renderer.hpp */,
+				B2FC40612958BD6100447A1A /* renderer_api.hpp */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -331,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				B2FC40142958B09000447A1A /* renderer.cpp */,
+				B2FC40602958BD6100447A1A /* renderer_api.cpp */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -349,6 +359,8 @@
 			children = (
 				B2FC40262958BBC500447A1A /* open_gl_renderer_context.cpp */,
 				B2FC40272958BBC500447A1A /* open_gl_renderer_context.hpp */,
+				B2FC405C2958BD0900447A1A /* open_gl_renderer_api.cpp */,
+				B2FC405D2958BD0900447A1A /* open_gl_renderer_api.hpp */,
 			);
 			path = open_gl;
 			sourceTree = "<group>";
@@ -388,6 +400,7 @@
 				B2250CCF29585E310067C43B /* prefix_header.pch in Headers */,
 				B2250D02295873A70067C43B /* ikan_common.h in Headers */,
 				B2250D042958751E0067C43B /* core_logger.h in Headers */,
+				B2FC405F2958BD0900447A1A /* open_gl_renderer_api.hpp in Headers */,
 				B2FC3E98295886EC00447A1A /* key_codes.h in Headers */,
 				B2FC40252958BAC400447A1A /* renderer_context.hpp in Headers */,
 				B2FC3E9A295886FE00447A1A /* mouse_codes.h in Headers */,
@@ -395,6 +408,7 @@
 				B2FC3EB0295888DA00447A1A /* layer.hpp in Headers */,
 				B2FC3E8A2958826C00447A1A /* profiler.hpp in Headers */,
 				B2FC3E922958840D00447A1A /* buffers.hpp in Headers */,
+				B2FC40632958BD6100447A1A /* renderer_api.hpp in Headers */,
 				B2250CEA29586A770067C43B /* core_asserts.h in Headers */,
 				B2FC3E8E2958839600447A1A /* time_step.hpp in Headers */,
 				B2250CD4295860420067C43B /* core_entry_point.h in Headers */,
@@ -493,12 +507,14 @@
 				B2FC3E8D2958839600447A1A /* time_step.cpp in Sources */,
 				B2FC3E892958826C00447A1A /* profiler.cpp in Sources */,
 				B2FC40242958BAC400447A1A /* renderer_context.cpp in Sources */,
+				B2FC40622958BD6100447A1A /* renderer_api.cpp in Sources */,
 				B2FC3E95295884A400447A1A /* asset_manager.cpp in Sources */,
 				B2FC40162958B09000447A1A /* renderer.cpp in Sources */,
 				B2FC3EA3295887FF00447A1A /* event.cpp in Sources */,
 				B2FC3EB32958892200447A1A /* layer_stack.cpp in Sources */,
 				B2FC3EA1295887FF00447A1A /* application_event.cpp in Sources */,
 				B2250CDB295861BF0067C43B /* core_application.cpp in Sources */,
+				B2FC405E2958BD0900447A1A /* open_gl_renderer_api.cpp in Sources */,
 				B2FC3EA0295887FF00447A1A /* key_event.cpp in Sources */,
 				B2FC3E912958840D00447A1A /* buffers.cpp in Sources */,
 				B2250CFF295873330067C43B /* logger.cpp in Sources */,

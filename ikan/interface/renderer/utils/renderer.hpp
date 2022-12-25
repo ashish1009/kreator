@@ -65,6 +65,17 @@ namespace ikan {
     /// the end before shutting down the renderer.
     static void Shutdown();
 
+    // --------------------
+    // Renderer API
+    // --------------------
+    /// This function set the current renderer API and initialize the Renderer API instance according
+    /// to the supported 'api' NOTE: call this API in the very beginning of the Application as all the
+    /// renderer instances (including Windows that use Renderer Context) needs the Supported API.
+    /// - Parameter api: New Supported API
+    static void SetApi(Api api);
+    /// This function returns the current API supported
+    static Api GetApi();
+
   private:
     // -------------------
     // Member veriables
