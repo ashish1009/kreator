@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "renderer/utils/renderer_api.hpp"
+
 // This file includes the wrapper interface of Renderer. That interact with all
 // the modules which is responsible for Rendering. Client can use these APIs top
 // manage all the renderers
@@ -65,6 +67,61 @@ namespace ikan {
     /// the end before shutting down the renderer.
     static void Shutdown();
 
+    // -----------------------------------
+    // Fundamental Renderer API Wrappers
+    // -----------------------------------
+    /// This funciton Clears all the Renderer Bits and set the Clear color to
+    /// new color
+    /// - Parameter color: New color of renderer Clear color
+    static void Clear(const glm::vec4& color);
+    /// This function Sets the Clear color to new color
+    /// - Parameter color: New color of renderer Clear color
+    static void SetClearColor(const glm::vec4& color);
+    /// This function Clears all the Renderer Bits
+    static void ClearBits();
+    /// This function Clears Depth Bit
+    static void ClearDepthBit();
+    /// This function Clears Color Biut
+    static void ClearColorBit();
+    /// This function Clears Stensil Bit
+    static void ClearStencilBit();
+    
+    /// This funciton Enables or disables Depth Field
+    /// - Parameter state: flag to be set as Depth
+    static void Depth(bool state);
+    /// This funciton Enables or disables Blend Field
+    /// - Parameter state: flag to be set as Blend
+    static void Blend(bool state);
+    /// This funciton Enables or disables MultiSample Field
+    /// - Parameter state: flag to be set as MultiSample
+    static void MultiSample(bool state);
+    
+    /// This function change depth function
+    /// - Parameter func: depth function type
+    static void DepthFunc(RendererAPI::GlFunc func);
+    
+    /// This function begins the wireframe renderer
+    static void BeginWireframe();
+    /// This function ends the wireframe renderer
+    static void EndWireframe();
+    
+    /// This function update the renderer viewport size
+    /// - Parameters:
+    ///   - width: new width of renderer viewport
+    ///   - height: new height of renderer viewport
+    static void SetViewport(uint32_t width, uint32_t height);
+    
+    /// This function returns the the Pixel ID from Viewport
+    /// - Parameters:
+    ///   - mx: x pixel
+    ///   - my: y pixel
+    ///   - pixel_id_index: pixell index in fb
+    ///   - pixeld_data: piixel value
+    static void GetEntityIdFromPixels(int32_t mx,
+                                      int32_t my,
+                                      uint32_t pixel_id_index,
+                                      int32_t& pixeld_data);
+    
     // --------------------
     // Renderer API
     // --------------------

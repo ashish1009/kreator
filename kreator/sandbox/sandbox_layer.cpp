@@ -27,8 +27,7 @@ namespace sandbox {
   }
   
   void SandboxLayer::Update(Timestep ts) {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-    glClearColor(0.1, 0.1, 0.1, 1.0);
+    Renderer::Clear({0.2, 0.3, 0.4, 1.0});
   }
   
   void SandboxLayer::EventHandler(Event& event) {
