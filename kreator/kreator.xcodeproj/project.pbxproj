@@ -296,6 +296,7 @@
 					"${PROJECT_DIR}/../ikan/vendors/spd_log/include",
 					"${PROJECT_DIR}/../ikan/vendors/imgui/imgui",
 					"${PROJECT_DIR}/../ikan/vendors/glm",
+					"${PROJECT_DIR}/../ikan/vendors/open_gl/glad/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -317,6 +318,7 @@
 					"${PROJECT_DIR}/../ikan/vendors/spd_log/include",
 					"${PROJECT_DIR}/../ikan/vendors/imgui/imgui",
 					"${PROJECT_DIR}/../ikan/vendors/glm",
+					"${PROJECT_DIR}/../ikan/vendors/open_gl/glad/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

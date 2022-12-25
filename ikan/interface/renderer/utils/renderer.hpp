@@ -75,6 +75,12 @@ namespace ikan {
     static void SetApi(Api api);
     /// This function returns the current API supported
     static Api GetApi();
+    
+    // -----------------
+    // Gui Widgets
+    // -----------------
+    /// This function renders a widgit that shows the frame rate of the application
+    static void Framerate();
 
   private:
     // -------------------

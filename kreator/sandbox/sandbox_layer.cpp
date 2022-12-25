@@ -6,6 +6,7 @@
 //
 
 #include "sandbox_layer.hpp"
+#include <glad/glad.h>
 
 namespace sandbox {
     
@@ -26,12 +27,15 @@ namespace sandbox {
   }
   
   void SandboxLayer::Update(Timestep ts) {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+    glClearColor(0.1, 0.1, 0.1, 1.0);
   }
   
   void SandboxLayer::EventHandler(Event& event) {
   }
   
   void SandboxLayer::RenderGui() {
+    Renderer::Framerate();
   }
   
 } // namespace sandbox

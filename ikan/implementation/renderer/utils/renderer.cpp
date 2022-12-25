@@ -7,6 +7,7 @@
 
 #include "renderer.hpp"
 #include "renderer/utils/renderer_api.hpp"
+#include "imgui/imgui_api.hpp"
 
 namespace ikan {
   
@@ -80,6 +81,10 @@ namespace ikan {
   
   Renderer::Api Renderer::GetApi() {
     return renderer_data_->api;
+  }
+  
+  void Renderer::Framerate() {
+    ImguiAPI::Framerate();
   }
   
   // -------------------------------------------------------------------------
