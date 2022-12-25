@@ -1,0 +1,3 @@
+[submodule "ikan/vendors/sdb_log"]
+	path = ikan/vendors/sdb_log
+	url = https://github.com/gabime/spdlog
