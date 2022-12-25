@@ -43,23 +43,22 @@ namespace ikan {
       DEFINE_COPY_MOVE_CONSTRUCTORS(Specification);
     };
 
+    // -----------------------------
     // Constructor and Destructor
+    // -----------------------------
     /// This constructs the core application instance
     /// - Parameter spec: application_specification
     Application(const Specification& spec);
     /// This destroys the core application instance
     virtual ~Application();
     
-    /// This function handles all the events of window. Application is dispatching the events and
-    /// perform the interupt actions
-    /// - Parameter event: event abstract type
-    void EventHandler(Event& event);
-    
+    // ------------------------------------------------------------------------
     // virtual APIs
     // NOTE: Override these virtual Methods in client Application only if you
     // want to create complete fresh application and add some specialisation
     // functionality. If these methods will be overriden in client side then
     // functionality will be completely based on overriden methods
+    // ------------------------------------------------------------------------
     
     /// This function is responsible for :
     ///   - Updating the Application.
@@ -73,6 +72,13 @@ namespace ikan {
     /// game loop
     virtual void Close();
     
+    // -------------
+    // Fundamentals
+    // -------------
+    /// This function handles all the events of window. Application is dispatching the events and
+    /// perform the interupt actions
+    /// - Parameter event: event abstract type
+    void EventHandler(Event& event);
     /// This function Push the layer of type ikan::Layer in Core Application layer stack. Also attach
     /// the layer (initialise it)
     /// - Parameter layer: Layer Reference pointer to be added

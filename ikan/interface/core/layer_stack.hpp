@@ -17,12 +17,18 @@ namespace ikan {
   /// Iteration of layers Storing data as std::vector
   class LayerStack {
   public:
+    // ----------------------------
+    // Constructors and Destructor
+    // ----------------------------
     /// Default constructor of layer stack. Just creating isntance
     LayerStack();
     /// Destructor of layer stack. Remove all the layer from stack and detach
     /// them from application
     ~LayerStack();
     
+    // -------------
+    // Fundamentals
+    // -------------
     /// This function pushes the layer in the Stack
     /// - Parameter layer: layer shaerd pointer to be inserted
     void PushLayer(const std::shared_ptr<Layer>& layer);
@@ -31,7 +37,9 @@ namespace ikan {
     /// - Parameter layer layer shared pointer to be deleted
     void PopLayer(const std::shared_ptr<Layer>& layer);
     
-    // --------------- APIs for Iterators -------------------------
+    // ---------------------
+    // APIs for Iterators
+    // ---------------------
     std::vector<std::shared_ptr<Layer>>::iterator begin();
     std::vector<std::shared_ptr<Layer>>::iterator end();
     std::vector<std::shared_ptr<Layer>>::reverse_iterator rbegin();

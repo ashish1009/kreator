@@ -44,6 +44,8 @@
 		B2FC40172958B09000447A1A /* renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC40152958B09000447A1A /* renderer.hpp */; };
 		B2FC401D2958B6AC00447A1A /* glfw_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC401B2958B6AC00447A1A /* glfw_window.cpp */; };
 		B2FC401E2958B6AC00447A1A /* glfw_window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC401C2958B6AC00447A1A /* glfw_window.hpp */; };
+		B2FC40242958BAC400447A1A /* renderer_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC40222958BAC400447A1A /* renderer_context.cpp */; };
+		B2FC40252958BAC400447A1A /* renderer_context.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC40232958BAC400447A1A /* renderer_context.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,8 @@
 		B2FC40152958B09000447A1A /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 		B2FC401B2958B6AC00447A1A /* glfw_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = glfw_window.cpp; sourceTree = "<group>"; };
 		B2FC401C2958B6AC00447A1A /* glfw_window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = glfw_window.hpp; sourceTree = "<group>"; };
+		B2FC40222958BAC400447A1A /* renderer_context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_context.cpp; sourceTree = "<group>"; };
+		B2FC40232958BAC400447A1A /* renderer_context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_context.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +299,7 @@
 		B2FC40112958B05B00447A1A /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				B2FC40232958BAC400447A1A /* renderer_context.hpp */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 		B2FC40122958B06000447A1A /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				B2FC40222958BAC400447A1A /* renderer_context.cpp */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -357,6 +363,7 @@
 				B2250D02295873A70067C43B /* ikan_common.h in Headers */,
 				B2250D042958751E0067C43B /* core_logger.h in Headers */,
 				B2FC3E98295886EC00447A1A /* key_codes.h in Headers */,
+				B2FC40252958BAC400447A1A /* renderer_context.hpp in Headers */,
 				B2FC3E9A295886FE00447A1A /* mouse_codes.h in Headers */,
 				B2FC3E96295884A400447A1A /* asset_manager.hpp in Headers */,
 				B2FC3EB0295888DA00447A1A /* layer.hpp in Headers */,
@@ -447,6 +454,7 @@
 				B2FC401D2958B6AC00447A1A /* glfw_window.cpp in Sources */,
 				B2FC3E8D2958839600447A1A /* time_step.cpp in Sources */,
 				B2FC3E892958826C00447A1A /* profiler.cpp in Sources */,
+				B2FC40242958BAC400447A1A /* renderer_context.cpp in Sources */,
 				B2FC3E95295884A400447A1A /* asset_manager.cpp in Sources */,
 				B2FC40162958B09000447A1A /* renderer.cpp in Sources */,
 				B2FC3EA3295887FF00447A1A /* event.cpp in Sources */,
@@ -592,6 +600,7 @@
 					"${PROJECT_DIR}/implementation",
 					"${PROJECT_DIR}/interface",
 					"${PROJECT_DIR}/vendors/spd_log/include",
+					"${PROJECT_DIR}/vendors/glfw/glfw/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -614,6 +623,7 @@
 					"${PROJECT_DIR}/implementation",
 					"${PROJECT_DIR}/interface",
 					"${PROJECT_DIR}/vendors/spd_log/include",
+					"${PROJECT_DIR}/vendors/glfw/glfw/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

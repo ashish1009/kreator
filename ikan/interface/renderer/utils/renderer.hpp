@@ -49,6 +49,9 @@ namespace ikan {
       DELETE_COPY_MOVE_CONSTRUCTORS(Capabilities);
     };
     
+    // -------------
+    // Fundamentals
+    // -------------
     /// This function Creates memory for rendere Data. To be called before initializing any open GL
     /// or GLFW instances
     /// - Parameter api: current renderer API

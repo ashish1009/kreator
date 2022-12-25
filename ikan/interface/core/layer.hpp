@@ -19,12 +19,18 @@ namespace ikan {
   /// Layer Interface class Core Application manages Bellow API As per functionality defined
   class Layer {
   public:
+    // ----------------------------
+    // Constructors and Destructor
+    // ----------------------------
     /// Layer Default Constructor to store the name of layer
     /// - Parameter name: name of layer
     Layer(const std::string& name) : name_(name) {}
     /// Default Destructor
     virtual ~Layer() = default;
     
+    // -------------
+    // Fundamentals
+    // -------------
     /// This funciton initialises the layer, calls when we push layer in the application (To be called only once)
     virtual void Attach() = 0;
     /// This funciton destroy the layer, calls when we pop layer from the application (To be called only once)
