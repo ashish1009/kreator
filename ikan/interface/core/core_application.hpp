@@ -9,6 +9,7 @@
 
 #include "core/events/application_event.hpp"
 #include "core/layer_stack.hpp"
+#include "renderer/utils/renderer.hpp"
 
 namespace ikan {
   
@@ -28,12 +29,12 @@ namespace ikan {
     struct Specification {
       std::string name = "iKan";
       std::string client_asset_path;
+      Renderer::Api rendering_api = Renderer::Api::None;
 
       // default constructor and destructors
       Specification();
       ~Specification();
       
-      /// This function logs the application specification
       void Log();
       
       // Copy and Move Constructor and operator =

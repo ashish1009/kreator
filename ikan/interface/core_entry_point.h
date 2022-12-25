@@ -32,6 +32,9 @@ int main(int argc, const char * argv[]) {
 #endif
   
   auto app = CreateApplication();
+  if (app) {
+    app->Run();
+  }
 
   return 0;
 }

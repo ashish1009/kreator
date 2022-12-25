@@ -40,6 +40,8 @@
 		B2FC3EB32958892200447A1A /* layer_stack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC3EB12958892200447A1A /* layer_stack.cpp */; };
 		B2FC3EB42958892200447A1A /* layer_stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3EB22958892200447A1A /* layer_stack.hpp */; };
 		B2FC400B29588C8200447A1A /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2FC3F8929588C1B00447A1A /* libglfw.a */; };
+		B2FC40162958B09000447A1A /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC40142958B09000447A1A /* renderer.cpp */; };
+		B2FC40172958B09000447A1A /* renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC40152958B09000447A1A /* renderer.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		B2FC3EB12958892200447A1A /* layer_stack.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = layer_stack.cpp; sourceTree = "<group>"; };
 		B2FC3EB22958892200447A1A /* layer_stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = layer_stack.hpp; sourceTree = "<group>"; };
 		B2FC3F8429588C1B00447A1A /* glfw.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = glfw.xcodeproj; path = glfw/glfw.xcodeproj; sourceTree = "<group>"; };
+		B2FC40142958B09000447A1A /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
+		B2FC40152958B09000447A1A /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,7 @@
 				B2250D01295873A70067C43B /* ikan_common.h */,
 				B2FC3E852958796F00447A1A /* ikan_headers.h */,
 				B2250CD82958616B0067C43B /* core */,
+				B2FC400E2958B00B00447A1A /* renderer */,
 			);
 			path = interface;
 			sourceTree = "<group>";
@@ -136,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				B2250CE42958639D0067C43B /* core */,
+				B2FC400F2958B01900447A1A /* renderer */,
 			);
 			path = implementation;
 			sourceTree = "<group>";
@@ -253,6 +259,54 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B2FC400E2958B00B00447A1A /* renderer */ = {
+			isa = PBXGroup;
+			children = (
+				B2FC40102958B05700447A1A /* utils */,
+				B2FC40112958B05B00447A1A /* graphics */,
+			);
+			path = renderer;
+			sourceTree = "<group>";
+		};
+		B2FC400F2958B01900447A1A /* renderer */ = {
+			isa = PBXGroup;
+			children = (
+				B2FC40132958B06600447A1A /* utils */,
+				B2FC40122958B06000447A1A /* graphics */,
+			);
+			path = renderer;
+			sourceTree = "<group>";
+		};
+		B2FC40102958B05700447A1A /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				B2FC40152958B09000447A1A /* renderer.hpp */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		B2FC40112958B05B00447A1A /* graphics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = graphics;
+			sourceTree = "<group>";
+		};
+		B2FC40122958B06000447A1A /* graphics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = graphics;
+			sourceTree = "<group>";
+		};
+		B2FC40132958B06600447A1A /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				B2FC40142958B09000447A1A /* renderer.cpp */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -267,6 +321,7 @@
 				B2FC3EAB2958880800447A1A /* application_event.hpp in Headers */,
 				B2250CE729586A660067C43B /* asserts.h in Headers */,
 				B2FC3EAA2958880800447A1A /* mouse_event.hpp in Headers */,
+				B2FC40172958B09000447A1A /* renderer.hpp in Headers */,
 				B2250CCF29585E310067C43B /* prefix_header.pch in Headers */,
 				B2250D02295873A70067C43B /* ikan_common.h in Headers */,
 				B2250D042958751E0067C43B /* core_logger.h in Headers */,
@@ -361,6 +416,7 @@
 				B2FC3E8D2958839600447A1A /* time_step.cpp in Sources */,
 				B2FC3E892958826C00447A1A /* profiler.cpp in Sources */,
 				B2FC3E95295884A400447A1A /* asset_manager.cpp in Sources */,
+				B2FC40162958B09000447A1A /* renderer.cpp in Sources */,
 				B2FC3EA3295887FF00447A1A /* event.cpp in Sources */,
 				B2FC3EB32958892200447A1A /* layer_stack.cpp in Sources */,
 				B2FC3EA1295887FF00447A1A /* application_event.cpp in Sources */,
@@ -486,6 +542,7 @@
 		B2250CC929584D060067C43B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78KTXZ99TW;
 				EXECUTABLE_PREFIX = lib;
@@ -512,11 +569,13 @@
 		B2250CCA29584D060067C43B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78KTXZ99TW;
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
 				HEADER_SEARCH_PATHS = (

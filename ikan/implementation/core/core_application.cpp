@@ -22,10 +22,19 @@ namespace ikan {
     specification_.Log();
     
     AssetManager::SetClientAssetPath(specification_.client_asset_path);
+    
+    // Create Memroy for Renderer Data
+    // NOTE: Creating the Renderer Data Memory in very begining as this will
+    // setup the Renderer API to be used to create any Renderer Implementation
+    Renderer::CreateRendererData(specification_.rendering_api);
+    
+    // Create Memroy for Renderer Data
+    Renderer::Initialize();
   }
   
   Application::~Application() {
     IK_CORE_WARN("Destroying Core Application Instance !!!");
+    Renderer::Shutdown();
   }
   
   void Application::EventHandler(Event& event) {
@@ -80,12 +89,14 @@ namespace ikan {
     IK_CORE_WARN("Destroying Application Specification !!!");
   }
   Application::Specification::Specification(const Application::Specification& other)
-  : name(other.name), client_asset_path(other.client_asset_path) {
+  : name(other.name), client_asset_path(other.client_asset_path),
+  rendering_api(other.rendering_api) {
     IK_CORE_TRACE("Copying Application Specification ...");
   }
   
   Application::Specification::Specification(Application::Specification&& other)
-  : name(other.name), client_asset_path(other.client_asset_path) {
+  : name(other.name), client_asset_path(other.client_asset_path),
+  rendering_api(other.rendering_api) {
     IK_CORE_TRACE("Moving Application Specification ...");
   }
   
@@ -94,6 +105,7 @@ namespace ikan {
     IK_CORE_TRACE("Copying Application Specification using operator = ...");
     name = other.name;
     client_asset_path = other.client_asset_path;
+    rendering_api = other.rendering_api;
     return *this;
   }
   
@@ -102,6 +114,7 @@ namespace ikan {
     IK_CORE_TRACE("Moving Application Specification using operator = ...");
     name = other.name;
     client_asset_path = other.client_asset_path;
+    rendering_api = other.rendering_api;
     return *this;
   }
   
@@ -110,6 +123,7 @@ namespace ikan {
     IK_CORE_INFO("  -----------------------------");
     IK_CORE_INFO("  Name                 | {0}", name);
     IK_CORE_INFO("  Client Asset Path    | {0}", client_asset_path.c_str());
+    IK_CORE_INFO("  Rewndering API       | {0}", renderer_utils::GetRendererApiName(rendering_api));
   }
 
 }

@@ -4,6 +4,13 @@
    <FileRef
       location = "group:README.md">
    </FileRef>
+   <Group
+      location = "group:log"
+      name = "log">
+      <FileRef
+         location = "group:ikan_log.ikan_log">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:kreator/kreator.xcodeproj">
    </FileRef>

@@ -1,0 +1,83 @@
+//
+//  renderer.cpp
+//  ikan
+//
+//  Created by Ashish . on 25/12/22.
+//
+
+#include "renderer.hpp"
+
+namespace ikan {
+  
+  namespace renderer_utils {
+    
+#ifdef IK_DEBUG_FEATURE
+    std::string GetRendererApiName(Renderer::Api api) {
+      std::string renderer_api_name = "None";
+      switch (api) {
+        case Renderer::Api::OpenGl : renderer_api_name = "Open GL"; break;
+        case Renderer::Api::None:
+        default:
+          IK_CORE_ASSERT(false, "Invalid Renderer API");
+      }
+      return renderer_api_name;
+    }
+#endif
+    
+  }
+
+  struct RendererData {
+    friend class Renderer;
+  public:
+    Renderer::Api api = Renderer::Api::None;
+    
+    /// This function uodate the renderer API
+    /// - Parameter new_api: Rendere APU
+    void SetApi(Renderer::Api new_api) {
+      IK_CORE_INFO("Rsetting the Renderer API as {0} ...", renderer_utils::GetRendererApiName(api));
+      api = new_api;
+    }
+    
+  private:
+    RendererData(Renderer::Api new_api)
+    : api(new_api) {
+      IK_CORE_TRACE("Creating Renderer Data Instance with {0} API ...", renderer_utils::GetRendererApiName(api));
+    }
+    ~RendererData() {
+      IK_CORE_WARN("Destroying Renderer Data Instance with API {0} !!!", renderer_utils::GetRendererApiName(api));
+    }
+    
+    DELETE_COPY_MOVE_CONSTRUCTORS(RendererData);
+  };
+  
+  RendererData* Renderer::renderer_data_ = nullptr;
+  
+  void Renderer::CreateRendererData(Renderer::Api api) {
+    renderer_data_ = new RendererData(api);
+  }
+  
+  void Renderer::Initialize() {
+    
+  }
+  
+  void Renderer::Shutdown() {
+    delete renderer_data_;
+  }
+  
+  // -------------------------------------------------------------------------
+  // Renderer Capabilities
+  // -------------------------------------------------------------------------
+  Renderer::Capabilities& Renderer::Capabilities::Get() {
+    static Capabilities capabilities;
+    return capabilities;
+  }
+  
+  void Renderer::Capabilities::Log() {
+    IK_CORE_INFO("  Renderer Capability | Value ");
+    IK_CORE_INFO("  ----------------------------");
+    IK_CORE_INFO("  Vendor              | {0} ", vendor);
+    IK_CORE_INFO("  Renderer            | {0} ", renderer);
+    IK_CORE_INFO("  Version             | {0} ", version);
+  }
+
+}

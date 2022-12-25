@@ -272,6 +272,7 @@
 		B2250CB229584CE00067C43B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78KTXZ99TW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -294,9 +295,11 @@
 		B2250CB329584CE00067C43B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78KTXZ99TW;
 				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
 				HEADER_SEARCH_PATHS = (

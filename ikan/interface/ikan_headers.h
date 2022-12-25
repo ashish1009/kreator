@@ -26,3 +26,6 @@
 #include <core/utils/asserts.h>
 #include <core/utils/asset_manager.hpp>
 #include <core/core_application.hpp>
+
+// Renderer
+#include <renderer/utils/renderer.hpp>
