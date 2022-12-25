@@ -1,0 +1,9 @@
+# Directories
+build/
+derived_data/
+
+#Engine Files
+*.iKanlog
+
+# Mac Files
+.DS_Store
