@@ -46,6 +46,9 @@
 		B2FC401E2958B6AC00447A1A /* glfw_window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC401C2958B6AC00447A1A /* glfw_window.hpp */; };
 		B2FC40242958BAC400447A1A /* renderer_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC40222958BAC400447A1A /* renderer_context.cpp */; };
 		B2FC40252958BAC400447A1A /* renderer_context.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC40232958BAC400447A1A /* renderer_context.hpp */; };
+		B2FC40282958BBC500447A1A /* open_gl_renderer_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC40262958BBC500447A1A /* open_gl_renderer_context.cpp */; };
+		B2FC40292958BBC500447A1A /* open_gl_renderer_context.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC40272958BBC500447A1A /* open_gl_renderer_context.hpp */; };
+		B2FC405B2958BCA500447A1A /* libglad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2FC40462958BC3800447A1A /* libglad.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = B2FC3F7629588C1B00447A1A;
 			remoteInfo = glfw;
+		};
+		B2FC40452958BC3800447A1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2FC40412958BC3800447A1A /* glad.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B2FC40332958BC3800447A1A;
+			remoteInfo = glad;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -99,6 +109,9 @@
 		B2FC401C2958B6AC00447A1A /* glfw_window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = glfw_window.hpp; sourceTree = "<group>"; };
 		B2FC40222958BAC400447A1A /* renderer_context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_context.cpp; sourceTree = "<group>"; };
 		B2FC40232958BAC400447A1A /* renderer_context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_context.hpp; sourceTree = "<group>"; };
+		B2FC40262958BBC500447A1A /* open_gl_renderer_context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_renderer_context.cpp; sourceTree = "<group>"; };
+		B2FC40272958BBC500447A1A /* open_gl_renderer_context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_renderer_context.hpp; sourceTree = "<group>"; };
+		B2FC40412958BC3800447A1A /* glad.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = glad.xcodeproj; path = open_gl/glad/glad.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2FC405B2958BCA500447A1A /* libglad.a in Frameworks */,
 				B2FC400B29588C8200447A1A /* libglfw.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +264,7 @@
 		B2FC3EB529588BF300447A1A /* vendors */ = {
 			isa = PBXGroup;
 			children = (
+				B2FC40412958BC3800447A1A /* glad.xcodeproj */,
 				B2FC3F8429588C1B00447A1A /* glfw.xcodeproj */,
 			);
 			path = vendors;
@@ -332,6 +347,8 @@
 		B2FC40192958B64C00447A1A /* open_gl */ = {
 			isa = PBXGroup;
 			children = (
+				B2FC40262958BBC500447A1A /* open_gl_renderer_context.cpp */,
+				B2FC40272958BBC500447A1A /* open_gl_renderer_context.hpp */,
 			);
 			path = open_gl;
 			sourceTree = "<group>";
@@ -343,6 +360,14 @@
 			path = mac_os;
 			sourceTree = "<group>";
 		};
+		B2FC40422958BC3800447A1A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B2FC40462958BC3800447A1A /* libglad.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -352,6 +377,7 @@
 			files = (
 				B2FC3EB42958892200447A1A /* layer_stack.hpp in Headers */,
 				B2FC3EAC2958880800447A1A /* key_event.hpp in Headers */,
+				B2FC40292958BBC500447A1A /* open_gl_renderer_context.hpp in Headers */,
 				B2FC3E862958796F00447A1A /* ikan_headers.h in Headers */,
 				B2FC3EA92958880800447A1A /* event.hpp in Headers */,
 				B2FC3EAB2958880800447A1A /* application_event.hpp in Headers */,
@@ -424,6 +450,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = B2FC40422958BC3800447A1A /* Products */;
+					ProjectRef = B2FC40412958BC3800447A1A /* glad.xcodeproj */;
+				},
+				{
 					ProductGroup = B2FC3F8529588C1B00447A1A /* Products */;
 					ProjectRef = B2FC3F8429588C1B00447A1A /* glfw.xcodeproj */;
 				},
@@ -443,6 +473,13 @@
 			remoteRef = B2FC3F8829588C1B00447A1A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		B2FC40462958BC3800447A1A /* libglad.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libglad.a;
+			remoteRef = B2FC40452958BC3800447A1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -452,6 +489,7 @@
 			files = (
 				B2FC3EA2295887FF00447A1A /* mouse_event.cpp in Sources */,
 				B2FC401D2958B6AC00447A1A /* glfw_window.cpp in Sources */,
+				B2FC40282958BBC500447A1A /* open_gl_renderer_context.cpp in Sources */,
 				B2FC3E8D2958839600447A1A /* time_step.cpp in Sources */,
 				B2FC3E892958826C00447A1A /* profiler.cpp in Sources */,
 				B2FC40242958BAC400447A1A /* renderer_context.cpp in Sources */,
@@ -601,6 +639,7 @@
 					"${PROJECT_DIR}/interface",
 					"${PROJECT_DIR}/vendors/spd_log/include",
 					"${PROJECT_DIR}/vendors/glfw/glfw/include",
+					"${PROJECT_DIR}/vendors/open_gl/glad/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -624,6 +663,7 @@
 					"${PROJECT_DIR}/interface",
 					"${PROJECT_DIR}/vendors/spd_log/include",
 					"${PROJECT_DIR}/vendors/glfw/glfw/include",
+					"${PROJECT_DIR}/vendors/open_gl/glad/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
