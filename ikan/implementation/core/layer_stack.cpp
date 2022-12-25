@@ -20,10 +20,8 @@ namespace ikan {
     // Delete and deteach all the layers from stack
     for (auto& layer : layers_) {
       IK_CORE_WARN("Poping the Layer in the stack");
-      IK_CORE_WARN("  ---------------------------------");
       IK_CORE_WARN("  Name                            | {0}", layer->GetName().c_str());
       IK_CORE_WARN("  Number of Layers                | {0}", --number_of_layers_);
-      IK_CORE_WARN("  ---------------------------------");
       
       layer->Detach();
     }
@@ -36,10 +34,8 @@ namespace ikan {
       return;
     
     IK_CORE_INFO("Pushing the Layer in the stack");
-    IK_CORE_INFO("  -------------------------------------");
     IK_CORE_INFO("  Name             | {0}", layer->GetName().c_str());
     IK_CORE_INFO("  Number of Layers | {0}", ++number_of_layers_);
-    IK_CORE_INFO("  -------------------------------------");
     
     layers_.emplace_back(layer);
     layer->Attach();
@@ -47,10 +43,8 @@ namespace ikan {
   
   void LayerStack::PopLayer(const std::shared_ptr<Layer>& layer) {
     IK_CORE_WARN("Poping the Layer in the stack");
-    IK_CORE_WARN("  -------------------------------------");
     IK_CORE_WARN("  Name                            | {0}", layer->GetName().c_str());
     IK_CORE_WARN("  Number of Layers                | {0}", --number_of_layers_);
-    IK_CORE_WARN("  -------------------------------------");
     
     // Search the layer from the stack the detach/delete it
     if (auto it = std::find(layers_.begin(), layers_.end(), layer);

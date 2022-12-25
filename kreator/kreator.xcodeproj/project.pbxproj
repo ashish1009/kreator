@@ -10,6 +10,7 @@
 		B2250CCD29584D1A0067C43B /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
+		B2FC40212958B82D00447A1A /* sandbox_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC401F2958B82D00447A1A /* sandbox_layer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +31,8 @@
 		B2250CD029585E890067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		B2250CD6295860BC0067C43B /* entry_point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
 		B2250CE2295863840067C43B /* kreator_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kreator_application.cpp; sourceTree = "<group>"; };
+		B2FC401F2958B82D00447A1A /* sandbox_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sandbox_layer.cpp; sourceTree = "<group>"; };
+		B2FC40202958B82D00447A1A /* sandbox_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sandbox_layer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,8 @@
 		B2250CDD295863140067C43B /* sandbox */ = {
 			isa = PBXGroup;
 			children = (
+				B2FC401F2958B82D00447A1A /* sandbox_layer.cpp */,
+				B2FC40202958B82D00447A1A /* sandbox_layer.hpp */,
 			);
 			path = sandbox;
 			sourceTree = "<group>";
@@ -153,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
+				B2FC40212958B82D00447A1A /* sandbox_layer.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +291,7 @@
 					IK_DEBUG_FEATURE,
 				);
 				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
 					"${PROJECT_DIR}/../ikan/interface",
 					"${PROJECT_DIR}/../ikan/vendors/spd_log/include",
 				);
@@ -303,6 +310,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
 				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}",
 					"${PROJECT_DIR}/../ikan/interface",
 					"${PROJECT_DIR}/../ikan/vendors/spd_log/include",
 				);
