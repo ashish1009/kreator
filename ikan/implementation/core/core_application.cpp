@@ -87,6 +87,21 @@ namespace ikan {
     
   void Application::Run() {
     IK_CORE_INFO(" ------------------  Starting Game Loop  ------------------");
+    while(is_running_) {
+      // Store the frame time difference
+      time_step_ = window_->GetTimestep();
+      
+      // Window update each frame
+      window_->Update();
+      
+      // Updating all the attached layer
+      for (auto& layer : layer_stack_)
+        layer->Update(time_step_);
+      
+      if (specification_.enable_gui)
+        RenderGui();
+    }
+
     IK_CORE_INFO(" ------------------   Ending Game Loop   ------------------");
   }
   

@@ -126,6 +126,7 @@ namespace ikan {
     // -----------------
     Application::Specification specification_;
     LayerStack layer_stack_;
+    Timestep time_step_;
     std::unique_ptr<Window> window_;
     std::shared_ptr<ImguiLayer> imgui_layer_;
     bool is_running_ = true;
