@@ -36,6 +36,7 @@
 		B2FC3EAA2958880800447A1A /* mouse_event.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3EA62958880800447A1A /* mouse_event.hpp */; };
 		B2FC3EAB2958880800447A1A /* application_event.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3EA72958880800447A1A /* application_event.hpp */; };
 		B2FC3EAC2958880800447A1A /* key_event.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3EA82958880800447A1A /* key_event.hpp */; };
+		B2FC3EB0295888DA00447A1A /* layer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3EAE295888DA00447A1A /* layer.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		B2FC3EA62958880800447A1A /* mouse_event.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mouse_event.hpp; sourceTree = "<group>"; };
 		B2FC3EA72958880800447A1A /* application_event.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = application_event.hpp; sourceTree = "<group>"; };
 		B2FC3EA82958880800447A1A /* key_event.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = key_event.hpp; sourceTree = "<group>"; };
+		B2FC3EAE295888DA00447A1A /* layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = layer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				B2250CDA295861BF0067C43B /* core_application.hpp */,
 				B2FC3E97295886EC00447A1A /* key_codes.h */,
 				B2FC3E99295886FE00447A1A /* mouse_codes.h */,
+				B2FC3EAE295888DA00447A1A /* layer.hpp */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				B2FC3E98295886EC00447A1A /* key_codes.h in Headers */,
 				B2FC3E9A295886FE00447A1A /* mouse_codes.h in Headers */,
 				B2FC3E96295884A400447A1A /* asset_manager.hpp in Headers */,
+				B2FC3EB0295888DA00447A1A /* layer.hpp in Headers */,
 				B2FC3E8A2958826C00447A1A /* profiler.hpp in Headers */,
 				B2FC3E922958840D00447A1A /* buffers.hpp in Headers */,
 				B2250CEA29586A770067C43B /* core_asserts.h in Headers */,
