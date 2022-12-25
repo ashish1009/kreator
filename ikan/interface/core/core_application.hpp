@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "core/layer_stack.hpp"
+
 namespace ikan {
   
   /// This class is the base class of any application that will be running in the client side. This class
@@ -52,6 +54,7 @@ namespace ikan {
     
   private:
     Application::Specification specification_;
+    LayerStack layer_stack_;
     
     /// Static instance of singleton Application
     static Application *instance_;

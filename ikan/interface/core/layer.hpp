@@ -21,7 +21,7 @@ namespace ikan {
   public:
     /// Layer Default Constructor to store the name of layer
     /// - Parameter name: name of layer
-    Layer(const String& name) : name_(name) {}
+    Layer(const std::string& name) : name_(name) {}
     /// Default Destructor
     virtual ~Layer() = default;
     
@@ -44,7 +44,7 @@ namespace ikan {
     virtual void EventHandler(Event& event) = 0;
     
     /// This function returns the name of layer
-    const String& GetName() const { return name_; };
+    const std::string& GetName() const { return name_; };
     
   protected:
     std::string name_ = "Unknown";
