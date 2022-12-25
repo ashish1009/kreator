@@ -28,6 +28,47 @@ namespace ikan {
     IK_CORE_WARN("Destroying Core Application Instance !!!");
   }
   
+  void Application::EventHandler(Event& event) {
+    EventDispatcher dispatcher(event);
+    dispatcher.Dispatch<WindowCloseEvent>(IK_BIND_EVENT_FN(Application::WindowClose));
+    // Event Handler for all layers
+    for (auto& layer : layer_stack_)
+      layer->EventHandler(event);
+  }
+  
+  bool Application::WindowClose([[maybe_unused]]
+                                WindowCloseEvent& window_close_event) {
+    Close();
+    return false;
+  }
+    
+  void Application::Run() {
+    IK_CORE_INFO(" ------------------  Starting Game Loop  ------------------");
+    IK_CORE_INFO(" ------------------   Ending Game Loop   ------------------");
+  }
+  
+  void Application::RenderGui() {
+    // Begin the Imgui Layer
+    
+    // Updating all the attached layer
+    for (auto& layer : layer_stack_)
+      layer->RenderGui();
+    
+    // End the Imgui Layer
+  }
+  
+  void Application::Close() {
+    is_running_ = false;
+  }
+
+  void Application::PushLayer(const std::shared_ptr<Layer>& layer) {
+    layer_stack_.PushLayer(layer);
+  }
+  
+  void Application::PopLayer(const std::shared_ptr<Layer>& layer) {
+    layer_stack_.PopLayer(layer);
+  }
+  
   // --------------------------------------------------------------------------
   // Application Specification
   // --------------------------------------------------------------------------

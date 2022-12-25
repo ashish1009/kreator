@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "core/events/application_event.hpp"
 #include "core/layer_stack.hpp"
 
 namespace ikan {
@@ -46,6 +47,38 @@ namespace ikan {
     /// This destroys the core application instance
     virtual ~Application();
     
+    /// This function handles all the events of window. Application is dispatching the events and
+    /// perform the interupt actions
+    /// - Parameter event: event abstract type
+    void EventHandler(Event& event);
+    
+    // virtual APIs
+    // NOTE: Override these virtual Methods in client Application only if you
+    // want to create complete fresh application and add some specialisation
+    // functionality. If these methods will be overriden in client side then
+    // functionality will be completely based on overriden methods
+    
+    /// This function is responsible for :
+    ///   - Updating the Application.
+    ///   - Updating each Layer frame.
+    ///   - Updating the window and Swap the buffers
+    ///   - Render the GUI by calling 'RenderGui()'
+    /// This API performs all the above actions for each API. In Core ikan::entry_point this funciton is
+    /// called by default
+    virtual void Run();
+    /// This Function responsible for closing the current applciation (ikan::Applciation) adn ends the
+    /// game loop
+    virtual void Close();
+    
+    /// This function Push the layer of type ikan::Layer in Core Application layer stack. Also attach
+    /// the layer (initialise it)
+    /// - Parameter layer: Layer Reference pointer to be added
+    void PushLayer(const std::shared_ptr<Layer>& layer);
+    /// This function Pop the layer of type ikan::Layer from Core Application layer stack. Also detach
+    /// the layer (destroy it)
+    /// - Parameter layer: Layer Reference pointer to be removed
+    void PopLayer(const std::shared_ptr<Layer>& layer);
+    
     /// This fuinction returns the reference instance of application
     static Application& Get();
 
@@ -53,8 +86,23 @@ namespace ikan {
     DELETE_COPY_MOVE_CONSTRUCTORS(Application);
     
   private:
+    // -----------------
+    // Member Functions
+    // -----------------
+    /// This function dispatched in event dispatcher and trigger when window close event evoked
+    /// - Parameter windowEvent: Window close event instacnce
+    bool WindowClose([[maybe_unused]] WindowCloseEvent& windowEvent);
+    
+    /// This function begin the Imgui Renderer and render IMGUI for all the layers and finally ends
+    /// the imgui rendering
+    void RenderGui();
+
+    // -----------------
+    // Member variable
+    // -----------------
     Application::Specification specification_;
     LayerStack layer_stack_;
+    bool is_running_ = true;
     
     /// Static instance of singleton Application
     static Application *instance_;
