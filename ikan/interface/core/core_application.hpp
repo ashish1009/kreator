@@ -21,12 +21,39 @@ namespace ikan {
   /// ikan Entry point. As ikan Entry point is working on application of type "ikan::Applciation"
   class Application {
   public:
+    /// This structure holds the specification of application provided by client
+    struct Specification {
+      std::string name = "iKan";
+      
+      // default constructor and destructors
+      Specification();
+      ~Specification();
+      
+      /// This function logs the application specification
+      void Log();
+      
+      // Copy and Move Constructor and operator =
+      DEFINE_COPY_MOVE_CONSTRUCTORS(Specification);
+    };
+
     // Constructor and Destructor
-    
     /// This constructs the core application instance
-    Application();
+    /// - Parameter spec: application_specification
+    Application(const Specification& spec);
     /// This destroys the core application instance
     virtual ~Application();
+    
+    /// This fuinction returns the reference instance of application
+    static Application& Get();
+
+    /// Make Application singleton
+    DELETE_COPY_MOVE_CONSTRUCTORS(Application);
+    
+  private:
+    Application::Specification specification_;
+    
+    /// Static instance of singleton Application
+    static Application *instance_;
   };
   
   /// Defination API for creating application instance.

@@ -7,15 +7,17 @@
 
 class KreatorApp : public ikan::Application {
 public:
-  KreatorApp() {
+  KreatorApp(const ikan::Application::Specification& application_spec):
+  ikan::Application(application_spec) {
     IK_INFO("Creating Kreator Application Instance ...");
   }
   ~KreatorApp() {
-    IK_INFO("Destroying Kreator Application Instance ...");
+    IK_WARN("Destroying Kreator Application Instance !!!");
   }
 };
 
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
-  return std::make_unique<KreatorApp>();
+  ikan::Application::Specification application_spec;
+  return std::make_unique<KreatorApp>(application_spec);
 }

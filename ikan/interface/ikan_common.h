@@ -10,6 +10,16 @@
 // This file Includes all common APIs, Preprocessors, enums or structures that
 // will be need in both Core and Client
 
+
+namespace ikan {
+ 
+  /// Supported Operating Sytem by iKan Engine
+  enum class OperatingSystem : uint8_t {
+    None = 0, Mac = 1 /* Add More supported OS */
+  };
+  
+}
+
 /// This MACRO Deletes the Constructors (Default, Copy and Move ) and Operator = (Copy and Move)
 /// for any class to make pure static class
 #define MAKE_PURE_STATIC(x) \
