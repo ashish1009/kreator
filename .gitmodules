@@ -4,3 +4,6 @@
 [submodule "ikan/vendors/glfw/glfw"]
 	path = ikan/vendors/glfw/glfw
 	url = https://github.com/glfw/glfw
+[submodule "ikan/vendors/imgui/imgui"]
+	path = ikan/vendors/imgui/imgui
+	url = https://github.com/ashish1009/imgui
