@@ -23,3 +23,4 @@
 // Core file
 #include "core/utils/core_asserts.h"
 #include "core/debug/core_logger.h"
+#include "core/debug/profiler.hpp"
