@@ -11,8 +11,12 @@
 		B2250CD4295860420067C43B /* core_entry_point.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CD3295860420067C43B /* core_entry_point.h */; };
 		B2250CDB295861BF0067C43B /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD9295861BF0067C43B /* core_application.cpp */; };
 		B2250CDC295861BF0067C43B /* core_application.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2250CDA295861BF0067C43B /* core_application.hpp */; };
-		B2250CE729586A660067C43B /* assert.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CE629586A660067C43B /* assert.h */; };
-		B2250CEA29586A770067C43B /* core_assert.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CE929586A770067C43B /* core_assert.h */; };
+		B2250CE729586A660067C43B /* asserts.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CE629586A660067C43B /* asserts.h */; };
+		B2250CEA29586A770067C43B /* core_asserts.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CE929586A770067C43B /* core_asserts.h */; };
+		B2250CFF295873330067C43B /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CFD295873330067C43B /* logger.cpp */; };
+		B2250D00295873330067C43B /* logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2250CFE295873330067C43B /* logger.hpp */; };
+		B2250D02295873A70067C43B /* ikan_common.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250D01295873A70067C43B /* ikan_common.h */; };
+		B2250D042958751E0067C43B /* core_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250D032958751E0067C43B /* core_logger.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,8 +25,12 @@
 		B2250CD3295860420067C43B /* core_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_entry_point.h; sourceTree = "<group>"; };
 		B2250CD9295861BF0067C43B /* core_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = core_application.cpp; sourceTree = "<group>"; };
 		B2250CDA295861BF0067C43B /* core_application.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_application.hpp; sourceTree = "<group>"; };
-		B2250CE629586A660067C43B /* assert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = assert.h; sourceTree = "<group>"; };
-		B2250CE929586A770067C43B /* core_assert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_assert.h; sourceTree = "<group>"; };
+		B2250CE629586A660067C43B /* asserts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = asserts.h; sourceTree = "<group>"; };
+		B2250CE929586A770067C43B /* core_asserts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_asserts.h; sourceTree = "<group>"; };
+		B2250CFD295873330067C43B /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
+		B2250CFE295873330067C43B /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
+		B2250D01295873A70067C43B /* ikan_common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_common.h; sourceTree = "<group>"; };
+		B2250D032958751E0067C43B /* core_logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_logger.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,7 @@
 			children = (
 				B2250CD3295860420067C43B /* core_entry_point.h */,
 				B2250CD82958616B0067C43B /* core */,
+				B2250D01295873A70067C43B /* ikan_common.h */,
 			);
 			path = interface;
 			sourceTree = "<group>";
@@ -74,6 +83,7 @@
 		B2250CD82958616B0067C43B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				B2250CFB295873260067C43B /* debug */,
 				B2250CE529586A350067C43B /* utils */,
 				B2250CDA295861BF0067C43B /* core_application.hpp */,
 			);
@@ -83,6 +93,7 @@
 		B2250CE42958639D0067C43B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				B2250CFC2958732B0067C43B /* debug */,
 				B2250CE829586A690067C43B /* utils */,
 				B2250CD9295861BF0067C43B /* core_application.cpp */,
 			);
@@ -92,7 +103,7 @@
 		B2250CE529586A350067C43B /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				B2250CE629586A660067C43B /* assert.h */,
+				B2250CE629586A660067C43B /* asserts.h */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -100,9 +111,26 @@
 		B2250CE829586A690067C43B /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				B2250CE929586A770067C43B /* core_assert.h */,
+				B2250CE929586A770067C43B /* core_asserts.h */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		B2250CFB295873260067C43B /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				B2250CFE295873330067C43B /* logger.hpp */,
+			);
+			path = debug;
+			sourceTree = "<group>";
+		};
+		B2250CFC2958732B0067C43B /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				B2250CFD295873330067C43B /* logger.cpp */,
+				B2250D032958751E0067C43B /* core_logger.h */,
+			);
+			path = debug;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,10 +140,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2250CE729586A660067C43B /* assert.h in Headers */,
+				B2250CE729586A660067C43B /* asserts.h in Headers */,
 				B2250CCF29585E310067C43B /* prefix_header.pch in Headers */,
-				B2250CEA29586A770067C43B /* core_assert.h in Headers */,
+				B2250D02295873A70067C43B /* ikan_common.h in Headers */,
+				B2250D042958751E0067C43B /* core_logger.h in Headers */,
+				B2250CEA29586A770067C43B /* core_asserts.h in Headers */,
 				B2250CD4295860420067C43B /* core_entry_point.h in Headers */,
+				B2250D00295873330067C43B /* logger.hpp in Headers */,
 				B2250CDC295861BF0067C43B /* core_application.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2250CDB295861BF0067C43B /* core_application.cpp in Sources */,
+				B2250CFF295873330067C43B /* logger.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,8 +336,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
 				HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}/implementattion",
+					"${PROJECT_DIR}/implementation",
 					"${PROJECT_DIR}/interface",
+					"${PROJECT_DIR}/vendors/spd_log/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -323,8 +356,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
 				HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}/implementattion",
+					"${PROJECT_DIR}/implementation",
 					"${PROJECT_DIR}/interface",
+					"${PROJECT_DIR}/vendors/spd_log/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

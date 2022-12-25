@@ -13,3 +13,13 @@
 // To remove documentation warning
 #pragma clang diagnostic ignored "-Wdocumentation"
 #pragma clang diagnostic ignored "-Wformat-security"
+
+// C++ Files
+#include <iostream>
+
+// Engine Files
+#include "ikan_common.h"
+
+// Core file
+#include "core/utils/core_asserts.h"
+#include "core/debug/core_logger.h"
