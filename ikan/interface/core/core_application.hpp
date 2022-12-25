@@ -24,7 +24,8 @@ namespace ikan {
     /// This structure holds the specification of application provided by client
     struct Specification {
       std::string name = "iKan";
-      
+      std::string client_asset_path;
+
       // default constructor and destructors
       Specification();
       ~Specification();

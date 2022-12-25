@@ -19,5 +19,7 @@ public:
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
   ikan::Application::Specification application_spec;
+  application_spec.client_asset_path = "../../../kreator/sandbox/assets/";
+  
   return std::make_unique<KreatorApp>(application_spec);
 }

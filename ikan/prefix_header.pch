@@ -21,6 +21,8 @@
 #include "ikan_common.h"
 
 // Core file
-#include "core/utils/core_asserts.h"
 #include "core/debug/core_logger.h"
 #include "core/debug/profiler.hpp"
+
+#include "core/utils/core_asserts.h"
+#include "core/utils/asset_manager.hpp"
