@@ -17,6 +17,9 @@
 // C++ Files
 #include <iostream>
 
+// Imgui files
+#include <imgui.h>
+
 // Common Files
 #include <ikan_common.h>
 
