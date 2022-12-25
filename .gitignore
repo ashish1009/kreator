@@ -3,7 +3,7 @@ build/
 derived_data/
 
 #Engine Files
-*.iKanlog
+*.ikan_log
 
 # Mac Files
 .DS_Store

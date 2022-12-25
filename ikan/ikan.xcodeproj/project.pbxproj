@@ -17,6 +17,7 @@
 		B2250D00295873330067C43B /* logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2250CFE295873330067C43B /* logger.hpp */; };
 		B2250D02295873A70067C43B /* ikan_common.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250D01295873A70067C43B /* ikan_common.h */; };
 		B2250D042958751E0067C43B /* core_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250D032958751E0067C43B /* core_logger.h */; };
+		B2FC3E862958796F00447A1A /* ikan_headers.h in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3E852958796F00447A1A /* ikan_headers.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		B2250CFE295873330067C43B /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
 		B2250D01295873A70067C43B /* ikan_common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_common.h; sourceTree = "<group>"; };
 		B2250D032958751E0067C43B /* core_logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_logger.h; sourceTree = "<group>"; };
+		B2FC3E852958796F00447A1A /* ikan_headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_headers.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +68,9 @@
 			isa = PBXGroup;
 			children = (
 				B2250CD3295860420067C43B /* core_entry_point.h */,
-				B2250CD82958616B0067C43B /* core */,
 				B2250D01295873A70067C43B /* ikan_common.h */,
+				B2FC3E852958796F00447A1A /* ikan_headers.h */,
+				B2250CD82958616B0067C43B /* core */,
 			);
 			path = interface;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2FC3E862958796F00447A1A /* ikan_headers.h in Headers */,
 				B2250CE729586A660067C43B /* asserts.h in Headers */,
 				B2250CCF29585E310067C43B /* prefix_header.pch in Headers */,
 				B2250D02295873A70067C43B /* ikan_common.h in Headers */,
@@ -335,6 +339,12 @@
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					IK_ENABLE_LOG,
+					IK_DEBUG_FEATURE,
+				);
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/implementation",
 					"${PROJECT_DIR}/interface",

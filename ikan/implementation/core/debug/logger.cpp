@@ -17,7 +17,7 @@ namespace ikan {
   std::shared_ptr<spdlog::logger> Logger::client_logger_ = nullptr;
   
   // Static globals
-  static const std::string kLogFileExtension = ".iKanlog"; // Log file extention.
+  static const std::string kLogFileExtension = ".ikan_log"; // Log file extention.
   
   void Logger::Init(Level core_level,
                     Level client_level,
