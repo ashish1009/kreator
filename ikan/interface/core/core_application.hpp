@@ -11,6 +11,7 @@
 #include "core/layer_stack.hpp"
 #include "core/glfw_window.hpp"
 #include "renderer/utils/renderer.hpp"
+#include "imgui/imgui_layer.hpp"
 
 namespace ikan {
   
@@ -35,6 +36,7 @@ namespace ikan {
       Window::Specification window_specification;
       bool start_maximized = true;
       bool resizable = true;
+      bool enable_gui = true;
 
       // default constructor and destructors
       Specification();
@@ -90,7 +92,17 @@ namespace ikan {
     /// the layer (destroy it)
     /// - Parameter layer: Layer Reference pointer to be removed
     void PopLayer(const std::shared_ptr<Layer>& layer);
-    
+
+    // -----------------
+    // Getters
+    // -----------------
+    /// This fuinction returns the native pointer Window native as void
+    void* GetWindowPtr() const;
+    /// This fuinction returns the iKan Window Instance as reference
+    const Window& GetWindow() const;
+    /// This fuinction returns the Imgui Layer pointer Reference
+    ImguiLayer& GetImGuiLayer() const;
+
     /// This fuinction returns the reference instance of application
     static Application& Get();
 
@@ -115,6 +127,7 @@ namespace ikan {
     Application::Specification specification_;
     LayerStack layer_stack_;
     std::unique_ptr<Window> window_;
+    std::shared_ptr<ImguiLayer> imgui_layer_;
     bool is_running_ = true;
     
     /// Static instance of singleton Application

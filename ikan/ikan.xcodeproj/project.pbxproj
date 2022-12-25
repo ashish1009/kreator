@@ -17,6 +17,10 @@
 		B2250D00295873330067C43B /* logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2250CFE295873330067C43B /* logger.hpp */; };
 		B2250D02295873A70067C43B /* ikan_common.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250D01295873A70067C43B /* ikan_common.h */; };
 		B2250D042958751E0067C43B /* core_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250D032958751E0067C43B /* core_logger.h */; };
+		B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */; };
+		B2B6CDB72958D8AD00AE609E /* imgui_layer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */; };
+		B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB82958D8B800AE609E /* imgui_build.cpp */; };
+		B2B6CDBA2958DAA300AE609E /* libimgui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B6CDB12958D7D400AE609E /* libimgui.a */; };
 		B2E7600C2958D38100ADBE79 /* mac_os_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */; };
 		B2E7600D2958D38100ADBE79 /* mac_os_window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2E7600B2958D38100ADBE79 /* mac_os_window.hpp */; };
 		B2FC3E862958796F00447A1A /* ikan_headers.h in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3E852958796F00447A1A /* ikan_headers.h */; };
@@ -94,6 +98,9 @@
 		B2250D01295873A70067C43B /* ikan_common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_common.h; sourceTree = "<group>"; };
 		B2250D032958751E0067C43B /* core_logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_logger.h; sourceTree = "<group>"; };
 		B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imgui.xcodeproj; path = imgui/imgui.xcodeproj; sourceTree = "<group>"; };
+		B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_layer.cpp; sourceTree = "<group>"; };
+		B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imgui_layer.hpp; sourceTree = "<group>"; };
+		B2B6CDB82958D8B800AE609E /* imgui_build.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_build.cpp; sourceTree = "<group>"; };
 		B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mac_os_window.cpp; sourceTree = "<group>"; };
 		B2E7600B2958D38100ADBE79 /* mac_os_window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mac_os_window.hpp; sourceTree = "<group>"; };
 		B2FC3E852958796F00447A1A /* ikan_headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_headers.h; sourceTree = "<group>"; };
@@ -139,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2B6CDBA2958DAA300AE609E /* libimgui.a in Frameworks */,
 				B2FC405B2958BCA500447A1A /* libglad.a in Frameworks */,
 				B2FC400B29588C8200447A1A /* libglfw.a in Frameworks */,
 			);
@@ -175,6 +183,7 @@
 				B2FC3E852958796F00447A1A /* ikan_headers.h */,
 				B2250CD82958616B0067C43B /* core */,
 				B2FC400E2958B00B00447A1A /* renderer */,
+				B2B6CDB32958D89D00AE609E /* imgui */,
 			);
 			path = interface;
 			sourceTree = "<group>";
@@ -184,6 +193,7 @@
 			children = (
 				B2250CE42958639D0067C43B /* core */,
 				B2FC400F2958B01900447A1A /* renderer */,
+				B2B6CDB22958D88C00AE609E /* imgui */,
 				B2FC40182958B63E00447A1A /* platform */,
 			);
 			path = implementation;
@@ -265,6 +275,23 @@
 				B2B6CDB12958D7D400AE609E /* libimgui.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B2B6CDB22958D88C00AE609E /* imgui */ = {
+			isa = PBXGroup;
+			children = (
+				B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */,
+				B2B6CDB82958D8B800AE609E /* imgui_build.cpp */,
+			);
+			path = imgui;
+			sourceTree = "<group>";
+		};
+		B2B6CDB32958D89D00AE609E /* imgui */ = {
+			isa = PBXGroup;
+			children = (
+				B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */,
+			);
+			path = imgui;
 			sourceTree = "<group>";
 		};
 		B2FC3E9B295887FF00447A1A /* events */ = {
@@ -434,6 +461,7 @@
 				B2FC40632958BD6100447A1A /* renderer_api.hpp in Headers */,
 				B2250CEA29586A770067C43B /* core_asserts.h in Headers */,
 				B2FC3E8E2958839600447A1A /* time_step.hpp in Headers */,
+				B2B6CDB72958D8AD00AE609E /* imgui_layer.hpp in Headers */,
 				B2E7600D2958D38100ADBE79 /* mac_os_window.hpp in Headers */,
 				B2250CD4295860420067C43B /* core_entry_point.h in Headers */,
 				B2250D00295873330067C43B /* logger.hpp in Headers */,
@@ -542,7 +570,9 @@
 				B2FC3E8D2958839600447A1A /* time_step.cpp in Sources */,
 				B2FC3E892958826C00447A1A /* profiler.cpp in Sources */,
 				B2FC40242958BAC400447A1A /* renderer_context.cpp in Sources */,
+				B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */,
 				B2FC40622958BD6100447A1A /* renderer_api.cpp in Sources */,
+				B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */,
 				B2FC3E95295884A400447A1A /* asset_manager.cpp in Sources */,
 				B2FC40162958B09000447A1A /* renderer.cpp in Sources */,
 				B2FC3EA3295887FF00447A1A /* event.cpp in Sources */,
@@ -692,6 +722,7 @@
 					"${PROJECT_DIR}/vendors/spd_log/include",
 					"${PROJECT_DIR}/vendors/glfw/glfw/include",
 					"${PROJECT_DIR}/vendors/open_gl/glad/include",
+					"${PROJECT_DIR}/vendors/imgui/imgui",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -716,6 +747,7 @@
 					"${PROJECT_DIR}/vendors/spd_log/include",
 					"${PROJECT_DIR}/vendors/glfw/glfw/include",
 					"${PROJECT_DIR}/vendors/open_gl/glad/include",
+					"${PROJECT_DIR}/vendors/imgui/imgui",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

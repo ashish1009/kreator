@@ -56,6 +56,12 @@ namespace ikan {
     if (specification_.start_maximized)
       window_->Maximize();
     
+    // Initialize the Imgui Layer if GUI is enabled
+    if (specification_.enable_gui) {
+      imgui_layer_ = ImguiLayer::Create((void*)GetWindow().GetNativeWindow());
+      PushLayer(imgui_layer_);
+    }
+
     // Create Memroy for Renderer Data
     Renderer::Initialize();
   }
@@ -85,27 +91,23 @@ namespace ikan {
   }
   
   void Application::RenderGui() {
-    // Begin the Imgui Layer
-    
+    imgui_layer_->Begin();
+
     // Updating all the attached layer
     for (auto& layer : layer_stack_)
       layer->RenderGui();
     
-    // End the Imgui Layer
+    imgui_layer_->End();
   }
   
-  void Application::Close() {
-    is_running_ = false;
-  }
+  void Application::Close() { is_running_ = false; }
+  void Application::PushLayer(const std::shared_ptr<Layer>& layer) { layer_stack_.PushLayer(layer); }
+  void Application::PopLayer(const std::shared_ptr<Layer>& layer) { layer_stack_.PopLayer(layer); }
+  void* Application::GetWindowPtr() const { return (void*)window_->GetNativeWindow(); }
+  const Window& Application::GetWindow() const { return *window_; }
+  ImguiLayer& Application::GetImGuiLayer() const { return *imgui_layer_; }
+  Application& Application::Get() { return *instance_; }
 
-  void Application::PushLayer(const std::shared_ptr<Layer>& layer) {
-    layer_stack_.PushLayer(layer);
-  }
-  
-  void Application::PopLayer(const std::shared_ptr<Layer>& layer) {
-    layer_stack_.PopLayer(layer);
-  }
-  
   // --------------------------------------------------------------------------
   // Application Specification
   // --------------------------------------------------------------------------
@@ -116,17 +118,19 @@ namespace ikan {
   Application::Specification::~Specification() {
     IK_CORE_WARN("Destroying Application Specification !!!");
   }
+  
   Application::Specification::Specification(const Application::Specification& other)
   : name(other.name), client_asset_path(other.client_asset_path),
   rendering_api(other.rendering_api), window_specification(other.window_specification),
-  os(other.os), start_maximized(other.start_maximized), resizable(other.resizable) {
+  os(other.os), start_maximized(other.start_maximized), resizable(other.resizable),
+  enable_gui(other.enable_gui) {
     IK_CORE_TRACE("Copying Application Specification ...");
   }
   
   Application::Specification::Specification(Application::Specification&& other)
   : name(other.name), client_asset_path(other.client_asset_path),
   rendering_api(other.rendering_api), os(other.os), window_specification(other.window_specification),
-  start_maximized(other.start_maximized), resizable(other.resizable) {
+  start_maximized(other.start_maximized), resizable(other.resizable), enable_gui(other.enable_gui) {
     IK_CORE_TRACE("Moving Application Specification ...");
   }
   
@@ -140,6 +144,7 @@ namespace ikan {
     window_specification = other.window_specification;
     start_maximized = other.start_maximized;
     resizable = other.resizable;
+    enable_gui = other.enable_gui;
 
     return *this;
   }
@@ -154,6 +159,7 @@ namespace ikan {
     window_specification = other.window_specification;
     start_maximized = other.start_maximized;
     resizable = other.resizable;
+    enable_gui = other.enable_gui;
 
     return *this;
   }
