@@ -26,6 +26,8 @@
 		B2FC3E922958840D00447A1A /* buffers.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3E902958840D00447A1A /* buffers.hpp */; };
 		B2FC3E95295884A400447A1A /* asset_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC3E93295884A400447A1A /* asset_manager.cpp */; };
 		B2FC3E96295884A400447A1A /* asset_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3E94295884A400447A1A /* asset_manager.hpp */; };
+		B2FC3E98295886EC00447A1A /* key_codes.h in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3E97295886EC00447A1A /* key_codes.h */; };
+		B2FC3E9A295886FE00447A1A /* mouse_codes.h in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3E99295886FE00447A1A /* mouse_codes.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		B2FC3E902958840D00447A1A /* buffers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = buffers.hpp; sourceTree = "<group>"; };
 		B2FC3E93295884A400447A1A /* asset_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = asset_manager.cpp; sourceTree = "<group>"; };
 		B2FC3E94295884A400447A1A /* asset_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = asset_manager.hpp; sourceTree = "<group>"; };
+		B2FC3E97295886EC00447A1A /* key_codes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = key_codes.h; sourceTree = "<group>"; };
+		B2FC3E99295886FE00447A1A /* mouse_codes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mouse_codes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,8 @@
 				B2250CFB295873260067C43B /* debug */,
 				B2250CE529586A350067C43B /* utils */,
 				B2250CDA295861BF0067C43B /* core_application.hpp */,
+				B2FC3E97295886EC00447A1A /* key_codes.h */,
+				B2FC3E99295886FE00447A1A /* mouse_codes.h */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -172,6 +178,8 @@
 				B2250CCF29585E310067C43B /* prefix_header.pch in Headers */,
 				B2250D02295873A70067C43B /* ikan_common.h in Headers */,
 				B2250D042958751E0067C43B /* core_logger.h in Headers */,
+				B2FC3E98295886EC00447A1A /* key_codes.h in Headers */,
+				B2FC3E9A295886FE00447A1A /* mouse_codes.h in Headers */,
 				B2FC3E96295884A400447A1A /* asset_manager.hpp in Headers */,
 				B2FC3E8A2958826C00447A1A /* profiler.hpp in Headers */,
 				B2FC3E922958840D00447A1A /* buffers.hpp in Headers */,
