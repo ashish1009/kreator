@@ -48,9 +48,9 @@
 			isa = PBXGroup;
 			children = (
 				B2250CD029585E890067C43B /* prefix_header.pch */,
+				B2250CD5295860700067C43B /* entry_point */,
 				B2250CE12958636C0067C43B /* application */,
 				B2250CDD295863140067C43B /* sandbox */,
-				B2250CD5295860700067C43B /* entry_point */,
 				B2250CAB29584CE00067C43B /* Products */,
 				B2250CCB29584D1A0067C43B /* Frameworks */,
 			);
