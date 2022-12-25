@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B2250CC129584D060067C43B /* ikan.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2250CC029584D060067C43B /* ikan.hpp */; };
-		B2250CC329584D060067C43B /* ikanPriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2250CC229584D060067C43B /* ikanPriv.hpp */; };
-		B2250CC529584D060067C43B /* ikan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CC429584D060067C43B /* ikan.cpp */; };
+		B2250CCF29585E310067C43B /* prefix_header.pch in Headers */ = {isa = PBXBuildFile; fileRef = B2250CCE29585E310067C43B /* prefix_header.pch */; };
+		B2250CD4295860420067C43B /* core_entry_point.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CD3295860420067C43B /* core_entry_point.h */; };
+		B2250CDB295861BF0067C43B /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD9295861BF0067C43B /* core_application.cpp */; };
+		B2250CDC295861BF0067C43B /* core_application.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2250CDA295861BF0067C43B /* core_application.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B2250CBD29584D060067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2250CC029584D060067C43B /* ikan.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ikan.hpp; sourceTree = "<group>"; };
-		B2250CC229584D060067C43B /* ikanPriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ikanPriv.hpp; sourceTree = "<group>"; };
-		B2250CC429584D060067C43B /* ikan.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ikan.cpp; sourceTree = "<group>"; };
+		B2250CCE29585E310067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
+		B2250CD3295860420067C43B /* core_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_entry_point.h; sourceTree = "<group>"; };
+		B2250CD9295861BF0067C43B /* core_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = core_application.cpp; sourceTree = "<group>"; };
+		B2250CDA295861BF0067C43B /* core_application.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_application.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +35,9 @@
 		B2250CB429584D060067C43B = {
 			isa = PBXGroup;
 			children = (
-				B2250CBF29584D060067C43B /* ikan */,
+				B2250CCE29585E310067C43B /* prefix_header.pch */,
+				B2250CD129585FB70067C43B /* interface */,
+				B2250CD229585FC60067C43B /* implementation */,
 				B2250CBE29584D060067C43B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,14 +50,29 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B2250CBF29584D060067C43B /* ikan */ = {
+		B2250CD129585FB70067C43B /* interface */ = {
 			isa = PBXGroup;
 			children = (
-				B2250CC029584D060067C43B /* ikan.hpp */,
-				B2250CC229584D060067C43B /* ikanPriv.hpp */,
-				B2250CC429584D060067C43B /* ikan.cpp */,
+				B2250CD3295860420067C43B /* core_entry_point.h */,
+				B2250CD82958616B0067C43B /* core */,
 			);
-			path = ikan;
+			path = interface;
+			sourceTree = "<group>";
+		};
+		B2250CD229585FC60067C43B /* implementation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = implementation;
+			sourceTree = "<group>";
+		};
+		B2250CD82958616B0067C43B /* core */ = {
+			isa = PBXGroup;
+			children = (
+				B2250CD9295861BF0067C43B /* core_application.cpp */,
+				B2250CDA295861BF0067C43B /* core_application.hpp */,
+			);
+			path = core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -63,8 +82,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2250CC329584D060067C43B /* ikanPriv.hpp in Headers */,
-				B2250CC129584D060067C43B /* ikan.hpp in Headers */,
+				B2250CCF29585E310067C43B /* prefix_header.pch in Headers */,
+				B2250CD4295860420067C43B /* core_entry_point.h in Headers */,
+				B2250CDC295861BF0067C43B /* core_application.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,7 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2250CC529584D060067C43B /* ikan.cpp in Sources */,
+				B2250CDB295861BF0067C43B /* core_application.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +269,8 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -262,6 +284,8 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

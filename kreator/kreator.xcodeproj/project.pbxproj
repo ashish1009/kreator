@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B2250CAE29584CE00067C43B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CAD29584CE00067C43B /* main.cpp */; };
 		B2250CCD29584D1A0067C43B /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
+		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,8 +25,9 @@
 
 /* Begin PBXFileReference section */
 		B2250CAA29584CE00067C43B /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2250CAD29584CE00067C43B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B2250CCC29584D1A0067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2250CD029585E890067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
+		B2250CD6295860BC0067C43B /* entry_point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +45,8 @@
 		B2250CA129584CE00067C43B = {
 			isa = PBXGroup;
 			children = (
-				B2250CAC29584CE00067C43B /* kreator */,
+				B2250CD029585E890067C43B /* prefix_header.pch */,
+				B2250CD5295860700067C43B /* entry_point */,
 				B2250CAB29584CE00067C43B /* Products */,
 				B2250CCB29584D1A0067C43B /* Frameworks */,
 			);
@@ -58,20 +60,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B2250CAC29584CE00067C43B /* kreator */ = {
-			isa = PBXGroup;
-			children = (
-				B2250CAD29584CE00067C43B /* main.cpp */,
-			);
-			path = kreator;
-			sourceTree = "<group>";
-		};
 		B2250CCB29584D1A0067C43B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				B2250CCC29584D1A0067C43B /* libikan.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B2250CD5295860700067C43B /* entry_point */ = {
+			isa = PBXGroup;
+			children = (
+				B2250CD6295860BC0067C43B /* entry_point.cpp */,
+			);
+			path = entry_point;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,7 +133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2250CAE29584CE00067C43B /* main.cpp in Sources */,
+				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +255,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78KTXZ99TW;
 				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/../ikan/interface";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -263,6 +268,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78KTXZ99TW;
 				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/../ikan/interface";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

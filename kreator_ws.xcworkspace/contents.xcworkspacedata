@@ -5,9 +5,9 @@
       location = "group:README.md">
    </FileRef>
    <FileRef
-      location = "group:ikan/ikan.xcodeproj">
+      location = "group:kreator/kreator.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:kreator/kreator.xcodeproj">
+      location = "group:ikan/ikan.xcodeproj">
    </FileRef>
 </Workspace>
