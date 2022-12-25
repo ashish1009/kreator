@@ -11,6 +11,8 @@
 		B2250CD4295860420067C43B /* core_entry_point.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CD3295860420067C43B /* core_entry_point.h */; };
 		B2250CDB295861BF0067C43B /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD9295861BF0067C43B /* core_application.cpp */; };
 		B2250CDC295861BF0067C43B /* core_application.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2250CDA295861BF0067C43B /* core_application.hpp */; };
+		B2250CE729586A660067C43B /* assert.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CE629586A660067C43B /* assert.h */; };
+		B2250CEA29586A770067C43B /* core_assert.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CE929586A770067C43B /* core_assert.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		B2250CD3295860420067C43B /* core_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_entry_point.h; sourceTree = "<group>"; };
 		B2250CD9295861BF0067C43B /* core_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = core_application.cpp; sourceTree = "<group>"; };
 		B2250CDA295861BF0067C43B /* core_application.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_application.hpp; sourceTree = "<group>"; };
+		B2250CE629586A660067C43B /* assert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = assert.h; sourceTree = "<group>"; };
+		B2250CE929586A770067C43B /* core_assert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_assert.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 		B2250CD229585FC60067C43B /* implementation */ = {
 			isa = PBXGroup;
 			children = (
+				B2250CE42958639D0067C43B /* core */,
 			);
 			path = implementation;
 			sourceTree = "<group>";
@@ -69,10 +74,35 @@
 		B2250CD82958616B0067C43B /* core */ = {
 			isa = PBXGroup;
 			children = (
-				B2250CD9295861BF0067C43B /* core_application.cpp */,
+				B2250CE529586A350067C43B /* utils */,
 				B2250CDA295861BF0067C43B /* core_application.hpp */,
 			);
 			path = core;
+			sourceTree = "<group>";
+		};
+		B2250CE42958639D0067C43B /* core */ = {
+			isa = PBXGroup;
+			children = (
+				B2250CE829586A690067C43B /* utils */,
+				B2250CD9295861BF0067C43B /* core_application.cpp */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		B2250CE529586A350067C43B /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				B2250CE629586A660067C43B /* assert.h */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		B2250CE829586A690067C43B /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				B2250CE929586A770067C43B /* core_assert.h */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -82,7 +112,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2250CE729586A660067C43B /* assert.h in Headers */,
 				B2250CCF29585E310067C43B /* prefix_header.pch in Headers */,
+				B2250CEA29586A770067C43B /* core_assert.h in Headers */,
 				B2250CD4295860420067C43B /* core_entry_point.h in Headers */,
 				B2250CDC295861BF0067C43B /* core_application.hpp in Headers */,
 			);
@@ -271,6 +303,10 @@
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/implementattion",
+					"${PROJECT_DIR}/interface",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -286,6 +322,10 @@
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/implementattion",
+					"${PROJECT_DIR}/interface",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
