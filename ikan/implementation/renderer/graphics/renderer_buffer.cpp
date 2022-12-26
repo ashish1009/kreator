@@ -22,5 +22,20 @@ namespace ikan {
         IK_CORE_ASSERT(false, "Invalid Renderer API (None)"); break;
     }
   }
+  
+  // --------------------------------------------------------------------------
+  // Index Buffer
+  // --------------------------------------------------------------------------
+  std::shared_ptr<IndexBuffer> IndexBuffer::CreateWithCount(void* data, uint32_t count) {
+    switch (Renderer::GetApi()) {
+      case Renderer::Api::OpenGl : {
+        uint32_t index_buffer_size = count * sizeof(uint32_t);
+        return std::make_shared<OpenGLIndexBuffer>(data, index_buffer_size);
+      }
+      case Renderer::Api::None:
+      default:
+        IK_CORE_ASSERT(false, "Invalid Renderer API (None)"); break;
+    }
+  }
 
 }

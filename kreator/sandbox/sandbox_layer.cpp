@@ -22,14 +22,17 @@ namespace sandbox {
     IK_INFO("Attaching Sandbox Layer instance");
     basic_shader_ = Renderer::GetShader(AM::CoreAsset("shaders/basic_shader.glsl"));
     
-    float data[] = {
+    float vertex_data[] = {
       -0.5f, -0.5f, 0.0f,
       0.5f, -0.5f, 0.0f,
       0.5f, 0.5f, 0.0f,
       -0.5f, 0.5f, 0.0f
     };
+    vertex_buffer_ = VertexBuffer::Create(vertex_data, sizeof(vertex_data));
     
-    vertex_buffer_ = VertexBuffer::Create(data, sizeof(data));
+    uint32_t indices_data[] = {0, 1, 2, 2, 3, 0};
+    index_buffer_ = IndexBuffer::CreateWithCount(indices_data, 6);
+
   }
   
   void SandboxLayer::Detach() {
