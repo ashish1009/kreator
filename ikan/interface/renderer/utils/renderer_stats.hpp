@@ -28,7 +28,7 @@ namespace ikan {
     /// This function resets all stats
     void ResetAll();
     /// This function shows the stats in gui widget
-    void RenderGui();
+    void RenderGui(bool summary = true);
     // ------------------
     // Static Functions
     // ------------------

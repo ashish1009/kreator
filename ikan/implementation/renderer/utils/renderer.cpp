@@ -157,8 +157,8 @@ namespace ikan {
     RendererStatistics::Get().ResetAll();
   }
   
-  void Renderer::RenderStatsGui() {
-    RendererStatistics::Get().RenderGui();
+  void Renderer::RenderStatsGui(bool summary) {
+    RendererStatistics::Get().RenderGui(summary);
   }
   
   // -----------------

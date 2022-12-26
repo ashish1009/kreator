@@ -37,7 +37,7 @@ namespace sandbox {
   
   void SandboxLayer::RenderGui() {
     Renderer::Framerate();
-    Renderer::RenderStatsGui();
+    Renderer::RenderStatsGui(false);
   }
   
 } // namespace sandbox
