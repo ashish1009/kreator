@@ -20,9 +20,6 @@ namespace sandbox {
   
   void SandboxLayer::Attach() {
     IK_INFO("Attaching Sandbox Layer instance");
-    
-    std::shared_ptr<Shader> test_shader = Renderer::GetShader(AM::CoreAsset("shaders/pbr_static_shader.glsl"));
-    test_shader = Renderer::GetShader(AM::CoreAsset("shaders/batch_quad_shader.glsl"));
   }
   
   void SandboxLayer::Detach() {
@@ -37,7 +34,9 @@ namespace sandbox {
   }
   
   void SandboxLayer::RenderGui() {
+    ImguiAPI::StartDcocking();
     Renderer::Framerate();
+    ImguiAPI::EndDcocking();
   }
   
 } // namespace sandbox
