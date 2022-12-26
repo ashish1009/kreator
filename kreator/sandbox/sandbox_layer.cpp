@@ -34,9 +34,7 @@ namespace sandbox {
   }
   
   void SandboxLayer::RenderGui() {
-    ImguiAPI::StartDcocking();
     Renderer::Framerate();
-    ImguiAPI::EndDcocking();
   }
   
 } // namespace sandbox
