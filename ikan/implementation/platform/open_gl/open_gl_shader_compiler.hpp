@@ -66,6 +66,10 @@ namespace ikan {
     ///   - domain domain of shader
     void ParseUniform(const std::string& statement, ShaderDomain domain);
 
+    /// This function finds the structure stored in shader
+    /// - Parameter name: Name of structure
+    ShaderStruct* FindStruct(const std::string& name);
+
     // ------------------
     // Member variables
     // ------------------

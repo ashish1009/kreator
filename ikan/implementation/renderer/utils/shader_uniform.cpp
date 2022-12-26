@@ -11,11 +11,11 @@ namespace ikan {
   
   ShaderStruct::ShaderStruct(const std::string& name)
   : name_(name), size_(0), offset_(0) {
-    IK_CORE_TRACE("Creating Open GL Structure {0}...", name_.c_str());
+    IK_CORE_TRACE("  Creating Open GL Structure {0}...", name_.c_str());
   }
   
   ShaderStruct::~ShaderStruct() {
-    IK_CORE_WARN("Destroying Open GL Structure {0} !!!", name_.c_str());
+    IK_CORE_WARN("  Destroying Open GL Structure {0} !!!", name_.c_str());
     
     for (auto& field : fields_)
       delete field;

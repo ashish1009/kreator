@@ -159,6 +159,10 @@ namespace ikan {
     IK_CORE_DEBUG("      {0} {1}[{2}]", TypeToString(type_), name_, count_);
   }
   
+  OpenGLShaderResourceDeclaration::~OpenGLShaderResourceDeclaration() {
+    IK_CORE_WARN("      Destroying : {0} {1}[{2}]", TypeToString(type_), name_, count_);
+  }
+  
   const std::string& OpenGLShaderResourceDeclaration::GetName() const { return name_; }
   uint32_t OpenGLShaderResourceDeclaration::GetRegister() const { return register_; }
   uint32_t OpenGLShaderResourceDeclaration::GetCount() const { return count_; }

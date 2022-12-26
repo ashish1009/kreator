@@ -125,7 +125,7 @@ namespace ikan {
     ///   - count: count of uniform
     OpenGLShaderResourceDeclaration(Type type, const std::string& name, uint32_t count);
     /// This is default destrcutro
-    virtual ~OpenGLShaderResourceDeclaration() = default;
+    virtual ~OpenGLShaderResourceDeclaration();
     
     // -----------
     // Getters
