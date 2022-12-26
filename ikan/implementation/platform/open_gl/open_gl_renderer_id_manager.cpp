@@ -17,6 +17,7 @@ namespace ikan {
     glGenBuffers(1, &renderer_id);
   }
   void OpenGlRendererIdManager::GetPipelineId(RendererID &renderer_id) {
+    glGenVertexArrays(1, &renderer_id);
   }
   void OpenGlRendererIdManager::GetTextureId(RendererID &renderer_id) {
   }

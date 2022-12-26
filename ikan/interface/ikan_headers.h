@@ -50,6 +50,7 @@
 #include <renderer/utils/renderer.hpp>
 #include <renderer/graphics/shader.hpp>
 #include <renderer/graphics/renderer_buffer.hpp>
+#include <renderer/graphics/pipeline.hpp>
 
 // Imgui API
 #include <imgui/imgui_api.hpp>

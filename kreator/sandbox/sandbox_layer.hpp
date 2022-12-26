@@ -45,6 +45,7 @@ namespace sandbox {
     std::shared_ptr<Shader> basic_shader_;
     std::shared_ptr<VertexBuffer> vertex_buffer_;
     std::shared_ptr<IndexBuffer> index_buffer_;
+    std::shared_ptr<Pipeline> pipeline_;
   };
   
 } 

@@ -33,6 +33,10 @@
 		B2C0D80E2959FB69003F168B /* open_gl_renderer_buffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2C0D80C2959FB69003F168B /* open_gl_renderer_buffer.hpp */; };
 		B2C0D8112959FB92003F168B /* renderer_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2C0D80F2959FB92003F168B /* renderer_buffer.cpp */; };
 		B2C0D8122959FB92003F168B /* renderer_buffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2C0D8102959FB92003F168B /* renderer_buffer.hpp */; };
+		B2C0D815295A01D5003F168B /* open_gl_pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2C0D813295A01D5003F168B /* open_gl_pipeline.cpp */; };
+		B2C0D816295A01D5003F168B /* open_gl_pipeline.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2C0D814295A01D5003F168B /* open_gl_pipeline.hpp */; };
+		B2C0D819295A01DF003F168B /* pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2C0D817295A01DF003F168B /* pipeline.cpp */; };
+		B2C0D81A295A01DF003F168B /* pipeline.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2C0D818295A01DF003F168B /* pipeline.hpp */; };
 		B2E7600C2958D38100ADBE79 /* mac_os_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */; };
 		B2E7600D2958D38100ADBE79 /* mac_os_window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2E7600B2958D38100ADBE79 /* mac_os_window.hpp */; };
 		B2F526522959774B00A83C65 /* open_gl_shader_compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F526502959774B00A83C65 /* open_gl_shader_compiler.cpp */; };
@@ -136,6 +140,10 @@
 		B2C0D80C2959FB69003F168B /* open_gl_renderer_buffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_renderer_buffer.hpp; sourceTree = "<group>"; };
 		B2C0D80F2959FB92003F168B /* renderer_buffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_buffer.cpp; sourceTree = "<group>"; };
 		B2C0D8102959FB92003F168B /* renderer_buffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_buffer.hpp; sourceTree = "<group>"; };
+		B2C0D813295A01D5003F168B /* open_gl_pipeline.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_pipeline.cpp; sourceTree = "<group>"; };
+		B2C0D814295A01D5003F168B /* open_gl_pipeline.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_pipeline.hpp; sourceTree = "<group>"; };
+		B2C0D817295A01DF003F168B /* pipeline.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pipeline.cpp; sourceTree = "<group>"; };
+		B2C0D818295A01DF003F168B /* pipeline.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pipeline.hpp; sourceTree = "<group>"; };
 		B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mac_os_window.cpp; sourceTree = "<group>"; };
 		B2E7600B2958D38100ADBE79 /* mac_os_window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mac_os_window.hpp; sourceTree = "<group>"; };
 		B2F526502959774B00A83C65 /* open_gl_shader_compiler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_shader_compiler.cpp; sourceTree = "<group>"; };
@@ -460,6 +468,7 @@
 				B2FC40232958BAC400447A1A /* renderer_context.hpp */,
 				B2F526592959776A00A83C65 /* shader.hpp */,
 				B2C0D8102959FB92003F168B /* renderer_buffer.hpp */,
+				B2C0D818295A01DF003F168B /* pipeline.hpp */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -470,6 +479,7 @@
 				B2FC40222958BAC400447A1A /* renderer_context.cpp */,
 				B2F526582959776A00A83C65 /* shader.cpp */,
 				B2C0D80F2959FB92003F168B /* renderer_buffer.cpp */,
+				B2C0D817295A01DF003F168B /* pipeline.cpp */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -509,6 +519,8 @@
 				B2F526552959775700A83C65 /* open_gl_shader_uniform.hpp */,
 				B2C0D80B2959FB69003F168B /* open_gl_renderer_buffer.cpp */,
 				B2C0D80C2959FB69003F168B /* open_gl_renderer_buffer.hpp */,
+				B2C0D813295A01D5003F168B /* open_gl_pipeline.cpp */,
+				B2C0D814295A01D5003F168B /* open_gl_pipeline.hpp */,
 			);
 			path = open_gl;
 			sourceTree = "<group>";
@@ -553,7 +565,9 @@
 				B2FC40172958B09000447A1A /* renderer.hpp in Headers */,
 				B2250CCF29585E310067C43B /* prefix_header.pch in Headers */,
 				B2250D02295873A70067C43B /* ikan_common.h in Headers */,
+				B2C0D81A295A01DF003F168B /* pipeline.hpp in Headers */,
 				B2F5265B2959776A00A83C65 /* shader.hpp in Headers */,
+				B2C0D816295A01D5003F168B /* open_gl_pipeline.hpp in Headers */,
 				B2250D042958751E0067C43B /* core_logger.h in Headers */,
 				B2B6CDD22958DF7700AE609E /* imgui_api.hpp in Headers */,
 				B2FC405F2958BD0900447A1A /* open_gl_renderer_api.hpp in Headers */,
@@ -694,10 +708,12 @@
 				B227F37329597F2B0055D871 /* open_gl_renderer_id_manager.cpp in Sources */,
 				B2F5265A2959776A00A83C65 /* shader.cpp in Sources */,
 				B2FC3EB32958892200447A1A /* layer_stack.cpp in Sources */,
+				B2C0D815295A01D5003F168B /* open_gl_pipeline.cpp in Sources */,
 				B2FC3EA1295887FF00447A1A /* application_event.cpp in Sources */,
 				B2250CDB295861BF0067C43B /* core_application.cpp in Sources */,
 				B2F526632959777F00A83C65 /* shader_uniform.cpp in Sources */,
 				B2F52667295979FE00A83C65 /* string_utils.cpp in Sources */,
+				B2C0D819295A01DF003F168B /* pipeline.cpp in Sources */,
 				B2E7600C2958D38100ADBE79 /* mac_os_window.cpp in Sources */,
 				B2C0D80D2959FB69003F168B /* open_gl_renderer_buffer.cpp in Sources */,
 				B2FC405E2958BD0900447A1A /* open_gl_renderer_api.cpp in Sources */,
