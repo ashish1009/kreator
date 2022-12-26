@@ -6,6 +6,7 @@
 //
 
 #include "imgui_api.hpp"
+#include "editor/property_grid.hpp"
 
 namespace ikan {
   
@@ -73,6 +74,7 @@ namespace ikan {
     ImGui::Begin("Frame Rate");
     ImGui::PushID("Frame Rate");
     ImGui::Text("%.1f FPS", ImGui::GetIO().Framerate);
+    PropertyGrid::HoveredMsg(std::to_string((float)1000.0f/(float)ImGui::GetIO().Framerate).c_str());
     ImGui::PopID();
     ImGui::End();
   }

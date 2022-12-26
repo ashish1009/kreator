@@ -134,6 +134,18 @@ namespace ikan {
     /// This function returns the current API supported
     static Api GetApi();
     
+    // -------------------------------
+    // Renderer Stats API
+    // -------------------------------
+    /// This function resets the renderer Stats each frame
+    /// NOTE: Only those stats will be reset that need to be reset each frame
+    /// (Draw Calls, Index Count, Vertex Count)
+    static void ResetStatsEachFrame();
+    /// This function resets all the renderer stats
+    static void ResetStats();
+    /// This function renderers Imgui to show renderer stats
+    static void RenderStatsGui();
+
     // -----------------
     // Gui Widgets
     // -----------------

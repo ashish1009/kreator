@@ -8,6 +8,7 @@
 #include "renderer.hpp"
 #include "imgui/imgui_api.hpp"
 #include "renderer/graphics/shader.hpp"
+#include "renderer/utils/renderer_stats.hpp"
 
 namespace ikan {
   
@@ -143,6 +144,21 @@ namespace ikan {
   
   Renderer::Api Renderer::GetApi() {
     return renderer_data_->api;
+  }
+  
+  // -------------------------------------------------------------------------
+  // Renderer Stats API
+  // -------------------------------------------------------------------------
+  void Renderer::ResetStatsEachFrame() {
+    RendererStatistics::Get().ResetEachFrame();
+  }
+  
+  void Renderer::ResetStats() {
+    RendererStatistics::Get().ResetAll();
+  }
+  
+  void Renderer::RenderStatsGui() {
+    RendererStatistics::Get().RenderGui();
   }
   
   // -----------------
