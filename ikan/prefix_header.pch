@@ -32,6 +32,7 @@
 #include "core/utils/core_asserts.h"
 #include "core/utils/asset_manager.hpp"
 #include "core/utils/string_utils.hpp"
+#include "core/utils/buffers.hpp"
 
 // glm math library
 #include <glm/glm.hpp>

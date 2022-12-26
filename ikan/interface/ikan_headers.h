@@ -42,6 +42,7 @@
 #include <core/debug/profiler.hpp>
 #include <core/utils/asserts.h>
 #include <core/utils/asset_manager.hpp>
+#include <core/utils/buffers.hpp>
 #include <core/core_application.hpp>
 #include <core/layer.hpp>
 
