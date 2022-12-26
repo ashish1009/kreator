@@ -23,6 +23,12 @@ namespace ikan {
     ///         return "extension"
     /// - Parameter path: file path for which file Extenstion need to be extracted
     static std::string GetExtensionFromFilePath(const std::string& path);
+    
+    /// This function read the file from path given in 'file_path' and store
+    /// all the date in the file in a string. Return the content of this give
+    /// file as string
+    /// - Parameter path: file path to be read
+    static std::string ReadFromFile(const std::string& file_path);
   };
   
 }

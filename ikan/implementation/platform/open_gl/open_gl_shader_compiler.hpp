@@ -39,10 +39,19 @@ namespace ikan {
 
   private:
     // ------------------
+    // Member Methods
+    // ------------------
+    /// This function reads the shader code in string and store all the shader
+    /// present in the file in a map to be used later by compiler.
+    /// - Parameter source_string: shader code in string
+    void PreprocessFile(const std::string& source_string);
+
+    // ------------------
     // Member variables
     // ------------------
     RendererID renderer_id_ = 0;
     std::string asset_path_ = "", name_ = "";
+    std::unordered_map<GLenum, std::string> shader_source_code_map_;
   };
   
 }

@@ -20,6 +20,7 @@
 #include <unordered_set>
 #include <map>
 #include <set>
+#include <fstream>
 
 // Engine Files
 #include "ikan_common.h"
