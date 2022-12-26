@@ -51,10 +51,10 @@ namespace ikan {
     IK_CORE_INFO("Initializeing Open GL Renderer API");
     
     // API for Text enable 
+    IK_CORE_INFO("  Asignment           | {0} (Unpacked)", true);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     
     // Multi Sample
-    IK_CORE_INFO("  ---------------------------------");
     IK_CORE_INFO("  Multi Sample Feild  | {0}", true);
     glEnable(GL_MULTISAMPLE);
     
@@ -66,7 +66,6 @@ namespace ikan {
     // Depth Testing
     IK_CORE_INFO("  Depth Test Feild    | {0}", true);
     glEnable(GL_DEPTH_TEST);
-    IK_CORE_INFO("  ---------------------------------");
     
     auto& caps = Renderer::Capabilities::Get();
     

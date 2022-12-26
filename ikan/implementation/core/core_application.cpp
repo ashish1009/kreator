@@ -64,6 +64,8 @@ namespace ikan {
 
     // Create Memroy for Renderer Data
     Renderer::Initialize();
+    
+    IK_CORE_INFO(" =============  Core Application Initialized  =============");
   }
   
   Application::~Application() {
@@ -86,7 +88,7 @@ namespace ikan {
   }
     
   void Application::Run() {
-    IK_CORE_INFO(" ------------------  Starting Game Loop  ------------------");
+    IK_CORE_INFO(" ==================  Starting Game Loop  ==================");
     while(is_running_) {
       // Store the frame time difference
       time_step_ = window_->GetTimestep();
@@ -102,7 +104,7 @@ namespace ikan {
         RenderGui();
     }
 
-    IK_CORE_INFO(" ------------------   Ending Game Loop   ------------------");
+    IK_CORE_INFO(" ==================   Ending Game Loop   ==================");
   }
   
   void Application::RenderGui() {
