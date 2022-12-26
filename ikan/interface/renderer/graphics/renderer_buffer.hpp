@@ -12,7 +12,73 @@
 #include "renderer/utils/renderer.hpp"
 
 namespace ikan {
- 
+  
+  /// This enum shoes the data type to be stored in shader
+  enum class ShaderDataType : uint8_t {
+    NoType = 0,
+    Float, Float2, Float3, Float4,
+    Mat3, Mat4,
+    Int, Int2, Int3, Int4,
+    Bool
+  };
+  
+  /// This structur stores all the property of a element in a buffer.
+  struct BufferElement {
+    std::string name = "";
+    ShaderDataType type = ShaderDataType::NoType;
+    uint32_t size = 0;
+    uint32_t count = 0;
+    size_t offset = 0;
+    bool normalized = false;
+    
+    // -------------------
+    // Constructor
+    // ------------------
+    /// This Constructor creates the buffer element with arguments
+    /// - Parameters:
+    ///   - name: name of element
+    ///   - type: type of element
+    ///   - normalized: flag is element normalized
+    BufferElement(const std::string& name,
+                  ShaderDataType type,
+                  bool normalized = false);
+    
+    DEFINE_COPY_MOVE_CONSTRUCTORS(BufferElement);
+  };
+  
+  /// This class stores the layout of vertex Buffer in a vector (stores each elements)
+  class BufferLayout {
+  public:
+    /// This is the default constructor
+    BufferLayout() = default;
+    /// This Costructor initialize the vector of layout elements with
+    /// initializer list
+    BufferLayout(const std::initializer_list<BufferElement>& elements);
+    
+    /// This function returns the elements vector
+    const std::vector<BufferElement> GetElements() const;
+    /// This function returns the stride value
+    uint32_t GetStride() const;
+    
+    // Iterators to access the vector
+    std::vector<BufferElement>::iterator begin();
+    std::vector<BufferElement>::iterator end();
+    std::vector<BufferElement>::const_iterator begin() const;
+    std::vector<BufferElement>::const_iterator end() const;
+    
+    DEFINE_COPY_MOVE_CONSTRUCTORS(BufferLayout);
+    
+  private:
+    // member function
+    /// This function calculates the offset of element and update the stride
+    /// value
+    void CalculateOffsetAndStride();
+    
+    // Member variable
+    std::vector<BufferElement> elements_;
+    uint32_t stride_ = 0;
+  };
+  
   /// This class is the interface of Renderer Vertex Buffer, to store the vertices of the objects.
   class VertexBuffer {
   public:
@@ -20,6 +86,13 @@ namespace ikan {
     // Destrcutor
     // -------------
     virtual ~VertexBuffer() = default;
+
+    // -------------
+    // Fundamentals
+    // -------------
+    /// This function uptate the Buffer layeout value in Vertex Buffer
+    /// - Parameter layout: new Buffer layout
+    virtual void AddLayout(const BufferLayout& layout) = 0;
 
     // -----------------
     // Static Function

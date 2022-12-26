@@ -16,6 +16,9 @@ namespace ikan {
   /// This class is the implementation of Open GL Renderer Vertex Buffer, to store the vertices of the objects.
   class OpenGLVertexBuffer : public VertexBuffer {
   public:
+    // ---------------------------------
+    // Constructors and Destructor
+    // ---------------------------------
     /// This constructor creates Buffer to store the vertices of the data. This is static data buffer which
     /// takes the data pointer in the argument
     /// - Parameters:
@@ -26,10 +29,18 @@ namespace ikan {
     ~OpenGLVertexBuffer();
     
     DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLVertexBuffer);
+    
+    // --------------
+    // Fundamentals
+    // --------------
+    /// This function uptate the Buffer layeout value in Vertex Buffer
+    /// - Parameter layout: new Buffer layout
+    void AddLayout(const BufferLayout& layout) override;
 
   public:
     RendererID renderer_id_ = 0;
     uint32_t size_ = 0;
+    BufferLayout layout_;
   };
   
   /// This class is the implementation of Open GL of Renderer Index Buffer, to store the indices of the objects.

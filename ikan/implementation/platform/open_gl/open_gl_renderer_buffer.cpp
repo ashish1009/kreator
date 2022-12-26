@@ -43,6 +43,8 @@ namespace ikan {
     
     IDManager::RemoveBufferId(renderer_id_);
   }
+  
+  void OpenGLVertexBuffer::AddLayout(const BufferLayout& layout) { layout_ = layout; }
 
   // --------------------------------------------------------------------------
   // Index Buffer

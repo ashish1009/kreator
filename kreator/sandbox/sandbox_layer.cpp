@@ -31,6 +31,9 @@ namespace sandbox {
       -0.5f, 0.5f, 0.0f
     };
     vertex_buffer_ = VertexBuffer::Create(vertex_data, sizeof(vertex_data));
+    vertex_buffer_->AddLayout({
+      { "a_Position", ShaderDataType::Float3 },
+    });
     
     uint32_t indices_data[] = {0, 1, 2, 2, 3, 0};
     index_buffer_ = IndexBuffer::CreateWithCount(indices_data, 6);
