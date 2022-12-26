@@ -20,6 +20,16 @@ namespace sandbox {
   
   void SandboxLayer::Attach() {
     IK_INFO("Attaching Sandbox Layer instance");
+    basic_shader_ = Renderer::GetShader(AM::CoreAsset("shaders/basic_shader.glsl"));
+    
+    float data[] = {
+      -0.5f, -0.5f, 0.0f,
+      0.5f, -0.5f, 0.0f,
+      0.5f, 0.5f, 0.0f,
+      -0.5f, 0.5f, 0.0f
+    };
+    
+    vertex_buffer_ = VertexBuffer::Create(data, sizeof(data));
   }
   
   void SandboxLayer::Detach() {
@@ -28,7 +38,6 @@ namespace sandbox {
   
   void SandboxLayer::Update(Timestep ts) {
     Renderer::ResetStatsEachFrame();
-    
     Renderer::Clear({0.2, 0.3, 0.4, 1.0});
   }
   

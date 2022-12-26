@@ -56,25 +56,25 @@ namespace ikan {
       ImGui::NextColumn();
       
       ImGui::SetColumnWidth(3, 200);
-      ImGui::Text("%.2f MB", (float)vertex_buffer_size / (float)1000000.0f);
+      ImGui::Text("%.3f KB", (float)vertex_buffer_size / (float)1000.0f);
       hovered_message  = "Vertex Buffer Size (Not counting buffer used to render Text) \n";
-      hovered_message += "KB    : " + std::to_string((float)vertex_buffer_size / (float)1000.0f) + "\n";
+      hovered_message += "MB    : " + std::to_string((float)vertex_buffer_size / (float)1000000.0f) + "\n";
       hovered_message += "Bytes : " + std::to_string(vertex_buffer_size);
       PropertyGrid::HoveredMsg(hovered_message.c_str());
       ImGui::NextColumn();
       
       ImGui::SetColumnWidth(4, 200);
-      ImGui::Text("%.2f MB", (float)index_buffer_size / (float)1000000.0f);
+      ImGui::Text("%.3f KB", (float)index_buffer_size / (float)1000.0f);
       hovered_message  = "Index Buffer Size \n";
-      hovered_message += "KB    : " + std::to_string((float)index_buffer_size / (float)1000.0f) + "\n";
+      hovered_message += "MB    : " + std::to_string((float)index_buffer_size / (float)1000000.0f) + "\n";
       hovered_message += "Bytes : " + std::to_string(index_buffer_size);
       PropertyGrid::HoveredMsg(hovered_message.c_str());
       ImGui::NextColumn();
       
       ImGui::SetColumnWidth(5, 200);
-      ImGui::Text("%.2f MB", (float)texture_buffer_size / (float)1000000.0f);
+      ImGui::Text("%.3f KB", (float)texture_buffer_size / (float)1000.0f);
       hovered_message  = "Texure Data Size \n";
-      hovered_message += "KB    : " + std::to_string((float)texture_buffer_size / (float)1000.0f) + "\n";
+      hovered_message += "MB    : " + std::to_string((float)texture_buffer_size / (float)1000000.0f) + "\n";
       hovered_message += "Bytes : " + std::to_string(texture_buffer_size);
       PropertyGrid::HoveredMsg(hovered_message.c_str());
 
@@ -98,18 +98,18 @@ namespace ikan {
       ImGui::Text("%d", vertex_count);
       ImGui::Text("%d", index_count);
       ImGui::Text("%d", draw_calls);
-      ImGui::Text("%.2f MB", (float)vertex_buffer_size / (float)1000000.0f);
-      hovered_message  = "KB    : " + std::to_string((float)vertex_buffer_size / (float)1000.0f) + "\n";
+      ImGui::Text("%.3f KB", (float)vertex_buffer_size / (float)1000.0f);
+      hovered_message  = "MB    : " + std::to_string((float)vertex_buffer_size / (float)1000000.0f) + "\n";
       hovered_message += "Bytes : " + std::to_string(vertex_buffer_size);
       PropertyGrid::HoveredMsg(hovered_message.c_str());
       
-      ImGui::Text("%.2f MB", (float)index_buffer_size / (float)1000000.0f);
-      hovered_message  = "KB    : " + std::to_string((float)index_buffer_size / (float)1000.0f) + "\n";
+      ImGui::Text("%.3f KB", (float)index_buffer_size / (float)1000.0f);
+      hovered_message  = "MB    : " + std::to_string((float)index_buffer_size / (float)1000000.0f) + "\n";
       hovered_message += "Bytes : " + std::to_string(index_buffer_size);
       PropertyGrid::HoveredMsg(hovered_message.c_str());
       
-      ImGui::Text("%.2f MB", (float)texture_buffer_size/ (float)1000000.0f);
-      hovered_message  = "KB    : " + std::to_string((float)texture_buffer_size / (float)1000.0f) + "\n";
+      ImGui::Text("%.3f KB", (float)texture_buffer_size/ (float)1000.0f);
+      hovered_message  = "MB    : " + std::to_string((float)texture_buffer_size / (float)1000000.0f) + "\n";
       hovered_message += "Bytes : " + std::to_string(texture_buffer_size);
       PropertyGrid::HoveredMsg(hovered_message.c_str());
       

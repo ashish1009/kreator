@@ -14,6 +14,7 @@ namespace ikan {
     renderer_id = glCreateProgram();
   }
   void OpenGlRendererIdManager::GetBufferId(RendererID &renderer_id) {
+    glGenBuffers(1, &renderer_id);
   }
   void OpenGlRendererIdManager::GetPipelineId(RendererID &renderer_id) {
   }
