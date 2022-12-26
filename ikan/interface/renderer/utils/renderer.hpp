@@ -20,6 +20,7 @@ namespace ikan {
 
   // Forward declarations
   class RendererData;
+  class Shader;
 
   /// This class is the wrapper class to interact with all the module that will be needed to render any
   /// object or control any renderer API
@@ -138,6 +139,14 @@ namespace ikan {
     // -----------------
     /// This function renders a widgit that shows the frame rate of the application
     static void Framerate();
+    
+    // ----------------
+    // Shader Manager
+    // ----------------
+    /// This function returns the shader pointer from the library. If not present then  create new shader
+    /// and store in the library
+    /// - Parameter path: path of shader
+    static std::shared_ptr<Shader> GetShader(const std::string& path);
 
   private:
     // -------------------

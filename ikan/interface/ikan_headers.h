@@ -48,7 +48,7 @@
 
 // Renderer
 #include <renderer/utils/renderer.hpp>
-#include <renderer/graphics/shader_compiler.hpp>
+#include <renderer/graphics/shader.hpp>
 
 // Imgui API
 #include <imgui/imgui_api.hpp>

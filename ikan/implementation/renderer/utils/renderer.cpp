@@ -7,6 +7,7 @@
 
 #include "renderer.hpp"
 #include "imgui/imgui_api.hpp"
+#include "renderer/graphics/shader.hpp"
 
 namespace ikan {
   
@@ -68,6 +69,8 @@ namespace ikan {
   }
   
   void Renderer::Shutdown() {
+    ShaderLibrary::ResetShaders();
+    
     delete renderer_data_;
   }
   
@@ -142,6 +145,9 @@ namespace ikan {
     return renderer_data_->api;
   }
   
+  // -----------------
+  // Gui Widgets
+  // -----------------
   void Renderer::Framerate() {
     ImguiAPI::Framerate();
   }
@@ -162,4 +168,11 @@ namespace ikan {
     IK_CORE_INFO("  Version             | {0} ", version);
   }
 
+  // -------------------------------------------------------------------------
+  // Shader Manager
+  // -------------------------------------------------------------------------
+  std::shared_ptr<Shader> Renderer::GetShader(const std::string& path) {
+    return ShaderLibrary::GetShader(path);
+  }
+  
 }

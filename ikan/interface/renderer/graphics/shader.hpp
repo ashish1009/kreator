@@ -132,4 +132,27 @@ namespace ikan {
     static std::shared_ptr<Shader> Create(const std::string& file_path);
   };
   
+  /// This class stores the compiled shader in library
+  class ShaderLibrary {
+  private:
+    // -----------
+    // Functions
+    // -----------
+    /// This function returns the Ref type of ikan::Shader. It creates a new if not present in the map
+    /// - Parameter path: path of shader
+    static std::shared_ptr<Shader> GetShader(const std::string& path);
+    /// This function deletes all the shaders present int the map
+    static void ResetShaders();
+    
+    // -----------
+    // Variables
+    // -----------
+    static std::unordered_map<std::string, std::shared_ptr<Shader>> shader_library_;
+    
+    MAKE_PURE_STATIC(ShaderLibrary)
+    
+    friend class Renderer;
+  };
+
+  
 }

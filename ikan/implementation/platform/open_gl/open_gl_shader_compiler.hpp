@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "renderer/graphics/shader_compiler.hpp"
+#include "renderer/graphics/shader.hpp"
 #include "platform/open_gl/open_gl_shader_uniform.hpp"
 #include <glad/glad.h>
 
