@@ -87,6 +87,11 @@ namespace ikan {
                   TypeToString(type_), name_, count_, size_);
   }
   
+  OpenGLShaderUniformDeclaration::~OpenGLShaderUniformDeclaration() {
+    IK_CORE_WARN("      Destroying : {0} {1}[{2}] (Size : {3}) ",
+                 TypeToString(type_), name_, count_, size_);
+  }
+  
   void OpenGLShaderUniformDeclaration::SetOffset(uint32_t offset) {
     if (type_ == OpenGLShaderUniformDeclaration::Type::Struct)
       struct_->SetOffset(offset);

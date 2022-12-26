@@ -21,7 +21,8 @@ namespace sandbox {
   void SandboxLayer::Attach() {
     IK_INFO("Attaching Sandbox Layer instance");
     
-    test_shader_ = Shader::Create(AM::CoreAsset("shaders/pbr_static_shader.glsl"));
+    std::shared_ptr<Shader> test_shader = Shader::Create(AM::CoreAsset("shaders/pbr_static_shader.glsl"));
+    test_shader = Shader::Create(AM::CoreAsset("shaders/batch_quad_shader.glsl"));
   }
   
   void SandboxLayer::Detach() {

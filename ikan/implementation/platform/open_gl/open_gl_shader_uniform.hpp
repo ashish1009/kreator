@@ -50,7 +50,7 @@ namespace ikan {
                                    uint32_t count = 1);
     
     /// This is the default destructor of Shader uniform
-    virtual ~OpenGLShaderUniformDeclaration() = default;
+    virtual ~OpenGLShaderUniformDeclaration();
     
     // -----------
     // Getters

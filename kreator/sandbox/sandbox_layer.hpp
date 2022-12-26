@@ -40,9 +40,6 @@ namespace sandbox {
     /// EventHandler(event) API for all Layers
     /// - Parameter event: Event (Base class) intance. Dispatch event from Event Dispatcher
     void EventHandler(Event& event) override;
-    
-  private:
-    std::shared_ptr<Shader> test_shader_;
   };
   
 } 

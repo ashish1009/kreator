@@ -82,6 +82,8 @@ namespace ikan {
     /// This constructor creates the structure instance for a shader
     /// - Parameter name: name of structure
     ShaderStruct(const std::string& name);
+    /// Destroy the structure
+    ~ShaderStruct();
     
     /// This function updates the offset value of structure
     /// - Parameter offset: new offset
