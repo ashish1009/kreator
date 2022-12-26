@@ -22,8 +22,8 @@ namespace ikan {
   OpenGLPipeline::~OpenGLPipeline() noexcept {
     IK_CORE_WARN("Destroying Open GL Pipeline !!!");
     IK_CORE_WARN("  Renderer ID | {0}", renderer_id_);
-    
-    glDeleteVertexArrays(1, &renderer_id_);
+
+    IDManager::RemovePipelineId(renderer_id_);
   }
   
 }

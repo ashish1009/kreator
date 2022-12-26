@@ -41,7 +41,7 @@ namespace ikan {
     IK_CORE_WARN("  Size        | {0} Bytes ({1} KB, {2} MB)",
                  size_, size_ / 1000, size_ / 1000000);
     
-    glDeleteBuffers(1, &renderer_id_);
+    IDManager::RemoveBufferId(renderer_id_);
   }
 
   // --------------------------------------------------------------------------
@@ -74,8 +74,8 @@ namespace ikan {
     IK_CORE_WARN("  Number of Indices | {0}", count_);
     IK_CORE_WARN("  Size              | {0} Bytes ({1} KB, {2} MB)",
                  size_, size_ / 1000, size_ / 1000000);
-    
-    glDeleteBuffers(1, &renderer_id_);
+
+    IDManager::RemoveBufferId(renderer_id_);
   }
 
 }

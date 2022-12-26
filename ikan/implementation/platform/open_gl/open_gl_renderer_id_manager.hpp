@@ -26,8 +26,25 @@ namespace ikan {
     /// - Parameter renderer_id: renderer id reference
     static void GetTextureId(RendererID &renderer_id);
     /// This function updates the Open GL Renderer ID for Frame buffer
-    /// - void renderer_id: renderer id reference
+    /// - Parameter renderer_id: renderer id reference
     static void GetFramebufferId(RendererID &renderer_id);
+    
+    /// This function updates the Open GL Renderer ID for Shader
+    /// - Parameter renderer_id: renderer id reference
+    static void RemoveShaderId(RendererID &renderer_id);
+    /// This function updates the Open GL Renderer ID for Buffers
+    /// - Parameter renderer_id: renderer id reference
+    static void RemoveBufferId(RendererID &renderer_id);
+    /// This function updates the Open GL Renderer ID for Pipeline
+    /// - Parameter renderer_id: renderer id reference
+    static void RemovePipelineId(RendererID &renderer_id);
+    /// This function updates the Open GL Renderer ID for Texture
+    /// - Parameter renderer_id: renderer id reference
+    static void RemoveTextureId(RendererID &renderer_id);
+    /// This function updates the Open GL Renderer ID for Frame buffer
+    /// - Parameter renderer_id: renderer id reference
+    static void RemoveFramebufferId(RendererID &renderer_id);
+
     
     MAKE_PURE_STATIC(OpenGlRendererIdManager);
   };

@@ -109,6 +109,8 @@ namespace ikan {
     
     for (auto& resource : resources_)
       delete resource;
+    
+    IDManager::RemoveShaderId(renderer_id_);
   }
   
   void OpenGLShader::PreprocessFile(const std::string &source_string) {

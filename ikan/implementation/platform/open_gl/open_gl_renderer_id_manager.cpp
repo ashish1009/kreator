@@ -23,5 +23,19 @@ namespace ikan {
   }
   void OpenGlRendererIdManager::GetFramebufferId(RendererID &renderer_id) {
   }
-  
+
+  void OpenGlRendererIdManager::RemoveShaderId(RendererID &renderer_id) {
+    glDeleteProgram(renderer_id);
+  }
+  void OpenGlRendererIdManager::RemoveBufferId(RendererID &renderer_id) {
+    glDeleteBuffers(1, &renderer_id);
+  }
+  void OpenGlRendererIdManager::RemovePipelineId(RendererID &renderer_id) {
+    glDeleteVertexArrays(1, &renderer_id);
+  }
+  void OpenGlRendererIdManager::RemoveTextureId(RendererID &renderer_id) {
+  }
+  void OpenGlRendererIdManager::RemoveFramebufferId(RendererID &renderer_id) {
+  }
+
 }
