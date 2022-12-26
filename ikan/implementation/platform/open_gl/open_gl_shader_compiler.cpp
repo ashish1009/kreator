@@ -6,11 +6,14 @@
 //
 
 #include "open_gl_shader_compiler.hpp"
+#include "platform/open_gl/open_gl_renderer_id_manager.hpp"
 
 namespace ikan {
     
   OpenGLShader::OpenGLShader(const std::string& file_path)
   : asset_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)) {
+    IDManager::GetShaderId(renderer_id_);
+
     IK_CORE_DEBUG("Creating Open GL Shader ...");
     IK_CORE_DEBUG("  Renderer ID | {0} ", renderer_id_);
     IK_CORE_DEBUG("  Name        | {0} ", name_);
