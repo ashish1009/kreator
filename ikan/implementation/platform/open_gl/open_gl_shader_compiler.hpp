@@ -41,10 +41,12 @@ namespace ikan {
     // ------------------
     // Member Methods
     // ------------------
-    /// This function reads the shader code in string and store all the shader
-    /// present in the file in a map to be used later by compiler.
+    /// This function reads the shader code in string and store all the shader present in the file in a
+    /// map to be used later by compiler.
     /// - Parameter source_string: shader code in string
     void PreprocessFile(const std::string& source_string);
+    /// This functions compiles all the shader codes and store their ID in Program ID (renderer_id).
+    void Compile();
 
     // ------------------
     // Member variables
