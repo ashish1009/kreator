@@ -78,17 +78,16 @@ namespace ikan {
   }
 
   void Window::Specification::Log() {
-    IK_CORE_INFO("  Window Property | Value ");
-    IK_CORE_INFO("  ------------------------");
-    IK_CORE_INFO("  Title           | {0}", title);
-    IK_CORE_INFO("  Width           | {0}", width);
-    IK_CORE_INFO("  Height          | {0}", height);
-    IK_CORE_INFO("  VSync           | {0}", v_sync);
-    IK_CORE_INFO("  FullScreen      | {0}", fullscreen);
+    IK_CORE_INFO("  Window Property ");
+    IK_CORE_INFO("    Title      | {0}", title);
+    IK_CORE_INFO("    Width      | {0}", width);
+    IK_CORE_INFO("    Height     | {0}", height);
+    IK_CORE_INFO("    VSync      | {0}", v_sync);
+    IK_CORE_INFO("    FullScreen | {0}", fullscreen);
     if (decorated)
-      IK_CORE_INFO("  Decorated       | {0} [shows the title bar and buttons like close, minimise and maxinmize]", decorated);
+      IK_CORE_INFO("    Decorated  | {0} [shows the title bar and buttons like close, minimise and maxinmize]", decorated);
     else
-      IK_CORE_INFO("  Decorated       | {0} [hides the title bar and buttons like close, minimise and maxinmize]", decorated);
+      IK_CORE_INFO("    Decorated  | {0} [hides the title bar and buttons like close, minimise and maxinmize]", decorated);
   }
   
 }

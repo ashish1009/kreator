@@ -72,6 +72,9 @@ namespace ikan {
     renderer_data_->renderer_api_instance = RendererAPI::Create();
     
     // Initialize Renderers
+    IK_CORE_INFO(" -------------------------------------------------------------------------");
+    IK_CORE_INFO("                       Initializing All Renderer                          ");
+    IK_CORE_INFO(" -------------------------------------------------------------------------");
     BatchRenderer::Init();
   }
   
@@ -184,11 +187,10 @@ namespace ikan {
   }
   
   void Renderer::Capabilities::Log() {
-    IK_CORE_INFO("  Renderer Capability | Value ");
-    IK_CORE_INFO("  ----------------------------");
-    IK_CORE_INFO("  Vendor              | {0} ", vendor);
-    IK_CORE_INFO("  Renderer            | {0} ", renderer);
-    IK_CORE_INFO("  Version             | {0} ", version);
+    IK_CORE_INFO("  Renderer Capability ");
+    IK_CORE_INFO("    Vendor   | {0} ", vendor);
+    IK_CORE_INFO("    Renderer | {0} ", renderer);
+    IK_CORE_INFO("    Version  | {0} ", version);
   }
 
   // -------------------------------------------------------------------------

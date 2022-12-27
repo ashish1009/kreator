@@ -65,7 +65,9 @@ namespace ikan {
     // Create Memroy for Renderer Data
     Renderer::Initialize();
     
-    IK_CORE_INFO(" =============  Core Application Initialized  =============");
+    IK_CORE_INFO(" -------------------------------------------------------------------------");
+    IK_CORE_INFO("                     Core Application Initialized                         ");
+    IK_CORE_INFO(" -------------------------------------------------------------------------");
   }
   
   Application::~Application() {
@@ -88,7 +90,9 @@ namespace ikan {
   }
     
   void Application::Run() {
-    IK_CORE_INFO(" ==================  Starting Game Loop  ==================");
+    IK_CORE_INFO(" -------------------------------------------------------------------------");
+    IK_CORE_INFO("                          Starting Game Loop                              ");
+    IK_CORE_INFO(" -------------------------------------------------------------------------");
     while(is_running_) {
       // Store the frame time difference
       time_step_ = window_->GetTimestep();
@@ -104,7 +108,9 @@ namespace ikan {
         RenderGui();
     }
 
-    IK_CORE_INFO(" ==================   Ending Game Loop   ==================");
+    IK_CORE_INFO(" -------------------------------------------------------------------------");
+    IK_CORE_INFO("                            Ending Game Loop                              ");
+    IK_CORE_INFO(" -------------------------------------------------------------------------");
   }
   
   void Application::RenderGui() {
@@ -182,14 +188,13 @@ namespace ikan {
   }
   
   void Application::Specification::Log() {
-    IK_CORE_INFO("  Application Property | Value ");
-    IK_CORE_INFO("  -----------------------------");
-    IK_CORE_INFO("  Name                 | {0}", name);
-    IK_CORE_INFO("  Client Asset Path    | {0}", client_asset_path.c_str());
-    IK_CORE_INFO("  Rewndering API       | {0}", renderer_utils::GetRendererApiName(rendering_api));
-    IK_CORE_INFO("  Operating System     | {0}", applicaiton_utils::GetOsNameAsString(os));
-    IK_CORE_INFO("  Window Maximized     | {0}", start_maximized);
-    IK_CORE_INFO("  Window Resizable     | {0}", resizable);
+    IK_CORE_INFO("  Application Property ");
+    IK_CORE_INFO("    Name                 | {0}", name);
+    IK_CORE_INFO("    Client Asset Path    | {0}", client_asset_path.c_str());
+    IK_CORE_INFO("    Rewndering API       | {0}", renderer_utils::GetRendererApiName(rendering_api));
+    IK_CORE_INFO("    Operating System     | {0}", applicaiton_utils::GetOsNameAsString(os));
+    IK_CORE_INFO("    Window Maximized     | {0}", start_maximized);
+    IK_CORE_INFO("    Window Resizable     | {0}", resizable);
   }
 
 }

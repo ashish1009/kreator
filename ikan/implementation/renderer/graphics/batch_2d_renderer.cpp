@@ -222,7 +222,6 @@ namespace ikan {
     
     if (quad_data_) {
       IK_CORE_WARN("Destroying the Batch Renderer Quad Data");
-      IK_CORE_WARN("  ---------------------------------");
       IK_CORE_WARN("  Max Quads per Batch             | {0}", quad_data_->max_element);
       IK_CORE_WARN("  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
       IK_CORE_WARN("  Vertex Buffer used              | {0} B ({1} KB) ",
@@ -230,7 +229,6 @@ namespace ikan {
       IK_CORE_WARN("  Index Buffer used               | {0} B ({1} KB) ",
                    quad_data_->max_indices * sizeof(uint32_t), quad_data_->max_indices * sizeof(uint32_t) / 1000.0f );
       IK_CORE_WARN("  Shader Used                     | {0}", quad_data_->shader->GetName());
-      IK_CORE_WARN("  ---------------------------------");
       delete quad_data_;
     }
 
@@ -297,7 +295,6 @@ namespace ikan {
     quad_data_->vertex_base_position[3] = { -0.5f,  0.5f, 0.0f, 1.0f };
     
     IK_CORE_INFO("Initialized Batch Renderer for Quad Data");
-    IK_CORE_INFO("  ---------------------------------");
     IK_CORE_INFO("  Max Quads per Batch             | {0}", quad_data_->max_element);
     IK_CORE_INFO("  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
     IK_CORE_INFO("  Vertex Buffer used              | {0} B ({1} KB) ",
@@ -305,7 +302,6 @@ namespace ikan {
     IK_CORE_INFO("  Index Buffer used               | {0} B ({1} KB) ",
                  quad_data_->max_indices * sizeof(uint32_t), quad_data_->max_indices * sizeof(uint32_t) / 1000.0f );
     IK_CORE_INFO("  Shader Used                     | {0}", quad_data_->shader->GetName());
-    IK_CORE_INFO("  ---------------------------------");
   }
   
   void BatchRenderer::InitCircleData(uint32_t max_circles) {
