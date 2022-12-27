@@ -64,6 +64,7 @@ Add the following library search paths
     - Interface and Implementation for Shader Compiler.
     - Interface and Implementation for Shader Uniforms
     - Interface and Implementation for storing Renderer Buffers and Arrays.
+    - Interface and Implementation for Loading Texture file (using stb image files)
 
   - Editor
     - Added Editor 3D camera
@@ -73,7 +74,7 @@ Add the following library search paths
 ----------------
   - Fundamental Renderer
     - Interface and Implementation for Frame buffer
-    - Interface and Implementation for Loading Texture file (using stb image files)
+    - Texture Library to store loaded textures.
   
   - Materials
     - Added Material class to handle Shader uniforms as collective buffers

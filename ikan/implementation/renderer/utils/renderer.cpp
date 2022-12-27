@@ -10,6 +10,7 @@
 #include "renderer/graphics/shader.hpp"
 #include "renderer/graphics/pipeline.hpp"
 #include "renderer/utils/renderer_stats.hpp"
+#include "renderer/utils/batch_2d_renderer.hpp"
 
 namespace ikan {
   
@@ -68,10 +69,14 @@ namespace ikan {
   void Renderer::Initialize() {
     // Create Renderer Data
     renderer_data_->renderer_api_instance = RendererAPI::Create();
+    
+    // Initialize Renderers
+    BatchRenderer::Init();
   }
   
   void Renderer::Shutdown() {
     ShaderLibrary::ResetShaders();
+    BatchRenderer::Shutdown();
     
     delete renderer_data_;
   }

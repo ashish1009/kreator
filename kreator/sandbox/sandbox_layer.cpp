@@ -20,7 +20,7 @@ namespace sandbox {
   
   void SandboxLayer::Attach() {
     IK_INFO("Attaching Sandbox Layer instance");
-    basic_shader_ = Renderer::GetShader(AM::CoreAsset("shaders/basic_shader.glsl"));
+    basic_shader_ = Renderer::GetShader(AM::CoreAsset("shaders/single_texture_shader.glsl"));
     
     pipeline_ = Pipeline::Create();
     

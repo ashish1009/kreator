@@ -1,8 +1,8 @@
 //
 //  basic_shader.glsl
-//  Kreator
+//  ikan
 //
-//  Created by Ashish . on 25/13/22.
+//  Created by Ashish . on 25/12/22.
 //
 
 // This file includes the Basic Shader code
