@@ -63,6 +63,11 @@ namespace ikan {
     IDManager::RemoveBufferId(renderer_id_);
   }
   
+  void OpenGLVertexBuffer::SetData(void* data, uint32_t size) {
+    glBindBuffer(GL_ARRAY_BUFFER, renderer_id_);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
+  }
+  
   void OpenGLVertexBuffer::Bind() const {
     glBindBuffer(GL_ARRAY_BUFFER, renderer_id_);
   }

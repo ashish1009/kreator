@@ -93,6 +93,11 @@ namespace ikan {
     /// This function uptate the Buffer layeout value in Vertex Buffer
     /// - Parameter layout: new Buffer layout
     virtual void AddLayout(const BufferLayout& layout) = 0;
+    /// This function update the date in buffer dynamically
+    /// - Parameters:
+    ///   - data: Data pointer to be stored in GPU
+    ///   - size: size of data
+    virtual void SetData(void* data, uint32_t size) = 0;
     /// This function binds the Vertex Buffer before rendering
     virtual void Bind() const = 0;
     /// This function unbinds the Vertex Buffer after rendering
