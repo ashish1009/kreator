@@ -163,6 +163,7 @@
 		B2584ECE295B7B3E00234714 /* maths.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = maths.hpp; sourceTree = "<group>"; };
 		B2584ED1295B7FE200234714 /* text_renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = text_renderer.cpp; sourceTree = "<group>"; };
 		B2584ED2295B7FE200234714 /* text_renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = text_renderer.hpp; sourceTree = "<group>"; };
+		B2584ED5295B812600234714 /* text_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = text_shader.glsl; sourceTree = "<group>"; };
 		B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imgui.xcodeproj; path = imgui/imgui.xcodeproj; sourceTree = "<group>"; };
 		B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_layer.cpp; sourceTree = "<group>"; };
 		B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imgui_layer.hpp; sourceTree = "<group>"; };
@@ -455,6 +456,7 @@
 				B216B26A295B5C0000C05392 /* batch_quad_shader.glsl */,
 				B216B269295B590900C05392 /* batch_circle_shader.glsl */,
 				B216B268295B590900C05392 /* batch_line_shader.glsl */,
+				B2584ED5295B812600234714 /* text_shader.glsl */,
 			);
 			path = shaders;
 			sourceTree = "<group>";

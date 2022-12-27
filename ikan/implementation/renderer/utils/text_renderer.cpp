@@ -24,7 +24,7 @@ namespace ikan {
     };
     
     // Fixed Constants
-    static constexpr uint32_t kVertexForSingleChar = 6;
+    static constexpr uint32_t VertexForSingleChar = 6;
     
     /// Renderer Data storage
     std::shared_ptr<Pipeline> pipeline;
@@ -41,7 +41,7 @@ namespace ikan {
     Vertex* vertex_buffer_ptr = nullptr;
     
     /// Store the Base Texture coordinga
-    glm::vec2 base_texture_coords[kVertexForSingleChar];
+    glm::vec2 base_texture_coords[VertexForSingleChar];
     
     /// Constructor
     TextData() {
@@ -53,15 +53,60 @@ namespace ikan {
       delete [] vertex_buffer_base_ptr;
       vertex_buffer_base_ptr = nullptr;
       
-      RendererStatistics::Get().vertex_buffer_size -= TextData::kVertexForSingleChar * sizeof(TextData::Vertex);
+      RendererStatistics::Get().vertex_buffer_size -= TextData::VertexForSingleChar * sizeof(TextData::Vertex);
     }
   };
   static TextData* text_data_;
   
   void TextRenderer::Init() {
+    text_data_ = new TextData();
+    
+    // Allocating the memory for vertex Buffer Pointer
+    text_data_->vertex_buffer_base_ptr = new TextData::Vertex[TextData::VertexForSingleChar];
+    
+    // Create Pipeline instance
+    text_data_->pipeline = Pipeline::Create();
+    
+    // Create vertes Buffer
+    text_data_->vertex_buffer = VertexBuffer::Create(sizeof(TextData::Vertex) * TextData::VertexForSingleChar);
+    text_data_->vertex_buffer->AddLayout({
+      { "a_Position",  ShaderDataType::Float3 },
+      { "a_Color",     ShaderDataType::Float4 },
+      { "a_TexCoords", ShaderDataType::Float2 },
+      { "a_ObjectID",  ShaderDataType::Int },
+    });
+    text_data_->pipeline->AddVertexBuffer(text_data_->vertex_buffer);
+    
+    // Settingup shader
+    text_data_->shader = Renderer::GetShader(AssetManager::CoreAsset("shaders/text_shader.glsl"));
+    
+    // Base Texture coordinate for Char rendering
+    text_data_->base_texture_coords[0] = { 0.0f, 0.0f };
+    text_data_->base_texture_coords[1] = { 0.0f, 1.0f };
+    text_data_->base_texture_coords[2] = { 1.0f, 1.0f };
+    text_data_->base_texture_coords[3] = { 0.0f, 0.0f };
+    text_data_->base_texture_coords[4] = { 1.0f, 1.0f };
+    text_data_->base_texture_coords[5] = { 1.0f, 0.0f };
+    
+    IK_CORE_INFO("Initialised the Text Renderer");
+    IK_CORE_INFO("  ---------------------------------------------------------");
+    IK_CORE_INFO("  Vertex Buffer Used | {0} B ({1} KB) ",
+                 TextData::VertexForSingleChar * sizeof(TextData::Vertex),
+                 TextData::VertexForSingleChar * sizeof(TextData::Vertex) / 1000.0f );
+    IK_CORE_INFO("  Shader used        | {0}", text_data_->shader->GetName());
+    IK_CORE_INFO("  ---------------------------------------------------------");
   }
   
   void TextRenderer::Shutdown() {
+    IK_CORE_WARN("Shutting down the Text Renderer !!!");
+    IK_CORE_WARN("  ---------------------------------------------------------");
+    IK_CORE_WARN("  Vertex Buffer Used | {0} B ({1} KB) ",
+                 TextData::VertexForSingleChar * sizeof(TextData::Vertex),
+                 TextData::VertexForSingleChar * sizeof(TextData::Vertex) / 1000.0f );
+    IK_CORE_WARN("  Shader used        | {0}", text_data_->shader->GetName());
+    IK_CORE_WARN("  ---------------------------------------------------------");
+
+    delete text_data_;
   }
   
 }
