@@ -63,27 +63,28 @@ Add the following library search paths
     - Interface and Implementation for Renderer Context for attching Renderer to Window
     - Interface and Implementation for Shader Compiler.
     - Interface and Implementation for Shader Uniforms
+    - Shader Library to store loaded shaders.
     - Interface and Implementation for storing Renderer Buffers and Arrays.
     - Interface and Implementation for Loading Texture file (using stb image files)
+    - Texture Library to store loaded textures.
 
   - Editor
     - Added Editor 3D camera
+
+  - Renderer APIs
+    - Batch Renderer API for rendering Quad and Circles (2D Batch)
 
 ## Road Map  
 - ikan Engine
 ----------------
   - Fundamental Renderer
     - Interface and Implementation for Frame buffer
-    - Texture Library to store loaded textures.
   
   - Materials
     - Added Material class to handle Shader uniforms as collective buffers
     
   - Text Renderer
     - API created to render the Text either via Entity or without entity/Camera 
-
-  - Renderer APIs
-    - Batch Renderer API for rendering Quad and Circles (2D Batch)
 
 - ECS Project
 ----------------
