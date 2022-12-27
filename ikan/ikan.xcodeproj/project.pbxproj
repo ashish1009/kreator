@@ -31,6 +31,8 @@
 		B2581117295AD76B00B0EDA7 /* camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2581115295AD76B00B0EDA7 /* camera.hpp */; };
 		B258111A295ADC2C00B0EDA7 /* editor_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */; };
 		B258111B295ADC2C00B0EDA7 /* editor_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2581119295ADC2C00B0EDA7 /* editor_camera.hpp */; };
+		B2584ECF295B7B3E00234714 /* maths.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2584ECD295B7B3E00234714 /* maths.cpp */; };
+		B2584ED0295B7B3E00234714 /* maths.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2584ECE295B7B3E00234714 /* maths.hpp */; };
 		B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */; };
 		B2B6CDB72958D8AD00AE609E /* imgui_layer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */; };
 		B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB82958D8B800AE609E /* imgui_build.cpp */; };
@@ -155,6 +157,8 @@
 		B2581115295AD76B00B0EDA7 /* camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
 		B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = editor_camera.cpp; sourceTree = "<group>"; wrapsLines = 0; };
 		B2581119295ADC2C00B0EDA7 /* editor_camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = editor_camera.hpp; sourceTree = "<group>"; };
+		B2584ECD295B7B3E00234714 /* maths.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = maths.cpp; sourceTree = "<group>"; };
+		B2584ECE295B7B3E00234714 /* maths.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = maths.hpp; sourceTree = "<group>"; };
 		B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imgui.xcodeproj; path = imgui/imgui.xcodeproj; sourceTree = "<group>"; };
 		B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_layer.cpp; sourceTree = "<group>"; };
 		B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imgui_layer.hpp; sourceTree = "<group>"; };
@@ -299,6 +303,7 @@
 		B2250CD82958616B0067C43B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				B2584ECC295B7B3300234714 /* math */,
 				B2FC3EA42958880800447A1A /* events */,
 				B2250CFB295873260067C43B /* debug */,
 				B2250CE529586A350067C43B /* utils */,
@@ -316,6 +321,7 @@
 		B2250CE42958639D0067C43B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				B2584ECB295B7B2B00234714 /* math */,
 				B2FC3E9B295887FF00447A1A /* events */,
 				B2250CFC2958732B0067C43B /* debug */,
 				B2250CE829586A690067C43B /* utils */,
@@ -367,6 +373,22 @@
 				B2FC3E872958826C00447A1A /* profiler.cpp */,
 			);
 			path = debug;
+			sourceTree = "<group>";
+		};
+		B2584ECB295B7B2B00234714 /* math */ = {
+			isa = PBXGroup;
+			children = (
+				B2584ECD295B7B3E00234714 /* maths.cpp */,
+			);
+			path = math;
+			sourceTree = "<group>";
+		};
+		B2584ECC295B7B3300234714 /* math */ = {
+			isa = PBXGroup;
+			children = (
+				B2584ECE295B7B3E00234714 /* maths.hpp */,
+			);
+			path = math;
 			sourceTree = "<group>";
 		};
 		B2B6CDAB2958D7D400AE609E /* Products */ = {
@@ -608,6 +630,7 @@
 			files = (
 				B2FC3EB42958892200447A1A /* layer_stack.hpp in Headers */,
 				B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */,
+				B2584ED0295B7B3E00234714 /* maths.hpp in Headers */,
 				B258111B295ADC2C00B0EDA7 /* editor_camera.hpp in Headers */,
 				B2FC3EAC2958880800447A1A /* key_event.hpp in Headers */,
 				B2FC40292958BBC500447A1A /* open_gl_renderer_context.hpp in Headers */,
@@ -762,6 +785,7 @@
 				B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */,
 				B2FC40622958BD6100447A1A /* renderer_api.cpp in Sources */,
 				B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */,
+				B2584ECF295B7B3E00234714 /* maths.cpp in Sources */,
 				B216B25C295B2F7400C05392 /* texture.cpp in Sources */,
 				B2C0D8092959E161003F168B /* property_grid.cpp in Sources */,
 				B216B265295B516A00C05392 /* batch_2d_renderer.cpp in Sources */,

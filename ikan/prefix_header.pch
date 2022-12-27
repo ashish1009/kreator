@@ -34,6 +34,8 @@
 #include "core/utils/string_utils.hpp"
 #include "core/utils/buffers.hpp"
 
+#include "core/math/maths.hpp"
+
 // glm math library
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
