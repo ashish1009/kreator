@@ -12,6 +12,7 @@
 #include "renderer/graphics/pipeline.hpp"
 #include "renderer/utils/renderer_stats.hpp"
 #include "renderer/utils/batch_2d_renderer.hpp"
+#include "renderer/utils/text_renderer.hpp"
 
 namespace ikan {
   
@@ -76,11 +77,13 @@ namespace ikan {
     IK_CORE_INFO("                       Initializing All Renderer                          ");
     IK_CORE_INFO(" -------------------------------------------------------------------------");
     BatchRenderer::Init();
+    TextRenderer::Init();
   }
   
   void Renderer::Shutdown() {
     ShaderLibrary::ResetShaders();
     BatchRenderer::Shutdown();
+    TextRenderer::Shutdown();
     
     delete renderer_data_;
   }
