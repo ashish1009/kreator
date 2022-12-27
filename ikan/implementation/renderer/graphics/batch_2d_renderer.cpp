@@ -222,6 +222,7 @@ namespace ikan {
     
     if (quad_data_) {
       IK_CORE_WARN("Destroying the Batch Renderer Quad Data");
+      IK_CORE_WARN("  ---------------------------------------------------------");
       IK_CORE_WARN("  Max Quads per Batch             | {0}", quad_data_->max_element);
       IK_CORE_WARN("  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
       IK_CORE_WARN("  Vertex Buffer used              | {0} B ({1} KB) ",
@@ -229,9 +230,26 @@ namespace ikan {
       IK_CORE_WARN("  Index Buffer used               | {0} B ({1} KB) ",
                    quad_data_->max_indices * sizeof(uint32_t), quad_data_->max_indices * sizeof(uint32_t) / 1000.0f );
       IK_CORE_WARN("  Shader Used                     | {0}", quad_data_->shader->GetName());
+      IK_CORE_WARN("  ---------------------------------------------------------");
       delete quad_data_;
     }
 
+    if (circle_data_) {
+      IK_CORE_WARN("Destroying the Batch Renderer Circle Data");
+      IK_CORE_WARN("  ---------------------------------------------------------");
+      IK_CORE_WARN("  Max Circles per Batch           | {0}", circle_data_->max_element);
+      IK_CORE_WARN("  Max Texture Slots Batch         | {0}", kMaxTextureSlotsInShader);
+      IK_CORE_WARN("  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
+      IK_CORE_WARN("  Vertex Buffer used              | {0} B ({1} KB) ",
+                   circle_data_->max_vertices * sizeof(CircleData::Vertex),
+                   circle_data_->max_vertices * sizeof(CircleData::Vertex) / 1000.0f );
+      IK_CORE_WARN("  Vertex Buffer used              | {0} B ({1} KB) ",
+                   circle_data_->max_indices * sizeof(uint32_t),
+                   circle_data_->max_indices * sizeof(uint32_t) / 1000.0f );
+      IK_CORE_WARN("  Shader used                     | {0}", circle_data_->shader->GetName());
+      IK_CORE_WARN("  ---------------------------------------------------------");
+      delete circle_data_;
+    }
   }
   
   void BatchRenderer::InitQuadData(uint32_t max_quads) {
@@ -295,6 +313,7 @@ namespace ikan {
     quad_data_->vertex_base_position[3] = { -0.5f,  0.5f, 0.0f, 1.0f };
     
     IK_CORE_INFO("Initialized Batch Renderer for Quad Data");
+    IK_CORE_INFO("  ---------------------------------------------------------");
     IK_CORE_INFO("  Max Quads per Batch             | {0}", quad_data_->max_element);
     IK_CORE_INFO("  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
     IK_CORE_INFO("  Vertex Buffer used              | {0} B ({1} KB) ",
@@ -302,9 +321,82 @@ namespace ikan {
     IK_CORE_INFO("  Index Buffer used               | {0} B ({1} KB) ",
                  quad_data_->max_indices * sizeof(uint32_t), quad_data_->max_indices * sizeof(uint32_t) / 1000.0f );
     IK_CORE_INFO("  Shader Used                     | {0}", quad_data_->shader->GetName());
+    IK_CORE_INFO("  ---------------------------------------------------------");
   }
   
   void BatchRenderer::InitCircleData(uint32_t max_circles) {
+    // Alloc memory for Circle Data
+    circle_data_ = new CircleData();
+    
+    circle_data_->max_element = max_circles;
+    circle_data_->max_vertices = max_circles * BatchRendererData::VertexForSingleElement;
+    circle_data_->max_indices = max_circles * BatchRendererData::IndicesForSingleElement;
+    
+    // Allocating the memory for vertex Buffer Pointer
+    circle_data_->vertex_buffer_base_ptr = new CircleData::Vertex[circle_data_->max_vertices];
+    
+    // Create Pipeline instance
+    circle_data_->pipeline = Pipeline::Create();
+    
+    // Create vertes Buffer
+    circle_data_->vertex_buffer = VertexBuffer::Create(circle_data_->max_vertices * sizeof(CircleData::Vertex));
+    circle_data_->vertex_buffer->AddLayout({
+      { "a_Position",     ShaderDataType::Float3 },
+      { "a_Color",        ShaderDataType::Float4 },
+      { "a_TexCoords",    ShaderDataType::Float2 },
+      { "a_TexIndex",     ShaderDataType::Float },
+      { "a_TilingFactor", ShaderDataType::Float },
+      { "a_Thickness",    ShaderDataType::Float },
+      { "a_Fade",         ShaderDataType::Float },
+      { "a_ObjectID",     ShaderDataType::Int },
+    });
+    circle_data_->pipeline->AddVertexBuffer(circle_data_->vertex_buffer);
+    
+    // Create Index Buffer
+    uint32_t* quad_indices = new uint32_t[circle_data_->max_indices];
+    
+    uint32_t offset = 0;
+    for (size_t i = 0; i < circle_data_->max_indices; i += BatchRendererData::IndicesForSingleElement) {
+      quad_indices[i + 0] = offset + 0;
+      quad_indices[i + 1] = offset + 1;
+      quad_indices[i + 2] = offset + 2;
+      
+      quad_indices[i + 3] = offset + 2;
+      quad_indices[i + 4] = offset + 3;
+      quad_indices[i + 5] = offset + 0;
+      
+      offset += 4;
+    }
+    
+    // Create Index Buffer in GPU for storing Indices
+    std::shared_ptr<IndexBuffer> ib = IndexBuffer::CreateWithCount(quad_indices, circle_data_->max_indices);
+    circle_data_->pipeline->SetIndexBuffer(ib);
+    delete[] quad_indices;
+    
+    // Creating white texture for colorful quads witout any texture or sprite
+    uint32_t whiteTextureData = 0xffffffff;
+    circle_data_->texture_slots[0] = Texture::Create(1, 1, &whiteTextureData,
+                                                     sizeof(uint32_t));
+    
+    // Setting basic Vertex point of quad
+    circle_data_->vertex_base_position[0] = { -0.5f, -0.5f, 0.0f, 1.0f };
+    circle_data_->vertex_base_position[1] = {  0.5f, -0.5f, 0.0f, 1.0f };
+    circle_data_->vertex_base_position[2] = {  0.5f,  0.5f, 0.0f, 1.0f };
+    circle_data_->vertex_base_position[3] = { -0.5f,  0.5f, 0.0f, 1.0f };
+    
+    // Setup the Circle Shader
+    circle_data_->shader = Renderer::GetShader(AM::CoreAsset("shaders/batch_circle_shader.glsl"));
+    
+    IK_CORE_INFO("Initialized Batch Renderer for Circle Data");
+    IK_CORE_INFO("  ---------------------------------------------------------");
+    IK_CORE_INFO("  Max Circle per Batch            | {0}", max_circles);
+    IK_CORE_INFO("  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
+    IK_CORE_INFO("  Vertex Buffer used              | {0} B ({1} KB) ",
+                 circle_data_->max_vertices * sizeof(CircleData::Vertex), circle_data_->max_vertices * sizeof(CircleData::Vertex) / 1000.0f );
+    IK_CORE_INFO("  Vertex Buffer used              | {0} B ({1} KB) ",
+                 circle_data_->max_indices * sizeof(uint32_t), circle_data_->max_indices * sizeof(uint32_t) / 1000.0f );
+    IK_CORE_INFO("  Shader used                     | {0}", circle_data_->shader->GetName());
+    IK_CORE_INFO("  ---------------------------------------------------------");
   }
   
   void BatchRenderer::InitLineData(uint32_t max_lines) {
