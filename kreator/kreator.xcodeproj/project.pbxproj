@@ -10,6 +10,7 @@
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
+		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
 		B2FC40212958B82D00447A1A /* sandbox_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC401F2958B82D00447A1A /* sandbox_layer.cpp */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		B2250CD6295860BC0067C43B /* entry_point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
 		B2250CE2295863840067C43B /* kreator_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kreator_application.cpp; sourceTree = "<group>"; };
 		B2581110295ACCA500B0EDA7 /* libikan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libikan.a; path = ../../ikan_ws/build/products/Debug/libikan.a; sourceTree = "<group>"; };
+		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2FC401F2958B82D00447A1A /* sandbox_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sandbox_layer.cpp; sourceTree = "<group>"; };
 		B2FC40202958B82D00447A1A /* sandbox_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sandbox_layer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -41,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */,
 				B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +74,7 @@
 		B2250CCB29584D1A0067C43B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B2584ED8295B826900234714 /* libfreetype.6.dylib */,
 				B2581110295ACCA500B0EDA7 /* libikan.a */,
 				B2250CCC29584D1A0067C43B /* libikan.a */,
 			);
@@ -302,6 +306,7 @@
 					"${PROJECT_DIR}/../ikan/vendors/glfw/glfw/include",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
 				);
+				LIBRARY_SEARCH_PATHS = "${PROJECT_DIR}/../ikan/vendors/freetype/lib";
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -327,6 +332,7 @@
 					"${PROJECT_DIR}/../ikan/vendors/glfw/glfw/include",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
 				);
+				LIBRARY_SEARCH_PATHS = "${PROJECT_DIR}/../ikan/vendors/freetype/lib";
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
