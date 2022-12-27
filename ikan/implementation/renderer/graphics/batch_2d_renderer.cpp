@@ -31,9 +31,27 @@ namespace ikan {
     float texture_index;
     float tiling_factor;
   };
+  
+  /// This structure holds the common batch renderer data for Quads, circle and lines
+  struct CommonData {
+    /// Renderer Data storage
+    std::shared_ptr<Pipeline> pipeline;
+    std::shared_ptr<VertexBuffer> vertex_buffer;
+    std::shared_ptr<Shader> shader;
+    
+    /// Max element to be rendered in single batch
+    uint32_t max_element = 0;
+    uint32_t max_vertices = 0;
+
+    friend struct BatchRendererData;
+    friend struct LineData;
+    
+  private:
+    CommonData() = default;
+  };
 
   /// This structure holds the common batch renderer data for Quads and circle
-  struct BatchRendererData {
+  struct BatchRendererData : CommonData{
     // Constants
     static constexpr uint32_t VertexForSingleElement = 4;
     static constexpr uint32_t IndicesForSingleElement = 6;
@@ -45,16 +63,10 @@ namespace ikan {
     };
     
     /// Store the Vertex and Indices size
-    uint32_t max_vertices = 0;
     uint32_t max_indices = 0;
     
     /// Store the Environment data
     Environment environment;
-    
-    /// Renderer Data storage
-    std::shared_ptr<Pipeline> pipeline;
-    std::shared_ptr<VertexBuffer> vertex_buffer;
-    std::shared_ptr<Shader> shader;
     
     /// Count of Indices to be renderer in Single Batch
     uint32_t index_count = 0;
@@ -66,9 +78,6 @@ namespace ikan {
     /// Texture Slot index sent to Shader to render a specific Texture from slots
     /// Slot 0 is reserved for white texture (No Image only color)
     uint32_t texture_slot_index = 1; // 0 = white texture
-
-    /// Max element to be rendered in single batch
-    uint32_t max_element = 0;
 
     /// Basic vertex of quad
     /// Vertex of circle is taken as Quad only
@@ -84,8 +93,8 @@ namespace ikan {
       RendererStatistics::Get().index_buffer_size -= max_indices * sizeof(uint32_t);
     }
 
-    friend class QuadData;
-    friend class CircleData;
+    friend struct QuadData;
+    friend struct CircleData;
 
   private:
     BatchRendererData() = default;
@@ -160,6 +169,44 @@ namespace ikan {
   };
   static CircleData* circle_data_;
   
+  struct LineData : CommonData {
+    /// Single vertex of a Circle
+    struct Vertex {
+      glm::vec3 position;       // Position of a Quad
+      glm::vec4 color;          // Color of a Quad
+    };
+    
+    static constexpr uint32_t kVertexForSingleLine = 2;
+        
+    /// Count of Indices to be renderer in Single Batch
+    uint32_t vertex_count = 0;
+    
+    /// Base pointer of Vertex Data. This is start of Batch data for single draw call
+    Vertex* vertex_buffer_base_ptr = nullptr;
+    /// Incrememntal Vetrtex Data Pointer to store all the batch data in Buffer
+    Vertex* vertex_buffer_ptr = nullptr;
+    
+    /// Constructor
+    LineData() {
+      IK_CORE_TRACE("Creating Line Data instance ...");
+    }
+    /// Destructir
+    virtual ~LineData() {
+      IK_CORE_WARN("Destroying Line Data instance and clearing the data !!!");
+      delete [] vertex_buffer_base_ptr;
+      vertex_buffer_base_ptr = nullptr;
+      
+      RendererStatistics::Get().vertex_buffer_size -= LineData::max_vertices * sizeof(LineData::Vertex);
+    }
+    
+    /// start new batch for quad rendering
+    void StartBatch() {
+      vertex_count = 0;
+      vertex_buffer_ptr = vertex_buffer_base_ptr;
+    }
+  };
+  static LineData* line_data_;
+  
   // --------------------------------------------------------------------------
   // Batch Renderer API
   // --------------------------------------------------------------------------
@@ -167,6 +214,7 @@ namespace ikan {
     IK_CORE_INFO("Initialising the Batch Renderer 2D ...");
     InitQuadData(10);
     InitCircleData(10);
+    InitLineData(10);
   }
 
   void BatchRenderer::Shutdown() {
@@ -177,6 +225,9 @@ namespace ikan {
   }
   
   void BatchRenderer::InitCircleData(uint32_t max_circles) {
+  }
+  
+  void BatchRenderer::InitLineData(uint32_t max_lines) {
   }
   
 }
