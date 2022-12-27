@@ -75,7 +75,8 @@ namespace ikan {
       }
 
       IDManager::GetTextureId(renderer_id_);
-      
+      glBindTexture(GL_TEXTURE_2D, renderer_id_);
+
       // Setup min and Mag filter
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, (min_linear ? GL_LINEAR : GL_NEAREST));
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, (min_linear ? GL_LINEAR : GL_NEAREST));
@@ -109,19 +110,66 @@ namespace ikan {
       IK_CORE_DEBUG("  Renderer ID       | {0}", renderer_id_);
       IK_CORE_DEBUG("  Width             | {0}", width_);
       IK_CORE_DEBUG("  Height            | {0}", height_);
-      IK_CORE_DEBUG("  Size              | {0} Bytes ({1} KB {2})",
-                    size_, (float)size_ / 1000.0f, (float)size_ / 1000000.0f);
+      IK_CORE_DEBUG("  Size              | {0} Bytes ({1} KB {2} MB)", size_, (float)size_ / 1000.0f, (float)size_ / 1000000.0f);
       IK_CORE_DEBUG("  Number of Channel | {0}", channel_);
-      IK_CORE_DEBUG("  InternalFormat    | {0}",
-                    texture_utils::GetFormatNameFromEnum(internal_format_));
-      IK_CORE_DEBUG("  DataFormat        | {0}",
-                    texture_utils::GetFormatNameFromEnum(data_format_));
+      IK_CORE_DEBUG("  InternalFormat    | {0}", texture_utils::GetFormatNameFromEnum(internal_format_));
+      IK_CORE_DEBUG("  DataFormat        | {0}", texture_utils::GetFormatNameFromEnum(data_format_));
     }
     else {
       IK_CORE_CRITICAL("Failed to load stbi Image {0}", file_path_.c_str());
     }
   }
   
+  OpenGLTexture::OpenGLTexture(uint32_t width,
+                               uint32_t height,
+                               void* data,
+                               uint32_t size)
+  : width_((int32_t)width), height_((int32_t)height),
+  internal_format_(GL_RGBA8), data_format_(GL_RGBA), size_(size) {
+    // Create the buffer to store the white texture
+    texture_data_ = new uint32_t;
+    memcpy(texture_data_, data, size_);
+    
+    IDManager::GetTextureId(renderer_id_);
+    glBindTexture(GL_TEXTURE_2D, renderer_id_);
+    
+    // Setup Texture
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    
+    uint16_t bpp = data_format_ == GL_RGBA ? 4 : 3;
+    IK_CORE_ASSERT((size_ == (uint32_t)width_ * (uint32_t)height_ * bpp),
+                   "Data must be entire texture");
+    
+    // Create texture in the renderer Buffer
+    glTexImage2D(GL_TEXTURE_2D,
+                 0, // level
+                 (GLint)internal_format_,
+                 (GLsizei)width_,
+                 (GLsizei)height_,
+                 0, // Border
+                 data_format_,
+                 GL_UNSIGNED_BYTE,
+                 (stbi_uc*)(texture_data_));
+    
+    // Set the flag if uploaded
+    uploaded_ = true;
+    
+    // Increment the size in stats
+    RendererStatistics::Get().texture_buffer_size += size_;
+    
+    IK_CORE_DEBUG("Creating Open GL White Texture ... ");
+    IK_CORE_DEBUG("  Renderer ID       | {0}", renderer_id_);
+    IK_CORE_DEBUG("  Width             | {0}", width_);
+    IK_CORE_DEBUG("  Height            | {0}", height_);
+    IK_CORE_DEBUG("  Size              | {0} Bytes ({1} KB {2} MB)", size_, (float)size_ / 1000.0f, (float)size_ / 1000000.0f);
+    IK_CORE_DEBUG("  Number of Channel | {0}", channel_);
+    IK_CORE_DEBUG("  InternalFormat    | {0}", texture_utils::GetFormatNameFromEnum(internal_format_));
+    IK_CORE_DEBUG("  DataFormat        | {0}", texture_utils::GetFormatNameFromEnum(data_format_));
+  }
+
   OpenGLTexture::~OpenGLTexture() noexcept {
     if (uploaded_) {
       IK_CORE_WARN("Destroying Open GL Texture: !!! ");
@@ -131,13 +179,10 @@ namespace ikan {
       IK_CORE_WARN("  Renderer ID       | {0}", renderer_id_);
       IK_CORE_WARN("  Width             | {0}", width_);
       IK_CORE_WARN("  Height            | {0}", height_);
-      IK_CORE_WARN("  Size              | {0} Bytes ({1} KB {2} MB)",
-                   size_, (float)size_ / 1000.0f, (float)size_ / 1000000.0f);
+      IK_CORE_WARN("  Size              | {0} Bytes ({1} KB {2} MB)", size_, (float)size_ / 1000.0f, (float)size_ / 1000000.0f);
       IK_CORE_WARN("  Number of Channel | {0}", channel_);
-      IK_CORE_WARN("  InternalFormat    | {0}",
-                   texture_utils::GetFormatNameFromEnum(internal_format_));
-      IK_CORE_WARN("  DataFormat        | {0}",
-                   texture_utils::GetFormatNameFromEnum(data_format_));
+      IK_CORE_WARN("  InternalFormat    | {0}", texture_utils::GetFormatNameFromEnum(internal_format_));
+      IK_CORE_WARN("  DataFormat        | {0}", texture_utils::GetFormatNameFromEnum(data_format_));
       
       IDManager::RemoveTextureId(renderer_id_);
       RendererStatistics::Get().texture_buffer_size -= size_;

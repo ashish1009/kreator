@@ -31,6 +31,17 @@ namespace ikan {
     static std::shared_ptr<Texture> Create(const std::string& file_path,
                                            bool min_linear = true,
                                            bool mag_linear = true);
+    /// This static functions creates Emptry Texture with user Defined Data of
+    /// size height and Width
+    /// - Parameters:
+    ///   - width: Width of Empty
+    ///   - height Height of Empty Texture
+    ///   - data: Data to be stored in Empty Texture
+    ///   - size: Size of type of data stored in Texture
+    static std::shared_ptr<Texture> Create(uint32_t width,
+                                           uint32_t height,
+                                           void* data,
+                                           uint32_t size);
   };
   
 }
