@@ -24,7 +24,14 @@ namespace ikan {
     ///   - min_linear: min linear filter
     ///   - mag_linear: mag linear filter
     OpenGLTexture(const std::string& file_path, bool min_linear, bool mag_linear);
-    
+    /// This Constructor create the empty Open GL texture with user data
+    /// - Parameters:
+    ///   - width: widht of texture
+    ///   - height: height of texture
+    ///   - data: user data to fill in texture
+    ///   - size: size of texture
+    OpenGLTexture(uint32_t width, uint32_t height, void* data, uint32_t size);
+
     /// Default destructor that delete the texture
     virtual ~OpenGLTexture() noexcept;
     

@@ -28,13 +28,13 @@ namespace ikan {
     // Member Methods
     /// This funcition initialize the quad renderer data
     /// - Parameter max_quads: max quad to be renderered in single batch
-    static void InitQuadData(uint32_t max_quads);
+    static void InitQuadData(uint32_t max_quads = 50);
     /// This funcition initialize the circle renderer data
     /// - Parameter max_circles: max circle to be renderered in single batch
-    static void InitCircleData(uint32_t max_circles);
+    static void InitCircleData(uint32_t max_circles = 50);
     /// This funcition initialize the lines renderer data
     /// - Parameter max_lines: max circle to be renderered in single batch
-    static void InitLineData(uint32_t max_lines);
+    static void InitLineData(uint32_t max_lines = 100);
   };
   
 }

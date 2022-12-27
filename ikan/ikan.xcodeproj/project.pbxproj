@@ -134,7 +134,9 @@
 		B216B260295B4E6A00C05392 /* stb_image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stb_image.cpp; sourceTree = "<group>"; };
 		B216B263295B516A00C05392 /* batch_2d_renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = batch_2d_renderer.cpp; sourceTree = "<group>"; };
 		B216B264295B516A00C05392 /* batch_2d_renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = batch_2d_renderer.hpp; sourceTree = "<group>"; };
-		B216B267295B519700C05392 /* basic_batch_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = basic_batch_shader.glsl; sourceTree = "<group>"; };
+		B216B268295B590900C05392 /* batch_line_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = batch_line_shader.glsl; sourceTree = "<group>"; };
+		B216B269295B590900C05392 /* batch_circle_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = batch_circle_shader.glsl; sourceTree = "<group>"; };
+		B216B26A295B5C0000C05392 /* batch_quad_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = batch_quad_shader.glsl; sourceTree = "<group>"; };
 		B2250CBD29584D060067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCE29585E310067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		B2250CD3295860420067C43B /* core_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_entry_point.h; sourceTree = "<group>"; };
@@ -424,7 +426,9 @@
 			isa = PBXGroup;
 			children = (
 				B227F38B2959DBF40055D871 /* single_texture_shader.glsl */,
-				B216B267295B519700C05392 /* basic_batch_shader.glsl */,
+				B216B26A295B5C0000C05392 /* batch_quad_shader.glsl */,
+				B216B269295B590900C05392 /* batch_circle_shader.glsl */,
+				B216B268295B590900C05392 /* batch_line_shader.glsl */,
 			);
 			path = shaders;
 			sourceTree = "<group>";

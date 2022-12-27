@@ -212,16 +212,100 @@ namespace ikan {
   // --------------------------------------------------------------------------
   void BatchRenderer::Init() {
     IK_CORE_INFO("Initialising the Batch Renderer 2D ...");
-    InitQuadData(10);
-    InitCircleData(10);
-    InitLineData(10);
+    InitQuadData();
+    InitCircleData();
+    InitLineData();
   }
 
   void BatchRenderer::Shutdown() {
     IK_CORE_WARN("Shutting Down the Batch Renderer 2D !!!");
+    
+    if (quad_data_) {
+      IK_CORE_WARN("Destroying the Batch Renderer Quad Data");
+      IK_CORE_WARN("  ---------------------------------");
+      IK_CORE_WARN("  Max Quads per Batch             | {0}", quad_data_->max_element);
+      IK_CORE_WARN("  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
+      IK_CORE_WARN("  Vertex Buffer used              | {0} B ({1} KB) ",
+                   quad_data_->max_vertices * sizeof(QuadData::Vertex), quad_data_->max_vertices * sizeof(QuadData::Vertex) / 1000.0f );
+      IK_CORE_WARN("  Index Buffer used               | {0} B ({1} KB) ",
+                   quad_data_->max_indices * sizeof(uint32_t), quad_data_->max_indices * sizeof(uint32_t) / 1000.0f );
+      IK_CORE_WARN("  Shader Used                     | {0}", quad_data_->shader->GetName());
+      IK_CORE_WARN("  ---------------------------------");
+      delete quad_data_;
+    }
+
   }
   
   void BatchRenderer::InitQuadData(uint32_t max_quads) {
+    // Alloc memory for Quad Data
+    quad_data_ = new QuadData();
+    
+    quad_data_->max_element = max_quads;
+    quad_data_->max_vertices = max_quads * BatchRendererData::VertexForSingleElement;
+    quad_data_->max_indices = max_quads * BatchRendererData::IndicesForSingleElement;
+    
+    // Create Pipeline instance
+    quad_data_->pipeline = Pipeline::Create();
+
+    // Allocating the memory for vertex Buffer Pointer
+    quad_data_->vertex_buffer_base_ptr = new QuadData::Vertex[quad_data_->max_vertices];
+    
+    // Create vertes Buffer
+    quad_data_->vertex_buffer = VertexBuffer::Create(quad_data_->max_vertices * sizeof(QuadData::Vertex));
+    quad_data_->vertex_buffer->AddLayout({
+      { "a_Position",     ShaderDataType::Float3 },
+      { "a_Color",        ShaderDataType::Float4 },
+      { "a_TexCoords",    ShaderDataType::Float2 },
+      { "a_TexIndex",     ShaderDataType::Float },
+      { "a_TilingFactor", ShaderDataType::Float },
+      { "a_ObjectID",     ShaderDataType::Int },
+    });
+    quad_data_->pipeline->AddVertexBuffer(quad_data_->vertex_buffer);
+    
+    // Setup the Quad Shader
+    quad_data_->shader = Renderer::GetShader(AM::CoreAsset("shaders/batch_quad_shader.glsl"));
+    
+    // Create Index Buffer
+    uint32_t* quad_indices = new uint32_t[quad_data_->max_indices];
+
+    uint32_t offset = 0;
+    for (size_t i = 0; i < quad_data_->max_indices; i += BatchRendererData::IndicesForSingleElement) {
+      quad_indices[i + 0] = offset + 0;
+      quad_indices[i + 1] = offset + 1;
+      quad_indices[i + 2] = offset + 2;
+      
+      quad_indices[i + 3] = offset + 2;
+      quad_indices[i + 4] = offset + 3;
+      quad_indices[i + 5] = offset + 0;
+      
+      offset += 4;
+    }
+
+    // Create Index Buffer in GPU for storing Indices
+    std::shared_ptr<IndexBuffer> ib = IndexBuffer::CreateWithCount(quad_indices, quad_data_->max_indices);
+    quad_data_->pipeline->SetIndexBuffer(ib);
+    delete[] quad_indices;
+    
+    // Creating white texture for colorful quads witout any texture or sprite
+    uint32_t whiteTextureData = 0xffffffff;
+    quad_data_->texture_slots[0] = Texture::Create(1, 1, &whiteTextureData, sizeof(uint32_t));
+    
+    // Setting basic Vertex point of quad
+    quad_data_->vertex_base_position[0] = { -0.5f, -0.5f, 0.0f, 1.0f };
+    quad_data_->vertex_base_position[1] = {  0.5f, -0.5f, 0.0f, 1.0f };
+    quad_data_->vertex_base_position[2] = {  0.5f,  0.5f, 0.0f, 1.0f };
+    quad_data_->vertex_base_position[3] = { -0.5f,  0.5f, 0.0f, 1.0f };
+    
+    IK_CORE_INFO("Initialized Batch Renderer for Quad Data");
+    IK_CORE_INFO("  ---------------------------------");
+    IK_CORE_INFO("  Max Quads per Batch             | {0}", quad_data_->max_element);
+    IK_CORE_INFO("  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
+    IK_CORE_INFO("  Vertex Buffer used              | {0} B ({1} KB) ",
+                 quad_data_->max_vertices * sizeof(QuadData::Vertex), quad_data_->max_vertices * sizeof(QuadData::Vertex) / 1000.0f );
+    IK_CORE_INFO("  Index Buffer used               | {0} B ({1} KB) ",
+                 quad_data_->max_indices * sizeof(uint32_t), quad_data_->max_indices * sizeof(uint32_t) / 1000.0f );
+    IK_CORE_INFO("  Shader Used                     | {0}", quad_data_->shader->GetName());
+    IK_CORE_INFO("  ---------------------------------");
   }
   
   void BatchRenderer::InitCircleData(uint32_t max_circles) {

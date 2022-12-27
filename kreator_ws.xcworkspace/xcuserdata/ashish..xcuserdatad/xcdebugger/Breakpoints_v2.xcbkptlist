@@ -7,32 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8C76A32C-5D48-4476-8279-4A93C45E0E30"
+            uuid = "A75F6EC5-7DB7-476D-B937-D5E6AC9132DA"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kreator/sandbox/sandbox_layer.cpp"
+            filePath = "ikan/implementation/renderer/graphics/batch_2d_renderer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "SandboxLayer::WindowResize(window_resize_event)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D3BE6320-F0AF-411E-A451-3A5758402397"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/platform/open_gl/open_gl_texture.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "OpenGLTexture::OpenGLTexture(file_path, min_linear, mag_linear)"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
+            landmarkName = "BatchRenderer::InitQuadData(max_quads)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -1,15 +1,12 @@
 //
-//  basic_batch_shader.glsl
+//  batch_quad_shader.glsl
 //  ikan
 //
-//  Created by Ashish . on 27/11/22.
+//  Created by iKan on 27/12/22.
 //
 
-// This file includes the Basic Shader code
-
-// Vertex Shader
+// vertex Shader
 #type vertex
-
 #version 330 core
 
 layout(location = 0) in vec3  a_Position;
@@ -27,6 +24,7 @@ out VS_OUT
   vec2  TexCoord;
   float TexIndex;
   float TilingFactor;
+  float ObjectID;
 } vs_out;
 
 void main()
@@ -35,16 +33,16 @@ void main()
   vs_out.TexCoord      = a_TexCoord;
   vs_out.TexIndex      = a_TexIndex;
   vs_out.TilingFactor  = a_TilingFactor;
+  vs_out.ObjectID      = a_ObjectID;
   
   gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
 }
 
 // Fragment Shader
 #type fragment
-
 #version 330 core
-
 layout(location = 0) out vec4 o_Color;
+layout(location = 2) out int  o_IDBuffer;
 
 in VS_OUT
 {
@@ -52,6 +50,7 @@ in VS_OUT
   vec2  TexCoord;
   float TexIndex;
   float TilingFactor;
+  float ObjectID;
 } fs_in;
 
 uniform sampler2D u_Textures[16];
@@ -81,4 +80,5 @@ void main()
   if(texColor.a < 0.1)
     discard;
   o_Color = texColor;
+  o_IDBuffer = int(fs_in.ObjectID);
 }
