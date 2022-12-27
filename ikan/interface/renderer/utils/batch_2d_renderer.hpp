@@ -23,6 +23,15 @@ namespace ikan {
     static void Init();
     /// This functio dhutdown the batch renderer and destoy all the buffer reserved on initialize
     static void Shutdown();
+    
+  private:
+    // Member Methods
+    /// This funcition initialize the quad renderer data
+    /// - Parameter max_quads: max quad to be renderered in single batch
+    static void InitQuadData(uint32_t max_quads);
+    /// This funcition initialize the circle renderer data
+    /// - Parameter mac_circles: max circle to be renderered in single batch
+    static void InitCircleData(uint32_t mac_circles);
   };
   
 }

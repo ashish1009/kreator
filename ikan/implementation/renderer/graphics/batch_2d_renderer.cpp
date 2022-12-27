@@ -85,6 +85,7 @@ namespace ikan {
     }
 
     friend class QuadData;
+    friend class CircleData;
 
   private:
     BatchRendererData() = default;
@@ -123,15 +124,59 @@ namespace ikan {
   };
   static QuadData* quad_data_;
   
+  /// Batch Data to Rendering Circles
+  struct CircleData : BatchRendererData {
+    /// Single vertex of a Circle
+    struct Vertex : BaseVertex {
+      float thickness;    // Thickness of Circle
+      float fade;         // Fadeness of Edge of Circle
+      
+      int32_t object_id; // Pixel ID of Quad
+    };
+        
+    /// Base pointer of Vertex Data. This is start of Batch data for single draw call
+    Vertex* vertex_buffer_base_ptr = nullptr;
+    /// Incrememntal Vetrtex Data Pointer to store all the batch data in Buffer
+    Vertex* vertex_buffer_ptr = nullptr;
+    
+    /// Constructor
+    CircleData() {
+      IK_CORE_TRACE("Creating CircleData instance ...");
+    }
+    /// Destructir
+    virtual ~CircleData() {
+      IK_CORE_WARN("Destroying Circle Data instance and clearing the data !!!");
+      delete [] vertex_buffer_base_ptr;
+      vertex_buffer_base_ptr = nullptr;
+      
+      RendererStatistics::Get().vertex_buffer_size -= CircleData::max_vertices * sizeof(CircleData::Vertex);
+    }
+    
+    /// start new batch for quad rendering
+    void StartBatch() {
+      StartCommonBatch();
+      vertex_buffer_ptr = vertex_buffer_base_ptr;
+    }
+  };
+  static CircleData* circle_data_;
+  
   // --------------------------------------------------------------------------
   // Batch Renderer API
   // --------------------------------------------------------------------------
   void BatchRenderer::Init() {
     IK_CORE_INFO("Initialising the Batch Renderer 2D ...");
+    InitQuadData(10);
+    InitCircleData(10);
   }
 
   void BatchRenderer::Shutdown() {
     IK_CORE_WARN("Shutting Down the Batch Renderer 2D !!!");
+  }
+  
+  void BatchRenderer::InitQuadData(uint32_t max_quads) {
+  }
+  
+  void BatchRenderer::InitCircleData(uint32_t max_circles) {
   }
   
 }
