@@ -93,6 +93,19 @@ namespace ikan {
     return moved;
   }
   
+  void EditorCamera::EventHandler(Event& e) {
+    EventDispatcher dispatcher(e);
+    dispatcher.Dispatch<MouseScrolledEvent>(IK_BIND_EVENT_FN(EditorCamera::OnMouseScroll));
+  }
+  
+  bool EditorCamera::OnMouseScroll(MouseScrolledEvent& e) {
+    float delta = e.GetYOffset() * 0.1f;
+    MouseZoom(delta);
+    
+    UpdateCameraView();
+    return false;
+  }
+  
   void EditorCamera::SetViewportSize(uint32_t width, uint32_t height) {
     if (height == 0)
       return;
@@ -102,6 +115,7 @@ namespace ikan {
     aspect_ratio_    = (float)viewport_width_ / (float)viewport_height_;
     
     projection_matrix_ = glm::perspective(fov_, aspect_ratio_, near_plane_, far_plane_);
+    
     UpdateCameraView();
     IK_CORE_TRACE("Changing Viewport Size of Editor Camera : {0} x {1}."
                   "(NOTE: Updating View Projection Matrix)", width, height);
@@ -114,6 +128,8 @@ namespace ikan {
     rotation_   = glm::eulerAngles(orientation) * (180.0f / (float)M_PI);
     view_matrix_ = glm::translate(glm::mat4(1.0f), position_) * glm::toMat4(orientation);
     view_matrix_ = glm::inverse(view_matrix_);
+    
+    projection_view_matrix_ = projection_matrix_ * view_matrix_;
   }
   
   void EditorCamera::MouseZoom(float delta) {
@@ -152,7 +168,7 @@ namespace ikan {
   }
   
   float EditorCamera::MoveSpeed() const {
-    return 20.0f;
+    return 10.0f;
   }
   
   float EditorCamera::ZoomSpeed() const {
@@ -172,8 +188,8 @@ namespace ikan {
     return glm::quat(glm::vec3(-pitch_, -yaw_, 0.0f));
   }
   
-  glm::mat4 EditorCamera::GetViewProjection() const {
-    return projection_matrix_ * view_matrix_;
+  const glm::mat4& EditorCamera::GetViewProjection() const {
+    return projection_view_matrix_;
   }
   const glm::mat4& EditorCamera::GetView() const {
     return view_matrix_;

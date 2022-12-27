@@ -11,6 +11,7 @@
 
 #include "renderer/utils/camera.hpp"
 #include "core/utils/time_step.hpp"
+#include "core/events/mouse_event.hpp"
 
 namespace ikan {
   
@@ -35,6 +36,9 @@ namespace ikan {
     /// This function updates the Parameter of Editor Camera each frame
     /// - Parameter ts: time step of each frame
     bool Update([[maybe_unused]] Timestep ts);
+    /// This function handles Events of Editor Camera
+    /// - Parameter e: event instance
+    void EventHandler(Event& e);
 
     /// This function updates the viewport size for Editor Camera
     /// - Parameters:
@@ -42,12 +46,15 @@ namespace ikan {
     ///   - height: new height
     void SetViewportSize(uint32_t width, uint32_t height);
 
+    /// This function handles Mouse Scroll event
+    /// - Parameter e: Mouse Scroll Event
+    bool OnMouseScroll(MouseScrolledEvent& e);
+
     // ---------------
     // Getters
     // ---------------
     /// This function returns View Projection Matrix
-    /// NOTE : View * Projection
-    glm::mat4 GetViewProjection() const;
+    const glm::mat4& GetViewProjection() const;
     /// This function returns the View Matrix
     const glm::mat4& GetView() const;
     
@@ -94,6 +101,7 @@ namespace ikan {
     // Member variables
     // -------------------
     glm::mat4 view_matrix_ = glm::mat4(1.0f);
+    glm::mat4 projection_view_matrix_ = glm::mat4(1.0f);
     
     glm::vec3 forward_direction_{0.0f, 0.0f, 0.0f};
     glm::vec3 position_ = glm::vec3(0.0f);

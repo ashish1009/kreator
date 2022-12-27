@@ -60,6 +60,8 @@ namespace sandbox {
   }
   
   void SandboxLayer::EventHandler(Event& event) {
+    editor_camera.EventHandler(event);
+
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<WindowResizeEvent>(IK_BIND_EVENT_FN(SandboxLayer::WindowResize));
   }
