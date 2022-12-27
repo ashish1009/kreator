@@ -21,6 +21,8 @@
 		B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B227F37229597F2B0055D871 /* open_gl_renderer_id_manager.hpp */; };
 		B2581116295AD76B00B0EDA7 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2581114295AD76B00B0EDA7 /* camera.cpp */; };
 		B2581117295AD76B00B0EDA7 /* camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2581115295AD76B00B0EDA7 /* camera.hpp */; };
+		B258111A295ADC2C00B0EDA7 /* editor_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */; };
+		B258111B295ADC2C00B0EDA7 /* editor_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2581119295ADC2C00B0EDA7 /* editor_camera.hpp */; };
 		B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */; };
 		B2B6CDB72958D8AD00AE609E /* imgui_layer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */; };
 		B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB82958D8B800AE609E /* imgui_build.cpp */; };
@@ -130,6 +132,8 @@
 		B227F38B2959DBF40055D871 /* basic_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = basic_shader.glsl; sourceTree = "<group>"; };
 		B2581114295AD76B00B0EDA7 /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
 		B2581115295AD76B00B0EDA7 /* camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
+		B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = editor_camera.cpp; sourceTree = "<group>"; };
+		B2581119295ADC2C00B0EDA7 /* editor_camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = editor_camera.hpp; sourceTree = "<group>"; };
 		B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imgui.xcodeproj; path = imgui/imgui.xcodeproj; sourceTree = "<group>"; };
 		B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_layer.cpp; sourceTree = "<group>"; };
 		B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imgui_layer.hpp; sourceTree = "<group>"; };
@@ -362,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				B2C0D8072959E161003F168B /* property_grid.cpp */,
+				B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */,
 			);
 			path = editor;
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				B2C0D8082959E161003F168B /* property_grid.hpp */,
+				B2581119295ADC2C00B0EDA7 /* editor_camera.hpp */,
 			);
 			path = editor;
 			sourceTree = "<group>";
@@ -557,6 +563,7 @@
 			files = (
 				B2FC3EB42958892200447A1A /* layer_stack.hpp in Headers */,
 				B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */,
+				B258111B295ADC2C00B0EDA7 /* editor_camera.hpp in Headers */,
 				B2FC3EAC2958880800447A1A /* key_event.hpp in Headers */,
 				B2FC40292958BBC500447A1A /* open_gl_renderer_context.hpp in Headers */,
 				B2FC3E862958796F00447A1A /* ikan_headers.h in Headers */,
@@ -722,6 +729,7 @@
 				B2F526632959777F00A83C65 /* shader_uniform.cpp in Sources */,
 				B2F52667295979FE00A83C65 /* string_utils.cpp in Sources */,
 				B2C0D819295A01DF003F168B /* pipeline.cpp in Sources */,
+				B258111A295ADC2C00B0EDA7 /* editor_camera.cpp in Sources */,
 				B2E7600C2958D38100ADBE79 /* mac_os_window.cpp in Sources */,
 				B2C0D80D2959FB69003F168B /* open_gl_renderer_buffer.cpp in Sources */,
 				B2FC405E2958BD0900447A1A /* open_gl_renderer_api.cpp in Sources */,

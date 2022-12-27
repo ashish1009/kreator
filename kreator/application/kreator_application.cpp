@@ -14,14 +14,15 @@ enum class SupportedApplicationType : uint8_t {
 class KreatorApp : public ikan::Application {
 public:
   KreatorApp(const ikan::Application::Specification& application_spec,
-             std::vector<std::shared_ptr<ikan::Layer>> layers):
+             SupportedApplicationType application_type):
   ikan::Application(application_spec) {
     IK_INFO("Creating Kreator Application Instance ...");
     
-    for (const auto& layer: layers) {
-      if (layer)
-        PushLayer(layer);
-    }
+    switch (application_type) {
+      case SupportedApplicationType::Sandbox :
+        PushLayer(std::make_shared<sandbox::SandboxLayer>());
+        break;
+    };
   }
   ~KreatorApp() {
     IK_WARN("Destroying Kreator Application Instance !!!");
@@ -52,13 +53,11 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   application_spec.start_maximized = false;
   
   // Create the instance of applciaiton based on the type of suppored applucaiton
-  std::vector<std::shared_ptr<ikan::Layer>> layers;
   switch (application_type) {
     case SupportedApplicationType::Sandbox :
       application_spec.name = "Sandbox";
       application_spec.window_specification.title = "Sandbox";
-      layers.emplace_back(std::make_shared<sandbox::SandboxLayer>());
       break;
   };
-  return std::make_unique<KreatorApp>(application_spec, layers);
+  return std::make_unique<KreatorApp>(application_spec, application_type);
 }
