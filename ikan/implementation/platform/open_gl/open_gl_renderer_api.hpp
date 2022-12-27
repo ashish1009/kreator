@@ -91,6 +91,12 @@ namespace ikan {
     void DrawIndexed(const std::shared_ptr<Pipeline>& pipeline,
                      uint32_t count) const override;
 
+    /// This API draws Lines Vertex Array
+    /// - Parameters:
+    ///   - pipeline: pipeline having vertex buffer and index buffer
+    ///   - vertex_count: number of Indices (if 0 then use index buffer of Vertex array)
+    void DrawLines(const std::shared_ptr<Pipeline>& pipeline,
+                   uint32_t vertex_count) const override;
   };
   
 } 

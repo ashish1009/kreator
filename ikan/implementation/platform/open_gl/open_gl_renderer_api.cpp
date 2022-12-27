@@ -162,4 +162,16 @@ namespace ikan {
     pipeline->Unbind();
   }
 
+  void OpenGLRendererAPI::DrawLines(const std::shared_ptr<Pipeline>& pipeline,
+                                    uint32_t vertex_count) const {
+    pipeline->Bind();
+    glDrawArrays(GL_LINES,
+                 0, // Vertex Offset
+                 (GLsizei)vertex_count);
+    
+    // Unbinding Textures and va
+    glBindTexture(GL_TEXTURE_2D, 0);
+    RendererStatistics::Get().draw_calls++;
+    pipeline->Unbind();
+  }
 }

@@ -85,6 +85,13 @@ namespace ikan {
     ///   - count: number of Indices (if 0 then use index buffer of Vertex array)
     virtual void DrawIndexed(const std::shared_ptr<Pipeline>& pipeline,
                              uint32_t count = 0) const = 0;
+    /// This API draws Lines Vertex Array
+    /// - Parameters:
+    ///   - pipeline: pipeline having vertex buffer and index buffer
+    ///   - vertex_count: number of Indices (if 0 then use index buffer of Vertex array)
+    virtual void DrawLines(const std::shared_ptr<Pipeline>& pipeline,
+                   uint32_t vertex_count) const = 0;
+
     
     /// This function creates the instance of renderer API based on the supported API
     static std::unique_ptr<RendererAPI> Create();
