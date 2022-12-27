@@ -16,4 +16,4 @@ namespace ikan {
   EventDispatcher::EventDispatcher(Event& event)
   : event_(event) {}
   
-} // namesapce ikan
+} 

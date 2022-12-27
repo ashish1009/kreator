@@ -19,6 +19,8 @@
 		B2250D042958751E0067C43B /* core_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250D032958751E0067C43B /* core_logger.h */; };
 		B227F37329597F2B0055D871 /* open_gl_renderer_id_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B227F37129597F2B0055D871 /* open_gl_renderer_id_manager.cpp */; };
 		B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B227F37229597F2B0055D871 /* open_gl_renderer_id_manager.hpp */; };
+		B2581116295AD76B00B0EDA7 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2581114295AD76B00B0EDA7 /* camera.cpp */; };
+		B2581117295AD76B00B0EDA7 /* camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2581115295AD76B00B0EDA7 /* camera.hpp */; };
 		B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */; };
 		B2B6CDB72958D8AD00AE609E /* imgui_layer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */; };
 		B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB82958D8B800AE609E /* imgui_build.cpp */; };
@@ -126,6 +128,8 @@
 		B227F37129597F2B0055D871 /* open_gl_renderer_id_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_renderer_id_manager.cpp; sourceTree = "<group>"; };
 		B227F37229597F2B0055D871 /* open_gl_renderer_id_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_renderer_id_manager.hpp; sourceTree = "<group>"; };
 		B227F38B2959DBF40055D871 /* basic_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = basic_shader.glsl; sourceTree = "<group>"; };
+		B2581114295AD76B00B0EDA7 /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
+		B2581115295AD76B00B0EDA7 /* camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
 		B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imgui.xcodeproj; path = imgui/imgui.xcodeproj; sourceTree = "<group>"; };
 		B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_layer.cpp; sourceTree = "<group>"; };
 		B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imgui_layer.hpp; sourceTree = "<group>"; };
@@ -458,6 +462,7 @@
 				B2FC40612958BD6100447A1A /* renderer_api.hpp */,
 				B2F526622959777F00A83C65 /* shader_uniform.hpp */,
 				B2C0D7FE2959E02B003F168B /* renderer_stats.hpp */,
+				B2581115295AD76B00B0EDA7 /* camera.hpp */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				B2FC40602958BD6100447A1A /* renderer_api.cpp */,
 				B2F526612959777F00A83C65 /* shader_uniform.cpp */,
 				B2C0D7FD2959E02B003F168B /* renderer_stats.cpp */,
+				B2581114295AD76B00B0EDA7 /* camera.cpp */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -580,6 +586,7 @@
 				B2FC3E9A295886FE00447A1A /* mouse_codes.h in Headers */,
 				B2FC3E96295884A400447A1A /* asset_manager.hpp in Headers */,
 				B2F526532959774B00A83C65 /* open_gl_shader_compiler.hpp in Headers */,
+				B2581117295AD76B00B0EDA7 /* camera.hpp in Headers */,
 				B2FC3EB0295888DA00447A1A /* layer.hpp in Headers */,
 				B2FC3E8A2958826C00447A1A /* profiler.hpp in Headers */,
 				B2FC3E922958840D00447A1A /* buffers.hpp in Headers */,
@@ -699,6 +706,7 @@
 				B2FC40622958BD6100447A1A /* renderer_api.cpp in Sources */,
 				B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */,
 				B2C0D8092959E161003F168B /* property_grid.cpp in Sources */,
+				B2581116295AD76B00B0EDA7 /* camera.cpp in Sources */,
 				B2FC3E95295884A400447A1A /* asset_manager.cpp in Sources */,
 				B2B6CDD12958DF7700AE609E /* imgui_api.cpp in Sources */,
 				B2FC40162958B09000447A1A /* renderer.cpp in Sources */,

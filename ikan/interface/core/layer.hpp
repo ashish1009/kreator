@@ -56,4 +56,4 @@ namespace ikan {
     std::string name_ = "Unknown";
   };
   
-} // namesapce ikan
+} 
