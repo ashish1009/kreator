@@ -53,5 +53,9 @@
 #include <renderer/graphics/renderer_buffer.hpp>
 #include <renderer/graphics/pipeline.hpp>
 
+// Editor
+#include <editor/property_grid.hpp>
+#include <editor/editor_camera.hpp>
+
 // Imgui API
 #include <imgui/imgui_api.hpp>

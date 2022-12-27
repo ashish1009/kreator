@@ -42,34 +42,39 @@ Add the following library search paths
 ## TODOs
 
 ## Features
-- Fundamentals
-  - Logger Framework using SPD log module. API created for both core and client.
-  - Assert API created for Trigger Exception in both core and client.
-  - Basic Application Class created
-  - Layer Base class (Client layer should be derived fom this base class)
-  - Layer stack manager to store all the layers in stack
-  - Scope/Function profiler Feature addded
-
-- Window
-  - Window create feature using GLFW library
-
-- Event Handler
-  - Event Abstracetion class
-  - Input Handler
-
-## Road Map  
 - ikan Engine
+----------------
+  - Fundamentals
+    - Logger Framework using SPD log module. API created for both core and client.
+    - Assert API created for Trigger Exception in both core and client.
+    - Basic Application Class created
+    - Layer Base class (Client layer should be derived fom this base class)
+    - Layer stack manager to store all the layers in stack
+    - Scope/Function profiler Feature addded
+  
+  - Window
+    - Window create feature using GLFW library
+  
+  - Event Handler
+    - Event Abstracetion class
+    - Input Handler
+
   - Fundamental Renderer
     - Interface and Implementation for Renderer Context for attching Renderer to Window
     - Interface and Implementation for Shader Compiler.
     - Interface and Implementation for Shader Uniforms
     - Interface and Implementation for storing Renderer Buffers and Arrays.
-    - Interface and Implementation for Frame buffer
-    - Interface and Implementation for Loading Texture file (using stb image files)
-  
+
   - Editor
     - Added Editor 3D camera
 
+## Road Map  
+- ikan Engine
+----------------
+  - Fundamental Renderer
+    - Interface and Implementation for Frame buffer
+    - Interface and Implementation for Loading Texture file (using stb image files)
+  
   - Materials
     - Added Material class to handle Shader uniforms as collective buffers
     
@@ -80,6 +85,7 @@ Add the following library search paths
     - Batch Renderer API for rendering Quad and Circles (2D Batch)
 
 - ECS Project
+----------------
   - Editor
     - Scene Hierarchy pannel : To Grow With Time
       - Property Grid API For IM GUI
@@ -137,8 +143,10 @@ Add the following library search paths
     - Render Mesh
 
 - Ray Tracing
+----------------
   - Ray Tracing Scene and Renderer
   
 - 2D Games
+----------------
   - Mario
   - Chess

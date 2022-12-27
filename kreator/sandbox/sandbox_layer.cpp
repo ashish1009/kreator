@@ -50,7 +50,7 @@ namespace sandbox {
     Renderer::Clear({0.2, 0.3, 0.4, 1.0});
     
     basic_shader_->Bind();
-    basic_shader_->SetUniformMat4("u_ViewProjection", glm::mat4(1.0f));
+    basic_shader_->SetUniformMat4("u_ViewProjection", editor_camera.GetViewProjection());
     
     RendererStatistics::Get().vertex_count += 4;
     RendererStatistics::Get().index_count += index_buffer_->GetCount();

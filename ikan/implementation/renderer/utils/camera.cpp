@@ -29,7 +29,7 @@ namespace ikan {
   
   float Camera::GetNear() const { return near_plane_; }
   float Camera::GetFar() const { return far_plane_; }
-  const glm::mat4& Camera::GetProjectionMatrix() const { return projection_matrix_; }
+  const glm::mat4& Camera::GetProjection() const { return projection_matrix_; }
   
   float Camera::GetAspectRatio() const { return aspect_ratio_; }
   

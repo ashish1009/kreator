@@ -39,7 +39,7 @@ namespace ikan {
     /// This function returns the Aspect Ratio value
     float GetAspectRatio() const;
     /// This function returns the Projection Matrix of Camera
-    const glm::mat4& GetProjectionMatrix() const;
+    const glm::mat4& GetProjection() const;
         
     DEFINE_COPY_MOVE_CONSTRUCTORS(Camera);
     

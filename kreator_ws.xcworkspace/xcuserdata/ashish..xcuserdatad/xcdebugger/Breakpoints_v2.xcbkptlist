@@ -62,8 +62,8 @@
             filePath = "ikan/implementation/editor/editor_camera.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "EditorCamera::EditorCamera(aspect_ratio, fov, near_plane, far_plane)"
             landmarkType = "7">
          </BreakpointContent>
