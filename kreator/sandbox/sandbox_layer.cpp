@@ -25,14 +25,15 @@ namespace sandbox {
     pipeline_ = Pipeline::Create();
     
     float vertex_data[] = {
-      -0.5f, -0.5f, 0.0f,
-      0.5f, -0.5f, 0.0f,
-      0.5f, 0.5f, 0.0f,
-      -0.5f, 0.5f, 0.0f
+      -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+      0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+      0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
+      -0.5f, 0.5f, 0.0f, 0.0f, 1.0f
     };
     vertex_buffer_ = VertexBuffer::Create(vertex_data, sizeof(vertex_data));
     vertex_buffer_->AddLayout({
-      { "a_Position",     ShaderDataType::Float3 },
+      { "a_Position",  ShaderDataType::Float3 },
+      { "a_TexCoords", ShaderDataType::Float2 },
     });
     pipeline_->AddVertexBuffer(vertex_buffer_);
 
