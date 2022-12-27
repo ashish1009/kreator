@@ -23,6 +23,15 @@ namespace ikan {
     }
   }
   
+  std::shared_ptr<VertexBuffer> VertexBuffer::Create(uint32_t size) {
+    switch (Renderer::GetApi()) {
+      case Renderer::Api::OpenGl:
+        return std::make_shared<OpenGLVertexBuffer>(size);
+      case Renderer::Api::None:
+      default:
+        IK_CORE_ASSERT(false, "Invalid Renderer API (None)"); break;
+    }
+  }
   // --------------------------------------------------------------------------
   // Index Buffer
   // --------------------------------------------------------------------------

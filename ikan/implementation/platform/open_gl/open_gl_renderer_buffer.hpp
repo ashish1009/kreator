@@ -25,6 +25,10 @@ namespace ikan {
     ///   - data: Data pointer to be stored in GPU
     ///   - size: size of data
     OpenGLVertexBuffer(void* data, uint32_t size);
+    /// This constructor creates the Buffer to store the vertices of the data. This is a dynamic data
+    /// buffer, takes only size of buffer
+    /// - Parameter size: size of data
+    OpenGLVertexBuffer(uint32_t size);
     /// This destructor destroy the Renderer Index Buffer
     ~OpenGLVertexBuffer();
     

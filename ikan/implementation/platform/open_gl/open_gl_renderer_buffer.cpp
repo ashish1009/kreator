@@ -33,6 +33,25 @@ namespace ikan {
                   total_size, total_size / 1000, total_size / 1000000);
   }
   
+  OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size) : size_(size) {
+    IDManager::GetBufferId(renderer_id_);
+
+    glBindBuffer(GL_ARRAY_BUFFER, renderer_id_);
+    glBufferData(GL_ARRAY_BUFFER, size_, nullptr, GL_DYNAMIC_DRAW);
+    
+    RendererStatistics::Get().vertex_buffer_size += size_;
+    
+    IK_CORE_DEBUG("Creating Open GL Vertex Buffer withoud Data ...");
+    IK_CORE_DEBUG("  Renderer ID      | {0}", renderer_id_);
+    IK_CORE_DEBUG("  Size             | {0} Bytes ({1} KB, {2} MB)",
+                  size_, size_ / 1000, size_ / 1000000);
+    uint32_t total_size = RendererStatistics::Get().vertex_buffer_size;
+    IK_CORE_DEBUG("  Total Size Used  | {0} Bytes ({1} KB {2} MB)",
+                  total_size, total_size / 1000, total_size / 1000000);
+    
+  }
+
+  
   OpenGLVertexBuffer::~OpenGLVertexBuffer() {
     RendererStatistics::Get().vertex_buffer_size -= size_;
     
