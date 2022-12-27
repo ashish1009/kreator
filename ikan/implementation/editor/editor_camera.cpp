@@ -6,6 +6,7 @@
 //
 
 #include "editor_camera.hpp"
+#include "core/input.hpp"
 
 namespace ikan {
   
@@ -42,6 +43,34 @@ namespace ikan {
     IK_CORE_WARN("  FocalPoint   | {0} | {1} | {2}", focal_point_.x, focal_point_.y, focal_point_.z);
   }
   
+  void EditorCamera::Update([[maybe_unused]] Timestep ts) {
+    if (Input::IsKeyPressed(KeyCode::LeftAlt)) {
+      const glm::vec2& mouse{ Input::GetMouseX(), Input::GetMouseY() };
+      glm::vec2 delta = (mouse - initial_mouse_position_) * 0.003f;
+      initial_mouse_position_ = mouse;
+      
+      if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft))
+        MouseRotate(delta);
+    }
+    if (Input::IsKeyPressed(KeyCode::LeftControl)) {
+      const glm::vec2& mouse{ Input::GetMouseX(), Input::GetMouseY() };
+      glm::vec2 delta = (mouse - initial_mouse_position_) * 0.003f;
+      initial_mouse_position_ = mouse;
+      
+      if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft))
+        MousePan(delta);
+    }
+    if (Input::IsKeyPressed(KeyCode::LeftSuper)) {
+      const glm::vec2& mouse{ Input::GetMouseX(), Input::GetMouseY() };
+      glm::vec2 delta = (mouse - initial_mouse_position_) * 0.003f;
+      initial_mouse_position_ = mouse;
+      
+      if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft))
+        MouseZoom(delta.y);
+    }
+    UpdateCameraView();
+  }
+  
   void EditorCamera::UpdateCameraView() {
     position_ = CalculatePosition();
     glm::quat orientation = GetOrientation();
@@ -49,6 +78,51 @@ namespace ikan {
     rotation_   = glm::eulerAngles(orientation) * (180.0f / (float)M_PI);
     view_matrix_ = glm::translate(glm::mat4(1.0f), position_) * glm::toMat4(orientation);
     view_matrix_ = glm::inverse(view_matrix_);
+  }
+  
+  void EditorCamera::MouseZoom(float delta) {
+    distance_ -= delta * ZoomSpeed();
+    if (distance_ < 0.0f) {
+      // Not changing focal point wit Zoom
+      // focal_point_ += GetForwardDirection();
+      distance_ = 0.0f;
+    }
+  }
+  
+  void EditorCamera::MousePan(const glm::vec2& delta) {
+    auto speed = PanSpeed();
+    focal_point_ += -GetRightDirection() * delta.x * speed.x * distance_;
+    focal_point_ += GetUpDirection() * delta.y * speed.y * distance_;
+  }
+  
+  void EditorCamera::MouseRotate(const glm::vec2& delta) {
+    float yawSign = GetUpDirection().y < 0 ? -1.0f : 1.0f;
+    yaw_   += yawSign * delta.x * RotationSpeed();
+    pitch_ += delta.y * RotationSpeed();
+  }
+  
+  glm::vec2 EditorCamera::PanSpeed() const {
+    float x = std::min(viewport_width_ / 1000.0f, 2.4f); // max = 2.4f
+    float xFactor = 0.0366f * (x * x) - 0.1778f * x + 0.3021f;
+    
+    float y = std::min(viewport_height_ / 1000.0f, 2.4f); // max = 2.4f
+    float yFactor = 0.0366f * (y * y) - 0.1778f * y + 0.3021f;
+    
+    return { xFactor, yFactor };
+  }
+  
+  float EditorCamera::RotationSpeed() const {
+    return 0.8f;
+  }
+  
+  float EditorCamera::ZoomSpeed() const {
+    float distance = distance_ * 0.2f;
+    distance = std::max(distance, 0.0f);
+    
+    float speed = distance * distance;
+    speed = std::min(speed, 100.0f);
+    
+    return speed;
   }
   
   glm::vec3 EditorCamera::CalculatePosition() const {

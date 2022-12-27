@@ -46,6 +46,8 @@ namespace sandbox {
   }
   
   void SandboxLayer::Update(Timestep ts) {
+    editor_camera.Update(ts);
+    
     Renderer::ResetStatsEachFrame();
     Renderer::Clear({0.2, 0.3, 0.4, 1.0});
     
