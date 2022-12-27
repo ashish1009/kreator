@@ -712,5 +712,20 @@ namespace ikan {
     RendererStatistics::Get().index_count += BatchRendererData::IndicesForSingleElement;
     RendererStatistics::Get().vertex_count += BatchRendererData::VertexForSingleElement;
   }
+  
+  void BatchRenderer::DrawLine(const glm::vec3& p0,
+                               const glm::vec3& p1,
+                               const glm::vec4& color) {
+    line_data_->vertex_buffer_ptr->position = p0;
+    line_data_->vertex_buffer_ptr->color = color;
+    line_data_->vertex_buffer_ptr++;
+    
+    line_data_->vertex_buffer_ptr->position = p1;
+    line_data_->vertex_buffer_ptr->color = color;
+    line_data_->vertex_buffer_ptr++;
+    
+    line_data_->vertex_count += LineData::kVertexForSingleLine;
+    RendererStatistics::Get().vertex_count += LineData::kVertexForSingleLine;
+  }
 
 }

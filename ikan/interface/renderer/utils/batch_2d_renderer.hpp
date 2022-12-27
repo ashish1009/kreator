@@ -85,6 +85,16 @@ namespace ikan {
                            float thickness = 1.0f,
                            float fade = (float)0.005,
                            int32_t object_id = -1 );
+    
+    /// This function draws a line using two points in 3d Space
+    /// - Parameters:
+    ///   - p0: fisrt point
+    ///   - p1: second point
+    ///   - color: Color of line
+    static void DrawLine(const glm::vec3& p0,
+                         const glm::vec3& p1,
+                         const glm::vec4& color);
+    
   private:
     // Member Methods
     /// This funcition initialize the quad renderer data

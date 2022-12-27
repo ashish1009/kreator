@@ -34,8 +34,17 @@ namespace sandbox {
     Renderer::Clear({0.2, 0.3, 0.4, 1.0});
     
     BatchRenderer::BeginBatch(editor_camera.GetViewProjection(), editor_camera.GetView());
-    BatchRenderer::DrawCircle(glm::mat4(1.0f), checkboard_, {0.2, 0.4, 0.6, 1.0});
-    BatchRenderer::DrawQuad(glm::mat4(12.0f), checkboard_, {0.2, 0.4, 0.6, 1.0});
+    BatchRenderer::DrawCircle(Math::GetTransformMatrix({0, 0, 0},
+                                                       {0, 0, 0},
+                                                       {1, 1, 0}),
+                              checkboard_,
+                              {0.2, 0.4, 0.6, 1.0});
+    BatchRenderer::DrawQuad(Math::GetTransformMatrix({-3, 0, 0},
+                                                     {0, 0, 0},
+                                                     {1, 1, 0}),
+                            checkboard_,
+                            {0.2, 0.4, 0.6, 1.0});
+    BatchRenderer::DrawLine({-1000, 0, 0}, {1000, 0, 0}, {0.8, 0.5, 0.3, 1.0});
     BatchRenderer::EndBatch();
   }
   
