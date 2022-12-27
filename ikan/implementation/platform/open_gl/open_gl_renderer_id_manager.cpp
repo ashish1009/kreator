@@ -20,6 +20,7 @@ namespace ikan {
     glGenVertexArrays(1, &renderer_id);
   }
   void OpenGlRendererIdManager::GetTextureId(RendererID &renderer_id) {
+    glGenTextures(1, &renderer_id);
   }
   void OpenGlRendererIdManager::GetFramebufferId(RendererID &renderer_id) {
   }
@@ -34,6 +35,7 @@ namespace ikan {
     glDeleteVertexArrays(1, &renderer_id);
   }
   void OpenGlRendererIdManager::RemoveTextureId(RendererID &renderer_id) {
+    glDeleteTextures(1, &renderer_id);
   }
   void OpenGlRendererIdManager::RemoveFramebufferId(RendererID &renderer_id) {
   }
