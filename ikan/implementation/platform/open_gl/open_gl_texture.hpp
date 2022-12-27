@@ -74,4 +74,58 @@ namespace ikan {
     std::string file_path_ = "", name_ = "";
   };
   
+  // -------------------------------------------------------------------------
+  // Char Texture Class for Open GL
+  // -------------------------------------------------------------------------
+  /// Implementaiton for Open GL Char Texture
+  class OpenGLCharTexture : public CharTexture {
+  public:
+    // ------------------------------
+    // Constructors and Destructors
+    // ------------------------------
+    /// This constructor creates the Open GL Texture for rendering char
+    /// - Parameters:
+    ///   - face: face of char
+    ///   - size: size of char
+    ///   - bearing: bearing
+    ///   - advance: advance
+    ///   - char_val: character value
+    OpenGLCharTexture(const FT_Face& face,
+                      const glm::ivec2& size,
+                      const glm::ivec2& bearing,
+                      uint32_t advance,
+                      [[maybe_unused]] char char_val);
+    /// This is the default Open GL Char Texture destructor
+    virtual ~OpenGLCharTexture();
+    
+    DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLCharTexture);
+    
+    // -------------
+    // Fundamentals
+    // -------------
+    /// This function returns the Renderer ID
+    RendererID GetRendererID() const override;
+    /// This function binds the texture
+    void Bind() const override;
+    /// This function unbinds the texture
+    void Unbind() const  override;
+    
+    // ----------
+    // Getters
+    // ----------
+    /// This function returns the size
+    glm::ivec2 GetSize() const override;
+    /// This function returns the bearing
+    glm::ivec2 GetBearing() const override;
+    /// This function returns the advance
+    uint32_t GetAdvance() const override;
+    
+  private:
+    RendererID renderer_id_;
+    glm::ivec2 size_;
+    glm::ivec2 bearing_;
+    uint32_t advance_;
+    uint32_t data_size_ = 0;
+  };
+  
 }

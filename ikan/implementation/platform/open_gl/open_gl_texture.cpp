@@ -204,4 +204,65 @@ namespace ikan {
   const std::string& OpenGLTexture::GetfilePath() const { return file_path_; }
   const std::string& OpenGLTexture::GetName() const { return name_; }
 
+  // --------------------------------------------------------------------------
+  // Char Texture
+  // --------------------------------------------------------------------------
+  OpenGLCharTexture::OpenGLCharTexture(const FT_Face& face,
+                                       const glm::ivec2& size,
+                                       const glm::ivec2& bearing,
+                                       uint32_t advance,
+                                       [[maybe_unused]] char char_val)
+  : size_(size), bearing_(bearing), advance_(advance) {
+    // Generate the renderer IF if not exist in map already
+    IDManager::GetTextureId(renderer_id_);
+    
+    glBindTexture(GL_TEXTURE_2D, renderer_id_);
+    
+    // Create texture in the renderer Buffer
+    glTexImage2D(
+                 GL_TEXTURE_2D,
+                 0, // Level
+                 GL_RED,
+                 (GLsizei)face->glyph->bitmap.width,
+                 (GLsizei)face->glyph->bitmap.rows,
+                 0, // Border
+                 GL_RED,
+                 GL_UNSIGNED_BYTE,
+                 face->glyph->bitmap.buffer
+                 );
+    
+    // set texture options
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    IK_CORE_TRACE("Creating Open GL Char Texture to store Char {0} ( Renderer ID {1} )",
+                  char_val,
+                  renderer_id_);
+
+    // Increment the size in stats
+    data_size_ = face->glyph->bitmap.width * face->glyph->bitmap.rows;
+    RendererStatistics::Get().texture_buffer_size += data_size_;
+  }
+  
+  /// Open GL Texture Destructor
+  OpenGLCharTexture::~OpenGLCharTexture() {
+    IDManager::RemoveTextureId(renderer_id_);
+    RendererStatistics::Get().texture_buffer_size -= data_size_;
+  }
+  
+  void OpenGLCharTexture::Bind() const {
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, renderer_id_);
+  }
+  void OpenGLCharTexture::Unbind() const {
+    glBindTexture(GL_TEXTURE_2D, 0);
+  }
+  
+  RendererID OpenGLCharTexture::GetRendererID() const { return renderer_id_;}
+  glm::ivec2 OpenGLCharTexture::GetSize() const { return size_; }
+  glm::ivec2 OpenGLCharTexture::GetBearing() const { return bearing_; }
+  uint32_t OpenGLCharTexture::GetAdvance() const { return advance_; }
+  
 }

@@ -39,6 +39,24 @@ namespace ikan {
   }
   
   // --------------------------------------------------------------------------
+  // Character texture
+  // --------------------------------------------------------------------------
+  std::shared_ptr<CharTexture> CharTexture::Create(const FT_Face& face,
+                                                   const glm::ivec2& size,
+                                                   const glm::ivec2& bearing,
+                                                   uint32_t advance,
+                                                   [[maybe_unused]] char char_val) {
+    switch (Renderer::GetApi()) {
+      case Renderer::Api::OpenGl:
+        return std::make_shared<OpenGLCharTexture>(face, size, bearing, advance, char_val);
+      case Renderer::Api::None:
+      default:
+        IK_CORE_ASSERT(false, "Invalid Renderer API (None)"); break;
+    }
+  }
+
+  
+  // --------------------------------------------------------------------------
   // Texture Library
   // --------------------------------------------------------------------------
   std::unordered_map<std::string, std::shared_ptr<Texture>> TextureLibrary::shader_library_;

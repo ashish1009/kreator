@@ -9,6 +9,9 @@
 
 #include "renderer/utils/renderer.hpp"
 
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 namespace ikan {
   
   /// Interface class for Storing Renderer Texture data. Implementation is depending on the Supported Renerer API.
@@ -65,6 +68,52 @@ namespace ikan {
                                            uint32_t height,
                                            void* data,
                                            uint32_t size);
+  };
+  
+  /// This class is the Interface for Storing Renderer Char Texture data. Implementation is depending on the Supported Renerer API.
+  class CharTexture {
+  public:
+    // -------------
+    // Destrcutor
+    // -------------
+    /// This is the defualt destructor of char texture
+    virtual ~CharTexture() = default;
+    
+    // -------------
+    // Fundamentals
+    // -------------
+    /// This function binds the Current Texture to a slot of shader
+    virtual void Bind() const = 0;
+    /// This function unbinds the Current Texture from shader slot
+    virtual void Unbind() const = 0;
+    
+    // -------------
+    // Getters
+    // -------------
+    /// This function returns the Renderer ID of Texture
+    virtual RendererID GetRendererID() const = 0;
+    /// This function returns the Size of Freetpe face
+    virtual glm::ivec2 GetSize() const = 0;
+    /// This function returns the Bearing of Freetpe face
+    virtual glm::ivec2 GetBearing() const = 0;
+    /// This function returns the Advance of Freetpe face
+    virtual uint32_t GetAdvance() const = 0;
+    
+    // -----------------
+    // Static Function
+    // -----------------
+    /// This function creates Emptry Texture with user Defined Data of size height and Width
+    /// - Parameters:
+    ///   - face: face of char
+    ///   - size: size of char
+    ///   - bearing: bearing
+    ///   - advance: advance
+    ///   - char_val: character value
+    static std::shared_ptr<CharTexture> Create(const FT_Face& face,
+                                               const glm::ivec2& size,
+                                               const glm::ivec2& bearing,
+                                               uint32_t advance,
+                                               [[maybe_unused]] char char_val);
   };
   
   /// This class stores the compiled shader in library

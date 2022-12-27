@@ -300,6 +300,7 @@
 					"${PROJECT_DIR}/../ikan/vendors/glm",
 					"${PROJECT_DIR}/../ikan/vendors/open_gl/glad/include",
 					"${PROJECT_DIR}/../ikan/vendors/glfw/glfw/include",
+					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -324,6 +325,7 @@
 					"${PROJECT_DIR}/../ikan/vendors/glm",
 					"${PROJECT_DIR}/../ikan/vendors/open_gl/glad/include",
 					"${PROJECT_DIR}/../ikan/vendors/glfw/glfw/include",
+					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
