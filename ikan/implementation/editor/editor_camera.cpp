@@ -44,52 +44,86 @@ namespace ikan {
   }
   
   bool EditorCamera::Update([[maybe_unused]] Timestep ts) {
-    glm::vec2 mouse_position = Input::GetMousePosition();
-    glm::vec2 delta = (mouse_position - initial_mouse_position_) * 0.002f;
-    initial_mouse_position_ = mouse_position;
-
-    if (!Input::IsMouseButtonPressed(MouseButton::ButtonLeft)) {
-      Input::SetCursorMode(CursorMode::Normal);
-      return false;
-    }
-    Input::SetCursorMode(CursorMode::Locked);
-    
     bool moved = false;
-    // Movement
-    if (Input::IsKeyPressed(KeyCode::W)) {
-      focal_point_ -= GetUpDirection() * MoveSpeed() * (float)ts;
-      moved = true;
+    if (new_update_) {
+      glm::vec2 mouse_position = Input::GetMousePosition();
+      glm::vec2 delta = (mouse_position - initial_mouse_position_) * 0.002f;
+      initial_mouse_position_ = mouse_position;
+      
+      if (!Input::IsMouseButtonPressed(MouseButton::ButtonRight)) {
+        Input::SetCursorMode(CursorMode::Normal);
+        return false;
+      }
+      Input::SetCursorMode(CursorMode::Locked);
+      
+      // Movement
+      if (Input::IsKeyPressed(KeyCode::W)) {
+        focal_point_ -= GetUpDirection() * MoveSpeed() * (float)ts;
+        moved = true;
+      }
+      else if (Input::IsKeyPressed(KeyCode::S)){
+        focal_point_ += GetUpDirection() * MoveSpeed() * (float)ts;
+        moved = true;
+      }
+      else if (Input::IsKeyPressed(KeyCode::D)) {
+        focal_point_ -= GetRightDirection() * MoveSpeed() * (float)ts;
+        moved = true;
+      }
+      if (Input::IsKeyPressed(KeyCode::A)) {
+        focal_point_ += GetRightDirection() * MoveSpeed() * (float)ts;
+        moved = true;
+      }
+      if (Input::IsKeyPressed(KeyCode::Q)) {
+        focal_point_ -= GetForwardDirection() * MoveSpeed() * (float)ts;
+        moved = true;
+      }
+      else if (Input::IsKeyPressed(KeyCode::E)) {
+        focal_point_ += GetForwardDirection() * MoveSpeed() * (float)ts;
+        moved = true;
+      }
+      
+      // Rotation
+      if (delta.x != 0.0f || delta.y != 0.0f) {
+        MouseRotate(delta);
+        moved = true;
+      }
     }
-    else if (Input::IsKeyPressed(KeyCode::S)){
-      focal_point_ += GetUpDirection() * MoveSpeed() * (float)ts;
-      moved = true;
-    }
-    else if (Input::IsKeyPressed(KeyCode::D)) {
-      focal_point_ -= GetRightDirection() * MoveSpeed() * (float)ts;
-      moved = true;
-    }
-    if (Input::IsKeyPressed(KeyCode::A)) {
-      focal_point_ += GetRightDirection() * MoveSpeed() * (float)ts;
-      moved = true;
-    }
-    if (Input::IsKeyPressed(KeyCode::Q)) {
-      focal_point_ -= GetForwardDirection() * MoveSpeed() * (float)ts;
-      moved = true;
-    }
-    else if (Input::IsKeyPressed(KeyCode::E)) {
-      focal_point_ += GetForwardDirection() * MoveSpeed() * (float)ts;
-      moved = true;
+    else {
+      if (Input::IsKeyPressed(KeyCode::LeftAlt)) {
+        const glm::vec2& mouse{ Input::GetMouseX(), Input::GetMouseY() };
+        glm::vec2 delta = (mouse - initial_mouse_position_) * 0.003f;
+        initial_mouse_position_ = mouse;
+        
+        if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft)) {
+          moved = true;
+          MouseRotate(delta);
+        }
+      }
+      if (Input::IsKeyPressed(KeyCode::LeftControl)) {
+        const glm::vec2& mouse{ Input::GetMouseX(), Input::GetMouseY() };
+        glm::vec2 delta = (mouse - initial_mouse_position_) * 0.003f;
+        initial_mouse_position_ = mouse;
+        
+        if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft)) {
+          moved = true;
+          MousePan(delta);
+        }
+      }
+      if (Input::IsKeyPressed(KeyCode::LeftSuper)) {
+        const glm::vec2& mouse{ Input::GetMouseX(), Input::GetMouseY() };
+        glm::vec2 delta = (mouse - initial_mouse_position_) * 0.003f;
+        initial_mouse_position_ = mouse;
+        
+        if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft)) {
+          moved = true;
+          MouseZoom(delta.y);
+        }
+      }
     }
     
-    // Rotation
-    if (delta.x != 0.0f || delta.y != 0.0f) {
-      MouseRotate(delta);
-      moved = true;
-    }
-
     if (moved)
       UpdateCameraView();
-    
+
     return moved;
   }
   

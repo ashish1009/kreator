@@ -114,6 +114,8 @@ namespace ikan {
     float fov_ = glm::radians(75.0f);
     float distance_ = 0.0f;
     float pitch_ = 0.4f, yaw_ = 0.5f;
+    
+    bool new_update_ = false;
   };
   
 }
