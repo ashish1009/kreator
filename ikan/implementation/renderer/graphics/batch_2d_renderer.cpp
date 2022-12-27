@@ -250,10 +250,22 @@ namespace ikan {
       IK_CORE_WARN("  ---------------------------------------------------------");
       delete circle_data_;
     }
+    if (line_data_) {
+      IK_CORE_WARN("Destroying the Batch Renderer Line Data");
+      IK_CORE_WARN("  ---------------------------------------------------------");
+      IK_CORE_WARN("  Max Lines per Batch             | {0}", line_data_->max_element);
+      IK_CORE_WARN("  Vertex Buffer used              | {0} B ({1} KB) ",
+                   line_data_->max_vertices * sizeof(LineData::Vertex),
+                   line_data_->max_vertices * sizeof(LineData::Vertex) / 1000.0f );
+      IK_CORE_WARN("  Shader used                   x  | {0}", line_data_->shader->GetName());
+      IK_CORE_WARN("  ---------------------------------------------------------");
+      delete line_data_;
+    }
+
   }
   
   void BatchRenderer::InitQuadData(uint32_t max_quads) {
-    // Alloc memory for Quad Data
+    // Allocate memory for Quad Data
     quad_data_ = new QuadData();
     
     quad_data_->max_element = max_quads;
@@ -325,7 +337,7 @@ namespace ikan {
   }
   
   void BatchRenderer::InitCircleData(uint32_t max_circles) {
-    // Alloc memory for Circle Data
+    // Allocate memory for Circle Data
     circle_data_ = new CircleData();
     
     circle_data_->max_element = max_circles;
@@ -400,6 +412,37 @@ namespace ikan {
   }
   
   void BatchRenderer::InitLineData(uint32_t max_lines) {
+    // Allocate memory for Line Data
+    line_data_ = new LineData();
+    
+    line_data_->max_element = max_lines;
+    line_data_->max_vertices = max_lines * line_data_->kVertexForSingleLine;
+    
+    // Allocating the memory for vertex Buffer Pointer
+    line_data_->vertex_buffer_base_ptr = new LineData::Vertex[line_data_->max_vertices];
+    
+    // Create Pipeline instance
+    line_data_->pipeline = Pipeline::Create();
+    
+    // Create vertes Buffer
+    line_data_->vertex_buffer = VertexBuffer::Create(line_data_->max_vertices * sizeof(LineData::Vertex));
+    line_data_->vertex_buffer->AddLayout({
+      { "a_Position",     ShaderDataType::Float3 },
+      { "a_Color",        ShaderDataType::Float4 },
+    });
+    line_data_->pipeline->AddVertexBuffer(line_data_->vertex_buffer);
+    
+    // Setup the Lines Shader
+    line_data_->shader = Renderer::GetShader(AM::CoreAsset("shaders/batch_line_shader.glsl"));
+    
+    IK_CORE_INFO("Initialized Batch Renderer for Line Data");
+    IK_CORE_INFO("  ---------------------------------------------------------");
+    IK_CORE_INFO("  Max Lines per Batch             | {0}", max_lines);
+    IK_CORE_INFO("  Vertex Buffer used              | {0} B ({1} KB) ",
+                 line_data_->max_vertices * sizeof(LineData::Vertex),
+                 line_data_->max_vertices * sizeof(LineData::Vertex) / 1000.0f );
+    IK_CORE_INFO("  Shader used                     | {0}", line_data_->shader->GetName());
+    IK_CORE_INFO("  ---------------------------------------------------------");
   }
   
 }
