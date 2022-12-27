@@ -44,6 +44,11 @@ namespace ikan {
     /// This funcition initialize the lines renderer data
     /// - Parameter max_lines: max circle to be renderered in single batch
     static void InitLineData(uint32_t max_lines = 100);
+    
+    /// This function flsh a single batch
+    static void Flush();
+    /// This function moves to next batch in single frame
+    static void NextBatch();
   };
   
 }

@@ -482,4 +482,54 @@ namespace ikan {
     line_data_->shader->Unbind();
   }
   
+  void BatchRenderer::EndBatch() {
+    Flush();
+  }
+
+  void BatchRenderer::Flush() {
+    if (quad_data_->index_count) {
+      uint32_t data_size = (uint32_t)((uint8_t*)quad_data_->vertex_buffer_ptr -
+                                      (uint8_t*)quad_data_->vertex_buffer_base_ptr);
+      quad_data_->vertex_buffer->SetData(quad_data_->vertex_buffer_base_ptr, data_size);
+      
+      // Bind the shader
+      quad_data_->shader->Bind();
+      
+      // Bind textures
+      for (uint32_t i = 0; i < quad_data_->texture_slot_index; i++)
+        quad_data_->texture_slots[i]->Bind(i);
+      
+      // Render the Scene
+      Renderer::DrawIndexed(quad_data_->pipeline, quad_data_->index_count);
+    }
+    
+    if (circle_data_->index_count) {
+      uint32_t dataSize = (uint32_t)((uint8_t*)circle_data_->vertex_buffer_ptr -
+                                     (uint8_t*)circle_data_->vertex_buffer_base_ptr);
+      circle_data_->vertex_buffer->SetData(circle_data_->vertex_buffer_base_ptr, dataSize);
+      
+      // Bind the shader
+      circle_data_->shader->Bind();
+      
+      // Bind textures
+      for (size_t i = 0; i < circle_data_->texture_slot_index; i++)
+        circle_data_->texture_slots[i]->Bind((uint32_t)i);
+      
+      // Render the Scene
+      Renderer::DrawIndexed(circle_data_->pipeline, circle_data_->index_count);
+    }
+    
+    if (line_data_->vertex_count) {
+      uint32_t dataSize = (uint32_t)((uint8_t*)line_data_->vertex_buffer_ptr -
+                                     (uint8_t*)line_data_->vertex_buffer_base_ptr);
+      line_data_->vertex_buffer->SetData(line_data_->vertex_buffer_base_ptr, dataSize);
+      
+      // Bind the shader
+      line_data_->shader->Bind();
+      
+      // Render the Scene
+      Renderer::DrawLines(line_data_->pipeline, line_data_->vertex_count);
+    }
+  }
+
 }
