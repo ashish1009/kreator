@@ -20,27 +20,6 @@ namespace sandbox {
   
   void SandboxLayer::Attach() {
     IK_INFO("Attaching Sandbox Layer instance");
-    basic_shader_ = Renderer::GetShader(AM::CoreAsset("shaders/single_texture_shader.glsl"));
-    
-    pipeline_ = Pipeline::Create();
-    
-    float vertex_data[] = {
-      -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-      0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-      0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
-      -0.5f, 0.5f, 0.0f, 0.0f, 1.0f
-    };
-    vertex_buffer_ = VertexBuffer::Create(vertex_data, sizeof(vertex_data));
-    vertex_buffer_->AddLayout({
-      { "a_Position",  ShaderDataType::Float3 },
-      { "a_TexCoords", ShaderDataType::Float2 },
-    });
-    pipeline_->AddVertexBuffer(vertex_buffer_);
-
-    uint32_t indices_data[] = {0, 1, 2, 2, 3, 0};
-    index_buffer_ = IndexBuffer::CreateWithCount(indices_data, 6);
-    pipeline_->SetIndexBuffer(index_buffer_);
-    
     checkboard_ = Renderer::GetTexture(AM::ClientAsset("textures/checkerboard.png"));
   }
   
@@ -55,15 +34,8 @@ namespace sandbox {
     Renderer::Clear({0.2, 0.3, 0.4, 1.0});
     
     BatchRenderer::BeginBatch(editor_camera.GetViewProjection(), editor_camera.GetView());
-    
-    basic_shader_->Bind();
-    basic_shader_->SetUniformMat4("u_ViewProjection", editor_camera.GetViewProjection());
-
-    checkboard_->Bind();
-    
-    RendererStatistics::Get().vertex_count += 4;
-    RendererStatistics::Get().index_count += index_buffer_->GetCount();
-    Renderer::DrawIndexed(pipeline_);
+    BatchRenderer::DrawQuad(glm::mat4(1.0f), checkboard_, {0.2, 0.4, 0.6, 1.0});
+    BatchRenderer::EndBatch();
   }
   
   void SandboxLayer::EventHandler(Event& event) {

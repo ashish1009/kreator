@@ -32,6 +32,30 @@ namespace ikan {
                            const glm::mat4& camera_view_matrix);
     /// This function Ends the current batch by rendering all the vertex
     static void EndBatch();
+    
+    // ---------------------
+    // Draw API
+    // ---------------------
+    /// This function draws Quad with color
+    /// - Parameters:
+    ///   - transform: Transformation matrix of Quad
+    ///   - color: Color of Quad
+    ///   - entID: Pixel ID of Quad
+    static void DrawQuad(const glm::mat4& transform,
+                         const glm::vec4& color,
+                         int32_t object_id = -1 );
+    /// This function draws Quad with texture
+    /// - Parameters:
+    ///   - transform: Transformation matrix of Quad
+    ///   - texture: Texture to be uploaded in Batch
+    ///   - tilingFactor: tiling factor of Texture (Scale by which texture to be Multiplied)
+    ///   - tintColor: Color of Quad
+    ///   - entID: Pixel ID of Quad
+    static void DrawQuad(const glm::mat4& transform,
+                         const std::shared_ptr<Texture>& texture,
+                         const glm::vec4& tint_color = glm::vec4(1.0f),
+                         float tiling_factor = 1.0f,
+                         int32_t object_id = -1 );
 
   private:
     // Member Methods
@@ -49,6 +73,25 @@ namespace ikan {
     static void Flush();
     /// This function moves to next batch in single frame
     static void NextBatch();
+    
+    // ---------------------------------------------------
+    // Internal Helper API for Rendering Quad and Circle
+    // ---------------------------------------------------
+    /// This function is the helper function to rendere the quad
+    /// - Parameters:
+    ///   - transform: transform matrix of quad
+    ///   - texture: texture to be binded in quad
+    ///   - texture_coords: texture coordinates
+    ///   - tiling_factor: tiling factor of texture
+    ///   - tint_color: color of quad
+    ///   - object_id: object/pixel id
+    static void DrawTextureQuad(const glm::mat4& transform,
+                                const std::shared_ptr<Texture>& texture,
+                                const glm::vec2* texture_coords,
+                                float tiling_factor,
+                                const glm::vec4& tint_color,
+                                int32_t object_id);
+
   };
   
 }

@@ -531,5 +531,95 @@ namespace ikan {
       Renderer::DrawLines(line_data_->pipeline, line_data_->vertex_count);
     }
   }
+  
+  void BatchRenderer::NextBatch() {
+    EndBatch();
+    quad_data_->StartBatch();
+    circle_data_->StartBatch();
+    line_data_->StartBatch();
+  }
+  
+  void BatchRenderer::DrawQuad(const glm::mat4& transform,
+                               const glm::vec4& color,
+                               int32_t object_id) {
+    DrawTextureQuad(transform,
+                    nullptr,
+                    texture_coords_,
+                    1.0f, //  tiling factor
+                    color,
+                    object_id);
+  }
+  
+  void BatchRenderer::DrawQuad(const glm::mat4& transform,
+                               const std::shared_ptr<Texture>& texture,
+                               const glm::vec4& tint_color,
+                               float tiling_factor,
+                               int32_t object_id) {
+    DrawTextureQuad(transform,
+                    texture,
+                    texture_coords_,
+                    tiling_factor,
+                    tint_color,
+                    object_id
+                    );
+  }
+
+  void BatchRenderer::DrawTextureQuad(const glm::mat4& transform,
+                                      const std::shared_ptr<Texture>& texture,
+                                      const glm::vec2* texture_coords,
+                                      float tiling_factor,
+                                      const glm::vec4& tint_color,
+                                      int32_t object_id) {
+    // If number of indices increase in batch then start new batch
+    if (quad_data_->index_count >= quad_data_->max_indices) {
+      IK_CORE_WARN("Starts the new batch as number of indices ({0}) increases "
+                   "in the previous batch", quad_data_->index_count);
+      NextBatch();
+    }
+    
+    float texture_index = 0.0f;
+    if (texture) {
+      // Find if texture is already loaded in current batch
+      for (size_t i = 1; i < quad_data_->texture_slot_index; i++) {
+        if (quad_data_->texture_slots[i].get() == texture.get()) {
+          // Found the current textue in the batch
+          texture_index = (float)i;
+          break;
+        }
+      }
+      
+      // If current texture slot is not pre loaded then load the texture in
+      // proper slot
+      if (texture_index == 0.0f) {
+        // If number of slots increases max then start new batch
+        if (quad_data_->texture_slot_index >= kMaxTextureSlotsInShader) {
+          IK_CORE_WARN("Starts the new batch as number of texture slot ({0}) "
+                       "increases in the previous batch",
+                       quad_data_->texture_slot_index);
+          NextBatch();
+        }
+        
+        // Loading the current texture in the first free slot slot
+        texture_index = (float)quad_data_->texture_slot_index;
+        quad_data_->texture_slots[quad_data_->texture_slot_index] = texture;
+        quad_data_->texture_slot_index++;
+      }
+    }
+    
+    for (size_t i = 0; i < BatchRendererData::VertexForSingleElement; i++) {
+      quad_data_->vertex_buffer_ptr->position         = transform * quad_data_->vertex_base_position[i];
+      quad_data_->vertex_buffer_ptr->color            = tint_color;
+      quad_data_->vertex_buffer_ptr->texture_coords   = texture_coords[i];
+      quad_data_->vertex_buffer_ptr->texture_index    = texture_index;
+      quad_data_->vertex_buffer_ptr->tiling_factor    = tiling_factor;
+      quad_data_->vertex_buffer_ptr->object_id        = object_id;
+      quad_data_->vertex_buffer_ptr++;
+    }
+    
+    quad_data_->index_count += BatchRendererData::IndicesForSingleElement;
+    
+    RendererStatistics::Get().index_count += BatchRendererData::IndicesForSingleElement;
+    RendererStatistics::Get().vertex_count += BatchRendererData::VertexForSingleElement;
+  }
 
 }
