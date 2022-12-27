@@ -43,32 +43,54 @@ namespace ikan {
     IK_CORE_WARN("  FocalPoint   | {0} | {1} | {2}", focal_point_.x, focal_point_.y, focal_point_.z);
   }
   
-  void EditorCamera::Update([[maybe_unused]] Timestep ts) {
-    if (Input::IsKeyPressed(KeyCode::LeftAlt)) {
-      const glm::vec2& mouse{ Input::GetMouseX(), Input::GetMouseY() };
-      glm::vec2 delta = (mouse - initial_mouse_position_) * 0.003f;
-      initial_mouse_position_ = mouse;
-      
-      if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft))
-        MouseRotate(delta);
+  bool EditorCamera::Update([[maybe_unused]] Timestep ts) {
+    glm::vec2 mouse_position = Input::GetMousePosition();
+    glm::vec2 delta = (mouse_position - initial_mouse_position_) * 0.002f;
+    initial_mouse_position_ = mouse_position;
+
+    if (!Input::IsMouseButtonPressed(MouseButton::ButtonLeft)) {
+      Input::SetCursorMode(CursorMode::Normal);
+      return false;
     }
-    if (Input::IsKeyPressed(KeyCode::LeftControl)) {
-      const glm::vec2& mouse{ Input::GetMouseX(), Input::GetMouseY() };
-      glm::vec2 delta = (mouse - initial_mouse_position_) * 0.003f;
-      initial_mouse_position_ = mouse;
-      
-      if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft))
-        MousePan(delta);
+    Input::SetCursorMode(CursorMode::Locked);
+    
+    bool moved = false;
+    // Movement
+    if (Input::IsKeyPressed(KeyCode::W)) {
+      focal_point_ -= GetUpDirection() * MoveSpeed() * (float)ts;
+      moved = true;
     }
-    if (Input::IsKeyPressed(KeyCode::LeftSuper)) {
-      const glm::vec2& mouse{ Input::GetMouseX(), Input::GetMouseY() };
-      glm::vec2 delta = (mouse - initial_mouse_position_) * 0.003f;
-      initial_mouse_position_ = mouse;
-      
-      if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft))
-        MouseZoom(delta.y);
+    else if (Input::IsKeyPressed(KeyCode::S)){
+      focal_point_ += GetUpDirection() * MoveSpeed() * (float)ts;
+      moved = true;
     }
-    UpdateCameraView();
+    else if (Input::IsKeyPressed(KeyCode::D)) {
+      focal_point_ -= GetRightDirection() * MoveSpeed() * (float)ts;
+      moved = true;
+    }
+    if (Input::IsKeyPressed(KeyCode::A)) {
+      focal_point_ += GetRightDirection() * MoveSpeed() * (float)ts;
+      moved = true;
+    }
+    if (Input::IsKeyPressed(KeyCode::Q)) {
+      focal_point_ -= GetForwardDirection() * MoveSpeed() * (float)ts;
+      moved = true;
+    }
+    else if (Input::IsKeyPressed(KeyCode::E)) {
+      focal_point_ += GetForwardDirection() * MoveSpeed() * (float)ts;
+      moved = true;
+    }
+    
+    // Rotation
+    if (delta.x != 0.0f || delta.y != 0.0f) {
+      MouseRotate(delta);
+      moved = true;
+    }
+
+    if (moved)
+      UpdateCameraView();
+    
+    return moved;
   }
   
   void EditorCamera::SetViewportSize(uint32_t width, uint32_t height) {
@@ -127,6 +149,10 @@ namespace ikan {
   
   float EditorCamera::RotationSpeed() const {
     return 0.8f;
+  }
+  
+  float EditorCamera::MoveSpeed() const {
+    return 20.0f;
   }
   
   float EditorCamera::ZoomSpeed() const {

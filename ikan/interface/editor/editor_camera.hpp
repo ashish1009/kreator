@@ -34,7 +34,7 @@ namespace ikan {
     
     /// This function updates the Parameter of Editor Camera each frame
     /// - Parameter ts: time step of each frame
-    void Update([[maybe_unused]] Timestep ts);
+    bool Update([[maybe_unused]] Timestep ts);
 
     /// This function updates the viewport size for Editor Camera
     /// - Parameters:
@@ -73,6 +73,8 @@ namespace ikan {
     glm::vec2 PanSpeed() const;
     /// This function returns the rotation speed of mouse
     float RotationSpeed() const;
+    /// This function returns the Movement speed of mouse
+    float MoveSpeed() const;
     /// This function returns the rotation speed of camera
     float ZoomSpeed() const;
 
