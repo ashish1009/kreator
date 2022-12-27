@@ -48,6 +48,8 @@ namespace sandbox {
   void SandboxLayer::Update(Timestep ts) {
     Renderer::ResetStatsEachFrame();
     Renderer::Clear({0.2, 0.3, 0.4, 1.0});
+    
+    Renderer::DrawIndexed(pipeline_);
   }
   
   void SandboxLayer::EventHandler(Event& event) {

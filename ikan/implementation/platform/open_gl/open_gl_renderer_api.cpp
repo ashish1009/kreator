@@ -9,6 +9,8 @@
 
 #include "open_gl_renderer_api.hpp"
 #include "renderer/utils/renderer.hpp"
+#include "renderer/utils/renderer_stats.hpp"
+#include "renderer/graphics/pipeline.hpp"
 
 namespace ikan {
   
@@ -147,4 +149,17 @@ namespace ikan {
     glReadBuffer(GL_COLOR_ATTACHMENT0 + pixel_id_index);
     glReadPixels(mx, my, 1, 1, GL_RED_INTEGER, GL_INT, &pixel_data);
   }
+  
+  void OpenGLRendererAPI::DrawIndexed(const std::shared_ptr<Pipeline>& pipeline,
+                                      uint32_t count) const {
+    pipeline->Bind();
+    uint32_t index_count = (count ? count : pipeline->GetIndexBuffer()->GetCount());
+    glDrawElements(GL_TRIANGLES, (GLsizei)index_count, GL_UNSIGNED_INT, nullptr);
+    
+    // Unbinding Textures and va
+    glBindTexture(GL_TEXTURE_2D, 0);
+    RendererStatistics::Get().draw_calls++;
+    pipeline->Unbind();
+  }
+
 }

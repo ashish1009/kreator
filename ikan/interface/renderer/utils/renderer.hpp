@@ -21,6 +21,7 @@ namespace ikan {
   // Forward declarations
   class RendererData;
   class Shader;
+  class Pipeline;
 
   /// This class is the wrapper class to interact with all the module that will be needed to render any
   /// object or control any renderer API
@@ -159,6 +160,17 @@ namespace ikan {
     /// and store in the library
     /// - Parameter path: path of shader
     static std::shared_ptr<Shader> GetShader(const std::string& path);
+    
+    // ------------------
+    // Draw Calls
+    // ------------------
+    /// This API draws a quad with pipeline and indexed count
+    /// - Parameters:
+    ///   - pipeline: pipeline having vertex buffer and index buffer
+    ///   - count: number of Indices (if 0 then use index buffer of Vertex array)
+    static void DrawIndexed(const std::shared_ptr<Pipeline>& pipeline,
+                            uint32_t count = 0);
+
 
   private:
     // -------------------

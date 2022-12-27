@@ -8,6 +8,7 @@
 #include "renderer.hpp"
 #include "imgui/imgui_api.hpp"
 #include "renderer/graphics/shader.hpp"
+#include "renderer/graphics/pipeline.hpp"
 #include "renderer/utils/renderer_stats.hpp"
 
 namespace ikan {
@@ -191,4 +192,11 @@ namespace ikan {
     return ShaderLibrary::GetShader(path);
   }
   
+  // -------------------------------------------------------------------------
+  // Draw APIs
+  // -------------------------------------------------------------------------
+  void Renderer::DrawIndexed(const std::shared_ptr<Pipeline>& pipeline, uint32_t count) {
+    renderer_data_->renderer_api_instance->DrawIndexed(pipeline, count);
+  }
+
 }

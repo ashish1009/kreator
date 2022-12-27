@@ -11,7 +11,9 @@
 // depetnds on the supported API
 
 namespace ikan {
-    
+
+  class Pipeline;
+
   /// This class is the interface for Renderer APIs
   class RendererAPI {
   public:
@@ -73,6 +75,16 @@ namespace ikan {
                                        int32_t my,
                                        uint32_t pixel_id_index,
                                        int32_t& pixel_data) const = 0;
+    
+    // -------------
+    // Draw API
+    // -----------
+    /// This API draws a quad with pipeline and indexed count
+    /// - Parameters:
+    ///   - pipeline: pipeline having vertex buffer and index buffer
+    ///   - count: number of Indices (if 0 then use index buffer of Vertex array)
+    virtual void DrawIndexed(const std::shared_ptr<Pipeline>& pipeline,
+                             uint32_t count = 0) const = 0;
     
     /// This function creates the instance of renderer API based on the supported API
     static std::unique_ptr<RendererAPI> Create();
