@@ -54,6 +54,8 @@ namespace sandbox {
     Renderer::ResetStatsEachFrame();
     Renderer::Clear({0.2, 0.3, 0.4, 1.0});
     
+    BatchRenderer::BeginBatch(editor_camera.GetViewProjection(), editor_camera.GetView());
+    
     basic_shader_->Bind();
     basic_shader_->SetUniformMat4("u_ViewProjection", editor_camera.GetViewProjection());
 

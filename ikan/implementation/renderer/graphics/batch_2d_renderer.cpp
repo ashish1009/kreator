@@ -445,4 +445,41 @@ namespace ikan {
     IK_CORE_INFO("  ---------------------------------------------------------");
   }
   
+  void BatchRenderer::BeginBatch(const glm::mat4& camera_view_projection_matrix,
+                                 const glm::mat4& camera_view_matrix) {
+    // ----------------------------------------------------------------------
+    // Start batch for quads
+    // ----------------------------------------------------------------------
+    quad_data_->environment.camera_view_projection_matrix = camera_view_projection_matrix;
+    quad_data_->environment.camera_view_matrix = camera_view_matrix;
+    
+    quad_data_->shader->Bind();
+    quad_data_->shader->SetUniformMat4("u_ViewProjection",
+                                       camera_view_projection_matrix);
+    
+    quad_data_->StartBatch();
+    quad_data_->shader->Unbind();
+    
+    // ----------------------------------------------------------------------
+    // Start batch for circles
+    // ----------------------------------------------------------------------
+    circle_data_->environment.camera_view_projection_matrix = camera_view_projection_matrix;
+    circle_data_->environment.camera_view_matrix = camera_view_matrix;
+    
+    circle_data_->shader->Bind();
+    circle_data_->shader->SetUniformMat4("u_ViewProjection",
+                                         camera_view_projection_matrix);
+    circle_data_->StartBatch();
+    circle_data_->shader->Unbind();
+    
+    // ----------------------------------------------------------------------
+    // Start batch for lines
+    // ----------------------------------------------------------------------
+    line_data_->shader->Bind();
+    line_data_->shader->SetUniformMat4("u_ViewProjection",
+                                       camera_view_projection_matrix);
+    line_data_->StartBatch();
+    line_data_->shader->Unbind();
+  }
+  
 }
