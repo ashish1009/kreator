@@ -85,10 +85,8 @@ namespace ikan {
   BufferElement::BufferElement(const BufferElement& other)
   : name(other.name), type(other.type), size(other.size),
   count(other.count), offset(other.offset), normalized(other.normalized) {
-    IK_CORE_TRACE("Creating Buffer elements for vertex points ...");
   }
   BufferElement& BufferElement::operator=(const BufferElement& other) {
-    IK_CORE_TRACE("Copying Buffer elements with = operator for vertex points ...");
     name = other.name;
     type = other.type;
     size = other.size;
@@ -101,10 +99,8 @@ namespace ikan {
   BufferElement::BufferElement(BufferElement&& other)
   : name(other.name), type(other.type), size(other.size),
   count(other.count), offset(other.offset), normalized(other.normalized) {
-    IK_CORE_TRACE("Moving Buffer elements for vertex points ...");
   }
   BufferElement& BufferElement::operator=(BufferElement&& other) {
-    IK_CORE_TRACE("Moving Buffer elements with = operator for vertex points ...");
     name = other.name;
     type = other.type;
     size = other.size;
@@ -119,12 +115,10 @@ namespace ikan {
                                bool normalized)
   : name(name), type(type), size(ShaderDataTypeSize(type)),
   count(GetElementCount(type)), offset(0), normalized(normalized) {
-    IK_CORE_TRACE("Creating Buffer elements for vertex points with parameters ...");
   }
   
   BufferLayout::BufferLayout(const std::initializer_list<BufferElement>& elements)
   : elements_(elements) {
-    IK_CORE_TRACE("Creating Buffer Layout for vertex points with list {0}...", elements.size());
     CalculateOffsetAndStride();
   }
   
@@ -147,12 +141,10 @@ namespace ikan {
   
   BufferLayout::BufferLayout(const BufferLayout& other)
   : stride_(other.stride_) {
-    IK_CORE_TRACE("Copying Buffer Layout for vertex points ... ");
     for (const auto& elem : other.elements_)
       elements_.emplace_back(elem);
   }
   BufferLayout& BufferLayout::operator=(const BufferLayout& other) {
-    IK_CORE_TRACE("Copying Buffer Layout with = operator for vertex points ... ");
     stride_ = other.stride_;
     for (const auto& elem : other.elements_)
       elements_.emplace_back(elem);

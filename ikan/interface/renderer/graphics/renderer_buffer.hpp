@@ -93,6 +93,16 @@ namespace ikan {
     /// This function uptate the Buffer layeout value in Vertex Buffer
     /// - Parameter layout: new Buffer layout
     virtual void AddLayout(const BufferLayout& layout) = 0;
+    
+    // -------------
+    // Getters
+    // -------------
+    /// This function returns the Buffer layout stored in Vertex Buffer
+    virtual const BufferLayout& GetLayout() const = 0;
+    /// This function returns the size of Vertex Buffer in GPU
+    virtual uint32_t GetSize() const = 0;
+    /// This function returns the renderer ID of Vertex Buffer
+    virtual RendererID GetRendererID() const = 0;
 
     // -----------------
     // Static Function
@@ -113,6 +123,16 @@ namespace ikan {
     // -------------
     virtual ~IndexBuffer() = default;
     
+    // -------------
+    // Getters
+    // -------------
+    /// This function returns the Number of Indices used by this Index Buffer
+    virtual uint32_t GetCount() const = 0;
+    /// This function returns the size of Index Buffer in GPU
+    virtual uint32_t GetSize() const = 0;    
+    /// This function return the renderer ID of Index Buffer
+    virtual RendererID GetRendererID() const = 0;
+
     // -----------------
     // Static Function
     // -----------------

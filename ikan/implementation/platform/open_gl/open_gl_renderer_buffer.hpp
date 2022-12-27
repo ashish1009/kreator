@@ -36,6 +36,16 @@ namespace ikan {
     /// This function uptate the Buffer layeout value in Vertex Buffer
     /// - Parameter layout: new Buffer layout
     void AddLayout(const BufferLayout& layout) override;
+    
+    // -----------
+    // Getters
+    // -----------
+    /// This function returns the renderer ID of Vertex Buffer
+    RendererID GetRendererID() const override;
+    /// This function returns the Buffer layout stored in Vertex Buffer
+    const BufferLayout& GetLayout() const override;
+    /// This function returns the size of Vertex Buffer in GPU
+    uint32_t GetSize() const override;
 
   public:
     RendererID renderer_id_ = 0;
@@ -58,6 +68,16 @@ namespace ikan {
     ~OpenGLIndexBuffer() noexcept;
     
     DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLIndexBuffer);
+    
+    // -----------
+    // Getters
+    // -----------
+    /// This function returns the Number of Indices used by this Index Buffer
+    uint32_t GetCount() const override;
+    /// This function returns the size of Index Buffer in GPU
+    uint32_t GetSize() const override;
+    /// This function return the renderer ID of Index Buffer
+    RendererID GetRendererID() const override;
     
   private:
     RendererID renderer_id_ = 0;

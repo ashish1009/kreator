@@ -26,8 +26,17 @@ namespace ikan {
     
     DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLPipeline);
     
+    // ---------------
+    // Fundamentals
+    // ---------------
+    /// This function add the Vertex Buffer inside Pipeline and set attribute of each vertices in GPU
+    /// - Parameter vertexBuffer: Ref type of Vertex Buffer
+    void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) override;
+    
   private:
     RendererID renderer_id_ = 0;
+    std::vector<std::shared_ptr<VertexBuffer>> vertex_buffers_;
+
   };
   
 } // namespace ikan

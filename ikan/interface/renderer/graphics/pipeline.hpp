@@ -11,6 +11,7 @@
 // Graphics Processor unit.
 
 #include "renderer/utils/renderer.hpp"
+#include "renderer/graphics/renderer_buffer.hpp"
 
 namespace ikan {
   
@@ -21,6 +22,13 @@ namespace ikan {
     // Destrcutor
     // -------------
     virtual ~Pipeline() noexcept = default;
+
+    // ---------------
+    // Fundamentals
+    // ---------------
+    /// This function add the Vertex Buffer inside Pipeline and set attribute of each vertices in GPU
+    /// - Parameter vertexBuffer: Ref type of Vertex Buffer
+    virtual void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) = 0;
 
     // -----------------
     // Static Function

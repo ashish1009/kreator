@@ -45,6 +45,9 @@ namespace ikan {
   }
   
   void OpenGLVertexBuffer::AddLayout(const BufferLayout& layout) { layout_ = layout; }
+  const BufferLayout& OpenGLVertexBuffer::GetLayout() const { return layout_; }
+  RendererID OpenGLVertexBuffer::GetRendererID() const { return renderer_id_; }
+  uint32_t OpenGLVertexBuffer::GetSize() const { return size_; }
 
   // --------------------------------------------------------------------------
   // Index Buffer
@@ -79,5 +82,9 @@ namespace ikan {
 
     IDManager::RemoveBufferId(renderer_id_);
   }
+  
+  RendererID OpenGLIndexBuffer::GetRendererID() const { return renderer_id_;}
+  uint32_t OpenGLIndexBuffer::GetCount() const { return count_; }
+  uint32_t OpenGLIndexBuffer::GetSize() const { return size_; }
 
 }
