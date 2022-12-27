@@ -29,6 +29,21 @@ namespace ikan {
     /// This function add the Vertex Buffer inside Pipeline and set attribute of each vertices in GPU
     /// - Parameter vertexBuffer: Ref type of Vertex Buffer
     virtual void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) = 0;
+    /// This function updates the current Index Buffer inside the Pipeline
+    /// - Parameter indexBuffer: Ref type of Index Buffer
+    virtual void SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer) = 0;
+    /// This function binds the Pipeline before rendering
+    virtual void Bind() const = 0;
+    /// This function unbinds the Pipeline after rendering
+    virtual void Unbind() const = 0;
+
+    // -------------
+    // Getters
+    // -------------
+    /// This function returns all the Vertex Buffer Stored in Pipeline
+    virtual const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const = 0;
+    /// This function returns the Current Index Buffer Stored in Pipeline
+    virtual const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const = 0;
 
     // -----------------
     // Static Function

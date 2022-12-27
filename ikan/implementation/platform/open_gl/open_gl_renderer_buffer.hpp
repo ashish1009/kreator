@@ -36,7 +36,11 @@ namespace ikan {
     /// This function uptate the Buffer layeout value in Vertex Buffer
     /// - Parameter layout: new Buffer layout
     void AddLayout(const BufferLayout& layout) override;
-    
+    /// This function binds the Vertex Buffer before rendering
+    void Bind() const override;
+    /// This function unbinds the Vertex Buffer after rendering
+    void Unbind() const override;
+
     // -----------
     // Getters
     // -----------
@@ -69,6 +73,14 @@ namespace ikan {
     
     DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLIndexBuffer);
     
+    // --------------
+    // Fundamentals
+    // --------------
+    /// This function binds the Vertex Buffer before rendering
+    void Bind() const override;
+    /// This function unbinds the Vertex Buffer after rendering
+    void Unbind() const override;
+
     // -----------
     // Getters
     // -----------

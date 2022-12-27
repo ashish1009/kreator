@@ -93,7 +93,11 @@ namespace ikan {
     /// This function uptate the Buffer layeout value in Vertex Buffer
     /// - Parameter layout: new Buffer layout
     virtual void AddLayout(const BufferLayout& layout) = 0;
-    
+    /// This function binds the Vertex Buffer before rendering
+    virtual void Bind() const = 0;
+    /// This function unbinds the Vertex Buffer after rendering
+    virtual void Unbind() const = 0;
+
     // -------------
     // Getters
     // -------------
@@ -123,6 +127,14 @@ namespace ikan {
     // -------------
     virtual ~IndexBuffer() = default;
     
+    // -------------
+    // Fundamentals
+    // -------------
+    /// This function binds the Index Buffer before rendering
+    virtual void Bind() const = 0;
+    /// This function unbinds the Index Buffer after rendering
+    virtual void Unbind() const = 0;
+
     // -------------
     // Getters
     // -------------

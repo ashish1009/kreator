@@ -44,6 +44,14 @@ namespace ikan {
     IDManager::RemoveBufferId(renderer_id_);
   }
   
+  void OpenGLVertexBuffer::Bind() const {
+    glBindBuffer(GL_ARRAY_BUFFER, renderer_id_);
+  }
+  
+  void OpenGLVertexBuffer::Unbind() const {
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+  }
+  
   void OpenGLVertexBuffer::AddLayout(const BufferLayout& layout) { layout_ = layout; }
   const BufferLayout& OpenGLVertexBuffer::GetLayout() const { return layout_; }
   RendererID OpenGLVertexBuffer::GetRendererID() const { return renderer_id_; }
@@ -81,6 +89,14 @@ namespace ikan {
                  size_, size_ / 1000, size_ / 1000000);
 
     IDManager::RemoveBufferId(renderer_id_);
+  }
+  
+  void OpenGLIndexBuffer::Bind() const {
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, renderer_id_);
+  }
+  
+  void OpenGLIndexBuffer::Unbind() const {
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
   }
   
   RendererID OpenGLIndexBuffer::GetRendererID() const { return renderer_id_;}

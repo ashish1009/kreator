@@ -33,15 +33,12 @@ namespace sandbox {
     vertex_buffer_ = VertexBuffer::Create(vertex_data, sizeof(vertex_data));
     vertex_buffer_->AddLayout({
       { "a_Position",     ShaderDataType::Float3 },
-      { "a_Color",        ShaderDataType::Float4 },
-      { "a_TexCoords",    ShaderDataType::Float2 },
-      { "a_TexIndex",     ShaderDataType::Float },
-      { "a_TilingFactor", ShaderDataType::Float },
     });
     pipeline_->AddVertexBuffer(vertex_buffer_);
 
     uint32_t indices_data[] = {0, 1, 2, 2, 3, 0};
     index_buffer_ = IndexBuffer::CreateWithCount(indices_data, 6);
+    pipeline_->SetIndexBuffer(index_buffer_);
   }
   
   void SandboxLayer::Detach() {

@@ -76,6 +76,24 @@ namespace ikan {
     IDManager::RemovePipelineId(renderer_id_);
   }
   
+  void OpenGLPipeline::Bind() const {
+    glBindVertexArray(renderer_id_);
+    for (auto vb : vertex_buffers_)
+      vb->Bind();
+    
+    if (index_buffer_)
+      index_buffer_->Bind();
+  }
+  
+  void OpenGLPipeline::Unbind() const {
+    glBindVertexArray(0);
+    for (auto vb : vertex_buffers_)
+      vb->Unbind();
+    
+    if (index_buffer_)
+      index_buffer_->Unbind();
+  }
+  
   void OpenGLPipeline::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) {
     glBindVertexArray(renderer_id_);
     vertex_buffers_.push_back(vertexBuffer);
@@ -162,4 +180,20 @@ namespace ikan {
     } // for (const auto& element : layout.GetElements())
   }
   
+  void OpenGLPipeline::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer) {
+    index_buffer_ = indexBuffer;
+    IK_CORE_DEBUG("  Setting up the Index Buffer (ID: {0}) into Pipeline (ID: {1})",
+                  indexBuffer->GetRendererID(),
+                  renderer_id_);
+    glBindVertexArray(renderer_id_);
+    index_buffer_->Bind();
+  }
+  
+  const std::vector<std::shared_ptr<VertexBuffer>>& OpenGLPipeline::GetVertexBuffers() const {
+    return vertex_buffers_;
+  }
+  const std::shared_ptr<IndexBuffer>& OpenGLPipeline::GetIndexBuffer() const {
+    return index_buffer_;
+  }
+
 }
