@@ -188,5 +188,20 @@ namespace ikan {
       RendererStatistics::Get().texture_buffer_size -= size_;
     }
   }
+  
+  void OpenGLTexture::Bind(uint32_t slot) const {
+    glActiveTexture(GL_TEXTURE0 + slot);
+    glBindTexture(GL_TEXTURE_2D, renderer_id_);
+  }
+  
+  void OpenGLTexture::Unbind() const {
+    glBindTexture(GL_TEXTURE_2D, 0);
+  }
+    
+  uint32_t OpenGLTexture::GetWidth() const { return (uint32_t)width_;  }
+  uint32_t OpenGLTexture::GetHeight() const { return (uint32_t)height_; }
+  RendererID OpenGLTexture::GetRendererID() const { return renderer_id_; }
+  const std::string& OpenGLTexture::GetfilePath() const { return file_path_; }
+  const std::string& OpenGLTexture::GetName() const { return name_; }
 
 }

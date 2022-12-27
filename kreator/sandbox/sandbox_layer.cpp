@@ -56,6 +56,8 @@ namespace sandbox {
     
     basic_shader_->Bind();
     basic_shader_->SetUniformMat4("u_ViewProjection", editor_camera.GetViewProjection());
+
+    checkboard_->Bind();
     
     RendererStatistics::Get().vertex_count += 4;
     RendererStatistics::Get().index_count += index_buffer_->GetCount();

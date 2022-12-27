@@ -37,6 +37,29 @@ namespace ikan {
     
     DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLTexture);
     
+    // -------------
+    // Fundamentals
+    // -------------
+    /// This function binds the texture at slot
+    /// - Parameter slot: shader slot where this texture to be binded
+    void Bind(uint32_t slot = 0) const override;
+    /// This function unbinds the texture
+    void Unbind() const override;
+
+    // ----------
+    // Getters
+    // ----------
+    /// This function returns width of texture
+    uint32_t GetWidth() const override;
+    /// This function returns height of texture
+    uint32_t GetHeight() const override;
+    /// This function returns renderer ID of texture
+    RendererID GetRendererID() const override;
+    /// This function returns file path of texture
+    const std::string& GetfilePath() const override;
+    /// This function returns name of texture
+    const std::string& GetName() const override;
+        
   public:
     RendererID renderer_id_ = 0;
     
