@@ -36,6 +36,10 @@ namespace sandbox {
     void EventHandler(Event& event) override;
     
   private:
+    /// This function dispatched in event dispatcher and trigger when window close event evoked
+    /// - Parameter window_resize_event: Window close event instacnce
+    bool WindowResize(WindowResizeEvent& window_resize_event);
+
     EditorCamera editor_camera;
     
     std::shared_ptr<Shader> basic_shader_;

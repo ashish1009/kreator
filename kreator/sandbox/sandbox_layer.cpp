@@ -60,6 +60,13 @@ namespace sandbox {
   }
   
   void SandboxLayer::EventHandler(Event& event) {
+    EventDispatcher dispatcher(event);
+    dispatcher.Dispatch<WindowResizeEvent>(IK_BIND_EVENT_FN(SandboxLayer::WindowResize));
+  }
+  
+  bool SandboxLayer::WindowResize(WindowResizeEvent &window_resize_event) {
+    editor_camera.SetViewportSize(window_resize_event.GetWidth(), window_resize_event.GetHeight());
+    return false;
   }
   
   void SandboxLayer::RenderGui() {

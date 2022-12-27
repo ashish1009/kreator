@@ -115,7 +115,7 @@ namespace ikan {
     // -----------------
     /// This function dispatched in event dispatcher and trigger when window close event evoked
     /// - Parameter windowEvent: Window close event instacnce
-    bool WindowClose([[maybe_unused]] WindowCloseEvent& windowEvent);
+    bool WindowClose([[maybe_unused]] WindowCloseEvent& window_close_event);
     
     /// This function begin the Imgui Renderer and render IMGUI for all the layers and finally ends
     /// the imgui rendering

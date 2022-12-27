@@ -71,6 +71,20 @@ namespace ikan {
     UpdateCameraView();
   }
   
+  void EditorCamera::SetViewportSize(uint32_t width, uint32_t height) {
+    if (height == 0)
+      return;
+    
+    viewport_width_  = width;
+    viewport_height_ = height;
+    aspect_ratio_    = (float)viewport_width_ / (float)viewport_height_;
+    
+    projection_matrix_ = glm::perspective(fov_, aspect_ratio_, near_plane_, far_plane_);
+    UpdateCameraView();
+    IK_CORE_TRACE("Changing Viewport Size of Editor Camera : {0} x {1}."
+                  "(NOTE: Updating View Projection Matrix)", width, height);
+  }
+
   void EditorCamera::UpdateCameraView() {
     position_ = CalculatePosition();
     glm::quat orientation = GetOrientation();

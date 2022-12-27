@@ -36,6 +36,12 @@ namespace ikan {
     /// - Parameter ts: time step of each frame
     void Update([[maybe_unused]] Timestep ts);
 
+    /// This function updates the viewport size for Editor Camera
+    /// - Parameters:
+    ///   - width: New width
+    ///   - height: new height
+    void SetViewportSize(uint32_t width, uint32_t height);
+
     // ---------------
     // Getters
     // ---------------
@@ -49,7 +55,6 @@ namespace ikan {
     const glm::vec3& GetPosition() const;
     /// This function returns the Focal point of Editor camera
     const glm::vec3& GetFocalPoint() const;
-
     
   private:
     // -------------------
@@ -88,6 +93,7 @@ namespace ikan {
     // -------------------
     glm::mat4 view_matrix_ = glm::mat4(1.0f);
     
+    glm::vec3 forward_direction_{0.0f, 0.0f, 0.0f};
     glm::vec3 position_ = glm::vec3(0.0f);
     glm::vec3 rotation_ = glm::vec3(0.0f);
     glm::vec3 focal_point_ = glm::vec3(0.0f);
