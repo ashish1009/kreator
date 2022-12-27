@@ -8,6 +8,7 @@
 #include "renderer.hpp"
 #include "imgui/imgui_api.hpp"
 #include "renderer/graphics/shader.hpp"
+#include "renderer/graphics/texture.hpp"
 #include "renderer/graphics/pipeline.hpp"
 #include "renderer/utils/renderer_stats.hpp"
 #include "renderer/utils/batch_2d_renderer.hpp"
@@ -191,12 +192,17 @@ namespace ikan {
   }
 
   // -------------------------------------------------------------------------
-  // Shader Manager
+  // Library
   // -------------------------------------------------------------------------
   std::shared_ptr<Shader> Renderer::GetShader(const std::string& path) {
     return ShaderLibrary::GetShader(path);
   }
-  
+  std::shared_ptr<Texture> Renderer::GetTexture(const std::string& path,
+                                               bool min_linear,
+                                               bool mag_linear) {
+    return TextureLibrary::GetShader(path, min_linear, mag_linear);
+  }
+
   // -------------------------------------------------------------------------
   // Draw APIs
   // -------------------------------------------------------------------------

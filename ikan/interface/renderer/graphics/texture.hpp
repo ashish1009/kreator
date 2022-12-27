@@ -67,4 +67,31 @@ namespace ikan {
                                            uint32_t size);
   };
   
+  /// This class stores the compiled shader in library
+  class TextureLibrary {
+  private:
+    // -----------
+    // Functions
+    // -----------
+    /// This function returns the Ref type of ikan::Shader. It creates a new if not present in the map
+    /// - Parameters:
+    ///   - path: path of textre
+    ///   - min_linear: min linear flag
+    ///   - mag_linear: max linear flag
+    static std::shared_ptr<Texture> GetShader(const std::string& path,
+                                              bool min_linear = true,
+                                              bool mag_linear = true);
+    /// This function deletes all the shaders present int the map
+    static void ResetShaders();
+    
+    // -----------
+    // Variables
+    // -----------
+    static std::unordered_map<std::string, std::shared_ptr<Texture>> shader_library_;
+    
+    MAKE_PURE_STATIC(TextureLibrary)
+    
+    friend class Renderer;
+  };
+  
 }

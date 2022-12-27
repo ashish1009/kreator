@@ -41,7 +41,7 @@ namespace sandbox {
     index_buffer_ = IndexBuffer::CreateWithCount(indices_data, 6);
     pipeline_->SetIndexBuffer(index_buffer_);
     
-    checkboard_ = Texture::Create(AM::ClientAsset("textures/checkerboard.png"));
+    checkboard_ = Renderer::GetTexture(AM::ClientAsset("textures/checkerboard.png"));
   }
   
   void SandboxLayer::Detach() {

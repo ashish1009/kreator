@@ -153,6 +153,5 @@ namespace ikan {
     
     friend class Renderer;
   };
-
   
 }

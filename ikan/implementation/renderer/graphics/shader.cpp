@@ -18,6 +18,9 @@ namespace ikan {
     }
   }
   
+  // --------------------------------------------------------------------------
+  // Shader Library
+  // --------------------------------------------------------------------------
   std::unordered_map<std::string, std::shared_ptr<Shader>> ShaderLibrary::shader_library_;
   
   std::shared_ptr<Shader> ShaderLibrary::GetShader(const std::string& path) {

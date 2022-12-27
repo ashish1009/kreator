@@ -37,5 +37,34 @@ namespace ikan {
         IK_CORE_ASSERT(false, "Invalid Renderer API (None)"); break;
     }
   }
+  
+  // --------------------------------------------------------------------------
+  // Texture Library
+  // --------------------------------------------------------------------------
+  std::unordered_map<std::string, std::shared_ptr<Texture>> TextureLibrary::shader_library_;
+  
+  std::shared_ptr<Texture> TextureLibrary::GetShader(const std::string& path,
+                                                     bool min_linear,
+                                                     bool mag_linear) {
+    if (shader_library_.find(path) == shader_library_.end()) {
+      shader_library_[path] = Texture::Create(path, min_linear, mag_linear);
+      IK_CORE_DEBUG("Adding Shader '{0}' to Shdaer Library",
+                    StringUtils::GetNameFromFilePath(path));
+    }
+    else {
+      IK_CORE_DEBUG("Returning Pre loaded Shader '{0}' from Shdaer Library", StringUtils::GetNameFromFilePath(path));
+    }
+    
+    return shader_library_.at(path);
+  }
+  
+  void TextureLibrary::ResetShaders() {
+    for (auto it = shader_library_.begin(); it != shader_library_.end(); it++) {
+      IK_CORE_WARN("Removing Shader '{0}' from Shdaer Library",
+                   StringUtils::GetNameFromFilePath(it->first));
+      it->second.reset();
+    }
+  }
+
 
 }
