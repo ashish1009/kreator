@@ -622,4 +622,95 @@ namespace ikan {
     RendererStatistics::Get().vertex_count += BatchRendererData::VertexForSingleElement;
   }
 
+  void BatchRenderer::DrawCircle(const glm::mat4& transform,
+                                 const glm::vec4& color,
+                                 float thickness,
+                                 float fade,
+                                 int32_t object_id) {
+    DrawTextureCircle(transform,
+                      nullptr,
+                      1.0f, // tiling factor
+                      color,
+                      thickness,
+                      fade,
+                      object_id
+                      );
+  }
+  void BatchRenderer::DrawCircle(const glm::mat4& transform,
+                                 const std::shared_ptr<Texture>& texture,
+                                 const glm::vec4& tint_color,
+                                 float tiling_factor,
+                                 float thickness,
+                                 float fade,
+                                 int32_t object_id){
+    DrawTextureCircle(transform,
+                      texture,
+                      tiling_factor,
+                      tint_color,
+                      thickness,
+                      fade,
+                      object_id
+                      );
+  }
+  
+  void BatchRenderer::DrawTextureCircle(const glm::mat4& transform,
+                                        const std::shared_ptr<Texture>& texture,
+                                        float tiling_factor,
+                                        const glm::vec4& tint_color,
+                                        float thickness,
+                                        float fade,
+                                        int32_t object_id) {
+    // If number of indices increase in batch then start new batch
+    if (circle_data_->index_count >= circle_data_->max_indices) {
+      IK_CORE_WARN("Starts the new batch as number of indices ({0}) increases "
+                   "in the previous batch", circle_data_->index_count);
+      NextBatch();
+    }
+    
+    float texture_index = 0.0f;
+    if (texture) {
+      // Find if texture is already loaded in current batch
+      for (size_t i = 1; i < circle_data_->texture_slot_index; i++) {
+        if (circle_data_->texture_slots[i].get() == texture.get()) {
+          // Found the current textue in the batch
+          texture_index = (float)i;
+          break;
+        }
+      }
+      
+      // If current texture slot is not pre loaded then load the texture in proper slot
+      if (texture_index == 0.0f) {
+        // If number of slots increases max then start new batch
+        if (circle_data_->texture_slot_index >= kMaxTextureSlotsInShader) {
+          IK_CORE_WARN("Starts the new batch as number of texture slot ({0}) "
+                       "increases in the previous batch",
+                       circle_data_->texture_slot_index);
+          NextBatch();
+        }
+        
+        // Loading the current texture in the first free slot slot
+        texture_index = (float)circle_data_->texture_slot_index;
+        circle_data_->texture_slots[circle_data_->texture_slot_index] = texture;
+        circle_data_->texture_slot_index++;
+      }
+    }
+    
+    for (size_t i = 0; i < BatchRendererData::VertexForSingleElement; i++) {
+      circle_data_->vertex_buffer_ptr->position         = transform * circle_data_->vertex_base_position[i];
+      circle_data_->vertex_buffer_ptr->color            = tint_color;
+      circle_data_->vertex_buffer_ptr->texture_coords   = 2.0f * circle_data_->vertex_base_position[i];
+      circle_data_->vertex_buffer_ptr->texture_index    = texture_index;
+      circle_data_->vertex_buffer_ptr->tiling_factor    = tiling_factor;
+      circle_data_->vertex_buffer_ptr->thickness        = thickness;
+      circle_data_->vertex_buffer_ptr->fade             = fade;
+      circle_data_->vertex_buffer_ptr->object_id        = object_id;
+      circle_data_->vertex_buffer_ptr++;
+    }
+    
+    circle_data_->index_count += BatchRendererData::IndicesForSingleElement;
+    
+    RendererStatistics::Get().index_count += BatchRendererData::IndicesForSingleElement;
+    RendererStatistics::Get().vertex_count += BatchRendererData::VertexForSingleElement;
+  }
+
 }

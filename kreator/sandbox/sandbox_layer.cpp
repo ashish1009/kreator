@@ -34,7 +34,8 @@ namespace sandbox {
     Renderer::Clear({0.2, 0.3, 0.4, 1.0});
     
     BatchRenderer::BeginBatch(editor_camera.GetViewProjection(), editor_camera.GetView());
-    BatchRenderer::DrawQuad(glm::mat4(1.0f), checkboard_, {0.2, 0.4, 0.6, 1.0});
+    BatchRenderer::DrawCircle(glm::mat4(1.0f), checkboard_, {0.2, 0.4, 0.6, 1.0});
+    BatchRenderer::DrawQuad(glm::mat4(12.0f), checkboard_, {0.2, 0.4, 0.6, 1.0});
     BatchRenderer::EndBatch();
   }
   

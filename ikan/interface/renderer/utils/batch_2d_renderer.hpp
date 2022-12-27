@@ -57,6 +57,34 @@ namespace ikan {
                          float tiling_factor = 1.0f,
                          int32_t object_id = -1 );
 
+    /// This function draws circle with color
+    /// - Parameters:
+    ///   - transform: Transformation matrix of Circle
+    ///   - color: Color of Circle
+    ///   - thickness: thickneess of Circle
+    ///   - fade: fade of Circle Edge
+    ///   - object_id: Pixel ID of Circle
+    static void DrawCircle(const glm::mat4& transform,
+                           const glm::vec4& color,
+                           float thickness = 1.0f,
+                           float fade = (float)0.005,
+                           int32_t object_id = -1);
+    /// This function draws circle with texture
+    /// - Parameters:
+    ///   - transform: Transformation matrix of Circle
+    ///   - texture: Texture to be uploaded in Batch
+    ///   - tiling_factor: tiling factor of Texture (Scale by which texture to be Multiplied)
+    ///   - tint_color: Color of Quad
+    ///   - thickness: thickneess of Circle
+    ///   - fade: fade of Circle Edge
+    ///   - object_id: Pixel ID of Circle
+    static void DrawCircle(const glm::mat4& transform,
+                           const std::shared_ptr<Texture>& texture,
+                           const glm::vec4& tint_color = glm::vec4(1.0f),
+                           float tiling_factor = 1.0f,
+                           float thickness = 1.0f,
+                           float fade = (float)0.005,
+                           int32_t object_id = -1 );
   private:
     // Member Methods
     /// This funcition initialize the quad renderer data
@@ -91,6 +119,23 @@ namespace ikan {
                                 float tiling_factor,
                                 const glm::vec4& tint_color,
                                 int32_t object_id);
+
+    /// This function is the helper function to rendere the circle
+    /// - Parameters:
+    ///   - transform: transform matrix of circle
+    ///   - texture: texture to be binded in circle
+    ///   - tiling_factor: tiling factor of texture
+    ///   - tint_color: color of circle
+    ///   - thickness: thickness of circle
+    ///   - fade: cirlce face
+    ///   - object_id: object/pixel id
+    static void DrawTextureCircle(const glm::mat4& transform,
+                                  const std::shared_ptr<Texture>& texture,
+                                  float tiling_factor,
+                                  const glm::vec4& tint_color,
+                                  float thickness,
+                                  float fade,
+                                  int32_t object_id);
 
   };
   
