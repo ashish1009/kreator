@@ -174,4 +174,13 @@ namespace ikan {
     RendererStatistics::Get().draw_calls++;
     pipeline->Unbind();
   }
+  
+  void OpenGLRendererAPI::DrawArrays(const std::shared_ptr<Pipeline>& pipeline,
+                                     uint32_t count) const {
+    pipeline->Bind();
+    glDrawArrays(GL_TRIANGLES, 0, (GLsizei)count);
+    RendererStatistics::Get().draw_calls++;
+    pipeline->Unbind();
+  }
+
 }
