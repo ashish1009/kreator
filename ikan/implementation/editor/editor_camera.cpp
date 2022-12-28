@@ -245,5 +245,13 @@ namespace ikan {
   glm::vec3 EditorCamera::GetForwardDirection() const {
     return glm::rotate(GetOrientation(), glm::vec3(0.0f, 0.0f, -1.0f));
   }
+  
+  uint32_t EditorCamera::GetViewportHeight() const {
+    return viewport_height_;
+  }
+  uint32_t EditorCamera::GetViewportWidth() const {
+    return viewport_width_;
+  }
+
 
 }

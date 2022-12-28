@@ -62,6 +62,10 @@ namespace ikan {
     const glm::vec3& GetPosition() const;
     /// This function returns the Focal point of Editor camera
     const glm::vec3& GetFocalPoint() const;
+    /// This function returns the editor camera viewport Height
+    uint32_t GetViewportHeight() const;
+    /// This function returns the editor camera viewport width
+    uint32_t GetViewportWidth() const;
     
   private:
     // -------------------

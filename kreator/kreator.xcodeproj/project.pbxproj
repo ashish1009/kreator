@@ -39,7 +39,6 @@
 		B2250CE2295863840067C43B /* kreator_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kreator_application.cpp; sourceTree = "<group>"; };
 		B2581110295ACCA500B0EDA7 /* libikan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libikan.a; path = ../../ikan_ws/build/products/Debug/libikan.a; sourceTree = "<group>"; };
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
-		B2BD9DC8295C7D050076A2F9 /* libpng16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.dylib; path = ../../../../../../../opt/homebrew/Cellar/libpng/1.6.39/lib/libpng16.dylib; sourceTree = "<group>"; };
 		B2BD9DCB295C7D3C0076A2F9 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.dylib; sourceTree = "<group>"; };
 		B2BD9DCD295C7D3C0076A2F9 /* libpng16.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = libpng16.pc; sourceTree = "<group>"; };
 		B2BD9DCE295C7D3C0076A2F9 /* libpng.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = libpng.pc; sourceTree = "<group>"; };
@@ -70,7 +69,6 @@
 		B2250CA129584CE00067C43B = {
 			isa = PBXGroup;
 			children = (
-				B2BD9DC8295C7D050076A2F9 /* libpng16.dylib */,
 				B2250CD029585E890067C43B /* prefix_header.pch */,
 				B2250CD5295860700067C43B /* entry_point */,
 				B2250CE12958636C0067C43B /* application */,
