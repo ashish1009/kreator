@@ -57,6 +57,7 @@
 #include <renderer/graphics/renderer_buffer.hpp>
 #include <renderer/graphics/pipeline.hpp>
 #include <renderer/graphics/texture.hpp>
+#include <renderer/graphics/framebuffer.hpp>
 
 // Editor
 #include <editor/property_grid.hpp>

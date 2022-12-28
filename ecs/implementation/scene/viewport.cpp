@@ -10,5 +10,6 @@
 namespace ecs {
   
   Viewport::Viewport(const glm::vec4& fb_color) {
+    FrameBuffer::Specification fb_spec;
   }
 }

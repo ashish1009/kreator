@@ -43,6 +43,10 @@
 		B2B6CDD22958DF7700AE609E /* imgui_api.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2B6CDD02958DF7700AE609E /* imgui_api.hpp */; };
 		B2BCB84D295AE3410068FCA2 /* mac_os_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BCB84B295AE3410068FCA2 /* mac_os_input.cpp */; };
 		B2BCB84E295AE3410068FCA2 /* input.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BCB84C295AE3410068FCA2 /* input.hpp */; };
+		B2BD9E0E295CA7560076A2F9 /* open_gl_framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BD9E0C295CA7560076A2F9 /* open_gl_framebuffer.cpp */; };
+		B2BD9E0F295CA7560076A2F9 /* open_gl_framebuffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BD9E0D295CA7560076A2F9 /* open_gl_framebuffer.hpp */; };
+		B2BD9E15295CA7610076A2F9 /* framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BD9E13295CA7610076A2F9 /* framebuffer.cpp */; };
+		B2BD9E16295CA7610076A2F9 /* framebuffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BD9E14295CA7610076A2F9 /* framebuffer.hpp */; };
 		B2C0D7FF2959E02B003F168B /* renderer_stats.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2C0D7FD2959E02B003F168B /* renderer_stats.cpp */; };
 		B2C0D8002959E02B003F168B /* renderer_stats.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2C0D7FE2959E02B003F168B /* renderer_stats.hpp */; };
 		B2C0D8092959E161003F168B /* property_grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2C0D8072959E161003F168B /* property_grid.cpp */; };
@@ -173,6 +177,10 @@
 		B2B6CDD02958DF7700AE609E /* imgui_api.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imgui_api.hpp; sourceTree = "<group>"; };
 		B2BCB84B295AE3410068FCA2 /* mac_os_input.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mac_os_input.cpp; sourceTree = "<group>"; };
 		B2BCB84C295AE3410068FCA2 /* input.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = input.hpp; sourceTree = "<group>"; };
+		B2BD9E0C295CA7560076A2F9 /* open_gl_framebuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_framebuffer.cpp; sourceTree = "<group>"; };
+		B2BD9E0D295CA7560076A2F9 /* open_gl_framebuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_framebuffer.hpp; sourceTree = "<group>"; };
+		B2BD9E13295CA7610076A2F9 /* framebuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framebuffer.cpp; sourceTree = "<group>"; };
+		B2BD9E14295CA7610076A2F9 /* framebuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = framebuffer.hpp; sourceTree = "<group>"; };
 		B2C0D7FD2959E02B003F168B /* renderer_stats.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_stats.cpp; sourceTree = "<group>"; };
 		B2C0D7FE2959E02B003F168B /* renderer_stats.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_stats.hpp; sourceTree = "<group>"; };
 		B2C0D8072959E161003F168B /* property_grid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = property_grid.cpp; sourceTree = "<group>"; };
@@ -551,6 +559,7 @@
 				B2C0D8102959FB92003F168B /* renderer_buffer.hpp */,
 				B2C0D818295A01DF003F168B /* pipeline.hpp */,
 				B216B25B295B2F7400C05392 /* texture.hpp */,
+				B2BD9E14295CA7610076A2F9 /* framebuffer.hpp */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -563,6 +572,7 @@
 				B2C0D80F2959FB92003F168B /* renderer_buffer.cpp */,
 				B2C0D817295A01DF003F168B /* pipeline.cpp */,
 				B216B25A295B2F7400C05392 /* texture.cpp */,
+				B2BD9E13295CA7610076A2F9 /* framebuffer.cpp */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -609,6 +619,8 @@
 				B2C0D814295A01D5003F168B /* open_gl_pipeline.hpp */,
 				B216B253295B2F6B00C05392 /* open_gl_texture.cpp */,
 				B216B254295B2F6B00C05392 /* open_gl_texture.hpp */,
+				B2BD9E0C295CA7560076A2F9 /* open_gl_framebuffer.cpp */,
+				B2BD9E0D295CA7560076A2F9 /* open_gl_framebuffer.hpp */,
 			);
 			path = open_gl;
 			sourceTree = "<group>";
@@ -639,6 +651,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2FC3EB42958892200447A1A /* layer_stack.hpp in Headers */,
+				B2BD9E0F295CA7560076A2F9 /* open_gl_framebuffer.hpp in Headers */,
 				B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */,
 				B2584ED0295B7B3E00234714 /* maths.hpp in Headers */,
 				B258111B295ADC2C00B0EDA7 /* editor_camera.hpp in Headers */,
@@ -658,6 +671,7 @@
 				B2250CCF29585E310067C43B /* prefix_header.pch in Headers */,
 				B2250D02295873A70067C43B /* ikan_common.h in Headers */,
 				B2BCB84E295AE3410068FCA2 /* input.hpp in Headers */,
+				B2BD9E16295CA7610076A2F9 /* framebuffer.hpp in Headers */,
 				B2C0D81A295A01DF003F168B /* pipeline.hpp in Headers */,
 				B2F5265B2959776A00A83C65 /* shader.hpp in Headers */,
 				B2C0D816295A01D5003F168B /* open_gl_pipeline.hpp in Headers */,
@@ -800,6 +814,8 @@
 				B216B25C295B2F7400C05392 /* texture.cpp in Sources */,
 				B2C0D8092959E161003F168B /* property_grid.cpp in Sources */,
 				B216B265295B516A00C05392 /* batch_2d_renderer.cpp in Sources */,
+				B2BD9E15295CA7610076A2F9 /* framebuffer.cpp in Sources */,
+				B2BD9E0E295CA7560076A2F9 /* open_gl_framebuffer.cpp in Sources */,
 				B2581116295AD76B00B0EDA7 /* camera.cpp in Sources */,
 				B2FC3E95295884A400447A1A /* asset_manager.cpp in Sources */,
 				B2B6CDD12958DF7700AE609E /* imgui_api.cpp in Sources */,

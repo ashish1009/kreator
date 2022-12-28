@@ -9,6 +9,8 @@
 
 namespace ecs {
   
+  using namespace ikan;
+  
   struct Viewport {
     DELETE_COPY_MOVE_CONSTRUCTORS(Viewport);
 
