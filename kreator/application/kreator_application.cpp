@@ -6,9 +6,10 @@
 //
 
 #include "sandbox/sandbox_layer.hpp"
+#include "ecs_editor/editor_layer.hpp"
 
 enum class SupportedApplicationType : uint8_t {
-  Sandbox /* Add More with time */
+  Sandbox, Editor /* Add More with time */
 };
 
 class KreatorApp : public ikan::Application {
@@ -22,6 +23,9 @@ public:
       case SupportedApplicationType::Sandbox :
         PushLayer(std::make_shared<sandbox::SandboxLayer>());
         break;
+      case SupportedApplicationType::Editor :
+        PushLayer(std::make_shared<editor::EditorLayer>());
+        break;
     };
   }
   ~KreatorApp() {
@@ -32,11 +36,10 @@ public:
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Set up the type of applicaiton we want to create
-  SupportedApplicationType application_type = SupportedApplicationType::Sandbox;
+  SupportedApplicationType application_type = SupportedApplicationType::Editor;
   
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;
-  application_spec.client_asset_path = "../../../kreator/sandbox/assets/";
   application_spec.rendering_api = ikan::Renderer::Api::OpenGl;
   
   application_spec.os = ikan::OperatingSystem::Mac;
@@ -57,7 +60,14 @@ std::unique_ptr<ikan::Application> CreateApplication() {
     case SupportedApplicationType::Sandbox :
       application_spec.name = "Sandbox";
       application_spec.window_specification.title = "Sandbox";
+      application_spec.client_asset_path = "../../../kreator/sandbox/assets/";
       break;
+    case SupportedApplicationType::Editor :
+      application_spec.name = "Kreator";
+      application_spec.window_specification.title = "Kreator";
+      application_spec.client_asset_path = "../../../kreator/ecs_editor/assets/";
+      break;
+
   };
   return std::make_unique<KreatorApp>(application_spec, application_type);
 }

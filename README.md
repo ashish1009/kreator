@@ -74,6 +74,9 @@ Add the following library search paths
   - Renderer APIs
     - Batch Renderer API for rendering Quad and Circles (2D Batch)
 
+  - Text Renderer
+    - API created to render the Text either via Entity or without entity/Camera 
+
 ## Road Map  
 - ikan Engine
 ----------------
@@ -83,9 +86,6 @@ Add the following library search paths
   - Materials
     - Added Material class to handle Shader uniforms as collective buffers
     
-  - Text Renderer
-    - API created to render the Text either via Entity or without entity/Camera 
-
 - ECS Project
 ----------------
   - Editor

@@ -15,6 +15,9 @@
       location = "group:kreator/kreator.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:ecs/ecs.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:ikan/ikan.xcodeproj">
    </FileRef>
 </Workspace>

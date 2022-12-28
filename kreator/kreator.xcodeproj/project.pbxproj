@@ -13,6 +13,7 @@
 		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
 		B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DDC295C83030076A2F9 /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B2BD9DFA295C88CF0076A2F9 /* editor_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BD9DF8295C88CF0076A2F9 /* editor_layer.cpp */; };
 		B2FC40212958B82D00447A1A /* sandbox_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC401F2958B82D00447A1A /* sandbox_layer.cpp */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,8 @@
 		B2BD9DD2295C7D3C0076A2F9 /* libpng.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libpng.dylib; sourceTree = "<group>"; };
 		B2BD9DD3295C7D3C0076A2F9 /* libpng16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libpng16.dylib; sourceTree = "<group>"; };
 		B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = ../ikan/vendors/freetype/libpng/1.6.39/lib/libpng16.16.dylib; sourceTree = "<group>"; };
+		B2BD9DF8295C88CF0076A2F9 /* editor_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = editor_layer.cpp; sourceTree = "<group>"; };
+		B2BD9DF9295C88CF0076A2F9 /* editor_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = editor_layer.hpp; sourceTree = "<group>"; };
 		B2FC401F2958B82D00447A1A /* sandbox_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sandbox_layer.cpp; sourceTree = "<group>"; };
 		B2FC40202958B82D00447A1A /* sandbox_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sandbox_layer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +73,7 @@
 				B2250CD029585E890067C43B /* prefix_header.pch */,
 				B2250CD5295860700067C43B /* entry_point */,
 				B2250CE12958636C0067C43B /* application */,
+				B2BD9DF7295C88B70076A2F9 /* ecs_editor */,
 				B2250CDD295863140067C43B /* sandbox */,
 				B2250CAB29584CE00067C43B /* Products */,
 				B2250CCB29584D1A0067C43B /* Frameworks */,
@@ -145,6 +149,15 @@
 			path = pkgconfig;
 			sourceTree = "<group>";
 		};
+		B2BD9DF7295C88B70076A2F9 /* ecs_editor */ = {
+			isa = PBXGroup;
+			children = (
+				B2BD9DF8295C88CF0076A2F9 /* editor_layer.cpp */,
+				B2BD9DF9295C88CF0076A2F9 /* editor_layer.hpp */,
+			);
+			path = ecs_editor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -202,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2BD9DFA295C88CF0076A2F9 /* editor_layer.cpp in Sources */,
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
 				B2FC40212958B82D00447A1A /* sandbox_layer.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
