@@ -27,19 +27,6 @@ namespace ikan {
     /// NOTE: Load the Font before using any other API In clientw
     static void LoadFreetype(const std::string& font_file_path);
     
-    /// This functions renders the Text in Window using transform matrix
-    /// - Parameters:
-    ///   - view_projection_camera: View projection matrix of Camera
-    ///   - text: Text to be rendereed
-    ///   - transform: Transform of COlor
-    ///   - color: Color of text
-    ///   - entID: Pixel ID of Text
-    static void RenderText(std::string text,
-                           const glm::mat4& view_projection_camera,
-                           const glm::mat4& transform,
-                           const glm::vec4& color,
-                           int32_t entID);
-    
     /// This functions renders the Text in Window using postition and sclae
     /// - Parameters:
     ///   - text: Text to be rendereed
