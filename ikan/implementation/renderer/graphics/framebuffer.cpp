@@ -14,33 +14,33 @@ namespace ikan {
   // FrameBuffer Attachments
   // --------------------------------------------------------------------------
   FrameBuffer::Attachments::Attachments(const FrameBuffer::Attachments& other)
-  : TextureFormats(other.TextureFormats) {
+  : texture_formats(other.texture_formats) {
     IK_CORE_TRACE("Framebuffer Attachment Copied");
   }
   
   FrameBuffer::Attachments::Attachments(FrameBuffer::Attachments&& other)
-  : TextureFormats(other.TextureFormats) {
-    other.TextureFormats.clear();
+  : texture_formats(other.texture_formats) {
+    other.texture_formats.clear();
     IK_CORE_TRACE("Framebuffer Attachment Moved");
   }
   
   FrameBuffer::Attachments&
   FrameBuffer::Attachments::operator=(const FrameBuffer::Attachments& other) {
     IK_CORE_TRACE("Copying (= operator) FrameBuffer::Attachment  ");
-    TextureFormats = other.TextureFormats;
+    texture_formats = other.texture_formats;
     return *this;
   }
   
   FrameBuffer::Attachments&
   FrameBuffer::Attachments::operator=(FrameBuffer::Attachments&& other) {
     IK_CORE_TRACE("Moving (= operator) FrameBuffer::Attachment  ");
-    TextureFormats = other.TextureFormats;
-    other.TextureFormats.clear();
+    texture_formats = other.texture_formats;
+    other.texture_formats.clear();
     return *this;
   }
   
   FrameBuffer::Attachments::Attachments(std::initializer_list<Attachments::TextureFormat> attachments)
-  : TextureFormats(attachments) {
+  : texture_formats(attachments) {
   }
   
   // --------------------------------------------------------------------------
@@ -86,4 +86,19 @@ namespace ikan {
     return *this;
   }
   
+  // --------------------------------------------------------------------------
+  // FrameBuffer API
+  // --------------------------------------------------------------------------
+  std::shared_ptr<FrameBuffer> FrameBuffer::Create(const FrameBuffer::Specification& spec) {
+    switch (Renderer::GetApi()) {
+      case Renderer::Api::OpenGl:
+        return std::make_shared<OpenGLFrameBuffer>(spec);
+      case Renderer::Api::None:
+      default: IK_CORE_ASSERT(false, "Invalid Renderer API (None)"); break;
+    }
+    
+  }
+
 }
+
+// No matching conversion for functional-style cast from 'const FrameBuffer::Specification' to 'std::shared_ptr<OpenGLFrameBuffer>'

@@ -21,7 +21,9 @@ namespace ikan {
     struct Attachments {
       /// Texture format type
       enum class TextureFormat {
-        None = 0
+        None = 0,
+        RGBA8,
+        Depth24Stencil
       };
       
       Attachments(std::initializer_list<TextureFormat> attachments);
@@ -34,7 +36,7 @@ namespace ikan {
       DEFINE_COPY_MOVE_CONSTRUCTORS(Attachments);
       
       // Member veriable
-      std::vector<TextureFormat> TextureFormats;
+      std::vector<TextureFormat> texture_formats;
     };
 
     /// This structure stores the Framebuffer specification
@@ -49,6 +51,18 @@ namespace ikan {
       DEFINE_COPY_MOVE_CONSTRUCTORS(Specification);
     };
     
+    // -------------
+    // Destrcutor
+    // -------------
+    /// This is the defult destructor of interface FrameBuffer
+    virtual ~FrameBuffer() = default;
+
+    // -----------------
+    // Static Function
+    // -----------------
+    /// This static function creates the Framebuffer instance based on the current Supported API
+    /// - Parameter spec: Frame buffer specification
+    static std::shared_ptr<FrameBuffer> Create(const Specification& spec = Specification());
   };
   
 }

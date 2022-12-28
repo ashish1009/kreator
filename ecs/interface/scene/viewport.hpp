@@ -12,6 +12,8 @@ namespace ecs {
   using namespace ikan;
   
   struct Viewport {
+    std::shared_ptr<FrameBuffer> framebuffer;
+
     DELETE_COPY_MOVE_CONSTRUCTORS(Viewport);
 
     // -----------------
