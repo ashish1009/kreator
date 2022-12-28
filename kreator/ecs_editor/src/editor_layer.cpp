@@ -26,14 +26,17 @@ namespace editor {
   }
   
   void EditorLayer::Update(Timestep ts) {
+    Renderer::Clear({0.1, 0.1, 0.1, 1.0});
   }
   
   void EditorLayer::EventHandler(Event& event) {
   }
     
   void EditorLayer::RenderGui() {
+    ImguiAPI::StartDcocking();
     Renderer::Framerate();
     Renderer::RenderStatsGui();
+    ImguiAPI::EndDcocking();
   }
   
 } // namespace sandbox

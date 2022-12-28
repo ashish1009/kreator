@@ -14,6 +14,7 @@
 		B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DDC295C83030076A2F9 /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BD9DFC295C8A320076A2F9 /* editor_layer.cpp */; };
+		B2BD9E09295C8E2F0076A2F9 /* libecs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2BD9E08295C8E2F0076A2F9 /* libecs.a */; };
 		B2FC40212958B82D00447A1A /* sandbox_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC401F2958B82D00447A1A /* sandbox_layer.cpp */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = ../ikan/vendors/freetype/libpng/1.6.39/lib/libpng16.16.dylib; sourceTree = "<group>"; };
 		B2BD9DFC295C8A320076A2F9 /* editor_layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = editor_layer.cpp; sourceTree = "<group>"; };
 		B2BD9DFD295C8A320076A2F9 /* editor_layer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = editor_layer.hpp; sourceTree = "<group>"; };
+		B2BD9E08295C8E2F0076A2F9 /* libecs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libecs.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2FC401F2958B82D00447A1A /* sandbox_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sandbox_layer.cpp; sourceTree = "<group>"; };
 		B2FC40202958B82D00447A1A /* sandbox_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sandbox_layer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2BD9E09295C8E2F0076A2F9 /* libecs.a in Frameworks */,
 				B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */,
 				B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */,
 			);
@@ -91,6 +94,7 @@
 		B2250CCB29584D1A0067C43B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B2BD9E08295C8E2F0076A2F9 /* libecs.a */,
 				B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */,
 				B2BD9DCA295C7D3C0076A2F9 /* lib */,
 				B2584ED8295B826900234714 /* libfreetype.6.dylib */,
@@ -360,6 +364,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}",
 					"${PROJECT_DIR}/../ikan/interface",
+					"${PROJECT_DIR}/../ecs/interface",
 					"${PROJECT_DIR}/../ikan/vendors/spd_log/include",
 					"${PROJECT_DIR}/../ikan/vendors/imgui/imgui",
 					"${PROJECT_DIR}/../ikan/vendors/glm",
@@ -389,6 +394,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}",
 					"${PROJECT_DIR}/../ikan/interface",
+					"${PROJECT_DIR}/../ecs/interface",
 					"${PROJECT_DIR}/../ikan/vendors/spd_log/include",
 					"${PROJECT_DIR}/../ikan/vendors/imgui/imgui",
 					"${PROJECT_DIR}/../ikan/vendors/glm",
