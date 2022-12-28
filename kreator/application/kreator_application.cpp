@@ -6,7 +6,7 @@
 //
 
 #include "sandbox/sandbox_layer.hpp"
-#include "ecs_editor/editor_layer.hpp"
+#include "ecs_editor/src/editor_layer.hpp"
 
 enum class SupportedApplicationType : uint8_t {
   Sandbox, Editor /* Add More with time */

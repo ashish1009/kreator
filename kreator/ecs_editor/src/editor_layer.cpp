@@ -33,7 +33,7 @@ namespace editor {
     
   void EditorLayer::RenderGui() {
     Renderer::Framerate();
-    Renderer::RenderStatsGui(false);
+    Renderer::RenderStatsGui();
   }
   
 } // namespace sandbox
