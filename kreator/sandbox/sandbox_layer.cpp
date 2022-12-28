@@ -21,6 +21,8 @@ namespace sandbox {
   void SandboxLayer::Attach() {
     IK_INFO("Attaching Sandbox Layer instance");
     checkboard_ = Renderer::GetTexture(AM::ClientAsset("textures/checkerboard.png"));
+    TextRenderer::LoadFreetype(AM::ClientAsset("fonts/opensans/OpenSans-Bold.ttf"));
+
   }
   
   void SandboxLayer::Detach() {
@@ -28,6 +30,11 @@ namespace sandbox {
   }
   
   void SandboxLayer::Update(Timestep ts) {
+    glm::mat4 still_camera_projection =  glm::ortho( 0.0f,
+                                                    (float)editor_camera.GetViewportWidth(),
+                                                    0.0f,
+                                                    (float)editor_camera.GetViewportHeight());
+
     editor_camera.Update(ts);
     
     Renderer::ResetStatsEachFrame();
@@ -46,6 +53,12 @@ namespace sandbox {
                             {0.2, 0.4, 0.6, 1.0});
     BatchRenderer::DrawLine({-1000, 0, 0}, {1000, 0, 0}, {0.8, 0.5, 0.3, 1.0});
     BatchRenderer::EndBatch();
+    
+    TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)),
+                             still_camera_projection,
+                             { 5.0f, 5.0f, 0.3f },
+                             { 0.25f, 0.25f },
+                             { 0.1f, 0.1f, 0.1f, 1.0f });
   }
   
   void SandboxLayer::EventHandler(Event& event) {

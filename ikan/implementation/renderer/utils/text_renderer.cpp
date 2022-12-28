@@ -146,4 +146,134 @@ namespace ikan {
     FT_Done_FreeType(ft);
   }
   
+  void TextRenderer::RenderText(std::string text,
+                                const glm::mat4& view_projection_camera,
+                                const glm::mat4& transform,
+                                const glm::vec4& color,
+                                int32_t entID) {
+    // Update camera to shader
+    text_data_->shader->Bind();
+    text_data_->shader->SetUniformMat4("u_ViewProjection", view_projection_camera);
+    
+    // TODO: Rotation of Char is not suppirted Yet
+    // iterate through all characters
+    std::string::const_iterator c;
+    glm::vec3 position, rotation, scale;
+    Math::DecomposeTransform(transform, position, rotation, scale);
+    
+    // Rescaling the text as it render too large in begining
+    scale *= 0.01;
+    
+    for (c = text.begin(); c != text.end(); c++) {
+      std::shared_ptr<CharTexture> ch = text_data_->char_texture_map[*c];
+      
+      float xpos = position.x + ch->GetBearing().x * scale.x;
+      float ypos = position.y - (ch->GetSize().y - ch->GetBearing().y) * scale.y;
+      float zpos = position.z;
+      
+      float w = ch->GetSize().x * scale.x;
+      float h = ch->GetSize().y * scale.y;
+      
+      // update VBO for each character
+      glm::vec3 vertex_position[TextData::VertexForSingleChar] = {
+        { xpos,     ypos + h, zpos },
+        { xpos,     ypos    , zpos },
+        { xpos + w, ypos    , zpos },
+        
+        { xpos,     ypos + h, zpos },
+        { xpos + w, ypos    , zpos },
+        { xpos + w, ypos + h, zpos },
+      };
+      
+      text_data_->vertex_buffer_ptr = text_data_->vertex_buffer_base_ptr;
+      
+      // Each Vertex of Char
+      for (size_t i = 0; i < TextData::VertexForSingleChar; i++) {
+        text_data_->vertex_buffer_ptr->position      = vertex_position[i];
+        text_data_->vertex_buffer_ptr->color         = color;
+        text_data_->vertex_buffer_ptr->texture_coord = text_data_->base_texture_coords[i];
+        text_data_->vertex_buffer_ptr->object_id     = entID;
+        text_data_->vertex_buffer_ptr++;
+      }
+      
+      uint32_t dataSize = (uint32_t)((uint8_t*)text_data_->vertex_buffer_ptr - (uint8_t*)text_data_->vertex_buffer_base_ptr);
+      text_data_->vertex_buffer->SetData(text_data_->vertex_buffer_base_ptr, dataSize);
+      
+      // Render the Scene
+      text_data_->shader->Bind();
+      ch->Bind();
+      Renderer::DrawArrays(text_data_->pipeline, 6);
+      
+      // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
+      position.x += (ch->GetAdvance() >> 6) * scale.x; // bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+      
+      // Renderer Vertex count stat
+      RendererStatistics::Get().vertex_count += TextData::VertexForSingleChar;
+    }
+  }
+  
+  void TextRenderer::RenderText(std::string text,
+                                const glm::mat4& view_projection_camera,
+                                glm::vec3 position,
+                                const glm::vec2& scale_,
+                                const glm::vec4& color) {
+    // Update camera to shader
+    text_data_->shader->Bind();
+    text_data_->shader->SetUniformMat4("u_ViewProjection", view_projection_camera);
+    
+    // iterate through all characters
+    std::string::const_iterator c;
+    
+    // Rescaling the text as it render too large in begining
+    glm::vec2 scale = scale_ * glm::vec2(1.00f);
+    
+    for (c = text.begin(); c != text.end(); c++) {
+      std::shared_ptr<CharTexture> ch = text_data_->char_texture_map[*c];
+      
+      float xpos = position.x + ch->GetBearing().x * scale.x;
+      float ypos = position.y - (ch->GetSize().y - ch->GetBearing().y) * scale.y;
+      float zpos = position.z;
+      
+      float w = ch->GetSize().x * scale.x;
+      float h = ch->GetSize().y * scale.y;
+      
+      // update VBO for each character
+      glm::vec3 vertex_position[TextData::VertexForSingleChar] = {
+        { xpos,     ypos + h, zpos },
+        { xpos,     ypos    , zpos },
+        { xpos + w, ypos    , zpos },
+        
+        { xpos,     ypos + h, zpos },
+        { xpos + w, ypos    , zpos },
+        { xpos + w, ypos + h, zpos },
+      };
+      
+      text_data_->vertex_buffer_ptr = text_data_->vertex_buffer_base_ptr;
+      
+      // Each Vertex of Char
+      for (size_t i = 0; i < TextData::VertexForSingleChar; i++) {
+        text_data_->vertex_buffer_ptr->position      = vertex_position[i];
+        text_data_->vertex_buffer_ptr->color         = color;
+        text_data_->vertex_buffer_ptr->texture_coord = text_data_->base_texture_coords[i];
+        text_data_->vertex_buffer_ptr->object_id     = -1;
+        text_data_->vertex_buffer_ptr++;
+      }
+      
+      uint32_t dataSize = (uint32_t)((uint8_t*)text_data_->vertex_buffer_ptr - (uint8_t*)text_data_->vertex_buffer_base_ptr);
+      text_data_->vertex_buffer->SetData(text_data_->vertex_buffer_base_ptr, dataSize);
+      
+      // Render the Scene
+      text_data_->shader->Bind();
+      ch->Bind();
+      Renderer::DrawArrays(text_data_->pipeline, 6);
+      
+      // now advance cursors for next glyph (note that advance is number of
+      // 1/64 pixels) bitshift by 6 to get value in pixels (2^6 = 64 (divide
+      // amount of 1/64th pixels by 64 to get amount of pixels))
+      position.x += (ch->GetAdvance() >> 6) * scale.x;
+      
+      // Renderer Vertex count stat
+      RendererStatistics::Get().vertex_count += TextData::VertexForSingleChar;
+    }
+  }
 }
