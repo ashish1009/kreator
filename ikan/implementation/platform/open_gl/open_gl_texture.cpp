@@ -74,7 +74,7 @@ namespace ikan {
           IK_CORE_ASSERT(false, "Invalid Format ");
       }
 
-      IDManager::GetTextureId(renderer_id_);
+      IDManager::GetTextureId(&renderer_id_);
       glBindTexture(GL_TEXTURE_2D, renderer_id_);
 
       // Setup min and Mag filter
@@ -130,7 +130,7 @@ namespace ikan {
     texture_data_ = new uint32_t;
     memcpy(texture_data_, data, size_);
     
-    IDManager::GetTextureId(renderer_id_);
+    IDManager::GetTextureId(&renderer_id_);
     glBindTexture(GL_TEXTURE_2D, renderer_id_);
     
     // Setup Texture
@@ -184,7 +184,7 @@ namespace ikan {
       IK_CORE_WARN("  InternalFormat    | {0}", texture_utils::GetFormatNameFromEnum(internal_format_));
       IK_CORE_WARN("  DataFormat        | {0}", texture_utils::GetFormatNameFromEnum(data_format_));
       
-      IDManager::RemoveTextureId(renderer_id_);
+      IDManager::RemoveTextureId(&renderer_id_);
       RendererStatistics::Get().texture_buffer_size -= size_;
     }
   }
@@ -214,7 +214,7 @@ namespace ikan {
                                        [[maybe_unused]] char char_val)
   : size_(size), bearing_(bearing), advance_(advance) {
     // Generate the renderer IF if not exist in map already
-    IDManager::GetTextureId(renderer_id_);
+    IDManager::GetTextureId(&renderer_id_);
     
     glBindTexture(GL_TEXTURE_2D, renderer_id_);
     
@@ -248,7 +248,7 @@ namespace ikan {
   
   /// Open GL Texture Destructor
   OpenGLCharTexture::~OpenGLCharTexture() {
-    IDManager::RemoveTextureId(renderer_id_);
+    IDManager::RemoveTextureId(&renderer_id_);
     RendererStatistics::Get().texture_buffer_size -= data_size_;
   }
   
