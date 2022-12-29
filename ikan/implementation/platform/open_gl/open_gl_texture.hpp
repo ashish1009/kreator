@@ -106,10 +106,14 @@ namespace ikan {
     /// This function returns the Renderer ID
     RendererID GetRendererID() const override;
     /// This function binds the texture
-    void Bind() const override;
+    void Bind(uint32_t slot) const override;
     /// This function unbinds the texture
     void Unbind() const  override;
-    
+    /// This function returns width of texture
+    uint32_t GetWidth() const override;
+    /// This function returns height of texture
+    uint32_t GetHeight() const override;
+
     // ----------
     // Getters
     // ----------
@@ -124,8 +128,9 @@ namespace ikan {
     RendererID renderer_id_;
     glm::ivec2 size_;
     glm::ivec2 bearing_;
-    uint32_t advance_;
+    uint32_t advance_ = 0;
     uint32_t data_size_ = 0;
+    uint32_t width_ = 0, height_ = 0;
   };
   
 }

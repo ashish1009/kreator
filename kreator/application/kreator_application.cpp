@@ -7,6 +7,7 @@
 
 #include "sandbox/sandbox_layer.hpp"
 #include "ecs_editor/src/editor_layer.hpp"
+#include "ray_tracing/src/ray_tracing_layer.hpp"
 
 enum class SupportedApplicationType : uint8_t {
   Sandbox, Editor, RayTracing /* Add More with time */
@@ -26,6 +27,9 @@ public:
       case SupportedApplicationType::Editor :
         PushLayer(std::make_shared<editor::EditorLayer>());
         break;
+      case SupportedApplicationType::RayTracing :
+        PushLayer(std::make_shared<ray_tracing::RayTracingLayer>());
+        break;
     };
   }
   ~KreatorApp() {
@@ -36,7 +40,7 @@ public:
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Set up the type of applicaiton we want to create
-  SupportedApplicationType application_type = SupportedApplicationType::RayTracing;
+  SupportedApplicationType application_type = SupportedApplicationType::Editor;
   
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;

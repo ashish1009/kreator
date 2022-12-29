@@ -231,6 +231,9 @@ namespace ikan {
                  face->glyph->bitmap.buffer
                  );
     
+    width_ = (uint32_t)face->glyph->bitmap.width;
+    height_ = (uint32_t)face->glyph->bitmap.rows;
+    
     // set texture options
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
@@ -252,8 +255,8 @@ namespace ikan {
     RendererStatistics::Get().texture_buffer_size -= data_size_;
   }
   
-  void OpenGLCharTexture::Bind() const {
-    glActiveTexture(GL_TEXTURE0);
+  void OpenGLCharTexture::Bind(uint32_t slot) const {
+    glActiveTexture(GL_TEXTURE0 + slot);
     glBindTexture(GL_TEXTURE_2D, renderer_id_);
   }
   void OpenGLCharTexture::Unbind() const {
@@ -264,5 +267,7 @@ namespace ikan {
   glm::ivec2 OpenGLCharTexture::GetSize() const { return size_; }
   glm::ivec2 OpenGLCharTexture::GetBearing() const { return bearing_; }
   uint32_t OpenGLCharTexture::GetAdvance() const { return advance_; }
-  
+  uint32_t OpenGLCharTexture::GetWidth() const { return (uint32_t)width_;  }
+  uint32_t OpenGLCharTexture::GetHeight() const { return (uint32_t)height_; }
+
 }

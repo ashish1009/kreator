@@ -14,14 +14,13 @@
 
 namespace ikan {
   
-  /// Interface class for Storing Renderer Texture data. Implementation is depending on the Supported Renerer API.
-  class Texture {
+  class TextureCommon {
   public:
     // -------------
     // Destrcutor
     // -------------
     /// Default virtual destructor
-    virtual ~Texture() noexcept = default;
+    virtual ~TextureCommon() = default;
     
     // -------------
     // Fundamentals
@@ -35,12 +34,27 @@ namespace ikan {
     // -------------
     // Getters
     // -------------
+    /// This function returns the Renderer ID of Texture
+    virtual RendererID GetRendererID() const = 0;
     /// This function returns the Width of Texture
     virtual uint32_t GetWidth() const = 0;
     /// This function returns the Height of Texture
     virtual uint32_t GetHeight() const = 0;
-    /// This function returns the Renderer ID of Texture
-    virtual RendererID GetRendererID() const = 0;
+
+  };
+  
+  /// Interface class for Storing Renderer Texture data. Implementation is depending on the Supported Renerer API.
+  class Texture : public TextureCommon {
+  public:
+    // -------------
+    // Destrcutor
+    // -------------
+    /// Default virtual destructor
+    virtual ~Texture() = default;
+    
+    // -------------
+    // Getters
+    // -------------
     /// This function returns the File Path of Texture NOTE: Return "" for white texture
     virtual const std::string& GetfilePath() const = 0;
     /// This function returns name of texture
@@ -71,7 +85,7 @@ namespace ikan {
   };
   
   /// This class is the Interface for Storing Renderer Char Texture data. Implementation is depending on the Supported Renerer API.
-  class CharTexture {
+  class CharTexture : public TextureCommon {
   public:
     // -------------
     // Destrcutor
@@ -80,18 +94,8 @@ namespace ikan {
     virtual ~CharTexture() = default;
     
     // -------------
-    // Fundamentals
-    // -------------
-    /// This function binds the Current Texture to a slot of shader
-    virtual void Bind() const = 0;
-    /// This function unbinds the Current Texture from shader slot
-    virtual void Unbind() const = 0;
-    
-    // -------------
     // Getters
     // -------------
-    /// This function returns the Renderer ID of Texture
-    virtual RendererID GetRendererID() const = 0;
     /// This function returns the Size of Freetpe face
     virtual glm::ivec2 GetSize() const = 0;
     /// This function returns the Bearing of Freetpe face
