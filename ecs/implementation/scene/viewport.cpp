@@ -41,9 +41,6 @@ namespace ecs {
     ImVec2 max_bound = { min_bound.x + window_size.x, min_bound.y + window_size.y };
     bounds[0] = { min_bound.x, min_bound.y };
     bounds[1] = { max_bound.x, max_bound.y };
-    
-    height = bounds[1].y - bounds[0].y;
-    width  = bounds[1].x - bounds[0].x;
   }
   
   bool Viewport::IsFramebufferResized() {
@@ -55,4 +52,37 @@ namespace ecs {
     (spec.width != width or spec.height != height);
   }
 
+  void Viewport::RenderGui() {
+    ImGui::Begin("Viewport Data",nullptr, ImGuiWindowFlags_NoScrollbar);
+    ImGui::PushID("Viewport Data");
+
+    ImGui::Columns(5);
+    ImGui::SetColumnWidth(0, 90);
+    ImGui::Text("%d x %d", mouse_pos_x, mouse_pos_y);
+    ImGui::NextColumn();
+    
+    ImGui::SetColumnWidth(1, 90);
+    if (focused)
+      ImGui::Text("Focused");
+    ImGui::NextColumn();
+    
+    ImGui::SetColumnWidth(2, 90);
+    if (hovered)
+      ImGui::Text("Hovered");
+    ImGui::NextColumn();
+
+    ImGui::SetColumnWidth(3, 90);
+    ImGui::Text("%d x %d", width, height);
+    ImGui::NextColumn();
+
+    ImGui::SetColumnWidth(4, 100);
+    auto color = framebuffer->GetSpecification().color;
+    if (ImGui::ColorEdit4("", &color.x, ImGuiColorEditFlags_NoInputs)) {
+      framebuffer->UpdateSpecificationColor(color);
+    }
+    ImGui::Columns(1);
+
+    ImGui::PopID();
+    ImGui::End();
+  }
 }

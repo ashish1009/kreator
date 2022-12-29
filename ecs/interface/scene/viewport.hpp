@@ -31,7 +31,7 @@ namespace ecs {
     // -----------------
     // Member function
     // -----------------
-    Viewport(const glm::vec4& fb_color = glm::vec4(0.0f));
+    Viewport(const glm::vec4& fb_color = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
     
     /// This function updates the Mouse position inside the viewport. Should be called each frame to get mouse position precisely
     void UpdateMousePos();
@@ -39,6 +39,8 @@ namespace ecs {
     void UpdateBound();
     /// This function returns true if viewport size is not same as framebuffer
     bool IsFramebufferResized();
+    /// This function render the viewport information in gui
+    void RenderGui();
   };
   
 }

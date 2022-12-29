@@ -60,11 +60,15 @@ std::unique_ptr<ikan::Application> CreateApplication() {
     case SupportedApplicationType::Sandbox :
       application_spec.name = "Sandbox";
       application_spec.window_specification.title = "Sandbox";
+      application_spec.window_specification.width = 1200;
+      application_spec.window_specification.height = 800;
       application_spec.client_asset_path = "../../../kreator/sandbox/assets/";
       break;
     case SupportedApplicationType::Editor :
       application_spec.name = "Kreator";
       application_spec.window_specification.title = "Kreator";
+      application_spec.window_specification.width = 1600;
+      application_spec.window_specification.height = 900;
       application_spec.client_asset_path = "../../../kreator/ecs_editor/assets/";
       break;
 
