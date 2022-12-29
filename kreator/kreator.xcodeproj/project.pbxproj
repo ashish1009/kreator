@@ -21,7 +21,6 @@
 		B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DDC295C83030076A2F9 /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BD9DFC295C8A320076A2F9 /* editor_layer.cpp */; };
-		B2BD9E09295C8E2F0076A2F9 /* libecs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2BD9E08295C8E2F0076A2F9 /* libecs.a */; };
 		B2FC40212958B82D00447A1A /* sandbox_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC401F2958B82D00447A1A /* sandbox_layer.cpp */; };
 /* End PBXBuildFile section */
 
@@ -79,7 +78,6 @@
 				B251B3D5295DC17C00508210 /* libpugixml.1.13.dylib in Frameworks */,
 				B251B3D2295DC0C300508210 /* libminizip.1.dylib in Frameworks */,
 				B251B3CF295DBFCA00508210 /* libassimp.5.2.4.dylib in Frameworks */,
-				B2BD9E09295C8E2F0076A2F9 /* libecs.a in Frameworks */,
 				B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */,
 				B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */,
 			);

@@ -10,7 +10,6 @@
 namespace editor {
   
   using namespace ikan;
-  using namespace ecs;
   
   class EditorLayer : public Layer {
   public:

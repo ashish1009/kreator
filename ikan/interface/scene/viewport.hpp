@@ -7,10 +7,10 @@
 
 #pragma once
 
-namespace ecs {
-  
-  using namespace ikan;
-  
+#include "renderer/graphics/framebuffer.hpp"
+
+namespace ikan {
+
   struct Viewport {
     bool focused = false;
     bool hovered = false;

@@ -8,16 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B2BD9DF6295C87B80076A2F9 /* prefix_header.pch in Headers */ = {isa = PBXBuildFile; fileRef = B2BD9DF5295C87B80076A2F9 /* prefix_header.pch */; };
-		B2BD9E06295C8E210076A2F9 /* viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BD9E04295C8E210076A2F9 /* viewport.cpp */; };
-		B2BD9E07295C8E210076A2F9 /* viewport.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BD9E05295C8E210076A2F9 /* viewport.hpp */; };
 		B2BD9E0B295C8E720076A2F9 /* ecs_headers.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BD9E0A295C8E720076A2F9 /* ecs_headers.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B2BD9DE7295C84E70076A2F9 /* libecs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libecs.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2BD9DF5295C87B80076A2F9 /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
-		B2BD9E04295C8E210076A2F9 /* viewport.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = viewport.cpp; sourceTree = "<group>"; };
-		B2BD9E05295C8E210076A2F9 /* viewport.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = viewport.hpp; sourceTree = "<group>"; };
 		B2BD9E0A295C8E720076A2F9 /* ecs_headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ecs_headers.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -54,7 +50,6 @@
 			isa = PBXGroup;
 			children = (
 				B2BD9E0A295C8E720076A2F9 /* ecs_headers.h */,
-				B2BD9E02295C8E0B0076A2F9 /* scene */,
 			);
 			path = interface;
 			sourceTree = "<group>";
@@ -62,25 +57,8 @@
 		B2BD9E01295C8E020076A2F9 /* implementation */ = {
 			isa = PBXGroup;
 			children = (
-				B2BD9E03295C8E110076A2F9 /* scene */,
 			);
 			path = implementation;
-			sourceTree = "<group>";
-		};
-		B2BD9E02295C8E0B0076A2F9 /* scene */ = {
-			isa = PBXGroup;
-			children = (
-				B2BD9E05295C8E210076A2F9 /* viewport.hpp */,
-			);
-			path = scene;
-			sourceTree = "<group>";
-		};
-		B2BD9E03295C8E110076A2F9 /* scene */ = {
-			isa = PBXGroup;
-			children = (
-				B2BD9E04295C8E210076A2F9 /* viewport.cpp */,
-			);
-			path = scene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -90,7 +68,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2BD9E07295C8E210076A2F9 /* viewport.hpp in Headers */,
 				B2BD9DF6295C87B80076A2F9 /* prefix_header.pch in Headers */,
 				B2BD9E0B295C8E720076A2F9 /* ecs_headers.h in Headers */,
 			);
@@ -153,7 +130,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2BD9E06295C8E210076A2F9 /* viewport.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

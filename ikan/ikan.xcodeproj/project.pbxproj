@@ -27,6 +27,8 @@
 		B2250D042958751E0067C43B /* core_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250D032958751E0067C43B /* core_logger.h */; };
 		B227F37329597F2B0055D871 /* open_gl_renderer_id_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B227F37129597F2B0055D871 /* open_gl_renderer_id_manager.cpp */; };
 		B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B227F37229597F2B0055D871 /* open_gl_renderer_id_manager.hpp */; };
+		B251B3F8295E15CA00508210 /* viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B251B3F7295E15CA00508210 /* viewport.cpp */; };
+		B251B3FA295E15D300508210 /* viewport.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B251B3F9295E15D300508210 /* viewport.hpp */; };
 		B2581116295AD76B00B0EDA7 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2581114295AD76B00B0EDA7 /* camera.cpp */; };
 		B2581117295AD76B00B0EDA7 /* camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2581115295AD76B00B0EDA7 /* camera.hpp */; };
 		B258111A295ADC2C00B0EDA7 /* editor_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */; };
@@ -159,6 +161,8 @@
 		B227F37129597F2B0055D871 /* open_gl_renderer_id_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_renderer_id_manager.cpp; sourceTree = "<group>"; };
 		B227F37229597F2B0055D871 /* open_gl_renderer_id_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_renderer_id_manager.hpp; sourceTree = "<group>"; };
 		B227F38B2959DBF40055D871 /* single_texture_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = single_texture_shader.glsl; sourceTree = "<group>"; };
+		B251B3F7295E15CA00508210 /* viewport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = viewport.cpp; sourceTree = "<group>"; };
+		B251B3F9295E15D300508210 /* viewport.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = viewport.hpp; sourceTree = "<group>"; };
 		B2581114295AD76B00B0EDA7 /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
 		B2581115295AD76B00B0EDA7 /* camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
 		B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = editor_camera.cpp; sourceTree = "<group>"; wrapsLines = 0; };
@@ -296,6 +300,7 @@
 				B2FC3E852958796F00447A1A /* ikan_headers.h */,
 				B2250CD82958616B0067C43B /* core */,
 				B2FC400E2958B00B00447A1A /* renderer */,
+				B251B3EE295E155A00508210 /* scene */,
 				B2C0D8062959E151003F168B /* editor */,
 				B2B6CDB32958D89D00AE609E /* imgui */,
 			);
@@ -307,6 +312,7 @@
 			children = (
 				B2250CE42958639D0067C43B /* core */,
 				B2FC400F2958B01900447A1A /* renderer */,
+				B251B3F2295E156A00508210 /* scene */,
 				B2C0D8042959E13C003F168B /* editor */,
 				B2B6CDB22958D88C00AE609E /* imgui */,
 				B2FC40182958B63E00447A1A /* platform */,
@@ -387,6 +393,22 @@
 				B2FC3E872958826C00447A1A /* profiler.cpp */,
 			);
 			path = debug;
+			sourceTree = "<group>";
+		};
+		B251B3EE295E155A00508210 /* scene */ = {
+			isa = PBXGroup;
+			children = (
+				B251B3F9295E15D300508210 /* viewport.hpp */,
+			);
+			path = scene;
+			sourceTree = "<group>";
+		};
+		B251B3F2295E156A00508210 /* scene */ = {
+			isa = PBXGroup;
+			children = (
+				B251B3F7295E15CA00508210 /* viewport.cpp */,
+			);
+			path = scene;
 			sourceTree = "<group>";
 		};
 		B2584ECB295B7B2B00234714 /* math */ = {
@@ -650,6 +672,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B251B3FA295E15D300508210 /* viewport.hpp in Headers */,
 				B2FC3EB42958892200447A1A /* layer_stack.hpp in Headers */,
 				B2BD9E0F295CA7560076A2F9 /* open_gl_framebuffer.hpp in Headers */,
 				B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */,
@@ -812,6 +835,7 @@
 				B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */,
 				B2584ECF295B7B3E00234714 /* maths.cpp in Sources */,
 				B216B25C295B2F7400C05392 /* texture.cpp in Sources */,
+				B251B3F8295E15CA00508210 /* viewport.cpp in Sources */,
 				B2C0D8092959E161003F168B /* property_grid.cpp in Sources */,
 				B216B265295B516A00C05392 /* batch_2d_renderer.cpp in Sources */,
 				B2BD9E15295CA7610076A2F9 /* framebuffer.cpp in Sources */,
