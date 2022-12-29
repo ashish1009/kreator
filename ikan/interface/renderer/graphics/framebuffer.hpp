@@ -56,6 +56,35 @@ namespace ikan {
     // -------------
     /// This is the defult destructor of interface FrameBuffer
     virtual ~FrameBuffer() = default;
+    
+    // -------------
+    // Fundamentals
+    // -------------
+    /// This function binds the current FrameBuffer to the renderer
+    virtual void Bind() const = 0;
+    /// This function unbinds the current FrameBuffer from the renderer
+    virtual void Unbind() const = 0;
+    /// This function resizes the Framebuffer
+    /// - Parameters:
+    ///   - width: New width of FB
+    ///   - height: New height of FB
+    virtual void Resize(uint32_t width, uint32_t height) = 0;
+    
+    /// This funciton updates the specification color
+    /// - Parameter color: color
+    virtual void UpdateSpecificationColor(const glm::vec4& color) = 0;
+    
+    // -------------
+    // Getters
+    // -------------
+    /// This function returns the Frame buffer specification
+    virtual const Specification& GetSpecification() const = 0;
+    /// This function returns the Renderer ID
+    virtual RendererID GetRendererId() const = 0;
+    /// This function returns the Depth Attachment ID
+    virtual RendererID GetDepthAttachmentId() const = 0;
+    /// This function returns the Color Attachment iDs
+    virtual const std::vector<RendererID>& GetColorAttachmentIds() const = 0;
 
     // -----------------
     // Static Function

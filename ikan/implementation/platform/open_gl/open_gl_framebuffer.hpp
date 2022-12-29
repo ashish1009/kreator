@@ -27,6 +27,36 @@ namespace ikan {
     
     DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLFrameBuffer);
     
+    // ----------------
+    // Fundamentals
+    // ----------------
+    /// This function binds the current FrameBuffer to the renderer
+    void Bind() const override;
+    /// This function unbinds the current FrameBuffer from the renderer
+    void Unbind() const override;
+    
+    /// This function resizes the Framebuffer
+    /// - parameters:
+    ///   - width: New width of FB
+    ///   - height: New height of FB
+    void Resize(uint32_t width, uint32_t height) override;
+    
+    /// This funciton updates the specification color
+    /// - Parameter color: color
+    void UpdateSpecificationColor(const glm::vec4& color) override;
+    
+    // ------------
+    // Getters
+    // ------------
+    /// This function returns the Frame buffer specification
+    const Specification& GetSpecification() const override;
+    /// This function returns the Renderer ID
+    RendererID GetRendererId() const override;
+    /// This function returns the Depth Attachment ID
+    RendererID GetDepthAttachmentId() const override;
+    /// This function returns the Color Attachment iDs
+    const std::vector<RendererID>& GetColorAttachmentIds() const override;
+    
   private:
     // ------------------
     // Member Functions

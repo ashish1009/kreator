@@ -271,4 +271,40 @@ namespace ikan {
     }
   }
   
+  void OpenGLFrameBuffer::Bind() const {
+    glBindFramebuffer(GL_FRAMEBUFFER, renderer_id_);
+    Renderer::SetViewport(specification_.width, specification_.height);
+  }
+  
+  void OpenGLFrameBuffer::Unbind() const {
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+  }
+  
+  void OpenGLFrameBuffer::Resize(uint32_t width, uint32_t height) {
+    specification_.width  = width;
+    specification_.height = height;
+    
+    IK_CORE_DEBUG("Resizing the Framebuffer");
+    Invalidate();
+    
+    Renderer::SetViewport(specification_.width, specification_.height);
+  }
+  
+  const FrameBuffer::Specification& OpenGLFrameBuffer::GetSpecification() const {
+    return specification_;
+  }
+  RendererID OpenGLFrameBuffer::GetRendererId() const {
+    return renderer_id_;
+  }
+  RendererID OpenGLFrameBuffer::GetDepthAttachmentId() const {
+    return depth_attachment_id_;
+  }
+  const std::vector<RendererID>& OpenGLFrameBuffer::GetColorAttachmentIds() const {
+    return color_attachment_ids_;
+  }
+  
+  void OpenGLFrameBuffer::UpdateSpecificationColor(const glm::vec4& color) {
+    specification_.color = color;
+  }
+  
 }
