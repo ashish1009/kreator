@@ -38,6 +38,7 @@ namespace ikan {
     glDeleteTextures(1, &renderer_id);
   }
   void OpenGlRendererIdManager::RemoveFramebufferId(RendererID &renderer_id) {
+    glDeleteFramebuffers(1, &renderer_id);
   }
 
 }

@@ -177,9 +177,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B2250CB129584CE00067C43B /* Build configuration list for PBXNativeTarget "kreator" */;
 			buildPhases = (
+				B2250CA829584CE00067C43B /* CopyFiles */,
 				B2250CA629584CE00067C43B /* Sources */,
 				B2250CA729584CE00067C43B /* Frameworks */,
-				B2250CA829584CE00067C43B /* CopyFiles */,
 			);
 			buildRules = (
 			);

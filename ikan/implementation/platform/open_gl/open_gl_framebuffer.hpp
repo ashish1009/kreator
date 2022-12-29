@@ -27,6 +27,13 @@ namespace ikan {
     
     DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLFrameBuffer);
     
+  private:
+    // ------------------
+    // Member Functions
+    // ------------------
+    /// This function invalidate the frame buffer on creation on resize
+    void Invalidate();
+
     // ------------------
     // Member variables
     // ------------------
@@ -36,6 +43,10 @@ namespace ikan {
     // Stores the attachments of Framebuffer
     std::vector<Attachments::TextureFormat> color_specifications_;
     Attachments::TextureFormat depth_specification_ = Attachments::TextureFormat::None;
+    
+    // Stores the attachment ID for both color and depth
+    std::vector<RendererID> color_attachment_ids_;
+    RendererID depth_attachment_id_ = 0;
   };
   
 }
