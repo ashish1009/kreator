@@ -23,6 +23,7 @@ namespace ikan {
     glGenTextures(count, renderer_id);
   }
   void OpenGlRendererIdManager::GetFramebufferId(RendererID &renderer_id) {
+    glGenFramebuffers(1, &renderer_id);
   }
 
   void OpenGlRendererIdManager::RemoveShaderId(RendererID &renderer_id) {
