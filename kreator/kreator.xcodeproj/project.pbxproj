@@ -15,6 +15,7 @@
 		B251B3D3295DC0C700508210 /* libminizip.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B251B3D1295DC0C200508210 /* libminizip.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B251B3D5295DC17C00508210 /* libpugixml.1.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B251B3D4295DC17C00508210 /* libpugixml.1.13.dylib */; };
 		B251B3D6295DC18300508210 /* libpugixml.1.13.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B251B3D4295DC17C00508210 /* libpugixml.1.13.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B251B3EC295E143C00508210 /* ray_tracing_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B251B3EA295E143C00508210 /* ray_tracing_layer.cpp */; };
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
 		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
 		B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -50,6 +51,8 @@
 		B251B3CE295DBFCA00508210 /* libassimp.5.2.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.5.2.4.dylib; path = ../ecs/vendors/assimp/lib/libassimp.5.2.4.dylib; sourceTree = "<group>"; };
 		B251B3D1295DC0C200508210 /* libminizip.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libminizip.1.dylib; path = ../ecs/vendors/assimp/lib/libminizip.1.dylib; sourceTree = "<group>"; };
 		B251B3D4295DC17C00508210 /* libpugixml.1.13.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpugixml.1.13.dylib; path = ../ecs/vendors/assimp/lib/libpugixml.1.13.dylib; sourceTree = "<group>"; };
+		B251B3EA295E143C00508210 /* ray_tracing_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ray_tracing_layer.cpp; sourceTree = "<group>"; };
+		B251B3EB295E143C00508210 /* ray_tracing_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ray_tracing_layer.hpp; sourceTree = "<group>"; };
 		B2581110295ACCA500B0EDA7 /* libikan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libikan.a; path = ../../ikan_ws/build/products/Debug/libikan.a; sourceTree = "<group>"; };
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2BD9DCB295C7D3C0076A2F9 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.dylib; sourceTree = "<group>"; };
@@ -91,6 +94,7 @@
 				B2250CD029585E890067C43B /* prefix_header.pch */,
 				B2250CD5295860700067C43B /* entry_point */,
 				B2250CE12958636C0067C43B /* application */,
+				B251B3E9295E13EE00508210 /* ray_tracing */,
 				B2BD9DF7295C88B70076A2F9 /* ecs_editor */,
 				B2250CDD295863140067C43B /* sandbox */,
 				B2250CAB29584CE00067C43B /* Products */,
@@ -145,6 +149,23 @@
 				B2250CE2295863840067C43B /* kreator_application.cpp */,
 			);
 			path = application;
+			sourceTree = "<group>";
+		};
+		B251B3E9295E13EE00508210 /* ray_tracing */ = {
+			isa = PBXGroup;
+			children = (
+				B251B3ED295E144900508210 /* src */,
+			);
+			path = ray_tracing;
+			sourceTree = "<group>";
+		};
+		B251B3ED295E144900508210 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B251B3EA295E143C00508210 /* ray_tracing_layer.cpp */,
+				B251B3EB295E143C00508210 /* ray_tracing_layer.hpp */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		B2BD9DCA295C7D3C0076A2F9 /* lib */ = {
@@ -248,6 +269,7 @@
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
 				B2FC40212958B82D00447A1A /* sandbox_layer.cpp in Sources */,
 				B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */,
+				B251B3EC295E143C00508210 /* ray_tracing_layer.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

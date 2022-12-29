@@ -9,7 +9,7 @@
 #include "ecs_editor/src/editor_layer.hpp"
 
 enum class SupportedApplicationType : uint8_t {
-  Sandbox, Editor /* Add More with time */
+  Sandbox, Editor, RayTracing /* Add More with time */
 };
 
 class KreatorApp : public ikan::Application {
@@ -36,7 +36,7 @@ public:
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Set up the type of applicaiton we want to create
-  SupportedApplicationType application_type = SupportedApplicationType::Editor;
+  SupportedApplicationType application_type = SupportedApplicationType::RayTracing;
   
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;
@@ -70,6 +70,13 @@ std::unique_ptr<ikan::Application> CreateApplication() {
       application_spec.window_specification.width = 1600;
       application_spec.window_specification.height = 900;
       application_spec.client_asset_path = "../../../kreator/ecs_editor/assets/";
+      break;
+    case SupportedApplicationType::RayTracing :
+      application_spec.name = "RayTracing";
+      application_spec.window_specification.title = "RayTracing";
+      application_spec.window_specification.width = 600;
+      application_spec.window_specification.height = 600;
+      application_spec.client_asset_path = "../../../kreator/RayTracing/assets/";
       break;
 
   };
