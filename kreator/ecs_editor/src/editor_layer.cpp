@@ -26,8 +26,16 @@ namespace editor {
   }
   
   void EditorLayer::Update(Timestep ts) {
+    if (viewport_.IsFramebufferResized()) {
+      viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
+    }
+    Renderer::ResetStatsEachFrame();
+    
     viewport_.framebuffer->Bind();
+
     Renderer::Clear({0.1, 0.1, 0.1, 1.0});
+    viewport_.UpdateMousePos();
+
     viewport_.framebuffer->Unbind();
   }
   
@@ -44,6 +52,9 @@ namespace editor {
     ImGui::Begin("Kreator Viewport");
     ImGui::PushID("Kreator Viewport");
     
+    viewport_.focused = ImGui::IsWindowFocused();
+    viewport_.hovered = ImGui::IsWindowHovered();
+
     ImVec2 viewport_panel_size = ImGui::GetContentRegionAvail();
     size_t textureID = viewport_.framebuffer->GetColorAttachmentIds().at(0);
     ImGui::Image((void*)textureID,
@@ -51,8 +62,9 @@ namespace editor {
                  ImVec2{ 0, 1 },
                  ImVec2{ 1, 0 });
     
+    viewport_.UpdateBound();
+
     ImGui::PopStyleVar();
-        
     ImGui::PopID();
     ImGui::End();
     

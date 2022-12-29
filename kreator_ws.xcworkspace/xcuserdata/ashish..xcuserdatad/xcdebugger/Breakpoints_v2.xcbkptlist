@@ -62,8 +62,8 @@
             filePath = "kreator/ecs_editor/src/editor_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "EditorLayer::RenderGui()"
             landmarkType = "7">
          </BreakpointContent>
