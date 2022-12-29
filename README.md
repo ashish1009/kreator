@@ -77,6 +77,11 @@ Add the following library search paths
   - Text Renderer
     - API created to render the Text either via Entity or without entity/Camera 
 
+- ECS Project
+----------------
+  - Scene
+    - Viewport to load and set the viewport
+
 ## Road Map  
 - ikan Engine
 ----------------
@@ -100,7 +105,6 @@ Add the following library search paths
     - UUID
 
   - Scene
-    - Viewport to load and set the viewport
     - Entity Component System to make User friendly UI
     - Serialise and Deserialize the scene
     - Entity class to store the component of entity
