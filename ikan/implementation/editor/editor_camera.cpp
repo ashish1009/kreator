@@ -83,7 +83,7 @@ namespace ikan {
       }
       
       // Rotation
-      if (delta.x != 0.0f || delta.y != 0.0f) {
+      if (delta.x != 0.0f or delta.y != 0.0f) {
         MouseRotate(delta);
         moved = true;
       }

@@ -21,6 +21,8 @@ namespace ikan {
 
 /// This MACRO Shifts the LSB bit of number 1 at position x
 #define BIT(x) (1 << x)
+/// This MACRO convert x in string
+#define ToString(x) #x
 
 /// This MACRO Deletes the Constructors (Default, Copy and Move ) and Operator = (Copy and Move)
 /// for any class to make pure static class
