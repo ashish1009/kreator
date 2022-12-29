@@ -269,5 +269,20 @@ namespace ikan {
   uint32_t OpenGLCharTexture::GetAdvance() const { return advance_; }
   uint32_t OpenGLCharTexture::GetWidth() const { return (uint32_t)width_;  }
   uint32_t OpenGLCharTexture::GetHeight() const { return (uint32_t)height_; }
+  
+  
+  // -------------------------------------------------------------------------
+  // Image API
+  // -------------------------------------------------------------------------
+  OpenGLImage::OpenGLImage(uint32_t width,
+                           uint32_t height,
+                           TextureFormat format,
+                           void* data) {
+    IK_CORE_DEBUG("Creating Open GL Image ... ");
+  }
+
+  OpenGLImage::~OpenGLImage() noexcept {
+    IK_CORE_WARN("Destroying Open GL Image: !!! ");
+  }
 
 }

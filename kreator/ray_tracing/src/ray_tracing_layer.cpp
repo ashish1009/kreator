@@ -19,6 +19,7 @@ namespace ray_tracing {
   
   void RayTracingLayer::Attach() {
     IK_INFO("Attaching RayTracing Layer instance");
+    image_ = Image::Create(800, 800, TextureFormat::RGBA);
   }
   
   void RayTracingLayer::Detach() {

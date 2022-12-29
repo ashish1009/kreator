@@ -36,6 +36,7 @@ namespace ray_tracing {
     void EventHandler(Event& event) override;
     
   private:
+    std::shared_ptr<Image> image_;
   };
   
 }

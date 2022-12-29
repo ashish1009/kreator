@@ -133,4 +133,26 @@ namespace ikan {
     uint32_t width_ = 0, height_ = 0;
   };
   
+  class OpenGLImage : public Image {
+  public:
+    // ------------------------------
+    // Constructors and Destructors
+    // ------------------------------
+    /// This Constructor create the empty Open GL texture with user data
+    /// - Parameters:
+    ///   - width: widht of texture
+    ///   - height: height of texture
+    ///   - format: format of texture
+    ///   - data: data to load in texture
+    OpenGLImage(uint32_t width,
+                uint32_t height,
+                TextureFormat format,
+                void* data);
+    
+    /// Default destructor that delete the texture
+    virtual ~OpenGLImage() noexcept;
+    
+  private:
+  };
+  
 }

@@ -54,8 +54,23 @@ namespace ikan {
         IK_CORE_ASSERT(false, "Invalid Renderer API (None)"); break;
     }
   }
-
   
+  // --------------------------------------------------------------------------
+  // Image API
+  // --------------------------------------------------------------------------
+  std::shared_ptr<Image> Image::Create(uint32_t width,
+                                       uint32_t height,
+                                       TextureFormat format,
+                                       void* data) {
+    switch (Renderer::GetApi()) {
+      case Renderer::Api::OpenGl:
+        return std::make_shared<OpenGLImage>(width, height, format, data);
+      case Renderer::Api::None:
+      default:
+        IK_CORE_ASSERT(false, "Invalid Renderer API (None)"); break;
+    }
+  }
+
   // --------------------------------------------------------------------------
   // Texture Library
   // --------------------------------------------------------------------------
@@ -83,6 +98,5 @@ namespace ikan {
       it->second.reset();
     }
   }
-
 
 }
