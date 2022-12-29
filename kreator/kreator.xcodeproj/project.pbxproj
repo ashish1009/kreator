@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
+		B251B3CF295DBFCA00508210 /* libassimp.5.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B251B3CE295DBFCA00508210 /* libassimp.5.2.4.dylib */; };
+		B251B3D0295DBFF300508210 /* libassimp.5.2.4.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B251B3CE295DBFCA00508210 /* libassimp.5.2.4.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B251B3D2295DC0C300508210 /* libminizip.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B251B3D1295DC0C200508210 /* libminizip.1.dylib */; };
+		B251B3D3295DC0C700508210 /* libminizip.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B251B3D1295DC0C200508210 /* libminizip.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B251B3D5295DC17C00508210 /* libpugixml.1.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B251B3D4295DC17C00508210 /* libpugixml.1.13.dylib */; };
+		B251B3D6295DC18300508210 /* libpugixml.1.13.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B251B3D4295DC17C00508210 /* libpugixml.1.13.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
 		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
 		B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -25,6 +31,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				B251B3D6295DC18300508210 /* libpugixml.1.13.dylib in CopyFiles */,
+				B251B3D3295DC0C700508210 /* libminizip.1.dylib in CopyFiles */,
+				B251B3D0295DBFF300508210 /* libassimp.5.2.4.dylib in CopyFiles */,
 				B2BD9DDC295C83030076A2F9 /* libpng16.16.dylib in CopyFiles */,
 				B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */,
 			);
@@ -38,6 +47,9 @@
 		B2250CD029585E890067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		B2250CD6295860BC0067C43B /* entry_point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
 		B2250CE2295863840067C43B /* kreator_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kreator_application.cpp; sourceTree = "<group>"; };
+		B251B3CE295DBFCA00508210 /* libassimp.5.2.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.5.2.4.dylib; path = ../ecs/vendors/assimp/lib/libassimp.5.2.4.dylib; sourceTree = "<group>"; };
+		B251B3D1295DC0C200508210 /* libminizip.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libminizip.1.dylib; path = ../ecs/vendors/assimp/lib/libminizip.1.dylib; sourceTree = "<group>"; };
+		B251B3D4295DC17C00508210 /* libpugixml.1.13.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpugixml.1.13.dylib; path = ../ecs/vendors/assimp/lib/libpugixml.1.13.dylib; sourceTree = "<group>"; };
 		B2581110295ACCA500B0EDA7 /* libikan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libikan.a; path = ../../ikan_ws/build/products/Debug/libikan.a; sourceTree = "<group>"; };
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2BD9DCB295C7D3C0076A2F9 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.dylib; sourceTree = "<group>"; };
@@ -61,6 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B251B3D5295DC17C00508210 /* libpugixml.1.13.dylib in Frameworks */,
+				B251B3D2295DC0C300508210 /* libminizip.1.dylib in Frameworks */,
+				B251B3CF295DBFCA00508210 /* libassimp.5.2.4.dylib in Frameworks */,
 				B2BD9E09295C8E2F0076A2F9 /* libecs.a in Frameworks */,
 				B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */,
 				B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */,
@@ -94,6 +109,9 @@
 		B2250CCB29584D1A0067C43B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B251B3D4295DC17C00508210 /* libpugixml.1.13.dylib */,
+				B251B3D1295DC0C200508210 /* libminizip.1.dylib */,
+				B251B3CE295DBFCA00508210 /* libassimp.5.2.4.dylib */,
 				B2BD9E08295C8E2F0076A2F9 /* libecs.a */,
 				B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */,
 				B2BD9DCA295C7D3C0076A2F9 /* lib */,
@@ -375,6 +393,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../ikan/vendors/freetype/lib",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/libpng/1.6.39/lib",
+					"${PROJECT_DIR}/../ecs/vendors/assimp/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -405,6 +424,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../ikan/vendors/freetype/lib",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/libpng/1.6.39/lib",
+					"${PROJECT_DIR}/../ecs/vendors/assimp/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
