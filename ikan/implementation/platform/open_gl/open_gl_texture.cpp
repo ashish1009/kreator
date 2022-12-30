@@ -302,6 +302,34 @@ namespace ikan {
 
   OpenGLImage::~OpenGLImage() noexcept {
     IK_CORE_WARN("Destroying Open GL Image: !!! ");
+    RendererStatistics::Get().texture_buffer_size -= size_;
   }
+  
+  void OpenGLImage::SetData(void *data) {
+    glTexImage2D(
+                 GL_TEXTURE_2D,
+                 0, // Level
+                 internal_format_,
+                 width_,
+                 height_,
+                 0, // Border
+                 data_format_,
+                 GL_UNSIGNED_BYTE,
+                 data
+                 );
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    size_ = width_ * height_ * sizeof(uint32_t);
+    // TODO: Decide later
+//    RendererStatistics::Get().texture_buffer_size -= size_;
+  }
+
+  RendererID OpenGLImage::GetRendererID() const { return renderer_id_;}
+  uint32_t OpenGLImage::GetSize() const { return size_; }
+  uint32_t OpenGLImage::GetWidth() const { return (uint32_t)width_;  }
+  uint32_t OpenGLImage::GetHeight() const { return (uint32_t)height_; }
 
 }

@@ -159,7 +159,26 @@ namespace ikan {
     // -------------
     /// Default virtual destructor
     virtual ~Image() = default;
+
+    // -------------
+    // Fundamentals
+    // -------------
+    /// This function loads the data in GPU
+    /// - Parameter data: data to be loaded
+    virtual void SetData(void* data) = 0;
     
+    // -------------
+    // Getters
+    // -------------
+    /// This function returns the Renderer ID of Texture
+    virtual RendererID GetRendererID() const = 0;
+    /// This function returns the Width of Texture
+    virtual uint32_t GetWidth() const = 0;
+    /// This function returns the Height of Texture
+    virtual uint32_t GetHeight() const = 0;
+    /// This function returns the Size of Freetpe face
+    virtual uint32_t GetSize() const = 0;
+
     /// This static functions creates the Texture without data of size
     /// - Parameters:
     ///   - width: width of image

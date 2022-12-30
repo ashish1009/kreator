@@ -103,20 +103,20 @@ namespace ikan {
     // -------------
     // Fundamentals
     // -------------
-    /// This function returns the Renderer ID
-    RendererID GetRendererID() const override;
     /// This function binds the texture
     void Bind(uint32_t slot) const override;
     /// This function unbinds the texture
     void Unbind() const  override;
-    /// This function returns width of texture
-    uint32_t GetWidth() const override;
-    /// This function returns height of texture
-    uint32_t GetHeight() const override;
 
     // ----------
     // Getters
     // ----------
+    /// This function returns the Renderer ID
+    RendererID GetRendererID() const override;
+    /// This function returns width of texture
+    uint32_t GetWidth() const override;
+    /// This function returns height of texture
+    uint32_t GetHeight() const override;
     /// This function returns the size
     glm::ivec2 GetSize() const override;
     /// This function returns the bearing
@@ -152,6 +152,25 @@ namespace ikan {
     /// Default destructor that delete the texture
     virtual ~OpenGLImage() noexcept;
     
+    // -------------
+    // Fundamentals
+    // -------------
+    /// This function loads the data in GPU
+    /// - Parameter data: data to be loaded
+    void SetData(void* data) override;
+    
+    // ----------
+    // Getters
+    // ----------
+    /// This function returns the Renderer ID
+    RendererID GetRendererID() const override;
+    /// This function returns width of texture
+    uint32_t GetWidth() const override;
+    /// This function returns height of texture
+    uint32_t GetHeight() const override;
+    /// This function returns the size
+    uint32_t GetSize() const override;
+
   private:
     RendererID renderer_id_ = 0;
     uint32_t internal_format_ = 0, data_format_ = 0;

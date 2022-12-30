@@ -19,7 +19,6 @@ namespace ray_tracing {
   
   void RayTracingLayer::Attach() {
     IK_INFO("Attaching RayTracing Layer instance");
-    image_ = Image::Create(800, 800, TextureFormat::RGBA);
   }
   
   void RayTracingLayer::Detach() {
@@ -27,6 +26,18 @@ namespace ray_tracing {
   }
   
   void RayTracingLayer::Update(Timestep ts) {
+    if (!image_) {
+      image_ = Image::Create(800, 800, TextureFormat::RGBA);
+      delete[] image_data_ ;
+      image_data_ = new uint32_t[viewport_width_ * viewport_height_];
+    }
+    
+    for (uint32_t i = 0; i < viewport_width_ * viewport_height_; i++) {
+      image_data_[i] = 1;
+    }
+    
+    image_->SetData(image_data_);
+
     Renderer::ResetStatsEachFrame();
     Renderer::Clear({0.2, 0.4, 0.2, 1.0});
   }
@@ -37,6 +48,7 @@ namespace ray_tracing {
   void RayTracingLayer::RenderGui() {
     ImguiAPI::StartDcocking();
     Renderer::Framerate();
+    Renderer::RenderStatsGui();
 
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
@@ -44,7 +56,7 @@ namespace ray_tracing {
     ImGui::PushID("Kreator Viewport");
     
     ImVec2 viewport_panel_size = ImGui::GetContentRegionAvail();
-    ImGui::Image((void*)0,
+    ImGui::Image((void*)image_->GetRendererID(),
                  viewport_panel_size,
                  ImVec2{ 0, 1 },
                  ImVec2{ 1, 0 });
