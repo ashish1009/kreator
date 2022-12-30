@@ -52,9 +52,9 @@ namespace ray_tracing {
       
       sphere.material_index = 1;
       scene_.shperes.push_back(sphere);
-    }
-//    /Users/ashish./iKan_storage/Github/Projects/ikan_ws/kreator/editor/editor_assets/model/static/cyborg/cyborg.obj
-    scene.Add(std::make_shared<TriangleMesh>("/Users/ashish./iKan_storage/Github/Projects/ikan_ws/kreator/editor/editor_assets/model/static/cyborg/cyborg.obj"));
+      ///Users/ashish./Downloads/obj_raytracer-master/obj/dino.obj
+    }//    /Users/ashish./iKan_storage/Github/Projects/ikan_ws/kreator/editor/editor_assets/model/static/cyborg/cyborg.obj
+    scene.Add(std::make_shared<TriangleMesh>("/Users/ashish./Downloads/obj_raytracer-master/obj/dino.obj"));
   }
   
   void RayTracingLayer::Detach() {
@@ -127,25 +127,27 @@ namespace ray_tracing {
     dispatch_apply(final_image_->GetHeight(), loop_dispactch_queue_, ^(size_t y) {
       dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x) {
         uint32_t pixel_idx = (uint32_t)x + (uint32_t)y * final_image_->GetWidth();
-        
+    
+#define MeshRay 0
+#if MeshRay
         Ray_ ray = get_ray(x, y);
         Vector3f colour = CastRay(ray, scene);
         
         image_data_[pixel_idx] = ConevrtToRgba(glm::vec4(colour, 1.0f));
+#else
+        glm::vec4 pixel = PerPixel((uint32_t)x, (uint32_t)y);
+        if (frame_index_ == 1)
+          accumulation_data_[pixel_idx] = pixel;
+        else
+          accumulation_data_[pixel_idx] += pixel;
 
-//        Vector3f colour = CastRay(ray, scene);
+        glm::vec4 accumulated_color = accumulation_data_[pixel_idx];
+        accumulated_color /= (float)frame_index_;
 
-//        glm::vec4 pixel = PerPixel((uint32_t)x, (uint32_t)y);
-//        if (frame_index_ == 1)
-//          accumulation_data_[pixel_idx] = pixel;
-//        else
-//          accumulation_data_[pixel_idx] += pixel;
-//
-//        glm::vec4 accumulated_color = accumulation_data_[pixel_idx];
-//        accumulated_color /= (float)frame_index_;
-//
-//        accumulated_color = glm::clamp(accumulated_color, glm::vec4(0.0f), glm::vec4(1.0f));
-//        image_data_[pixel_idx] = ConevrtToRgba(accumulated_color);
+        accumulated_color = glm::clamp(accumulated_color, glm::vec4(0.0f), glm::vec4(1.0f));
+        image_data_[pixel_idx] = ConevrtToRgba(accumulated_color);
+        
+#endif
       });
     });
     final_image_->SetData(image_data_);
@@ -163,7 +165,7 @@ namespace ray_tracing {
     ray.origin = editor_camera_.GetPosition();
     
     uint32_t pixel_idx = x + y * final_image_->GetWidth();
-    ray.direction = editor_camera_.GetRayDirections()[pixel_idx];
+    ray.direction = editor_camera_.GetRayDirections().at(pixel_idx);
     
     glm::vec3 color(0.0f);
     float multiplier = 1.0f;

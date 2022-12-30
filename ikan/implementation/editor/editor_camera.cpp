@@ -10,11 +10,12 @@
 
 namespace ikan {
   
-  EditorCamera::EditorCamera(float aspect_ratio,
+  EditorCamera::EditorCamera(bool update_rays,
+                             float aspect_ratio,
                              float fov,
                              float near_plane,
                              float far_plane)
-  : Camera(aspect_ratio, near_plane, far_plane), fov_(fov) {
+  : Camera(aspect_ratio, near_plane, far_plane), fov_(fov), update_rays_(update_rays) {
     UpdateCameraProjection();
     
     position_ = { -15, 5, 5};
@@ -129,9 +130,9 @@ namespace ikan {
     return moved;
   }
   
-  void EditorCamera::EventHandler(Event& e) {
+  bool EditorCamera::EventHandler(Event& e) {
     EventDispatcher dispatcher(e);
-    dispatcher.Dispatch<MouseScrolledEvent>(IK_BIND_EVENT_FN(EditorCamera::OnMouseScroll));
+    return dispatcher.Dispatch<MouseScrolledEvent>(IK_BIND_EVENT_FN(EditorCamera::OnMouseScroll));
   }
   
   bool EditorCamera::OnMouseScroll(MouseScrolledEvent& e) {
@@ -179,6 +180,9 @@ namespace ikan {
   }
   
   void EditorCamera::UpdateRayDirections() {
+    if (!update_rays_)
+      return;
+    
     ray_directions_.resize(viewport_width_ * viewport_height_);
     
     dispatch_apply(viewport_height_, loop_dispactch_queue_, ^(size_t y) {

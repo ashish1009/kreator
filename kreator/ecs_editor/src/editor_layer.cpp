@@ -34,8 +34,8 @@ namespace editor {
     viewport_.framebuffer->Bind();
 
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
+    
     viewport_.UpdateMousePos();
-
     viewport_.framebuffer->Unbind();
   }
   

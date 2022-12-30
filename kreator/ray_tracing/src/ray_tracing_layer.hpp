@@ -94,7 +94,7 @@ namespace ray_tracing {
     std::shared_ptr<Image> final_image_ = nullptr;
     uint32_t* image_data_ = nullptr;
     uint32_t viewport_width_ = 900, viewport_height_ = 600;
-    EditorCamera editor_camera_;
+    EditorCamera editor_camera_ = EditorCamera(true);
     RayScene scene_;
     uint32_t frame_index_ = 1;
     Setting setting_;

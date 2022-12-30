@@ -22,11 +22,13 @@ namespace ikan {
     // ----------------------------
     /// This constructor creates the Editor Camera instance and initialize all the parameters
     /// - Parameters:
+    ///   - update_rays: update rays for each frame
     ///   - aspect_ratio: Aspect ratio of the famera
     ///   - fov: FOV of the camera in radians
     ///   - near_plane: Near plane of camera
     ///   - far_plane: far plane of camera
-    EditorCamera(float aspect_ratio = 16.0f / 9.0f,
+    EditorCamera(bool update_rays = false,
+                 float aspect_ratio = 16.0f / 9.0f,
                  float fov = glm::radians(75.0f),
                  float near_plane = 0.01f,
                  float far_plane = 100000.0f);
@@ -38,7 +40,7 @@ namespace ikan {
     bool Update([[maybe_unused]] Timestep ts);
     /// This function handles Events of Editor Camera
     /// - Parameter e: event instance
-    void EventHandler(Event& e);
+    bool EventHandler(Event& e);
 
     /// This function updates the viewport size for Editor Camera
     /// - Parameters:
@@ -130,6 +132,7 @@ namespace ikan {
     float pitch_ = 0.4f, yaw_ = 0.5f;
     
     bool new_update_ = false;
+    bool update_rays_ = false;
   };
   
 }
