@@ -82,6 +82,8 @@ namespace ikan {
   
   void Renderer::Shutdown() {
     ShaderLibrary::ResetShaders();
+    TextureLibrary::ResetTextures();
+    
     BatchRenderer::Shutdown();
     TextRenderer::Shutdown();
     

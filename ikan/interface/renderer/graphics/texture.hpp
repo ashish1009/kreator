@@ -140,7 +140,7 @@ namespace ikan {
                                               bool min_linear = true,
                                               bool mag_linear = true);
     /// This function deletes all the shaders present int the map
-    static void ResetShaders();
+    static void ResetTextures();
     
     // -----------
     // Variables
