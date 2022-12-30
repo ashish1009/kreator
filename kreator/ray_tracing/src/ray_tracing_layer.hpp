@@ -15,6 +15,23 @@ namespace ray_tracing {
     glm::vec3 origin;
     glm::vec3 direction;
   };
+  
+  struct Sphere {
+    glm::vec3 position;
+    float radius = 0.5f;
+    
+    glm::vec3 albedo;
+    
+    Sphere(const glm::vec3& position, float radius, const glm::vec3& albedo)
+    : position(position), radius(radius), albedo(albedo) {
+      
+    }
+  };
+  
+  class RayScene {
+  public:
+    std::vector<Sphere> shperes;
+  };
 
   class RayTracingLayer : public Layer {
   public:
@@ -49,6 +66,7 @@ namespace ray_tracing {
     uint32_t* image_data_ = nullptr;
     uint32_t viewport_width_ = 900, viewport_height_ = 600;
     EditorCamera editor_camera_;
+    RayScene scene_;
   };
   
 }

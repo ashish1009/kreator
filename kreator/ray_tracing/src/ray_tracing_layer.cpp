@@ -27,6 +27,8 @@ namespace ray_tracing {
   
   void RayTracingLayer::Attach() {
     IK_INFO("Attaching RayTracing Layer instance");
+    scene_.shperes.push_back(Sphere({0, 0, 0}, 0.5, {1, 0, 1}));
+    scene_.shperes.push_back(Sphere({0, 0, -5}, 0.5, {0, 0, 1}));
   }
   
   void RayTracingLayer::Detach() {
@@ -71,39 +73,50 @@ namespace ray_tracing {
   }
   
   glm::vec4 RayTracingLayer::TraceRay(const Ray& ray) {
-    float radius = 0.5f;
-    
-    //       at^2       +       bt        +       c             = 0
-    // (bx^2 + by^2)t^2 + 2(axbx + ayby)t + (ax^2 + ay^2 - r^2) = 0
-    // where,
-    //    a : Ray Origin
-    //    b : Direction of Ray
-    //    r : Radius of Cirlce/Shphere
-    //    t : Distance of point on ray from 'a'
-    
-    // float a = ray_direction.x * ray_direction + ray_direction.y * ray_direction.y + ray_direction.z * ray_direction.z;
-    float a = glm::dot(ray.direction, ray.direction);
-    float b = 2.0f * glm::dot(ray.origin, ray.direction);
-    float c = glm::dot(ray.origin, ray.origin) - (radius * radius);
-
-    // Discriminant
-    // b^2 -4ac
-    float discriminant = b * b - 4.0f * a * c;
-    if (discriminant < 0) {
+    if (scene_.shperes.size() == 0) {
       return glm::vec4(0, 0, 0, 1);
     }
 
-    float t0 = (-b + glm::sqrt(discriminant)) / (2.0f * a);
-    float closest_t = (-b - glm::sqrt(discriminant)) / (2.0f * a);
+    const Sphere* closest_sphere = nullptr;
+    float hit_distance = std::numeric_limits<float>::max();
+    for (const Sphere& sphere : scene_.shperes) {
+      glm::vec3 origin = ray.origin - sphere.position;
+      
+      // float a = ray_direction.x * ray_direction + ray_direction.y * ray_direction.y + ray_direction.z * ray_direction.z;
+      float a = glm::dot(ray.direction, ray.direction);
+      float b = 2.0f * glm::dot(origin, ray.direction);
+      float c = glm::dot(origin, origin) - (sphere.radius * sphere.radius);
+      
+      // Discriminant
+      // b^2 -4ac
+      float discriminant = b * b - 4.0f * a * c;
+      if (discriminant < 0) {
+        continue;
+      }
+      
+      // -b +- sqrt(discriminant) / 2a
+      float closest_t = (-b - glm::sqrt(discriminant)) / (2.0f * a);
+      // Second hit currently unused
+      // float t0 = (-b + glm::sqrt(discriminant)) / (2.0f * a);
+      if (closest_t < hit_distance) {
+        hit_distance = closest_t;
+        closest_sphere = &sphere;
+      }
+    }
     
-    glm::vec3 hit_point = ray.origin + (ray.direction * closest_t);
+    if (!closest_sphere)
+      return glm::vec4(0, 0, 0, 1);
+    
+    glm::vec3 origin = ray.origin - closest_sphere->position;
+    glm::vec3 hit_point = origin + (ray.direction * hit_distance);
+    
     glm::vec3 normal = glm::normalize(hit_point);
     
     glm::vec3 light_direction = glm::normalize(glm::vec3(-1, -1, -1));
     
     float dot = glm::max(glm::dot(normal, -light_direction), 0.0f); // cos(angle);
 
-    glm::vec3 sphere_color(1, 0, 1);
+    glm::vec3 sphere_color = closest_sphere->albedo;
     sphere_color *= dot;
     return glm::vec4(sphere_color, 1.0f);
   }
@@ -118,12 +131,30 @@ namespace ray_tracing {
   }
   
   void RayTracingLayer::EventHandler(Event& event) {
+    editor_camera_.EventHandler(event);
   }
   
   void RayTracingLayer::RenderGui() {
     ImguiAPI::StartDcocking();
     Renderer::Framerate();
     Renderer::RenderStatsGui();
+    
+    {
+      ImGui::Begin("Scene Sphere");
+      ImGui::PushID("Scene Sphere");
+      
+      for (size_t i = 0; i < scene_.shperes.size(); i++) {
+        ImGui::PushID((uint32_t)i);
+        ImGui::DragFloat3("position", glm::value_ptr(scene_.shperes[i].position), 0.1f);
+        ImGui::DragFloat("radius", &scene_.shperes[i].radius, 0.1);
+        ImGui::ColorEdit3("color", glm::value_ptr(scene_.shperes[i].albedo));
+        ImGui::Separator();
+        ImGui::PopID();
+      }
+      
+      ImGui::PopID();
+      ImGui::End();
+    }
 
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
