@@ -27,8 +27,22 @@ namespace ray_tracing {
   
   void RayTracingLayer::Attach() {
     IK_INFO("Attaching RayTracing Layer instance");
-    scene_.shperes.push_back(Sphere({0, 0, 0}, 0.5, {1, 0, 1}));
-    scene_.shperes.push_back(Sphere({0, 0, -5}, 0.5, {0, 0, 1}));
+    {
+      Sphere sphere;
+      sphere.position = {0.0f, 0.0f, 0.0f};
+      sphere.radius = 1.0f;
+      
+      sphere.material.albedo = {1.0f, 0.0f, 1.0f};
+      scene_.shperes.push_back(sphere);
+    }
+    {
+      Sphere sphere;
+      sphere.position = {0.0f, -101.0f, 0.0f};
+      sphere.radius = 100.0f;
+      
+      sphere.material.albedo = {0.0f, 0.0f, 1.0f};
+      scene_.shperes.push_back(sphere);
+    }
   }
   
   void RayTracingLayer::Detach() {
@@ -74,11 +88,11 @@ namespace ray_tracing {
     
     glm::vec3 color(0.0f);
     float multiplier = 1.0f;
-    int32_t bounces = 2;
+    int32_t bounces = 15;
     for (uint32_t i = 0; i < bounces; i++) {
       RayTracingLayer::HitPayload payload = TraceRay(ray);
       if (payload.hit_distance < 0) {
-        glm::vec3 sky_color = glm::vec3(0, 0, 0);
+        glm::vec3 sky_color = glm::vec3(0.6, 0.7, 0.9);
         color += sky_color * multiplier;
         break;
       }
@@ -87,19 +101,23 @@ namespace ray_tracing {
       float light_intensity = glm::max(glm::dot(payload.world_normal, -light_direction), 0.0f); // cos(angle);
       
       const Sphere& sphere = scene_.shperes[payload.object_idx];
-      glm::vec3 sphere_color = sphere.albedo;
+      glm::vec3 sphere_color = sphere.material.albedo;
       sphere_color *= light_intensity;
       
       color += sphere_color * multiplier;
       
-      multiplier *= 0.7f;
-      
+      multiplier *= 0.5f;
+
       // Origin is now hit position (Reflection point)
       // To avoid the new pay position to start from actual sphere we shift the
       // origin with the help of normal but very less
       ray.origin = payload.world_position + payload.world_normal * 0.0001f;
       
-      ray.direction =  glm::reflect(ray.direction, payload.world_normal);
+      float r_pos = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+      r_pos -= 0.5f;
+      
+      ray.direction =  glm::reflect(ray.direction,
+                                    payload.world_normal + sphere.material.roughness * glm::vec3(r_pos));
     }
     
     return glm::vec4(color, 1.0f);
@@ -188,8 +206,10 @@ namespace ray_tracing {
       for (size_t i = 0; i < scene_.shperes.size(); i++) {
         ImGui::PushID((uint32_t)i);
         ImGui::DragFloat3("position", glm::value_ptr(scene_.shperes[i].position), 0.1f);
-        ImGui::DragFloat("radius", &scene_.shperes[i].radius, 0.1);
-        ImGui::ColorEdit3("color", glm::value_ptr(scene_.shperes[i].albedo));
+        ImGui::DragFloat("radius", &scene_.shperes[i].radius, 0.1, 0.0);
+        ImGui::ColorEdit3("color", glm::value_ptr(scene_.shperes[i].material.albedo));
+        ImGui::DragFloat("roughness", &scene_.shperes[i].material.roughness, 0.1, 0.0, 1.0);
+        ImGui::DragFloat("matellic", &scene_.shperes[i].material.metallic, 0.1, 0.0, 1.0);
         ImGui::Separator();
         ImGui::PopID();
       }

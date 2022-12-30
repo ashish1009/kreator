@@ -16,16 +16,16 @@ namespace ray_tracing {
     glm::vec3 direction;
   };
   
+  struct Material {
+    glm::vec3 albedo;
+    float roughness = 1.0f;
+    float metallic = 0.0f;
+  };
+  
   struct Sphere {
     glm::vec3 position;
     float radius = 0.5f;
-    
-    glm::vec3 albedo;
-    
-    Sphere(const glm::vec3& position, float radius, const glm::vec3& albedo)
-    : position(position), radius(radius), albedo(albedo) {
-      
-    }
+    Material material;
   };
   
   class RayScene {
