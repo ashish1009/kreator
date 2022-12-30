@@ -72,21 +72,37 @@ namespace ray_tracing {
     uint32_t pixel_idx = x + y * final_image_->GetWidth();
     ray.direction = editor_camera_.GetRayDirections()[pixel_idx];
     
-    RayTracingLayer::HitPayload payload = TraceRay(ray);
+    glm::vec3 color(0.0f);
+    float multiplier = 1.0f;
+    int32_t bounces = 2;
+    for (uint32_t i = 0; i < bounces; i++) {
+      RayTracingLayer::HitPayload payload = TraceRay(ray);
+      if (payload.hit_distance < 0) {
+        glm::vec3 sky_color = glm::vec3(0, 0, 0);
+        color += sky_color * multiplier;
+        break;
+      }
+      
+      glm::vec3 light_direction = glm::normalize(glm::vec3(-1, -1, -1));
+      float light_intensity = glm::max(glm::dot(payload.world_normal, -light_direction), 0.0f); // cos(angle);
+      
+      const Sphere& sphere = scene_.shperes[payload.object_idx];
+      glm::vec3 sphere_color = sphere.albedo;
+      sphere_color *= light_intensity;
+      
+      color += sphere_color * multiplier;
+      
+      multiplier *= 0.7f;
+      
+      // Origin is now hit position (Reflection point)
+      // To avoid the new pay position to start from actual sphere we shift the
+      // origin with the help of normal but very less
+      ray.origin = payload.world_position + payload.world_normal * 0.0001f;
+      
+      ray.direction =  glm::reflect(ray.direction, payload.world_normal);
+    }
     
-    if (payload.hit_distance < 0)
-      return glm::vec4(0, 0, 0, 1);
-    
-    glm::vec3 light_direction = glm::normalize(glm::vec3(-1, -1, -1));
-    
-    float dot = glm::max(glm::dot(payload.world_normal, -light_direction), 0.0f); // cos(angle);
-    
-    const Sphere& sphere = scene_.shperes[payload.object_idx];
-    
-    glm::vec3 sphere_color = sphere.albedo;
-    sphere_color *= dot;
-    
-    return glm::vec4(sphere_color, 1.0f);
+    return glm::vec4(color, 1.0f);
   }
   
   RayTracingLayer::HitPayload RayTracingLayer::TraceRay(const Ray& ray) {
@@ -113,7 +129,7 @@ namespace ray_tracing {
       float closest_t = (-b - glm::sqrt(discriminant)) / (2.0f * a);
       // Second hit currently unused
       // float t0 = (-b + glm::sqrt(discriminant)) / (2.0f * a);
-      if (closest_t < hit_distance) {
+      if (closest_t > 0.0f and closest_t < hit_distance) {
         hit_distance = closest_t;
         closest_sphere_idx = (int32_t)i;
       }
