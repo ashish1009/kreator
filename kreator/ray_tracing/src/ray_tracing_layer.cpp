@@ -46,6 +46,7 @@ namespace ray_tracing {
     for (uint32_t y = 0; y < final_image_->GetHeight(); y++) {
       for (uint32_t x = 0; x < final_image_->GetWidth(); x++) {
         glm::vec2 coords = { (float)x / (float)final_image_->GetWidth(), (float)y / (float)final_image_->GetHeight() };
+        coords = coords * 2.0f - 1.0f; // Map [-1 : 1]
         image_data_[x + y * final_image_->GetWidth()] = PerPixel(coords);
       }
     }
@@ -53,10 +54,37 @@ namespace ray_tracing {
   }
   
   uint32_t RayTracingLayer::PerPixel(const glm::vec2& coord) {
-    uint8_t r = uint8_t(coord.x * 255.0f); // Red Channel
-    uint8_t g = uint8_t(coord.y * 255.0f); // Green Channel
+    glm::vec3 ray_origin(0.0f, 0.0f, -2.0f);
     
-    return 0xff000000 | (g << 8) | r;
+    // For simple use -1 as Z
+    glm::vec3 ray_direction = { coord.x, coord.y, -1 };
+    // ray_direction = glm::normalize(ray_direction);
+    
+    float radius = 0.5f;
+    
+    //       at^2       +       bt        +       c             = 0
+    // (bx^2 + by^2)t^2 + 2(axbx + ayby)t + (ax^2 + ay^2 - r^2) = 0
+    // where,
+    //    a : Ray Origin
+    //    b : Direction of Ray
+    //    r : Radius of Cirlce/Shphere
+    //    t : Distance of point on ray from 'a'
+    
+    // float a = ray_direction.x * ray_direction + ray_direction.y * ray_direction.y + ray_direction.z * ray_direction.z;
+    float a = glm::dot(ray_direction, ray_direction);
+    float b = 2.0f * glm::dot(ray_origin, ray_direction);
+    float c = glm::dot(ray_origin, ray_origin) - (radius*radius);
+    
+    // Discriminant
+    // b^2 -4ac
+    float discriminant = b * b - 4.0f * a * c;
+    
+    if (discriminant > 0) {
+      return 0xffff00ff;
+    }
+    else {
+      return 0;
+    }
   }
   
   void RayTracingLayer::Update(Timestep ts) {
