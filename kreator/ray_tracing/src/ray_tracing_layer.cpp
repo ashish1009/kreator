@@ -12,6 +12,14 @@ namespace ray_tracing {
   
   dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 
+  static uint32_t ConevrtToRgba(const glm::vec4& pixel) {
+    uint8_t r = uint8_t(pixel.r * 255.0f);
+    uint8_t g = uint8_t(pixel.g * 255.0f);
+    uint8_t b = uint8_t(pixel.b * 255.0f);
+    uint8_t a = uint8_t(pixel.a * 255.0f);
+    return ( (a << 24) | (b << 16) | (g << 8) | r);
+  }
+
   RayTracingLayer::RayTracingLayer() : Layer("Kreator") {
     IK_INFO("Creating RayTracing Layer instance ... ");
   }
@@ -52,17 +60,19 @@ namespace ray_tracing {
 
         glm::vec2 coords = { (float)x / (float)final_image_->GetWidth(), (float)y / (float)final_image_->GetHeight() };
         coords = coords * 2.0f - 1.0f; // Map [-1 : 1]
-        image_data_[pixel_idx] = PerPixel(coords);
+        glm::vec4 pixel = PerPixel(coords);
+        pixel = glm::clamp(pixel, glm::vec4(0.0f), glm::vec4(1.0f));
+        image_data_[x + y * final_image_->GetWidth()] = ConevrtToRgba(pixel);
       });
     });
     final_image_->SetData(image_data_);
   }
   
-  uint32_t RayTracingLayer::PerPixel(const glm::vec2& coord) {
+  glm::vec4 RayTracingLayer::PerPixel(const glm::vec2& coord) {
     glm::vec3 ray_origin(0.0f, 0.0f, -2.0f);
     
     // For simple use -1 as Z
-    glm::vec3 ray_direction = { coord.x, coord.y, -1 };
+    glm::vec3 ray_direction = { coord.x, coord.y, -1.0f };
     // ray_direction = glm::normalize(ray_direction);
     
     float radius = 0.5f;
@@ -78,18 +88,23 @@ namespace ray_tracing {
     // float a = ray_direction.x * ray_direction + ray_direction.y * ray_direction.y + ray_direction.z * ray_direction.z;
     float a = glm::dot(ray_direction, ray_direction);
     float b = 2.0f * glm::dot(ray_origin, ray_direction);
-    float c = glm::dot(ray_origin, ray_origin) - (radius*radius);
-    
+    float c = glm::dot(ray_origin, ray_origin) - (radius * radius);
+
     // Discriminant
     // b^2 -4ac
     float discriminant = b * b - 4.0f * a * c;
+    if (discriminant < 0) {
+      return glm::vec4(0.5, 0.5, 0.5, 0.5 );
+    }
+
+    float t0 = (-b + glm::sqrt(discriminant)) / (2.0f * a);
+    float closest_t = (-b - glm::sqrt(discriminant)) / (2.0f * a);
     
-    if (discriminant > 0) {
-      return 0xffff00ff;
-    }
-    else {
-      return 0;
-    }
+    glm::vec3 hit_point = ray_origin + (ray_direction * closest_t);
+    
+    glm::vec3 sphere_color(1, 0, 1);
+    sphere_color = hit_point;
+    return glm::vec4(sphere_color, 1.0f);
   }
   
   void RayTracingLayer::Update(Timestep ts) {
