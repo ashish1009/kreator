@@ -10,7 +10,12 @@
 namespace ray_tracing {
   
   using namespace ikan;
-  
+
+  struct Ray {
+    glm::vec3 origin;
+    glm::vec3 direction;
+  };
+
   class RayTracingLayer : public Layer {
   public:
     /// Layer Default Constructor to store the name of layer
@@ -38,11 +43,12 @@ namespace ray_tracing {
   private:
     void Resize();
     void Render();
-    glm::vec4 PerPixel(const glm::vec2& coord);
+    glm::vec4 TraceRay(const Ray& ray);
     
     std::shared_ptr<Image> final_image_ = nullptr;
     uint32_t* image_data_ = nullptr;
     uint32_t viewport_width_ = 900, viewport_height_ = 600;
+    EditorCamera editor_camera_;
   };
   
 }

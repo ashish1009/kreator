@@ -19,7 +19,7 @@ namespace ray_tracing {
     uint8_t a = uint8_t(pixel.a * 255.0f);
     return ( (a << 24) | (b << 16) | (g << 8) | r);
   }
-
+  
   RayTracingLayer::RayTracingLayer() : Layer("Kreator") {
     IK_INFO("Creating RayTracing Layer instance ... ");
   }
@@ -54,27 +54,26 @@ namespace ray_tracing {
   }
   
   void RayTracingLayer::Render() {
+    const glm::vec3& ray_origin = editor_camera_.GetPosition();
+
     dispatch_apply(final_image_->GetHeight(), queue, ^(size_t y) {
       dispatch_apply(final_image_->GetWidth(), queue, ^(size_t x) {
         uint32_t pixel_idx = (uint32_t)x + (uint32_t)y * final_image_->GetWidth();
-
-        glm::vec2 coords = { (float)x / (float)final_image_->GetWidth(), (float)y / (float)final_image_->GetHeight() };
-        coords = coords * 2.0f - 1.0f; // Map [-1 : 1]
-        glm::vec4 pixel = PerPixel(coords);
+        const glm::vec3& ray_direction = editor_camera_.GetRayDirections()[pixel_idx];
+        Ray ray;
+        ray.origin = ray_origin;
+        ray.direction = ray_direction;
+        
+        glm::vec4 pixel = TraceRay(ray);
         pixel = glm::clamp(pixel, glm::vec4(0.0f), glm::vec4(1.0f));
-        image_data_[x + y * final_image_->GetWidth()] = ConevrtToRgba(pixel);
+
+        image_data_[pixel_idx] = ConevrtToRgba(pixel);
       });
     });
     final_image_->SetData(image_data_);
   }
   
-  glm::vec4 RayTracingLayer::PerPixel(const glm::vec2& coord) {
-    glm::vec3 ray_origin(0.0f, 0.0f, -2.0f);
-    
-    // For simple use -1 as Z
-    glm::vec3 ray_direction = { coord.x, coord.y, -1.0f };
-    // ray_direction = glm::normalize(ray_direction);
-    
+  glm::vec4 RayTracingLayer::TraceRay(const Ray& ray) {
     float radius = 0.5f;
     
     //       at^2       +       bt        +       c             = 0
@@ -86,28 +85,36 @@ namespace ray_tracing {
     //    t : Distance of point on ray from 'a'
     
     // float a = ray_direction.x * ray_direction + ray_direction.y * ray_direction.y + ray_direction.z * ray_direction.z;
-    float a = glm::dot(ray_direction, ray_direction);
-    float b = 2.0f * glm::dot(ray_origin, ray_direction);
-    float c = glm::dot(ray_origin, ray_origin) - (radius * radius);
+    float a = glm::dot(ray.direction, ray.direction);
+    float b = 2.0f * glm::dot(ray.origin, ray.direction);
+    float c = glm::dot(ray.origin, ray.origin) - (radius * radius);
 
     // Discriminant
     // b^2 -4ac
     float discriminant = b * b - 4.0f * a * c;
     if (discriminant < 0) {
-      return glm::vec4(0.5, 0.5, 0.5, 0.5 );
+      return glm::vec4(0, 0, 0, 1);
     }
 
     float t0 = (-b + glm::sqrt(discriminant)) / (2.0f * a);
     float closest_t = (-b - glm::sqrt(discriminant)) / (2.0f * a);
     
-    glm::vec3 hit_point = ray_origin + (ray_direction * closest_t);
+    glm::vec3 hit_point = ray.origin + (ray.direction * closest_t);
+    glm::vec3 normal = glm::normalize(hit_point);
     
+    glm::vec3 light_direction = glm::normalize(glm::vec3(-1, -1, -1));
+    
+    float dot = glm::max(glm::dot(normal, -light_direction), 0.0f); // cos(angle);
+
     glm::vec3 sphere_color(1, 0, 1);
-    sphere_color = hit_point;
+    sphere_color *= dot;
     return glm::vec4(sphere_color, 1.0f);
   }
   
   void RayTracingLayer::Update(Timestep ts) {
+    editor_camera_.Update(ts);
+    editor_camera_.SetViewportSize(viewport_width_, viewport_height_);
+
     Resize();
     Render();
     Renderer::Clear({0.2, 0.4, 0.2, 1.0});

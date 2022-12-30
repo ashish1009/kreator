@@ -15,16 +15,16 @@ namespace ikan {
                              float near_plane,
                              float far_plane)
   : Camera(aspect_ratio, near_plane, far_plane), fov_(fov) {
-    projection_matrix_ = glm::perspective(fov_,
-                                          aspect_ratio_,
-                                          near_plane_,
-                                          far_plane_);
-
+    UpdateCameraProjection();
+    
     position_ = { -15, 5, 5};
     distance_ = glm::distance(position_, focal_point_);
     
     // Update the camera view matrix
     UpdateCameraView();
+    
+    // Update the ray directions
+    UpdateRayDirections();
     
     IK_CORE_INFO("Creating Editor Camera ... ");
     IK_CORE_INFO("  FOV          | {0} degree", glm::degrees(fov_));
@@ -121,8 +121,10 @@ namespace ikan {
       }
     }
     
-    if (moved)
+    if (moved) {
       UpdateCameraView();
+      UpdateRayDirections();
+    }
 
     return moved;
   }
@@ -137,22 +139,31 @@ namespace ikan {
     MouseZoom(delta);
     
     UpdateCameraView();
+    UpdateRayDirections();
     return false;
   }
   
   void EditorCamera::SetViewportSize(uint32_t width, uint32_t height) {
-    if (height == 0)
+    if (height == 0 or (viewport_width_ == width and viewport_height_ == height))
       return;
     
     viewport_width_  = width;
     viewport_height_ = height;
     aspect_ratio_    = (float)viewport_width_ / (float)viewport_height_;
     
-    projection_matrix_ = glm::perspective(fov_, aspect_ratio_, near_plane_, far_plane_);
-    
+    UpdateCameraProjection();
     UpdateCameraView();
+    UpdateRayDirections();
     IK_CORE_TRACE("Changing Viewport Size of Editor Camera : {0} x {1}."
                   "(NOTE: Updating View Projection Matrix)", width, height);
+  }
+  
+  void EditorCamera::UpdateCameraProjection() {
+    projection_matrix_ = glm::perspective(fov_,
+                                          aspect_ratio_,
+                                          near_plane_,
+                                          far_plane_);
+    inverse_projection_ = glm::inverse(projection_matrix_);
   }
 
   void EditorCamera::UpdateCameraView() {
@@ -164,6 +175,22 @@ namespace ikan {
     view_matrix_ = glm::inverse(view_matrix_);
     
     projection_view_matrix_ = projection_matrix_ * view_matrix_;
+    inverse_view_ = glm::inverse(view_matrix_);
+  }
+  
+  void EditorCamera::UpdateRayDirections() {
+    ray_directions_.resize(viewport_width_ * viewport_height_);
+    
+    for (uint32_t y = 0; y < viewport_height_; y++) {
+      for (uint32_t x = 0; x < viewport_width_; x++) {
+        glm::vec2 coord = { (float)x / (float)viewport_width_, (float)y / (float)viewport_height_ };
+        coord = coord * 2.0f - 1.0f; // -1 -> 1
+        
+        glm::vec4 target = inverse_projection_ * glm::vec4(coord.x, coord.y, 1, 1);
+        glm::vec3 rayDirection = glm::vec3(inverse_view_ * glm::vec4(glm::normalize(glm::vec3(target) / target.w), 0)); // World space
+        ray_directions_[x + y * viewport_width_] = rayDirection;
+      }
+    }
   }
   
   void EditorCamera::MouseZoom(float delta) {
@@ -252,6 +279,8 @@ namespace ikan {
   uint32_t EditorCamera::GetViewportWidth() const {
     return viewport_width_;
   }
-
+  const std::vector<glm::vec3>& EditorCamera::GetRayDirections() const {
+    return ray_directions_;
+  }
 
 }

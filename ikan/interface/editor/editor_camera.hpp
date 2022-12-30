@@ -66,13 +66,19 @@ namespace ikan {
     uint32_t GetViewportHeight() const;
     /// This function returns the editor camera viewport width
     uint32_t GetViewportWidth() const;
-    
+    /// This function returns the ray Directions of the camera
+    const std::vector<glm::vec3>& GetRayDirections() const;
+
   private:
     // -------------------
     // Member Functions
     // -------------------
     /// This function updates the camera view matrix
     void UpdateCameraView();
+    /// This function updates the camera Projection matrix
+    void UpdateCameraProjection();
+    /// This function calculates the ray directions
+    void UpdateRayDirections();
     /// This function updates the zoom value of the camera
     void MouseZoom(float delta);
     /// This function updates the mouse pan value
@@ -106,7 +112,11 @@ namespace ikan {
     // -------------------
     glm::mat4 view_matrix_ = glm::mat4(1.0f);
     glm::mat4 projection_view_matrix_ = glm::mat4(1.0f);
+    glm::mat4 inverse_projection_{ 1.0f };
+    glm::mat4 inverse_view_{ 1.0f };
     
+    std::vector<glm::vec3> ray_directions_;
+
     glm::vec3 forward_direction_{0.0f, 0.0f, 0.0f};
     glm::vec3 position_ = glm::vec3(0.0f);
     glm::vec3 rotation_ = glm::vec3(0.0f);
