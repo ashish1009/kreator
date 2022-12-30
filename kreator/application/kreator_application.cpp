@@ -40,7 +40,7 @@ public:
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Set up the type of applicaiton we want to create
-  SupportedApplicationType application_type = SupportedApplicationType::RayTracing;
+  SupportedApplicationType application_type = SupportedApplicationType::Editor;
   
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;
@@ -78,7 +78,7 @@ std::unique_ptr<ikan::Application> CreateApplication() {
     case SupportedApplicationType::RayTracing :
       application_spec.name = "RayTracing";
       application_spec.window_specification.title = "RayTracing";
-      application_spec.window_specification.width = 600;
+      application_spec.window_specification.width = 900;
       application_spec.window_specification.height = 600;
       application_spec.client_asset_path = "../../../kreator/RayTracing/assets/";
       break;

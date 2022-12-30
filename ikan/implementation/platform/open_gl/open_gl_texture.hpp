@@ -160,4 +160,17 @@ namespace ikan {
     void* texture_data_;
   };
   
+  
+  namespace texture_utils {
+    
+#ifdef IK_DEBUG_FEATURE
+    
+    /// This function returns the Format name from Enum
+    /// - Parameter format: enum taken as uint (enum in Glad)
+    std::string GetFormatNameFromEnum(uint32_t format);
+    
+#endif
+
+  } 
+  
 }

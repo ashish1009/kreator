@@ -20,18 +20,19 @@ namespace ikan {
     
     /// This function returns the Format name from Enum
     /// - Parameter format: enum taken as uint (enum in Glad)
-    static std::string GetFormatNameFromEnum(uint32_t format) {
+    std::string GetFormatNameFromEnum(uint32_t format) {
       if (format == GL_RGBA8) return "GL_RGBA8";
       if (format == GL_RGBA)  return "GL_RGBA";
       if (format == GL_RGB8)  return "GL_RGB8";
       if (format == GL_RGB)   return "GL_RGB";
       if (format == GL_RED)   return "GL_RED";
+      if (format == GL_DEPTH_COMPONENT)   return "GL_DEPTH_COMPONENT";
       else IK_CORE_ASSERT(false, "Add New Featured format herer too");
     }
     
 #endif
     
-    static GLint ikanFormatToOpenGLFormat(TextureFormat format) {
+    GLint ikanFormatToOpenGLFormat(TextureFormat format) {
       switch (format) {
         case TextureFormat::None:    return (GLint)0;
         case TextureFormat::RGBA:    return GL_RGBA;
@@ -39,8 +40,7 @@ namespace ikan {
       return (GLint)0;
     }
     
-  } // namespace texture_utils
-  
+  }
  
   OpenGLTexture::OpenGLTexture(const std::string& file_path,
                                bool min_linear,

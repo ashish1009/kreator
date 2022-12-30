@@ -7,6 +7,7 @@
 
 #include "open_gl_framebuffer.hpp"
 #include "platform/open_gl/open_gl_renderer_id_manager.hpp"
+#include "platform/open_gl/open_gl_texture.hpp"
 #include <glad/glad.h>
 
 namespace ikan {
@@ -177,6 +178,10 @@ namespace ikan {
     IK_CORE_DEBUG("  Height | {0}", specification_.height);
     IK_CORE_DEBUG("  Color  | {0} : {1} : {2}", specification_.color.r, specification_.color.g, specification_.color.b);
     IK_CORE_DEBUG("  ---------------------");
+    
+    int32_t internal_format = 0;
+    int32_t data_format = 0;
+    
     // Color Attachments
     if (color_specifications_.size()) {
       color_attachment_ids_.resize(color_specifications_.size());
@@ -186,18 +191,20 @@ namespace ikan {
       for (size_t i = 0; i < color_attachment_ids_.size(); i++) {
         frame_buffer_utils::BindTexture(color_attachment_ids_[i]);
         
-        IK_CORE_DEBUG("    Renderer ID | {0}", color_attachment_ids_[i]);
+        IK_CORE_DEBUG("    Renderer ID    | {0}", color_attachment_ids_[i]);
         switch (color_specifications_[i]) {
           case FrameBuffer::Attachments::TextureFormat::None:
           case FrameBuffer::Attachments::TextureFormat::Depth24Stencil:
             break;
             
           case FrameBuffer::Attachments::TextureFormat::RGBA8:
+            internal_format = GL_RGBA8;
+            data_format = GL_RGBA;
             frame_buffer_utils::AttachTexture(
-                                              GL_RGBA8,                 // internal format
-                                              GL_RGBA,                  // attachment_type
-                                              specification_.width,     // width
-                                              specification_.height     // height
+                                              internal_format,
+                                              data_format,
+                                              specification_.width,
+                                              specification_.height
                                               );
             frame_buffer_utils::FramebufferTexture(
                                                    color_attachment_ids_[i],
@@ -205,7 +212,8 @@ namespace ikan {
                                                    GL_TEXTURE_2D
                                                    );
 
-            IK_CORE_DEBUG("    Format      | {0}", ToString(RGBA8));
+            IK_CORE_DEBUG("    InternalFormae | {0}", texture_utils::GetFormatNameFromEnum(internal_format));
+            IK_CORE_DEBUG("    DataFormat     | {0}", texture_utils::GetFormatNameFromEnum(data_format));
             break;
         }; // switch (color_specifications_[i])
       } // for (size_t i = 0; i < color_attachment_ids_.size(); i++)
@@ -216,7 +224,7 @@ namespace ikan {
       IK_CORE_DEBUG("  Creating Depth Texture Specification to FrameBuffer");
       
       frame_buffer_utils::CreateTextures(&depth_attachment_id_);
-      IK_CORE_DEBUG("    Renderer ID | {0}", depth_attachment_id_);
+      IK_CORE_DEBUG("    Renderer ID    | {0}", depth_attachment_id_);
       
       switch (depth_specification_) {
         case FrameBuffer::Attachments::TextureFormat::None:
@@ -224,19 +232,22 @@ namespace ikan {
           break;
           
         case FrameBuffer::Attachments::TextureFormat::Depth24Stencil:
+          internal_format = GL_DEPTH_COMPONENT;
+          data_format = GL_DEPTH_COMPONENT;
           frame_buffer_utils::BindTexture(depth_attachment_id_);
           frame_buffer_utils::AttachTexture(
-                                            GL_DEPTH_COMPONENT,     // internal format
-                                            GL_DEPTH_COMPONENT,     // attachment type
-                                            specification_.width,   // widht
-                                            specification_.height   // height
+                                            internal_format,
+                                            data_format,
+                                            specification_.width,
+                                            specification_.height
                                             );
           frame_buffer_utils::FramebufferTexture(
                                                  depth_attachment_id_,
                                                  GL_DEPTH_ATTACHMENT,
                                                  GL_TEXTURE_2D
                                                  );
-          IK_CORE_DEBUG("    Format      | {0}", ToString(Depth24Stencil));
+          IK_CORE_DEBUG("    InternalFormae | {0}", texture_utils::GetFormatNameFromEnum(internal_format));
+          IK_CORE_DEBUG("    DataFormat     | {0}", texture_utils::GetFormatNameFromEnum(data_format));
           break;
       }; // switch (depth_specification_)
     } // if (depth_specification_ != FrameBuffer::Attachments::TextureFormat::None)
