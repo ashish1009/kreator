@@ -6,12 +6,9 @@
 //
 
 #include "ray_tracing_layer.hpp"
-#include <dispatch/dispatch.h>
 
 namespace ray_tracing {
   
-  dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-
   static uint32_t ConevrtToRgba(const glm::vec4& pixel) {
     uint8_t r = uint8_t(pixel.r * 255.0f);
     uint8_t g = uint8_t(pixel.g * 255.0f);

@@ -181,16 +181,16 @@ namespace ikan {
   void EditorCamera::UpdateRayDirections() {
     ray_directions_.resize(viewport_width_ * viewport_height_);
     
-    for (uint32_t y = 0; y < viewport_height_; y++) {
-      for (uint32_t x = 0; x < viewport_width_; x++) {
+    dispatch_apply(viewport_height_, queue, ^(size_t y) {
+      dispatch_apply(viewport_width_, queue, ^(size_t x) {
         glm::vec2 coord = { (float)x / (float)viewport_width_, (float)y / (float)viewport_height_ };
         coord = coord * 2.0f - 1.0f; // -1 -> 1
         
         glm::vec4 target = inverse_projection_ * glm::vec4(coord.x, coord.y, 1, 1);
-        glm::vec3 rayDirection = glm::vec3(inverse_view_ * glm::vec4(glm::normalize(glm::vec3(target) / target.w), 0)); // World space
-        ray_directions_[x + y * viewport_width_] = rayDirection;
-      }
-    }
+        glm::vec3 ray_direction = glm::vec3(inverse_view_ * glm::vec4(glm::normalize(glm::vec3(target) / target.w), 0)); // World space
+        ray_directions_[x + y * viewport_width_] = ray_direction;
+      });
+    });
   }
   
   void EditorCamera::MouseZoom(float delta) {

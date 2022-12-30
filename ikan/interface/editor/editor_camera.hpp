@@ -12,8 +12,11 @@
 #include "renderer/utils/camera.hpp"
 #include "core/utils/time_step.hpp"
 #include "core/events/mouse_event.hpp"
+#include <dispatch/dispatch.h>
 
 namespace ikan {
+  
+  static dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
   
   class EditorCamera : public Camera {
   public:
