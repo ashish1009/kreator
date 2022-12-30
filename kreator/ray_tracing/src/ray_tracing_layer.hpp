@@ -7,6 +7,13 @@
 
 #pragma once
 
+#include "scene.hpp"
+#include "math.hpp"
+#include "sphere.hpp"
+#include "triangle.hpp"
+#include "trianglemesh.hpp"
+#include "camera.hpp"
+
 namespace ray_tracing {
   
   using namespace ikan;
@@ -73,8 +80,12 @@ namespace ray_tracing {
     
     void Resize();
     void Render();
+    
+    glm::vec3 CastRay(const Ray_& r, const Shape& scene);
 
     glm::vec4 PerPixel(uint32_t x, uint32_t y);
+    
+    Ray_ get_ray(float u, float v);
     
     HitPayload TraceRay(const Ray& ray);
     HitPayload ClosestHit(const Ray& ray, float hit_distance, int32_t object_idx);
@@ -88,6 +99,7 @@ namespace ray_tracing {
     uint32_t frame_index_ = 1;
     Setting setting_;
     glm::vec4* accumulation_data_ = nullptr;
+    Scene scene;
   };
   
 }
