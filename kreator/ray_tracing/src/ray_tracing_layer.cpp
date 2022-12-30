@@ -78,47 +78,7 @@ namespace ray_tracing {
     delete[] accumulation_data_ ;
     accumulation_data_ = new glm::vec4[viewport_width_ * viewport_height_];
   }
-  
-  Matrix4x4f c2w = Matrix4x4f(1.0f, 0.0f, 0.0f, 0.0f,
-                              0.0,  1.0f, 0.0f, 0.0f,
-                              0.0f, 0.0f, 1.0f, 0.0f,
-                              0.0f, 10.0f, 50.0f, 1.0f);
-  
-  Ray RayTracingLayer::get_ray(float u, float v) {
-    
-    float aspect_ratio = viewport_width_ / viewport_height_;
-    float scale = tan(deg2rad(70.0f * 0.5f));
-
-    // Maya-style
-    float ndc_x = (2.0f * (u + 0.5f) / (float)viewport_width_ - 1.0f) * scale;
-    float ndc_y = (1.0f - 2.0f * (v + 0.5f) / (float)viewport_height_) * scale * 1.0f / aspect_ratio;
-    
-    
-    Ray r;
-    Vector3f orig = Vector3f(0.0f, 0.0f, 0.0f);
-    Vector3f dir =  glm::normalize(Vector3f(ndc_x, ndc_y, -1.0f));
-    
-    r.origin = TransformPointMatrix(c2w, orig);
-    r.direction = TransformDirMatrix(c2w, dir);
-    r.far_plane = 9999.9f;
-    r.near_plane = 0.001f;
-    
-    
-    return r;
-  }
-  
-  glm::vec3 RayTracingLayer::CastRay(const Ray& r, const Shape& scene) {
-    SurfaceInteraction interaction;
-
-    if (scene.Intersect(r, interaction)) {
-      //return Vector3f(glm::dot(interaction.Ng, -r.d));
-      return glm::vec3(interaction.AOV);
-    }
-    
-    return glm::vec3(0.18f);
-
-  }
-  
+      
   void RayTracingLayer::Render() {
     if (frame_index_ == 1) {
       memset(accumulation_data_, 0, final_image_->GetWidth() * final_image_->GetHeight());
@@ -128,13 +88,6 @@ namespace ray_tracing {
       dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x) {
         uint32_t pixel_idx = (uint32_t)x + (uint32_t)y * final_image_->GetWidth();
     
-#define MeshRay 1
-#if MeshRay
-        Ray ray = get_ray(x, y);
-        Vector3f colour = CastRay(ray, scene);
-        
-        image_data_[pixel_idx] = ConevrtToRgba(glm::vec4(colour, 1.0f));
-#else
         glm::vec4 pixel = PerPixel((uint32_t)x, (uint32_t)y);
         if (frame_index_ == 1)
           accumulation_data_[pixel_idx] = pixel;
@@ -146,8 +99,6 @@ namespace ray_tracing {
 
         accumulated_color = glm::clamp(accumulated_color, glm::vec4(0.0f), glm::vec4(1.0f));
         image_data_[pixel_idx] = ConevrtToRgba(accumulated_color);
-        
-#endif
       });
     });
     final_image_->SetData(image_data_);
@@ -166,6 +117,18 @@ namespace ray_tracing {
     
     uint32_t pixel_idx = x + y * final_image_->GetWidth();
     ray.direction = editor_camera_.GetRayDirections().at(pixel_idx);
+    
+#define MeshRay 1
+#if MeshRay
+    SurfaceInteraction interaction;
+    
+    if (scene.Intersect(ray, interaction)) {
+      //return Vector3f(glm::dot(interaction.Ng, -r.d));
+      return glm::vec4(interaction.AOV, 1.0f);
+    }
+    
+    return glm::vec4(0.18f);
+#else
     
     glm::vec3 color(0.0f);
     float multiplier = 1.0f;
@@ -203,6 +166,7 @@ namespace ray_tracing {
     }
     
     return glm::vec4(color, 1.0f);
+#endif
   }
   
   RayTracingLayer::HitPayload RayTracingLayer::TraceRay(const Ray& ray) {
