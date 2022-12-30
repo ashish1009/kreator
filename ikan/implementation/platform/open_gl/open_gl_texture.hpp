@@ -153,6 +153,11 @@ namespace ikan {
     virtual ~OpenGLImage() noexcept;
     
   private:
+    RendererID renderer_id_ = 0;
+    uint32_t internal_format_ = 0, data_format_ = 0;
+    int32_t width_ = 0, height_ = 0;
+    uint32_t size_ = 0;
+    void* texture_data_;
   };
   
 }

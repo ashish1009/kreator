@@ -15,7 +15,7 @@
 namespace ikan {
   
   enum class TextureFormat  {
-    None = 0, RGBA, RGBA32F
+    None = 0, RGBA
   };
 
   /// Interface class for Storing Renderer Texture data. Implementation is depending on the Supported Renerer API.

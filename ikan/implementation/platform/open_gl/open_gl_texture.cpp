@@ -31,6 +31,14 @@ namespace ikan {
     
 #endif
     
+    static GLint ikanFormatToOpenGLFormat(TextureFormat format) {
+      switch (format) {
+        case TextureFormat::None:    return (GLint)0;
+        case TextureFormat::RGBA:    return GL_RGBA;
+      }
+      return (GLint)0;
+    }
+    
   } // namespace texture_utils
   
  
@@ -277,8 +285,19 @@ namespace ikan {
   OpenGLImage::OpenGLImage(uint32_t width,
                            uint32_t height,
                            TextureFormat format,
-                           void* data) {
+                           void* data)
+  : width_(width), height_(height), internal_format_(texture_utils::ikanFormatToOpenGLFormat(format)),
+  data_format_(texture_utils::ikanFormatToOpenGLFormat(format)) {
+    IDManager::GetTextureId(&renderer_id_);
+    glBindTexture(GL_TEXTURE_2D, renderer_id_);
+
     IK_CORE_DEBUG("Creating Open GL Image ... ");
+    IK_CORE_DEBUG("  Renderer ID       | {0}", renderer_id_);
+    IK_CORE_DEBUG("  Width             | {0}", width_);
+    IK_CORE_DEBUG("  Height            | {0}", height_);
+    IK_CORE_DEBUG("  Height            | {0}", height_);
+    IK_CORE_DEBUG("  InternalFormat    | {0}", texture_utils::GetFormatNameFromEnum(internal_format_));
+    IK_CORE_DEBUG("  DataFormat        | {0}", texture_utils::GetFormatNameFromEnum(data_format_));
   }
 
   OpenGLImage::~OpenGLImage() noexcept {

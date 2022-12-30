@@ -35,6 +35,27 @@ namespace ray_tracing {
   }
   
   void RayTracingLayer::RenderGui() {
+    ImguiAPI::StartDcocking();
+    Renderer::Framerate();
+
+    // Viewport
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
+    ImGui::Begin("Kreator Viewport");
+    ImGui::PushID("Kreator Viewport");
+    
+    ImVec2 viewport_panel_size = ImGui::GetContentRegionAvail();
+    ImGui::Image((void*)0,
+                 viewport_panel_size,
+                 ImVec2{ 0, 1 },
+                 ImVec2{ 1, 0 });
+    
+    ImGui::PopStyleVar();
+    
+    ImGui::PopID();
+    ImGui::End();
+    
+    ImguiAPI::EndDcocking();
+
   }
   
 } 
