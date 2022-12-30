@@ -74,16 +74,16 @@ TriangleMesh::TriangleMesh(const char *filepath) {
     materials.clear();
 }
 
-bool TriangleMesh::intersect(const Ray_ &r, SurfaceInteraction &interaction) const {
+bool TriangleMesh::Intersect(const Ray_ &r, SurfaceInteraction &interaction) const {
     
     
     bool hit_tri = false;
     long tri_idx;
-    float t = r.t_max;
+//    float t = r.t_max;
     SurfaceInteraction temp;
     long triangles_size = tris.size();
     for (long i = 0; i < triangles_size; ++i) {
-        if (tris[i]->intersect(r, temp)) {
+        if (tris[i]->Intersect(r, temp)) {
             hit_tri = true;
             tri_idx = i;
             r.t_max = temp.t;

@@ -130,18 +130,18 @@ namespace ikan {
 
   OpenGLFrameBuffer::~OpenGLFrameBuffer() {
     IK_CORE_WARN("Destroying Open GL Framebuffer !!!");
-    IK_CORE_DEBUG("  Renderer ID | {0}", renderer_id_);
+    IK_CORE_WARN("  Renderer ID | {0}", renderer_id_);
     uint32_t i = 0;
-    IK_CORE_DEBUG("  Color Attachments ");
+    IK_CORE_WARN("  Color Attachments ");
     for (auto& color_id : color_attachment_ids_) {
-      IK_CORE_DEBUG("  Renderer ID | {0}", color_id);
-      IK_CORE_DEBUG("  Format      | {0}", frame_buffer_utils::GetTextureFormateStringFromEnum(color_specifications_[i++]));
+      IK_CORE_WARN("  Renderer ID | {0}", color_id);
+      IK_CORE_WARN("  Format      | {0}", frame_buffer_utils::GetTextureFormateStringFromEnum(color_specifications_[i++]));
     }
     IDManager::RemoveTextureId(&color_attachment_ids_[0], (uint32_t)color_attachment_ids_.size());
 
-    IK_CORE_DEBUG("  Depth Attachments ");
-    IK_CORE_DEBUG("  Renderer ID | {0}", depth_attachment_id_);
-    IK_CORE_DEBUG("  Format      | {0}", frame_buffer_utils::GetTextureFormateStringFromEnum(depth_specification_));
+    IK_CORE_WARN("  Depth Attachments ");
+    IK_CORE_WARN("  Renderer ID | {0}", depth_attachment_id_);
+    IK_CORE_WARN("  Format      | {0}", frame_buffer_utils::GetTextureFormateStringFromEnum(depth_specification_));
     IDManager::RemoveTextureId(&depth_attachment_id_);
     
     IDManager::RemoveFramebufferId(renderer_id_);

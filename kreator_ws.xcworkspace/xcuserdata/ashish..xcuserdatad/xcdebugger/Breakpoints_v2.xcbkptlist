@@ -16,7 +16,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "19"
             endingLineNumber = "19"
-            landmarkName = "Scene::intersect(r, interaction)"
+            landmarkName = "Scene::Intersect(r, interaction)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -1,6 +1,6 @@
 #include "triangle.hpp"
 
-bool Triangle::intersect(const Ray_ &r, SurfaceInteraction &interaction) const {
+bool Triangle::Intersect(const Ray_ &r, SurfaceInteraction &interaction) const {
     
     float u, v, t_temp = 0.0f;
 
@@ -19,7 +19,7 @@ bool Triangle::intersect(const Ray_ &r, SurfaceInteraction &interaction) const {
          if (t_temp > r.t_min) {
              interaction.t = t_temp;
              interaction.p = r.o + interaction.t * r.d;
-             Vector3f outward_normal = this->n;
+//             Vector3f outward_normal = this->n;
              interaction.Ng = this->n;
              //interaction.set_face_normal(r, outward_normal);
 

@@ -110,7 +110,7 @@ namespace ray_tracing {
   glm::vec3 RayTracingLayer::CastRay(const Ray_& r, const Shape& scene) {
     SurfaceInteraction interaction;
 
-    if (scene.intersect(r, interaction)) {
+    if (scene.Intersect(r, interaction)) {
       //return Vector3f(glm::dot(interaction.Ng, -r.d));
       return glm::vec3(interaction.AOV);
     }

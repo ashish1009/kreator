@@ -19,7 +19,6 @@
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
 		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
 		B27CF152295F0D4600837A36 /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF144295F0D4500837A36 /* sphere.cpp */; };
-		B27CF153295F0D4600837A36 /* shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF146295F0D4500837A36 /* shape.cpp */; };
 		B27CF154295F0D4600837A36 /* triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF14A295F0D4500837A36 /* triangle.cpp */; };
 		B27CF155295F0D4600837A36 /* trianglemesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF14B295F0D4600837A36 /* trianglemesh.cpp */; };
 		B27CF156295F0D4600837A36 /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF14D295F0D4600837A36 /* math.cpp */; };
@@ -50,6 +49,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B201DA4F295F42B00065C4F3 /* shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shape.hpp; sourceTree = "<group>"; };
 		B2250CAA29584CE00067C43B /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCC29584D1A0067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CD029585E890067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
@@ -64,13 +64,11 @@
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B27CF144295F0D4500837A36 /* sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sphere.cpp; sourceTree = "<group>"; };
 		B27CF145295F0D4500837A36 /* sphere.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sphere.hpp; sourceTree = "<group>"; };
-		B27CF146295F0D4500837A36 /* shape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shape.cpp; sourceTree = "<group>"; };
 		B27CF147295F0D4500837A36 /* trianglemesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = trianglemesh.hpp; sourceTree = "<group>"; };
 		B27CF148295F0D4500837A36 /* camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
 		B27CF149295F0D4500837A36 /* scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = scene.hpp; sourceTree = "<group>"; };
 		B27CF14A295F0D4500837A36 /* triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = triangle.cpp; sourceTree = "<group>"; };
 		B27CF14B295F0D4600837A36 /* trianglemesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trianglemesh.cpp; sourceTree = "<group>"; };
-		B27CF14C295F0D4600837A36 /* shape.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = shape.hpp; sourceTree = "<group>"; };
 		B27CF14D295F0D4600837A36 /* math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
 		B27CF14E295F0D4600837A36 /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
 		B27CF14F295F0D4600837A36 /* math.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = math.hpp; sourceTree = "<group>"; };
@@ -110,6 +108,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B201DA4C295F429A0065C4F3 /* interface */ = {
+			isa = PBXGroup;
+			children = (
+				B201DA4F295F42B00065C4F3 /* shape.hpp */,
+			);
+			path = interface;
+			sourceTree = "<group>";
+		};
+		B201DA4D295F429F0065C4F3 /* implementation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = implementation;
+			sourceTree = "<group>";
+		};
 		B2250CA129584CE00067C43B = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +197,8 @@
 		B251B3ED295E144900508210 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				B201DA4C295F429A0065C4F3 /* interface */,
+				B201DA4D295F429F0065C4F3 /* implementation */,
 				B27CF159295F0D8500837A36 /* external */,
 				B251B3EA295E143C00508210 /* ray_tracing_layer.cpp */,
 				B251B3EB295E143C00508210 /* ray_tracing_layer.hpp */,
@@ -193,8 +208,6 @@
 				B27CF14F295F0D4600837A36 /* math.hpp */,
 				B27CF150295F0D4600837A36 /* scene.cpp */,
 				B27CF149295F0D4500837A36 /* scene.hpp */,
-				B27CF146295F0D4500837A36 /* shape.cpp */,
-				B27CF14C295F0D4600837A36 /* shape.hpp */,
 				B27CF144295F0D4500837A36 /* sphere.cpp */,
 				B27CF145295F0D4500837A36 /* sphere.hpp */,
 				B27CF14A295F0D4500837A36 /* triangle.cpp */,
@@ -321,7 +334,6 @@
 				B27CF154295F0D4600837A36 /* triangle.cpp in Sources */,
 				B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */,
 				B251B3EC295E143C00508210 /* ray_tracing_layer.cpp in Sources */,
-				B27CF153295F0D4600837A36 /* shape.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
 				B27CF155295F0D4600837A36 /* trianglemesh.cpp in Sources */,
 				B27CF15C295F0D8500837A36 /* tiny_obj_loader.cc in Sources */,

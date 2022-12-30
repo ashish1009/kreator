@@ -31,7 +31,7 @@ public:
         
     }
     
-    virtual bool intersect(const Ray_& r, SurfaceInteraction &interaction) const;
+    virtual bool Intersect(const Ray_& r, SurfaceInteraction &interaction) const;
     Vector3f get_barycentric(Vector3f& p) const;
 public:
     Vector3f v0, v1, v2;

@@ -37,6 +37,7 @@ namespace editor {
     
   private:
     Viewport viewport_;
+    EditorCamera editor_camera_;
   };
   
 }

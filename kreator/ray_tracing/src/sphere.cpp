@@ -1,7 +1,7 @@
 #include "sphere.hpp"
 #include <iostream>
 
-bool Sphere::intersect(const Ray_ &r, SurfaceInteraction &interaction) const {
+bool Sphere::Intersect(const Ray_ &r, SurfaceInteraction &interaction) const {
     
     Vector3f oc = r.o - this->center;
     float a = glm::length2(r.d);

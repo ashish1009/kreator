@@ -28,18 +28,29 @@ namespace editor {
   void EditorLayer::Update(Timestep ts) {
     if (viewport_.IsFramebufferResized()) {
       viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
+      editor_camera_.SetViewportSize(viewport_.width, viewport_.height);
     }
+    
+    editor_camera_.Update(ts);
     Renderer::ResetStatsEachFrame();
     
     viewport_.framebuffer->Bind();
 
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
     
+    BatchRenderer::BeginBatch(editor_camera_.GetViewProjection(), editor_camera_.GetView());
+    BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, 0, 0},
+                                                     {0, 0, 0},
+                                                     {1, 1, 1}),
+                            {0.3, 0.4, 0.5, 1.0});
+    BatchRenderer::EndBatch();
+    
     viewport_.UpdateMousePos();
     viewport_.framebuffer->Unbind();
   }
   
   void EditorLayer::EventHandler(Event& event) {
+    editor_camera_.EventHandler(event);
   }
     
   void EditorLayer::RenderGui() {

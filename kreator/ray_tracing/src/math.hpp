@@ -2,7 +2,6 @@
 #define MATH_HPP
 
 #include <glm/glm.hpp>
-#include <glm/gtx/string_cast.hpp>
 #include <glm/gtx/norm.hpp>
 #include <memory>
 
