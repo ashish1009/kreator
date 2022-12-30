@@ -58,10 +58,23 @@ namespace ray_tracing {
     void EventHandler(Event& event) override;
     
   private:
+    struct HitPayload {
+      float hit_distance;
+      glm::vec3 world_normal;
+      glm::vec3 world_position;
+      
+      int32_t object_idx;
+    };
+    
     void Resize();
     void Render();
-    glm::vec4 TraceRay(const Ray& ray);
+
+    glm::vec4 PerPixel(uint32_t x, uint32_t y);
     
+    HitPayload TraceRay(const Ray& ray);
+    HitPayload ClosestHit(const Ray& ray, float hit_distance, int32_t object_idx);
+    HitPayload Miss(const Ray& ray);
+
     std::shared_ptr<Image> final_image_ = nullptr;
     uint32_t* image_data_ = nullptr;
     uint32_t viewport_width_ = 900, viewport_height_ = 600;

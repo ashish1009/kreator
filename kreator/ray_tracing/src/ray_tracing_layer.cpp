@@ -53,33 +53,48 @@ namespace ray_tracing {
   }
   
   void RayTracingLayer::Render() {
-    const glm::vec3& ray_origin = editor_camera_.GetPosition();
 
     dispatch_apply(final_image_->GetHeight(), loop_dispactch_queue_, ^(size_t y) {
       dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x) {
         uint32_t pixel_idx = (uint32_t)x + (uint32_t)y * final_image_->GetWidth();
-        const glm::vec3& ray_direction = editor_camera_.GetRayDirections()[pixel_idx];
-        Ray ray;
-        ray.origin = ray_origin;
-        ray.direction = ray_direction;
-        
-        glm::vec4 pixel = TraceRay(ray);
+        glm::vec4 pixel = PerPixel((uint32_t)x, (uint32_t)y);
         pixel = glm::clamp(pixel, glm::vec4(0.0f), glm::vec4(1.0f));
-
         image_data_[pixel_idx] = ConevrtToRgba(pixel);
       });
     });
     final_image_->SetData(image_data_);
   }
   
-  glm::vec4 RayTracingLayer::TraceRay(const Ray& ray) {
-    if (scene_.shperes.size() == 0) {
+  glm::vec4 RayTracingLayer::PerPixel(uint32_t x, uint32_t y) {
+    Ray ray;
+    ray.origin = editor_camera_.GetPosition();
+    
+    uint32_t pixel_idx = x + y * final_image_->GetWidth();
+    ray.direction = editor_camera_.GetRayDirections()[pixel_idx];
+    
+    RayTracingLayer::HitPayload payload = TraceRay(ray);
+    
+    if (payload.hit_distance < 0)
       return glm::vec4(0, 0, 0, 1);
-    }
-
-    const Sphere* closest_sphere = nullptr;
+    
+    glm::vec3 light_direction = glm::normalize(glm::vec3(-1, -1, -1));
+    
+    float dot = glm::max(glm::dot(payload.world_normal, -light_direction), 0.0f); // cos(angle);
+    
+    const Sphere& sphere = scene_.shperes[payload.object_idx];
+    
+    glm::vec3 sphere_color = sphere.albedo;
+    sphere_color *= dot;
+    
+    return glm::vec4(sphere_color, 1.0f);
+  }
+  
+  RayTracingLayer::HitPayload RayTracingLayer::TraceRay(const Ray& ray) {
+    int32_t closest_sphere_idx = -1;
     float hit_distance = std::numeric_limits<float>::max();
-    for (const Sphere& sphere : scene_.shperes) {
+    
+    for (size_t i = 0; i < scene_.shperes.size(); i++) {
+      const Sphere& sphere = scene_.shperes[i];
       glm::vec3 origin = ray.origin - sphere.position;
       
       // float a = ray_direction.x * ray_direction + ray_direction.y * ray_direction.y + ray_direction.z * ray_direction.z;
@@ -100,27 +115,38 @@ namespace ray_tracing {
       // float t0 = (-b + glm::sqrt(discriminant)) / (2.0f * a);
       if (closest_t < hit_distance) {
         hit_distance = closest_t;
-        closest_sphere = &sphere;
+        closest_sphere_idx = (int32_t)i;
       }
     }
     
-    if (!closest_sphere)
-      return glm::vec4(0, 0, 0, 1);
+    if (closest_sphere_idx < 0)
+      return Miss(ray);
     
-    glm::vec3 origin = ray.origin - closest_sphere->position;
-    glm::vec3 hit_point = origin + (ray.direction * hit_distance);
-    
-    glm::vec3 normal = glm::normalize(hit_point);
-    
-    glm::vec3 light_direction = glm::normalize(glm::vec3(-1, -1, -1));
-    
-    float dot = glm::max(glm::dot(normal, -light_direction), 0.0f); // cos(angle);
-
-    glm::vec3 sphere_color = closest_sphere->albedo;
-    sphere_color *= dot;
-    return glm::vec4(sphere_color, 1.0f);
+    return ClosestHit(ray, hit_distance, closest_sphere_idx);
   }
   
+  RayTracingLayer::HitPayload RayTracingLayer::ClosestHit(const Ray& ray, float hit_distance, int32_t object_idx) {
+    RayTracingLayer::HitPayload payload;
+    payload.hit_distance = hit_distance;
+    payload.object_idx = object_idx;
+
+    const Sphere closest_sphere = scene_.shperes[object_idx];
+    glm::vec3 origin = ray.origin - closest_sphere.position;
+    payload.world_position = origin + (ray.direction * hit_distance);
+    payload.world_normal = glm::normalize(payload.world_position);
+
+    // Move back to origin
+    payload.world_position += closest_sphere.position;
+    
+    return payload;
+  }
+
+  RayTracingLayer::HitPayload RayTracingLayer::Miss(const Ray& ray) {
+    RayTracingLayer::HitPayload payload;
+    payload.hit_distance = -1;
+    return payload;
+  }
+
   void RayTracingLayer::Update(Timestep ts) {
     editor_camera_.Update(ts);
     editor_camera_.SetViewportSize(viewport_width_, viewport_height_);
