@@ -33,7 +33,7 @@ namespace ray_tracing {
     }
     
     for (uint32_t i = 0; i < viewport_width_ * viewport_height_; i++) {
-      image_data_[i] = 1;
+      image_data_[i] = uint32_t(UUID());
     }
     
     image_->SetData(image_data_);

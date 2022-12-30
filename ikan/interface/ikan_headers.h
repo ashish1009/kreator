@@ -40,10 +40,14 @@
 // Core Files
 #include <core/debug/logger.hpp>
 #include <core/debug/profiler.hpp>
+
 #include <core/utils/asserts.h>
 #include <core/utils/asset_manager.hpp>
 #include <core/utils/buffers.hpp>
+
 #include <core/math/maths.hpp>
+#include <core/math/uuid.hpp>
+
 #include <core/core_application.hpp>
 #include <core/layer.hpp>
 
