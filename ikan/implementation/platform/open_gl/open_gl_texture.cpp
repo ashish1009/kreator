@@ -300,9 +300,8 @@ namespace ikan {
                            void* data)
   : width_(width), height_(height), internal_format_(texture_utils::ikanFormatToOpenGLFormat(format)),
   data_format_(texture_utils::ikanFormatToOpenGLFormat(format)) {
-    IDManager::GetTextureId(&renderer_id_);
-    glBindTexture(GL_TEXTURE_2D, renderer_id_);
-
+    Invalidate();
+    
     IK_CORE_DEBUG("Creating Open GL Image ... ");
     IK_CORE_DEBUG("  Renderer ID       | {0}", renderer_id_);
     IK_CORE_DEBUG("  Width             | {0}", width_);
@@ -315,6 +314,15 @@ namespace ikan {
   OpenGLImage::~OpenGLImage() noexcept {
     IK_CORE_WARN("Destroying Open GL Image: !!! ");
     RendererStatistics::Get().texture_buffer_size -= size_;
+  }
+  
+  void OpenGLImage::Invalidate() {
+    if (renderer_id_) {
+      IDManager::RemoveTextureId(&renderer_id_);
+    }
+
+    IDManager::GetTextureId(&renderer_id_);
+    glBindTexture(GL_TEXTURE_2D, renderer_id_);
   }
   
   void OpenGLImage::SetData(void *data) {
@@ -337,6 +345,16 @@ namespace ikan {
     size_ = width_ * height_ * sizeof(uint32_t);
     // TODO: Decide later
 //    RendererStatistics::Get().texture_buffer_size -= size_;
+  }
+  
+  void OpenGLImage::Resize(uint32_t width, uint32_t height) {
+    if (image_data_ and width_ == width and height_ == height)
+      return;
+    
+    width_ = width;
+    height_ = height;
+    
+    Invalidate();
   }
 
   RendererID OpenGLImage::GetRendererID() const { return renderer_id_;}

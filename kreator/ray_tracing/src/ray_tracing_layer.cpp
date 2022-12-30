@@ -25,20 +25,33 @@ namespace ray_tracing {
     IK_WARN("Detaching RayTracing Layer instance ");
   }
   
-  void RayTracingLayer::Update(Timestep ts) {
-    if (!image_) {
-      image_ = Image::Create(800, 800, TextureFormat::RGBA);
-      delete[] image_data_ ;
-      image_data_ = new uint32_t[viewport_width_ * viewport_height_];
+  void RayTracingLayer::Resize() {
+    if (image_) {
+      // No resize
+      if (image_->GetWidth() == viewport_width_ and image_->GetHeight() == viewport_height_)
+        return;
+      
+      image_->Resize(viewport_width_, viewport_height_);
+    }
+    else {
+      image_ = Image::Create(viewport_width_, viewport_height_, TextureFormat::RGBA);
     }
     
-    for (uint32_t i = 0; i < viewport_width_ * viewport_height_; i++) {
-      image_data_[i] = uint32_t(UUID());
-    }
-    
-    image_->SetData(image_data_);
+    delete[] image_data_ ;
+    image_data_ = new uint32_t[viewport_width_ * viewport_height_];
 
-    Renderer::ResetStatsEachFrame();
+  }
+  
+  void RayTracingLayer::Render() {
+    for (uint32_t i = 0; i < image_->GetWidth() * image_->GetHeight(); i++) {
+      image_data_[i] = (uint32_t)UUID();
+    }
+    image_->SetData(image_data_);
+  }
+  
+  void RayTracingLayer::Update(Timestep ts) {
+    Resize();
+    Render();
     Renderer::Clear({0.2, 0.4, 0.2, 1.0});
   }
   
@@ -56,6 +69,8 @@ namespace ray_tracing {
     ImGui::PushID("Kreator Viewport");
     
     ImVec2 viewport_panel_size = ImGui::GetContentRegionAvail();
+    viewport_width_ = (uint32_t) viewport_panel_size.x;
+    viewport_height_ = (uint32_t) viewport_panel_size.y;
     ImGui::Image(INT2VOIDP(image_->GetRendererID()),
                  viewport_panel_size,
                  ImVec2{ 0, 1 },

@@ -178,6 +178,11 @@ namespace ikan {
     virtual uint32_t GetHeight() const = 0;
     /// This function returns the Size of Freetpe face
     virtual uint32_t GetSize() const = 0;
+    /// This function loads the data in GPU
+    /// - Parameters:
+    ///   - width: width of image
+    ///   - height: height of image
+    virtual void Resize(uint32_t width, uint32_t height) = 0;
 
     /// This static functions creates the Texture without data of size
     /// - Parameters:

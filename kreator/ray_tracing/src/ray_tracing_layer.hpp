@@ -36,6 +36,9 @@ namespace ray_tracing {
     void EventHandler(Event& event) override;
     
   private:
+    void Resize();
+    void Render();
+    
     std::shared_ptr<Image> image_ = nullptr;
     uint32_t* image_data_ = nullptr;
     uint32_t viewport_width_ = 900, viewport_height_ = 600;

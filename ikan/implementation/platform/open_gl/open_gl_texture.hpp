@@ -171,13 +171,21 @@ namespace ikan {
     uint32_t GetHeight() const override;
     /// This function returns the size
     uint32_t GetSize() const override;
-
+    /// This function loads the data in GPU
+    /// - Parameters:
+    ///   - width: width of image
+    ///   - height: height of image
+    void Resize(uint32_t width, uint32_t height) override;
+    
   private:
+    // Member Functions
+    void Invalidate();
+
     RendererID renderer_id_ = 0;
     uint32_t internal_format_ = 0, data_format_ = 0;
     int32_t width_ = 0, height_ = 0;
     uint32_t size_ = 0;
-    void* texture_data_;
+    void* image_data_ = nullptr;
   };
   
   
@@ -192,7 +200,7 @@ namespace ikan {
     /// - Parameter format: i kan type
     GLint ikanFormatToOpenGLFormat(TextureFormat format);
     /// This function returns the texture fype from internal format
-    /// - Parameter format_tyoe: <#format_tyoe description#>
+    /// - Parameter format_tyoe: format type
     GLint GetTextureType(GLint format_tyoe);
 
 #endif
