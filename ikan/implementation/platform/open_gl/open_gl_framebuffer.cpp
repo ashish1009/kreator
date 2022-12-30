@@ -71,13 +71,7 @@ namespace ikan {
                               GLenum attachment_type,
                               uint32_t width,
                               uint32_t height) {
-      GLenum type = GL_UNSIGNED_BYTE;
-      if (internal_format == GL_RGBA8)
-        type = GL_UNSIGNED_BYTE;
-      else if (internal_format == GL_DEPTH_COMPONENT)
-        type = GL_FLOAT;
-      else
-        IK_CORE_ASSERT(false, "Add other formats");
+      GLenum type = texture_utils::GetTextureType(internal_format);
       
       glTexImage2D(
                    GL_TEXTURE_2D,               // target

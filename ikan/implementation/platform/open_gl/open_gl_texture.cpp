@@ -10,7 +10,6 @@
 #include "platform/open_gl/open_gl_renderer_id_manager.hpp"
 
 #include <stb_image.h>
-#include <glad/glad.h>
 
 namespace ikan {
   
@@ -18,8 +17,6 @@ namespace ikan {
     
 #ifdef IK_DEBUG_FEATURE
     
-    /// This function returns the Format name from Enum
-    /// - Parameter format: enum taken as uint (enum in Glad)
     std::string GetFormatNameFromEnum(uint32_t format) {
       if (format == GL_RGBA8) return "GL_RGBA8";
       if (format == GL_RGBA)  return "GL_RGBA";
@@ -38,6 +35,21 @@ namespace ikan {
         case TextureFormat::RGBA:    return GL_RGBA;
       }
       return (GLint)0;
+    }
+    
+    GLint GetTextureType(GLint format_type) {
+      switch (format_type) {
+        case GL_RGBA8:
+        case GL_RGBA:
+        case GL_RED:
+          return GL_UNSIGNED_BYTE;
+          
+        case GL_DEPTH_COMPONENT:
+          return GL_FLOAT;
+          
+        default:
+          IK_CORE_ASSERT(false, "Add other formats");
+      }
     }
     
   }
@@ -101,7 +113,7 @@ namespace ikan {
                    height_,
                    0, // Border
                    data_format_,
-                   GL_UNSIGNED_BYTE,
+                   texture_utils::GetTextureType(internal_format_),
                    texture_data_);
       size_ = (uint32_t)width_ * (uint32_t)height_ * (uint32_t)channel_;
       
@@ -159,7 +171,7 @@ namespace ikan {
                  (GLsizei)height_,
                  0, // Border
                  data_format_,
-                 GL_UNSIGNED_BYTE,
+                 texture_utils::GetTextureType(internal_format_),
                  (stbi_uc*)(texture_data_));
     
     // Set the flag if uploaded
@@ -235,7 +247,7 @@ namespace ikan {
                  (GLsizei)face->glyph->bitmap.rows,
                  0, // Border
                  GL_RED,
-                 GL_UNSIGNED_BYTE,
+                 texture_utils::GetTextureType(GL_RED),
                  face->glyph->bitmap.buffer
                  );
     
@@ -314,7 +326,7 @@ namespace ikan {
                  height_,
                  0, // Border
                  data_format_,
-                 GL_UNSIGNED_BYTE,
+                 texture_utils::GetTextureType(internal_format_),
                  data
                  );
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
