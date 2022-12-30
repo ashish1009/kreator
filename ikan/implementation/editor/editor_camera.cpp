@@ -181,8 +181,8 @@ namespace ikan {
   void EditorCamera::UpdateRayDirections() {
     ray_directions_.resize(viewport_width_ * viewport_height_);
     
-    dispatch_apply(viewport_height_, queue, ^(size_t y) {
-      dispatch_apply(viewport_width_, queue, ^(size_t x) {
+    dispatch_apply(viewport_height_, loop_dispactch_queue_, ^(size_t y) {
+      dispatch_apply(viewport_width_, loop_dispactch_queue_, ^(size_t x) {
         glm::vec2 coord = { (float)x / (float)viewport_width_, (float)y / (float)viewport_height_ };
         coord = coord * 2.0f - 1.0f; // -1 -> 1
         

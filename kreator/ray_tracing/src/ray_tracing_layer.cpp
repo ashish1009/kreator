@@ -53,8 +53,8 @@ namespace ray_tracing {
   void RayTracingLayer::Render() {
     const glm::vec3& ray_origin = editor_camera_.GetPosition();
 
-    dispatch_apply(final_image_->GetHeight(), queue, ^(size_t y) {
-      dispatch_apply(final_image_->GetWidth(), queue, ^(size_t x) {
+    dispatch_apply(final_image_->GetHeight(), loop_dispactch_queue_, ^(size_t y) {
+      dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x) {
         uint32_t pixel_idx = (uint32_t)x + (uint32_t)y * final_image_->GetWidth();
         const glm::vec3& ray_direction = editor_camera_.GetRayDirections()[pixel_idx];
         Ray ray;

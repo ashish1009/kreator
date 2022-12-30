@@ -21,6 +21,7 @@
 #include <map>
 #include <set>
 #include <fstream>
+#include <dispatch/dispatch.h>
 
 // Engine Files
 #include "ikan_common.h"

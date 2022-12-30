@@ -19,6 +19,8 @@ namespace ikan {
   
 }
 
+static dispatch_queue_t loop_dispactch_queue_ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
 /// This MACRO Shifts the LSB bit of number 1 at position x
 #define BIT(x) (1 << x)
 /// This MACRO convert x in string
