@@ -23,6 +23,8 @@ namespace ikan {
 #define BIT(x) (1 << x)
 /// This MACRO convert x in string
 #define ToString(x) #x
+/// This MACRO Cast uint32_t into void pointer
+#define INT2VOIDP(i) (void*)(uintptr_t)(i)
 
 /// This MACRO Deletes the Constructors (Default, Copy and Move ) and Operator = (Copy and Move)
 /// for any class to make pure static class

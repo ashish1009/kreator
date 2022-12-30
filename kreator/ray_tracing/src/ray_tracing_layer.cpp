@@ -56,7 +56,7 @@ namespace ray_tracing {
     ImGui::PushID("Kreator Viewport");
     
     ImVec2 viewport_panel_size = ImGui::GetContentRegionAvail();
-    ImGui::Image((void*)image_->GetRendererID(),
+    ImGui::Image(INT2VOIDP(image_->GetRendererID()),
                  viewport_panel_size,
                  ImVec2{ 0, 1 },
                  ImVec2{ 1, 0 });
