@@ -9,11 +9,11 @@ void Scene::Add(std::shared_ptr<Shape> object) {
     objects.push_back(object);
 }
 
-bool Scene::Intersect(const Ray_ &r, SurfaceInteraction &interaction) const {
+bool Scene::Intersect(const Ray &r, SurfaceInteraction &interaction) const {
     
     SurfaceInteraction temp;
     bool any_hit = false;
-    float t_near = r.t_max;
+    float t_near = r.far_plane;
     
     for (const auto& object : objects) {
         if (object->Intersect(r, temp)) {

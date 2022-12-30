@@ -84,7 +84,7 @@ namespace ray_tracing {
                               0.0f, 0.0f, 1.0f, 0.0f,
                               0.0f, 10.0f, 50.0f, 1.0f);
   
-  Ray_ RayTracingLayer::get_ray(float u, float v) {
+  Ray RayTracingLayer::get_ray(float u, float v) {
     
     float aspect_ratio = viewport_width_ / viewport_height_;
     float scale = tan(deg2rad(70.0f * 0.5f));
@@ -94,20 +94,20 @@ namespace ray_tracing {
     float ndc_y = (1.0f - 2.0f * (v + 0.5f) / (float)viewport_height_) * scale * 1.0f / aspect_ratio;
     
     
-    Ray_ r;
+    Ray r;
     Vector3f orig = Vector3f(0.0f, 0.0f, 0.0f);
     Vector3f dir =  glm::normalize(Vector3f(ndc_x, ndc_y, -1.0f));
     
-    r.o = TransformPointMatrix(c2w, orig);
-    r.d = TransformDirMatrix(c2w, dir);
-    r.t_max = 9999.9f;
-    r.t_min = 0.001f;
+    r.origin = TransformPointMatrix(c2w, orig);
+    r.direction = TransformDirMatrix(c2w, dir);
+    r.far_plane = 9999.9f;
+    r.near_plane = 0.001f;
     
     
     return r;
   }
   
-  glm::vec3 RayTracingLayer::CastRay(const Ray_& r, const Shape& scene) {
+  glm::vec3 RayTracingLayer::CastRay(const Ray& r, const Shape& scene) {
     SurfaceInteraction interaction;
 
     if (scene.Intersect(r, interaction)) {
@@ -130,7 +130,7 @@ namespace ray_tracing {
     
 #define MeshRay 1
 #if MeshRay
-        Ray_ ray = get_ray(x, y);
+        Ray ray = get_ray(x, y);
         Vector3f colour = CastRay(ray, scene);
         
         image_data_[pixel_idx] = ConevrtToRgba(glm::vec4(colour, 1.0f));

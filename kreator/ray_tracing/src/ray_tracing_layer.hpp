@@ -16,10 +16,10 @@ namespace ray_tracing {
   
   using namespace ikan;
 
-  struct Ray {
-    glm::vec3 origin;
-    glm::vec3 direction;
-  };
+//  struct Ray {
+//    glm::vec3 origin;
+//    glm::vec3 direction;
+//  };
   
   struct Material {
     glm::vec3 albedo;
@@ -79,11 +79,11 @@ namespace ray_tracing {
     void Resize();
     void Render();
     
-    glm::vec3 CastRay(const Ray_& r, const Shape& scene);
+    glm::vec3 CastRay(const Ray& r, const Shape& scene);
 
     glm::vec4 PerPixel(uint32_t x, uint32_t y);
     
-    Ray_ get_ray(float u, float v);
+    Ray get_ray(float u, float v);
     
     HitPayload TraceRay(const Ray& ray);
     HitPayload ClosestHit(const Ray& ray, float hit_distance, int32_t object_idx);

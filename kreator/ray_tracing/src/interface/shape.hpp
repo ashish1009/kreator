@@ -8,6 +8,7 @@
 #pragma once
 
 #include "math.hpp"
+#include "ray.hpp"
 
 /// This is the base class for any shape to render
 class Shape {
@@ -16,6 +17,6 @@ public:
   /// - Parameters:
   ///   - ray:
   ///   - intersection:
-  virtual bool Intersect(const Ray_& r,
+  virtual bool Intersect(const Ray& r,
                          SurfaceInteraction& interaction) const = 0;
 };

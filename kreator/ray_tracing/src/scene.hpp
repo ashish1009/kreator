@@ -13,7 +13,7 @@ public:
     void Clear();
     void Add(std::shared_ptr<Shape> object);
     
-    virtual bool Intersect(const Ray_& r, SurfaceInteraction &interaction) const;
+    virtual bool Intersect(const Ray& r, SurfaceInteraction &interaction) const;
     
 public:
     std::vector<std::shared_ptr<Shape> > objects;

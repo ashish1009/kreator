@@ -4,6 +4,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/norm.hpp>
 #include <memory>
+#include "ray.hpp"
 
 // Vector3 and Matrix4x4 setup
 typedef glm::vec2 Vector2f;
@@ -36,19 +37,6 @@ inline Vector3f TransformPointMatrix(const Matrix4x4f &x, const Vector3f &src) {
     return dst;
 }
 
-// Basic ray functionality
-class Ray_ {
-public:
-  Ray_() {}
-  Ray_(const Vector3f& orig, const Vector3f& dir, const float& tmin, const float& tmax) : o(orig), d(dir), t_min(tmin), t_max(tmax) {}
-public:
-    Vector3f o;
-    Vector3f d;
-    mutable float t_min;
-    mutable float t_max;
-
-};
-
 // To store interaction information
 struct SurfaceInteraction {
     Vector3f p;             // Intersection point
@@ -58,8 +46,8 @@ struct SurfaceInteraction {
     Vector3f AOV;           // Custom write
     Vector2f st;
 
-    inline void set_face_normal(const Ray_& r, const Vector3f& outward_normal) {
-        front_facing = glm::dot(r.d, outward_normal) < 0.0f;
+    inline void set_face_normal(const Ray& r, const Vector3f& outward_normal) {
+        front_facing = glm::dot(r.direction, outward_normal) < 0.0f;
         Ng = front_facing ? outward_normal : -outward_normal;       
     }
 };

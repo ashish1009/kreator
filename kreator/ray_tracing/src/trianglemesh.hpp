@@ -10,7 +10,7 @@
 class TriangleMesh : public Shape {
 public:
     TriangleMesh(const char *filepath);
-    bool Intersect(const Ray_& r, SurfaceInteraction &interaction) const override;
+    bool Intersect(const Ray& r, SurfaceInteraction &interaction) const override;
 public:
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> materials;
