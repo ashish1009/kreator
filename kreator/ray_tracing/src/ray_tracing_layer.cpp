@@ -6,9 +6,12 @@
 //
 
 #include "ray_tracing_layer.hpp"
+#include <dispatch/dispatch.h>
 
 namespace ray_tracing {
   
+  dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
   RayTracingLayer::RayTracingLayer() : Layer("Kreator") {
     IK_INFO("Creating RayTracing Layer instance ... ");
   }
@@ -43,13 +46,15 @@ namespace ray_tracing {
   }
   
   void RayTracingLayer::Render() {
-    for (uint32_t y = 0; y < final_image_->GetHeight(); y++) {
-      for (uint32_t x = 0; x < final_image_->GetWidth(); x++) {
+    dispatch_apply(final_image_->GetHeight(), queue, ^(size_t y) {
+      dispatch_apply(final_image_->GetWidth(), queue, ^(size_t x) {
+        uint32_t pixel_idx = (uint32_t)x + (uint32_t)y * final_image_->GetWidth();
+
         glm::vec2 coords = { (float)x / (float)final_image_->GetWidth(), (float)y / (float)final_image_->GetHeight() };
         coords = coords * 2.0f - 1.0f; // Map [-1 : 1]
-        image_data_[x + y * final_image_->GetWidth()] = PerPixel(coords);
-      }
-    }
+        image_data_[pixel_idx] = PerPixel(coords);
+      });
+    });
     final_image_->SetData(image_data_);
   }
   
