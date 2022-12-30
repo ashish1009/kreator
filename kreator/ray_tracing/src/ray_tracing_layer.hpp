@@ -9,10 +9,8 @@
 
 #include "scene.hpp"
 #include "math.hpp"
-#include "sphere.hpp"
 #include "triangle.hpp"
 #include "trianglemesh.hpp"
-#include "camera.hpp"
 
 namespace ray_tracing {
   

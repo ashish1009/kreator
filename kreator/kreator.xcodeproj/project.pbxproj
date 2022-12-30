@@ -18,11 +18,9 @@
 		B251B3EC295E143C00508210 /* ray_tracing_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B251B3EA295E143C00508210 /* ray_tracing_layer.cpp */; };
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
 		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
-		B27CF152295F0D4600837A36 /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF144295F0D4500837A36 /* sphere.cpp */; };
 		B27CF154295F0D4600837A36 /* triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF14A295F0D4500837A36 /* triangle.cpp */; };
 		B27CF155295F0D4600837A36 /* trianglemesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF14B295F0D4600837A36 /* trianglemesh.cpp */; };
 		B27CF156295F0D4600837A36 /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF14D295F0D4600837A36 /* math.cpp */; };
-		B27CF157295F0D4600837A36 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF14E295F0D4600837A36 /* camera.cpp */; };
 		B27CF158295F0D4600837A36 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF150295F0D4600837A36 /* scene.cpp */; };
 		B27CF15C295F0D8500837A36 /* tiny_obj_loader.cc in Sources */ = {isa = PBXBuildFile; fileRef = B27CF15A295F0D8500837A36 /* tiny_obj_loader.cc */; };
 		B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -62,15 +60,11 @@
 		B251B3EB295E143C00508210 /* ray_tracing_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ray_tracing_layer.hpp; sourceTree = "<group>"; };
 		B2581110295ACCA500B0EDA7 /* libikan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libikan.a; path = ../../ikan_ws/build/products/Debug/libikan.a; sourceTree = "<group>"; };
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
-		B27CF144295F0D4500837A36 /* sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sphere.cpp; sourceTree = "<group>"; };
-		B27CF145295F0D4500837A36 /* sphere.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sphere.hpp; sourceTree = "<group>"; };
 		B27CF147295F0D4500837A36 /* trianglemesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = trianglemesh.hpp; sourceTree = "<group>"; };
-		B27CF148295F0D4500837A36 /* camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
 		B27CF149295F0D4500837A36 /* scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = scene.hpp; sourceTree = "<group>"; };
 		B27CF14A295F0D4500837A36 /* triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = triangle.cpp; sourceTree = "<group>"; };
 		B27CF14B295F0D4600837A36 /* trianglemesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trianglemesh.cpp; sourceTree = "<group>"; };
 		B27CF14D295F0D4600837A36 /* math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
-		B27CF14E295F0D4600837A36 /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
 		B27CF14F295F0D4600837A36 /* math.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = math.hpp; sourceTree = "<group>"; };
 		B27CF150295F0D4600837A36 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scene.cpp; sourceTree = "<group>"; };
 		B27CF151295F0D4600837A36 /* triangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = triangle.hpp; sourceTree = "<group>"; };
@@ -202,14 +196,10 @@
 				B27CF159295F0D8500837A36 /* external */,
 				B251B3EA295E143C00508210 /* ray_tracing_layer.cpp */,
 				B251B3EB295E143C00508210 /* ray_tracing_layer.hpp */,
-				B27CF14E295F0D4600837A36 /* camera.cpp */,
-				B27CF148295F0D4500837A36 /* camera.hpp */,
 				B27CF14D295F0D4600837A36 /* math.cpp */,
 				B27CF14F295F0D4600837A36 /* math.hpp */,
 				B27CF150295F0D4600837A36 /* scene.cpp */,
 				B27CF149295F0D4500837A36 /* scene.hpp */,
-				B27CF144295F0D4500837A36 /* sphere.cpp */,
-				B27CF145295F0D4500837A36 /* sphere.hpp */,
 				B27CF14A295F0D4500837A36 /* triangle.cpp */,
 				B27CF151295F0D4600837A36 /* triangle.hpp */,
 				B27CF14B295F0D4600837A36 /* trianglemesh.cpp */,
@@ -325,10 +315,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B27CF152295F0D4600837A36 /* sphere.cpp in Sources */,
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
 				B2FC40212958B82D00447A1A /* sandbox_layer.cpp in Sources */,
-				B27CF157295F0D4600837A36 /* camera.cpp in Sources */,
 				B27CF158295F0D4600837A36 /* scene.cpp in Sources */,
 				B27CF156295F0D4600837A36 /* math.cpp in Sources */,
 				B27CF154295F0D4600837A36 /* triangle.cpp in Sources */,

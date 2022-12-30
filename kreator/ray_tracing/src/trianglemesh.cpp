@@ -58,8 +58,6 @@ TriangleMesh::TriangleMesh(const char *filepath) {
 
             }
             index_offset += fv;
-
-
         }
     }
 

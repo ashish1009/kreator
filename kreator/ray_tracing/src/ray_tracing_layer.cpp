@@ -128,7 +128,7 @@ namespace ray_tracing {
       dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x) {
         uint32_t pixel_idx = (uint32_t)x + (uint32_t)y * final_image_->GetWidth();
     
-#define MeshRay 0
+#define MeshRay 1
 #if MeshRay
         Ray_ ray = get_ray(x, y);
         Vector3f colour = CastRay(ray, scene);
