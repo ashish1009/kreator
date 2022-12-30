@@ -282,8 +282,13 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					IK_ENABLE_LOG,
+					IK_DEBUG_FEATURE,
+				);
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/vendors/entt/include",
 					"${PROJECT_DIR}/../ikan/interface",

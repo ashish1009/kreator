@@ -196,14 +196,15 @@ namespace ikan {
     /// This function returns the Format name from Enum
     /// - Parameter format: enum taken as uint (enum in Glad)
     std::string GetFormatNameFromEnum(uint32_t format);
+
+#endif
+
     /// This function returns the Open GL Format type from i kan type
     /// - Parameter format: i kan type
     GLint ikanFormatToOpenGLFormat(TextureFormat format);
     /// This function returns the texture fype from internal format
     /// - Parameter format_tyoe: format type
     GLint GetTextureType(GLint format_tyoe);
-
-#endif
 
   } 
   

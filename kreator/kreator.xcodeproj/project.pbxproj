@@ -427,9 +427,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78KTXZ99TW;
 				ENABLE_HARDENED_RUNTIME = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					IK_ENABLE_LOG,
+					IK_DEBUG_FEATURE,
+				);
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}",
 					"${PROJECT_DIR}/../ikan/interface",
@@ -447,6 +451,7 @@
 					"${PROJECT_DIR}/../ecs/vendors/assimp/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
