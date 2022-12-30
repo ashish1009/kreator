@@ -36,6 +36,10 @@ namespace ray_tracing {
 
   class RayTracingLayer : public Layer {
   public:
+    struct Setting {
+      bool accumulate = true;
+    };
+
     /// Layer Default Constructor to store the name of layer
     RayTracingLayer();
     /// Default Destructor
@@ -81,6 +85,9 @@ namespace ray_tracing {
     uint32_t viewport_width_ = 900, viewport_height_ = 600;
     EditorCamera editor_camera_;
     RayScene scene_;
+    uint32_t frame_index_ = 1;
+    Setting setting_;
+    glm::vec4* accumulation_data_ = nullptr;
   };
   
 }

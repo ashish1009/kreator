@@ -73,20 +73,40 @@ namespace ray_tracing {
     
     delete[] image_data_ ;
     image_data_ = new uint32_t[viewport_width_ * viewport_height_];
-
+    delete[] accumulation_data_ ;
+    accumulation_data_ = new glm::vec4[viewport_width_ * viewport_height_];
   }
   
   void RayTracingLayer::Render() {
+    if (frame_index_ == 1) {
+      memset(accumulation_data_, 0, final_image_->GetWidth() * final_image_->GetHeight());
+    }
 
     dispatch_apply(final_image_->GetHeight(), loop_dispactch_queue_, ^(size_t y) {
       dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x) {
         uint32_t pixel_idx = (uint32_t)x + (uint32_t)y * final_image_->GetWidth();
+        
         glm::vec4 pixel = PerPixel((uint32_t)x, (uint32_t)y);
-        pixel = glm::clamp(pixel, glm::vec4(0.0f), glm::vec4(1.0f));
-        image_data_[pixel_idx] = ConevrtToRgba(pixel);
+        if (frame_index_ == 1)
+          accumulation_data_[pixel_idx] = pixel;
+        else
+          accumulation_data_[pixel_idx] += pixel;
+        
+        glm::vec4 accumulated_color = accumulation_data_[pixel_idx];
+        accumulated_color /= (float)frame_index_;
+        
+        accumulated_color = glm::clamp(accumulated_color, glm::vec4(0.0f), glm::vec4(1.0f));
+        image_data_[pixel_idx] = ConevrtToRgba(accumulated_color);
       });
     });
     final_image_->SetData(image_data_);
+    
+    if (setting_.accumulate) {
+      frame_index_++;
+    }
+    else {
+      frame_index_ = 1;
+    }
   }
   
   glm::vec4 RayTracingLayer::PerPixel(uint32_t x, uint32_t y) {
@@ -193,11 +213,14 @@ namespace ray_tracing {
   }
 
   void RayTracingLayer::Update(Timestep ts) {
-    editor_camera_.Update(ts);
-    editor_camera_.SetViewportSize(viewport_width_, viewport_height_);
+    if (editor_camera_.Update(ts))
+      frame_index_ = 1;
 
+    editor_camera_.SetViewportSize(viewport_width_, viewport_height_);
     Resize();
+    
     Render();
+    
     Renderer::Clear({0.2, 0.4, 0.2, 1.0});
   }
   
@@ -230,11 +253,17 @@ namespace ray_tracing {
         ImGui::PushID((uint32_t)i);
         ImGui::ColorEdit3("color", glm::value_ptr(scene_.materials[i].albedo));
         ImGui::DragFloat("roughness", &scene_.materials[i].roughness, 0.05, 0.0, 1.0);
-        ImGui::Separator();
         ImGui::DragFloat("matellic", &scene_.materials[i].metallic, 0.05, 0.0, 1.0);
+        ImGui::Separator();
         ImGui::PopID();
       }
+
+      ImGui::Checkbox("Accumulate", &setting_.accumulate);
       
+      if (ImGui::Button("Reset")) {
+        frame_index_ = 1;
+      }
+
       ImGui::PopID();
       ImGui::End();
     }
