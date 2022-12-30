@@ -28,11 +28,21 @@ namespace ray_tracing {
   void RayTracingLayer::Attach() {
     IK_INFO("Attaching RayTracing Layer instance");
     {
+      Material& pink_mat = scene_.materials.emplace_back(Material());
+      pink_mat.albedo = {1.0f, 0.0f, 1.0f};
+      pink_mat.roughness = 0.0f;
+    }
+    {
+      Material& blue_mat = scene_.materials.emplace_back(Material());
+      blue_mat.albedo = {0.0f, 0.0f, 1.0f};
+      blue_mat.roughness = 0.1f;
+    }
+    {
       Sphere sphere;
       sphere.position = {0.0f, 0.0f, 0.0f};
       sphere.radius = 1.0f;
+      sphere.material_index = 0;
       
-      sphere.material.albedo = {1.0f, 0.0f, 1.0f};
       scene_.shperes.push_back(sphere);
     }
     {
@@ -40,7 +50,7 @@ namespace ray_tracing {
       sphere.position = {0.0f, -101.0f, 0.0f};
       sphere.radius = 100.0f;
       
-      sphere.material.albedo = {0.0f, 0.0f, 1.0f};
+      sphere.material_index = 1;
       scene_.shperes.push_back(sphere);
     }
   }
@@ -101,7 +111,8 @@ namespace ray_tracing {
       float light_intensity = glm::max(glm::dot(payload.world_normal, -light_direction), 0.0f); // cos(angle);
       
       const Sphere& sphere = scene_.shperes[payload.object_idx];
-      glm::vec3 sphere_color = sphere.material.albedo;
+      const Material& material = scene_.materials[sphere.material_index];
+      glm::vec3 sphere_color = material.albedo;
       sphere_color *= light_intensity;
       
       color += sphere_color * multiplier;
@@ -117,7 +128,7 @@ namespace ray_tracing {
       r_pos -= 0.5f;
       
       ray.direction =  glm::reflect(ray.direction,
-                                    payload.world_normal + sphere.material.roughness * glm::vec3(r_pos));
+                                    payload.world_normal + material.roughness * glm::vec3(r_pos));
     }
     
     return glm::vec4(color, 1.0f);
@@ -207,10 +218,20 @@ namespace ray_tracing {
         ImGui::PushID((uint32_t)i);
         ImGui::DragFloat3("position", glm::value_ptr(scene_.shperes[i].position), 0.1f);
         ImGui::DragFloat("radius", &scene_.shperes[i].radius, 0.1, 0.0);
-        ImGui::ColorEdit3("color", glm::value_ptr(scene_.shperes[i].material.albedo));
-        ImGui::DragFloat("roughness", &scene_.shperes[i].material.roughness, 0.1, 0.0, 1.0);
-        ImGui::DragFloat("matellic", &scene_.shperes[i].material.metallic, 0.1, 0.0, 1.0);
+        ImGui::DragInt("material", &scene_.shperes[i].material_index, 1., 0.0, (int)(scene_.materials.size() - 1));
         ImGui::Separator();
+        ImGui::PopID();
+      }
+      
+      ImGui::Separator();
+      ImGui::Separator();
+      
+      for (size_t i = 0; i < scene_.materials.size(); i++) {
+        ImGui::PushID((uint32_t)i);
+        ImGui::ColorEdit3("color", glm::value_ptr(scene_.materials[i].albedo));
+        ImGui::DragFloat("roughness", &scene_.materials[i].roughness, 0.05, 0.0, 1.0);
+        ImGui::Separator();
+        ImGui::DragFloat("matellic", &scene_.materials[i].metallic, 0.05, 0.0, 1.0);
         ImGui::PopID();
       }
       

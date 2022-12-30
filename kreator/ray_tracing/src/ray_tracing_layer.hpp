@@ -25,12 +25,13 @@ namespace ray_tracing {
   struct Sphere {
     glm::vec3 position;
     float radius = 0.5f;
-    Material material;
+    int material_index;
   };
   
   class RayScene {
   public:
     std::vector<Sphere> shperes;
+    std::vector<Material> materials;
   };
 
   class RayTracingLayer : public Layer {
