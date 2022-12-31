@@ -8,6 +8,7 @@
 #include "sandbox/sandbox_layer.hpp"
 #include "ecs_editor/src/editor_layer.hpp"
 #include "ray_tracing/src/ray_tracing_layer.hpp"
+#include "ray_tracing/src/renderer_layer.hpp"
 
 enum class SupportedApplicationType : uint8_t {
   Sandbox, Editor, RayTracing /* Add More with time */
@@ -28,7 +29,7 @@ public:
         PushLayer(std::make_shared<editor::EditorLayer>());
         break;
       case SupportedApplicationType::RayTracing :
-        PushLayer(std::make_shared<ray_tracing::RayTracingLayer>());
+        PushLayer(std::make_shared<ray_tracing::RendererLayer>());
         break;
     };
   }
@@ -78,8 +79,8 @@ std::unique_ptr<ikan::Application> CreateApplication() {
     case SupportedApplicationType::RayTracing :
       application_spec.name = "RayTracing";
       application_spec.window_specification.title = "RayTracing";
-      application_spec.window_specification.width = 900;
-      application_spec.window_specification.height = 600;
+      application_spec.window_specification.width = 1600;
+      application_spec.window_specification.height = 900;
       application_spec.client_asset_path = "../../../kreator/RayTracing/assets/";
       break;
 
