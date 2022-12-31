@@ -51,6 +51,29 @@ namespace ray_tracing {
     }
   }
   
+  bool HitSphere(const glm::vec3& center, float radius, const Ray& ray) {
+    //       at^2       +       bt        +       c             = 0
+    // (bx^2 + by^2)t^2 + 2(axbx + ayby)t + (ax^2 + ay^2 - r^2) = 0
+    // where,
+    //    a : Ray Origin
+    //    b : Direction of Ray
+    //    r : Radius of Cirlce/Shphere
+    //    t : Distance of point on ray from 'a'
+
+    glm::vec3 origin = ray.origin - center;
+    
+    // float a = ray_direction.x * ray_direction + ray_direction.y * ray_direction.y + ray_direction.z * ray_direction.z;
+    float a = glm::dot(ray.direction, ray.direction);
+    float b = 2.0f * glm::dot(origin, ray.direction);
+    float c = glm::dot(origin, origin) - radius * radius;
+
+    // Discriminant
+    // b^2 -4ac
+    float discriminant = b * b - 4.0f * a * c;
+
+    return (discriminant > 0);
+  }
+  
   void RendererLayer::Render() {
     dispatch_apply(final_image_->GetHeight(), loop_dispactch_queue_, ^(size_t y) {
       dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x) {
@@ -59,10 +82,13 @@ namespace ray_tracing {
         
         uint32_t pixel_idx = (uint32_t)x + (uint32_t)y * final_image_->GetWidth();
         ray.direction = editor_camera_.GetRayDirections().at(pixel_idx);
-
+          
         glm::vec3 unit_direction = ray.direction;
         float t = 0.5 * (unit_direction.y + 1.0);
         glm::vec4 pixel = glm::vec4((((float)1.0 - t) * glm::vec3(1.0, 1.0, 1.0)) + (t * glm::vec3(0.5, 0.7, 1.0)), 1.0f);
+        
+        if (HitSphere({0.0f, 0.0f, 0.0f}, 0.5f, ray))
+          pixel = {1, 0, 1, 1};
         
         pixel = glm::clamp(pixel, glm::vec4(0.0f), glm::vec4(1.0f));
         image_data_[pixel_idx] = ConevrtToRgba(pixel);
