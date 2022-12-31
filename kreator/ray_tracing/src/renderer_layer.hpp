@@ -43,6 +43,18 @@ namespace ray_tracing {
     void Resize();
     /// This functin renders the image per pixel
     void Render();
+    
+    /// This function returns the color value of each pixel
+    /// - Parameters:
+    ///   - x: x index of pixle
+    ///   - y: y index of pixel
+    glm::vec4 PerPixel(uint32_t x, uint32_t y);
+
+    /// This function trace the rays on the hitable obkects
+    /// - Parameters:
+    ///   - ray: ray of camera
+    ///   - payload: hit ppayload output
+    bool TraceRay(const Ray& ray, HitPayload& payload);
 
     // member variables
     std::shared_ptr<Image> final_image_ = nullptr;
@@ -50,7 +62,7 @@ namespace ray_tracing {
     uint32_t viewport_width_ = 900, viewport_height_ = 600;
     EditorCamera editor_camera_ = EditorCamera(true);
     
-    Sphere sphere = Sphere({0.0f, 0.0f, 0.0f}, 1.0f);
+    std::vector<Sphere> spheres;
   };
   
 }

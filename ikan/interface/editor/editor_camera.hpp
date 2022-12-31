@@ -51,6 +51,9 @@ namespace ikan {
     /// This function handles Mouse Scroll event
     /// - Parameter e: Mouse Scroll Event
     bool OnMouseScroll(MouseScrolledEvent& e);
+    /// This function update the camera position
+    /// - Parameter new_position: new position
+    void SetPosition(const glm::vec3& new_position);
 
     // ---------------
     // Getters
@@ -131,7 +134,7 @@ namespace ikan {
     float distance_ = 0.0f;
     float pitch_ = 0.4f, yaw_ = 0.5f;
     
-    bool new_update_ = false;
+    bool new_update_ = true;
     bool update_rays_ = false;
   };
   

@@ -245,6 +245,17 @@ namespace ikan {
     return speed;
   }
   
+  void EditorCamera::SetPosition(const glm::vec3& new_position) {
+    position_ = new_position;
+    distance_ = glm::distance(position_, focal_point_);
+    
+    // Update the camera view matrix
+    UpdateCameraView();
+    
+    // Update the ray directions
+    UpdateRayDirections();
+  }
+  
   glm::vec3 EditorCamera::CalculatePosition() const {
     return focal_point_ - GetForwardDirection() * distance_;
   }

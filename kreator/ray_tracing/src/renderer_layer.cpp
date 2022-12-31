@@ -28,6 +28,17 @@ namespace ray_tracing {
   
   void RendererLayer::Attach() {
     IK_INFO("Attaching Ray Trace Renderer Layer instance");
+    
+    editor_camera_.SetPosition({0, 5, 6});
+//    int32_t num_spheres = 20;
+//    spheres.resize(num_spheres);
+//    for (int32_t i = 0; i < num_spheres; i++) {
+//      spheres[i].position = {0, 0, 0};
+//      spheres[i].radius = 1.0f;
+//    }
+    
+    spheres.push_back(Sphere({0, 1.0, 0}, 1));
+    spheres.push_back(Sphere({0, -100, 0}, 100));
   }
   
   void RendererLayer::Detach() {
@@ -53,23 +64,8 @@ namespace ray_tracing {
   void RendererLayer::Render() {
     dispatch_apply(final_image_->GetHeight(), loop_dispactch_queue_, ^(size_t y) {
       dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x) {
-        Ray ray;
-        ray.origin = editor_camera_.GetPosition();
-        
         uint32_t pixel_idx = (uint32_t)x + (uint32_t)y * final_image_->GetWidth();
-        ray.direction = editor_camera_.GetRayDirections().at(pixel_idx);
-          
-        glm::vec4 pixel{0.0f};
-                
-        HitPayload payload;
-        bool hit = sphere.Hit(ray, editor_camera_.GetNear(), editor_camera_.GetFar(), payload);
-        if (hit) {
-          pixel = {1, 0, 1, 1};
-        } else {
-          glm::vec3 unit_direction = ray.direction;
-          float hit_point = 0.5 * (unit_direction.y + 1.0);
-          pixel = glm::vec4((((float)1.0 - hit_point) * glm::vec3(1.0, 1.0, 1.0)) + (hit_point * glm::vec3(0.5, 0.7, 1.0)), 1.0f);
-        }
+        glm::vec4 pixel = PerPixel((uint32_t)x, (uint32_t)y);
         
         pixel = glm::clamp(pixel, glm::vec4(0.0f), glm::vec4(1.0f));
         image_data_[pixel_idx] = ConevrtToRgba(pixel);
@@ -78,6 +74,42 @@ namespace ray_tracing {
     final_image_->SetData(image_data_);
   }
   
+  glm::vec4 RendererLayer::PerPixel(uint32_t x, uint32_t y) {
+    uint32_t pixel_idx = x + y * final_image_->GetWidth();
+    glm::vec3 color(0.0f);
+    
+    Ray ray;
+    ray.origin = editor_camera_.GetPosition();
+    ray.direction = editor_camera_.GetRayDirections().at(pixel_idx);
+
+    HitPayload payload;
+    if (TraceRay(ray, payload)) {
+      color = payload.world_normal + glm::vec3(1,1,1);
+    } else {
+      glm::vec3 unit_direction = ray.direction;
+      float hit_point = 0.5 * (unit_direction.y + 1.0);
+      color = (((float)1.0 - hit_point) * glm::vec3(1.0, 1.0, 1.0)) + (hit_point * glm::vec3(0.5, 0.7, 1.0));
+    }
+
+    return glm::vec4(color, 1.0f);
+  }
+  
+  bool RendererLayer::TraceRay(const Ray& ray, HitPayload& payload) {
+    HitPayload temp_payload = payload;
+    bool hit_anything = false;
+    float closest_so_far = editor_camera_.GetFar();
+
+    for (int32_t i = 0; i < spheres.size(); i++) {
+      if (spheres[i].Hit(ray, editor_camera_.GetNear(), editor_camera_.GetFar(), temp_payload)) {
+        hit_anything = true;
+        closest_so_far = payload.hit_distance;
+        payload = temp_payload;
+      }
+    }
+    
+    return hit_anything;
+  }
+    
   void RendererLayer::Update(Timestep ts) {
     if (editor_camera_.Update(ts)) {
       
