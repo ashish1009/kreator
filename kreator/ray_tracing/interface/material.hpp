@@ -26,11 +26,22 @@ namespace ray_tracing {
     ///   - payload: hit payload
     ///   - attenuation: output color
     ///   - scattered_ray: output ray
+    bool Scatter(const Ray& ray_in,
+                 const HitPayload& payload,
+                 glm::vec3& attenuation,
+                 Ray& scattered_ray) const;
+    
+  private:
+    /// This function scatters the ray For metals
+    /// - Parameters:
+    ///   - ray_in: current ray
+    ///   - payload: hit payload
+    ///   - attenuation: output color
+    ///   - scattered_ray: output ray
     bool ScatterMatelic(const Ray& ray_in,
                         const HitPayload& payload,
                         glm::vec3& attenuation,
                         Ray& scattered_ray) const;
-
   };
   
 }

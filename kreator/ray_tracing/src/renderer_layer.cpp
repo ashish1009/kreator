@@ -147,7 +147,7 @@ namespace ray_tracing {
       glm::vec3 sphere_color = material.albedo;
       Ray scattered_ray;
 
-      if (material.ScatterMatelic(ray, payload, sphere_color, scattered_ray)) {
+      if (material.Scatter(ray, payload, sphere_color, scattered_ray)) {
         sphere_color *= light_intensity;
         color += sphere_color * multiplier;
         ray = scattered_ray;
