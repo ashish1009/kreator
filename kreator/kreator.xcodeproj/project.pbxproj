@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B201DA56295F4FAC0065C4F3 /* ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201DA54295F4FA90065C4F3 /* ray.cpp */; };
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
 		B251B3CF295DBFCA00508210 /* libassimp.5.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B251B3CE295DBFCA00508210 /* libassimp.5.2.4.dylib */; };
@@ -19,11 +18,6 @@
 		B251B3EC295E143C00508210 /* ray_tracing_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B251B3EA295E143C00508210 /* ray_tracing_layer.cpp */; };
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
 		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
-		B27CF154295F0D4600837A36 /* triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF14A295F0D4500837A36 /* triangle.cpp */; };
-		B27CF155295F0D4600837A36 /* trianglemesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF14B295F0D4600837A36 /* trianglemesh.cpp */; };
-		B27CF156295F0D4600837A36 /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF14D295F0D4600837A36 /* math.cpp */; };
-		B27CF158295F0D4600837A36 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF150295F0D4600837A36 /* scene.cpp */; };
-		B27CF15C295F0D8500837A36 /* tiny_obj_loader.cc in Sources */ = {isa = PBXBuildFile; fileRef = B27CF15A295F0D8500837A36 /* tiny_obj_loader.cc */; };
 		B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DDC295C83030076A2F9 /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BD9DFC295C8A320076A2F9 /* editor_layer.cpp */; };
@@ -48,9 +42,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B201DA4F295F42B00065C4F3 /* shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shape.hpp; sourceTree = "<group>"; };
-		B201DA54295F4FA90065C4F3 /* ray.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ray.cpp; sourceTree = "<group>"; };
-		B201DA55295F4FA90065C4F3 /* ray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ray.hpp; sourceTree = "<group>"; };
 		B2250CAA29584CE00067C43B /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCC29584D1A0067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CD029585E890067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
@@ -63,16 +54,6 @@
 		B251B3EB295E143C00508210 /* ray_tracing_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ray_tracing_layer.hpp; sourceTree = "<group>"; };
 		B2581110295ACCA500B0EDA7 /* libikan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libikan.a; path = ../../ikan_ws/build/products/Debug/libikan.a; sourceTree = "<group>"; };
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
-		B27CF147295F0D4500837A36 /* trianglemesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = trianglemesh.hpp; sourceTree = "<group>"; };
-		B27CF149295F0D4500837A36 /* scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = scene.hpp; sourceTree = "<group>"; };
-		B27CF14A295F0D4500837A36 /* triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = triangle.cpp; sourceTree = "<group>"; };
-		B27CF14B295F0D4600837A36 /* trianglemesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trianglemesh.cpp; sourceTree = "<group>"; };
-		B27CF14D295F0D4600837A36 /* math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
-		B27CF14F295F0D4600837A36 /* math.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = math.hpp; sourceTree = "<group>"; };
-		B27CF150295F0D4600837A36 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scene.cpp; sourceTree = "<group>"; };
-		B27CF151295F0D4600837A36 /* triangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = triangle.hpp; sourceTree = "<group>"; };
-		B27CF15A295F0D8500837A36 /* tiny_obj_loader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tiny_obj_loader.cc; sourceTree = "<group>"; };
-		B27CF15B295F0D8500837A36 /* tiny_obj_loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiny_obj_loader.h; sourceTree = "<group>"; };
 		B2BD9DCB295C7D3C0076A2F9 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.dylib; sourceTree = "<group>"; };
 		B2BD9DCD295C7D3C0076A2F9 /* libpng16.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = libpng16.pc; sourceTree = "<group>"; };
 		B2BD9DCE295C7D3C0076A2F9 /* libpng.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = libpng.pc; sourceTree = "<group>"; };
@@ -105,23 +86,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B201DA4C295F429A0065C4F3 /* interface */ = {
-			isa = PBXGroup;
-			children = (
-				B201DA4F295F42B00065C4F3 /* shape.hpp */,
-				B201DA54295F4FA90065C4F3 /* ray.cpp */,
-				B201DA55295F4FA90065C4F3 /* ray.hpp */,
-			);
-			path = interface;
-			sourceTree = "<group>";
-		};
-		B201DA4D295F429F0065C4F3 /* implementation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = implementation;
-			sourceTree = "<group>";
-		};
 		B2250CA129584CE00067C43B = {
 			isa = PBXGroup;
 			children = (
@@ -196,30 +160,10 @@
 		B251B3ED295E144900508210 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				B201DA4C295F429A0065C4F3 /* interface */,
-				B201DA4D295F429F0065C4F3 /* implementation */,
-				B27CF159295F0D8500837A36 /* external */,
 				B251B3EA295E143C00508210 /* ray_tracing_layer.cpp */,
 				B251B3EB295E143C00508210 /* ray_tracing_layer.hpp */,
-				B27CF14D295F0D4600837A36 /* math.cpp */,
-				B27CF14F295F0D4600837A36 /* math.hpp */,
-				B27CF150295F0D4600837A36 /* scene.cpp */,
-				B27CF149295F0D4500837A36 /* scene.hpp */,
-				B27CF14A295F0D4500837A36 /* triangle.cpp */,
-				B27CF151295F0D4600837A36 /* triangle.hpp */,
-				B27CF14B295F0D4600837A36 /* trianglemesh.cpp */,
-				B27CF147295F0D4500837A36 /* trianglemesh.hpp */,
 			);
 			path = src;
-			sourceTree = "<group>";
-		};
-		B27CF159295F0D8500837A36 /* external */ = {
-			isa = PBXGroup;
-			children = (
-				B27CF15A295F0D8500837A36 /* tiny_obj_loader.cc */,
-				B27CF15B295F0D8500837A36 /* tiny_obj_loader.h */,
-			);
-			path = external;
 			sourceTree = "<group>";
 		};
 		B2BD9DCA295C7D3C0076A2F9 /* lib */ = {
@@ -322,15 +266,9 @@
 			files = (
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
 				B2FC40212958B82D00447A1A /* sandbox_layer.cpp in Sources */,
-				B27CF158295F0D4600837A36 /* scene.cpp in Sources */,
-				B27CF156295F0D4600837A36 /* math.cpp in Sources */,
-				B27CF154295F0D4600837A36 /* triangle.cpp in Sources */,
 				B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */,
 				B251B3EC295E143C00508210 /* ray_tracing_layer.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
-				B201DA56295F4FAC0065C4F3 /* ray.cpp in Sources */,
-				B27CF155295F0D4600837A36 /* trianglemesh.cpp in Sources */,
-				B27CF15C295F0D8500837A36 /* tiny_obj_loader.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

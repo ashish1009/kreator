@@ -7,14 +7,14 @@
 
 #pragma once
 
-#include "scene.hpp"
-#include "math.hpp"
-#include "triangle.hpp"
-#include "trianglemesh.hpp"
-
 namespace ray_tracing {
   
   using namespace ikan;
+  
+  struct Ray {
+    glm::vec3 origin;
+    glm::vec3 direction;
+  };
   
   struct Material {
     glm::vec3 albedo;
@@ -88,7 +88,6 @@ namespace ray_tracing {
     uint32_t frame_index_ = 1;
     Setting setting_;
     glm::vec4* accumulation_data_ = nullptr;
-    Scene scene;
   };
   
 }

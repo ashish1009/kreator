@@ -52,9 +52,7 @@ namespace ray_tracing {
       
       sphere.material_index = 1;
       scene_.shperes.push_back(sphere);
-      ///Users/ashish./Downloads/obj_raytracer-master/obj/dino.obj
-    }//    /Users/ashish./iKan_storage/Github/Projects/ikan_ws/kreator/editor/editor_assets/model/static/cyborg/cyborg.obj
-    scene.Add(std::make_shared<TriangleMesh>("/Users/ashish./Downloads/obj_raytracer-master/obj/dino.obj"));
+    }
   }
   
   void RayTracingLayer::Detach() {
@@ -118,18 +116,6 @@ namespace ray_tracing {
     uint32_t pixel_idx = x + y * final_image_->GetWidth();
     ray.direction = editor_camera_.GetRayDirections().at(pixel_idx);
     
-#define MeshRay 1
-#if MeshRay
-    SurfaceInteraction interaction;
-    
-    if (scene.Intersect(ray, interaction)) {
-      //return Vector3f(glm::dot(interaction.Ng, -r.d));
-      return glm::vec4(interaction.AOV, 1.0f);
-    }
-    
-    return glm::vec4(0.18f);
-#else
-    
     glm::vec3 color(0.0f);
     float multiplier = 1.0f;
     int32_t bounces = 15;
@@ -166,7 +152,6 @@ namespace ray_tracing {
     }
     
     return glm::vec4(color, 1.0f);
-#endif
   }
   
   RayTracingLayer::HitPayload RayTracingLayer::TraceRay(const Ray& ray) {
