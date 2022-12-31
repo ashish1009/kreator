@@ -14,7 +14,7 @@ namespace ray_tracing {
   
   struct Material {
     enum class Type : uint8_t {
-      None, Metal
+      None, Metal, Lambertian
     };
     
     glm::vec3 albedo;
@@ -42,6 +42,16 @@ namespace ray_tracing {
                         const HitPayload& payload,
                         glm::vec3& attenuation,
                         Ray& scattered_ray) const;
+    /// This function scatters the ray For lambertian
+    /// - Parameters:
+    ///   - ray_in: current ray
+    ///   - payload: hit payload
+    ///   - attenuation: output color
+    ///   - scattered_ray: output ray
+    bool ScatterLambertian(const Ray& ray_in,
+                           const HitPayload& payload,
+                           glm::vec3& attenuation,
+                           Ray& scattered_ray) const;
   };
   
 }

@@ -34,7 +34,7 @@ namespace ray_tracing {
     {
       Material& mat = materials.emplace_back(Material());
       mat.albedo = {0.7, 0.3, 0.};
-      mat.type = Material::Type::Metal;
+      mat.type = Material::Type::Lambertian;
     }
     {
       Material& mat = materials.emplace_back(Material());
@@ -49,7 +49,7 @@ namespace ray_tracing {
     {
       Material& mat = materials.emplace_back(Material());
       mat.albedo = {0.8, 0.8, 0.0};
-      mat.type = Material::Type::Metal;
+      mat.type = Material::Type::Lambertian;
     }
     {
       Sphere sphere;
