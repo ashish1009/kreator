@@ -36,6 +36,15 @@ namespace ray_tracing {
     void EventHandler(Event& event) override;
     
   private:
+    // Member functions
+    /// This function resizes the renderer and image
+    void Resize();
+    /// This functin renders the image per pixel
+    void Render();
+
+    // member variables
+    std::shared_ptr<Image> final_image_ = nullptr;
+    uint32_t* image_data_ = nullptr;
     uint32_t viewport_width_ = 900, viewport_height_ = 600;
     EditorCamera editor_camera_;
   };

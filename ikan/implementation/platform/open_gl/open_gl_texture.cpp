@@ -300,15 +300,8 @@ namespace ikan {
                            void* data)
   : width_(width), height_(height), internal_format_(texture_utils::ikanFormatToOpenGLFormat(format)),
   data_format_(texture_utils::ikanFormatToOpenGLFormat(format)) {
-    Invalidate();
-    
     IK_CORE_DEBUG("Creating Open GL Image ... ");
-    IK_CORE_DEBUG("  Renderer ID       | {0}", renderer_id_);
-    IK_CORE_DEBUG("  Width             | {0}", width_);
-    IK_CORE_DEBUG("  Height            | {0}", height_);
-    IK_CORE_DEBUG("  Height            | {0}", height_);
-    IK_CORE_DEBUG("  InternalFormat    | {0}", texture_utils::GetFormatNameFromEnum(internal_format_));
-    IK_CORE_DEBUG("  DataFormat        | {0}", texture_utils::GetFormatNameFromEnum(data_format_));
+    Invalidate();
   }
 
   OpenGLImage::~OpenGLImage() noexcept {
@@ -318,11 +311,22 @@ namespace ikan {
   
   void OpenGLImage::Invalidate() {
     if (renderer_id_) {
+      RendererStatistics::Get().texture_buffer_size -= size_;
       IDManager::RemoveTextureId(&renderer_id_);
     }
 
     IDManager::GetTextureId(&renderer_id_);
     glBindTexture(GL_TEXTURE_2D, renderer_id_);
+    
+    size_ = width_ * height_ * sizeof(uint32_t);
+    RendererStatistics::Get().texture_buffer_size += size_;
+    
+    IK_CORE_DEBUG("  Renderer ID       | {0}", renderer_id_);
+    IK_CORE_DEBUG("  Width             | {0}", width_);
+    IK_CORE_DEBUG("  Height            | {0}", height_);
+    IK_CORE_DEBUG("  Size              | {0}", size_);
+    IK_CORE_DEBUG("  InternalFormat    | {0}", texture_utils::GetFormatNameFromEnum(internal_format_));
+    IK_CORE_DEBUG("  DataFormat        | {0}", texture_utils::GetFormatNameFromEnum(data_format_));
   }
   
   void OpenGLImage::SetData(void *data) {
@@ -341,10 +345,6 @@ namespace ikan {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    size_ = width_ * height_ * sizeof(uint32_t);
-    // TODO: Decide later
-//    RendererStatistics::Get().texture_buffer_size -= size_;
   }
   
   void OpenGLImage::Resize(uint32_t width, uint32_t height) {
@@ -354,6 +354,7 @@ namespace ikan {
     width_ = width;
     height_ = height;
     
+    IK_CORE_DEBUG("Resizing Open GL Image");
     Invalidate();
   }
 
