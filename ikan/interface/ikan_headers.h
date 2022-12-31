@@ -68,5 +68,8 @@
 #include <editor/property_grid.hpp>
 #include <editor/editor_camera.hpp>
 
+// Scene
+#include <scene/viewport.hpp>
+
 // Imgui API
 #include <imgui/imgui_api.hpp>
