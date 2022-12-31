@@ -21,29 +21,35 @@ namespace ray_tracing {
     //    b : Direction of Ray
     //    r : Radius of Cirlce/Shphere
     //    t : Distance of point on ray from 'a'
-    
+
     glm::vec3 origin = ray.origin - position;
+
     // float a = ray_direction.x * ray_direction + ray_direction.y * ray_direction.y + ray_direction.z * ray_direction.z;
     float a = glm::dot(ray.direction, ray.direction);
-    float b = 2.0f * glm::dot(origin, ray.direction);
+    float half_b = glm::dot(origin, ray.direction);
     float c = glm::dot(origin, origin) - (radius * radius);
-    
+
     // Discriminant
     // b^2 -4ac
-    float discriminant = b * b - 4.0f * a * c;
+    float discriminant = half_b * half_b - a * c;
     if (discriminant < 0) {
       return false;
     }
     
+    // Find the nearest root that lies in the acceptable range.
     // -b +- sqrt(discriminant) / 2a
-    float closest_t = (-b - glm::sqrt(discriminant)) / (2.0f * a);
-    // Second hit currently unused
-    // float t0 = (-b + glm::sqrt(discriminant)) / (2.0f * a);
-    if (closest_t > 0.001f and closest_t < hit_distance) {
+    float closest_t = (-half_b - glm::sqrt(discriminant)) / a;
+
+    if (closest_t < 0.001f || hit_distance < closest_t) {
+      float other_t = (-half_b + glm::sqrt(discriminant)) / a;
+      if (other_t < 0.001f || hit_distance < other_t)
+        return false;
+      hit_distance = other_t;
+    } else {
       hit_distance = closest_t;
-      return true;
     }
-    return false;
+    
+    return true;
   }
   
 }
