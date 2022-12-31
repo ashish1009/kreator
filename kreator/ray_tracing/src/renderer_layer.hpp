@@ -15,6 +15,10 @@ namespace ray_tracing {
   
   class RendererLayer : public Layer {
   public:
+    struct Setting {
+      bool accumulate = true;
+    };
+    
     /// Layer Default Constructor to store the name of layer
     RendererLayer();
     /// Default Destructor
@@ -73,6 +77,11 @@ namespace ray_tracing {
     
     std::vector<Sphere> spheres;
     std::vector<Material> materials;
+    
+    glm::vec4* accumulation_data_ = nullptr;
+    uint32_t frame_index_ = 1;
+    
+    Setting setting_;
   };
   
 }

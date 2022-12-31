@@ -100,14 +100,25 @@ namespace ray_tracing {
       delete[] image_data_ ;
       image_data_ = new uint32_t[viewport_width_ * viewport_height_];
       final_image_->Resize(viewport_width_, viewport_height_);
+
+      delete[] accumulation_data_ ;
+      accumulation_data_ = new glm::vec4[viewport_width_ * viewport_height_];
+
     } else {
       final_image_ = Image::Create(viewport_width_, viewport_height_, TextureFormat::RGBA);
       delete[] image_data_ ;
       image_data_ = new uint32_t[viewport_width_ * viewport_height_];
+
+      delete[] accumulation_data_ ;
+      accumulation_data_ = new glm::vec4[viewport_width_ * viewport_height_];
     }
   }
   
   void RendererLayer::Render() {
+    if (frame_index_ == 1) {
+      memset(accumulation_data_, 0, final_image_->GetWidth() * final_image_->GetHeight());
+    }
+
     dispatch_apply(final_image_->GetHeight(), loop_dispactch_queue_, ^(size_t y_) {
       dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x_) {
         uint32_t x = (uint32_t)x_;
@@ -117,10 +128,25 @@ namespace ray_tracing {
         glm::vec4 pixel = PerPixel(x, y);
         
         pixel = glm::clamp(pixel, glm::vec4(0.0f), glm::vec4(1.0f));
-        image_data_[pixel_idx] = ConevrtToRgba(pixel);
+        if (frame_index_ == 1)
+          accumulation_data_[pixel_idx] = pixel;
+        else
+          accumulation_data_[pixel_idx] += pixel;
+        
+        glm::vec4 accumulated_color = accumulation_data_[pixel_idx];
+        accumulated_color /= (float)frame_index_;
+        
+        accumulated_color = glm::clamp(accumulated_color, glm::vec4(0.0f), glm::vec4(1.0f));
+        image_data_[pixel_idx] = ConevrtToRgba(accumulated_color);
       });
     });
     final_image_->SetData(image_data_);
+    
+    if (setting_.accumulate) {
+      frame_index_++;
+    } else {
+      frame_index_ = 1;
+    }
   }
 
   glm::vec4 RendererLayer::PerPixel(uint32_t x, uint32_t y) {
@@ -206,7 +232,7 @@ namespace ray_tracing {
     
   void RendererLayer::Update(Timestep ts) {
     if (editor_camera_.Update(ts)) {
-      
+      frame_index_ = 1;
     }
 
     editor_camera_.SetViewportSize(viewport_width_, viewport_height_);
@@ -246,6 +272,12 @@ namespace ray_tracing {
           ImGui::DragFloat("fuzz", &materials[i].fuzz, 0.01, 0.0, 1.0);
         ImGui::Separator();
         ImGui::PopID();
+      }
+      
+      ImGui::Checkbox("Accumulate", &setting_.accumulate);
+      
+      if (ImGui::Button("Reset")) {
+        frame_index_ = 1;
       }
             
       ImGui::PopID();
