@@ -51,7 +51,8 @@ namespace ray_tracing {
     glm::vec4 PerPixel(uint32_t x, uint32_t y);
     /// This funtion retrn the pixel color for hit or mis
     /// - Parameter ray: ray of camera
-    glm::vec3 RayColor(const Ray& ray);
+    /// - Parameter bounce: bounce of ray
+    glm::vec3 RayColor(const Ray& ray, int32_t bounce);
     /// This function trace the rays on the hitable obkects
     /// - Parameters:
     ///   - ray: ray of camera

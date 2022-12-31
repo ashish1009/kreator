@@ -77,10 +77,21 @@ namespace ray_tracing {
     final_image_->SetData(image_data_);
   }
   
-  glm::vec3 RendererLayer::RayColor(const Ray& ray) {
+  glm::vec3 RendererLayer::RayColor(const Ray& ray, int32_t bounce) {
+    // If we've exceeded the ray bounce limit, no more light is gathered.
+    if (bounce <= 0)
+      return glm::vec3(0.0f);
+
     HitPayload payload;
     if (TraceRay(ray, payload)) {
-      return float(0.5) * (payload.world_normal + glm::vec3(1,1,1));
+      Ray reflected_ray;
+      // Origin is now hit position (Reflection point)
+      // To avoid the new pay position to start from actual sphere we shift the
+      // origin with the help of normal but very less
+      reflected_ray.origin = payload.world_position + payload.world_normal * 0.0001f;
+      reflected_ray.direction = glm::reflect(ray.direction,
+                                             payload.world_normal + Math::RandomInUnitSphere());
+      return float(0.5) * RayColor(reflected_ray, bounce - 1);
     } else {
       glm::vec3 unit_direction = ray.direction;
       float hit_point = 0.5 * (unit_direction.y + 1.0);
@@ -95,7 +106,7 @@ namespace ray_tracing {
     ray.origin = editor_camera_.GetPosition();
     ray.direction = editor_camera_.GetRayDirections().at(pixel_idx);
 
-    return glm::vec4(RayColor(ray), 1.0f);
+    return glm::vec4(RayColor(ray, 10), 1.0f);
   }
   
   bool RendererLayer::TraceRay(const Ray& ray, HitPayload& payload) {
