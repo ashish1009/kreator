@@ -62,10 +62,13 @@ namespace ray_tracing {
   }
   
   void RendererLayer::Render() {
-    dispatch_apply(final_image_->GetHeight(), loop_dispactch_queue_, ^(size_t y) {
-      dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x) {
-        uint32_t pixel_idx = (uint32_t)x + (uint32_t)y * final_image_->GetWidth();
-        glm::vec4 pixel = PerPixel((uint32_t)x, (uint32_t)y);
+    dispatch_apply(final_image_->GetHeight(), loop_dispactch_queue_, ^(size_t y_) {
+      dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x_) {
+        uint32_t x = (uint32_t)x_;
+        uint32_t y = (uint32_t)y_;
+        
+        uint32_t pixel_idx = x + y * final_image_->GetWidth();
+        glm::vec4 pixel = PerPixel(x, y);
         
         pixel = glm::clamp(pixel, glm::vec4(0.0f), glm::vec4(1.0f));
         image_data_[pixel_idx] = ConevrtToRgba(pixel);
@@ -74,24 +77,25 @@ namespace ray_tracing {
     final_image_->SetData(image_data_);
   }
   
+  glm::vec3 RendererLayer::RayColor(const Ray& ray) {
+    HitPayload payload;
+    if (TraceRay(ray, payload)) {
+      return float(0.5) * (payload.world_normal + glm::vec3(1,1,1));
+    } else {
+      glm::vec3 unit_direction = ray.direction;
+      float hit_point = 0.5 * (unit_direction.y + 1.0);
+      return (((float)1.0 - hit_point) * glm::vec3(1.0, 1.0, 1.0)) + (hit_point * glm::vec3(0.5, 0.7, 1.0));
+    }
+  }
+
   glm::vec4 RendererLayer::PerPixel(uint32_t x, uint32_t y) {
     uint32_t pixel_idx = x + y * final_image_->GetWidth();
-    glm::vec3 color(0.0f);
-    
+      
     Ray ray;
     ray.origin = editor_camera_.GetPosition();
     ray.direction = editor_camera_.GetRayDirections().at(pixel_idx);
 
-    HitPayload payload;
-    if (TraceRay(ray, payload)) {
-      color = float(0.5) * (payload.world_normal + glm::vec3(1,1,1));
-    } else {
-      glm::vec3 unit_direction = ray.direction;
-      float hit_point = 0.5 * (unit_direction.y + 1.0);
-      color = (((float)1.0 - hit_point) * glm::vec3(1.0, 1.0, 1.0)) + (hit_point * glm::vec3(0.5, 0.7, 1.0));
-    }
-
-    return glm::vec4(color, 1.0f);
+    return glm::vec4(RayColor(ray), 1.0f);
   }
   
   bool RendererLayer::TraceRay(const Ray& ray, HitPayload& payload) {

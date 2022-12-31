@@ -41,4 +41,14 @@ namespace ikan::Math {
   ///   - max: max range
   double RandomDouble(double min, double max);
   
+  /// This function returns the random vec 3
+  glm::vec3 RandomVec3();
+  /// This function returns the random vec 3 in range
+  /// - Parameters:
+  ///   - min: range min
+  ///   - max: range max
+  glm::vec3 RandomVec3(double min, double max);
+  
+  /// This funtion return the random vec3 in unit sphere
+  glm::vec3 RandomInUnitSphere();
 }

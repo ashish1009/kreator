@@ -81,4 +81,19 @@ namespace ikan::Math {
     return min + (max-min) * RandomDouble();
   }
   
+  glm::vec3 RandomVec3() {
+    return glm::vec3(RandomDouble(), RandomDouble(), RandomDouble());
+  }
+  
+  glm::vec3 RandomVec3(double min, double max) {
+    return glm::vec3(RandomDouble(min,max), RandomDouble(min,max), RandomDouble(min,max));
+  }
+
+  glm::vec3 RandomInUnitSphere() {
+    while (true) {
+      auto p = RandomVec3(-1,1);
+      if (glm::normalize(p).x >= 1) continue;
+      return p;
+    }
+  }
 } 
