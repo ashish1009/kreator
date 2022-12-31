@@ -80,8 +80,7 @@ namespace ikan {
 
       ImGui::NextColumn();
       ImGui::Columns(1);
-    }
-    else {
+    } else {
       ImGui::BeginChild("##ScrollingRegion", ImVec2(0, ImGui::GetFontSize() * 9), true);
       
       ImGui::Columns(2);

@@ -59,12 +59,10 @@ namespace ikan {
         in.seekg(0, std::ios::beg);
         in.read(&result[0], (long)size);
         in.close();
-      }
-      else {
+      } else {
         IK_CORE_ERROR("Could not read from file '{0}'", file_path);
       }
-    }
-    else {
+    } else {
       IK_CORE_ERROR("Could not open file '{0}'", file_path);
     }
     return result;

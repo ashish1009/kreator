@@ -368,9 +368,8 @@ namespace ikan {
                                                         field_name,
                                                         count);
       resources_.push_back(declaration);
-    }
-    else { //  if field is not of type resources like sampler
-           // Resources fundamental and structures
+    } else { //  if field is not of type resources like sampler
+      // Resources fundamental and structures
       OpenGLShaderUniformDeclaration::Type type = OpenGLShaderUniformDeclaration::StringToType(field_type);
       OpenGLShaderUniformDeclaration* declaration = nullptr;
       
@@ -385,8 +384,7 @@ namespace ikan {
                                                          structure,
                                                          field_name,
                                                          count);
-      } // if (type == OpenGLShaderUniformDeclaration::Type::kStruct)
-      else {
+      }  else { // if (type == OpenGLShaderUniformDeclaration::Type::kStruct)
         declaration = new OpenGLShaderUniformDeclaration(domain,
                                                          type,
                                                          field_name,
@@ -512,10 +510,8 @@ namespace ikan {
                               location, s.GetName(), field->GetName(), l);
               } // for (size_t k = 0; k < fields.size(); k++)
             } // for (size_t l = 0; l < uniform->GetCount(); l++)
-          } // if (uniform->GetCount() > 1)
-          
-          // Single struct uniform
-          else {
+          } else { // if (uniform->GetCount() > 1)
+            // Single struct uniform
             for (size_t k = 0; k < fields.size(); k++) {
               OpenGLShaderUniformDeclaration* field = (OpenGLShaderUniformDeclaration*)fields[k];
               uint32_t location = (uint32_t)GetUniformLocation(uniform->name_ + "." + field->name_);
@@ -524,10 +520,8 @@ namespace ikan {
                             location, s.GetName(), field->GetName(), field->GetCount());
             }
           } // else : if (uniform->GetCount() > 1)
-        } // if (uniform->GetType() == OpenGLShaderUniformDeclaration::Type::kStruct)
-        
-        // Fundamental uniforms
-        else {
+        } else { // if (uniform->GetType() == OpenGLShaderUniformDeclaration::Type::kStruct)
+          // Fundamental uniforms
           uint32_t location = (uint32_t)GetUniformLocation(uniform->name_);
           uniform->location_.emplace_back(location);
           IK_CORE_DEBUG("      Location : {0} for {1}[{2}]",

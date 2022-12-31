@@ -28,8 +28,7 @@ namespace ikan {
       shader_library_[path] = Shader::Create(path);
       IK_CORE_DEBUG("Adding Shader '{0}' to Shdaer Library",
                     StringUtils::GetNameFromFilePath(path));
-    }
-    else {
+    } else {
       IK_CORE_DEBUG("Returning Pre loaded Shader '{0}' from Shdaer Library", StringUtils::GetNameFromFilePath(path));
     }
     

@@ -117,8 +117,7 @@ namespace ikan {
                       ShaderDataTypeToString(element.type),
                       element.name,
                       element.count);
-      }
-      else {
+      } else {
         IK_CORE_DEBUG("    {0} {1} [{2}] (Not Normalised)",
                       ShaderDataTypeToString(element.type),
                       element.name,

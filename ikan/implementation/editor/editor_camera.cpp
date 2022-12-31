@@ -88,8 +88,7 @@ namespace ikan {
         MouseRotate(delta);
         moved = true;
       }
-    }
-    else {
+    } else {
       if (Input::IsKeyPressed(KeyCode::LeftAlt)) {
         const glm::vec2& mouse{ Input::GetMouseX(), Input::GetMouseY() };
         glm::vec2 delta = (mouse - initial_mouse_position_) * 0.003f;

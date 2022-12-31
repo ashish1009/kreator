@@ -44,8 +44,7 @@ namespace ikan {
                                  primary_monitor,
                                  nullptr // Share Monitor : NO
                                  );
-    }
-    else {
+    } else {
       window_ = glfwCreateWindow((int32_t)mac_window_data_.specification.width,
                                  (int32_t)mac_window_data_.specification.height,
                                  mac_window_data_.specification.title.c_str(),

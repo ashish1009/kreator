@@ -270,8 +270,7 @@ namespace ikan {
       
       IK_CORE_ASSERT((glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE),
                      "FrameBuffer is Incomplete ");
-    }
-    else {
+    } else {
       IK_CORE_WARN("Framebuffer created without attachment");
     }
   }

@@ -66,8 +66,7 @@ namespace ray_tracing {
         return;
       
       final_image_->Resize(viewport_width_, viewport_height_);
-    }
-    else {
+    } else {
       final_image_ = Image::Create(viewport_width_, viewport_height_, TextureFormat::RGBA);
     }
     
@@ -103,8 +102,7 @@ namespace ray_tracing {
     
     if (setting_.accumulate) {
       frame_index_++;
-    }
-    else {
+    } else {
       frame_index_ = 1;
     }
   }

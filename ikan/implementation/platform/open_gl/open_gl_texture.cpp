@@ -134,8 +134,7 @@ namespace ikan {
       IK_CORE_DEBUG("  Number of Channel | {0}", channel_);
       IK_CORE_DEBUG("  InternalFormat    | {0}", texture_utils::GetFormatNameFromEnum(internal_format_));
       IK_CORE_DEBUG("  DataFormat        | {0}", texture_utils::GetFormatNameFromEnum(data_format_));
-    }
-    else {
+    } else {
       IK_CORE_CRITICAL("Failed to load stbi Image {0}", file_path_.c_str());
     }
   }
