@@ -6,6 +6,7 @@
 //
 
 #include "renderer_layer.hpp"
+#include "ray.hpp"
 
 namespace ray_tracing {
 
@@ -53,11 +54,16 @@ namespace ray_tracing {
   void RendererLayer::Render() {
     dispatch_apply(final_image_->GetHeight(), loop_dispactch_queue_, ^(size_t y) {
       dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x) {
-        uint32_t pixel_idx = (uint32_t)x + (uint32_t)y * final_image_->GetWidth();
+        Ray ray;
+        ray.origin = editor_camera_.GetPosition();
         
-        float rand_val = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-        rand_val -= 0.5f;
-        glm::vec4 pixel = glm::vec4(rand_val);
+        uint32_t pixel_idx = (uint32_t)x + (uint32_t)y * final_image_->GetWidth();
+        ray.direction = editor_camera_.GetRayDirections().at(pixel_idx);
+
+        glm::vec3 unit_direction = ray.direction;
+        float t = 0.5 * (unit_direction.y + 1.0);
+        glm::vec4 pixel = glm::vec4((((float)1.0 - t) * glm::vec3(1.0, 1.0, 1.0)) + (t * glm::vec3(0.5, 0.7, 1.0)), 1.0f);
+        
         pixel = glm::clamp(pixel, glm::vec4(0.0f), glm::vec4(1.0f));
         image_data_[pixel_idx] = ConevrtToRgba(pixel);
       });

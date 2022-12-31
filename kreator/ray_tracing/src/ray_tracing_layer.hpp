@@ -11,18 +11,18 @@ namespace ray_tracing {
   
   using namespace ikan;
   
-  struct Ray {
+  struct Ray_ {
     glm::vec3 origin;
     glm::vec3 direction;
   };
   
-  struct Material {
+  struct Material_ {
     glm::vec3 albedo;
     float roughness = 1.0f;
     float metallic = 0.0f;
   };
   
-  struct Sphere {
+  struct Sphere_ {
     glm::vec3 position;
     float radius = 0.5f;
     int material_index;
@@ -30,8 +30,8 @@ namespace ray_tracing {
   
   class RayScene {
   public:
-    std::vector<Sphere> shperes;
-    std::vector<Material> materials;
+    std::vector<Sphere_> shperes;
+    std::vector<Material_> materials;
   };
 
   class RayTracingLayer : public Layer {
@@ -76,9 +76,9 @@ namespace ray_tracing {
     
     glm::vec4 PerPixel(uint32_t x, uint32_t y);
         
-    HitPayload TraceRay(const Ray& ray);
-    HitPayload ClosestHit(const Ray& ray, float hit_distance, int32_t object_idx);
-    HitPayload Miss(const Ray& ray);
+    HitPayload TraceRay(const Ray_& ray);
+    HitPayload ClosestHit(const Ray_& ray, float hit_distance, int32_t object_idx);
+    HitPayload Miss(const Ray_& ray);
 
     std::shared_ptr<Image> final_image_ = nullptr;
     uint32_t* image_data_ = nullptr;

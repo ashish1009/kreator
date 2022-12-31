@@ -28,17 +28,17 @@ namespace ray_tracing {
   void RayTracingLayer::Attach() {
     IK_INFO("Attaching RayTracing Layer instance");
     {
-      Material& pink_mat = scene_.materials.emplace_back(Material());
+      Material_& pink_mat = scene_.materials.emplace_back(Material_());
       pink_mat.albedo = {1.0f, 0.0f, 1.0f};
       pink_mat.roughness = 0.0f;
     }
     {
-      Material& blue_mat = scene_.materials.emplace_back(Material());
+      Material_& blue_mat = scene_.materials.emplace_back(Material_());
       blue_mat.albedo = {0.0f, 0.0f, 1.0f};
       blue_mat.roughness = 0.1f;
     }
     {
-      Sphere sphere;
+      Sphere_ sphere;
       sphere.position = {0.0f, 0.0f, 0.0f};
       sphere.radius = 1.0f;
       sphere.material_index = 0;
@@ -46,7 +46,7 @@ namespace ray_tracing {
       scene_.shperes.push_back(sphere);
     }
     {
-      Sphere sphere;
+      Sphere_ sphere;
       sphere.position = {0.0f, -101.0f, 0.0f};
       sphere.radius = 100.0f;
       
@@ -110,7 +110,7 @@ namespace ray_tracing {
   }
   
   glm::vec4 RayTracingLayer::PerPixel(uint32_t x, uint32_t y) {
-    Ray ray;
+    Ray_ ray;
     ray.origin = editor_camera_.GetPosition();
     
     uint32_t pixel_idx = x + y * final_image_->GetWidth();
@@ -130,8 +130,8 @@ namespace ray_tracing {
       glm::vec3 light_direction = glm::normalize(glm::vec3(-1, -1, -1));
       float light_intensity = glm::max(glm::dot(payload.world_normal, -light_direction), 0.0f); // cos(angle);
       
-      const Sphere& sphere = scene_.shperes[payload.object_idx];
-      const Material& material = scene_.materials[sphere.material_index];
+      const Sphere_& sphere = scene_.shperes[payload.object_idx];
+      const Material_& material = scene_.materials[sphere.material_index];
       glm::vec3 sphere_color = material.albedo;
       sphere_color *= light_intensity;
       
@@ -154,12 +154,12 @@ namespace ray_tracing {
     return glm::vec4(color, 1.0f);
   }
   
-  RayTracingLayer::HitPayload RayTracingLayer::TraceRay(const Ray& ray) {
+  RayTracingLayer::HitPayload RayTracingLayer::TraceRay(const Ray_& ray) {
     int32_t closest_sphere_idx = -1;
     float hit_distance = std::numeric_limits<float>::max();
     
     for (size_t i = 0; i < scene_.shperes.size(); i++) {
-      const Sphere& sphere = scene_.shperes[i];
+      const Sphere_& sphere = scene_.shperes[i];
       glm::vec3 origin = ray.origin - sphere.position;
       
       // float a = ray_direction.x * ray_direction + ray_direction.y * ray_direction.y + ray_direction.z * ray_direction.z;
@@ -190,12 +190,12 @@ namespace ray_tracing {
     return ClosestHit(ray, hit_distance, closest_sphere_idx);
   }
   
-  RayTracingLayer::HitPayload RayTracingLayer::ClosestHit(const Ray& ray, float hit_distance, int32_t object_idx) {
+  RayTracingLayer::HitPayload RayTracingLayer::ClosestHit(const Ray_& ray, float hit_distance, int32_t object_idx) {
     RayTracingLayer::HitPayload payload;
     payload.hit_distance = hit_distance;
     payload.object_idx = object_idx;
 
-    const Sphere closest_sphere = scene_.shperes[object_idx];
+    const Sphere_ closest_sphere = scene_.shperes[object_idx];
     glm::vec3 origin = ray.origin - closest_sphere.position;
     payload.world_position = origin + (ray.direction * hit_distance);
     payload.world_normal = glm::normalize(payload.world_position);
@@ -206,7 +206,7 @@ namespace ray_tracing {
     return payload;
   }
 
-  RayTracingLayer::HitPayload RayTracingLayer::Miss(const Ray& ray) {
+  RayTracingLayer::HitPayload RayTracingLayer::Miss(const Ray_& ray) {
     RayTracingLayer::HitPayload payload;
     payload.hit_distance = -1;
     return payload;

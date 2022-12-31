@@ -13,6 +13,7 @@
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
 		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
 		B275570A29601F650020D552 /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B275570829601F650020D552 /* renderer_layer.cpp */; };
+		B27557142960244B0020D552 /* ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27557122960244B0020D552 /* ray.cpp */; };
 		B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DDC295C83030076A2F9 /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BD9DFC295C8A320076A2F9 /* editor_layer.cpp */; };
@@ -45,6 +46,8 @@
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B275570829601F650020D552 /* renderer_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
 		B275570929601F650020D552 /* renderer_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
+		B27557122960244B0020D552 /* ray.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ray.cpp; sourceTree = "<group>"; };
+		B27557132960244B0020D552 /* ray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ray.hpp; sourceTree = "<group>"; };
 		B2BD9DCB295C7D3C0076A2F9 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.dylib; sourceTree = "<group>"; };
 		B2BD9DCD295C7D3C0076A2F9 /* libpng16.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = libpng16.pc; sourceTree = "<group>"; };
 		B2BD9DCE295C7D3C0076A2F9 /* libpng.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = libpng.pc; sourceTree = "<group>"; };
@@ -135,6 +138,8 @@
 		B251B3E9295E13EE00508210 /* ray_tracing */ = {
 			isa = PBXGroup;
 			children = (
+				B2755710296024390020D552 /* interface */,
+				B27557112960243F0020D552 /* implementation */,
 				B251B3ED295E144900508210 /* src */,
 			);
 			path = ray_tracing;
@@ -149,6 +154,22 @@
 				B275570929601F650020D552 /* renderer_layer.hpp */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		B2755710296024390020D552 /* interface */ = {
+			isa = PBXGroup;
+			children = (
+				B27557132960244B0020D552 /* ray.hpp */,
+			);
+			path = interface;
+			sourceTree = "<group>";
+		};
+		B27557112960243F0020D552 /* implementation */ = {
+			isa = PBXGroup;
+			children = (
+				B27557122960244B0020D552 /* ray.cpp */,
+			);
+			path = implementation;
 			sourceTree = "<group>";
 		};
 		B2BD9DCA295C7D3C0076A2F9 /* lib */ = {
@@ -253,6 +274,7 @@
 				B2FC40212958B82D00447A1A /* sandbox_layer.cpp in Sources */,
 				B275570A29601F650020D552 /* renderer_layer.cpp in Sources */,
 				B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */,
+				B27557142960244B0020D552 /* ray.cpp in Sources */,
 				B251B3EC295E143C00508210 /* ray_tracing_layer.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
 			);
