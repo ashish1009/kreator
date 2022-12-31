@@ -30,15 +30,33 @@ namespace ray_tracing {
     IK_INFO("Attaching Ray Trace Renderer Layer instance");
     
     editor_camera_.SetPosition({0, 0, 6});
-//    int32_t num_spheres = 20;
-//    spheres.resize(num_spheres);
-//    for (int32_t i = 0; i < num_spheres; i++) {
-//      spheres[i].position = {0, 0, 0};
-//      spheres[i].radius = 1.0f;
-//    }
-    
-    spheres.push_back(Sphere({0, 0.0, 0}, 1, {1, 0, 1}));
-    spheres.push_back(Sphere({0, -101, 0}, 100, {0, 0, 1}));
+
+    {
+      Material& pink_mat = materials.emplace_back(Material());
+      pink_mat.albedo = {1.0f, 0.0f, 1.0f};
+      pink_mat.roughness = 0.0f;
+    }
+    {
+      Material& blue_mat = materials.emplace_back(Material());
+      blue_mat.albedo = {0.0f, 0.0f, 1.0f};
+      blue_mat.roughness = 0.1f;
+    }
+    {
+      Sphere sphere;
+      sphere.position = {0.0f, 0.0f, 0.0f};
+      sphere.radius = 1.0f;
+      sphere.material_index = 0;
+      
+      spheres.push_back(sphere);
+    }
+    {
+      Sphere sphere;
+      sphere.position = {0.0f, -101.0f, 0.0f};
+      sphere.radius = 100.0f;
+      
+      sphere.material_index = 1;
+      spheres.push_back(sphere);
+    }
   }
   
   void RendererLayer::Detach() {
@@ -99,7 +117,8 @@ namespace ray_tracing {
       float light_intensity = glm::max(glm::dot(payload.world_normal, -light_direction), 0.0f); // cos(angle);
       
       const Sphere& sphere = spheres[payload.object_idx];
-      glm::vec3 sphere_color = sphere.albedo;
+      const Material& material = materials[sphere.material_index];
+      glm::vec3 sphere_color = material.albedo;
       sphere_color *= light_intensity;
       
       color += sphere_color * multiplier;
@@ -110,13 +129,9 @@ namespace ray_tracing {
       // Origin is now hit position (Reflection point)
       // To avoid the new pay position to start from actual sphere we shift the
       // origin with the help of normal but very less
-      ray.origin = payload.world_position + payload.world_normal * 0.0001f;
-      
-      float r_pos = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-      r_pos -= 0.5f;
-      
+      ray.origin = payload.world_position + payload.world_normal * 0.0001f;      
       ray.direction = glm::reflect(ray.direction,
-                                   payload.world_normal + (float)(0.1) * glm::vec3(r_pos));
+                                   payload.world_normal + material.roughness * Math::RandomInUnitSphere());
     }
     
     return glm::vec4(color, 1.0f);
@@ -125,17 +140,15 @@ namespace ray_tracing {
   HitPayload RendererLayer::TraceRay(const Ray& ray) {
     int32_t closest_sphere_idx = -1;
     float hit_distance = std::numeric_limits<float>::max();
-    
+
     for (size_t i = 0; i < spheres.size(); i++) {
       const Sphere& sphere = spheres[i];
-      
-      if (sphere.Hit(ray, editor_camera_.GetNear(), hit_distance)) {
+      if (sphere.Hit(ray, hit_distance)) {
         closest_sphere_idx = (int32_t)i;
       } else {
         continue;
       }
     }
-    
     if (closest_sphere_idx < 0)
       return Miss(ray);
     
@@ -182,6 +195,35 @@ namespace ray_tracing {
   void RendererLayer::RenderGui() {
     ImguiAPI::StartDcocking();
     Renderer::Framerate();
+    
+    {
+      ImGui::Begin("Scene Sphere");
+      ImGui::PushID("Scene Sphere");
+      
+      for (size_t i = 0; i < spheres.size(); i++) {
+        ImGui::PushID((uint32_t)i);
+        ImGui::DragFloat3("position", glm::value_ptr(spheres[i].position), 0.1f);
+        ImGui::DragFloat("radius", &spheres[i].radius, 0.1, 0.0);
+        ImGui::DragInt("material", &spheres[i].material_index, 1., 0.0, (int)(materials.size() - 1));
+        ImGui::Separator();
+        ImGui::PopID();
+      }
+      
+      ImGui::Separator();
+      ImGui::Separator();
+      
+      for (size_t i = 0; i < materials.size(); i++) {
+        ImGui::PushID((uint32_t)i);
+        ImGui::ColorEdit3("color", glm::value_ptr(materials[i].albedo));
+        ImGui::DragFloat("roughness", &materials[i].roughness, 0.05, 0.0, 1.0);
+        ImGui::DragFloat("matellic", &materials[i].metallic, 0.05, 0.0, 1.0);
+        ImGui::Separator();
+        ImGui::PopID();
+      }
+            
+      ImGui::PopID();
+      ImGui::End();
+    }
   
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });

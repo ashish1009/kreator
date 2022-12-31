@@ -9,11 +9,10 @@
 
 namespace ray_tracing {
   
-  Sphere::Sphere(const glm::vec3& position, float radius, const glm::vec3& albedo)
-  : position(position), radius(radius), albedo(albedo) { }
+  Sphere::Sphere(const glm::vec3& position, float radius, int32_t material_index)
+  : position(position), radius(radius), material_index(material_index) { }
   
   bool Sphere::Hit(const Ray& ray,
-                   float near_plane,
                    float& hit_distance) const {
     //       at^2       +       bt        +       c             = 0
     // (bx^2 + by^2)t^2 + 2(axbx + ayby)t + (ax^2 + ay^2 - r^2) = 0
@@ -40,7 +39,7 @@ namespace ray_tracing {
     float closest_t = (-b - glm::sqrt(discriminant)) / (2.0f * a);
     // Second hit currently unused
     // float t0 = (-b + glm::sqrt(discriminant)) / (2.0f * a);
-    if (closest_t > near_plane and closest_t < hit_distance) {
+    if (closest_t > 0.0f and closest_t < hit_distance) {
       hit_distance = closest_t;
       return true;
     }

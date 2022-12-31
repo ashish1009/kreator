@@ -9,6 +9,7 @@
 
 #include "ray.hpp"
 #include "hit.hpp"
+#include "material.hpp"
 
 namespace ray_tracing {
   
@@ -17,23 +18,21 @@ namespace ray_tracing {
     glm::vec3 position;
     float radius = 0.5f;
     
-    glm::vec3 albedo;
+    int32_t material_index;
     
     /// This functiuon returns is day hitting the sphere
     /// - Parameters:
     ///   - ray: Ray comming from camera
-    ///   - near_plane: camera near plane
     ///   - hit_distance: Last Hot distance
     bool Hit(const Ray& ray,
-             float near_plane,
              float& hit_distance) const;
     
     /// This construct the sphere
     /// - Parameters:
     ///   - position: position of sphere center
     ///   - radius: rdius of sphere
-    ///   - albedo: color of sphere
-    Sphere(const glm::vec3& position, float radius, const glm::vec3& albedo);
+    ///   - material_index: material index
+    Sphere(const glm::vec3& position, float radius, int32_t material_index);
     Sphere() = default;
   };
   

@@ -54,6 +54,7 @@
 		B275571629602C820020D552 /* sphere.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sphere.hpp; sourceTree = "<group>"; };
 		B275571929602D880020D552 /* hit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hit.hpp; sourceTree = "<group>"; };
 		B275571B296032550020D552 /* hit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hit.cpp; sourceTree = "<group>"; };
+		B2755722296061690020D552 /* material.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = material.hpp; sourceTree = "<group>"; };
 		B2BD9DCB295C7D3C0076A2F9 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.dylib; sourceTree = "<group>"; };
 		B2BD9DCD295C7D3C0076A2F9 /* libpng16.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = libpng16.pc; sourceTree = "<group>"; };
 		B2BD9DCE295C7D3C0076A2F9 /* libpng.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = libpng.pc; sourceTree = "<group>"; };
@@ -168,6 +169,7 @@
 				B27557132960244B0020D552 /* ray.hpp */,
 				B275571629602C820020D552 /* sphere.hpp */,
 				B275571929602D880020D552 /* hit.hpp */,
+				B2755722296061690020D552 /* material.hpp */,
 			);
 			path = interface;
 			sourceTree = "<group>";

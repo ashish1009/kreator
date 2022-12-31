@@ -72,6 +72,7 @@ namespace ray_tracing {
     EditorCamera editor_camera_ = EditorCamera(true);
     
     std::vector<Sphere> spheres;
+    std::vector<Material> materials;
   };
   
 }
