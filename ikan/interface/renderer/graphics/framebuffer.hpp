@@ -78,20 +78,20 @@ namespace ikan {
     // Getters
     // -------------
     /// This function returns the Frame buffer specification
-    virtual const Specification& GetSpecification() const = 0;
+    [[nodiscard]] virtual const Specification& GetSpecification() const = 0;
     /// This function returns the Renderer ID
-    virtual RendererID GetRendererId() const = 0;
+    [[nodiscard]] virtual RendererID GetRendererId() const = 0;
     /// This function returns the Depth Attachment ID
-    virtual RendererID GetDepthAttachmentId() const = 0;
+    [[nodiscard]] virtual RendererID GetDepthAttachmentId() const = 0;
     /// This function returns the Color Attachment iDs
-    virtual const std::vector<RendererID>& GetColorAttachmentIds() const = 0;
+    [[nodiscard]] virtual const std::vector<RendererID>& GetColorAttachmentIds() const = 0;
 
     // -----------------
     // Static Function
     // -----------------
     /// This static function creates the Framebuffer instance based on the current Supported API
     /// - Parameter spec: Frame buffer specification
-    static std::shared_ptr<FrameBuffer> Create(const Specification& spec = Specification());
+    [[nodiscard]] static std::shared_ptr<FrameBuffer> Create(const Specification& spec = Specification());
   };
   
 }

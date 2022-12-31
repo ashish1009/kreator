@@ -97,11 +97,11 @@ namespace ikan {
     // Getters
     // -----------------
     /// This fuinction returns the native pointer Window native as void
-    void* GetWindowPtr() const;
+    [[nodiscard]] void* GetWindowPtr() const;
     /// This fuinction returns the iKan Window Instance as reference
-    const Window& GetWindow() const;
+    [[nodiscard]] const Window& GetWindow() const;
     /// This fuinction returns the Imgui Layer pointer Reference
-    ImguiLayer& GetImGuiLayer() const;
+    [[nodiscard]] ImguiLayer& GetImGuiLayer() const;
 
     /// This fuinction returns the reference instance of application
     static Application& Get();

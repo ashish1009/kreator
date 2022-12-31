@@ -47,11 +47,11 @@ namespace ikan {
     // Getters
     // -------------
     /// This function returns the Name of Shader
-    virtual const std::string& GetName() const = 0;
+    [[nodiscard]] virtual const std::string& GetName() const = 0;
     /// This function returns the File Path of Shader
-    virtual const std::string& GetFilePath() const = 0;
+    [[nodiscard]] virtual const std::string& GetFilePath() const = 0;
     /// This function returns the Renderer ID of Shader
-    virtual RendererID GetRendererID() const = 0;
+    [[nodiscard]] virtual RendererID GetRendererID() const = 0;
     
     /// This function returns true if have the vertex shader buffer data
     virtual bool HasVSMaterialUniformBuffer() const = 0;
@@ -129,7 +129,7 @@ namespace ikan {
     // ---------------
     /// This static function creates Shader Instance based on the Suported API
     /// - Parameter path: Absolute Path of shader
-    static std::shared_ptr<Shader> Create(const std::string& file_path);
+    [[nodiscard]] static std::shared_ptr<Shader> Create(const std::string& file_path);
   };
   
   /// This class stores the compiled shader in library
@@ -140,7 +140,7 @@ namespace ikan {
     // -----------
     /// This function returns the Ref type of ikan::Shader. It creates a new if not present in the map
     /// - Parameter path: path of shader
-    static std::shared_ptr<Shader> GetShader(const std::string& path);
+    [[nodiscard]] static std::shared_ptr<Shader> GetShader(const std::string& path);
     /// This function deletes all the shaders present int the map
     static void ResetShaders();
     

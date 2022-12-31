@@ -29,8 +29,8 @@ namespace ikan::Math {
   ///   - position: position
   ///   - rotaiton: rotaiton
   ///   - scale: scale
-  glm::mat4 GetTransformMatrix(const glm::vec3& position,
-                               const glm::vec3& rotation,
-                               const glm::vec3& scale);
+  [[nodiscard]] glm::mat4 GetTransformMatrix(const glm::vec3& position,
+                                             const glm::vec3& rotation,
+                                             const glm::vec3& scale);
   
 }

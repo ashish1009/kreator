@@ -83,15 +83,15 @@ namespace ikan {
     /// This function returns is the window is full screen
     virtual bool IsFullscreen() const = 0;
     /// This function returns the width of window
-    virtual uint32_t GetWidth() const = 0;
+    [[nodiscard]] virtual uint32_t GetWidth() const = 0;
     /// This function returns the height of window
-    virtual uint32_t GetHeight() const = 0;
-    /// This function returns the title of the window
-    virtual std::string GetTitle() const = 0;
+    [[nodiscard]] virtual uint32_t GetHeight() const = 0;
     /// This function returns the current time step of this frame
-    virtual Timestep GetTimestep() const = 0;
+    [[nodiscard]] virtual Timestep GetTimestep() const = 0;
     /// This function returns the native window pointer (void*)
     [[nodiscard]] virtual void* GetNativeWindow() const = 0;
+    /// This function returns the title of the window
+    virtual std::string GetTitle() const = 0;
     
     /// This function create instance of to create a window based on the Operating system supported
     /// by the sytem / Engine. This is resposible to create the GLFW Window instance for the OS and
@@ -100,8 +100,8 @@ namespace ikan {
     /// - Parameters:
     ///   - os: Current operating system
     ///   - specificaiton: window specification
-    static std::unique_ptr<Window> Create(OperatingSystem os,
-                                          const Specification& spec);
+    [[nodiscard]] static std::unique_ptr<Window> Create(OperatingSystem os,
+                                                        const Specification& spec);
   };
   
 }

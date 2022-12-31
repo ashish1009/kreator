@@ -160,16 +160,16 @@ namespace ikan {
     /// This function returns the shader pointer from the library. If not present then  create new shader
     /// and store in the library
     /// - Parameter path: path of shader
-    static std::shared_ptr<Shader> GetShader(const std::string& path);
+    [[nodiscard]] static std::shared_ptr<Shader> GetShader(const std::string& path);
     /// This function returns the shader pointer from the library. If not present then  create new shader
     /// and store in the library
     /// - Parameters:
     ///   - path: path of textre
     ///   - min_linear: min linear flag
     ///   - mag_linear: max linear flag
-    static std::shared_ptr<Texture> GetTexture(const std::string& path,
-                                              bool min_linear = true,
-                                              bool mag_linear = true);
+    [[nodiscard]] static std::shared_ptr<Texture> GetTexture(const std::string& path,
+                                                             bool min_linear = true,
+                                                             bool mag_linear = true);
 
     // ------------------
     // Draw Calls

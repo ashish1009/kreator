@@ -41,15 +41,15 @@ namespace ikan {
     // Getters
     // -------------
     /// This function returns all the Vertex Buffer Stored in Pipeline
-    virtual const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const = 0;
+    [[nodiscard]] virtual const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const = 0;
     /// This function returns the Current Index Buffer Stored in Pipeline
-    virtual const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const = 0;
+    [[nodiscard]] virtual const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const = 0;
 
     // -----------------
     // Static Function
     // -----------------
     /// This static function creates Ref type instance of Pipeline. Instance depending on the current Renderer API
-    static std::shared_ptr<Pipeline> Create();
+    [[nodiscard]] static std::shared_ptr<Pipeline> Create();
   };
   
 }

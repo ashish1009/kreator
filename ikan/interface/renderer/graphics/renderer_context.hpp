@@ -37,7 +37,7 @@ namespace ikan {
     /// This function creates the instance of Renderer Context based in the API configured in the
     /// Renrerer Class.
     /// - Parameter window: GLFW Window pointer
-    static std::unique_ptr<RendererContext> Create(GLFWwindow* window);
+    [[nodiscard]] static std::unique_ptr<RendererContext> Create(GLFWwindow* window);
   };
   
 } // namespace ikan

@@ -40,11 +40,11 @@ namespace ikan {
     static bool IsMouseButtonReleased(MouseButton button);
     
     /// This function returns the Mouse position (X, Y) in pair
-    static glm::vec2 GetMousePosition();
+    [[nodiscard]] static glm::vec2 GetMousePosition();
     /// This function returns the mouse position X
-    static float GetMouseX();
+    [[nodiscard]] static float GetMouseX();
     /// This function returns the mouse position Y
-    static float GetMouseY();
+    [[nodiscard]] static float GetMouseY();
     
     /// This function set the cursor mode
     static void SetCursorMode(CursorMode mode);

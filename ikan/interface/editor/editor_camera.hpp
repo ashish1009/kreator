@@ -56,20 +56,20 @@ namespace ikan {
     // Getters
     // ---------------
     /// This function returns View Projection Matrix
-    const glm::mat4& GetViewProjection() const;
+    [[nodiscard]] const glm::mat4& GetViewProjection() const;
     /// This function returns the View Matrix
-    const glm::mat4& GetView() const;
+    [[nodiscard]] const glm::mat4& GetView() const;
     
     /// This function returns the Position of Editor camera
-    const glm::vec3& GetPosition() const;
+    [[nodiscard]] const glm::vec3& GetPosition() const;
     /// This function returns the Focal point of Editor camera
-    const glm::vec3& GetFocalPoint() const;
+    [[nodiscard]] const glm::vec3& GetFocalPoint() const;
     /// This function returns the editor camera viewport Height
-    uint32_t GetViewportHeight() const;
+    [[nodiscard]] uint32_t GetViewportHeight() const;
     /// This function returns the editor camera viewport width
-    uint32_t GetViewportWidth() const;
+    [[nodiscard]] uint32_t GetViewportWidth() const;
     /// This function returns the ray Directions of the camera
-    const std::vector<glm::vec3>& GetRayDirections() const;
+    [[nodiscard]] const std::vector<glm::vec3>& GetRayDirections() const;
 
   private:
     // -------------------

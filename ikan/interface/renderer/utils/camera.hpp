@@ -32,14 +32,17 @@ namespace ikan {
     /// - Parameter far: new fat plane
     virtual void SetFar(float far);
     
+    // --------------------
+    // Getters
+    // --------------------
     /// This function returns the Near Plane value
-    float GetNear() const;
+    [[nodiscard]] float GetNear() const;
     /// This function returns the Far Plane value
-    float GetFar() const;
+    [[nodiscard]] float GetFar() const;
     /// This function returns the Aspect Ratio value
-    float GetAspectRatio() const;
+    [[nodiscard]] float GetAspectRatio() const;
     /// This function returns the Projection Matrix of Camera
-    const glm::mat4& GetProjection() const;
+    [[nodiscard]] const glm::mat4& GetProjection() const;
         
     DEFINE_COPY_MOVE_CONSTRUCTORS(Camera);
     

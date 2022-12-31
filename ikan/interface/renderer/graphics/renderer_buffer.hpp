@@ -107,11 +107,11 @@ namespace ikan {
     // Getters
     // -------------
     /// This function returns the Buffer layout stored in Vertex Buffer
-    virtual const BufferLayout& GetLayout() const = 0;
+    [[nodiscard]] virtual const BufferLayout& GetLayout() const = 0;
     /// This function returns the size of Vertex Buffer in GPU
-    virtual uint32_t GetSize() const = 0;
+    [[nodiscard]] virtual uint32_t GetSize() const = 0;
     /// This function returns the renderer ID of Vertex Buffer
-    virtual RendererID GetRendererID() const = 0;
+    [[nodiscard]] virtual RendererID GetRendererID() const = 0;
 
     // -----------------
     // Static Function
@@ -121,11 +121,11 @@ namespace ikan {
     /// - Parameters:
     ///   - data: Data pointer to be stored in GPU
     ///   - size: size of data
-    static std::shared_ptr<VertexBuffer> Create(void* data, uint32_t size);
+    [[nodiscard]] static std::shared_ptr<VertexBuffer> Create(void* data, uint32_t size);
     /// This static function creates the instance of Vertex Buffer based on the supported API. This is
     /// a dynamic data buffer, takes only size of buffer
     /// - Parameter size: size of data
-    static std::shared_ptr<VertexBuffer> Create(uint32_t size);
+    [[nodiscard]] static std::shared_ptr<VertexBuffer> Create(uint32_t size);
   };
 
   /// This class is the interface of Renderer Vertex Buffer, to store the vertices of the objects.
@@ -148,11 +148,11 @@ namespace ikan {
     // Getters
     // -------------
     /// This function returns the Number of Indices used by this Index Buffer
-    virtual uint32_t GetCount() const = 0;
+    [[nodiscard]] virtual uint32_t GetCount() const = 0;
     /// This function returns the size of Index Buffer in GPU
-    virtual uint32_t GetSize() const = 0;    
+    [[nodiscard]] virtual uint32_t GetSize() const = 0;
     /// This function return the renderer ID of Index Buffer
-    virtual RendererID GetRendererID() const = 0;
+    [[nodiscard]] virtual RendererID GetRendererID() const = 0;
 
     // -----------------
     // Static Function
@@ -162,7 +162,7 @@ namespace ikan {
     /// - Parameters:
     ///   - data: Data pointer to be stored in GPU
     ///   - count: count of indiced (NOTE: Single indices is taken as uint32_t)
-    static std::shared_ptr<IndexBuffer> CreateWithCount(void* data, uint32_t count);
+    [[nodiscard]] static std::shared_ptr<IndexBuffer> CreateWithCount(void* data, uint32_t count);
   };
 
 }
