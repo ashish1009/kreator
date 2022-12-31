@@ -84,7 +84,7 @@ namespace ray_tracing {
 
     HitPayload payload;
     if (TraceRay(ray, payload)) {
-      color = glm::vec3(1,0,1);
+      color = float(0.5) * (payload.world_normal + glm::vec3(1,1,1));
     } else {
       glm::vec3 unit_direction = ray.direction;
       float hit_point = 0.5 * (unit_direction.y + 1.0);

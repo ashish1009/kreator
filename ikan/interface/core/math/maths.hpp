@@ -33,4 +33,12 @@ namespace ikan::Math {
                                              const glm::vec3& rotation,
                                              const glm::vec3& scale);
   
+  /// This function returns the random double number
+  double RandomDouble();
+  /// This function returns the random double number in range
+  /// - Parameters:
+  ///   - min: Min range
+  ///   - max: max range
+  double RandomDouble(double min, double max);
+  
 }

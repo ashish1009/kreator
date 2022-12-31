@@ -70,5 +70,15 @@ namespace ikan::Math {
     glm::mat4 rotation = glm::toMat4(glm::quat(rotaiton));
     return glm::translate(glm::mat4(1.0f), position) * rotation * glm::scale(glm::mat4(1.0f), scale);
   }
+
+  double RandomDouble() {
+    // Returns a random real in [0,1).
+    return rand() / (RAND_MAX + 1.0);
+  }
+  
+  double RandomDouble(double min, double max) {
+    // Returns a random real in [min,max).
+    return min + (max-min) * RandomDouble();
+  }
   
 } 
