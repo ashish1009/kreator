@@ -160,7 +160,7 @@ namespace ray_tracing {
     
     glm::vec3 color(0.0f);
     float multiplier = 1.0f;
-    int32_t bounces = 5;
+    int32_t bounces = 50;
     for (uint32_t i = 0; i < bounces; i++) {
       HitPayload payload = TraceRay(ray);
       if (payload.hit_distance < 0) {
@@ -169,17 +169,15 @@ namespace ray_tracing {
         break;
       }
       
-      glm::vec3 light_direction = glm::normalize(glm::vec3(-1, -1, -1));
-      float light_intensity = glm::max(glm::dot(payload.world_normal, -light_direction), 0.0f); // cos(angle);
-      
       const Sphere& sphere = spheres[payload.object_idx];
       const Material& material = materials[sphere.material_index];
-      glm::vec3 sphere_color = material.albedo;
+      if (i == 0)
+        color = material.albedo;
+      glm::vec3 sphere_color;
       Ray scattered_ray;
 
       if (material.Scatter(ray, payload, sphere_color, scattered_ray)) {
-        sphere_color *= light_intensity;
-        color += sphere_color * multiplier;
+        color *= sphere_color;// * multiplier;
         ray = scattered_ray;
       } else {
         break;
@@ -271,7 +269,7 @@ namespace ray_tracing {
         ImGui::PushID((uint32_t)i);
         ImGui::ColorEdit3("color", glm::value_ptr(materials[i].albedo));
         if (materials[i].type == Material::Type::Metal)
-          ImGui::DragFloat("fuzz", &materials[i].fuzz, 0.01, 0.0, 1.0);
+          ImGui::DragFloat("fuzz", &materials[i].fuzz, 0.001, 0.0, 1.0);
         ImGui::Separator();
         ImGui::PopID();
       }

@@ -14,7 +14,10 @@ namespace ray_tracing {
     const auto s = 1e-8;
     return (fabs(e[0]) < s) && (fabs(e[1]) < s) && (fabs(e[2]) < s);
   }
-
+  
+  glm::vec3 reflect(const glm::vec3& v, const glm::vec3& n) {
+    return v - 2*dot(v,n)*n;
+  }
   
   bool Material::Scatter(const Ray &ray_in,
                          const HitPayload &payload,
@@ -44,17 +47,17 @@ namespace ray_tracing {
                                 const HitPayload& payload,
                                 glm::vec3& attenuation,
                                 Ray& scattered_ray) const {
-    glm::vec3 reflected = glm::reflect(glm::normalize(ray_in.direction), payload.world_normal);
+    glm::vec3 reflected = reflect(glm::normalize(ray_in.direction), payload.world_normal);
     scattered_ray = Ray(payload.world_position, reflected + fuzz * ikan::Math::RandomInUnitSphere());
     attenuation = albedo;
-    return (dot(scattered_ray.direction, payload.world_normal) > 0);
+    return true;
   }
   
   bool Material::ScatterLambertian(const Ray& ray_in,
                                    const HitPayload& payload,
                                    glm::vec3& attenuation,
                                    Ray& scattered_ray) const {
-    auto scatter_direction = payload.world_normal + glm::normalize(ikan::Math::RandomVec3());
+    auto scatter_direction = payload.world_normal + glm::normalize(ikan::Math::RandomInUnitSphere());
     
     // Catch degenerate scatter direction
     if (NearZeroVec(scatter_direction))
