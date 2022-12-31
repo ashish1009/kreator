@@ -39,7 +39,7 @@ namespace ray_tracing {
     float closest_t = (-b - glm::sqrt(discriminant)) / (2.0f * a);
     // Second hit currently unused
     // float t0 = (-b + glm::sqrt(discriminant)) / (2.0f * a);
-    if (closest_t > 0.0f and closest_t < hit_distance) {
+    if (closest_t > 0.001f and closest_t < hit_distance) {
       hit_distance = closest_t;
       return true;
     }

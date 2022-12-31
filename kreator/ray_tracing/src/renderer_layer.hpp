@@ -17,6 +17,7 @@ namespace ray_tracing {
   public:
     struct Setting {
       bool accumulate = true;
+      bool render = true;
     };
     
     /// Layer Default Constructor to store the name of layer

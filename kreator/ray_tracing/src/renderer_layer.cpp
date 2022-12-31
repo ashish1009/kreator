@@ -115,37 +115,39 @@ namespace ray_tracing {
   }
   
   void RendererLayer::Render() {
-    if (frame_index_ == 1) {
-      memset(accumulation_data_, 0, final_image_->GetWidth() * final_image_->GetHeight());
-    }
-
-    dispatch_apply(final_image_->GetHeight(), loop_dispactch_queue_, ^(size_t y_) {
-      dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x_) {
-        uint32_t x = (uint32_t)x_;
-        uint32_t y = (uint32_t)y_;
-        
-        uint32_t pixel_idx = x + y * final_image_->GetWidth();
-        glm::vec4 pixel = PerPixel(x, y);
-        
-        pixel = glm::clamp(pixel, glm::vec4(0.0f), glm::vec4(1.0f));
-        if (frame_index_ == 1)
-          accumulation_data_[pixel_idx] = pixel;
-        else
-          accumulation_data_[pixel_idx] += pixel;
-        
-        glm::vec4 accumulated_color = accumulation_data_[pixel_idx];
-        accumulated_color /= (float)frame_index_;
-        
-        accumulated_color = glm::clamp(accumulated_color, glm::vec4(0.0f), glm::vec4(1.0f));
-        image_data_[pixel_idx] = ConevrtToRgba(accumulated_color);
+    if (setting_.render) {
+      if (frame_index_ == 1) {
+        memset(accumulation_data_, 0, final_image_->GetWidth() * final_image_->GetHeight());
+      }
+      
+      dispatch_apply(final_image_->GetHeight(), loop_dispactch_queue_, ^(size_t y_) {
+        dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x_) {
+          uint32_t x = (uint32_t)x_;
+          uint32_t y = (uint32_t)y_;
+          
+          uint32_t pixel_idx = x + y * final_image_->GetWidth();
+          glm::vec4 pixel = PerPixel(x, y);
+          
+          pixel = glm::clamp(pixel, glm::vec4(0.0f), glm::vec4(1.0f));
+          if (frame_index_ == 1)
+            accumulation_data_[pixel_idx] = pixel;
+          else
+            accumulation_data_[pixel_idx] += pixel;
+          
+          glm::vec4 accumulated_color = accumulation_data_[pixel_idx];
+          accumulated_color /= (float)frame_index_;
+          
+          accumulated_color = glm::clamp(accumulated_color, glm::vec4(0.0f), glm::vec4(1.0f));
+          image_data_[pixel_idx] = ConevrtToRgba(accumulated_color);
+        });
       });
-    });
-    final_image_->SetData(image_data_);
-    
-    if (setting_.accumulate) {
-      frame_index_++;
-    } else {
-      frame_index_ = 1;
+      final_image_->SetData(image_data_);
+      
+      if (setting_.accumulate) {
+        frame_index_++;
+      } else {
+        frame_index_ = 1;
+      }
     }
   }
 
@@ -184,7 +186,7 @@ namespace ray_tracing {
       }
       
       // Decreasing the energy
-      multiplier *= 0.4f;
+      multiplier *= 0.5f;
     }
     
     return glm::vec4(color, 1.0f);
@@ -278,6 +280,9 @@ namespace ray_tracing {
       
       if (ImGui::Button("Reset")) {
         frame_index_ = 1;
+      }
+      if (ImGui::Button("Render")) {
+        setting_.render = setting_.render ? false : true;
       }
             
       ImGui::PopID();
