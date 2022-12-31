@@ -36,7 +36,8 @@ namespace ray_tracing {
     // Hit the sphere
     payload.hit_distance = closest_t;
     payload.world_position = ray.At(closest_t);
-    payload.world_normal = (payload.world_position - position) / radius;
+    glm::vec3 outward_normal = (payload.world_position - position) / radius;
+    payload.SetFaceNormal(ray, outward_normal);
 
     return true;
   }

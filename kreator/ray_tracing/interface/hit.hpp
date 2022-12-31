@@ -15,6 +15,14 @@ namespace ray_tracing {
     float hit_distance;
     glm::vec3 world_normal;
     glm::vec3 world_position;
+
+    bool front_face;
+    
+    /// This function update the normal direction
+    /// - Parameters:
+    ///   - ray: ray of the camera
+    ///   - outward_normal: outward normal
+    void SetFaceNormal(const Ray& ray, const glm::vec3& outward_normal);
   };
 
 }
