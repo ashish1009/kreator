@@ -43,15 +43,14 @@ namespace ray_tracing {
       delete[] image_data_ ;
       image_data_ = new uint32_t[viewport_width_ * viewport_height_];
       final_image_->Resize(viewport_width_, viewport_height_);
-    }
-    else {
+    } else {
       final_image_ = Image::Create(viewport_width_, viewport_height_, TextureFormat::RGBA);
       delete[] image_data_ ;
       image_data_ = new uint32_t[viewport_width_ * viewport_height_];
     }
   }
   
-  bool HitSphere(const glm::vec3& center, float radius, const Ray& ray) {
+  float HitSphere(const glm::vec3& center, float radius, const Ray& ray) {
     //       at^2       +       bt        +       c             = 0
     // (bx^2 + by^2)t^2 + 2(axbx + ayby)t + (ax^2 + ay^2 - r^2) = 0
     // where,
@@ -71,7 +70,11 @@ namespace ray_tracing {
     // b^2 -4ac
     float discriminant = b * b - 4.0f * a * c;
 
-    return (discriminant > 0);
+    if (discriminant < 0) {
+      return -1.0;
+    } else {
+      return (-b - sqrt(discriminant) ) / (2.0*a);
+    }
   }
   
   void RendererLayer::Render() {
@@ -83,12 +86,19 @@ namespace ray_tracing {
         uint32_t pixel_idx = (uint32_t)x + (uint32_t)y * final_image_->GetWidth();
         ray.direction = editor_camera_.GetRayDirections().at(pixel_idx);
           
-        glm::vec3 unit_direction = ray.direction;
-        float t = 0.5 * (unit_direction.y + 1.0);
-        glm::vec4 pixel = glm::vec4((((float)1.0 - t) * glm::vec3(1.0, 1.0, 1.0)) + (t * glm::vec3(0.5, 0.7, 1.0)), 1.0f);
+        glm::vec4 pixel{0.0f};
         
-        if (HitSphere({0.0f, 0.0f, 0.0f}, 0.5f, ray))
-          pixel = {1, 0, 1, 1};
+        static glm::vec3 sphere_position = {0.0f, 0.0f, 0.0f};
+        
+        auto hit_point = HitSphere(sphere_position, 0.5f, ray);
+        if (hit_point > 0.0) {
+          glm::vec3 normal = glm::normalize(ray.At(hit_point) - sphere_position);
+          pixel = glm::vec4((float)0.5 * glm::vec3(normal.x + 1, normal.y + 1, normal.z + 1), 1.0f);
+        } else {
+          glm::vec3 unit_direction = ray.direction;
+          hit_point = 0.5 * (unit_direction.y + 1.0);
+          pixel = glm::vec4((((float)1.0 - hit_point) * glm::vec3(1.0, 1.0, 1.0)) + (hit_point * glm::vec3(0.5, 0.7, 1.0)), 1.0f);
+        }
         
         pixel = glm::clamp(pixel, glm::vec4(0.0f), glm::vec4(1.0f));
         image_data_[pixel_idx] = ConevrtToRgba(pixel);
