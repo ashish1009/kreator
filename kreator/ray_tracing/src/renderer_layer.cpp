@@ -29,7 +29,7 @@ namespace ray_tracing {
   void RendererLayer::Attach() {
     IK_INFO("Attaching Ray Trace Renderer Layer instance");
     
-    editor_camera_.SetPosition({0, 5, 6});
+//    editor_camera_.SetPosition({0, 0, 6});
 //    int32_t num_spheres = 20;
 //    spheres.resize(num_spheres);
 //    for (int32_t i = 0; i < num_spheres; i++) {
@@ -37,8 +37,8 @@ namespace ray_tracing {
 //      spheres[i].radius = 1.0f;
 //    }
     
-    spheres.push_back(Sphere({0, 1.0, 0}, 1));
-    spheres.push_back(Sphere({0, -100, 0}, 100));
+    spheres.push_back(Sphere({0, 0.0, 0}, 1));
+    spheres.push_back(Sphere({0, -101, 0}, 100));
   }
   
   void RendererLayer::Detach() {
@@ -84,7 +84,7 @@ namespace ray_tracing {
 
     HitPayload payload;
     if (TraceRay(ray, payload)) {
-      color = payload.world_normal + glm::vec3(1,1,1);
+      color = glm::vec3(1,0,1);
     } else {
       glm::vec3 unit_direction = ray.direction;
       float hit_point = 0.5 * (unit_direction.y + 1.0);
@@ -97,12 +97,12 @@ namespace ray_tracing {
   bool RendererLayer::TraceRay(const Ray& ray, HitPayload& payload) {
     HitPayload temp_payload = payload;
     bool hit_anything = false;
-    float closest_so_far = editor_camera_.GetFar();
+    float hit_distance = std::numeric_limits<float>::max();
 
     for (int32_t i = 0; i < spheres.size(); i++) {
-      if (spheres[i].Hit(ray, editor_camera_.GetNear(), editor_camera_.GetFar(), temp_payload)) {
+      if (spheres[i].Hit(ray, editor_camera_.GetNear(), hit_distance, temp_payload)) {
         hit_anything = true;
-        closest_so_far = payload.hit_distance;
+        hit_distance = temp_payload.hit_distance;
         payload = temp_payload;
       }
     }
@@ -122,13 +122,12 @@ namespace ray_tracing {
   }
   
   void RendererLayer::EventHandler(Event& event) {
-    editor_camera_.EventHandler(event);
+//    editor_camera_.EventHandler(event);
   }
   
   void RendererLayer::RenderGui() {
     ImguiAPI::StartDcocking();
     Renderer::Framerate();
-    Renderer::RenderStatsGui();
   
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });

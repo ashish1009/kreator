@@ -256,6 +256,14 @@ namespace ikan {
     UpdateRayDirections();
   }
   
+  void EditorCamera::RendererGui() {
+    ImGui::Begin("Editor Camera");
+    ImGui::PushID("Editor Camera");
+    
+    ImGui::PopID();
+    ImGui::End();
+  }
+  
   glm::vec3 EditorCamera::CalculatePosition() const {
     return focal_point_ - GetForwardDirection() * distance_;
   }

@@ -41,6 +41,8 @@ namespace ikan {
     /// This function handles Events of Editor Camera
     /// - Parameter e: event instance
     bool EventHandler(Event& e);
+    /// This function renders Gui Data for Editor Camera
+    void RendererGui();
 
     /// This function updates the viewport size for Editor Camera
     /// - Parameters:
