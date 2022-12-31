@@ -105,6 +105,11 @@ namespace ikan::Math {
     return v.x * v.x + v.y * v.y + v.z * v.z;
   }
   
+  glm::vec3 UnitVector(glm::vec3 v) {
+    return v / Vec3Length(v);
+  }
+
+  
   glm::vec3 Refract(const glm::vec3& uv, const glm::vec3& n, float etai_over_etat) {
     float cos_theta = fmin(dot(-uv, n), 1.0);
     glm::vec3 r_out_perp =  etai_over_etat * (uv + cos_theta * n);

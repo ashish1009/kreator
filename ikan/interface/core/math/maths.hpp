@@ -65,7 +65,10 @@ namespace ikan::Math {
   /// This function returns the squared length of vec 3
   /// - Parameter v: vec 3
   float Vec3LengthSquared(const glm::vec3& v);
-  
+  /// This function returns the unit vector
+  /// - Parameter v: vector
+  glm::vec3 UnitVector(glm::vec3 v);
+
   // ------------------------------------------------
   // APIs
   // ------------------------------------------------

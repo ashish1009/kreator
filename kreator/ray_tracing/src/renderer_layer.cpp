@@ -152,13 +152,15 @@ namespace ray_tracing {
   }
 
   glm::vec4 RendererLayer::PerPixel(uint32_t x, uint32_t y) {
+    glm::vec3 color(0.0f);
+#if 1
+#else 
     Ray ray;
     ray.origin = editor_camera_.GetPosition();
     
     uint32_t pixel_idx = x + y * final_image_->GetWidth();
     ray.direction = editor_camera_.GetRayDirections()[pixel_idx];
     
-    glm::vec3 color(0.0f);
     float multiplier = 1.0f;
     int32_t bounces = 5;
     for (uint32_t i = 0; i < bounces; i++) {
@@ -187,6 +189,7 @@ namespace ray_tracing {
       multiplier *= 0.5f;
     }
     
+#endif
     return glm::vec4(color, 1.0f);
   }
   
