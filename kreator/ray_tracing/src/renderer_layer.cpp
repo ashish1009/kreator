@@ -40,7 +40,7 @@ namespace ray_tracing {
       Material& mat = materials.emplace_back(Material());
       mat.albedo = {0.8, 0.8, 0.8};
       mat.type = Material::Type::Dielectric;
-      mat.refractive_index = 1.5f;
+      mat.refractive_index = 1.0f;
     }
     {
       Material& mat = materials.emplace_back(Material());
@@ -55,15 +55,39 @@ namespace ray_tracing {
     }
     {
       Sphere sphere;
-      sphere.position = {0.0f, 0.0f, 0.0f};
-      sphere.radius = 1.0f;
-      sphere.material_index = 0;
+      sphere.position = {0.0f, 1.0f, 0.0f};
+      sphere.radius = 2.0f;
+      sphere.material_index = 2;
       
       spheres.push_back(sphere);
     }
     {
       Sphere sphere;
-      sphere.position = {-2.0f, 0.0f, 0.0f};
+      sphere.position = {-5.0f, 1.0f, 0.0f};
+      sphere.radius = 2.0f;
+      sphere.material_index = 1;
+
+      spheres.push_back(sphere);
+    }
+    {
+      Sphere sphere;
+      sphere.position = {5.0f, 1.0f, 5.0f};
+      sphere.radius = 2.0f;
+      sphere.material_index = 0;
+
+      spheres.push_back(sphere);
+    }
+    {
+      Sphere sphere;
+      sphere.position = {-7.0f, 0.0f, 3.0f};
+      sphere.radius = 1.0f;
+      sphere.material_index = 2;
+
+      spheres.push_back(sphere);
+    }
+    {
+      Sphere sphere;
+      sphere.position = {-2.0f, 0.0f, 4.0f};
       sphere.radius = 1.0f;
       sphere.material_index = 1;
 
@@ -71,9 +95,9 @@ namespace ray_tracing {
     }
     {
       Sphere sphere;
-      sphere.position = {2.0f, 0.0f, 0.0f};
+      sphere.position = {1.0f, 0.0f, 7.0f};
       sphere.radius = 1.0f;
-      sphere.material_index = 2;
+      sphere.material_index = 0;
 
       spheres.push_back(sphere);
     }
