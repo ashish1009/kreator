@@ -78,10 +78,29 @@ namespace ray_tracing {
     float refraction_ratio = payload.front_face ? (1.0/refractive_index) : refractive_index;
     
     glm::vec3 unit_direction = glm::normalize(ray_in.direction);
-    glm::vec3 refracted = refract(unit_direction, payload.world_normal, refraction_ratio);
     
-    scattered_ray = Ray(payload.world_position, refracted);
+    float cos_theta = fmin(dot(-unit_direction, payload.world_normal), 1.0);
+    float sin_theta = sqrt(1.0 - cos_theta * cos_theta);
+    
+    bool cannot_refract = refraction_ratio * sin_theta > 1.0;
+    glm::vec3 direction;
+    
+    if (cannot_refract || Reflectance(cos_theta) > ikan::Math::RandomDouble())
+      direction = reflect(unit_direction, payload.world_normal);
+    else
+      direction = refract(unit_direction, payload.world_normal, refraction_ratio);
+    
+    scattered_ray = Ray(payload.world_position, direction);
+
     return true;
   }
+  
+  float Material::Reflectance(float cosine) const {
+    // Use Schlick's approximation for reflectance.
+    auto r0 = (1 - refractive_index) / (1 + refractive_index);
+    r0 = r0 * r0;
+    return r0 + (1 - r0) * pow((1 - cosine), 5);
+  }
+
 
 }

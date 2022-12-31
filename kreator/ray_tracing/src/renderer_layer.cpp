@@ -40,13 +40,13 @@ namespace ray_tracing {
       Material& mat = materials.emplace_back(Material());
       mat.albedo = {0.8, 0.8, 0.8};
       mat.type = Material::Type::Dielectric;
-      mat.fuzz = 0.3;
+      mat.refractive_index = 1.5f;
     }
     {
       Material& mat = materials.emplace_back(Material());
       mat.albedo = {0.8, 0.6, 0.2};
       mat.type = Material::Type::Metal;
-      mat.fuzz = 1.0f;
+      mat.fuzz = 0.0f;
     }
     {
       Material& mat = materials.emplace_back(Material());

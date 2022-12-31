@@ -38,6 +38,11 @@ namespace ray_tracing {
                  Ray& scattered_ray) const;
     
   private:
+    /// This function calculate the reflecatance for the dielectric
+    /// - Parameters:
+    ///   - cosine: cos value
+    float Reflectance(float cosine) const;
+
     /// This function scatters the ray For metals
     /// - Parameters:
     ///   - ray_in: current ray
