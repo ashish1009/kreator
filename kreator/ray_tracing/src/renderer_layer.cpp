@@ -32,14 +32,24 @@ namespace ray_tracing {
     editor_camera_.SetPosition({0, 0, 6});
 
     {
-      Material& pink_mat = materials.emplace_back(Material());
-      pink_mat.albedo = {1.0f, 0.0f, 1.0f};
-      pink_mat.roughness = 0.0f;
+      Material& mat = materials.emplace_back(Material());
+      mat.albedo = {0.7, 0.3, 0.};
+      mat.type = Material::Type::Metal;
     }
     {
-      Material& blue_mat = materials.emplace_back(Material());
-      blue_mat.albedo = {0.0f, 0.0f, 1.0f};
-      blue_mat.roughness = 0.1f;
+      Material& mat = materials.emplace_back(Material());
+      mat.albedo = {0.8, 0.8, 0.8};
+      mat.type = Material::Type::Metal;
+    }
+    {
+      Material& mat = materials.emplace_back(Material());
+      mat.albedo = {0.8, 0.6, 0.2};
+      mat.type = Material::Type::Metal;
+    }
+    {
+      Material& mat = materials.emplace_back(Material());
+      mat.albedo = {0.8, 0.8, 0.0};
+      mat.type = Material::Type::Metal;
     }
     {
       Sphere sphere;
@@ -51,10 +61,26 @@ namespace ray_tracing {
     }
     {
       Sphere sphere;
+      sphere.position = {-2.0f, 0.0f, 0.0f};
+      sphere.radius = 1.0f;
+      sphere.material_index = 1;
+      
+      spheres.push_back(sphere);
+    }
+    {
+      Sphere sphere;
+      sphere.position = {2.0f, 0.0f, 0.0f};
+      sphere.radius = 1.0f;
+      sphere.material_index = 2;
+      
+      spheres.push_back(sphere);
+    }
+    {
+      Sphere sphere;
       sphere.position = {0.0f, -101.0f, 0.0f};
       sphere.radius = 100.0f;
       
-      sphere.material_index = 1;
+      sphere.material_index = 3;
       spheres.push_back(sphere);
     }
   }
@@ -104,7 +130,7 @@ namespace ray_tracing {
     
     glm::vec3 color(0.0f);
     float multiplier = 1.0f;
-    int32_t bounces = 5;
+    int32_t bounces = 2;
     for (uint32_t i = 0; i < bounces; i++) {
       HitPayload payload = TraceRay(ray);
       if (payload.hit_distance < 0) {
@@ -119,19 +145,18 @@ namespace ray_tracing {
       const Sphere& sphere = spheres[payload.object_idx];
       const Material& material = materials[sphere.material_index];
       glm::vec3 sphere_color = material.albedo;
-      sphere_color *= light_intensity;
-      
-      color += sphere_color * multiplier;
+      Ray scattered_ray;
+
+      if (material.ScatterMatelic(ray, payload, sphere_color, scattered_ray)) {
+        sphere_color *= light_intensity;
+        color += sphere_color * multiplier;
+        ray = scattered_ray;
+      } else {
+        break;
+      }
       
       // Decreasing the energy
       multiplier *= 0.5f;
-      
-      // Origin is now hit position (Reflection point)
-      // To avoid the new pay position to start from actual sphere we shift the
-      // origin with the help of normal but very less
-      ray.origin = payload.world_position + payload.world_normal * 0.0001f;      
-      ray.direction = glm::reflect(ray.direction,
-                                   payload.world_normal + material.roughness * Math::RandomInUnitSphere());
     }
     
     return glm::vec4(color, 1.0f);
@@ -215,8 +240,6 @@ namespace ray_tracing {
       for (size_t i = 0; i < materials.size(); i++) {
         ImGui::PushID((uint32_t)i);
         ImGui::ColorEdit3("color", glm::value_ptr(materials[i].albedo));
-        ImGui::DragFloat("roughness", &materials[i].roughness, 0.05, 0.0, 1.0);
-        ImGui::DragFloat("matellic", &materials[i].metallic, 0.05, 0.0, 1.0);
         ImGui::Separator();
         ImGui::PopID();
       }

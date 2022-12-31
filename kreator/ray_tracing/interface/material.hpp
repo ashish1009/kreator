@@ -7,12 +7,30 @@
 
 #pragma once
 
+#include "ray.hpp"
+#include "hit.hpp"
+
 namespace ray_tracing {
   
   struct Material {
+    enum class Type : uint8_t {
+      None, Metal
+    };
+    
     glm::vec3 albedo;
-    float roughness = 1.0f;
-    float metallic = 0.0f;
+    Type type = Type::None;
+    
+    /// This function scatters the ray based on the material property
+    /// - Parameters:
+    ///   - ray_in: current ray
+    ///   - payload: hit payload
+    ///   - attenuation: output color
+    ///   - scattered_ray: output ray
+    bool ScatterMatelic(const Ray& ray_in,
+                        const HitPayload& payload,
+                        glm::vec3& attenuation,
+                        Ray& scattered_ray) const;
+
   };
   
 }

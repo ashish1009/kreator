@@ -16,6 +16,7 @@
 		B27557142960244B0020D552 /* ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27557122960244B0020D552 /* ray.cpp */; };
 		B275571729602C820020D552 /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B275571529602C820020D552 /* sphere.cpp */; };
 		B275571D296032550020D552 /* hit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B275571B296032550020D552 /* hit.cpp */; };
+		B275572629606B680020D552 /* material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B275572429606B680020D552 /* material.cpp */; };
 		B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DDC295C83030076A2F9 /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BD9DFC295C8A320076A2F9 /* editor_layer.cpp */; };
@@ -55,6 +56,7 @@
 		B275571929602D880020D552 /* hit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hit.hpp; sourceTree = "<group>"; };
 		B275571B296032550020D552 /* hit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hit.cpp; sourceTree = "<group>"; };
 		B2755722296061690020D552 /* material.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = material.hpp; sourceTree = "<group>"; };
+		B275572429606B680020D552 /* material.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = material.cpp; sourceTree = "<group>"; };
 		B2BD9DCB295C7D3C0076A2F9 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.dylib; sourceTree = "<group>"; };
 		B2BD9DCD295C7D3C0076A2F9 /* libpng16.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = libpng16.pc; sourceTree = "<group>"; };
 		B2BD9DCE295C7D3C0076A2F9 /* libpng.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = libpng.pc; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				B27557122960244B0020D552 /* ray.cpp */,
 				B275571529602C820020D552 /* sphere.cpp */,
 				B275571B296032550020D552 /* hit.cpp */,
+				B275572429606B680020D552 /* material.cpp */,
 			);
 			path = implementation;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				B27557142960244B0020D552 /* ray.cpp in Sources */,
 				B251B3EC295E143C00508210 /* ray_tracing_layer.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
+				B275572629606B680020D552 /* material.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
