@@ -63,17 +63,17 @@ namespace ray_tracing {
     
     // float a = ray_direction.x * ray_direction + ray_direction.y * ray_direction.y + ray_direction.z * ray_direction.z;
     float a = glm::dot(ray.direction, ray.direction);
-    float b = 2.0f * glm::dot(origin, ray.direction);
+    float half_b = glm::dot(origin, ray.direction);
     float c = glm::dot(origin, origin) - radius * radius;
 
     // Discriminant
-    // b^2 -4ac
-    float discriminant = b * b - 4.0f * a * c;
+    // b^2 -4ac -> 4 * (b/2)^2 - 4 * ac -> 4 * ((b/2)^2 - ac)
+    float discriminant = (half_b * half_b) - (a * c);
 
     if (discriminant < 0) {
       return -1.0;
     } else {
-      return (-b - sqrt(discriminant) ) / (2.0*a);
+      return (-half_b - sqrt(discriminant) ) / (2.0 * a);
     }
   }
   
