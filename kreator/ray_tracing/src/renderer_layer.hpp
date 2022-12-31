@@ -49,15 +49,21 @@ namespace ray_tracing {
     ///   - x: x index of pixle
     ///   - y: y index of pixel
     glm::vec4 PerPixel(uint32_t x, uint32_t y);
-    /// This funtion retrn the pixel color for hit or mis
-    /// - Parameter ray: ray of camera
-    /// - Parameter bounce: bounce of ray
-    glm::vec3 RayColor(const Ray& ray, int32_t bounce);
-    /// This function trace the rays on the hitable obkects
+    /// This function trace the rays on the hitable objects
     /// - Parameters:
     ///   - ray: ray of camera
     ///   - payload: hit ppayload output
-    bool TraceRay(const Ray& ray, HitPayload& payload);
+    HitPayload TraceRay(const Ray& ray);
+    /// This function trace the  Close hitrays on the hitable objects
+    /// - Parameters:
+    ///   - ray: ray of camera
+    ///   - hit_distance: hti distance
+    ///   - object_idx: object index
+    HitPayload ClosestHit(const Ray& ray, float hit_distance, int32_t object_idx);
+    /// This function trace the Miss rays on the hitable objects
+    /// - Parameters:
+    ///   - ray: ray of camera
+    HitPayload Miss(const Ray& ray);
 
     // member variables
     std::shared_ptr<Image> final_image_ = nullptr;

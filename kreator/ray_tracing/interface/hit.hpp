@@ -16,7 +16,7 @@ namespace ray_tracing {
     glm::vec3 world_normal;
     glm::vec3 world_position;
     bool front_face;
-    int32_t objec_idx = -1;
+    int32_t object_idx = -1;
     
     /// This function update the normal direction
     /// - Parameters:

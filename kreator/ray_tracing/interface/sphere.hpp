@@ -23,9 +23,10 @@ namespace ray_tracing {
     /// - Parameters:
     ///   - ray: Ray comming from camera
     ///   - near_plane: camera near plane
-    ///   - far_plane: camera far plane
-    ///   - payload: hit payload output
-    bool Hit(const Ray& ray, float near_plane, float far_plane, HitPayload& payload);
+    ///   - hit_distance: Last Hot distance
+    bool Hit(const Ray& ray,
+             float near_plane,
+             float& hit_distance) const;
     
     /// This construct the sphere
     /// - Parameters:
