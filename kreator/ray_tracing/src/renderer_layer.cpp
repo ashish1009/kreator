@@ -40,11 +40,13 @@ namespace ray_tracing {
       Material& mat = materials.emplace_back(Material());
       mat.albedo = {0.8, 0.8, 0.8};
       mat.type = Material::Type::Metal;
+      mat.fuzz = 0.3;
     }
     {
       Material& mat = materials.emplace_back(Material());
       mat.albedo = {0.8, 0.6, 0.2};
       mat.type = Material::Type::Metal;
+      mat.fuzz = 1.0f;
     }
     {
       Material& mat = materials.emplace_back(Material());
@@ -130,7 +132,7 @@ namespace ray_tracing {
     
     glm::vec3 color(0.0f);
     float multiplier = 1.0f;
-    int32_t bounces = 2;
+    int32_t bounces = 5;
     for (uint32_t i = 0; i < bounces; i++) {
       HitPayload payload = TraceRay(ray);
       if (payload.hit_distance < 0) {
@@ -156,7 +158,7 @@ namespace ray_tracing {
       }
       
       // Decreasing the energy
-      multiplier *= 0.5f;
+      multiplier *= 0.4f;
     }
     
     return glm::vec4(color, 1.0f);
@@ -240,6 +242,8 @@ namespace ray_tracing {
       for (size_t i = 0; i < materials.size(); i++) {
         ImGui::PushID((uint32_t)i);
         ImGui::ColorEdit3("color", glm::value_ptr(materials[i].albedo));
+        if (materials[i].type == Material::Type::Metal)
+          ImGui::DragFloat("fuzz", &materials[i].fuzz, 0.01, 0.0, 1.0);
         ImGui::Separator();
         ImGui::PopID();
       }

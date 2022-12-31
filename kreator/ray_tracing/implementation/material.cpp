@@ -45,7 +45,7 @@ namespace ray_tracing {
                                 glm::vec3& attenuation,
                                 Ray& scattered_ray) const {
     glm::vec3 reflected = glm::reflect(glm::normalize(ray_in.direction), payload.world_normal);
-    scattered_ray = Ray(payload.world_position, reflected);
+    scattered_ray = Ray(payload.world_position, reflected + fuzz * ikan::Math::RandomInUnitSphere());
     attenuation = albedo;
     return (dot(scattered_ray.direction, payload.world_normal) > 0);
   }

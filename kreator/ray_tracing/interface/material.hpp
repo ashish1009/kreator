@@ -20,6 +20,9 @@ namespace ray_tracing {
     glm::vec3 albedo;
     Type type = Type::None;
     
+    // metallic Property
+    float fuzz; // Should range from 0 - 1
+    
     /// This function scatters the ray based on the material property
     /// - Parameters:
     ///   - ray_in: current ray
