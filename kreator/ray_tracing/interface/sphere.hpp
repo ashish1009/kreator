@@ -17,6 +17,8 @@ namespace ray_tracing {
     glm::vec3 position;
     float radius = 0.5f;
     
+    glm::vec3 albedo;
+    
     /// This functiuon returns is day hitting the sphere
     /// - Parameters:
     ///   - ray: Ray comming from camera
@@ -29,7 +31,8 @@ namespace ray_tracing {
     /// - Parameters:
     ///   - position: position of sphere center
     ///   - radius: rdius of sphere
-    Sphere(const glm::vec3& position, float radius);
+    ///   - albedo: color of sphere
+    Sphere(const glm::vec3& position, float radius, const glm::vec3& albedo);
     Sphere() = default;
   };
   

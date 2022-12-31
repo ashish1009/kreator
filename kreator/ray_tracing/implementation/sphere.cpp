@@ -9,8 +9,8 @@
 
 namespace ray_tracing {
   
-  Sphere::Sphere(const glm::vec3& position, float radius)
-  : position(position), radius(radius) { }
+  Sphere::Sphere(const glm::vec3& position, float radius, const glm::vec3& albedo)
+  : position(position), radius(radius), albedo(albedo) { }
   
   bool Sphere::Hit(const Ray& ray, float near_plane, float far_plane, HitPayload& payload) {
     glm::vec3 origin = ray.origin - position;

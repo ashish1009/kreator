@@ -37,8 +37,8 @@ namespace ray_tracing {
 //      spheres[i].radius = 1.0f;
 //    }
     
-    spheres.push_back(Sphere({0, 0.0, 0}, 1));
-    spheres.push_back(Sphere({0, -101, 0}, 100));
+    spheres.push_back(Sphere({0, 0.0, 0}, 1, {1, 0, 1}));
+    spheres.push_back(Sphere({0, -101, 0}, 100, {0, 0, 1}));
   }
   
   void RendererLayer::Detach() {
@@ -90,7 +90,7 @@ namespace ray_tracing {
       // origin with the help of normal but very less
       reflected_ray.origin = payload.world_position + payload.world_normal * 0.0001f;
       reflected_ray.direction = glm::reflect(ray.direction,
-                                             payload.world_normal + Math::RandomInUnitSphere());
+                                             payload.world_normal + glm::normalize(Math::RandomInUnitSphere()));
       return float(0.5) * RayColor(reflected_ray, bounce - 1);
     } else {
       glm::vec3 unit_direction = ray.direction;
@@ -119,6 +119,7 @@ namespace ray_tracing {
         hit_anything = true;
         hit_distance = temp_payload.hit_distance;
         payload = temp_payload;
+        payload.objec_idx = i;
       }
     }
     
