@@ -39,7 +39,7 @@ namespace ray_tracing {
     {
       Material& mat = materials.emplace_back(Material());
       mat.albedo = {0.8, 0.8, 0.8};
-      mat.type = Material::Type::Metal;
+      mat.type = Material::Type::Dielectric;
       mat.fuzz = 0.3;
     }
     {
@@ -160,7 +160,7 @@ namespace ray_tracing {
     
     glm::vec3 color(0.0f);
     float multiplier = 1.0f;
-    int32_t bounces = 50;
+    int32_t bounces = 5;
     for (uint32_t i = 0; i < bounces; i++) {
       HitPayload payload = TraceRay(ray);
       if (payload.hit_distance < 0) {
@@ -217,6 +217,7 @@ namespace ray_tracing {
     glm::vec3 origin = ray.origin - closest_sphere.position;
     payload.world_position = origin + (ray.direction * hit_distance);
     payload.world_normal = glm::normalize(payload.world_position);
+    payload.SetFaceNormal(ray);
     
     // Move back to origin
     payload.world_position += closest_sphere.position;
@@ -270,6 +271,8 @@ namespace ray_tracing {
         ImGui::ColorEdit3("color", glm::value_ptr(materials[i].albedo));
         if (materials[i].type == Material::Type::Metal)
           ImGui::DragFloat("fuzz", &materials[i].fuzz, 0.001, 0.0, 1.0);
+        if (materials[i].type == Material::Type::Dielectric)
+          ImGui::DragFloat("ri", &materials[i].refractive_index, 0.001, 0.0, 1.0);
         ImGui::Separator();
         ImGui::PopID();
       }

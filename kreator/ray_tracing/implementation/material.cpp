@@ -38,6 +38,8 @@ namespace ray_tracing {
         return ScatterMatelic(ray_in, payload, attenuation, scattered_ray);
       case Material::Type::Lambertian:
         return ScatterLambertian(ray_in, payload, attenuation, scattered_ray);
+      case Material::Type::Dielectric:
+        return ScatterDielectric(ray_in, payload, attenuation, scattered_ray);
       default:
         IK_ASSERT(false, "invalid type");
     }
@@ -50,7 +52,7 @@ namespace ray_tracing {
     glm::vec3 reflected = reflect(glm::normalize(ray_in.direction), payload.world_normal);
     scattered_ray = Ray(payload.world_position, reflected + fuzz * ikan::Math::RandomInUnitSphere());
     attenuation = albedo;
-    return true;
+    return (dot(scattered_ray.direction, payload.world_normal) > 0);
   }
   
   bool Material::ScatterLambertian(const Ray& ray_in,
@@ -67,5 +69,19 @@ namespace ray_tracing {
     attenuation = albedo;
     return true;
   }
-  
+
+  bool Material::ScatterDielectric(const Ray& ray_in,
+                                   const HitPayload& payload,
+                                   glm::vec3& attenuation,
+                                   Ray& scattered_ray) const {
+    attenuation = glm::vec3(1.0, 1.0, 1.0);
+    float refraction_ratio = payload.front_face ? (1.0/refractive_index) : refractive_index;
+    
+    glm::vec3 unit_direction = glm::normalize(ray_in.direction);
+    glm::vec3 refracted = refract(unit_direction, payload.world_normal, refraction_ratio);
+    
+    scattered_ray = Ray(payload.world_position, refracted);
+    return true;
+  }
+
 }

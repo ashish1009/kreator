@@ -14,14 +14,17 @@ namespace ray_tracing {
   
   struct Material {
     enum class Type : uint8_t {
-      None, Metal, Lambertian
+      None, Metal, Lambertian, Dielectric
     };
     
     glm::vec3 albedo;
     Type type = Type::None;
     
     // metallic Property
-    float fuzz; // Should range from 0 - 1
+    float fuzz = 0.1; // Should range from 0 - 1
+    
+    // dielectric prop
+    float refractive_index = 0.1;
     
     /// This function scatters the ray based on the material property
     /// - Parameters:
@@ -52,6 +55,16 @@ namespace ray_tracing {
     ///   - attenuation: output color
     ///   - scattered_ray: output ray
     bool ScatterLambertian(const Ray& ray_in,
+                           const HitPayload& payload,
+                           glm::vec3& attenuation,
+                           Ray& scattered_ray) const;
+    /// This function scatters the ray For Dielectric
+    /// - Parameters:
+    ///   - ray_in: current ray
+    ///   - payload: hit payload
+    ///   - attenuation: output color
+    ///   - scattered_ray: output ray
+    bool ScatterDielectric(const Ray& ray_in,
                            const HitPayload& payload,
                            glm::vec3& attenuation,
                            Ray& scattered_ray) const;

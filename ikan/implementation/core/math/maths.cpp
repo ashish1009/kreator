@@ -96,4 +96,20 @@ namespace ikan::Math {
       return p;
     }
   }
+  
+  float Vec3Length(const glm::vec3& v) {
+    return sqrt(Math::Vec3LengthSquared(v));
+  }
+  
+  float Vec3LengthSquared(const glm::vec3& v) {
+    return v.x * v.x + v.y * v.y + v.z * v.z;
+  }
+  
+  glm::vec3 Refract(const glm::vec3& uv, const glm::vec3& n, float etai_over_etat) {
+    float cos_theta = fmin(dot(-uv, n), 1.0);
+    glm::vec3 r_out_perp =  etai_over_etat * (uv + cos_theta * n);
+    glm::vec3 r_out_parallel = -sqrt(fabs((float)1.0 - Math::Vec3LengthSquared(r_out_perp))) * n;
+    return r_out_perp + r_out_parallel;
+  }
+
 } 

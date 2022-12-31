@@ -13,6 +13,9 @@
 
 namespace ikan::Math {
   
+  // ------------------------------------------------
+  // APIs for Transform matrix
+  // ------------------------------------------------
   /// This funciton decomposes the postion Transform matrix as position rotation and scale
   ///  - Parameters:
   ///   - transform: Transfrom matrix
@@ -33,6 +36,9 @@ namespace ikan::Math {
                                              const glm::vec3& rotation,
                                              const glm::vec3& scale);
   
+  // ------------------------------------------------
+  // APIs for Random Generator
+  // ------------------------------------------------
   /// This function returns the random double number
   double RandomDouble();
   /// This function returns the random double number in range
@@ -40,7 +46,6 @@ namespace ikan::Math {
   ///   - min: Min range
   ///   - max: max range
   double RandomDouble(double min, double max);
-  
   /// This function returns the random vec 3
   glm::vec3 RandomVec3();
   /// This function returns the random vec 3 in range
@@ -48,7 +53,26 @@ namespace ikan::Math {
   ///   - min: range min
   ///   - max: range max
   glm::vec3 RandomVec3(double min, double max);
-  
   /// This funtion return the random vec3 in unit sphere
   glm::vec3 RandomInUnitSphere();
+  
+  // ------------------------------------------------
+  // APIs for Vec 3 data
+  // ------------------------------------------------
+  /// This function returns the length of vec 3
+  /// - Parameter v: vec3
+  float Vec3Length(const glm::vec3& v);
+  /// This function returns the squared length of vec 3
+  /// - Parameter v: vec 3
+  float Vec3LengthSquared(const glm::vec3& v);
+  
+  // ------------------------------------------------
+  // APIs
+  // ------------------------------------------------
+  /// This function refrect the light
+  /// - Parameters:
+  ///   - uv: light direction
+  ///   - n: normal
+  ///   - etai_over_etat: ratiio of refractive index
+  glm::vec3 Refract(const glm::vec3& uv, const glm::vec3& n, float etai_over_etat);
 }
