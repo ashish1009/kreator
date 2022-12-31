@@ -66,7 +66,7 @@ namespace ray_tracing {
       sphere.position = {-2.0f, 0.0f, 0.0f};
       sphere.radius = 1.0f;
       sphere.material_index = 1;
-      
+
       spheres.push_back(sphere);
     }
     {
@@ -74,7 +74,7 @@ namespace ray_tracing {
       sphere.position = {2.0f, 0.0f, 0.0f};
       sphere.radius = 1.0f;
       sphere.material_index = 2;
-      
+
       spheres.push_back(sphere);
     }
     {
@@ -153,8 +153,6 @@ namespace ray_tracing {
 
   glm::vec4 RendererLayer::PerPixel(uint32_t x, uint32_t y) {
     glm::vec3 color(0.0f);
-#if 1
-#else 
     Ray ray;
     ray.origin = editor_camera_.GetPosition();
     
@@ -163,6 +161,8 @@ namespace ray_tracing {
     
     float multiplier = 1.0f;
     int32_t bounces = 5;
+
+    // Ray Color
     for (uint32_t i = 0; i < bounces; i++) {
       HitPayload payload = TraceRay(ray);
       if (payload.hit_distance < 0) {
@@ -189,7 +189,6 @@ namespace ray_tracing {
       multiplier *= 0.5f;
     }
     
-#endif
     return glm::vec4(color, 1.0f);
   }
   
@@ -217,14 +216,10 @@ namespace ray_tracing {
     payload.object_idx = object_idx;
     
     const Sphere closest_sphere = spheres[object_idx];
-    glm::vec3 origin = ray.origin - closest_sphere.position;
-    payload.world_position = origin + (ray.direction * hit_distance);
-    payload.world_normal = glm::normalize(payload.world_position);
+    payload.world_position = ray.At(payload.hit_distance);
+    payload.world_normal = (payload.world_position - closest_sphere.position) / closest_sphere.radius;
+
     payload.SetFaceNormal(ray);
-    
-    // Move back to origin
-    payload.world_position += closest_sphere.position;
-    
     return payload;
   }
   
@@ -273,9 +268,9 @@ namespace ray_tracing {
         ImGui::PushID((uint32_t)i);
         ImGui::ColorEdit3("color", glm::value_ptr(materials[i].albedo));
         if (materials[i].type == Material::Type::Metal)
-          ImGui::DragFloat("fuzz", &materials[i].fuzz, 0.001, 0.0, 1.0);
+          ImGui::DragFloat("fuzz", &materials[i].fuzz, 0.01, 0.0, 1.0);
         if (materials[i].type == Material::Type::Dielectric)
-          ImGui::DragFloat("ri", &materials[i].refractive_index, 0.001, 0.0, 1.0);
+          ImGui::DragFloat("ri", &materials[i].refractive_index, 0.01, 0.0);
         ImGui::Separator();
         ImGui::PopID();
       }

@@ -75,7 +75,7 @@ namespace ray_tracing {
                                    glm::vec3& attenuation,
                                    Ray& scattered_ray) const {
     attenuation = glm::vec3(1.0, 1.0, 1.0);
-    float refraction_ratio = payload.front_face ? (1.0/refractive_index) : refractive_index;
+    float refraction_ratio = payload.front_face ? refractive_index : (1.0 / refractive_index);
     
     glm::vec3 unit_direction = glm::normalize(ray_in.direction);
     
@@ -88,7 +88,7 @@ namespace ray_tracing {
     if (cannot_refract || Reflectance(cos_theta) > ikan::Math::RandomDouble())
       direction = reflect(unit_direction, payload.world_normal);
     else
-      direction = refract(unit_direction, payload.world_normal, refraction_ratio);
+      direction = ikan::Math::Refract(unit_direction, payload.world_normal, refraction_ratio);
     
     scattered_ray = Ray(payload.world_position, direction);
 
