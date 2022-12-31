@@ -12,7 +12,7 @@ namespace ray_tracing {
   Ray::Ray(const glm::vec3& origin, const glm::vec3& direction)
   : origin(origin), direction(direction) {}
   
-  glm::vec3 Ray::At(float distance) {
+  glm::vec3 Ray::At(float distance) const {
     return origin + direction * distance;
   }
   

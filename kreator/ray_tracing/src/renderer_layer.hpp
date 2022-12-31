@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "sphere.hpp"
+
 namespace ray_tracing {
   
   using namespace ikan;
@@ -47,6 +49,8 @@ namespace ray_tracing {
     uint32_t* image_data_ = nullptr;
     uint32_t viewport_width_ = 900, viewport_height_ = 600;
     EditorCamera editor_camera_ = EditorCamera(true);
+    
+    Sphere sphere = Sphere({0.0f, 0.0f, 0.0f}, 1.0f);
   };
   
 }

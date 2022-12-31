@@ -50,33 +50,6 @@ namespace ray_tracing {
     }
   }
   
-  float HitSphere(const glm::vec3& center, float radius, const Ray& ray) {
-    //       at^2       +       bt        +       c             = 0
-    // (bx^2 + by^2)t^2 + 2(axbx + ayby)t + (ax^2 + ay^2 - r^2) = 0
-    // where,
-    //    a : Ray Origin
-    //    b : Direction of Ray
-    //    r : Radius of Cirlce/Shphere
-    //    t : Distance of point on ray from 'a'
-
-    glm::vec3 origin = ray.origin - center;
-    
-    // float a = ray_direction.x * ray_direction + ray_direction.y * ray_direction.y + ray_direction.z * ray_direction.z;
-    float a = glm::dot(ray.direction, ray.direction);
-    float half_b = glm::dot(origin, ray.direction);
-    float c = glm::dot(origin, origin) - radius * radius;
-
-    // Discriminant
-    // b^2 -4ac -> 4 * (b/2)^2 - 4 * ac -> 4 * ((b/2)^2 - ac)
-    float discriminant = (half_b * half_b) - (a * c);
-
-    if (discriminant < 0) {
-      return -1.0;
-    } else {
-      return (-half_b - sqrt(discriminant) ) / (2.0 * a);
-    }
-  }
-  
   void RendererLayer::Render() {
     dispatch_apply(final_image_->GetHeight(), loop_dispactch_queue_, ^(size_t y) {
       dispatch_apply(final_image_->GetWidth(), loop_dispactch_queue_, ^(size_t x) {
@@ -87,16 +60,14 @@ namespace ray_tracing {
         ray.direction = editor_camera_.GetRayDirections().at(pixel_idx);
           
         glm::vec4 pixel{0.0f};
-        
-        static glm::vec3 sphere_position = {0.0f, 0.0f, 0.0f};
-        
-        auto hit_point = HitSphere(sphere_position, 0.5f, ray);
-        if (hit_point > 0.0) {
-          glm::vec3 normal = glm::normalize(ray.At(hit_point) - sphere_position);
-          pixel = glm::vec4((float)0.5 * glm::vec3(normal.x + 1, normal.y + 1, normal.z + 1), 1.0f);
+                
+        HitPayload payload;
+        bool hit = sphere.Hit(ray, editor_camera_.GetNear(), editor_camera_.GetFar(), payload);
+        if (hit) {
+          pixel = {1, 0, 1, 1};
         } else {
           glm::vec3 unit_direction = ray.direction;
-          hit_point = 0.5 * (unit_direction.y + 1.0);
+          float hit_point = 0.5 * (unit_direction.y + 1.0);
           pixel = glm::vec4((((float)1.0 - hit_point) * glm::vec3(1.0, 1.0, 1.0)) + (hit_point * glm::vec3(0.5, 0.7, 1.0)), 1.0f);
         }
         

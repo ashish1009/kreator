@@ -13,11 +13,17 @@ namespace ray_tracing {
   struct Ray {
     glm::vec3 origin;
     glm::vec3 direction;
-
-    glm::vec3 At(float distance);
     
-    Ray() = default;
+    /// Return the point on ray at disrtace
+    /// - Parameter distance: distance of point
+    glm::vec3 At(float distance) const;
+    
+    /// Construct the ray data
+    /// - Parameters:
+    ///   - origin: origin of ray
+    ///   - direction: direction of ray
     Ray(const glm::vec3& origin, const glm::vec3& direction);
+    Ray() = default;
   };
   
 }
