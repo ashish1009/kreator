@@ -184,7 +184,7 @@ namespace ray_tracing {
     ray.direction = editor_camera_.GetRayDirections()[pixel_idx];
     
     float multiplier = 1.0f;
-    int32_t bounces = 5;
+    int32_t bounces = 10;
 
     // Ray Color
     for (uint32_t i = 0; i < bounces; i++) {

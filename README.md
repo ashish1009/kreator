@@ -25,9 +25,10 @@ Link following frameworks to your project...
 Add the following header search paths 
 `{...} directory where ikan Engine is cloned`
 ${PROJECT_DIR}/../ikan/interface
-${PROJECT_DIR}/../ikan/vendor/spd_log/include
-${PROJECT_DIR}/../ikan/vendor/glm
-${PROJECT_DIR}/../ikan/vendor/imgui
+${PROJECT_DIR}/../ikan/vendors/spd_log/include
+${PROJECT_DIR}/../ikan/vendors/glm
+${PROJECT_DIR}/../ikan/vendors/imgui/imgui
+${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2
 
 ### Library Search Paths
 Add the following library search paths 
