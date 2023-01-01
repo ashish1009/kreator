@@ -13,11 +13,6 @@ namespace ray_tracing {
   
   class RendererLayer : public Layer {
   public:
-    struct Setting {
-      bool accumulate = true;
-      bool render = true;
-    };
-    
     /// Layer Default Constructor to store the name of layer
     RendererLayer();
     /// Default Destructor
@@ -41,45 +36,10 @@ namespace ray_tracing {
     void EventHandler(Event& event) override;
     
   private:
-    // Member functions
-    /// This function resizes the renderer and image
-    void Resize();
-    /// This functin renders the image per pixel
-    void Render();
-    
-    /// This function returns the color value of each pixel
-    /// - Parameters:
-    ///   - x: x index of pixle
-    ///   - y: y index of pixel
-    glm::vec4 PerPixel(uint32_t x, uint32_t y);
-    /// This function trace the rays on the hitable objects
-    /// - Parameters:
-    ///   - ray: ray of camera
-    ///   - payload: hit ppayload output
-    HitPayload TraceRay(const Ray& ray);
-    /// This function trace the  Close hitrays on the hitable objects
-    /// - Parameters:
-    ///   - ray: ray of camera
-    ///   - hit_distance: hti distance
-    ///   - object_idx: object index
-    HitPayload ClosestHit(const Ray& ray, float hit_distance, int32_t object_idx);
-    /// This function trace the Miss rays on the hitable objects
-    /// - Parameters:
-    ///   - ray: ray of camera
-    HitPayload Miss(const Ray& ray);
-
-    // member variables
-    std::shared_ptr<Image> final_image_ = nullptr;
-    uint32_t* image_data_ = nullptr;
     uint32_t viewport_width_ = 900, viewport_height_ = 600;
     EditorCamera editor_camera_ = EditorCamera(true);
-
     RayScene scene_;
-    
-    glm::vec4* accumulation_data_ = nullptr;
-    uint32_t frame_index_ = 1;
-    
-    Setting setting_;
+    RayRenderer renderer_;
   };
   
 }

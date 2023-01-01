@@ -16,3 +16,4 @@
 
 // Ray Tracing Files
 #include <ray_scene.hpp>
+#include <ray_renderer.hpp>
