@@ -82,7 +82,7 @@ namespace ray_tracing {
     ray.origin = active_camera_->GetPosition();
     
     uint32_t pixel_idx = x + y * final_image_->GetWidth();
-    ray.direction = active_camera_->GetRayDirections()[pixel_idx];
+    ray.direction = active_camera_->GetRayDirections().at(pixel_idx);
     
     float multiplier = 1.0f;
     int32_t bounces = 10;
