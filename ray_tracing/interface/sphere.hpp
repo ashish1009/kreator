@@ -9,7 +9,7 @@
 
 #include "ray.hpp"
 #include "hit.hpp"
-#include "material.hpp"
+#include "ray_material.hpp"
 
 namespace ray_tracing {
   

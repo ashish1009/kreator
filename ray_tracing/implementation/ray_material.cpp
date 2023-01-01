@@ -5,7 +5,7 @@
 //  Created by Ashish . on 31/12/22.
 //
 
-#include "material.hpp"
+#include "ray_material.hpp"
 
 namespace ray_tracing {
   

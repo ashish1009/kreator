@@ -9,26 +9,36 @@
 /* Begin PBXBuildFile section */
 		B248707B296152D80038DD9E /* prefix_header.pch in Headers */ = {isa = PBXBuildFile; fileRef = B248707A296152D80038DD9E /* prefix_header.pch */; };
 		B24870862961533C0038DD9E /* sphere.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B248707D2961533C0038DD9E /* sphere.hpp */; };
-		B24870872961533C0038DD9E /* material.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B248707E2961533C0038DD9E /* material.hpp */; };
+		B24870872961533C0038DD9E /* ray_material.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B248707E2961533C0038DD9E /* ray_material.hpp */; };
 		B24870882961533C0038DD9E /* hit.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B248707F2961533C0038DD9E /* hit.hpp */; };
 		B24870892961533C0038DD9E /* ray.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24870802961533C0038DD9E /* ray.hpp */; };
 		B248708A2961533C0038DD9E /* hit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24870822961533C0038DD9E /* hit.cpp */; };
 		B248708B2961533C0038DD9E /* ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24870832961533C0038DD9E /* ray.cpp */; };
 		B248708C2961533C0038DD9E /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24870842961533C0038DD9E /* sphere.cpp */; };
-		B248708D2961533C0038DD9E /* material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24870852961533C0038DD9E /* material.cpp */; };
+		B248708D2961533C0038DD9E /* ray_material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24870852961533C0038DD9E /* ray_material.cpp */; };
+		B2487092296154970038DD9E /* ray_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2487090296154970038DD9E /* ray_renderer.cpp */; };
+		B2487093296154970038DD9E /* ray_renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2487091296154970038DD9E /* ray_renderer.hpp */; };
+		B248709B296154E00038DD9E /* ray_scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2487099296154E00038DD9E /* ray_scene.cpp */; };
+		B248709C296154E00038DD9E /* ray_scene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B248709A296154E00038DD9E /* ray_scene.hpp */; };
+		B248709E296155780038DD9E /* ray_tracing_headers.h in Headers */ = {isa = PBXBuildFile; fileRef = B248709D296155780038DD9E /* ray_tracing_headers.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B248706C296152C40038DD9E /* libray_tracing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libray_tracing.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B248707A296152D80038DD9E /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		B248707D2961533C0038DD9E /* sphere.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sphere.hpp; sourceTree = "<group>"; };
-		B248707E2961533C0038DD9E /* material.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = material.hpp; sourceTree = "<group>"; };
+		B248707E2961533C0038DD9E /* ray_material.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ray_material.hpp; sourceTree = "<group>"; };
 		B248707F2961533C0038DD9E /* hit.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = hit.hpp; sourceTree = "<group>"; };
 		B24870802961533C0038DD9E /* ray.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ray.hpp; sourceTree = "<group>"; };
 		B24870822961533C0038DD9E /* hit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hit.cpp; sourceTree = "<group>"; };
 		B24870832961533C0038DD9E /* ray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ray.cpp; sourceTree = "<group>"; };
 		B24870842961533C0038DD9E /* sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sphere.cpp; sourceTree = "<group>"; };
-		B24870852961533C0038DD9E /* material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = material.cpp; sourceTree = "<group>"; };
+		B24870852961533C0038DD9E /* ray_material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ray_material.cpp; sourceTree = "<group>"; };
+		B2487090296154970038DD9E /* ray_renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ray_renderer.cpp; sourceTree = "<group>"; };
+		B2487091296154970038DD9E /* ray_renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ray_renderer.hpp; sourceTree = "<group>"; };
+		B2487099296154E00038DD9E /* ray_scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ray_scene.cpp; sourceTree = "<group>"; };
+		B248709A296154E00038DD9E /* ray_scene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ray_scene.hpp; sourceTree = "<group>"; };
+		B248709D296155780038DD9E /* ray_tracing_headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ray_tracing_headers.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,8 +56,8 @@
 			isa = PBXGroup;
 			children = (
 				B248707A296152D80038DD9E /* prefix_header.pch */,
-				B24870812961533C0038DD9E /* implementation */,
 				B248707C2961533C0038DD9E /* interface */,
+				B24870812961533C0038DD9E /* implementation */,
 				B248706D296152C40038DD9E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,10 +73,13 @@
 		B248707C2961533C0038DD9E /* interface */ = {
 			isa = PBXGroup;
 			children = (
-				B248707D2961533C0038DD9E /* sphere.hpp */,
-				B248707E2961533C0038DD9E /* material.hpp */,
+				B248709D296155780038DD9E /* ray_tracing_headers.h */,
 				B248707F2961533C0038DD9E /* hit.hpp */,
+				B248707E2961533C0038DD9E /* ray_material.hpp */,
+				B2487091296154970038DD9E /* ray_renderer.hpp */,
+				B248709A296154E00038DD9E /* ray_scene.hpp */,
 				B24870802961533C0038DD9E /* ray.hpp */,
+				B248707D2961533C0038DD9E /* sphere.hpp */,
 			);
 			path = interface;
 			sourceTree = "<group>";
@@ -75,9 +88,11 @@
 			isa = PBXGroup;
 			children = (
 				B24870822961533C0038DD9E /* hit.cpp */,
+				B24870852961533C0038DD9E /* ray_material.cpp */,
+				B2487090296154970038DD9E /* ray_renderer.cpp */,
+				B2487099296154E00038DD9E /* ray_scene.cpp */,
 				B24870832961533C0038DD9E /* ray.cpp */,
 				B24870842961533C0038DD9E /* sphere.cpp */,
-				B24870852961533C0038DD9E /* material.cpp */,
 			);
 			path = implementation;
 			sourceTree = "<group>";
@@ -90,10 +105,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B248707B296152D80038DD9E /* prefix_header.pch in Headers */,
-				B24870872961533C0038DD9E /* material.hpp in Headers */,
+				B248709E296155780038DD9E /* ray_tracing_headers.h in Headers */,
+				B248709C296154E00038DD9E /* ray_scene.hpp in Headers */,
+				B24870872961533C0038DD9E /* ray_material.hpp in Headers */,
 				B24870882961533C0038DD9E /* hit.hpp in Headers */,
 				B24870862961533C0038DD9E /* sphere.hpp in Headers */,
 				B24870892961533C0038DD9E /* ray.hpp in Headers */,
+				B2487093296154970038DD9E /* ray_renderer.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,9 +172,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B248708D2961533C0038DD9E /* material.cpp in Sources */,
+				B248708D2961533C0038DD9E /* ray_material.cpp in Sources */,
 				B248708C2961533C0038DD9E /* sphere.cpp in Sources */,
+				B2487092296154970038DD9E /* ray_renderer.cpp in Sources */,
 				B248708B2961533C0038DD9E /* ray.cpp in Sources */,
+				B248709B296154E00038DD9E /* ray_scene.cpp in Sources */,
 				B248708A2961533C0038DD9E /* hit.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

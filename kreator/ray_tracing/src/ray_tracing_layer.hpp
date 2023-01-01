@@ -28,7 +28,7 @@ namespace ray_tracing {
     int material_index;
   };
   
-  class RayScene {
+  class RayScene_ {
   public:
     std::vector<Sphere_> shperes;
     std::vector<Material_> materials;
@@ -84,7 +84,7 @@ namespace ray_tracing {
     uint32_t* image_data_ = nullptr;
     uint32_t viewport_width_ = 900, viewport_height_ = 600;
     EditorCamera editor_camera_ = EditorCamera(true);
-    RayScene scene_;
+    RayScene_ scene_;
     uint32_t frame_index_ = 1;
     Setting setting_;
     glm::vec4* accumulation_data_ = nullptr;

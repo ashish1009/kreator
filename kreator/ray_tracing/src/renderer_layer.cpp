@@ -32,24 +32,24 @@ namespace ray_tracing {
     editor_camera_.SetPosition({0, 0, 6});
 
     {
-      Material& mat = materials.emplace_back(Material());
+      Material& mat = scene_.materials.emplace_back(Material());
       mat.albedo = {0.7, 0.3, 0.};
       mat.type = Material::Type::Lambertian;
     }
     {
-      Material& mat = materials.emplace_back(Material());
+      Material& mat = scene_.materials.emplace_back(Material());
       mat.albedo = {0.8, 0.8, 0.8};
       mat.type = Material::Type::Dielectric;
       mat.refractive_index = 1.0f;
     }
     {
-      Material& mat = materials.emplace_back(Material());
+      Material& mat = scene_.materials.emplace_back(Material());
       mat.albedo = {0.8, 0.6, 0.2};
       mat.type = Material::Type::Metal;
       mat.fuzz = 0.0f;
     }
     {
-      Material& mat = materials.emplace_back(Material());
+      Material& mat = scene_.materials.emplace_back(Material());
       mat.albedo = {0.8, 0.8, 0.0};
       mat.type = Material::Type::Lambertian;
     }
@@ -59,7 +59,7 @@ namespace ray_tracing {
       sphere.radius = 2.0f;
       sphere.material_index = 2;
       
-      spheres.push_back(sphere);
+      scene_.spheres.push_back(sphere);
     }
     {
       Sphere sphere;
@@ -67,7 +67,7 @@ namespace ray_tracing {
       sphere.radius = 2.0f;
       sphere.material_index = 1;
 
-      spheres.push_back(sphere);
+      scene_.spheres.push_back(sphere);
     }
     {
       Sphere sphere;
@@ -75,7 +75,7 @@ namespace ray_tracing {
       sphere.radius = 2.0f;
       sphere.material_index = 0;
 
-      spheres.push_back(sphere);
+      scene_.spheres.push_back(sphere);
     }
     {
       Sphere sphere;
@@ -83,7 +83,7 @@ namespace ray_tracing {
       sphere.radius = 1.0f;
       sphere.material_index = 2;
 
-      spheres.push_back(sphere);
+      scene_.spheres.push_back(sphere);
     }
     {
       Sphere sphere;
@@ -91,7 +91,7 @@ namespace ray_tracing {
       sphere.radius = 1.0f;
       sphere.material_index = 1;
 
-      spheres.push_back(sphere);
+      scene_.spheres.push_back(sphere);
     }
     {
       Sphere sphere;
@@ -99,7 +99,7 @@ namespace ray_tracing {
       sphere.radius = 1.0f;
       sphere.material_index = 0;
 
-      spheres.push_back(sphere);
+      scene_.spheres.push_back(sphere);
     }
     {
       Sphere sphere;
@@ -107,7 +107,7 @@ namespace ray_tracing {
       sphere.radius = 100.0f;
       
       sphere.material_index = 3;
-      spheres.push_back(sphere);
+      scene_.spheres.push_back(sphere);
     }
   }
   
@@ -195,8 +195,8 @@ namespace ray_tracing {
         break;
       }
       
-      const Sphere& sphere = spheres[payload.object_idx];
-      const Material& material = materials[sphere.material_index];
+      const Sphere& sphere = scene_.spheres[payload.object_idx];
+      const Material& material = scene_.materials[sphere.material_index];
       if (i == 0)
         color = material.albedo;
       glm::vec3 sphere_color;
@@ -220,8 +220,8 @@ namespace ray_tracing {
     int32_t closest_sphere_idx = -1;
     float hit_distance = std::numeric_limits<float>::max();
 
-    for (size_t i = 0; i < spheres.size(); i++) {
-      const Sphere& sphere = spheres[i];
+    for (size_t i = 0; i < scene_.spheres.size(); i++) {
+      const Sphere& sphere = scene_.spheres[i];
       if (sphere.Hit(ray, hit_distance)) {
         closest_sphere_idx = (int32_t)i;
       } else {
@@ -239,7 +239,7 @@ namespace ray_tracing {
     payload.hit_distance = hit_distance;
     payload.object_idx = object_idx;
     
-    const Sphere closest_sphere = spheres[object_idx];
+    const Sphere closest_sphere = scene_.spheres[object_idx];
     payload.world_position = ray.At(payload.hit_distance);
     payload.world_normal = (payload.world_position - closest_sphere.position) / closest_sphere.radius;
 
@@ -276,11 +276,11 @@ namespace ray_tracing {
       ImGui::Begin("Scene Sphere");
       ImGui::PushID("Scene Sphere");
       
-      for (size_t i = 0; i < spheres.size(); i++) {
+      for (size_t i = 0; i < scene_.spheres.size(); i++) {
         ImGui::PushID((uint32_t)i);
-        ImGui::DragFloat3("position", glm::value_ptr(spheres[i].position), 0.1f);
-        ImGui::DragFloat("radius", &spheres[i].radius, 0.1, 0.0);
-        ImGui::DragInt("material", &spheres[i].material_index, 1., 0.0, (int)(materials.size() - 1));
+        ImGui::DragFloat3("position", glm::value_ptr(scene_.spheres[i].position), 0.1f);
+        ImGui::DragFloat("radius", &scene_.spheres[i].radius, 0.1, 0.0);
+        ImGui::DragInt("material", &scene_.spheres[i].material_index, 1., 0.0, (int)(scene_.materials.size() - 1));
         ImGui::Separator();
         ImGui::PopID();
       }
@@ -288,13 +288,13 @@ namespace ray_tracing {
       ImGui::Separator();
       ImGui::Separator();
       
-      for (size_t i = 0; i < materials.size(); i++) {
+      for (size_t i = 0; i < scene_.materials.size(); i++) {
         ImGui::PushID((uint32_t)i);
-        ImGui::ColorEdit3("color", glm::value_ptr(materials[i].albedo));
-        if (materials[i].type == Material::Type::Metal)
-          ImGui::DragFloat("fuzz", &materials[i].fuzz, 0.01, 0.0, 1.0);
-        if (materials[i].type == Material::Type::Dielectric)
-          ImGui::DragFloat("ri", &materials[i].refractive_index, 0.01, 0.0);
+        ImGui::ColorEdit3("color", glm::value_ptr(scene_.materials[i].albedo));
+        if (scene_.materials[i].type == Material::Type::Metal)
+          ImGui::DragFloat("fuzz", &scene_.materials[i].fuzz, 0.01, 0.0, 1.0);
+        if (scene_.materials[i].type == Material::Type::Dielectric)
+          ImGui::DragFloat("ri", &scene_.materials[i].refractive_index, 0.01, 0.0);
         ImGui::Separator();
         ImGui::PopID();
       }
