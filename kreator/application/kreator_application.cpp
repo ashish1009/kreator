@@ -7,7 +7,6 @@
 
 #include "sandbox/sandbox_layer.hpp"
 #include "ecs_editor/src/editor_layer.hpp"
-#include "ray_tracing/src/ray_tracing_layer.hpp"
 #include "ray_tracing/src/renderer_layer.hpp"
 
 enum class SupportedApplicationType : uint8_t {

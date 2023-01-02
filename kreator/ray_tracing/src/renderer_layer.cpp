@@ -6,7 +6,6 @@
 //
 
 #include "renderer_layer.hpp"
-#include "ray.hpp"
 
 namespace ray_tracing {
 
@@ -22,85 +21,85 @@ namespace ray_tracing {
     IK_INFO("Attaching Ray Trace Renderer Layer instance");
     
     editor_camera_.SetPosition({0, 0, 6});
-
-    {
-      Material& mat = scene_.materials.emplace_back(Material());
-      mat.albedo = {0.7, 0.3, 0.};
-      mat.type = Material::Type::Lambertian;
-    }
-    {
-      Material& mat = scene_.materials.emplace_back(Material());
-      mat.albedo = {0.8, 0.8, 0.8};
-      mat.type = Material::Type::Dielectric;
-      mat.refractive_index = 1.0f;
-    }
-    {
-      Material& mat = scene_.materials.emplace_back(Material());
-      mat.albedo = {0.8, 0.6, 0.2};
-      mat.type = Material::Type::Metal;
-      mat.fuzz = 0.0f;
-    }
-    {
-      Material& mat = scene_.materials.emplace_back(Material());
-      mat.albedo = {0.8, 0.8, 0.0};
-      mat.type = Material::Type::Lambertian;
-    }
-    {
-      Sphere sphere;
-      sphere.position = {0.0f, 1.0f, 0.0f};
-      sphere.radius = 2.0f;
-      sphere.material_index = 2;
-      
-      scene_.spheres.push_back(sphere);
-    }
-    {
-      Sphere sphere;
-      sphere.position = {-5.0f, 1.0f, 0.0f};
-      sphere.radius = 2.0f;
-      sphere.material_index = 1;
-
-      scene_.spheres.push_back(sphere);
-    }
-    {
-      Sphere sphere;
-      sphere.position = {5.0f, 1.0f, 5.0f};
-      sphere.radius = 2.0f;
-      sphere.material_index = 0;
-
-      scene_.spheres.push_back(sphere);
-    }
-    {
-      Sphere sphere;
-      sphere.position = {-7.0f, 0.0f, 3.0f};
-      sphere.radius = 1.0f;
-      sphere.material_index = 2;
-
-      scene_.spheres.push_back(sphere);
-    }
-    {
-      Sphere sphere;
-      sphere.position = {-2.0f, 0.0f, 4.0f};
-      sphere.radius = 1.0f;
-      sphere.material_index = 1;
-
-      scene_.spheres.push_back(sphere);
-    }
-    {
-      Sphere sphere;
-      sphere.position = {1.0f, 0.0f, 7.0f};
-      sphere.radius = 1.0f;
-      sphere.material_index = 0;
-
-      scene_.spheres.push_back(sphere);
-    }
-    {
-      Sphere sphere;
-      sphere.position = {0.0f, -101.0f, 0.0f};
-      sphere.radius = 100.0f;
-      
-      sphere.material_index = 3;
-      scene_.spheres.push_back(sphere);
-    }
+//
+//    {
+//      Material& mat = scene_.materials.emplace_back(Material());
+//      mat.albedo = {0.7, 0.3, 0.};
+//      mat.type = Material::Type::Lambertian;
+//    }
+//    {
+//      Material& mat = scene_.materials.emplace_back(Material());
+//      mat.albedo = {0.8, 0.8, 0.8};
+//      mat.type = Material::Type::Dielectric;
+//      mat.refractive_index = 1.0f;
+//    }
+//    {
+//      Material& mat = scene_.materials.emplace_back(Material());
+//      mat.albedo = {0.8, 0.6, 0.2};
+//      mat.type = Material::Type::Metal;
+//      mat.fuzz = 0.0f;
+//    }
+//    {
+//      Material& mat = scene_.materials.emplace_back(Material());
+//      mat.albedo = {0.8, 0.8, 0.0};
+//      mat.type = Material::Type::Lambertian;
+//    }
+//    {
+//      Sphere sphere;
+//      sphere.position = {0.0f, 1.0f, 0.0f};
+//      sphere.radius = 2.0f;
+//      sphere.material_index = 2;
+//      
+//      scene_.spheres.push_back(sphere);
+//    }
+//    {
+//      Sphere sphere;
+//      sphere.position = {-5.0f, 1.0f, 0.0f};
+//      sphere.radius = 2.0f;
+//      sphere.material_index = 1;
+//
+//      scene_.spheres.push_back(sphere);
+//    }
+//    {
+//      Sphere sphere;
+//      sphere.position = {5.0f, 1.0f, 5.0f};
+//      sphere.radius = 2.0f;
+//      sphere.material_index = 0;
+//
+//      scene_.spheres.push_back(sphere);
+//    }
+//    {
+//      Sphere sphere;
+//      sphere.position = {-7.0f, 0.0f, 3.0f};
+//      sphere.radius = 1.0f;
+//      sphere.material_index = 2;
+//
+//      scene_.spheres.push_back(sphere);
+//    }
+//    {
+//      Sphere sphere;
+//      sphere.position = {-2.0f, 0.0f, 4.0f};
+//      sphere.radius = 1.0f;
+//      sphere.material_index = 1;
+//
+//      scene_.spheres.push_back(sphere);
+//    }
+//    {
+//      Sphere sphere;
+//      sphere.position = {1.0f, 0.0f, 7.0f};
+//      sphere.radius = 1.0f;
+//      sphere.material_index = 0;
+//
+//      scene_.spheres.push_back(sphere);
+//    }
+//    {
+//      Sphere sphere;
+//      sphere.position = {0.0f, -101.0f, 0.0f};
+//      sphere.radius = 100.0f;
+//      
+//      sphere.material_index = 3;
+//      scene_.spheres.push_back(sphere);
+//    }
   }
   
   void RendererLayer::Detach() {
