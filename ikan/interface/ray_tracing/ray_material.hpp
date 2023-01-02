@@ -8,7 +8,7 @@
 #pragma once
 
 #include "ray.hpp"
-#include "hit.hpp"
+#include "hit_payload.hpp"
 
 namespace ray_tracing {
   

@@ -5,12 +5,19 @@
 //  Created by Ashish . on 25/12/22.
 //
 
-#include "sandbox/sandbox_layer.hpp"
-#include "ecs_editor/src/editor_layer.hpp"
-#include "ray_tracing/src/renderer_layer.hpp"
+#include "layers/sandbox/sandbox_layer.hpp"
+#include "layers/ecs_editor/src/editor_layer.hpp"
+#include "layers/ray_tracing/src/renderer_layer.hpp"
+#include "layers/mario/src/mario_main.hpp"
+#include "layers/chess/src/chess_main.hpp"
 
 enum class SupportedApplicationType : uint8_t {
-  Sandbox, Editor, RayTracing /* Add More with time */
+  Sandbox,
+  Editor,
+  RayTracing,
+  Chess,
+  Mario
+  /* Add More with time */
 };
 
 class KreatorApp : public ikan::Application {
@@ -30,6 +37,12 @@ public:
       case SupportedApplicationType::RayTracing :
         PushLayer(std::make_shared<ray_tracing::RendererLayer>());
         break;
+      case SupportedApplicationType::Mario :
+        PushLayer(std::make_shared<mario::MarioLayer>());
+        break;
+      case SupportedApplicationType::Chess :
+        PushLayer(std::make_shared<chess::ChessLayer>());
+        break;
     };
   }
   ~KreatorApp() {
@@ -40,7 +53,7 @@ public:
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Set up the type of applicaiton we want to create
-  SupportedApplicationType application_type = SupportedApplicationType::RayTracing;
+  SupportedApplicationType application_type = SupportedApplicationType::Chess;
   
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;
@@ -64,23 +77,27 @@ std::unique_ptr<ikan::Application> CreateApplication() {
     case SupportedApplicationType::Sandbox :
       application_spec.name = "Sandbox";
       application_spec.window_specification.title = "Sandbox";
-      application_spec.window_specification.width = 1200;
-      application_spec.window_specification.height = 800;
-      application_spec.client_asset_path = "../../../kreator/sandbox/assets/";
+      application_spec.client_asset_path = "../../../kreator/layers/sandbox/assets/";
       break;
     case SupportedApplicationType::Editor :
       application_spec.name = "Kreator";
       application_spec.window_specification.title = "Kreator";
-      application_spec.window_specification.width = 1600;
-      application_spec.window_specification.height = 900;
-      application_spec.client_asset_path = "../../../kreator/ecs_editor/assets/";
+      application_spec.client_asset_path = "../../../kreator/layers/ecs_editor/assets/";
       break;
     case SupportedApplicationType::RayTracing :
       application_spec.name = "RayTracing";
       application_spec.window_specification.title = "RayTracing";
-      application_spec.window_specification.width = 1600;
-      application_spec.window_specification.height = 900;
-      application_spec.client_asset_path = "../../../kreator/RayTracing/assets/";
+      application_spec.client_asset_path = "../../../kreator/layers/ray_tracing/assets/";
+      break;
+    case SupportedApplicationType::Mario :
+      application_spec.name = "Mario";
+      application_spec.window_specification.title = "Mario";
+      application_spec.client_asset_path = "../../../kreator/layers/mario/assets/";
+      break;
+    case SupportedApplicationType::Chess :
+      application_spec.name = "Chess";
+      application_spec.window_specification.title = "Chess";
+      application_spec.client_asset_path = "../../../kreator/layers/chess/assets/";
       break;
 
   };

@@ -1,6 +1,6 @@
 //
 //  editor_layer.hpp
-//  kreator
+//  ecs_editor
 //
 //  Created by Ashish . on 28/12/22.
 //

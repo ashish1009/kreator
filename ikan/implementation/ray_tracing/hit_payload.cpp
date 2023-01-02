@@ -5,7 +5,7 @@
 //  Created by Ashish . on 31/12/22.
 //
 
-#include "hit.hpp"
+#include "hit_payload.hpp"
 
 namespace ray_tracing {
   

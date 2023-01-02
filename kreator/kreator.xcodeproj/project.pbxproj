@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
-		B248708F2961536A0038DD9E /* libray_tracing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B248708E2961536A0038DD9E /* libray_tracing.a */; };
+		B24DD82F2962FFEE00525941 /* chess_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD82D2962FFEE00525941 /* chess_main.cpp */; };
+		B24DD8322963000100525941 /* mario_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD8302963000100525941 /* mario_main.cpp */; };
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
 		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
 		B275570A29601F650020D552 /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B275570829601F650020D552 /* renderer_layer.cpp */; };
@@ -40,6 +41,10 @@
 		B2250CD6295860BC0067C43B /* entry_point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
 		B2250CE2295863840067C43B /* kreator_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kreator_application.cpp; sourceTree = "<group>"; };
 		B248708E2961536A0038DD9E /* libray_tracing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libray_tracing.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B24DD82D2962FFEE00525941 /* chess_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chess_main.cpp; sourceTree = "<group>"; };
+		B24DD82E2962FFEE00525941 /* chess_main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chess_main.hpp; sourceTree = "<group>"; };
+		B24DD8302963000100525941 /* mario_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario_main.cpp; sourceTree = "<group>"; };
+		B24DD8312963000100525941 /* mario_main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario_main.hpp; sourceTree = "<group>"; };
 		B2581110295ACCA500B0EDA7 /* libikan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libikan.a; path = ../../ikan_ws/build/products/Debug/libikan.a; sourceTree = "<group>"; };
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B275570829601F650020D552 /* renderer_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
@@ -64,7 +69,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B248708F2961536A0038DD9E /* libray_tracing.a in Frameworks */,
 				B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */,
 				B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */,
 			);
@@ -79,9 +83,7 @@
 				B2250CD029585E890067C43B /* prefix_header.pch */,
 				B2250CD5295860700067C43B /* entry_point */,
 				B2250CE12958636C0067C43B /* application */,
-				B251B3E9295E13EE00508210 /* ray_tracing */,
-				B2BD9DF7295C88B70076A2F9 /* ecs_editor */,
-				B2250CDD295863140067C43B /* sandbox */,
+				B24DD82A2962FF5000525941 /* layers */,
 				B2250CAB29584CE00067C43B /* Products */,
 				B2250CCB29584D1A0067C43B /* Frameworks */,
 			);
@@ -131,6 +133,52 @@
 				B2250CE2295863840067C43B /* kreator_application.cpp */,
 			);
 			path = application;
+			sourceTree = "<group>";
+		};
+		B24DD82A2962FF5000525941 /* layers */ = {
+			isa = PBXGroup;
+			children = (
+				B24DD82C2962FFDC00525941 /* chess */,
+				B24DD82B2962FFD700525941 /* mario */,
+				B251B3E9295E13EE00508210 /* ray_tracing */,
+				B2BD9DF7295C88B70076A2F9 /* ecs_editor */,
+				B2250CDD295863140067C43B /* sandbox */,
+			);
+			path = layers;
+			sourceTree = "<group>";
+		};
+		B24DD82B2962FFD700525941 /* mario */ = {
+			isa = PBXGroup;
+			children = (
+				B24DD8352963020E00525941 /* src */,
+			);
+			path = mario;
+			sourceTree = "<group>";
+		};
+		B24DD82C2962FFDC00525941 /* chess */ = {
+			isa = PBXGroup;
+			children = (
+				B24DD8332963020000525941 /* src */,
+			);
+			path = chess;
+			sourceTree = "<group>";
+		};
+		B24DD8332963020000525941 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B24DD82D2962FFEE00525941 /* chess_main.cpp */,
+				B24DD82E2962FFEE00525941 /* chess_main.hpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		B24DD8352963020E00525941 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B24DD8302963000100525941 /* mario_main.cpp */,
+				B24DD8312963000100525941 /* mario_main.hpp */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		B251B3E9295E13EE00508210 /* ray_tracing */ = {
@@ -248,7 +296,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B24DD8322963000100525941 /* mario_main.cpp in Sources */,
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
+				B24DD82F2962FFEE00525941 /* chess_main.cpp in Sources */,
 				B2FC40212958B82D00447A1A /* sandbox_layer.cpp in Sources */,
 				B275570A29601F650020D552 /* renderer_layer.cpp in Sources */,
 				B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */,
