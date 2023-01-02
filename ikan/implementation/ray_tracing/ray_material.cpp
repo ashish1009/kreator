@@ -1,13 +1,13 @@
 //
 //  materia.cpp
-//  ray_tracing
+//  ikan
 //
 //  Created by Ashish . on 31/12/22.
 //
 
 #include "ray_material.hpp"
 
-namespace ray_tracing {
+namespace ikan {
   
   bool NearZeroVec(const::glm::vec3 e) {
     // Return true if the vector is close to zero in all dimensions.

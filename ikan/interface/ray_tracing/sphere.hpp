@@ -1,6 +1,6 @@
 //
 //  sphere.hpp
-//  ray_tracing
+//  ikan
 //
 //  Created by Ashish . on 31/12/22.
 //
@@ -11,7 +11,7 @@
 #include "hit_payload.hpp"
 #include "ray_material.hpp"
 
-namespace ray_tracing {
+namespace ikan {
   
   /// Basic Sphere class to store sphere data and functions
   struct Sphere {

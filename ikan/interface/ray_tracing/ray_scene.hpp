@@ -1,6 +1,6 @@
 //
 //  scene.hpp
-//  ray_tracing
+//  ikan
 //
 //  Created by Ashish . on 01/01/23.
 //
@@ -10,7 +10,7 @@
 #include "ray_material.hpp"
 #include "sphere.hpp"
 
-namespace ray_tracing {
+namespace ikan {
   
   class RayScene {
   public:

@@ -1,13 +1,13 @@
 //
 //  Ray.cpp
-//  ray_tracing
+//  ikan
 //
 //  Created by Ashish . on 31/12/22.
 //
 
 #include "ray.hpp"
 
-namespace ray_tracing {
+namespace ikan {
   
   Ray::Ray(const glm::vec3& origin, const glm::vec3& direction)
   : origin(origin), direction(direction) {}

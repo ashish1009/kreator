@@ -1,6 +1,6 @@
 //
 //  renderer.hpp
-//  ray_tracing
+//  ikan
 //
 //  Created by Ashish . on 01/01/23.
 //
@@ -11,10 +11,8 @@
 #include "renderer/graphics/texture.hpp"
 #include "editor/editor_camera.hpp"
 
-namespace ray_tracing {
-  
-  using namespace ikan;
-  
+namespace ikan {
+    
   class RayRenderer {
   public:
     struct Setting {

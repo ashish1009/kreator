@@ -1,13 +1,13 @@
 //
 //  hit.cpp
-//  ray_tracing
+//  ikan
 //
 //  Created by Ashish . on 31/12/22.
 //
 
 #include "hit_payload.hpp"
 
-namespace ray_tracing {
+namespace ikan {
   
   void HitPayload::SetFaceNormal(const Ray &ray) {
     front_face = glm::dot(ray.direction, world_normal) >= 0;

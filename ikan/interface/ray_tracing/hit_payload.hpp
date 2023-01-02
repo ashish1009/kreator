@@ -1,6 +1,6 @@
 //
 //  HitPayload.hpp
-//  ray_tracing
+//  ikan
 //
 //  Created by Ashish . on 31/12/22.
 //
@@ -9,7 +9,7 @@
 
 #include "ray.hpp"
 
-namespace ray_tracing {
+namespace ikan {
 
   struct HitPayload {
     float hit_distance;

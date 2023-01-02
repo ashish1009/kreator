@@ -1,13 +1,13 @@
 //
 //  sphere.cpp
-//  ray_tracing
+//  ikan
 //
 //  Created by Ashish . on 31/12/22.
 //
 
 #include "sphere.hpp"
 
-namespace ray_tracing {
+namespace ikan {
   
   Sphere::Sphere(const glm::vec3& position, float radius, int32_t material_index)
   : position(position), radius(radius), material_index(material_index) { }

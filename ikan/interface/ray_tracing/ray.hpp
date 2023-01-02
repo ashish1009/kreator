@@ -1,13 +1,13 @@
 //
 //  Ray.hpp
-//  ray_tracing
+//  ikan
 //
 //  Created by Ashish . on 31/12/22.
 //
 
 #pragma once
 
-namespace ray_tracing {
+namespace ikan {
   
   /// Basic Ray class to store the data for each ray
   struct Ray {

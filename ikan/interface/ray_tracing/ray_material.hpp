@@ -1,6 +1,6 @@
 //
 //  material.hpp
-//  ray_tracing
+//  ikan
 //
 //  Created by Ashish . on 31/12/22.
 //
@@ -10,7 +10,7 @@
 #include "ray.hpp"
 #include "hit_payload.hpp"
 
-namespace ray_tracing {
+namespace ikan {
   
   struct Material {
     enum class Type : uint8_t {
