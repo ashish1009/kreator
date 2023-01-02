@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B217E7EA296323F600311AE6 /* libvulkan.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B217E7E9296323F600311AE6 /* libvulkan.1.dylib */; };
+		B217E7EB2963240200311AE6 /* libvulkan.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B217E7E9296323F600311AE6 /* libvulkan.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
 		B24DD82F2962FFEE00525941 /* chess_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD82D2962FFEE00525941 /* chess_main.cpp */; };
@@ -27,6 +29,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				B217E7EB2963240200311AE6 /* libvulkan.1.dylib in CopyFiles */,
 				B2BD9DDC295C83030076A2F9 /* libpng16.16.dylib in CopyFiles */,
 				B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */,
 			);
@@ -35,6 +38,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B217E7E029631BBC00311AE6 /* vulkan.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = vulkan.framework; path = ../../../../../../../usr/local/macOS/Frameworks/vulkan.framework; sourceTree = "<group>"; };
+		B217E7E3296320FD00311AE6 /* vulkan */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = vulkan; path = ../../../../../../../usr/local/macOS/Frameworks/vulkan.framework/Versions/A/vulkan; sourceTree = "<group>"; };
+		B217E7E62963236F00311AE6 /* libvulkan.1.3.236.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.3.236.dylib; path = ../ikan/vendors/vulkan/lib/libvulkan.1.3.236.dylib; sourceTree = "<group>"; };
+		B217E7E9296323F600311AE6 /* libvulkan.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.dylib; path = ../ikan/vendors/vulkan/lib/libvulkan.1.dylib; sourceTree = "<group>"; };
 		B2250CAA29584CE00067C43B /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCC29584D1A0067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CD029585E890067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
@@ -69,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B217E7EA296323F600311AE6 /* libvulkan.1.dylib in Frameworks */,
 				B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */,
 				B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */,
 			);
@@ -100,6 +108,10 @@
 		B2250CCB29584D1A0067C43B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B217E7E9296323F600311AE6 /* libvulkan.1.dylib */,
+				B217E7E62963236F00311AE6 /* libvulkan.1.3.236.dylib */,
+				B217E7E3296320FD00311AE6 /* vulkan */,
+				B217E7E029631BBC00311AE6 /* vulkan.framework */,
 				B248708E2961536A0038DD9E /* libray_tracing.a */,
 				B2BD9DCA295C7D3C0076A2F9 /* lib */,
 				B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */,
@@ -425,6 +437,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78KTXZ99TW;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/macOS/Frameworks,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -444,10 +460,12 @@
 					"${PROJECT_DIR}/../ikan/vendors/glfw/glfw/include",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
 					"${PROJECT_DIR}/../ikan/vendors/entt/include",
+					"${PROJECT_DIR}/../ikan/vendors/vulkan/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../ikan/vendors/freetype/lib",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/libpng/1.6.39/lib",
+					"${PROJECT_DIR}/../ikan/vendors/vulkan/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -461,6 +479,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78KTXZ99TW;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/macOS/Frameworks,
+				);
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_header.pch";
@@ -479,10 +501,12 @@
 					"${PROJECT_DIR}/../ikan/vendors/glfw/glfw/include",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
 					"${PROJECT_DIR}/../ikan/vendors/entt/include",
+					"${PROJECT_DIR}/../ikan/vendors/vulkan/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../ikan/vendors/freetype/lib",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/libpng/1.6.39/lib",
+					"${PROJECT_DIR}/../ikan/vendors/vulkan/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				ONLY_ACTIVE_ARCH = YES;

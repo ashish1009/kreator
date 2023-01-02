@@ -39,7 +39,7 @@
 		B2FC3FEA29588C7400447A1A /* platform.c in Sources */ = {isa = PBXBuildFile; fileRef = B2FC3FAC29588C7400447A1A /* platform.c */; };
 		B2FC3FEB29588C7400447A1A /* osmesa_context.c in Sources */ = {isa = PBXBuildFile; fileRef = B2FC3FAD29588C7400447A1A /* osmesa_context.c */; };
 		B2FC3FEC29588C7400447A1A /* x11_window.c in Sources */ = {isa = PBXBuildFile; fileRef = B2FC3FAE29588C7400447A1A /* x11_window.c */; };
-		B2FC3FED29588C7400447A1A /* vulkan.c in Sources */ = {isa = PBXBuildFile; fileRef = B2FC3FB029588C7400447A1A /* vulkan.c */; };
+		B2FC3FED29588C7400447A1A /* vulkan.c in Sources */ = {isa = PBXBuildFile; fileRef = B2FC3FB029588C7400447A1A /* vulkan.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		B2FC3FEE29588C7400447A1A /* null_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = B2FC3FB129588C7400447A1A /* null_monitor.c */; };
 		B2FC3FEF29588C7400447A1A /* posix_time.h in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3FB229588C7400447A1A /* posix_time.h */; };
 		B2FC3FF029588C7400447A1A /* input.c in Sources */ = {isa = PBXBuildFile; fileRef = B2FC3FB329588C7400447A1A /* input.c */; };
