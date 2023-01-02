@@ -443,7 +443,7 @@
 					"${PROJECT_DIR}/../ikan/vendors/open_gl/glad/include",
 					"${PROJECT_DIR}/../ikan/vendors/glfw/glfw/include",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
-					"${PROJECT_DIR}/../ray_tracing/interface",
+					"${PROJECT_DIR}/../ikan/vendors/entt/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../ikan/vendors/freetype/lib",
@@ -478,7 +478,7 @@
 					"${PROJECT_DIR}/../ikan/vendors/open_gl/glad/include",
 					"${PROJECT_DIR}/../ikan/vendors/glfw/glfw/include",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
-					"${PROJECT_DIR}/../ray_tracing/interface",
+					"${PROJECT_DIR}/../ikan/vendors/entt/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../ikan/vendors/freetype/lib",

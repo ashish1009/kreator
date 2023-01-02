@@ -71,6 +71,8 @@
 
 // Scene
 #include <scene/viewport.hpp>
+#include <scene/entity.hpp>
+#include <scene/entt_scene.hpp>
 
 // Imgui API
 #include <imgui/imgui_api.hpp>

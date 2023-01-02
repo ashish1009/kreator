@@ -19,6 +19,8 @@ namespace editor {
   
   void EditorLayer::Attach() {
     IK_INFO("Attaching Editor Layer instance");
+    
+    Entity e1 = active_scene_.CreateEntity();
   }
   
   void EditorLayer::Detach() {

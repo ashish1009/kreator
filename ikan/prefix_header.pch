@@ -36,6 +36,7 @@
 #include "core/utils/buffers.hpp"
 
 #include "core/math/maths.hpp"
+#include "core/math/uuid.hpp"
 
 // glm math library
 #include <glm/glm.hpp>
