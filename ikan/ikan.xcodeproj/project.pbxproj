@@ -11,8 +11,6 @@
 		B216B256295B2F6B00C05392 /* open_gl_texture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B216B254295B2F6B00C05392 /* open_gl_texture.hpp */; };
 		B216B25C295B2F7400C05392 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B216B25A295B2F7400C05392 /* texture.cpp */; };
 		B216B25D295B2F7400C05392 /* texture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B216B25B295B2F7400C05392 /* texture.hpp */; };
-		B216B261295B4E6A00C05392 /* stb_image.h in Headers */ = {isa = PBXBuildFile; fileRef = B216B25F295B4E6A00C05392 /* stb_image.h */; };
-		B216B262295B4E6A00C05392 /* stb_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B216B260295B4E6A00C05392 /* stb_image.cpp */; };
 		B216B265295B516A00C05392 /* batch_2d_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B216B263295B516A00C05392 /* batch_2d_renderer.cpp */; };
 		B216B266295B516A00C05392 /* batch_2d_renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B216B264295B516A00C05392 /* batch_2d_renderer.hpp */; };
 		B2250CCF29585E310067C43B /* prefix_header.pch in Headers */ = {isa = PBXBuildFile; fileRef = B2250CCE29585E310067C43B /* prefix_header.pch */; };
@@ -40,6 +38,8 @@
 		B24DD8272962FDA000525941 /* hit_payload.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24DD8202962FDA000525941 /* hit_payload.hpp */; };
 		B24DD8282962FDA000525941 /* ray.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24DD8212962FDA000525941 /* ray.hpp */; };
 		B24DD8292962FDA000525941 /* ray_scene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24DD8222962FDA000525941 /* ray_scene.hpp */; };
+		B24DD8382963045400525941 /* stb_image.h in Headers */ = {isa = PBXBuildFile; fileRef = B24DD8362963045400525941 /* stb_image.h */; };
+		B24DD8392963045400525941 /* stb_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD8372963045400525941 /* stb_image.cpp */; };
 		B251B3F8295E15CA00508210 /* viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B251B3F7295E15CA00508210 /* viewport.cpp */; };
 		B251B3FA295E15D300508210 /* viewport.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B251B3F9295E15D300508210 /* viewport.hpp */; };
 		B2581116295AD76B00B0EDA7 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2581114295AD76B00B0EDA7 /* camera.cpp */; };
@@ -155,8 +155,6 @@
 		B216B254295B2F6B00C05392 /* open_gl_texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_texture.hpp; sourceTree = "<group>"; };
 		B216B25A295B2F7400C05392 /* texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
 		B216B25B295B2F7400C05392 /* texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = texture.hpp; sourceTree = "<group>"; };
-		B216B25F295B4E6A00C05392 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
-		B216B260295B4E6A00C05392 /* stb_image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stb_image.cpp; sourceTree = "<group>"; };
 		B216B263295B516A00C05392 /* batch_2d_renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = batch_2d_renderer.cpp; sourceTree = "<group>"; };
 		B216B264295B516A00C05392 /* batch_2d_renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = batch_2d_renderer.hpp; sourceTree = "<group>"; };
 		B216B268295B590900C05392 /* batch_line_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = batch_line_shader.glsl; sourceTree = "<group>"; };
@@ -189,6 +187,8 @@
 		B24DD8202962FDA000525941 /* hit_payload.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = hit_payload.hpp; sourceTree = "<group>"; };
 		B24DD8212962FDA000525941 /* ray.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ray.hpp; sourceTree = "<group>"; };
 		B24DD8222962FDA000525941 /* ray_scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ray_scene.hpp; sourceTree = "<group>"; };
+		B24DD8362963045400525941 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_image.h; path = vendors/stb_image/stb_image.h; sourceTree = SOURCE_ROOT; };
+		B24DD8372963045400525941 /* stb_image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stb_image.cpp; path = vendors/stb_image/stb_image.cpp; sourceTree = SOURCE_ROOT; };
 		B251B3F7295E15CA00508210 /* viewport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = viewport.cpp; sourceTree = "<group>"; };
 		B251B3F9295E15D300508210 /* viewport.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = viewport.hpp; sourceTree = "<group>"; };
 		B2581114295AD76B00B0EDA7 /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
@@ -294,8 +294,8 @@
 		B216B25E295B4E6A00C05392 /* stb_image */ = {
 			isa = PBXGroup;
 			children = (
-				B216B25F295B4E6A00C05392 /* stb_image.h */,
-				B216B260295B4E6A00C05392 /* stb_image.cpp */,
+				B24DD8372963045400525941 /* stb_image.cpp */,
+				B24DD8362963045400525941 /* stb_image.h */,
 			);
 			name = stb_image;
 			path = ../../../ikan_ws/ikan/vendor/stb_image;
@@ -755,6 +755,7 @@
 				B24DD8242962FDA000525941 /* ray_material.hpp in Headers */,
 				B2FC40172958B09000447A1A /* renderer.hpp in Headers */,
 				B2250CCF29585E310067C43B /* prefix_header.pch in Headers */,
+				B24DD8382963045400525941 /* stb_image.h in Headers */,
 				B2250D02295873A70067C43B /* ikan_common.h in Headers */,
 				B2BCB84E295AE3410068FCA2 /* input.hpp in Headers */,
 				B2BD9E16295CA7610076A2F9 /* framebuffer.hpp in Headers */,
@@ -791,7 +792,6 @@
 				B2FC3E8E2958839600447A1A /* time_step.hpp in Headers */,
 				B2B6CDB72958D8AD00AE609E /* imgui_layer.hpp in Headers */,
 				B2E7600D2958D38100ADBE79 /* mac_os_window.hpp in Headers */,
-				B216B261295B4E6A00C05392 /* stb_image.h in Headers */,
 				B2250CD4295860420067C43B /* core_entry_point.h in Headers */,
 				B2250D00295873330067C43B /* logger.hpp in Headers */,
 				B2250CDC295861BF0067C43B /* core_application.hpp in Headers */,
@@ -898,6 +898,7 @@
 				B2FC40282958BBC500447A1A /* open_gl_renderer_context.cpp in Sources */,
 				B2FC3E8D2958839600447A1A /* time_step.cpp in Sources */,
 				B2FC3E892958826C00447A1A /* profiler.cpp in Sources */,
+				B24DD8392963045400525941 /* stb_image.cpp in Sources */,
 				B2FC40242958BAC400447A1A /* renderer_context.cpp in Sources */,
 				B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */,
 				B2FC40622958BD6100447A1A /* renderer_api.cpp in Sources */,
@@ -918,7 +919,6 @@
 				B216B255295B2F6B00C05392 /* open_gl_texture.cpp in Sources */,
 				B2C0D7FF2959E02B003F168B /* renderer_stats.cpp in Sources */,
 				B2FC3EA3295887FF00447A1A /* event.cpp in Sources */,
-				B216B262295B4E6A00C05392 /* stb_image.cpp in Sources */,
 				B2C0D8112959FB92003F168B /* renderer_buffer.cpp in Sources */,
 				B227F37329597F2B0055D871 /* open_gl_renderer_id_manager.cpp in Sources */,
 				B2F5265A2959776A00A83C65 /* shader.cpp in Sources */,
