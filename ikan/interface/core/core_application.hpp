@@ -31,6 +31,7 @@ namespace ikan {
     struct Specification {
       std::string name = "iKan";
       std::string client_asset_path;
+      std::string save_ini_file_path;
       Renderer::Api rendering_api = Renderer::Api::None;
       OperatingSystem os = OperatingSystem::None;
       Window::Specification window_specification;

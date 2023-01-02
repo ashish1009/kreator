@@ -146,7 +146,7 @@ namespace ikan {
     /// This function resets all the renderer stats
     static void ResetStats();
     /// This function renderers Imgui to show renderer stats
-    static void RenderStatsGui(bool summary = true);
+    static void RenderStatsGui(bool summary = false);
 
     // -----------------
     // Gui Widgets

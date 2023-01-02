@@ -65,6 +65,10 @@ namespace ikan {
     ///   - default_font: Default font informatiom
     ///   - bold_font: bold Font informatiom
     void SetFont(const ImguiFont &default_font, const ImguiFont &bold_font);
+    /// This function the save location of ini file path
+    /// - Parameter ini_file_path: file path relative to executable
+    /// NOTE: Directory must exist.
+    void SetIniFilePath(const std::string& ini_file_path);
     
     // -----------------
     // Static funciton

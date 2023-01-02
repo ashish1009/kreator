@@ -60,6 +60,7 @@ namespace ikan {
     if (specification_.enable_gui) {
       imgui_layer_ = ImguiLayer::Create((void*)GetWindow().GetNativeWindow());
       PushLayer(imgui_layer_);
+      imgui_layer_->SetIniFilePath(specification_.save_ini_file_path);
     }
 
     // Create Memroy for Renderer Data
@@ -143,7 +144,7 @@ namespace ikan {
   }
   
   Application::Specification::Specification(const Application::Specification& other)
-  : name(other.name), client_asset_path(other.client_asset_path),
+  : name(other.name), client_asset_path(other.client_asset_path), save_ini_file_path(other.save_ini_file_path),
   rendering_api(other.rendering_api), window_specification(other.window_specification),
   os(other.os), start_maximized(other.start_maximized), resizable(other.resizable),
   enable_gui(other.enable_gui) {
@@ -151,7 +152,7 @@ namespace ikan {
   }
   
   Application::Specification::Specification(Application::Specification&& other)
-  : name(other.name), client_asset_path(other.client_asset_path),
+  : name(other.name), client_asset_path(other.client_asset_path), save_ini_file_path(other.save_ini_file_path),
   rendering_api(other.rendering_api), os(other.os), window_specification(other.window_specification),
   start_maximized(other.start_maximized), resizable(other.resizable), enable_gui(other.enable_gui) {
     IK_CORE_TRACE("Moving Application Specification ...");
@@ -162,6 +163,7 @@ namespace ikan {
     IK_CORE_TRACE("Copying Application Specification using operator = ...");
     name = other.name;
     client_asset_path = other.client_asset_path;
+    save_ini_file_path = other.save_ini_file_path;
     rendering_api = other.rendering_api;
     os = other.os;
     window_specification = other.window_specification;
@@ -177,6 +179,7 @@ namespace ikan {
     IK_CORE_TRACE("Moving Application Specification using operator = ...");
     name = other.name;
     client_asset_path = other.client_asset_path;
+    save_ini_file_path = other.save_ini_file_path;
     rendering_api = other.rendering_api;
     os = other.os;
     window_specification = other.window_specification;
@@ -192,6 +195,7 @@ namespace ikan {
     IK_CORE_INFO("  ---------------------------------------------------------");
     IK_CORE_INFO("    Name                 | {0}", name);
     IK_CORE_INFO("    Client Asset Path    | {0}", client_asset_path.c_str());
+    IK_CORE_INFO("    Save INI File Path   | {0}", save_ini_file_path.c_str());
     IK_CORE_INFO("    Rewndering API       | {0}", renderer_utils::GetRendererApiName(rendering_api));
     IK_CORE_INFO("    Operating System     | {0}", applicaiton_utils::GetOsNameAsString(os));
     IK_CORE_INFO("    Window Maximized     | {0}", start_maximized);

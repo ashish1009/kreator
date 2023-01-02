@@ -117,6 +117,11 @@ namespace ikan {
     IK_CORE_INFO("  Bold Font Size    | {0}", bold_font.size);
   }
   
+  void ImguiLayer::SetIniFilePath(const std::string& ini_file_path) {
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    io.IniFilename = ini_file_path.c_str();
+  }
+
   // Unused Functions in Imgui for now
   void ImguiLayer::Update([[maybe_unused]] Timestep ts) { }
   void ImguiLayer::RenderGui() {}

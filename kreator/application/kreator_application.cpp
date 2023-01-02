@@ -53,7 +53,7 @@ public:
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Set up the type of applicaiton we want to create
-  SupportedApplicationType application_type = SupportedApplicationType::Chess;
+  SupportedApplicationType application_type = SupportedApplicationType::Editor;
   
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;
@@ -78,26 +78,31 @@ std::unique_ptr<ikan::Application> CreateApplication() {
       application_spec.name = "Sandbox";
       application_spec.window_specification.title = "Sandbox";
       application_spec.client_asset_path = "../../../kreator/layers/sandbox/assets/";
+      application_spec.save_ini_file_path = "../../../kreator/layers/sandbox/sandbox.ini";
       break;
     case SupportedApplicationType::Editor :
       application_spec.name = "Kreator";
       application_spec.window_specification.title = "Kreator";
       application_spec.client_asset_path = "../../../kreator/layers/ecs_editor/assets/";
+      application_spec.save_ini_file_path = "../../../kreator/layers/ecs_editor/ecs.ini";
       break;
     case SupportedApplicationType::RayTracing :
       application_spec.name = "RayTracing";
       application_spec.window_specification.title = "RayTracing";
       application_spec.client_asset_path = "../../../kreator/layers/ray_tracing/assets/";
+      application_spec.save_ini_file_path = "../../../kreator/layers/ray_tracing/ray_tracing.ini";
       break;
     case SupportedApplicationType::Mario :
       application_spec.name = "Mario";
       application_spec.window_specification.title = "Mario";
       application_spec.client_asset_path = "../../../kreator/layers/mario/assets/";
+      application_spec.save_ini_file_path = "../../../kreator/layers/mario/mario.ini";
       break;
     case SupportedApplicationType::Chess :
       application_spec.name = "Chess";
       application_spec.window_specification.title = "Chess";
-      application_spec.client_asset_path = "../../../kreator/layers/chess/assets/";
+      application_spec.client_asset_path = "../../../kreator/layers/mario/assets/";
+      application_spec.save_ini_file_path = "../../../kreator/layers/mario/mario.ini";
       break;
 
   };
