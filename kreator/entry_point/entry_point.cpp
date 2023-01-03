@@ -16,6 +16,62 @@
 #include <vulkan/vulkan.h>
 
 inline static VkInstance s_VulkanInstance;
+inline static VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+
+std::vector<const char*> getRequiredExtensions() {
+  uint32_t glfwExtensionCount = 0;
+  const char** glfwExtensions;
+  glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+  
+  std::vector<const char*> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
+  
+  if (true) {
+    extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+  }
+  
+  return extensions;
+}
+
+struct QueueFamilyIndices {
+  std::optional<uint32_t> graphicsFamily;
+  
+  bool isComplete() {
+    return graphicsFamily.has_value();
+  }
+};
+
+
+QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device) {
+  QueueFamilyIndices indices;
+  
+  uint32_t queueFamilyCount = 0;
+  vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
+  
+  std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
+  vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, queueFamilies.data());
+  
+  int i = 0;
+  for (const auto& queueFamily : queueFamilies) {
+    if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT) {
+      indices.graphicsFamily = i;
+    }
+    
+    if (indices.isComplete()) {
+      break;
+    }
+    
+    i++;
+  }
+  
+  return indices;
+}
+
+
+bool isDeviceSuitable(VkPhysicalDevice device) {
+  QueueFamilyIndices indices = findQueueFamilies(device);
+  
+  return indices.isComplete();
+}
 
 int main() {
   std::cout << "vulkan Main ... \n";
@@ -51,6 +107,9 @@ int main() {
 
   assert(glfwVulkanSupported());
   
+  //---------------------------
+  // Create Instance
+  //---------------------------
   VkApplicationInfo app_info{};                                // APPLICATION INFO
   app_info.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;         // type of the struct
   app_info.pApplicationName = "ikan";                          // name of the application
@@ -65,16 +124,14 @@ int main() {
   instance_create_info.flags = VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR;
   instance_create_info.pApplicationInfo = &app_info;                     // application info from above
   
-  uint32_t glfwExtensionCount = 0;
-  const char** glfwExtensions;
-  glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+  auto extensions = getRequiredExtensions();
+  instance_create_info.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
+  instance_create_info.ppEnabledExtensionNames = extensions.data();
   
-  instance_create_info.enabledExtensionCount = glfwExtensionCount;//(uint32_t)instanceExtensions.size();      // amount of extensions to be enabled
-  instance_create_info.ppEnabledExtensionNames = glfwExtensions;        // extensions to enable
-  
-  const char* validationLayerName = "VK_LAYER_KHRONOS_validation";
+  VkDebugUtilsMessengerCreateInfoEXT debugCreateInfo{};
   instance_create_info.enabledLayerCount = 0;
-  
+  instance_create_info.pNext = nullptr;
+    
   // try creating instance, catch potential error code
   VkResult creation_result = VK_RESULT_MAX_ENUM;
   creation_result = vkCreateInstance(&instance_create_info, nullptr, &s_VulkanInstance);
@@ -82,12 +139,43 @@ int main() {
   if (creation_result != VK_SUCCESS) {
     assert(true);
   }
+
+  // ---------------------------------
+  // Pick Physical device
+  // ---------------------------------
+  uint32_t deviceCount = 0;
+  vkEnumeratePhysicalDevices(s_VulkanInstance, &deviceCount, nullptr);
+  
+  if (deviceCount == 0) {
+    throw std::runtime_error("failed to find GPUs with Vulkan support!");
+  }
+  
+  std::vector<VkPhysicalDevice> devices(deviceCount);
+  vkEnumeratePhysicalDevices(s_VulkanInstance, &deviceCount, devices.data());
+  
+  for (const auto& device : devices) {
+    if (isDeviceSuitable(device)) {
+      physicalDevice = device;
+      break;
+    }
+  }
+  
+  if (physicalDevice == VK_NULL_HANDLE) {
+    
+  }
+  
+  // ------------------------
+  // Create Logical Device
+  // ------------------------
+
   while (!glfwWindowShouldClose(window_)) {
     glfwPollEvents();
   }
   
+  vkDestroyInstance(s_VulkanInstance, nullptr);
+  glfwDestroyWindow(window_);
   glfwTerminate();
-  
+
   return 0;
 }
 
