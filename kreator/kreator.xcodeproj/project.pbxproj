@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B20ABA112963FAEB00C2F777 /* libMoltenVK.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B20ABA102963FAEB00C2F777 /* libMoltenVK.dylib */; };
-		B20ABA122963FAF100C2F777 /* libMoltenVK.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B20ABA102963FAEB00C2F777 /* libMoltenVK.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		B217E7EA296323F600311AE6 /* libvulkan.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B217E7E9296323F600311AE6 /* libvulkan.1.dylib */; };
-		B217E7EB2963240200311AE6 /* libvulkan.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B217E7E9296323F600311AE6 /* libvulkan.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
 		B24DD82F2962FFEE00525941 /* chess_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD82D2962FFEE00525941 /* chess_main.cpp */; };
@@ -31,8 +27,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				B20ABA122963FAF100C2F777 /* libMoltenVK.dylib in CopyFiles */,
-				B217E7EB2963240200311AE6 /* libvulkan.1.dylib in CopyFiles */,
 				B2BD9DDC295C83030076A2F9 /* libpng16.16.dylib in CopyFiles */,
 				B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */,
 			);
@@ -41,22 +35,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B20ABA102963FAEB00C2F777 /* libMoltenVK.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMoltenVK.dylib; path = "../ikan/vendors/vulkan/molten-vk/1.2.1/lib/libMoltenVK.dylib"; sourceTree = "<group>"; };
-		B217E7E029631BBC00311AE6 /* vulkan.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = vulkan.framework; path = ../../../../../../../usr/local/macOS/Frameworks/vulkan.framework; sourceTree = "<group>"; };
-		B217E7E3296320FD00311AE6 /* vulkan */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = vulkan; path = ../../../../../../../usr/local/macOS/Frameworks/vulkan.framework/Versions/A/vulkan; sourceTree = "<group>"; };
-		B217E7E62963236F00311AE6 /* libvulkan.1.3.236.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.3.236.dylib; path = ../ikan/vendors/vulkan/lib/libvulkan.1.3.236.dylib; sourceTree = "<group>"; };
-		B217E7E9296323F600311AE6 /* libvulkan.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.dylib; path = ../ikan/vendors/vulkan/lib/libvulkan.1.dylib; sourceTree = "<group>"; };
 		B2250CAA29584CE00067C43B /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCC29584D1A0067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CD029585E890067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		B2250CD6295860BC0067C43B /* entry_point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
 		B2250CE2295863840067C43B /* kreator_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kreator_application.cpp; sourceTree = "<group>"; };
-		B248708E2961536A0038DD9E /* libray_tracing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libray_tracing.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B24DD82D2962FFEE00525941 /* chess_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chess_main.cpp; sourceTree = "<group>"; };
 		B24DD82E2962FFEE00525941 /* chess_main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chess_main.hpp; sourceTree = "<group>"; };
 		B24DD8302963000100525941 /* mario_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario_main.cpp; sourceTree = "<group>"; };
 		B24DD8312963000100525941 /* mario_main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario_main.hpp; sourceTree = "<group>"; };
-		B2581110295ACCA500B0EDA7 /* libikan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libikan.a; path = ../../ikan_ws/build/products/Debug/libikan.a; sourceTree = "<group>"; };
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B275570829601F650020D552 /* renderer_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
 		B275570929601F650020D552 /* renderer_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
@@ -80,8 +67,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B20ABA112963FAEB00C2F777 /* libMoltenVK.dylib in Frameworks */,
-				B217E7EA296323F600311AE6 /* libvulkan.1.dylib in Frameworks */,
 				B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */,
 				B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */,
 			);
@@ -113,16 +98,9 @@
 		B2250CCB29584D1A0067C43B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B20ABA102963FAEB00C2F777 /* libMoltenVK.dylib */,
-				B217E7E9296323F600311AE6 /* libvulkan.1.dylib */,
-				B217E7E62963236F00311AE6 /* libvulkan.1.3.236.dylib */,
-				B217E7E3296320FD00311AE6 /* vulkan */,
-				B217E7E029631BBC00311AE6 /* vulkan.framework */,
-				B248708E2961536A0038DD9E /* libray_tracing.a */,
 				B2BD9DCA295C7D3C0076A2F9 /* lib */,
 				B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */,
 				B2584ED8295B826900234714 /* libfreetype.6.dylib */,
-				B2581110295ACCA500B0EDA7 /* libikan.a */,
 				B2250CCC29584D1A0067C43B /* libikan.a */,
 			);
 			name = Frameworks;
@@ -466,13 +444,10 @@
 					"${PROJECT_DIR}/../ikan/vendors/glfw/glfw/include",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
 					"${PROJECT_DIR}/../ikan/vendors/entt/include",
-					"${PROJECT_DIR}/../ikan/vendors/vulkan/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../ikan/vendors/freetype/lib",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/libpng/1.6.39/lib",
-					"${PROJECT_DIR}/../ikan/vendors/vulkan/lib",
-					"${PROJECT_DIR}/../ikan/vendors/vulkan/molten-vk/1.2.1/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -508,13 +483,10 @@
 					"${PROJECT_DIR}/../ikan/vendors/glfw/glfw/include",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
 					"${PROJECT_DIR}/../ikan/vendors/entt/include",
-					"${PROJECT_DIR}/../ikan/vendors/vulkan/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../ikan/vendors/freetype/lib",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/libpng/1.6.39/lib",
-					"${PROJECT_DIR}/../ikan/vendors/vulkan/lib",
-					"${PROJECT_DIR}/../ikan/vendors/vulkan/molten-vk/1.2.1/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				ONLY_ACTIVE_ARCH = YES;

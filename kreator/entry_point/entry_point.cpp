@@ -19,6 +19,8 @@ inline static VkInstance s_VulkanInstance;
 inline static VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
 inline static VkDevice device;
 inline static VkQueue graphicsQueue;
+inline static VkSurfaceKHR surface;
+inline static VkQueue presentQueue;
 
 std::vector<const char*> getRequiredExtensions() {
   uint32_t glfwExtensionCount = 0;
@@ -105,7 +107,11 @@ int main() {
   uint32_t extenstion_count = 0;
   vkEnumerateInstanceExtensionProperties(nullptr, &extenstion_count, nullptr);
   
-  std::cout << "extenstion_count " << extenstion_count << "\n";
+  uint32_t layer_count = 0;
+  VkExtensionProperties p;
+  vkEnumerateInstanceLayerProperties(&layer_count, nullptr);
+  
+  std::cout << "extenstion_count " << extenstion_count << " layer " << layer_count  << "\n";
 
   assert(glfwVulkanSupported());
   
@@ -118,7 +124,7 @@ int main() {
   app_info.applicationVersion = VK_MAKE_VERSION(1, 0, 0);      // version
   app_info.pEngineName = "ikan";              // name of the engine
   app_info.engineVersion = VK_MAKE_VERSION(1, 0, 0);           // version
-  app_info.apiVersion = VK_API_VERSION_1_0;                    // API version
+  app_info.apiVersion = VK_API_VERSION_1_3;                    // API version
   
   // setup create info struct
   VkInstanceCreateInfo instance_create_info{};                           // INSTANCE CREATION INFO
@@ -130,17 +136,26 @@ int main() {
   instance_create_info.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
   instance_create_info.ppEnabledExtensionNames = extensions.data();
   
-  VkDebugUtilsMessengerCreateInfoEXT debugCreateInfo{};
-  instance_create_info.enabledLayerCount = 0;
+  const char* validationLayerName = "VK_KHR_surface";
+  instance_create_info.enabledLayerCount = 1;
+  instance_create_info.ppEnabledLayerNames =&validationLayerName ;
   instance_create_info.pNext = nullptr;
     
   // try creating instance, catch potential error code
   VkResult creation_result = VK_RESULT_MAX_ENUM;
   creation_result = vkCreateInstance(&instance_create_info, nullptr, &s_VulkanInstance);
-  
+    
   if (creation_result != VK_SUCCESS) {
     assert(true);
   }
+  
+  // --------------------------
+  // Create Surface
+  // --------------------------
+  if (glfwCreateWindowSurface(s_VulkanInstance, window_, nullptr, &surface) != VK_SUCCESS) {
+
+  }
+
 
   // ---------------------------------
   // Pick Physical device
@@ -191,12 +206,7 @@ int main() {
   
   createInfo.enabledExtensionCount = 0;
   
-//  if (enableValidationLayers) {
-//    createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
-//    createInfo.ppEnabledLayerNames = validationLayers.data();
-//  } else {
-    createInfo.enabledLayerCount = 0;
-//  }
+  createInfo.enabledLayerCount = 0;
   
   if (vkCreateDevice(physicalDevice, &createInfo, nullptr, &device) != VK_SUCCESS) {
 
@@ -209,6 +219,7 @@ int main() {
     glfwPollEvents();
   }
   
+  vkDestroyDevice(device, nullptr);
   vkDestroyInstance(s_VulkanInstance, nullptr);
   glfwDestroyWindow(window_);
   glfwTerminate();
