@@ -169,7 +169,12 @@ namespace ikan {
 
         // If icon is clicked Do some action
         if (pressed) {
-          
+          if (is_directory) {
+            // Change the current directory
+            current_directory_ /= path.filename();
+          } else {
+            // DO NOTHING
+          }
         } // Pressed?
         ImGui::PopID(); // ImGui::PushID(filename_string.c_str());
 
