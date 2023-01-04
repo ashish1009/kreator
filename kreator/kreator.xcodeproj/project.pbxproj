@@ -70,6 +70,7 @@
 		B2C3BFAC296486D100D6D7C3 /* libvulkan.1.3.236.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.3.236.dylib; path = ../../../../../../../usr/local/macOS/lib/libvulkan.1.3.236.dylib; sourceTree = "<group>"; };
 		B2C3BFAF2964872700D6D7C3 /* libvulkan.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.dylib; path = ../../../../../../../usr/local/macOS/lib/libvulkan.1.dylib; sourceTree = "<group>"; };
 		B2C3BFB22964876F00D6D7C3 /* libMoltenVK.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMoltenVK.dylib; path = ../../../../../../../usr/local/macOS/lib/libMoltenVK.dylib; sourceTree = "<group>"; };
+		B2DAAB76296544CB003578D9 /* vulkan_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vulkan_entry_point.h; sourceTree = "<group>"; };
 		B2FC401F2958B82D00447A1A /* sandbox_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sandbox_layer.cpp; sourceTree = "<group>"; };
 		B2FC40202958B82D00447A1A /* sandbox_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sandbox_layer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				B2250CD6295860BC0067C43B /* entry_point.cpp */,
+				B2DAAB76296544CB003578D9 /* vulkan_entry_point.h */,
 			);
 			path = entry_point;
 			sourceTree = "<group>";
