@@ -116,8 +116,12 @@ namespace ikan {
         
         // If click then jump to that directosy
         if (ImGui::IsItemClicked()) {
+          //TODO: For now clear everything
+          path_hierarchy_.clear();
+
           // Change current directory
           current_directory_ = pinned_path;
+          path_hierarchy_.emplace_back(current_directory_);
         }
 
         // If opened the menu of current folder then show its content
@@ -211,6 +215,9 @@ namespace ikan {
           if (is_directory) {
             // Change the current directory
             current_directory_ /= path.filename();
+
+            // Store the current path in path hierarchy
+            path_hierarchy_.emplace_back(current_directory_);
           } else {
             // DO NOTHING
           }
@@ -244,6 +251,12 @@ namespace ikan {
     if (PropertyGrid::ImageButton("Back",
                                   back_texture->GetRendererID(),
                                   { 18.0f, 18.0f })) {
+      // Do nothing if path history is empty
+      if (back_path_history_.empty())
+        return;
+      
+      // Remove the element from path hierarchy
+      path_hierarchy_.pop_back();
     }
     PropertyGrid::HoveredMsg("NOTE: Feature not implemented", true);
   }
@@ -253,6 +266,12 @@ namespace ikan {
     if (PropertyGrid::ImageButton("Forward",
                                   forward_texture->GetRendererID(),
                                   { 18.0f, 18.0f })) {
+      // Do nothing if path history is empty
+      if (forward_path_history_.empty())
+        return;
+
+      // Store the current path in path hierarchy
+      path_hierarchy_.emplace_back(current_directory_);
     }
     PropertyGrid::HoveredMsg("NOTE: Feature not implemented", true);
   }
@@ -264,6 +283,10 @@ namespace ikan {
                                   { 18.0f, 18.0f })) {
       // Change the current directory
       current_directory_ = root_path_;
+
+      // Clear the path hierarchy and add only home path
+      path_hierarchy_.clear();
+      path_hierarchy_.emplace_back(current_directory_);
     }
   }
   
@@ -278,6 +301,19 @@ namespace ikan {
   }
   
   void ContentBrowserPanel::PathHistory() {
+    size_t i = 0;
+    for (const auto& path : path_hierarchy_) {
+      i++;
+      ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
+      if (ImGui::Button(path.filename().c_str())) {
+      }
+      ImGui::PopStyleColor();
+      ImGui::SameLine();
+      
+      if (i != path_hierarchy_.size())
+        ImGui::Text(">");
+      ImGui::SameLine();
+    }
   }
 
 }

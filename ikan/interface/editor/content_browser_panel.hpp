@@ -63,6 +63,9 @@ namespace ikan {
     ImGuiTextFilter search_filter_;
 
     std::vector<std::filesystem::path> favourite_paths_;
+    std::vector<std::filesystem::path> back_path_history_;
+    std::vector<std::filesystem::path> forward_path_history_;
+    std::vector<std::filesystem::path> path_hierarchy_;
   };
   
 }
