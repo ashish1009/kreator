@@ -213,6 +213,14 @@ namespace ikan {
         // If icon is clicked Do some action
         if (pressed) {
           if (is_directory) {
+            // Store the current directory in path history
+            back_path_history_.emplace_back(current_directory_);
+            
+            // Clear the forward path history as we are at the top already
+            while (!forward_path_history_.empty()) {
+              forward_path_history_.pop_back();
+            }
+
             // Change the current directory
             current_directory_ /= path.filename();
 
@@ -257,8 +265,14 @@ namespace ikan {
       
       // Remove the element from path hierarchy
       path_hierarchy_.pop_back();
+
+      // Store the current path in forward history
+      forward_path_history_.emplace_back(current_directory_);
+
+      // Change the current directory and remove element from path history
+      current_directory_ = back_path_history_.back();
+      back_path_history_.pop_back();
     }
-    PropertyGrid::HoveredMsg("NOTE: Feature not implemented", true);
   }
   
   void ContentBrowserPanel::Forward() {
@@ -270,10 +284,16 @@ namespace ikan {
       if (forward_path_history_.empty())
         return;
 
+      // Store the current path in back history
+      back_path_history_.emplace_back(current_directory_);
+
+      // Change the current directory and remove element from path history
+      current_directory_ = forward_path_history_.back();
+      forward_path_history_.pop_back();
+
       // Store the current path in path hierarchy
       path_hierarchy_.emplace_back(current_directory_);
     }
-    PropertyGrid::HoveredMsg("NOTE: Feature not implemented", true);
   }
   
   void ContentBrowserPanel::Home() {
