@@ -10,19 +10,19 @@
 namespace chess {
   
   ChessLayer::ChessLayer() : Layer("Kreator") {
-    IK_INFO("Creating Chess Layer instance ... ");
+    IK_INFO("Chess", "Creating Chess Layer instance ... ");
   }
   
   ChessLayer::~ChessLayer() {
-    IK_WARN("Destroying Chess Layer instance !!! ");
+    IK_WARN("Chess", "Destroying Chess Layer instance !!! ");
   }
   
   void ChessLayer::Attach() {
-    IK_INFO("Attaching Chess Layer instance");
+    IK_INFO("Chess", "Attaching Chess Layer instance");
   }
   
   void ChessLayer::Detach() {
-    IK_WARN("Detaching Chess Layer instance ");
+    IK_WARN("Chess", "Detaching Chess Layer instance ");
   }
   
   void ChessLayer::Update(Timestep ts) {

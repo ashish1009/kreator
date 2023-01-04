@@ -10,15 +10,15 @@
 namespace ray_tracing {
 
   RendererLayer::RendererLayer() : Layer("Ray Trace Renderer Layer") {
-    IK_INFO("Creating Ray Trace Renderer Layer instance ... ");
+    IK_INFO("Ray Tracing", "Creating Ray Trace Renderer Layer instance ... ");
   }
   
   RendererLayer::~RendererLayer() {
-    IK_WARN("Destroying Ray Trace Renderer Layer instance !!! ");
+    IK_WARN("Ray Tracing", "Destroying Ray Trace Renderer Layer instance !!! ");
   }
   
   void RendererLayer::Attach() {
-    IK_INFO("Attaching Ray Trace Renderer Layer instance");
+    IK_INFO("Ray Tracing", "Attaching Ray Trace Renderer Layer instance");
     
     editor_camera_.SetPosition({0, 0, 6});
 //
@@ -103,7 +103,7 @@ namespace ray_tracing {
   }
   
   void RendererLayer::Detach() {
-    IK_WARN("Detaching Ray Trace Renderer Layer instance ");
+    IK_WARN("Ray Tracing", "Detaching Ray Trace Renderer Layer instance ");
   }
     
   void RendererLayer::Update(Timestep ts) {

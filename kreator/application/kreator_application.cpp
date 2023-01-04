@@ -25,7 +25,7 @@ public:
   KreatorApp(const ikan::Application::Specification& application_spec,
              SupportedApplicationType application_type):
   ikan::Application(application_spec) {
-    IK_INFO("Creating Kreator Application Instance ...");
+    IK_INFO("Kreator Application", "Creating Kreator Application Instance ...");
     
     switch (application_type) {
       case SupportedApplicationType::Sandbox :
@@ -46,7 +46,7 @@ public:
     };
   }
   ~KreatorApp() {
-    IK_WARN("Destroying Kreator Application Instance !!!");
+    IK_WARN("Kreator Application", "Destroying Kreator Application Instance !!!");
   }
 };
 

@@ -26,10 +26,10 @@ namespace ikan {
   std::shared_ptr<Shader> ShaderLibrary::GetShader(const std::string& path) {
     if (shader_library_.find(path) == shader_library_.end()) {
       shader_library_[path] = Shader::Create(path);
-      IK_CORE_DEBUG("Adding Shader '{0}' to Shdaer Library",
+      IK_CORE_DEBUG("Shader", "Adding Shader '{0}' to Shdaer Library",
                     StringUtils::GetNameFromFilePath(path));
     } else {
-      IK_CORE_DEBUG("Returning Pre loaded Shader '{0}' from Shdaer Library", StringUtils::GetNameFromFilePath(path));
+      IK_CORE_DEBUG("Shader", "Returning Pre loaded Shader '{0}' from Shdaer Library", StringUtils::GetNameFromFilePath(path));
     }
     
     return shader_library_.at(path);
@@ -37,7 +37,7 @@ namespace ikan {
   
   void ShaderLibrary::ResetShaders() {
     for (auto it = shader_library_.begin(); it != shader_library_.end(); it++) {
-      IK_CORE_WARN("Removing Shader '{0}' from Shdaer Library",
+      IK_CORE_WARN("Shader", "Removing Shader '{0}' from Shdaer Library",
                    StringUtils::GetNameFromFilePath(it->first));
       it->second.reset();
     }

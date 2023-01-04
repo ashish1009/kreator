@@ -51,8 +51,8 @@ namespace ikan {
     //   - %f : Time stamp in microseconds
     //   - %l : Log lebel string (-8 measn width reserved for the same)
     //   - %n : Logger Type (core or client) (-4 is width reserved for the same)
-    log_sinks[0]->set_pattern("[%T:%e:%f] [%-8l] [%-4n] : %v");
-    log_sinks[1]->set_pattern("[%T:%e:%f] [%-8l] [%-4n] : %v");
+    log_sinks[0]->set_pattern("%T:%e | %-7l | %-4n | %v ");
+    log_sinks[1]->set_pattern("%T:%e | %-7l | %-4n | %v ");
     
     
     // Create the Core Logger

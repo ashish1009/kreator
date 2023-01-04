@@ -11,22 +11,22 @@
 namespace sandbox {
     
   SandboxLayer::SandboxLayer() : Layer("Sandbox") {
-    IK_INFO("Creating Sandbox Layer instance ... ");
+    IK_INFO("Sandbox", "Creating Sandbox Layer instance ... ");
   }
   
   SandboxLayer::~SandboxLayer() {
-    IK_WARN("Destroying Sandbox Layer instance !!! ");
+    IK_WARN("Sandbox", "Destroying Sandbox Layer instance !!! ");
   }
   
   void SandboxLayer::Attach() {
-    IK_INFO("Attaching Sandbox Layer instance");
+    IK_INFO("Sandbox", "Attaching Sandbox Layer instance");
     checkboard_ = Renderer::GetTexture(AM::ClientAsset("textures/checkerboard.png"));
     TextRenderer::LoadFreetype(AM::ClientAsset("fonts/opensans/OpenSans-Bold.ttf"));
 
   }
   
   void SandboxLayer::Detach() {
-    IK_WARN("Detaching Sandbox Layer instance ");
+    IK_WARN("Sandbox", "Detaching Sandbox Layer instance ");
   }
   
   void SandboxLayer::Update(Timestep ts) {

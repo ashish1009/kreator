@@ -10,19 +10,19 @@
 namespace mario {
   
   MarioLayer::MarioLayer() : Layer("Kreator") {
-    IK_INFO("Creating Mario Layer instance ... ");
+    IK_INFO("Mario", "Creating Mario Layer instance ... ");
   }
   
   MarioLayer::~MarioLayer() {
-    IK_WARN("Destroying Mario Layer instance !!! ");
+    IK_WARN("Mario", "Destroying Mario Layer instance !!! ");
   }
   
   void MarioLayer::Attach() {
-    IK_INFO("Attaching Mario Layer instance");
+    IK_INFO("Mario", "Attaching Mario Layer instance");
   }
   
   void MarioLayer::Detach() {
-    IK_WARN("Detaching Mario Layer instance ");
+    IK_WARN("Mario", "Detaching Mario Layer instance ");
   }
   
   void MarioLayer::Update(Timestep ts) {

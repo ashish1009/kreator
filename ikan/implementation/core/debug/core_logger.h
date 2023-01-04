@@ -14,12 +14,12 @@
 #ifdef IK_ENABLE_LOG
 
 // Core log macros
-#define IK_CORE_TRACE(...) ::ikan::Logger::GetCoreLogger()->trace(__VA_ARGS__)
-#define IK_CORE_DEBUG(...) ::ikan::Logger::GetCoreLogger()->debug(__VA_ARGS__)
-#define IK_CORE_INFO(...) ::ikan::Logger::GetCoreLogger()->info(__VA_ARGS__)
-#define IK_CORE_WARN(...) ::ikan::Logger::GetCoreLogger()->warn(__VA_ARGS__)
-#define IK_CORE_ERROR(...) ::ikan::Logger::GetCoreLogger()->error(__VA_ARGS__)
-#define IK_CORE_CRITICAL(...) ::ikan::Logger::GetCoreLogger()->critical(__VA_ARGS__)
+#define IK_CORE_TRACE(tag, ...)    ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Trace, tag, __VA_ARGS__)
+#define IK_CORE_DEBUG(tag, ...)    ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Debug, tag, __VA_ARGS__)
+#define IK_CORE_INFO(tag, ...)     ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Info, tag, __VA_ARGS__)
+#define IK_CORE_WARN(tag, ...)     ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Warning, tag, __VA_ARGS__)
+#define IK_CORE_ERROR(tag, ...)    ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Error, tag, __VA_ARGS__)
+#define IK_CORE_CRITICAL(tag, ...) ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Critical, tag, __VA_ARGS__)
 
 #else
 

@@ -28,30 +28,30 @@ namespace ikan {
   // Window Specification
   // ----------------------------
   Window::Specification::Specification() {
-    IK_CORE_TRACE("Creating Window Specification ... ");
+    IK_CORE_TRACE("Window", "Creating Window Specification ... ");
   }
   
   Window::Specification::~Specification() {
-    IK_CORE_WARN("Destroying Window Specification !!! ");
+    IK_CORE_WARN("Window", "Destroying Window Specification !!! ");
   }
   
   Window::Specification::Specification(const Window::Specification& other)
   : title(other.title), width(other.width), height(other.height),
   v_sync(other.v_sync), fullscreen(other.fullscreen),
   decorated(other.decorated) {
-    IK_CORE_TRACE("Copying Window Specification ...");
+    IK_CORE_TRACE("Window", "Copying Window Specification ...");
   }
   
   Window::Specification::Specification(Window::Specification&& other)
   : title(other.title), width(other.width), height(other.height),
   v_sync(other.v_sync), fullscreen(other.fullscreen),
   decorated(other.decorated) {
-    IK_CORE_TRACE("Moving Window Specification ...");
+    IK_CORE_TRACE("Window", "Moving Window Specification ...");
   }
   
   Window::Specification&
   Window::Specification::operator=(const Window::Specification& other) {
-    IK_CORE_TRACE("Copying Window Specification using operator = ...");
+    IK_CORE_TRACE("Window", "Copying Window Specification using operator = ...");
     
     title = other.title;
     width = other.width;
@@ -65,7 +65,7 @@ namespace ikan {
   
   Window::Specification&
   Window::Specification::operator =(Window::Specification&& other) {
-    IK_CORE_TRACE("Moving Window Specification using operator = ...");
+    IK_CORE_TRACE("Window", "Moving Window Specification using operator = ...");
     
     title = other.title;
     width = other.width;
@@ -78,18 +78,18 @@ namespace ikan {
   }
 
   void Window::Specification::Log() {
-    IK_CORE_INFO("  Window Property ");
-    IK_CORE_INFO("  ---------------------------------------------------------");
-    IK_CORE_INFO("    Title      | {0}", title);
-    IK_CORE_INFO("    Width      | {0}", width);
-    IK_CORE_INFO("    Height     | {0}", height);
-    IK_CORE_INFO("    VSync      | {0}", v_sync);
-    IK_CORE_INFO("    FullScreen | {0}", fullscreen);
+    IK_CORE_INFO("Window", "  Window Property ");
+    IK_CORE_INFO("Window", "  ---------------------------------------------------------");
+    IK_CORE_INFO("Window", "    Title      | {0}", title);
+    IK_CORE_INFO("Window", "    Width      | {0}", width);
+    IK_CORE_INFO("Window", "    Height     | {0}", height);
+    IK_CORE_INFO("Window", "    VSync      | {0}", v_sync);
+    IK_CORE_INFO("Window", "    FullScreen | {0}", fullscreen);
     if (decorated)
-      IK_CORE_INFO("    Decorated  | {0} [shows the title bar and buttons like close, minimise and maxinmize]", decorated);
+      IK_CORE_INFO("Window", "    Decorated  | {0} [shows the title bar and buttons like close, minimise and maxinmize]", decorated);
     else
-      IK_CORE_INFO("    Decorated  | {0} [hides the title bar and buttons like close, minimise and maxinmize]", decorated);
-    IK_CORE_INFO("  ---------------------------------------------------------");
+      IK_CORE_INFO("Window", "    Decorated  | {0} [hides the title bar and buttons like close, minimise and maxinmize]", decorated);
+    IK_CORE_INFO("Window", "  ---------------------------------------------------------");
   }
   
 }

@@ -10,21 +10,21 @@
 namespace editor {
   
   EditorLayer::EditorLayer() : Layer("Kreator") {
-    IK_INFO("Creating Editor Layer instance ... ");
+    IK_INFO("Editor", "Creating Editor Layer instance ... ");
   }
   
   EditorLayer::~EditorLayer() {
-    IK_WARN("Destroying Editor Layer instance !!! ");
+    IK_WARN("Editor", "Destroying Editor Layer instance !!! ");
   }
   
   void EditorLayer::Attach() {
-    IK_INFO("Attaching Editor Layer instance");
+    IK_INFO("Editor", "Attaching Editor Layer instance");
     
     Entity e1 = active_scene_.CreateEntity();
   }
   
   void EditorLayer::Detach() {
-    IK_WARN("Detaching Editor Layer instance ");
+    IK_WARN("Editor", "Detaching Editor Layer instance ");
   }
   
   void EditorLayer::Update(Timestep ts) {

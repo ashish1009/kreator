@@ -114,11 +114,11 @@ namespace ikan {
     
     /// Constructor
     QuadData() {
-      IK_CORE_TRACE("Creating QuadData instance ...");
+      IK_CORE_TRACE("Batch 2D", "Creating QuadData instance ...");
     }
     /// Destructor
     virtual ~QuadData() {
-      IK_CORE_WARN("Destroying QuadData instance and clearing the data !!!");
+      IK_CORE_WARN("Batch 2D", "Destroying QuadData instance and clearing the data !!!");
       delete [] vertex_buffer_base_ptr;
       vertex_buffer_base_ptr = nullptr;
       
@@ -150,11 +150,11 @@ namespace ikan {
     
     /// Constructor
     CircleData() {
-      IK_CORE_TRACE("Creating CircleData instance ...");
+      IK_CORE_TRACE("Batch 2D", "Creating CircleData instance ...");
     }
     /// Destructir
     virtual ~CircleData() {
-      IK_CORE_WARN("Destroying Circle Data instance and clearing the data !!!");
+      IK_CORE_WARN("Batch 2D", "Destroying Circle Data instance and clearing the data !!!");
       delete [] vertex_buffer_base_ptr;
       vertex_buffer_base_ptr = nullptr;
       
@@ -188,11 +188,11 @@ namespace ikan {
     
     /// Constructor
     LineData() {
-      IK_CORE_TRACE("Creating Line Data instance ...");
+      IK_CORE_TRACE("Batch 2D", "Creating Line Data instance ...");
     }
     /// Destructir
     virtual ~LineData() {
-      IK_CORE_WARN("Destroying Line Data instance and clearing the data !!!");
+      IK_CORE_WARN("Batch 2D", "Destroying Line Data instance and clearing the data !!!");
       delete [] vertex_buffer_base_ptr;
       vertex_buffer_base_ptr = nullptr;
       
@@ -211,54 +211,54 @@ namespace ikan {
   // Batch Renderer API
   // --------------------------------------------------------------------------
   void BatchRenderer::Init() {
-    IK_CORE_INFO("Initialising the Batch Renderer 2D ...");
+    IK_CORE_INFO("Batch 2D", "Initialising the Batch Renderer 2D ...");
     InitQuadData();
     InitCircleData();
     InitLineData();
   }
 
   void BatchRenderer::Shutdown() {
-    IK_CORE_WARN("Shutting Down the Batch Renderer 2D !!!");
+    IK_CORE_WARN("Batch 2D", "Shutting Down the Batch Renderer 2D !!!");
     
     if (quad_data_) {
-      IK_CORE_WARN("Destroying the Batch Renderer Quad Data");
-      IK_CORE_WARN("  ---------------------------------------------------------");
-      IK_CORE_WARN("  Max Quads per Batch             | {0}", quad_data_->max_element);
-      IK_CORE_WARN("  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
-      IK_CORE_WARN("  Vertex Buffer used              | {0} B ({1} KB) ",
+      IK_CORE_WARN("Batch 2D", "Destroying the Batch Renderer Quad Data");
+      IK_CORE_WARN("Batch 2D", "  ---------------------------------------------------------");
+      IK_CORE_WARN("Batch 2D", "  Max Quads per Batch             | {0}", quad_data_->max_element);
+      IK_CORE_WARN("Batch 2D", "  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
+      IK_CORE_WARN("Batch 2D", "  Vertex Buffer used              | {0} B ({1} KB) ",
                    quad_data_->max_vertices * sizeof(QuadData::Vertex), quad_data_->max_vertices * sizeof(QuadData::Vertex) / 1000.0f );
-      IK_CORE_WARN("  Index Buffer used               | {0} B ({1} KB) ",
+      IK_CORE_WARN("Batch 2D", "  Index Buffer used               | {0} B ({1} KB) ",
                    quad_data_->max_indices * sizeof(uint32_t), quad_data_->max_indices * sizeof(uint32_t) / 1000.0f );
-      IK_CORE_WARN("  Shader Used                     | {0}", quad_data_->shader->GetName());
-      IK_CORE_WARN("  ---------------------------------------------------------");
+      IK_CORE_WARN("Batch 2D", "  Shader Used                     | {0}", quad_data_->shader->GetName());
+      IK_CORE_WARN("Batch 2D", "  ---------------------------------------------------------");
       delete quad_data_;
     }
 
     if (circle_data_) {
-      IK_CORE_WARN("Destroying the Batch Renderer Circle Data");
-      IK_CORE_WARN("  ---------------------------------------------------------");
-      IK_CORE_WARN("  Max Circles per Batch           | {0}", circle_data_->max_element);
-      IK_CORE_WARN("  Max Texture Slots Batch         | {0}", kMaxTextureSlotsInShader);
-      IK_CORE_WARN("  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
-      IK_CORE_WARN("  Vertex Buffer used              | {0} B ({1} KB) ",
+      IK_CORE_WARN("Batch 2D", "Destroying the Batch Renderer Circle Data");
+      IK_CORE_WARN("Batch 2D", "  ---------------------------------------------------------");
+      IK_CORE_WARN("Batch 2D", "  Max Circles per Batch           | {0}", circle_data_->max_element);
+      IK_CORE_WARN("Batch 2D", "  Max Texture Slots Batch         | {0}", kMaxTextureSlotsInShader);
+      IK_CORE_WARN("Batch 2D", "  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
+      IK_CORE_WARN("Batch 2D", "  Vertex Buffer used              | {0} B ({1} KB) ",
                    circle_data_->max_vertices * sizeof(CircleData::Vertex),
                    circle_data_->max_vertices * sizeof(CircleData::Vertex) / 1000.0f );
-      IK_CORE_WARN("  Vertex Buffer used              | {0} B ({1} KB) ",
+      IK_CORE_WARN("Batch 2D", "  Vertex Buffer used              | {0} B ({1} KB) ",
                    circle_data_->max_indices * sizeof(uint32_t),
                    circle_data_->max_indices * sizeof(uint32_t) / 1000.0f );
-      IK_CORE_WARN("  Shader used                     | {0}", circle_data_->shader->GetName());
-      IK_CORE_WARN("  ---------------------------------------------------------");
+      IK_CORE_WARN("Batch 2D", "  Shader used                     | {0}", circle_data_->shader->GetName());
+      IK_CORE_WARN("Batch 2D", "  ---------------------------------------------------------");
       delete circle_data_;
     }
     if (line_data_) {
-      IK_CORE_WARN("Destroying the Batch Renderer Line Data");
-      IK_CORE_WARN("  ---------------------------------------------------------");
-      IK_CORE_WARN("  Max Lines per Batch             | {0}", line_data_->max_element);
-      IK_CORE_WARN("  Vertex Buffer used              | {0} B ({1} KB) ",
+      IK_CORE_WARN("Batch 2D", "Destroying the Batch Renderer Line Data");
+      IK_CORE_WARN("Batch 2D", "  ---------------------------------------------------------");
+      IK_CORE_WARN("Batch 2D", "  Max Lines per Batch             | {0}", line_data_->max_element);
+      IK_CORE_WARN("Batch 2D", "  Vertex Buffer used              | {0} B ({1} KB) ",
                    line_data_->max_vertices * sizeof(LineData::Vertex),
                    line_data_->max_vertices * sizeof(LineData::Vertex) / 1000.0f );
-      IK_CORE_WARN("  Shader used                   x  | {0}", line_data_->shader->GetName());
-      IK_CORE_WARN("  ---------------------------------------------------------");
+      IK_CORE_WARN("Batch 2D", "  Shader used                   x  | {0}", line_data_->shader->GetName());
+      IK_CORE_WARN("Batch 2D", "  ---------------------------------------------------------");
       delete line_data_;
     }
 
@@ -324,16 +324,16 @@ namespace ikan {
     quad_data_->vertex_base_position[2] = {  0.5f,  0.5f, 0.0f, 1.0f };
     quad_data_->vertex_base_position[3] = { -0.5f,  0.5f, 0.0f, 1.0f };
     
-    IK_CORE_INFO("Initialized Batch Renderer for Quad Data");
-    IK_CORE_INFO("  ---------------------------------------------------------");
-    IK_CORE_INFO("  Max Quads per Batch             | {0}", quad_data_->max_element);
-    IK_CORE_INFO("  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
-    IK_CORE_INFO("  Vertex Buffer used              | {0} B ({1} KB) ",
+    IK_CORE_INFO("Batch 2D", "Initialized Batch Renderer for Quad Data");
+    IK_CORE_INFO("Batch 2D", "  ---------------------------------------------------------");
+    IK_CORE_INFO("Batch 2D", "  Max Quads per Batch             | {0}", quad_data_->max_element);
+    IK_CORE_INFO("Batch 2D", "  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
+    IK_CORE_INFO("Batch 2D", "  Vertex Buffer used              | {0} B ({1} KB) ",
                  quad_data_->max_vertices * sizeof(QuadData::Vertex), quad_data_->max_vertices * sizeof(QuadData::Vertex) / 1000.0f );
-    IK_CORE_INFO("  Index Buffer used               | {0} B ({1} KB) ",
+    IK_CORE_INFO("Batch 2D", "  Index Buffer used               | {0} B ({1} KB) ",
                  quad_data_->max_indices * sizeof(uint32_t), quad_data_->max_indices * sizeof(uint32_t) / 1000.0f );
-    IK_CORE_INFO("  Shader Used                     | {0}", quad_data_->shader->GetName());
-    IK_CORE_INFO("  ---------------------------------------------------------");
+    IK_CORE_INFO("Batch 2D", "  Shader Used                     | {0}", quad_data_->shader->GetName());
+    IK_CORE_INFO("Batch 2D", "  ---------------------------------------------------------");
   }
   
   void BatchRenderer::InitCircleData(uint32_t max_circles) {
@@ -399,16 +399,16 @@ namespace ikan {
     // Setup the Circle Shader
     circle_data_->shader = Renderer::GetShader(AM::CoreAsset("shaders/batch_circle_shader.glsl"));
     
-    IK_CORE_INFO("Initialized Batch Renderer for Circle Data");
-    IK_CORE_INFO("  ---------------------------------------------------------");
-    IK_CORE_INFO("  Max Circle per Batch            | {0}", max_circles);
-    IK_CORE_INFO("  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
-    IK_CORE_INFO("  Vertex Buffer used              | {0} B ({1} KB) ",
+    IK_CORE_INFO("Batch 2D", "Initialized Batch Renderer for Circle Data");
+    IK_CORE_INFO("Batch 2D", "  ---------------------------------------------------------");
+    IK_CORE_INFO("Batch 2D", "  Max Circle per Batch            | {0}", max_circles);
+    IK_CORE_INFO("Batch 2D", "  Max Texture Slots per Batch     | {0}", kMaxTextureSlotsInShader);
+    IK_CORE_INFO("Batch 2D", "  Vertex Buffer used              | {0} B ({1} KB) ",
                  circle_data_->max_vertices * sizeof(CircleData::Vertex), circle_data_->max_vertices * sizeof(CircleData::Vertex) / 1000.0f );
-    IK_CORE_INFO("  Vertex Buffer used              | {0} B ({1} KB) ",
+    IK_CORE_INFO("Batch 2D", "  Vertex Buffer used              | {0} B ({1} KB) ",
                  circle_data_->max_indices * sizeof(uint32_t), circle_data_->max_indices * sizeof(uint32_t) / 1000.0f );
-    IK_CORE_INFO("  Shader used                     | {0}", circle_data_->shader->GetName());
-    IK_CORE_INFO("  ---------------------------------------------------------");
+    IK_CORE_INFO("Batch 2D", "  Shader used                     | {0}", circle_data_->shader->GetName());
+    IK_CORE_INFO("Batch 2D", "  ---------------------------------------------------------");
   }
   
   void BatchRenderer::InitLineData(uint32_t max_lines) {
@@ -435,14 +435,14 @@ namespace ikan {
     // Setup the Lines Shader
     line_data_->shader = Renderer::GetShader(AM::CoreAsset("shaders/batch_line_shader.glsl"));
     
-    IK_CORE_INFO("Initialized Batch Renderer for Line Data");
-    IK_CORE_INFO("  ---------------------------------------------------------");
-    IK_CORE_INFO("  Max Lines per Batch             | {0}", max_lines);
-    IK_CORE_INFO("  Vertex Buffer used              | {0} B ({1} KB) ",
+    IK_CORE_INFO("Batch 2D", "Initialized Batch Renderer for Line Data");
+    IK_CORE_INFO("Batch 2D", "  ---------------------------------------------------------");
+    IK_CORE_INFO("Batch 2D", "  Max Lines per Batch             | {0}", max_lines);
+    IK_CORE_INFO("Batch 2D", "  Vertex Buffer used              | {0} B ({1} KB) ",
                  line_data_->max_vertices * sizeof(LineData::Vertex),
                  line_data_->max_vertices * sizeof(LineData::Vertex) / 1000.0f );
-    IK_CORE_INFO("  Shader used                     | {0}", line_data_->shader->GetName());
-    IK_CORE_INFO("  ---------------------------------------------------------");
+    IK_CORE_INFO("Batch 2D", "  Shader used                     | {0}", line_data_->shader->GetName());
+    IK_CORE_INFO("Batch 2D", "  ---------------------------------------------------------");
   }
   
   void BatchRenderer::BeginBatch(const glm::mat4& camera_view_projection_matrix,
@@ -572,7 +572,7 @@ namespace ikan {
                                       int32_t object_id) {
     // If number of indices increase in batch then start new batch
     if (quad_data_->index_count >= quad_data_->max_indices) {
-      IK_CORE_WARN("Starts the new batch as number of indices ({0}) increases "
+      IK_CORE_WARN("Batch 2D", "Starts the new batch as number of indices ({0}) increases "
                    "in the previous batch", quad_data_->index_count);
       NextBatch();
     }
@@ -593,7 +593,7 @@ namespace ikan {
       if (texture_index == 0.0f) {
         // If number of slots increases max then start new batch
         if (quad_data_->texture_slot_index >= kMaxTextureSlotsInShader) {
-          IK_CORE_WARN("Starts the new batch as number of texture slot ({0}) "
+          IK_CORE_WARN("Batch 2D", "Starts the new batch as number of texture slot ({0}) "
                        "increases in the previous batch",
                        quad_data_->texture_slot_index);
           NextBatch();
@@ -662,7 +662,7 @@ namespace ikan {
                                         int32_t object_id) {
     // If number of indices increase in batch then start new batch
     if (circle_data_->index_count >= circle_data_->max_indices) {
-      IK_CORE_WARN("Starts the new batch as number of indices ({0}) increases "
+      IK_CORE_WARN("Batch 2D", "Starts the new batch as number of indices ({0}) increases "
                    "in the previous batch", circle_data_->index_count);
       NextBatch();
     }
@@ -682,7 +682,7 @@ namespace ikan {
       if (texture_index == 0.0f) {
         // If number of slots increases max then start new batch
         if (circle_data_->texture_slot_index >= kMaxTextureSlotsInShader) {
-          IK_CORE_WARN("Starts the new batch as number of texture slot ({0}) "
+          IK_CORE_WARN("Batch 2D", "Starts the new batch as number of texture slot ({0}) "
                        "increases in the previous batch",
                        circle_data_->texture_slot_index);
           NextBatch();

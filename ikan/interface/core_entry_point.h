@@ -26,9 +26,9 @@ int main(int argc, const char * argv[]) {
   auto spd_core_log_level = ikan::Logger::GetSpdLevelFromKreatorLevel(core_level);
   auto spd_client_log_level = ikan::Logger::GetSpdLevelFromKreatorLevel(client_level);
   
-  IK_INFO("Initialized the spd logger ");
-  IK_INFO("  Core   | {0}", ikan::Logger::GetLogLevelStringFromSpdLevel(spd_core_log_level));
-  IK_INFO("  Client | {0}", ikan::Logger::GetLogLevelStringFromSpdLevel(spd_client_log_level));
+  IK_INFO("Core Entry Point", "Initialized the spd logger ");
+  IK_INFO("Core Entry Point", "  Core   | {0}", ikan::Logger::GetLogLevelStringFromSpdLevel(spd_core_log_level));
+  IK_INFO("Core Entry Point", "  Client | {0}", ikan::Logger::GetLogLevelStringFromSpdLevel(spd_client_log_level));
 #endif
   
   auto app = CreateApplication();

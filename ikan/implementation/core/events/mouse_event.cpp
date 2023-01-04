@@ -16,9 +16,9 @@ namespace ikan {
   float MouseMovedEvent::GetY() const { return mouse_y_; }
   
   void MouseMovedEvent::Print() const {
-      IK_CORE_TRACE("Mouse Move Event tiggered ");
-      IK_CORE_TRACE("  X | {0}", mouse_x_);
-      IK_CORE_TRACE("  Y | {0}", mouse_y_);
+      IK_CORE_TRACE("Events", "Mouse Move Event tiggered ");
+      IK_CORE_TRACE("Events", "  X | {0}", mouse_x_);
+      IK_CORE_TRACE("Events", "  Y | {0}", mouse_y_);
   }
   
   MouseScrolledEvent::MouseScrolledEvent(float x_offset, float y_offset)
@@ -30,9 +30,9 @@ namespace ikan {
   float MouseScrolledEvent::GetYOffset() const { return y_offset_; }
   
   void MouseScrolledEvent::Print() const {
-    IK_CORE_TRACE("Mouse Scroll Event tiggered ");
-    IK_CORE_TRACE("  X Offset | {0}", x_offset_);
-    IK_CORE_TRACE("  Y Offset | {0}", y_offset_);
+    IK_CORE_TRACE("Events", "Mouse Scroll Event tiggered ");
+    IK_CORE_TRACE("Events", "  X Offset | {0}", x_offset_);
+    IK_CORE_TRACE("Events", "  Y Offset | {0}", y_offset_);
   }
   
   MouseButtonEvent::MouseButtonEvent(MouseButton button) : button_(button) {}
@@ -43,16 +43,16 @@ namespace ikan {
   : MouseButtonEvent(button) {}
   
   void MouseButtonPressedEvent::Print() const {
-    IK_CORE_TRACE("Mosue Buttom Press Event tiggered ");
-    IK_CORE_TRACE("  Button code | {0}", (uint32_t)button_);
+    IK_CORE_TRACE("Events", "Mosue Buttom Press Event tiggered ");
+    IK_CORE_TRACE("Events", "  Button code | {0}", (uint32_t)button_);
   }
 
   MouseButtonReleasedEvent::MouseButtonReleasedEvent(MouseButton button)
   : MouseButtonEvent(button) {}
   
   void MouseButtonReleasedEvent::Print() const {
-    IK_CORE_TRACE("Mouse Button Release Event tiggered ");
-    IK_CORE_TRACE("  Button code | {0}", (uint32_t)button_);
+    IK_CORE_TRACE("Events", "Mouse Button Release Event tiggered ");
+    IK_CORE_TRACE("Events", "  Button code | {0}", (uint32_t)button_);
   }
   
 } // namespace ikan

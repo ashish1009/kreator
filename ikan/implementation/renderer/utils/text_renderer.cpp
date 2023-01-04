@@ -45,11 +45,11 @@ namespace ikan {
     
     /// Constructor
     TextData() {
-      IK_CORE_TRACE("Creating Text Data instance ...");
+      IK_CORE_TRACE("Text", "Creating Text Data instance ...");
     }
     /// Destructir
     virtual ~TextData() {
-      IK_CORE_WARN("Destroying Text Data instance and clearing the data !!!");
+      IK_CORE_WARN("Text", "Destroying Text Data instance and clearing the data !!!");
       delete [] vertex_buffer_base_ptr;
       vertex_buffer_base_ptr = nullptr;
       
@@ -88,23 +88,23 @@ namespace ikan {
     text_data_->base_texture_coords[4] = { 1.0f, 1.0f };
     text_data_->base_texture_coords[5] = { 1.0f, 0.0f };
     
-    IK_CORE_INFO("Initialised the Text Renderer");
-    IK_CORE_INFO("  ---------------------------------------------------------");
-    IK_CORE_INFO("  Vertex Buffer Used | {0} B ({1} KB) ",
+    IK_CORE_INFO("Text", "Initialised the Text Renderer");
+    IK_CORE_INFO("Text", "  ---------------------------------------------------------");
+    IK_CORE_INFO("Text", "  Vertex Buffer Used | {0} B ({1} KB) ",
                  TextData::VertexForSingleChar * sizeof(TextData::Vertex),
                  TextData::VertexForSingleChar * sizeof(TextData::Vertex) / 1000.0f );
-    IK_CORE_INFO("  Shader used        | {0}", text_data_->shader->GetName());
-    IK_CORE_INFO("  ---------------------------------------------------------");
+    IK_CORE_INFO("Text", "  Shader used        | {0}", text_data_->shader->GetName());
+    IK_CORE_INFO("Text", "  ---------------------------------------------------------");
   }
   
   void TextRenderer::Shutdown() {
-    IK_CORE_WARN("Shutting down the Text Renderer !!!");
-    IK_CORE_WARN("  ---------------------------------------------------------");
-    IK_CORE_WARN("  Vertex Buffer Used | {0} B ({1} KB) ",
+    IK_CORE_WARN("Text", "Shutting down the Text Renderer !!!");
+    IK_CORE_WARN("Text", "  ---------------------------------------------------------");
+    IK_CORE_WARN("Text", "  Vertex Buffer Used | {0} B ({1} KB) ",
                  TextData::VertexForSingleChar * sizeof(TextData::Vertex),
                  TextData::VertexForSingleChar * sizeof(TextData::Vertex) / 1000.0f );
-    IK_CORE_WARN("  Shader used        | {0}", text_data_->shader->GetName());
-    IK_CORE_WARN("  ---------------------------------------------------------");
+    IK_CORE_WARN("Text", "  Shader used        | {0}", text_data_->shader->GetName());
+    IK_CORE_WARN("Text", "  ---------------------------------------------------------");
 
     delete text_data_;
   }
@@ -129,7 +129,7 @@ namespace ikan {
     for (unsigned char c = 0; c < 128; c++) {
       // Load character glyph
       if (FT_Load_Char(face, c, FT_LOAD_RENDER)){
-        IK_CORE_ERROR("ERROR::FREETYTPE: Failed to load Glyph");
+        IK_CORE_ERROR("Text", "ERROR::FREETYTPE: Failed to load Glyph");
         continue;
       }
       // now store character for later use

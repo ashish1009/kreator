@@ -10,18 +10,18 @@
 namespace ikan {
   
   LayerStack::LayerStack() {
-    IK_CORE_TRACE("Creating Layerstack ...");
+    IK_CORE_TRACE("Layer Stack", "Creating Layerstack ...");
   }
   
   LayerStack::~LayerStack() {
-    IK_CORE_WARN("Destroying Layerstack !!!");
-    IK_CORE_WARN("Deleting all Layers from Layerstack");
+    IK_CORE_WARN("Layer Stack", "Destroying Layerstack !!!");
+    IK_CORE_WARN("Layer Stack", "Deleting all Layers from Layerstack");
     
     // Delete and deteach all the layers from stack
     for (auto& layer : layers_) {
-      IK_CORE_WARN("Poping the Layer in the stack");
-      IK_CORE_WARN("  Name                            | {0}", layer->GetName().c_str());
-      IK_CORE_WARN("  Number of Layers                | {0}", --number_of_layers_);
+      IK_CORE_WARN("Layer Stack", "Poping the Layer in the stack");
+      IK_CORE_WARN("Layer Stack", "  Name                            | {0}", layer->GetName().c_str());
+      IK_CORE_WARN("Layer Stack", "  Number of Layers                | {0}", --number_of_layers_);
       
       layer->Detach();
     }
@@ -33,18 +33,18 @@ namespace ikan {
     if (std::find(layers_.begin(), layers_.end(), layer) != layers_.end())
       return;
     
-    IK_CORE_INFO("Pushing the Layer in the stack");
-    IK_CORE_INFO("  Name             | {0}", layer->GetName().c_str());
-    IK_CORE_INFO("  Number of Layers | {0}", ++number_of_layers_);
+    IK_CORE_INFO("Layer Stack", "Pushing the Layer in the stack");
+    IK_CORE_INFO("Layer Stack", "  Name             | {0}", layer->GetName().c_str());
+    IK_CORE_INFO("Layer Stack", "  Number of Layers | {0}", ++number_of_layers_);
     
     layers_.emplace_back(layer);
     layer->Attach();
   }
   
   void LayerStack::PopLayer(const std::shared_ptr<Layer>& layer) {
-    IK_CORE_WARN("Poping the Layer in the stack");
-    IK_CORE_WARN("  Name                            | {0}", layer->GetName().c_str());
-    IK_CORE_WARN("  Number of Layers                | {0}", --number_of_layers_);
+    IK_CORE_WARN("Layer Stack", "Poping the Layer in the stack");
+    IK_CORE_WARN("Layer Stack", "  Name                            | {0}", layer->GetName().c_str());
+    IK_CORE_WARN("Layer Stack", "  Number of Layers                | {0}", --number_of_layers_);
     
     // Search the layer from the stack the detach/delete it
     if (auto it = std::find(layers_.begin(), layers_.end(), layer);

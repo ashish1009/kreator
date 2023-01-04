@@ -23,13 +23,13 @@ namespace ikan {
     
     RendererStatistics::Get().vertex_buffer_size += size_;
 
-    IK_CORE_DEBUG("Creating Open GL Vertex Buffer with Data...");
-    IK_CORE_DEBUG("  Renderer ID      | {0}", renderer_id_);
-    IK_CORE_DEBUG("  Size             | {0} Bytes ({1} KB {2} MB)",
+    IK_CORE_DEBUG("Vertex Buffer", "Creating Open GL Vertex Buffer with Data...");
+    IK_CORE_DEBUG("Vertex Buffer", "  Renderer ID      | {0}", renderer_id_);
+    IK_CORE_DEBUG("Vertex Buffer", "  Size             | {0} Bytes ({1} KB {2} MB)",
                   size_, size_ / 1000, size_ / 1000000);
     
     uint32_t total_size = RendererStatistics::Get().vertex_buffer_size;
-    IK_CORE_DEBUG("  Total Size Used  | {0} Bytes ({1} KB {2} MB)",
+    IK_CORE_DEBUG("Vertex Buffer", "  Total Size Used  | {0} Bytes ({1} KB {2} MB)",
                   total_size, total_size / 1000, total_size / 1000000);
   }
   
@@ -41,12 +41,12 @@ namespace ikan {
     
     RendererStatistics::Get().vertex_buffer_size += size_;
     
-    IK_CORE_DEBUG("Creating Open GL Vertex Buffer withoud Data ...");
-    IK_CORE_DEBUG("  Renderer ID      | {0}", renderer_id_);
-    IK_CORE_DEBUG("  Size             | {0} Bytes ({1} KB, {2} MB)",
+    IK_CORE_DEBUG("Vertex Buffer", "Creating Open GL Vertex Buffer withoud Data ...");
+    IK_CORE_DEBUG("Vertex Buffer", "  Renderer ID      | {0}", renderer_id_);
+    IK_CORE_DEBUG("Vertex Buffer", "  Size             | {0} Bytes ({1} KB, {2} MB)",
                   size_, size_ / 1000, size_ / 1000000);
     uint32_t total_size = RendererStatistics::Get().vertex_buffer_size;
-    IK_CORE_DEBUG("  Total Size Used  | {0} Bytes ({1} KB {2} MB)",
+    IK_CORE_DEBUG("Vertex Buffer", "  Total Size Used  | {0} Bytes ({1} KB {2} MB)",
                   total_size, total_size / 1000, total_size / 1000000);
     
   }
@@ -55,9 +55,9 @@ namespace ikan {
   OpenGLVertexBuffer::~OpenGLVertexBuffer() {
     RendererStatistics::Get().vertex_buffer_size -= size_;
     
-    IK_CORE_WARN("Destroying Open GL Vertex Buffer !!!");
-    IK_CORE_WARN("  Renderer ID | {0}", renderer_id_);
-    IK_CORE_WARN("  Size        | {0} Bytes ({1} KB, {2} MB)",
+    IK_CORE_WARN("Vertex Buffer", "Destroying Open GL Vertex Buffer !!!");
+    IK_CORE_WARN("Vertex Buffer", "  Renderer ID | {0}", renderer_id_);
+    IK_CORE_WARN("Vertex Buffer", "  Size        | {0} Bytes ({1} KB, {2} MB)",
                  size_, size_ / 1000, size_ / 1000000);
     
     IDManager::RemoveBufferId(renderer_id_);
@@ -93,23 +93,23 @@ namespace ikan {
     
     RendererStatistics::Get().index_buffer_size += size_;
     
-    IK_CORE_DEBUG("Creating Open GL Index Buffer ...");
-    IK_CORE_DEBUG("  Renderer ID       | {0}", renderer_id_);
-    IK_CORE_DEBUG("  Number of Indices | {0}", count_);
-    IK_CORE_DEBUG("  Size              | {0} Bytes ({1} KB, {2} MB)",
+    IK_CORE_DEBUG("Index Buffer", "Creating Open GL Index Buffer ...");
+    IK_CORE_DEBUG("Index Buffer", "  Renderer ID       | {0}", renderer_id_);
+    IK_CORE_DEBUG("Index Buffer", "  Number of Indices | {0}", count_);
+    IK_CORE_DEBUG("Index Buffer", "  Size              | {0} Bytes ({1} KB, {2} MB)",
                   size_, size_ / 1000, size_ / 1000000);
     uint32_t total_size = RendererStatistics::Get().index_buffer_size;
-    IK_CORE_DEBUG("  Total Size Used   | {0} Bytes ({1} KB {2} MB)",
+    IK_CORE_DEBUG("Index Buffer", "  Total Size Used   | {0} Bytes ({1} KB {2} MB)",
                   total_size, total_size / 1000, total_size / 1000000);
   }
   
   OpenGLIndexBuffer::~OpenGLIndexBuffer() noexcept {
     RendererStatistics::Get().index_buffer_size -= size_;
     
-    IK_CORE_WARN("Destroying Open GL Index Buffer !!!");
-    IK_CORE_WARN("  Renderer ID       | {0}", renderer_id_);
-    IK_CORE_WARN("  Number of Indices | {0}", count_);
-    IK_CORE_WARN("  Size              | {0} Bytes ({1} KB, {2} MB)",
+    IK_CORE_WARN("Index Buffer", "Destroying Open GL Index Buffer !!!");
+    IK_CORE_WARN("Index Buffer", "  Renderer ID       | {0}", renderer_id_);
+    IK_CORE_WARN("Index Buffer", "  Number of Indices | {0}", count_);
+    IK_CORE_WARN("Index Buffer", "  Size              | {0} Bytes ({1} KB, {2} MB)",
                  size_, size_ / 1000, size_ / 1000000);
 
     IDManager::RemoveBufferId(renderer_id_);

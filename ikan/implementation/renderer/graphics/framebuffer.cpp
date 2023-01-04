@@ -15,25 +15,25 @@ namespace ikan {
   // --------------------------------------------------------------------------
   FrameBuffer::Attachments::Attachments(const FrameBuffer::Attachments& other)
   : texture_formats(other.texture_formats) {
-    IK_CORE_TRACE("Framebuffer Attachment Copied");
+    IK_CORE_TRACE("Frame Buffer", "Framebuffer Attachment Copied");
   }
   
   FrameBuffer::Attachments::Attachments(FrameBuffer::Attachments&& other)
   : texture_formats(other.texture_formats) {
     other.texture_formats.clear();
-    IK_CORE_TRACE("Framebuffer Attachment Moved");
+    IK_CORE_TRACE("Frame Buffer", "Framebuffer Attachment Moved");
   }
   
   FrameBuffer::Attachments&
   FrameBuffer::Attachments::operator=(const FrameBuffer::Attachments& other) {
-    IK_CORE_TRACE("Copying (= operator) FrameBuffer::Attachment  ");
+    IK_CORE_TRACE("Frame Buffer", "Copying (= operator) FrameBuffer::Attachment  ");
     texture_formats = other.texture_formats;
     return *this;
   }
   
   FrameBuffer::Attachments&
   FrameBuffer::Attachments::operator=(FrameBuffer::Attachments&& other) {
-    IK_CORE_TRACE("Moving (= operator) FrameBuffer::Attachment  ");
+    IK_CORE_TRACE("Frame Buffer", "Moving (= operator) FrameBuffer::Attachment  ");
     texture_formats = other.texture_formats;
     other.texture_formats.clear();
     return *this;
@@ -47,28 +47,28 @@ namespace ikan {
   // Frame Buffer Specification
   // --------------------------------------------------------------------------
   FrameBuffer::Specification::Specification() {
-    IK_CORE_DEBUG("Creating FrameBuffer Specification ... ");
+    IK_CORE_TRACE("Frame Buffer", "Creating FrameBuffer Specification ... ");
   }
     
   FrameBuffer::Specification::~Specification() {
-    IK_CORE_DEBUG("Destroying Frame Buffer Specification !!!");
+    IK_CORE_WARN("Frame Buffer", "Destroying Frame Buffer Specification !!!");
   }
   
   FrameBuffer::Specification::Specification(const FrameBuffer::Specification& other)
   : width(other.width), height(other.height), color(other.color),
   attachments(other.attachments) {
-    IK_CORE_TRACE("Framebuffer Specification Copied");
+    IK_CORE_TRACE("Frame Buffer", "Framebuffer Specification Copied");
   }
   
   FrameBuffer::Specification::Specification(FrameBuffer::Specification&& other)
   : width(other.width), height(other.height), color(other.color),
   attachments(std::move(other.attachments)) {
-    IK_CORE_TRACE("Framebuffer Specification Moved");
+    IK_CORE_TRACE("Frame Buffer", "Framebuffer Specification Moved");
   }
   
   FrameBuffer::Specification&
   FrameBuffer::Specification::operator=(const FrameBuffer::Specification& other) {
-    IK_CORE_TRACE("Copying (= operator) FrameBuffer::Attachment  ");
+    IK_CORE_TRACE("Frame Buffer", "Copying (= operator) FrameBuffer::Attachment  ");
     width = other.width;
     height = other.height;
     color = other.color;
@@ -78,7 +78,7 @@ namespace ikan {
   
   FrameBuffer::Specification&
   FrameBuffer::Specification::operator=(FrameBuffer::Specification&& other) {
-    IK_CORE_TRACE("Moving (= operator) FrameBuffer::Attachment  ");
+    IK_CORE_TRACE("Frame Buffer", "Moving (= operator) FrameBuffer::Attachment  ");
     width = other.width;
     height = other.height;
     color = other.color;

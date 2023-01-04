@@ -11,21 +11,21 @@
 namespace ikan {
   
   EnttScene::EnttScene() {
-    IK_INFO("Creating Scene ...");
+    IK_CORE_INFO("EnTT Scene", "Creating Scene ...");
   }
   
   EnttScene::~EnttScene() {
-    IK_WARN("Destroying Scene!!!");
+    IK_CORE_WARN("EnTT Scene", "Destroying Scene!!!");
   }
   
   Entity EnttScene::CreateEntity() {
     Entity entity {registry_.create(), this};
-    IK_TRACE("Stored Entity in Scene");
+    IK_CORE_INFO("EnTT Scene", "Stored Entity in Scene");
     return entity;
   }
   
   void EnttScene::DestroyEntity(Entity entity) {
-    IK_WARN("Removed Entity from Scene");
+    IK_CORE_WARN("EnTT Scene", "Removed Entity from Scene");
     registry_.destroy(entity);
   }
 

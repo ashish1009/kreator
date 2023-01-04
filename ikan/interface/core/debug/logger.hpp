@@ -67,9 +67,9 @@ namespace ikan {
     
     /// this functun return the tag stored in logger
     /// - Parameter tag: tag
-    static bool HasTag(const std::string& tag) { return enabled_tags.find(tag) != enabled_tags.end(); }
+    static bool HasTag(const std::string& tag) { return enabled_tags_.find(tag) != enabled_tags_.end(); }
     /// This function return the enabled tags
-    static std::map<std::string, TagDetails>& EnabledTags() { return enabled_tags; }
+    static std::map<std::string, TagDetails>& EnabledTags() { return enabled_tags_; }
 
     template<typename... Args>
     /// This function stores the log with tag of module
@@ -85,7 +85,7 @@ namespace ikan {
   private:
     MAKE_PURE_STATIC(Logger);
     static std::shared_ptr<spdlog::logger> core_logger_, client_logger_;
-    static std::map<std::string, TagDetails> enabled_tags;
+    inline static std::map<std::string, TagDetails> enabled_tags_;
   };
   
 } // namespace ikan
@@ -93,14 +93,12 @@ namespace ikan {
 #ifdef IK_ENABLE_LOG
 
 // Client log macros
-#define IK_TRACE(tag, ...) ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Trace, tag, __VA_ARGS__)
-#define IK_DEBUG(...) ::ikan::Logger::GetClientLogger()->debug(__VA_ARGS__)
-#define IK_INFO(...) ::ikan::Logger::GetClientLogger()->info(__VA_ARGS__)
-#define IK_WARN(...) ::ikan::Logger::GetClientLogger()->warn(__VA_ARGS__)
-#define IK_ERROR(...) ::ikan::Logger::GetClientLogger()->error(__VA_ARGS__)
-#define IK_CRITICAL(...) ::ikan::Logger::GetClientLogger()->critical(__VA_ARGS__)
-
-#define IK_CORE_TRACE_TAG(tag, ...) ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Trace, tag, __VA_ARGS__)
+#define IK_TRACE(tag, ...)    ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Client, ::ikan::Logger::Level::Trace, tag, __VA_ARGS__)
+#define IK_DEBUG(tag, ...)    ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Client, ::ikan::Logger::Level::Debug, tag, __VA_ARGS__)
+#define IK_INFO(tag, ...)     ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Client, ::ikan::Logger::Level::Info, tag, __VA_ARGS__)
+#define IK_WARN(tag, ...)     ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Client, ::ikan::Logger::Level::Warning, tag, __VA_ARGS__)
+#define IK_ERROR(tag, ...)    ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Client, ::ikan::Logger::Level::Error, tag, __VA_ARGS__)
+#define IK_CRITICAL(tag, ...) ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Client, ::ikan::Logger::Level::Critical, tag, __VA_ARGS__)
 
 #else
 
@@ -118,17 +116,17 @@ namespace ikan {
 // use {i} for printing any variable at ith position in arguament
 // IK_INFO(" ... string ... {0}, {1} .... ", Arg0, Arg1 ...);
 
-
 namespace ikan {
   
   template<typename... Args>
   void Logger::PrintMessage(Logger::Type type, Logger::Level level, std::string_view tag, Args&&... args)
   {
-    auto detail = enabled_tags[std::string(tag)];
+    static const uint32_t MaxTagLegth = 20;
+    auto detail = enabled_tags_[std::string(tag)];
     if (detail.enabled && detail.level_filter <= level)
     {
       auto logger = (type == Type::Core) ? GetCoreLogger() : GetClientLogger();
-      std::string logString = tag.empty() ? "{0}{1}" : "[{0}] {1}";
+      std::string logString = std::string("{0}" + std::string(size_t(MaxTagLegth - tag.size()), ' ') + std::string(" | {1}"));
       switch (level)
       {
         case Level::Debug:

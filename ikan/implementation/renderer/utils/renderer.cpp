@@ -50,10 +50,10 @@ namespace ikan {
   private:
     RendererData(Renderer::Api new_api)
     : api(new_api) {
-      IK_CORE_TRACE("Creating Renderer Data Instance with {0} API ...", renderer_utils::GetRendererApiName(api));
+      IK_CORE_TRACE("Renderer", "Creating Renderer Data Instance with {0} API ...", renderer_utils::GetRendererApiName(api));
     }
     ~RendererData() {
-      IK_CORE_WARN("Destroying Renderer Data Instance with API {0} !!!", renderer_utils::GetRendererApiName(api));
+      IK_CORE_WARN("Renderer", "Destroying Renderer Data Instance with API {0} !!!", renderer_utils::GetRendererApiName(api));
     }
     
     DELETE_COPY_MOVE_CONSTRUCTORS(RendererData);
@@ -73,9 +73,9 @@ namespace ikan {
     renderer_data_->renderer_api_instance = RendererAPI::Create();
     
     // Initialize Renderers
-    IK_CORE_INFO(" -------------------------------------------------------------------------");
-    IK_CORE_INFO("                       Initializing All Renderer                          ");
-    IK_CORE_INFO(" -------------------------------------------------------------------------");
+    IK_CORE_INFO("--------------------", " -------------------------------------------------------------------------");
+    IK_CORE_INFO("                    ", "                       Initializing All Renderer                          ");
+    IK_CORE_INFO("--------------------", " -------------------------------------------------------------------------");
     BatchRenderer::Init();
     TextRenderer::Init();
   }
@@ -192,10 +192,10 @@ namespace ikan {
   }
   
   void Renderer::Capabilities::Log() {
-    IK_CORE_INFO("  Renderer Capability ");
-    IK_CORE_INFO("    Vendor   | {0} ", vendor);
-    IK_CORE_INFO("    Renderer | {0} ", renderer);
-    IK_CORE_INFO("    Version  | {0} ", version);
+    IK_CORE_INFO("Renderer", "  Renderer Capability ");
+    IK_CORE_INFO("Renderer", "    Vendor   | {0} ", vendor);
+    IK_CORE_INFO("Renderer", "    Renderer | {0} ", renderer);
+    IK_CORE_INFO("Renderer", "    Version  | {0} ", version);
   }
 
   // -------------------------------------------------------------------------

@@ -174,7 +174,7 @@
 		B2250CFD295873330067C43B /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		B2250CFE295873330067C43B /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
 		B2250D01295873A70067C43B /* ikan_common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_common.h; sourceTree = "<group>"; };
-		B2250D032958751E0067C43B /* core_logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_logger.h; sourceTree = "<group>"; };
+		B2250D032958751E0067C43B /* core_logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_logger.h; sourceTree = "<group>"; wrapsLines = 0; };
 		B227F37129597F2B0055D871 /* open_gl_renderer_id_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_renderer_id_manager.cpp; sourceTree = "<group>"; };
 		B227F37229597F2B0055D871 /* open_gl_renderer_id_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_renderer_id_manager.hpp; sourceTree = "<group>"; };
 		B227F38B2959DBF40055D871 /* single_texture_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = single_texture_shader.glsl; sourceTree = "<group>"; };
