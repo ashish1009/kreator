@@ -70,6 +70,22 @@ namespace ikan {
     static bool HasTag(const std::string& tag) { return enabled_tags_.find(tag) != enabled_tags_.end(); }
     /// This function return the enabled tags
     static std::map<std::string, TagDetails>& EnabledTags() { return enabled_tags_; }
+    
+    static const TagDetails& GetDetail(const std::string& tag) {
+      if (HasTag(tag))
+        return enabled_tags_.at(tag);
+      else
+        return enabled_tags_[std::string(tag)];
+    }
+    
+    static void DisableModule(const std::string& tag) {
+      if (HasTag(tag))
+        enabled_tags_.at(tag).enabled = false;
+    }
+    static void EnableModule(const std::string& tag) {
+      if (HasTag(tag))
+        enabled_tags_.at(tag).enabled = true;
+    }
 
     template<typename... Args>
     /// This function stores the log with tag of module
@@ -122,7 +138,7 @@ namespace ikan {
   void Logger::PrintMessage(Logger::Type type, Logger::Level level, std::string_view tag, Args&&... args)
   {
     static const uint32_t MaxTagLegth = 20;
-    auto detail = enabled_tags_[std::string(tag)];
+    const auto& detail = GetDetail(std::string(tag));
     if (detail.enabled && detail.level_filter <= level)
     {
       auto logger = (type == Type::Core) ? GetCoreLogger() : GetClientLogger();
