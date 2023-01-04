@@ -86,11 +86,40 @@ namespace ikan {
     translation = other.translation;
     scale = other.scale;
     rotation = other.rotation;
-    IK_CORE_TRACE(LogModule::Component, "Moving Tag Component using = operator...");
+    IK_CORE_TRACE(LogModule::Component, "Moving Transform Component using = operator...");
     return *this;
   }
   glm::mat4 TransformComponent::GetTransform() const {
     return Math::GetTransformMatrix(translation, rotation, scale);
+  }
+  
+  // -------------------------------------------------------------------------
+  // Quad Component
+  // -------------------------------------------------------------------------
+  QuadComponent::QuadComponent() {
+    IK_CORE_TRACE(LogModule::Component, "Creating Quad Component ...");
+  }
+  QuadComponent::QuadComponent(const QuadComponent& other)
+  : color(other.color) {
+    texture = Renderer::GetTexture(other.texture->GetfilePath());
+    IK_CORE_TRACE(LogModule::Component, "Copying Quad Component ...");
+  }
+  QuadComponent::QuadComponent(QuadComponent&& other)
+  : color(other.color) {
+    texture = Renderer::GetTexture(other.texture->GetfilePath());
+    IK_CORE_TRACE(LogModule::Component, "Moving Quad Component ...");
+  }
+  QuadComponent& QuadComponent::operator=(const QuadComponent& other) {
+    color = other.color;
+    texture = Renderer::GetTexture(other.texture->GetfilePath());
+    IK_CORE_TRACE(LogModule::Component, "Copying Quad Component using = operator...");
+    return *this;
+  }
+  QuadComponent& QuadComponent::operator=(QuadComponent&& other) {
+    color = other.color;
+    texture = Renderer::GetTexture(other.texture->GetfilePath());
+    IK_CORE_TRACE(LogModule::Component, "Moving Quad Component using = operator...");
+    return *this;
   }
   
 }

@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "renderer/graphics/texture.hpp"
+
 namespace ikan {
  
   struct IDComponent {
@@ -30,6 +32,14 @@ namespace ikan {
     glm::mat4 GetTransform() const;
     
     DEFINE_COPY_MOVE_CONSTRUCTORS(TransformComponent);
+  };
+  
+  struct QuadComponent {
+    std::shared_ptr<Texture> texture;
+    glm::vec4 color = {0.123f, 0.123f, 0.123f, 1.0f};
+
+    QuadComponent();
+    DEFINE_COPY_MOVE_CONSTRUCTORS(QuadComponent);
   };
   
 }

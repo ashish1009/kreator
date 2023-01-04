@@ -30,6 +30,7 @@ namespace ikan {
     // TODO: Temp
     // ------------
     Entity e1 = CreateEntity();
+    e1.AddComponent<QuadComponent>();
   }
   
   EnttScene::~EnttScene() {
@@ -83,11 +84,15 @@ namespace ikan {
   void EnttScene::UpdateEditor(Timestep ts) {
     editor_camera_.Update(ts);
     
+    // Render 2D
     BatchRenderer::BeginBatch(editor_camera_.GetViewProjection(), editor_camera_.GetView());
-    BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, 0, 0},
-                                                     {0, 0, 0},
-                                                     {1, 1, 1}),
-                            {0.3, 0.4, 0.5, 1.0});
+    auto quad_view = registry_.view<TransformComponent, QuadComponent>();
+    // For all Mesg entity
+    for (const auto& quad_entity : quad_view) {
+      const auto& [transform_component, quad_component] = quad_view.get<TransformComponent, QuadComponent>(quad_entity);
+      BatchRenderer::DrawQuad(transform_component.GetTransform(),
+                              quad_component.color);
+    } // for (const auto& entity : mesh_view)
     BatchRenderer::EndBatch();
   }
   
@@ -165,6 +170,5 @@ namespace ikan {
     event_handler_ = std::bind(&EnttScene::EventHandlerEditor, this, std::placeholders::_1);
     render_imgui_ = std::bind(&EnttScene::RenderImguiEditor, this);    
   }
-  
 
 }
