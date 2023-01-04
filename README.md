@@ -95,9 +95,9 @@ Add the following library search paths
 - ECS Project
 ----------------
   - Editor
-    - Scene Hierarchy pannel : To Grow With Time
+    - Scene Hierarchy panel : To Grow With Time
       - Property Grid API For IM GUI
-      - Content Browser pannel : To Optimize With Time
+      - Content Browser panel : To Optimize With Time
       - ImGuimzo
         - Mouse selectable entity
 

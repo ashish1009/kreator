@@ -38,6 +38,7 @@ namespace editor {
   private:
     Viewport viewport_;
     EnttScene active_scene_;
+    ContentBrowserPanel cbp_;
   };
   
 }

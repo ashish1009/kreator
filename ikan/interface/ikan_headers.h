@@ -21,6 +21,7 @@
 #include <map>
 #include <set>
 #include <dispatch/dispatch.h>
+#include <fstream>
 
 // Library Files
 // glm math library
@@ -68,6 +69,7 @@
 // Editor
 #include <editor/property_grid.hpp>
 #include <editor/editor_camera.hpp>
+#include <editor/content_browser_panel.hpp>
 
 // Scene
 #include <scene/viewport.hpp>

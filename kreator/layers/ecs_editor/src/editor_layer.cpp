@@ -53,6 +53,7 @@ namespace editor {
     
     viewport_.RenderGui();
     active_scene_.RenderGui();
+    cbp_.RenderGui();
     
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
