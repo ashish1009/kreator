@@ -15,6 +15,17 @@ namespace ikan {
   EnttScene::EnttScene() {
     IK_CORE_INFO(LogModule::EnttScene, "Creating Scene ...");
     
+    // Set the Scene state and register their corresponding Functions
+    if (state_ == State::Edit)
+      EditScene();
+    else if (state_ == State::Play)
+      PlayScene();
+    else
+      IK_ASSERT(false, "Invalid State");
+
+    // ------------
+    // TODO: Temp
+    // ------------
     Entity e1 = CreateEntity();
   }
   
@@ -63,6 +74,10 @@ namespace ikan {
   }
   
   void EnttScene::Update(Timestep ts) {
+    update_(ts);
+  }
+  
+  void EnttScene::UpdateEditor(Timestep ts) {
     editor_camera_.Update(ts);
     
     BatchRenderer::BeginBatch(editor_camera_.GetViewProjection(), editor_camera_.GetView());
@@ -73,16 +88,52 @@ namespace ikan {
     BatchRenderer::EndBatch();
   }
   
-  void EnttScene::EventHandler(Event& e) {
-    editor_camera_.EventHandler(e);
+  void EnttScene::UpdateRuntime(Timestep ts) {
+  }
+  
+  void EnttScene::EventHandler(Event& event) {
+    event_handler_(event);
+  }
+  
+  void EnttScene::EventHandlerEditor(Event& event) {
+    editor_camera_.EventHandler(event);
+  }
+  
+  void EnttScene::EventHandlerRuntime(Event& event) {
+  }
+
+  void EnttScene::RenderGui() {
+    render_imgui_();
+  }
+  
+  void EnttScene::RenderImguiEditor() {
+    editor_camera_.RendererGui();
+  }
+  
+  void EnttScene::RenderImguiRuntime() {
   }
   
   void EnttScene::SetViewport(uint32_t width, uint32_t height) {
     editor_camera_.SetViewportSize(width, height);
   }
-
-  void EnttScene::RenderGui() {
+  
+  void EnttScene::PlayScene() {
+    IK_CORE_TRACE(LogModule::EnttScene, "Scene is Set to Play");
     
+    state_ = State::Play;
+    update_ = std::bind(&EnttScene::UpdateRuntime, this, std::placeholders::_1);
+    event_handler_ = std::bind(&EnttScene::EventHandlerRuntime, this, std::placeholders::_1);
+    render_imgui_ = std::bind(&EnttScene::RenderImguiRuntime, this);
   }
+  
+  void EnttScene::EditScene() {
+    IK_CORE_TRACE(LogModule::EnttScene, "Scene is Set to Edit");
+    
+    state_ = State::Edit;
+    update_ = std::bind(&EnttScene::UpdateEditor, this, std::placeholders::_1);
+    event_handler_ = std::bind(&EnttScene::EventHandlerEditor, this, std::placeholders::_1);
+    render_imgui_ = std::bind(&EnttScene::RenderImguiEditor, this);    
+  }
+  
 
 }
