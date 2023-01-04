@@ -53,13 +53,18 @@
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
+            key = "VK_LAYER_PATH"
+            value = "/usr/local/macOS/share/vulkan/implicit_layer.d"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "VK_ICD_FILENAMES"
             value = "/usr/local/macOS/share/vulkan/icd.d/MoltenVK_icd.json"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "VK_LAYER_PATH"
-            value = "/usr/local/macOS/share/vulkan/explicit_layer.d"
+            key = "VK_LOADER_DEBUG"
+            value = "all"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

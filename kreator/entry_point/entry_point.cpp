@@ -108,7 +108,6 @@ int main() {
   vkEnumerateInstanceExtensionProperties(nullptr, &extenstion_count, nullptr);
   
   uint32_t layer_count = 0;
-  VkExtensionProperties p;
   vkEnumerateInstanceLayerProperties(&layer_count, nullptr);
   
   std::cout << "extenstion_count " << extenstion_count << " layer " << layer_count  << "\n";
@@ -124,7 +123,7 @@ int main() {
   app_info.applicationVersion = VK_MAKE_VERSION(1, 0, 0);      // version
   app_info.pEngineName = "ikan";              // name of the engine
   app_info.engineVersion = VK_MAKE_VERSION(1, 0, 0);           // version
-  app_info.apiVersion = VK_API_VERSION_1_3;                    // API version
+  app_info.apiVersion = VK_API_VERSION_1_0;                    // API version
   
   // setup create info struct
   VkInstanceCreateInfo instance_create_info{};                           // INSTANCE CREATION INFO
@@ -136,9 +135,9 @@ int main() {
   instance_create_info.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
   instance_create_info.ppEnabledExtensionNames = extensions.data();
   
-  const char* validationLayerName = "VK_KHR_surface";
+  const char* validationLayerName = "VK_LAYER_KHRONOS_validation";
   instance_create_info.enabledLayerCount = 1;
-  instance_create_info.ppEnabledLayerNames =&validationLayerName ;
+  instance_create_info.ppEnabledLayerNames = &validationLayerName ;
   instance_create_info.pNext = nullptr;
     
   // try creating instance, catch potential error code
@@ -154,8 +153,7 @@ int main() {
   // --------------------------
   if (glfwCreateWindowSurface(s_VulkanInstance, window_, nullptr, &surface) != VK_SUCCESS) {
 
-  }
-
+  } 
 
   // ---------------------------------
   // Pick Physical device
