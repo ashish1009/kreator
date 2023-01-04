@@ -13,7 +13,7 @@ namespace ikan {
   : hit_distance(other.hit_distance), world_normal(other.world_normal),
   world_position(other.world_position), front_face(other.front_face),
   object_idx(other.object_idx) {
-    IK_CORE_TRACE("HitPayload", "Copying Hit payload ...");
+    IK_CORE_TRACE(LogModule::HitPayload, "Copying Hit payload ...");
   }
   
   void HitPayload::SetFaceNormal(const Ray &ray) {

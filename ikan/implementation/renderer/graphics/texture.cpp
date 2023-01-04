@@ -81,10 +81,10 @@ namespace ikan {
                                                      bool mag_linear) {
     if (shader_library_.find(path) == shader_library_.end()) {
       shader_library_[path] = Texture::Create(path, min_linear, mag_linear);
-      IK_CORE_DEBUG("Adding Shader '{0}' to Shdaer Library",
+      IK_CORE_DEBUG(LogModule::Texture, "Adding Shader '{0}' to Shdaer Library",
                     StringUtils::GetNameFromFilePath(path));
     } else {
-      IK_CORE_DEBUG("Returning Pre loaded Shader '{0}' from Shdaer Library", StringUtils::GetNameFromFilePath(path));
+      IK_CORE_DEBUG(LogModule::Texture, "Returning Pre loaded Shader '{0}' from Shdaer Library", StringUtils::GetNameFromFilePath(path));
     }
     
     return shader_library_.at(path);
@@ -92,7 +92,7 @@ namespace ikan {
   
   void TextureLibrary::ResetTextures() {
     for (auto it = shader_library_.begin(); it != shader_library_.end(); it++) {
-      IK_CORE_WARN("Removing Shader '{0}' from Shdaer Library",
+      IK_CORE_WARN(LogModule::Texture, "Removing Shader '{0}' from Shdaer Library",
                    StringUtils::GetNameFromFilePath(it->first));
       it->second.reset();
     }

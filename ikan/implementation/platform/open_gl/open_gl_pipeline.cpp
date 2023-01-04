@@ -65,13 +65,13 @@ namespace ikan {
     IDManager::GetPipelineId(renderer_id_);
     glBindVertexArray(renderer_id_);
     
-    IK_CORE_DEBUG("Pipeline", "Creating Open GL Pipeline ...");
-    IK_CORE_DEBUG("Pipeline", "  Renderer ID | {0}", renderer_id_);
+    IK_CORE_DEBUG(LogModule::Pipeline, "Creating Open GL Pipeline ...");
+    IK_CORE_DEBUG(LogModule::Pipeline, "  Renderer ID | {0}", renderer_id_);
   }
   
   OpenGLPipeline::~OpenGLPipeline() noexcept {
-    IK_CORE_WARN("Pipeline", "Destroying Open GL Pipeline !!!");
-    IK_CORE_WARN("Pipeline", "  Renderer ID | {0}", renderer_id_);
+    IK_CORE_WARN(LogModule::Pipeline, "Destroying Open GL Pipeline !!!");
+    IK_CORE_WARN(LogModule::Pipeline, "  Renderer ID | {0}", renderer_id_);
 
     IDManager::RemovePipelineId(renderer_id_);
   }
@@ -101,30 +101,30 @@ namespace ikan {
     uint32_t index = 0;
     const auto& layout = vertexBuffer->GetLayout();
     
-    IK_CORE_DEBUG("Pipeline", "  Storing the Vertex Buffer (ID: {0}) into Pipeline (ID: {1})",
+    IK_CORE_DEBUG(LogModule::Pipeline, "  Storing the Vertex Buffer (ID: {0}) into Pipeline (ID: {1})",
                   vertexBuffer->GetRendererID(),
                   renderer_id_);
-    IK_CORE_DEBUG("Pipeline", "  Number of Vertex Buffer stored in Pipeline (ID: {0}) | {1}",
+    IK_CORE_DEBUG(LogModule::Pipeline, "  Number of Vertex Buffer stored in Pipeline (ID: {0}) | {1}",
                   renderer_id_,
                   vertex_buffers_.size());
-    IK_CORE_DEBUG("Pipeline", "  Vertex Attributes attched to Pipeline (ID: {0}) with Stride | {1} ",
+    IK_CORE_DEBUG(LogModule::Pipeline, "  Vertex Attributes attched to Pipeline (ID: {0}) with Stride | {1} ",
                   renderer_id_,
                   layout.GetStride());
     
     for (const auto& element : layout.GetElements()) {
       if (element.normalized) {
-        IK_CORE_DEBUG("Pipeline", "    {0} {1} [{2}] (Normalised)",
+        IK_CORE_DEBUG(LogModule::Pipeline, "    {0} {1} [{2}] (Normalised)",
                       ShaderDataTypeToString(element.type),
                       element.name,
                       element.count);
       } else {
-        IK_CORE_DEBUG("Pipeline", "    {0} {1} [{2}] (Not Normalised)",
+        IK_CORE_DEBUG(LogModule::Pipeline, "    {0} {1} [{2}] (Not Normalised)",
                       ShaderDataTypeToString(element.type),
                       element.name,
                       element.count);
       }
-      IK_CORE_DEBUG("Pipeline", "      Offset | {0}", element.offset);
-      IK_CORE_DEBUG("Pipeline", "      Size   | {0}", element.size);
+      IK_CORE_DEBUG(LogModule::Pipeline, "      Offset | {0}", element.offset);
+      IK_CORE_DEBUG(LogModule::Pipeline, "      Size   | {0}", element.size);
       
       switch (element.type) {
         case ShaderDataType::Int:
@@ -181,7 +181,7 @@ namespace ikan {
   
   void OpenGLPipeline::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer) {
     index_buffer_ = indexBuffer;
-    IK_CORE_DEBUG("Pipeline", "  Setting up the Index Buffer (ID: {0}) into Pipeline (ID: {1})",
+    IK_CORE_DEBUG(LogModule::Pipeline, "  Setting up the Index Buffer (ID: {0}) into Pipeline (ID: {1})",
                   indexBuffer->GetRendererID(),
                   renderer_id_);
     glBindVertexArray(renderer_id_);

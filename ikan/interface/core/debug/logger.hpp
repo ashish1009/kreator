@@ -11,6 +11,7 @@
 // submodule spd-log from "https://github.com/gabime/spdlog"
 
 #include <spdlog/spdlog.h>
+#include "log_utils.hpp"
 
 namespace ikan {
   
@@ -65,22 +66,22 @@ namespace ikan {
     /// This function returns the shared pointer of Client log instance
     static std::shared_ptr<spdlog::logger>& GetClientLogger();
     
-    /// this functun return the tag stored in logger
-    /// - Parameter tag: tag
-    static bool HasTag(const std::string& tag);
-    /// This function return the enabled tags
-    static std::map<std::string, TagDetails>& GetEnabledTags();
-    
-    /// Get the detail of a module tag
-    /// - Parameter tag: tag name
-    static const TagDetails& GetDetail(const std::string& tag);
     /// Deisable module log
     /// - Parameter tag: tag name
-    static void DisableModule(const std::string& tag);
+    static void DisableModule(LogModule tag);
     /// Enable module log
     /// - Parameter tag: tag name
-    static void EnableModule(const std::string& tag);
+    static void EnableModule(LogModule tag);
 
+    template<typename... Args>
+    /// This function stores the log with tag of module
+    /// - Parameters:
+    ///   - type: type of log project
+    ///   - level: level of log
+    ///   - tag: tag of module
+    ///   - args: Log string with argument
+    static void PrintMessage(Type type, Level level, LogModule tag, Args&&... args);
+    
     template<typename... Args>
     /// This function stores the log with tag of module
     /// - Parameters:
@@ -96,6 +97,26 @@ namespace ikan {
     MAKE_PURE_STATIC(Logger);
     static std::shared_ptr<spdlog::logger> core_logger_, client_logger_;
     inline static std::map<std::string, TagDetails> enabled_tags_;
+    
+    /// this functun return the tag stored in logger
+    /// - Parameter tag: tag
+    static bool HasTag(const std::string& tag);
+    /// This function return the enabled tags
+    static std::map<std::string, TagDetails>& GetEnabledTags();
+    
+    /// Get the detail of a module tag
+    /// - Parameter tag: tag name
+    static const TagDetails& GetDetail(const std::string& tag);
+    
+    template<typename... Args>
+    /// This function stores the log with tag of module
+    /// - Parameters:
+    ///   - type: type of log project
+    ///   - level: level of log
+    ///   - tag: tag of module
+    ///   - args: Log string with argument
+    static void PrintMessageImpl(Type type, Level level, std::string tag, Args&&... args);
+
   };
   
 } // namespace ikan
@@ -129,8 +150,19 @@ namespace ikan {
 namespace ikan {
   
   template<typename... Args>
+  void Logger::PrintMessage(Logger::Type type, Logger::Level level, LogModule tag, Args&&... args) {
+    PrintMessageImpl(type, level, GetModuleName(tag), std::forward<Args>(args)...);
+  }
+  
+  template<typename... Args>
   void Logger::PrintMessage(Logger::Type type, Logger::Level level, std::string_view tag, Args&&... args) {
+    PrintMessageImpl(type, level, GetModuleName(tag), std::forward<Args>(args)...);
+  }
+
+  template<typename... Args>
+  void Logger::PrintMessageImpl(Logger::Type type, Logger::Level level, std::string tag, Args&&... args) {
     static const uint32_t MaxTagLegth = 20;
+    
     const auto& detail = GetDetail(std::string(tag));
     if (detail.enabled && detail.level_filter <= level) {
       auto logger = (type == Type::Core) ? GetCoreLogger() : GetClientLogger();
@@ -157,4 +189,5 @@ namespace ikan {
       }
     }
   }
+
 }

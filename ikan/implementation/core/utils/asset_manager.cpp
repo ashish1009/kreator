@@ -28,7 +28,7 @@ namespace ikan {
     
   void AssetManager::SetClientAssetPath(const std::string& client_asset_path) {
     client_asset_path_ = client_asset_path;
-    IK_CORE_TRACE("Asset Path", "Client Asset path is set to {0}", client_asset_path_);
+    IK_CORE_TRACE(LogModule::AssetManager, "Client Asset path is set to {0}", client_asset_path_);
   }
   
 }

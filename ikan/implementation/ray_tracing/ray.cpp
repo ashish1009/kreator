@@ -10,14 +10,14 @@
 namespace ikan {
   
   Ray& Ray::operator=(const Ray &other) {
-    IK_CORE_TRACE("Ray", "Copying Ray ...");
+    IK_CORE_TRACE(LogModule::Ray, "Copying Ray ...");
     origin = other.origin;
     direction = other.direction;
     return *this;
   }
   
   Ray& Ray::operator=(Ray&& other) {
-    IK_CORE_TRACE("Ray", "Moving Ray ...");
+    IK_CORE_TRACE(LogModule::Ray, "Moving Ray ...");
     origin = other.origin;
     direction = other.direction;
     return *this;

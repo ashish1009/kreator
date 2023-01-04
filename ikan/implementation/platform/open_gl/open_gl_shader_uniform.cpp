@@ -72,7 +72,7 @@ namespace ikan {
                                                                  uint32_t count)
   : struct_(nullptr), type_(type), domain_(domain), name_(name), count_(count) {
     size_ = SizeOfUniformType(type_) * count_;
-    IK_CORE_DEBUG("Shader", "      {0} {1}[{2}] (Size : {3}) ",
+    IK_CORE_DEBUG(LogModule::Shader, "      {0} {1}[{2}] (Size : {3}) ",
                   TypeToString(type_), name_, count_, size_);
   }
   
@@ -83,12 +83,12 @@ namespace ikan {
   : struct_(uniform_struct), type_(OpenGLShaderUniformDeclaration::Type::Struct),
   domain_(domain), name_(name), count_(count) {
     size_ = struct_->GetSize() * count_;
-    IK_CORE_DEBUG("Shader", "      {0} {1}[{2}] (Size : {3}) ",
+    IK_CORE_DEBUG(LogModule::Shader, "      {0} {1}[{2}] (Size : {3}) ",
                   TypeToString(type_), name_, count_, size_);
   }
   
   OpenGLShaderUniformDeclaration::~OpenGLShaderUniformDeclaration() {
-    IK_CORE_WARN("Shader", "      Destroying : {0} {1}[{2}] (Size : {3}) ",
+    IK_CORE_WARN(LogModule::Shader, "      Destroying : {0} {1}[{2}] (Size : {3}) ",
                  TypeToString(type_), name_, count_, size_);
   }
   
@@ -156,11 +156,11 @@ namespace ikan {
                                                                    const std::string& name,
                                                                    uint32_t count)
   : type_(type), name_(name), count_(count) {
-    IK_CORE_DEBUG("Shader", "      {0} {1}[{2}]", TypeToString(type_), name_, count_);
+    IK_CORE_DEBUG(LogModule::Shader, "      {0} {1}[{2}]", TypeToString(type_), name_, count_);
   }
   
   OpenGLShaderResourceDeclaration::~OpenGLShaderResourceDeclaration() {
-    IK_CORE_WARN("Shader", "      Destroying : {0} {1}[{2}]", TypeToString(type_), name_, count_);
+    IK_CORE_WARN(LogModule::Shader, "      Destroying : {0} {1}[{2}]", TypeToString(type_), name_, count_);
   }
   
   const std::string& OpenGLShaderResourceDeclaration::GetName() const { return name_; }

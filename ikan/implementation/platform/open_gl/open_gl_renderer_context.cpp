@@ -15,12 +15,12 @@ namespace ikan {
   OpenGLRendererContext::OpenGLRendererContext(GLFWwindow* window)
   : window_(window) {
     IK_CORE_ASSERT(window, "Window pointer is NULL !!!");
-    IK_CORE_INFO("Renderer Context", "Creating Open GL Renderer Context ... ");
+    IK_CORE_INFO(LogModule::RendererContext, "Creating Open GL Renderer Context ... ");
     Init();
   }
   
   OpenGLRendererContext::~OpenGLRendererContext() noexcept {
-    IK_CORE_WARN("Renderer Context", "Destroying Open GL Renderer Context !!! ");
+    IK_CORE_WARN(LogModule::RendererContext, "Destroying Open GL Renderer Context !!! ");
   }
   
   void OpenGLRendererContext::Init() {

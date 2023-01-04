@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B20303D329659A9A00563A34 /* log_utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B20303D129659A9A00563A34 /* log_utils.hpp */; };
 		B216B255295B2F6B00C05392 /* open_gl_texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B216B253295B2F6B00C05392 /* open_gl_texture.cpp */; };
 		B216B256295B2F6B00C05392 /* open_gl_texture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B216B254295B2F6B00C05392 /* open_gl_texture.hpp */; };
 		B216B25C295B2F7400C05392 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B216B25A295B2F7400C05392 /* texture.cpp */; };
@@ -155,6 +156,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B20303D129659A9A00563A34 /* log_utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = log_utils.hpp; sourceTree = "<group>"; };
 		B216B253295B2F6B00C05392 /* open_gl_texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_texture.cpp; sourceTree = "<group>"; };
 		B216B254295B2F6B00C05392 /* open_gl_texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_texture.hpp; sourceTree = "<group>"; };
 		B216B25A295B2F7400C05392 /* texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 			children = (
 				B2250CFE295873330067C43B /* logger.hpp */,
 				B2FC3E882958826C00447A1A /* profiler.hpp */,
+				B20303D129659A9A00563A34 /* log_utils.hpp */,
 			);
 			path = debug;
 			sourceTree = "<group>";
@@ -760,6 +763,7 @@
 				B2FC3EAB2958880800447A1A /* application_event.hpp in Headers */,
 				B2FC401E2958B6AC00447A1A /* glfw_window.hpp in Headers */,
 				B2F52668295979FE00A83C65 /* string_utils.hpp in Headers */,
+				B20303D329659A9A00563A34 /* log_utils.hpp in Headers */,
 				B2250CE729586A660067C43B /* asserts.h in Headers */,
 				B2FC3EAA2958880800447A1A /* mouse_event.hpp in Headers */,
 				B2C0D80A2959E161003F168B /* property_grid.hpp in Headers */,

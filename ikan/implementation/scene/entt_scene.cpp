@@ -12,11 +12,11 @@
 namespace ikan {
   
   EnttScene::EnttScene() {
-    IK_CORE_INFO("EnTT Scene", "Creating Scene ...");
+    IK_CORE_INFO(LogModule::EnttScene, "Creating Scene ...");
   }
   
   EnttScene::~EnttScene() {
-    IK_CORE_WARN("EnTT Scene", "Destroying Scene!!!");
+    IK_CORE_WARN(LogModule::EnttScene, "Destroying Scene!!!");
   }
   
   Entity EnttScene::CreateEntity(const std::string& name, UUID uuid) {
@@ -26,16 +26,16 @@ namespace ikan {
     entity.AddComponent<IDComponent>(uuid);
     entity.AddComponent<TagComponent>(name);
 
-    IK_CORE_TRACE("EnTT Scene", "Stored Entity in Scene");
-    IK_CORE_TRACE("EnTT Scene", "  Name | {0}", entity.GetComponent<TagComponent>().tag.c_str());
-    IK_CORE_TRACE("EnTT Scene", "  ID   | {0}", entity.GetComponent<IDComponent>().id);
+    IK_CORE_TRACE(LogModule::EnttScene, "Stored Entity in Scene");
+    IK_CORE_TRACE(LogModule::EnttScene, "  Name | {0}", entity.GetComponent<TagComponent>().tag.c_str());
+    IK_CORE_TRACE(LogModule::EnttScene, "  ID   | {0}", entity.GetComponent<IDComponent>().id);
     return entity;
   }
   
   void EnttScene::DestroyEntity(Entity entity) {
-    IK_CORE_WARN("EnTT Scene", "Removed Entity from Scene");
-    IK_CORE_WARN("EnTT Scene", "  Name | {0}", entity.GetComponent<TagComponent>().tag.c_str());
-    IK_CORE_WARN("EnTT Scene", "  ID   | {0}", entity.GetComponent<IDComponent>().id);
+    IK_CORE_WARN(LogModule::EnttScene, "Removed Entity from Scene");
+    IK_CORE_WARN(LogModule::EnttScene, "  Name | {0}", entity.GetComponent<TagComponent>().tag.c_str());
+    IK_CORE_WARN(LogModule::EnttScene, "  ID   | {0}", entity.GetComponent<IDComponent>().id);
     registry_.destroy(entity);
   }
 

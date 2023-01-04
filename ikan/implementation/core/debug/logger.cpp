@@ -134,13 +134,15 @@ namespace ikan {
     else
       return enabled_tags_[std::string(tag)];
   }
-  void Logger::DisableModule(const std::string& tag) {
-    if (HasTag(tag))
-      enabled_tags_.at(tag).enabled = false;
+  void Logger::DisableModule(LogModule tag) {
+    std::string tag_string = GetModuleName(tag);
+    if (HasTag(tag_string))
+      enabled_tags_.at(tag_string).enabled = false;
   }
-  void Logger::EnableModule(const std::string& tag) {
-    if (HasTag(tag))
-      enabled_tags_.at(tag).enabled = true;
+  void Logger::EnableModule(LogModule tag) {
+    std::string tag_string = GetModuleName(tag);
+    if (HasTag(tag_string))
+      enabled_tags_.at(tag_string).enabled = true;
   }
   
 }

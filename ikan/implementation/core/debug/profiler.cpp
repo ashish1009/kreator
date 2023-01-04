@@ -18,11 +18,11 @@ namespace ikan {
     duration_ = end_tIme_point_ - start_time_point_;
     
 #ifdef IK_DEBUG_FEATURE
-    IK_TRACE("Profiler", "  Execution time for ");
-    IK_TRACE("Profiler", "  | Function      | {0}", function_name_);
-    IK_TRACE("Profiler", "  | seconds       | {0}", duration_.count());
-    IK_TRACE("Profiler", "  | mili seconds  | {0}", duration_.count() * 1000);
-    IK_TRACE("Profiler", "  | micro seconds | {0}", duration_.count() * 1000000);
+    IK_TRACE(LogModule::Profiler, "  Execution time for ");
+    IK_TRACE(LogModule::Profiler, "  | Function      | {0}", function_name_);
+    IK_TRACE(LogModule::Profiler, "  | seconds       | {0}", duration_.count());
+    IK_TRACE(LogModule::Profiler, "  | mili seconds  | {0}", duration_.count() * 1000);
+    IK_TRACE(LogModule::Profiler, "  | micro seconds | {0}", duration_.count() * 1000000);
 #else
     std::cout << "  Execution time for \n";
     std::cout << "  | Function      | " << function_name_ << "\n";

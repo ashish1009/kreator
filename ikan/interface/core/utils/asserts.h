@@ -15,14 +15,14 @@
 
 #define IK_ASSERT_NO_MESSAGE(condition) { \
 if(!(condition)) { \
-IK_ERROR("Assertion Failed"); \
+IK_ERROR(LogModule::Assert, "Assertion Failed"); \
 ASSERT(condition); \
 } \
 }
 
 #define IK_ASSERT_MESSAGE(condition, ...) { \
 if(!(condition)) { \
-IK_ERROR("Assertion Failed: {0}", __VA_ARGS__); \
+IK_ERROR(LogModule::Assert, "Assertion Failed: {0}", __VA_ARGS__); \
 ASSERT(condition); \
 } \
 } \

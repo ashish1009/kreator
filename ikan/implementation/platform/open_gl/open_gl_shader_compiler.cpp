@@ -81,10 +81,10 @@ namespace ikan {
   : asset_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)) {
     IDManager::GetShaderId(renderer_id_);
 
-    IK_CORE_DEBUG("Shader", "Creating Open GL Shader ...");
-    IK_CORE_DEBUG("Shader", "  Renderer ID | {0} ", renderer_id_);
-    IK_CORE_DEBUG("Shader", "  Name        | {0} ", name_);
-    IK_CORE_DEBUG("Shader", "  File Path   | {0} ", asset_path_);
+    IK_CORE_DEBUG(LogModule::Shader, "Creating Open GL Shader ...");
+    IK_CORE_DEBUG(LogModule::Shader, "  Renderer ID | {0} ", renderer_id_);
+    IK_CORE_DEBUG(LogModule::Shader, "  Name        | {0} ", name_);
+    IK_CORE_DEBUG(LogModule::Shader, "  File Path   | {0} ", asset_path_);
     
     // Extract and Compile the Shader
     std::string file_string = StringUtils::ReadFromFile(asset_path_);
@@ -99,10 +99,10 @@ namespace ikan {
   }
   
   OpenGLShader::~OpenGLShader() noexcept {
-    IK_CORE_WARN("Shader", "Destroying Open GL Shader ...");
-    IK_CORE_WARN("Shader", "  Renderer ID | {0} ", renderer_id_);
-    IK_CORE_WARN("Shader", "  Name        | {0} ", name_);
-    IK_CORE_WARN("Shader", "  File Path   | {0} ", asset_path_);
+    IK_CORE_WARN(LogModule::Shader, "Destroying Open GL Shader ...");
+    IK_CORE_WARN(LogModule::Shader, "  Renderer ID | {0} ", renderer_id_);
+    IK_CORE_WARN(LogModule::Shader, "  Name        | {0} ", name_);
+    IK_CORE_WARN(LogModule::Shader, "  File Path   | {0} ", asset_path_);
     
     for (auto& structure : structs_)
       delete structure;
@@ -114,7 +114,7 @@ namespace ikan {
   }
   
   void OpenGLShader::PreprocessFile(const std::string &source_string) {
-    IK_CORE_DEBUG("Shader", "  Processing the Open GL Shader: '{0}'", name_.c_str());
+    IK_CORE_DEBUG(LogModule::Shader, "  Processing the Open GL Shader: '{0}'", name_.c_str());
     
     // All type (Fragment, Vertex, Geomatry etc...) of shader code should started
     // by this token (e.g. '#type vertex' for vertex shader)
@@ -159,7 +159,7 @@ namespace ikan {
   }
   
   void OpenGLShader::Compile() {
-    IK_CORE_DEBUG("Shader", "  Compiling Open GL Shader with File name: '{0}' ", name_.c_str());
+    IK_CORE_DEBUG(LogModule::Shader, "  Compiling Open GL Shader with File name: '{0}' ", name_.c_str());
     
     // ----------------------------------------------
     // Check Mendatory Shaders : Vertex and Fragment
@@ -194,7 +194,7 @@ namespace ikan {
 
         glDeleteShader(shader);
 
-        IK_CORE_ERROR("{0}", info_log.data());
+        IK_CORE_ERROR(LogModule::Shader, "{0}", info_log.data());
         IK_CORE_ASSERT(false, "Shader compilation failure!");
       } // Error Check for shader Compiler
 
@@ -202,7 +202,7 @@ namespace ikan {
       glAttachShader(renderer_id_, shader);
       shader_ids.push_back(shader);
 
-      IK_CORE_DEBUG("Shader", "    Compiled '{0}' Shader ", shader_utils::ShaderNameFromType(shader_type).c_str());
+      IK_CORE_DEBUG(LogModule::Shader, "    Compiled '{0}' Shader ", shader_utils::ShaderNameFromType(shader_type).c_str());
     }
 
     // -------------------
@@ -229,7 +229,7 @@ namespace ikan {
       for (auto id : shader_ids)
         glDeleteShader(id);
 
-      IK_CORE_ERROR("{0}", info_log.data());
+      IK_CORE_ERROR(LogModule::Shader, "{0}", info_log.data());
       IK_CORE_ASSERT(false, "Shader link failure!");
     } // Error check of Shader Linker
 
@@ -264,11 +264,11 @@ namespace ikan {
       // Parsing uniforms
       // -------------------
       vstr = shader_source_code.c_str();
-      IK_CORE_DEBUG("Shader", "  Parsing the '{0}' shader to extracts all the Uniforms for "
+      IK_CORE_DEBUG(LogModule::Shader, "  Parsing the '{0}' shader to extracts all the Uniforms for "
                     "'{1}' Shader",
                     name_, shader_utils::ShaderNameFromType(domain));
 
-      IK_CORE_DEBUG("Shader", "    Parsing the Uniforms: ");
+      IK_CORE_DEBUG(LogModule::Shader, "    Parsing the Uniforms: ");
       while ((token = StringUtils::FindToken(vstr, "uniform"))) {
         ParseUniform(StringUtils::GetStatement(token, &vstr),
                      shader_utils::GlDomainToShaderDomain((GLint)domain));
@@ -278,7 +278,7 @@ namespace ikan {
   
   void OpenGLShader::ParseUniformStruct(const std::string& block, ShaderDomain domain) {
     if (structs_.size() == 0) {
-      IK_CORE_DEBUG("Shader", "  Parsing the '{0}' shader to extracts all the Structures for '{1}' Shader",
+      IK_CORE_DEBUG(LogModule::Shader, "  Parsing the '{0}' shader to extracts all the Structures for '{1}' Shader",
                     name_, shader_utils::ShaderNameFromType(domain));
     }
     
@@ -291,8 +291,8 @@ namespace ikan {
     ShaderStruct* uniform_struct = new ShaderStruct(struct_name);
     index++;  // 1 is for Name (stored)
 
-    IK_CORE_DEBUG("Shader", "    struct {0} ", struct_name);
-    IK_CORE_DEBUG("Shader", "    {");
+    IK_CORE_DEBUG(LogModule::Shader, "    struct {0} ", struct_name);
+    IK_CORE_DEBUG(LogModule::Shader, "    {");
     
     // Parse the strcuture
     while (index < tokens.size()) {
@@ -330,7 +330,7 @@ namespace ikan {
       uniform_struct->AddField(field);
     }
     
-    IK_CORE_DEBUG("Shader", "    }");
+    IK_CORE_DEBUG(LogModule::Shader, "    }");
     structs_.emplace_back(uniform_struct);
   }
   
@@ -426,19 +426,19 @@ namespace ikan {
     
     int32_t location = glGetUniformLocation(renderer_id_, name.c_str());
     if (-1 == location)
-      IK_CORE_WARN("Shader", "Warning: uniform '{0}' doesnt exist", name);
+      IK_CORE_WARN(LogModule::Shader, "Warning: uniform '{0}' doesnt exist", name);
     
     location_map_[name] = location;
     return location;
   }
   
   void OpenGLShader::ResolveUniforms() {
-    IK_CORE_DEBUG("Shader", "  Resolving Uniform locations for Shader '{0}'", name_);
+    IK_CORE_DEBUG(LogModule::Shader, "  Resolving Uniform locations for Shader '{0}'", name_);
     
     // -------------------------------------------
     // Uniform samplers for textures, cubemaps etc
     // -------------------------------------------
-    IK_CORE_DEBUG("Shader", "    Resolving Uniforms for Samplers...");
+    IK_CORE_DEBUG(LogModule::Shader, "    Resolving Uniforms for Samplers...");
     // Setting location of sampler uniform
     uint32_t sampler = 0;
     for (size_t i = 0; i < resources_.size(); i++) {
@@ -449,7 +449,7 @@ namespace ikan {
       if (resource->GetCount() == 1) {
         resource->register_ = sampler;
         if (location != -1) {
-          IK_CORE_DEBUG("Shader", "      Location : {0} for {1}[{2}]",
+          IK_CORE_DEBUG(LogModule::Shader, "      Location : {0} for {1}[{2}]",
                         sampler, resource->name_, resource->GetCount());
           SetUniformInt1(resource->name_, (int32_t)sampler);
         }
@@ -464,7 +464,7 @@ namespace ikan {
         
         for (uint32_t s = 0; s < count; s++)
           samplers[s] = (int32_t)s;
-        IK_CORE_DEBUG("Shader", "      Location : {0} to {1} for {2}[{3}]", 0,
+        IK_CORE_DEBUG(LogModule::Shader, "      Location : {0} to {1} for {2}[{3}]", 0,
                       count, resource->GetName(), resource->GetCount());
         SetIntArray(resource->GetName(), samplers, count);
         delete[] samplers;
@@ -486,7 +486,7 @@ namespace ikan {
         continue;
       }
 
-      IK_CORE_DEBUG("Shader", "    Resolving Uniforms for Datatypes of '{0}' Shader...",
+      IK_CORE_DEBUG(LogModule::Shader, "    Resolving Uniforms for Datatypes of '{0}' Shader...",
                     shader_utils::ShaderNameFromInternalType((ShaderDomain)(shaderIdx + 1)));
 
       const std::vector<ShaderUniformDeclaration*>& uniforms = decl->GetUniformDeclarations();
@@ -506,7 +506,7 @@ namespace ikan {
                 std::string uniform_name = uniform->name_ + "[" + std::to_string(l) + "]." + field->name_;
                 uint32_t location = (uint32_t)GetUniformLocation(uniform_name);
                 field->location_.emplace_back(location);
-                IK_CORE_DEBUG("Shader", "      Location : {0} for {1}[{3}].{2}",
+                IK_CORE_DEBUG(LogModule::Shader, "      Location : {0} for {1}[{3}].{2}",
                               location, s.GetName(), field->GetName(), l);
               } // for (size_t k = 0; k < fields.size(); k++)
             } // for (size_t l = 0; l < uniform->GetCount(); l++)
@@ -516,7 +516,7 @@ namespace ikan {
               OpenGLShaderUniformDeclaration* field = (OpenGLShaderUniformDeclaration*)fields[k];
               uint32_t location = (uint32_t)GetUniformLocation(uniform->name_ + "." + field->name_);
               field->location_.emplace_back(location);
-              IK_CORE_DEBUG("Shader", "      Location : {0} for {1}.{2} [{3}]",
+              IK_CORE_DEBUG(LogModule::Shader, "      Location : {0} for {1}.{2} [{3}]",
                             location, s.GetName(), field->GetName(), field->GetCount());
             }
           } // else : if (uniform->GetCount() > 1)
@@ -524,7 +524,7 @@ namespace ikan {
           // Fundamental uniforms
           uint32_t location = (uint32_t)GetUniformLocation(uniform->name_);
           uniform->location_.emplace_back(location);
-          IK_CORE_DEBUG("Shader", "      Location : {0} for {1}[{2}]",
+          IK_CORE_DEBUG(LogModule::Shader, "      Location : {0} for {1}[{2}]",
                         location, uniform->GetName(), uniform->GetCount());
         }
       } // for (size_t j = 0; j < uniforms.size(); j++)

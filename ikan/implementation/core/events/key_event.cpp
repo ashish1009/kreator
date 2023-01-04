@@ -23,25 +23,25 @@ namespace ikan {
   }
   
   void KeyPressedEvent::Print() const {
-    IK_CORE_TRACE("Events", "Key Press Event tiggered ");
-    IK_CORE_TRACE("Events", "  Key code | {0}", (uint32_t)key_code_);
-    IK_CORE_TRACE("Events", "  Repeated | {0}", repeated_count);
+    IK_CORE_TRACE(LogModule::Event, "Key Press Event tiggered ");
+    IK_CORE_TRACE(LogModule::Event, "  Key code | {0}", (uint32_t)key_code_);
+    IK_CORE_TRACE(LogModule::Event, "  Repeated | {0}", repeated_count);
   }
 
   KeyReleasedEvent::KeyReleasedEvent(KeyCode key_code)
   : KeyEvent(key_code) {}
 
   void KeyReleasedEvent::Print() const {
-    IK_CORE_TRACE("Events", "Key Release Event tiggered ");
-    IK_CORE_TRACE("Events", "  Key code | {0}", (uint32_t)key_code_);
+    IK_CORE_TRACE(LogModule::Event, "Key Release Event tiggered ");
+    IK_CORE_TRACE(LogModule::Event, "  Key code | {0}", (uint32_t)key_code_);
   }
 
   KeyTypedEvent::KeyTypedEvent(KeyCode key_code)
   : KeyEvent(key_code) {}
 
   void KeyTypedEvent::Print() const {
-    IK_CORE_TRACE("Events", "Key Type Event tiggered ");
-    IK_CORE_TRACE("Events", "  Key code | {0}", (uint32_t)key_code_);
+    IK_CORE_TRACE(LogModule::Event, "Key Type Event tiggered ");
+    IK_CORE_TRACE(LogModule::Event, "  Key code | {0}", (uint32_t)key_code_);
   }
 
 } // namepsace ikan

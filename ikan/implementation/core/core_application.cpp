@@ -35,7 +35,7 @@ namespace ikan {
     IK_CORE_ASSERT(!instance_, "Application already exists !!!");
     instance_ = this;
 
-    IK_CORE_INFO("Application", "Creating Core Application Instance ...");
+    IK_CORE_INFO(LogModule::Application, "Creating Core Application Instance ...");
     specification_.Log();
     
     AssetManager::SetClientAssetPath(specification_.client_asset_path);
@@ -66,13 +66,13 @@ namespace ikan {
     // Create Memroy for Renderer Data
     Renderer::Initialize();
     
-    IK_CORE_INFO("", "--------------------------------------------------------------------------");
-    IK_CORE_INFO("", "                     Core Application Initialized                         ");
-    IK_CORE_INFO("", "--------------------------------------------------------------------------");
+    IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
+    IK_CORE_INFO(LogModule::None, "                     Core Application Initialized                         ");
+    IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
   }
   
   Application::~Application() {
-    IK_CORE_WARN("Application", "Destroying Core Application Instance !!!");
+    IK_CORE_WARN(LogModule::Application, "Destroying Core Application Instance !!!");
     Renderer::Shutdown();
   }
   
@@ -91,9 +91,9 @@ namespace ikan {
   }
     
   void Application::Run() {
-    IK_CORE_INFO("", "--------------------------------------------------------------------------");
-    IK_CORE_INFO("", "                          Starting Game Loop                              ");
-    IK_CORE_INFO("", "--------------------------------------------------------------------------");
+    IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
+    IK_CORE_INFO(LogModule::None, "                          Starting Game Loop                              ");
+    IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
     while(is_running_) {
       // Store the frame time difference
       time_step_ = window_->GetTimestep();
@@ -109,9 +109,9 @@ namespace ikan {
         RenderGui();
     }
 
-    IK_CORE_INFO("", "--------------------------------------------------------------------------");
-    IK_CORE_INFO("", "                            Ending Game Loop                              ");
-    IK_CORE_INFO("", "--------------------------------------------------------------------------");
+    IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
+    IK_CORE_INFO(LogModule::None, "                            Ending Game Loop                              ");
+    IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
   }
   
   void Application::RenderGui() {
@@ -136,11 +136,11 @@ namespace ikan {
   // Application Specification
   // --------------------------------------------------------------------------
   Application::Specification::Specification() {
-    IK_CORE_TRACE("Application", "Creating Application Specification ... ");
+    IK_CORE_TRACE(LogModule::Application, "Creating Application Specification ... ");
   }
 
   Application::Specification::~Specification() {
-    IK_CORE_WARN("Application", "Destroying Application Specification !!!");
+    IK_CORE_WARN(LogModule::Application, "Destroying Application Specification !!!");
   }
   
   Application::Specification::Specification(const Application::Specification& other)
@@ -148,19 +148,19 @@ namespace ikan {
   rendering_api(other.rendering_api), window_specification(other.window_specification),
   os(other.os), start_maximized(other.start_maximized), resizable(other.resizable),
   enable_gui(other.enable_gui) {
-    IK_CORE_TRACE("Application", "Copying Application Specification ...");
+    IK_CORE_TRACE(LogModule::Application, "Copying Application Specification ...");
   }
   
   Application::Specification::Specification(Application::Specification&& other)
   : name(other.name), client_asset_path(other.client_asset_path), save_ini_file_path(other.save_ini_file_path),
   rendering_api(other.rendering_api), os(other.os), window_specification(other.window_specification),
   start_maximized(other.start_maximized), resizable(other.resizable), enable_gui(other.enable_gui) {
-    IK_CORE_TRACE("Application", "Moving Application Specification ...");
+    IK_CORE_TRACE(LogModule::Application, "Moving Application Specification ...");
   }
   
   Application::Specification&
   Application::Specification::operator=(const Application::Specification& other) {
-    IK_CORE_TRACE("Application", "Copying Application Specification using operator = ...");
+    IK_CORE_TRACE(LogModule::Application, "Copying Application Specification using operator = ...");
     name = other.name;
     client_asset_path = other.client_asset_path;
     save_ini_file_path = other.save_ini_file_path;
@@ -176,7 +176,7 @@ namespace ikan {
   
   Application::Specification&
   Application::Specification::operator =(Application::Specification&& other) {
-    IK_CORE_TRACE("Application", "Moving Application Specification using operator = ...");
+    IK_CORE_TRACE(LogModule::Application, "Moving Application Specification using operator = ...");
     name = other.name;
     client_asset_path = other.client_asset_path;
     save_ini_file_path = other.save_ini_file_path;
@@ -191,16 +191,16 @@ namespace ikan {
   }
   
   void Application::Specification::Log() {
-    IK_CORE_INFO("Application", "  Application Property ");
-    IK_CORE_INFO("Application", "  ---------------------------------------------------------");
-    IK_CORE_INFO("Application", "    Name                 | {0}", name);
-    IK_CORE_INFO("Application", "    Client Asset Path    | {0}", client_asset_path.c_str());
-    IK_CORE_INFO("Application", "    Save INI File Path   | {0}", save_ini_file_path.c_str());
-    IK_CORE_INFO("Application", "    Rewndering API       | {0}", renderer_utils::GetRendererApiName(rendering_api));
-    IK_CORE_INFO("Application", "    Operating System     | {0}", applicaiton_utils::GetOsNameAsString(os));
-    IK_CORE_INFO("Application", "    Window Maximized     | {0}", start_maximized);
-    IK_CORE_INFO("Application", "    Window Resizable     | {0}", resizable);
-    IK_CORE_INFO("Application", "  ---------------------------------------------------------");
+    IK_CORE_INFO(LogModule::Application, "  Application Property ");
+    IK_CORE_INFO(LogModule::Application, "  ---------------------------------------------------------");
+    IK_CORE_INFO(LogModule::Application, "    Name                 | {0}", name);
+    IK_CORE_INFO(LogModule::Application, "    Client Asset Path    | {0}", client_asset_path.c_str());
+    IK_CORE_INFO(LogModule::Application, "    Save INI File Path   | {0}", save_ini_file_path.c_str());
+    IK_CORE_INFO(LogModule::Application, "    Rewndering API       | {0}", renderer_utils::GetRendererApiName(rendering_api));
+    IK_CORE_INFO(LogModule::Application, "    Operating System     | {0}", applicaiton_utils::GetOsNameAsString(os));
+    IK_CORE_INFO(LogModule::Application, "    Window Maximized     | {0}", start_maximized);
+    IK_CORE_INFO(LogModule::Application, "    Window Resizable     | {0}", resizable);
+    IK_CORE_INFO(LogModule::Application, "  ---------------------------------------------------------");
   }
 
 }

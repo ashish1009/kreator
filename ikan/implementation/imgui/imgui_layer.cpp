@@ -20,15 +20,15 @@ namespace ikan {
   
   ImguiLayer::ImguiLayer(void* window_pointer) : Layer("Imgui Layer"),
   window_pointer_(window_pointer) {
-    IK_CORE_TRACE("Imgui", "Creating Imgui Layer instance ...");
+    IK_CORE_TRACE(LogModule::Imgui, "Creating Imgui Layer instance ...");
   }
   
   ImguiLayer::~ImguiLayer() noexcept {
-    IK_CORE_WARN("Imgui", "Destroying Imgui Layer instance !!!");
+    IK_CORE_WARN(LogModule::Imgui, "Destroying Imgui Layer instance !!!");
   }
   
   void ImguiLayer::Attach() {
-    IK_CORE_TRACE("Imgui", "'{0}' is attached to application", GetName());
+    IK_CORE_TRACE(LogModule::Imgui, "'{0}' is attached to application", GetName());
     
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -56,7 +56,7 @@ namespace ikan {
   }
   
   void ImguiLayer::Detach() {
-    IK_CORE_WARN("Imgui", "'{0}' is detached to application", GetName());
+    IK_CORE_WARN(LogModule::Imgui, "'{0}' is detached to application", GetName());
     
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
@@ -110,11 +110,11 @@ namespace ikan {
     io.FontDefault = io.Fonts->AddFontFromFileTTF(default_font.path.c_str(),
                                                   default_font.size);
     
-    IK_CORE_INFO("Imgui", "Imgui Font changed");
-    IK_CORE_INFO("Imgui", "  Regular Font Path | {0}", default_font.path.c_str());
-    IK_CORE_INFO("Imgui", "  Regular Font Size | {0}", default_font.size);
-    IK_CORE_INFO("Imgui", "  Bold Font Path    | {0}", bold_font.path.c_str());
-    IK_CORE_INFO("Imgui", "  Bold Font Size    | {0}", bold_font.size);
+    IK_CORE_INFO(LogModule::Imgui, "Imgui Font changed");
+    IK_CORE_INFO(LogModule::Imgui, "  Regular Font Path | {0}", default_font.path.c_str());
+    IK_CORE_INFO(LogModule::Imgui, "  Regular Font Size | {0}", default_font.size);
+    IK_CORE_INFO(LogModule::Imgui, "  Bold Font Path    | {0}", bold_font.path.c_str());
+    IK_CORE_INFO(LogModule::Imgui, "  Bold Font Size    | {0}", bold_font.size);
   }
   
   void ImguiLayer::SetIniFilePath(const std::string& ini_file_path) {

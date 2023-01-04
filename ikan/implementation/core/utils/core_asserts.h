@@ -13,14 +13,14 @@
 
 #define IK_CORE_ASSERT_NO_MESSAGE(condition) { \
 if(!(condition)) { \
-IK_CORE_ERROR("Assertion Failed"); \
+IK_CORE_ERROR(LogModule::Assert, "Assertion Failed"); \
 ASSERT(condition); \
 } \
 }
 
 #define IK_CORE_ASSERT_MESSAGE(condition, ...) { \
 if(!(condition)) { \
-IK_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); \
+IK_CORE_ERROR(LogModule::Assert, "Assertion Failed: {0}", __VA_ARGS__); \
 ASSERT(condition); \
 } \
 }

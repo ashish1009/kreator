@@ -14,7 +14,7 @@
 namespace ikan {
   
   MacWindow::MacWindow(const Window::Specification& specification) {
-    IK_CORE_INFO("Window", "Creating MAC OS Window instacne ... ");
+    IK_CORE_INFO(LogModule::Window, "Creating MAC OS Window instacne ... ");
 
     // Move the specificaion to MacWindow data
     mac_window_data_.specification = std::move(specification);
@@ -75,7 +75,7 @@ namespace ikan {
   }
   
   MacWindow::~MacWindow() {
-    IK_CORE_WARN("Window", "Destroying MAC OS Window instacne !!! ");
+    IK_CORE_WARN(LogModule::Window, "Destroying MAC OS Window instacne !!! ");
     Shutdown();
   }
   
@@ -204,7 +204,7 @@ namespace ikan {
   }
   
   void MacWindow::Shutdown() {
-    IK_CORE_WARN("Window", "Shutting down the MAC OS Window");
+    IK_CORE_WARN(LogModule::Window, "Shutting down the MAC OS Window");
     glfwTerminate();
     glfwDestroyWindow(window_);
   }
@@ -223,12 +223,12 @@ namespace ikan {
   }
   
   void MacWindow::Maximize() {
-    IK_CORE_INFO("Window", "Maximising the window");
+    IK_CORE_INFO(LogModule::Window, "Maximising the window");
     glfwMaximizeWindow(window_);
   }
   
   void MacWindow::CenterWindow() {
-    IK_CORE_INFO("Window", "Placing the window at the center");
+    IK_CORE_INFO(LogModule::Window, "Placing the window at the center");
     const GLFWvidmode* videmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
     
     const Window::Specification& spec = mac_window_data_.specification;
@@ -238,16 +238,16 @@ namespace ikan {
   }
   
   void MacWindow::SetVSync(bool enabled) {
-    IK_CORE_INFO("Window", "Setting VSynch : {0}", enabled);
+    IK_CORE_INFO(LogModule::Window, "Setting VSynch : {0}", enabled);
     (true == enabled) ? glfwSwapInterval(1) : glfwSwapInterval(0);
     mac_window_data_.specification.v_sync = enabled;
   }
   
   void MacWindow::SetResizable(bool resizable) const {
     if (resizable)
-      IK_CORE_INFO("Window", "Window can be resized");
+      IK_CORE_INFO(LogModule::Window, "Window can be resized");
     else
-      IK_CORE_INFO("Window", "Window can NOT be resized");
+      IK_CORE_INFO(LogModule::Window, "Window can NOT be resized");
     
     glfwSetWindowAttrib(
                         window_,
@@ -257,7 +257,7 @@ namespace ikan {
   }
   
   void MacWindow::SetTitle(const std::string& title) {
-    IK_CORE_INFO("Window", "New MAC Window Title is : {0} (WARNING: Window specificaiton"
+    IK_CORE_INFO(LogModule::Window, "New MAC Window Title is : {0} (WARNING: Window specificaiton"
                   "instance in Application Spceification might have older"
                   "Window name..)", title.c_str());
     

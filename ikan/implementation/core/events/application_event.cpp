@@ -21,13 +21,13 @@ namespace ikan {
   }
   
   void WindowResizeEvent::Print() const {
-    IK_CORE_TRACE("Events", "Window Resize Event tiggered ");
-    IK_CORE_TRACE("Events", "  Height | {0}", height_);
-    IK_CORE_TRACE("Events", "  Width  | {0}", width_);
+    IK_CORE_TRACE(LogModule::Event, "Window Resize Event tiggered ");
+    IK_CORE_TRACE(LogModule::Event, "  Height | {0}", height_);
+    IK_CORE_TRACE(LogModule::Event, "  Width  | {0}", width_);
   }
 
   void WindowCloseEvent::Print() const {
-    IK_CORE_TRACE("Events", "Window Close Event triggered ");
+    IK_CORE_TRACE(LogModule::Event, "Window Close Event triggered ");
   }
   
 } //namespace ikan
