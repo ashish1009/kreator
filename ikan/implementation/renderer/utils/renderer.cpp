@@ -73,9 +73,9 @@ namespace ikan {
     renderer_data_->renderer_api_instance = RendererAPI::Create();
     
     // Initialize Renderers
-    IK_CORE_INFO("--------------------", " -------------------------------------------------------------------------");
-    IK_CORE_INFO("                    ", "                       Initializing All Renderer                          ");
-    IK_CORE_INFO("--------------------", " -------------------------------------------------------------------------");
+    IK_CORE_INFO("", "--------------------------------------------------------------------------");
+    IK_CORE_INFO("", "                       Initializing All Renderer                          ");
+    IK_CORE_INFO("", "--------------------------------------------------------------------------");
     BatchRenderer::Init();
     TextRenderer::Init();
   }

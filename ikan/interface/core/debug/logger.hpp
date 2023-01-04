@@ -67,25 +67,19 @@ namespace ikan {
     
     /// this functun return the tag stored in logger
     /// - Parameter tag: tag
-    static bool HasTag(const std::string& tag) { return enabled_tags_.find(tag) != enabled_tags_.end(); }
+    static bool HasTag(const std::string& tag);
     /// This function return the enabled tags
-    static std::map<std::string, TagDetails>& EnabledTags() { return enabled_tags_; }
+    static std::map<std::string, TagDetails>& GetEnabledTags();
     
-    static const TagDetails& GetDetail(const std::string& tag) {
-      if (HasTag(tag))
-        return enabled_tags_.at(tag);
-      else
-        return enabled_tags_[std::string(tag)];
-    }
-    
-    static void DisableModule(const std::string& tag) {
-      if (HasTag(tag))
-        enabled_tags_.at(tag).enabled = false;
-    }
-    static void EnableModule(const std::string& tag) {
-      if (HasTag(tag))
-        enabled_tags_.at(tag).enabled = true;
-    }
+    /// Get the detail of a module tag
+    /// - Parameter tag: tag name
+    static const TagDetails& GetDetail(const std::string& tag);
+    /// Deisable module log
+    /// - Parameter tag: tag name
+    static void DisableModule(const std::string& tag);
+    /// Enable module log
+    /// - Parameter tag: tag name
+    static void EnableModule(const std::string& tag);
 
     template<typename... Args>
     /// This function stores the log with tag of module
@@ -135,16 +129,13 @@ namespace ikan {
 namespace ikan {
   
   template<typename... Args>
-  void Logger::PrintMessage(Logger::Type type, Logger::Level level, std::string_view tag, Args&&... args)
-  {
+  void Logger::PrintMessage(Logger::Type type, Logger::Level level, std::string_view tag, Args&&... args) {
     static const uint32_t MaxTagLegth = 20;
     const auto& detail = GetDetail(std::string(tag));
-    if (detail.enabled && detail.level_filter <= level)
-    {
+    if (detail.enabled && detail.level_filter <= level) {
       auto logger = (type == Type::Core) ? GetCoreLogger() : GetClientLogger();
-      std::string logString = std::string("{0}" + std::string(size_t(MaxTagLegth - tag.size()), ' ') + std::string(" | {1}"));
-      switch (level)
-      {
+      std::string logString = std::string("[{0}" + std::string(size_t(MaxTagLegth - tag.size()), ' ') + std::string("] | {1}"));
+      switch (level) {
         case Level::Debug:
           logger->debug(logString, tag, fmt::format(std::forward<Args>(args)...));
           break;

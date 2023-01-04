@@ -51,8 +51,8 @@ namespace ikan {
     //   - %f : Time stamp in microseconds
     //   - %l : Log lebel string (-8 measn width reserved for the same)
     //   - %n : Logger Type (core or client) (-4 is width reserved for the same)
-    log_sinks[0]->set_pattern("%T:%e | %-7l | %-4n | %v ");
-    log_sinks[1]->set_pattern("%T:%e | %-7l | %-4n | %v ");
+    log_sinks[0]->set_pattern("[%T:%e | %-7l | %-4n] %v ");
+    log_sinks[1]->set_pattern("[%T:%e | %-7l | %-4n] %v ");
     
     
     // Create the Core Logger
@@ -119,6 +119,28 @@ namespace ikan {
   }
   std::shared_ptr<spdlog::logger>& Logger::GetClientLogger() {
     return client_logger_;
+  }
+  
+  bool Logger::HasTag(const std::string& tag) {
+    return enabled_tags_.find(tag) != enabled_tags_.end();
+  }
+  std::map<std::string, Logger::TagDetails>& Logger::GetEnabledTags() {
+    return enabled_tags_;
+  }
+
+  const Logger::TagDetails& Logger::GetDetail(const std::string& tag) {
+    if (HasTag(tag))
+      return enabled_tags_.at(tag);
+    else
+      return enabled_tags_[std::string(tag)];
+  }
+  void Logger::DisableModule(const std::string& tag) {
+    if (HasTag(tag))
+      enabled_tags_.at(tag).enabled = false;
+  }
+  void Logger::EnableModule(const std::string& tag) {
+    if (HasTag(tag))
+      enabled_tags_.at(tag).enabled = true;
   }
   
 }
