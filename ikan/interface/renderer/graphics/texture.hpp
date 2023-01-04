@@ -125,27 +125,27 @@ namespace ikan {
                                                [[maybe_unused]] char char_val);
   };
   
-  /// This class stores the compiled shader in library
+  /// This class stores the compiled Texture in library
   class TextureLibrary {
   private:
     // -----------
     // Functions
     // -----------
-    /// This function returns the Ref type of ikan::Shader. It creates a new if not present in the map
+    /// This function returns the Ref type of ikan::Texture. It creates a new if not present in the map
     /// - Parameters:
     ///   - path: path of textre
     ///   - min_linear: min linear flag
     ///   - mag_linear: max linear flag
-    [[nodiscard]] static std::shared_ptr<Texture> GetShader(const std::string& path,
-                                                            bool min_linear = true,
-                                                            bool mag_linear = true);
-    /// This function deletes all the shaders present int the map
+    [[nodiscard]] static std::shared_ptr<Texture> GetTexture(const std::string& path,
+                                                             bool min_linear = true,
+                                                             bool mag_linear = true);
+    /// This function deletes all the Texture present int the map
     static void ResetTextures();
     
     // -----------
     // Variables
     // -----------
-    static std::unordered_map<std::string, std::shared_ptr<Texture>> shader_library_;
+    static std::unordered_map<std::string, std::shared_ptr<Texture>> texture_library_;
     
     MAKE_PURE_STATIC(TextureLibrary)
     

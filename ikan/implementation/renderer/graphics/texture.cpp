@@ -74,24 +74,25 @@ namespace ikan {
   // --------------------------------------------------------------------------
   // Texture Library
   // --------------------------------------------------------------------------
-  std::unordered_map<std::string, std::shared_ptr<Texture>> TextureLibrary::shader_library_;
+  std::unordered_map<std::string, std::shared_ptr<Texture>> TextureLibrary::texture_library_;
   
-  std::shared_ptr<Texture> TextureLibrary::GetShader(const std::string& path,
-                                                     bool min_linear,
-                                                     bool mag_linear) {
-    if (shader_library_.find(path) == shader_library_.end()) {
-      shader_library_[path] = Texture::Create(path, min_linear, mag_linear);
-      IK_CORE_DEBUG(LogModule::Texture, "Adding Shader '{0}' to Shdaer Library",
+  std::shared_ptr<Texture> TextureLibrary::GetTexture(const std::string& path,
+                                                      bool min_linear,
+                                                      bool mag_linear) {
+    if (texture_library_.find(path) == texture_library_.end()) {
+      texture_library_[path] = Texture::Create(path, min_linear, mag_linear);
+      IK_CORE_DEBUG(LogModule::Texture, "Adding Texture '{0}' to Shdaer Library",
                     StringUtils::GetNameFromFilePath(path));
+      IK_CORE_DEBUG(LogModule::Texture, "Number of Textures loaded yet {0}", texture_library_.size());
     } else {
-      IK_CORE_DEBUG(LogModule::Texture, "Returning Pre loaded Shader '{0}' from Shdaer Library", StringUtils::GetNameFromFilePath(path));
+      IK_CORE_DEBUG(LogModule::Texture, "Returning Pre loaded Texture '{0}' from Shdaer Library", StringUtils::GetNameFromFilePath(path));
     }
     
-    return shader_library_.at(path);
+    return texture_library_.at(path);
   }
   
   void TextureLibrary::ResetTextures() {
-    for (auto it = shader_library_.begin(); it != shader_library_.end(); it++) {
+    for (auto it = texture_library_.begin(); it != texture_library_.end(); it++) {
       IK_CORE_TRACE(LogModule::Texture, "Removing Texture '{0}' from Shdaer Library",
                    StringUtils::GetNameFromFilePath(it->first));
       it->second.reset();
