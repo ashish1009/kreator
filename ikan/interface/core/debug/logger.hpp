@@ -22,6 +22,14 @@ namespace ikan {
     enum class Level : uint8_t {
       Trace, Debug, Info, Warning, Error, Critical
     };
+    enum class Type : uint8_t {
+      Core, Client
+    };
+    struct TagDetails
+    {
+      bool enabled = true;
+      Level level_filter = Level::Trace;
+    };
     
     /// This function initializes the spd logger. Create instance for both core and client. Sets the core
     /// and client log levels as 'core_level' and 'client_level'. Create a file at path 'log_file_path' to
@@ -57,11 +65,27 @@ namespace ikan {
     /// This function returns the shared pointer of Client log instance
     static std::shared_ptr<spdlog::logger>& GetClientLogger();
     
+    /// this functun return the tag stored in logger
+    /// - Parameter tag: tag
+    static bool HasTag(const std::string& tag) { return enabled_tags.find(tag) != enabled_tags.end(); }
+    /// This function return the enabled tags
+    static std::map<std::string, TagDetails>& EnabledTags() { return enabled_tags; }
+
+    template<typename... Args>
+    /// This function stores the log with tag of module
+    /// - Parameters:
+    ///   - type: type of log project
+    ///   - level: level of log
+    ///   - tag: tag of module
+    ///   - args: Log string with argument
+    static void PrintMessage(Type type, Level level, std::string_view tag, Args&&... args);
+
     ~Logger() noexcept = default;
     
   private:
     MAKE_PURE_STATIC(Logger);
     static std::shared_ptr<spdlog::logger> core_logger_, client_logger_;
+    static std::map<std::string, TagDetails> enabled_tags;
   };
   
 } // namespace ikan
@@ -69,12 +93,14 @@ namespace ikan {
 #ifdef IK_ENABLE_LOG
 
 // Client log macros
-#define IK_TRACE(...) ::ikan::Logger::GetClientLogger()->trace(__VA_ARGS__)
+#define IK_TRACE(tag, ...) ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Trace, tag, __VA_ARGS__)
 #define IK_DEBUG(...) ::ikan::Logger::GetClientLogger()->debug(__VA_ARGS__)
 #define IK_INFO(...) ::ikan::Logger::GetClientLogger()->info(__VA_ARGS__)
 #define IK_WARN(...) ::ikan::Logger::GetClientLogger()->warn(__VA_ARGS__)
 #define IK_ERROR(...) ::ikan::Logger::GetClientLogger()->error(__VA_ARGS__)
 #define IK_CRITICAL(...) ::ikan::Logger::GetClientLogger()->critical(__VA_ARGS__)
+
+#define IK_CORE_TRACE_TAG(tag, ...) ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Trace, tag, __VA_ARGS__)
 
 #else
 
@@ -91,3 +117,39 @@ namespace ikan {
 // Example for LOG API
 // use {i} for printing any variable at ith position in arguament
 // IK_INFO(" ... string ... {0}, {1} .... ", Arg0, Arg1 ...);
+
+
+namespace ikan {
+  
+  template<typename... Args>
+  void Logger::PrintMessage(Logger::Type type, Logger::Level level, std::string_view tag, Args&&... args)
+  {
+    auto detail = enabled_tags[std::string(tag)];
+    if (detail.enabled && detail.level_filter <= level)
+    {
+      auto logger = (type == Type::Core) ? GetCoreLogger() : GetClientLogger();
+      std::string logString = tag.empty() ? "{0}{1}" : "[{0}] {1}";
+      switch (level)
+      {
+        case Level::Debug:
+          logger->debug(logString, tag, fmt::format(std::forward<Args>(args)...));
+          break;
+        case Level::Trace:
+          logger->trace(logString, tag, fmt::format(std::forward<Args>(args)...));
+          break;
+        case Level::Info:
+          logger->info(logString, tag, fmt::format(std::forward<Args>(args)...));
+          break;
+        case Level::Warning:
+          logger->warn(logString, tag, fmt::format(std::forward<Args>(args)...));
+          break;
+        case Level::Error:
+          logger->error(logString, tag, fmt::format(std::forward<Args>(args)...));
+          break;
+        case Level::Critical:
+          logger->critical(logString, tag, fmt::format(std::forward<Args>(args)...));
+          break;
+      }
+    }
+  }
+}
