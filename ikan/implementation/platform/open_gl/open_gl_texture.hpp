@@ -152,7 +152,9 @@ namespace ikan {
     
     /// Default destructor that delete the texture
     virtual ~OpenGLImage() noexcept;
-    
+
+    DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLImage);
+
     // -------------
     // Fundamentals
     // -------------

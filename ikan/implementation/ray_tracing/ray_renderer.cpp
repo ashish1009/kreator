@@ -97,7 +97,7 @@ namespace ikan {
       }
       
       const Sphere& sphere = active_scene_->spheres[payload.object_idx];
-      const Material& material = active_scene_->materials[sphere.material_index];
+      const RayMaterial& material = active_scene_->materials[sphere.material_index];
       if (i == 0)
         color = material.albedo;
       glm::vec3 sphere_color;

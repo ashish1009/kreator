@@ -52,6 +52,8 @@ namespace ikan {
     /// This function returns the name of layer
     const std::string& GetName() const { return name_; };
     
+    DEFINE_COPY_MOVE_CONSTRUCTORS(Layer)
+    
   protected:
     std::string name_ = "Unknown";
   };

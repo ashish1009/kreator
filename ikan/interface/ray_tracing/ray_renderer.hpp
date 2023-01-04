@@ -23,6 +23,8 @@ namespace ikan {
     /// Default destructor
     RayRenderer() = default;
     
+    DELETE_COPY_MOVE_CONSTRUCTORS(RayRenderer)
+    
     /// This function renders the scene using editor camera
     /// - Parameters:
     ///   - scene: scene reference

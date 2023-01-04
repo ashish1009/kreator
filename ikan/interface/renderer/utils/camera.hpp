@@ -44,7 +44,7 @@ namespace ikan {
     /// This function returns the Projection Matrix of Camera
     [[nodiscard]] const glm::mat4& GetProjection() const;
         
-    DEFINE_COPY_MOVE_CONSTRUCTORS(Camera);
+    DELETE_COPY_MOVE_CONSTRUCTORS(Camera);
     
   protected:
     float near_plane_ = 0.0f;

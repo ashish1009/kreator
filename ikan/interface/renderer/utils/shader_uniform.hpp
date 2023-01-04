@@ -85,6 +85,8 @@ namespace ikan {
     /// Destroy the structure
     ~ShaderStruct();
     
+    DELETE_COPY_MOVE_CONSTRUCTORS(ShaderStruct)
+    
     /// This function updates the offset value of structure
     /// - Parameter offset: new offset
     void SetOffset(uint32_t offset);

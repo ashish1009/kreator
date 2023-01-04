@@ -15,7 +15,10 @@ namespace ikan {
   class RayScene {
   public:
     std::vector<Sphere> spheres;
-    std::vector<Material> materials;
+    std::vector<RayMaterial> materials;
+    
+    RayScene() = default;
+    DEFINE_COPY_MOVE_CONSTRUCTORS(RayScene)
   };
 
 }

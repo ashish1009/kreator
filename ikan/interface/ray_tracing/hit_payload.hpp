@@ -22,6 +22,9 @@ namespace ikan {
     /// - Parameters:
     ///   - ray: ray of the camera
     void SetFaceNormal(const Ray& ray);
+    
+    HitPayload() = default;
+    DEFINE_COPY_MOVE_CONSTRUCTORS(HitPayload);
   };
 
 }

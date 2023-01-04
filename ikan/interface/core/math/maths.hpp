@@ -78,4 +78,5 @@ namespace ikan::Math {
   ///   - n: normal
   ///   - etai_over_etat: ratiio of refractive index
   glm::vec3 Refract(const glm::vec3& uv, const glm::vec3& n, float etai_over_etat);
+  
 }

@@ -24,6 +24,8 @@ namespace ikan {
     ///   - direction: direction of ray
     Ray(const glm::vec3& origin, const glm::vec3& direction);
     Ray() = default;
+    
+    DEFINE_COPY_MOVE_CONSTRUCTORS(Ray)
   };
   
 }

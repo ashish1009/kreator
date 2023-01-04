@@ -26,8 +26,10 @@ namespace ikan {
     /// This function create and Entity and store in scene registry
     Entity CreateEntity();
     /// This function destory the entity from scene registry
-    /// - Parameter entity: <#entity description#>
+    /// - Parameter entity: entity to be destroyed
     void DestroyEntity(Entity entity);
+    
+    DELETE_COPY_MOVE_CONSTRUCTORS(EnttScene);
     
   private:
     // ------------------

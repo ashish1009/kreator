@@ -52,6 +52,8 @@ namespace ikan {
     /// This is the default destructor of Shader uniform
     virtual ~OpenGLShaderUniformDeclaration();
     
+    DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLShaderUniformDeclaration);
+    
     // -----------
     // Getters
     //------------
@@ -127,6 +129,8 @@ namespace ikan {
     /// This is default destrcutro
     virtual ~OpenGLShaderResourceDeclaration();
     
+    DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLShaderResourceDeclaration);
+    
     // -----------
     // Getters
     //------------
@@ -170,6 +174,8 @@ namespace ikan {
     OpenGLShaderUniformBufferDeclaration(const std::string& name, ShaderDomain domain);
     /// Default destructor that delete the buffer
     virtual ~OpenGLShaderUniformBufferDeclaration();
+    
+    DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLShaderUniformBufferDeclaration)
     
     // --------------
     // Fundamentals

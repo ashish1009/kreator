@@ -95,6 +95,8 @@ namespace ikan {
                          const glm::vec3& p1,
                          const glm::vec4& color);
     
+    MAKE_PURE_STATIC(BatchRenderer);
+    
   private:
     // Member Methods
     /// This funcition initialize the quad renderer data

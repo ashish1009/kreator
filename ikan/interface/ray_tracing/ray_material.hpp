@@ -12,7 +12,7 @@
 
 namespace ikan {
   
-  struct Material {
+  struct RayMaterial {
     enum class Type : uint8_t {
       None, Metal, Lambertian, Dielectric
     };
@@ -36,6 +36,9 @@ namespace ikan {
                  const HitPayload& payload,
                  glm::vec3& attenuation,
                  Ray& scattered_ray) const;
+    
+    RayMaterial() =default;
+    DELETE_COPY_MOVE_CONSTRUCTORS(RayMaterial);
     
   private:
     /// This function calculate the reflecatance for the dielectric

@@ -34,6 +34,8 @@ namespace ikan {
     ///   - material_index: material index
     Sphere(const glm::vec3& position, float radius, int32_t material_index);
     Sphere() = default;
+    
+    DEFINE_COPY_MOVE_CONSTRUCTORS(Sphere);
   };
   
 }

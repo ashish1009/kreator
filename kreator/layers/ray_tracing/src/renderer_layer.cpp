@@ -144,9 +144,9 @@ namespace ray_tracing {
       for (size_t i = 0; i < scene_.materials.size(); i++) {
         ImGui::PushID((uint32_t)i);
         ImGui::ColorEdit3("color", glm::value_ptr(scene_.materials[i].albedo));
-        if (scene_.materials[i].type == Material::Type::Metal)
+        if (scene_.materials[i].type == RayMaterial::Type::Metal)
           ImGui::DragFloat("fuzz", &scene_.materials[i].fuzz, 0.01, 0.0, 1.0);
-        if (scene_.materials[i].type == Material::Type::Dielectric)
+        if (scene_.materials[i].type == RayMaterial::Type::Dielectric)
           ImGui::DragFloat("ri", &scene_.materials[i].refractive_index, 0.01, 0.0);
         ImGui::Separator();
         ImGui::PopID();

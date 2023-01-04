@@ -19,7 +19,7 @@ namespace ikan {
     return v - 2*dot(v,n)*n;
   }
   
-  bool Material::Scatter(const Ray &ray_in,
+  bool RayMaterial::Scatter(const Ray &ray_in,
                          const HitPayload &payload,
                          glm::vec3 &attenuation,
                          Ray &scattered_ray) const {
@@ -30,22 +30,22 @@ namespace ikan {
      --------------------------------------------------------------------------
      */
     switch (type) {
-      case Material::Type::None:
+      case RayMaterial::Type::None:
         attenuation = albedo;
         scattered_ray = Ray(payload.world_position, -ray_in.direction);
         return true;
-      case Material::Type::Metal:
+      case RayMaterial::Type::Metal:
         return ScatterMatelic(ray_in, payload, attenuation, scattered_ray);
-      case Material::Type::Lambertian:
+      case RayMaterial::Type::Lambertian:
         return ScatterLambertian(ray_in, payload, attenuation, scattered_ray);
-      case Material::Type::Dielectric:
+      case RayMaterial::Type::Dielectric:
         return ScatterDielectric(ray_in, payload, attenuation, scattered_ray);
       default:
         IK_ASSERT(false, "invalid type");
     }
   }
 
-  bool Material::ScatterMatelic(const Ray& ray_in,
+  bool RayMaterial::ScatterMatelic(const Ray& ray_in,
                                 const HitPayload& payload,
                                 glm::vec3& attenuation,
                                 Ray& scattered_ray) const {
@@ -55,7 +55,7 @@ namespace ikan {
     return (dot(scattered_ray.direction, payload.world_normal) > 0);
   }
   
-  bool Material::ScatterLambertian(const Ray& ray_in,
+  bool RayMaterial::ScatterLambertian(const Ray& ray_in,
                                    const HitPayload& payload,
                                    glm::vec3& attenuation,
                                    Ray& scattered_ray) const {
@@ -70,7 +70,7 @@ namespace ikan {
     return true;
   }
 
-  bool Material::ScatterDielectric(const Ray& ray_in,
+  bool RayMaterial::ScatterDielectric(const Ray& ray_in,
                                    const HitPayload& payload,
                                    glm::vec3& attenuation,
                                    Ray& scattered_ray) const {
@@ -95,7 +95,7 @@ namespace ikan {
     return true;
   }
   
-  float Material::Reflectance(float cosine) const {
+  float RayMaterial::Reflectance(float cosine) const {
     // Use Schlick's approximation for reflectance.
     auto r0 = (1 - refractive_index) / (1 + refractive_index);
     r0 = r0 * r0;

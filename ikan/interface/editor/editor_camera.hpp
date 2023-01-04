@@ -35,6 +35,8 @@ namespace ikan {
     /// This destructor destroys the Editor Camera instnace
     ~EditorCamera();
     
+    DELETE_COPY_MOVE_CONSTRUCTORS(EditorCamera);
+    
     /// This function updates the Parameter of Editor Camera each frame
     /// - Parameter ts: time step of each frame
     bool Update([[maybe_unused]] Timestep ts);

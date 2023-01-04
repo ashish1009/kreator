@@ -30,6 +30,8 @@ namespace ikan {
     /// This destructor destroy the Open GL Shader compiler
     ~OpenGLShader() noexcept;
     
+    DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLShader);
+
     // -----------------
     // Fundamentals
     // -----------------
@@ -50,7 +52,6 @@ namespace ikan {
     /// This function set the geomatry shader buffer data
     /// - Parameter buffer: buffer data
     void SetGSMaterialUniformBuffer(const Buffer& buffer) override;
-
     
     // --------------
     // Getters
@@ -128,8 +129,6 @@ namespace ikan {
     ///   - value: Value of Uniform
     void SetUniformFloat4(const std::string& name,
                           const glm::vec4& value) override;
-
-    DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLShader);
 
   private:
     // ------------------

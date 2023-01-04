@@ -34,6 +34,8 @@ namespace ikan {
     /// This destrictor destroy the Imgui layer instance
     ~ImguiLayer() noexcept;
     
+    DELETE_COPY_MOVE_CONSTRUCTORS(ImguiLayer);
+    
     // ------------------
     // Overrides
     // ------------------
