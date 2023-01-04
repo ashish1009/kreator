@@ -58,7 +58,7 @@ namespace editor {
   void EditorLayer::RenderGui() {
     ImguiAPI::StartDcocking();
     Renderer::Framerate();
-    Renderer::RenderStatsGui();
+    Renderer::RenderStatsGui(true);
     
     viewport_.RenderGui();
     
