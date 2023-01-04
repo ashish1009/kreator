@@ -20,4 +20,16 @@ namespace ikan {
     TagComponent(const std::string& tag);
     DEFINE_COPY_MOVE_CONSTRUCTORS(TagComponent);
   };
+  
+  struct TransformComponent {
+    glm::vec3 translation{0.0f};
+    glm::vec3 rotation{0.0f};
+    glm::vec3 scale{1.0f};
+    
+    TransformComponent(const glm::vec3& translation = { 0.0f, 0.0f, 0.0f });
+    glm::mat4 GetTransform() const;
+    
+    DEFINE_COPY_MOVE_CONSTRUCTORS(TransformComponent);
+  };
+  
 }

@@ -25,6 +25,7 @@ namespace ikan {
     // Add the Mendatory components
     entity.AddComponent<IDComponent>(uuid);
     entity.AddComponent<TagComponent>(name);
+    entity.AddComponent<TransformComponent>();
 
     IK_CORE_TRACE(LogModule::EnttScene, "Stored Entity in Scene");
     IK_CORE_TRACE(LogModule::EnttScene, "  Name | {0}", entity.GetComponent<TagComponent>().tag.c_str());
