@@ -8,7 +8,10 @@
 #include "entt_scene.hpp"
 #include "scene/entity.hpp"
 #include "scene/core_components.hpp"
+#include "editor/property_grid.hpp"
 #include "renderer/utils/batch_2d_renderer.hpp"
+#include "renderer/utils/renderer.hpp"
+#include "renderer/graphics/texture.hpp"
 
 namespace ikan {
   
@@ -104,10 +107,38 @@ namespace ikan {
 
   void EnttScene::RenderGui() {
     render_imgui_();
+    
+    // Texture for Play and Pause button
+    static std::shared_ptr<Texture> pause_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/pause.png"));
+    static std::shared_ptr<Texture> play_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/play.png"));
+    
+    // Play Pause Buttom
+    ImGui::Begin("Play/Pause",
+                 nullptr, // No Open Flag
+                 ImGuiWindowFlags_NoDecoration |
+                 ImGuiWindowFlags_NoScrollbar |
+                 ImGuiWindowFlags_NoScrollWithMouse);
+    
+    // Update the texture id based on the state of scene
+    uint32_t tex_id = state_ == State::Edit ? play_texture->GetRendererID() : pause_texture->GetRendererID();
+    
+    float size = ImGui::GetWindowHeight() - 12.0f; // 12 just random number
+    ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 0.5f));
+    
+    // Button action
+    if (PropertyGrid::ImageButton("Play/Pause", tex_id, { size, size })) {
+      if (state_ == State::Edit)
+        PlayScene();
+      else
+        EditScene();
+    }
+    
+    ImGui::End();
+
   }
   
   void EnttScene::RenderImguiEditor() {
-    editor_camera_.RendererGui();
+//    editor_camera_.RendererGui();
   }
   
   void EnttScene::RenderImguiRuntime() {
