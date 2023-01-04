@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B20303D329659A9A00563A34 /* log_utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B20303D129659A9A00563A34 /* log_utils.hpp */; };
-		B20303D92965ADCE00563A34 /* content_browser_paxnel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B20303D72965ADCE00563A34 /* content_browser_paxnel.cpp */; };
+		B20303D92965ADCE00563A34 /* content_browser_panel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B20303D72965ADCE00563A34 /* content_browser_panel.cpp */; };
 		B20303DA2965ADCE00563A34 /* content_browser_panel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B20303D82965ADCE00563A34 /* content_browser_panel.hpp */; };
 		B216B255295B2F6B00C05392 /* open_gl_texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B216B253295B2F6B00C05392 /* open_gl_texture.cpp */; };
 		B216B256295B2F6B00C05392 /* open_gl_texture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B216B254295B2F6B00C05392 /* open_gl_texture.hpp */; };
@@ -159,7 +159,7 @@
 
 /* Begin PBXFileReference section */
 		B20303D129659A9A00563A34 /* log_utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = log_utils.hpp; sourceTree = "<group>"; };
-		B20303D72965ADCE00563A34 /* content_browser_paxnel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = content_browser_paxnel.cpp; sourceTree = "<group>"; };
+		B20303D72965ADCE00563A34 /* content_browser_panel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = content_browser_panel.cpp; sourceTree = "<group>"; };
 		B20303D82965ADCE00563A34 /* content_browser_panel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = content_browser_panel.hpp; sourceTree = "<group>"; };
 		B216B253295B2F6B00C05392 /* open_gl_texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_texture.cpp; sourceTree = "<group>"; };
 		B216B254295B2F6B00C05392 /* open_gl_texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_texture.hpp; sourceTree = "<group>"; };
@@ -539,7 +539,7 @@
 			children = (
 				B2C0D8072959E161003F168B /* property_grid.cpp */,
 				B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */,
-				B20303D72965ADCE00563A34 /* content_browser_paxnel.cpp */,
+				B20303D72965ADCE00563A34 /* content_browser_panel.cpp */,
 			);
 			path = editor;
 			sourceTree = "<group>";
@@ -966,7 +966,7 @@
 				B2FC405E2958BD0900447A1A /* open_gl_renderer_api.cpp in Sources */,
 				B2F526522959774B00A83C65 /* open_gl_shader_compiler.cpp in Sources */,
 				B2FC3EA0295887FF00447A1A /* key_event.cpp in Sources */,
-				B20303D92965ADCE00563A34 /* content_browser_paxnel.cpp in Sources */,
+				B20303D92965ADCE00563A34 /* content_browser_panel.cpp in Sources */,
 				B24DD81A2962FD9800525941 /* sphere.cpp in Sources */,
 				B24DD8192962FD9800525941 /* ray_renderer.cpp in Sources */,
 				B2FC3E912958840D00447A1A /* buffers.cpp in Sources */,

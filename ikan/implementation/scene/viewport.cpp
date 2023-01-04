@@ -6,6 +6,7 @@
 //
 
 #include "viewport.hpp"
+#include "editor/property_grid.hpp"
 
 namespace ikan {
   
@@ -59,6 +60,7 @@ namespace ikan {
     ImGui::Columns(5);
     ImGui::SetColumnWidth(0, 90);
     ImGui::Text("%d x %d", mouse_pos_x, mouse_pos_y);
+    PropertyGrid::HoveredMsg("Mouse relative position");
     ImGui::NextColumn();
     
     ImGui::SetColumnWidth(1, 90);
@@ -73,6 +75,7 @@ namespace ikan {
 
     ImGui::SetColumnWidth(3, 90);
     ImGui::Text("%d x %d", width, height);
+    PropertyGrid::HoveredMsg("Viewport Size");
     ImGui::NextColumn();
 
     ImGui::SetColumnWidth(4, 100);
@@ -80,6 +83,7 @@ namespace ikan {
     if (ImGui::ColorEdit4("", &color.x, ImGuiColorEditFlags_NoInputs)) {
       framebuffer->UpdateSpecificationColor(color);
     }
+    PropertyGrid::HoveredMsg("Framebuffer Background color");
     ImGui::Columns(1);
 
     ImGui::PopID();

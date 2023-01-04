@@ -23,7 +23,7 @@ namespace ikan {
     Entity, Component, EnttScene,
     
     // Editor
-    EditorCamera, ContentBrowserPannel,
+    EditorCamera, ContentBrowserPanel,
     
     // Ray Tracing
     HitPayload, Ray, Sphere,
@@ -65,7 +65,7 @@ namespace ikan {
       case LogModule::EnttScene: return "EnttScene";
 
       case LogModule::EditorCamera: return "Editor Camera";
-      case LogModule::ContentBrowserPannel: return "Content Browser";
+      case LogModule::ContentBrowserPanel: return "Content Browser";
 
       case LogModule::HitPayload: return "HitPayload";
       case LogModule::Ray: return "Ray";

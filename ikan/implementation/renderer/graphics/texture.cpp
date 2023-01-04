@@ -92,7 +92,7 @@ namespace ikan {
   
   void TextureLibrary::ResetTextures() {
     for (auto it = shader_library_.begin(); it != shader_library_.end(); it++) {
-      IK_CORE_WARN(LogModule::Texture, "Removing Shader '{0}' from Shdaer Library",
+      IK_CORE_TRACE(LogModule::Texture, "Removing Texture '{0}' from Shdaer Library",
                    StringUtils::GetNameFromFilePath(it->first));
       it->second.reset();
     }

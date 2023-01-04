@@ -29,6 +29,23 @@ namespace ikan {
     static void HelpMarker(const char* description,
                            const char* icon_char = "?",
                            bool same_line = true);
+    /// This function renderes a search box with search button
+    /// - Parameters:
+    ///   - value: value written in the box
+    ///   - hint: hint to be shown
+    static bool Search(char* value,
+                       const char* hint,
+                       const glm::vec2& size = { 15.0f, 15.0f });
+    /// This function renders Imgae in current Imgui window
+    /// - Parameters:
+    ///   - textureID; Texture id of Image to be rendered
+    ///   - size; size of image need to be rendered inside Imgui window (this size will be visible as texture)
+    ///   - uv0; Left
+    ///   - uv1; Right
+    static void Image(void* textureID,
+                      const glm::vec2& size,
+                      const glm::vec2& uv0,
+                      const glm::vec2& uv1);
 
     MAKE_PURE_STATIC(PropertyGrid);
   };

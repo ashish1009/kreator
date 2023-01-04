@@ -26,7 +26,37 @@ namespace ikan {
     DELETE_COPY_MOVE_CONSTRUCTORS(ContentBrowserPanel)
     
   private:
+    // -------------------
+    // Member Functions
+    // -------------------
+    /// This function renders the title of Content browser pannel
+    void TitleIcon();
+    /// This function renders the Main area of Content browser pannel
+    void MainArea();
+    /// This function renders the Main area of Content browser pannel
+    void SideMenu();
+    
+    /// This function render back icon
+    void Back();
+    /// This function render forward icon
+    void Forward();
+    /// This function render home icon
+    void Home();
+    
+    /// This function render search Text box icon
+    void Search();
+    /// This fucntion prints the path history
+    void PathHistory();
+
+    // -------------------
+    // Member Functions
+    // -------------------
+    static constexpr float SideChildWidth = 0.15f;
+    static constexpr float WindowYOffset  = 55.0f;
+    static constexpr float RoundFactor    = 2.0f;
+    
     std::filesystem::path root_path_, current_directory_;
+    ImGuiTextFilter search_filter_;
   };
   
 }
