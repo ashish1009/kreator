@@ -41,7 +41,11 @@ namespace ikan {
     // ------------------
     // Registry to store the entity handles
     entt::registry registry_;
-    
+    std::unordered_map<entt::entity, Entity> entity_id_map_;
+
+    // Number of Entity stored in Scene and Max ID given to Entity
+    uint32_t num_entities_ = 0, max_entity_id_ = -1;
+
     friend class Entity;
   };
   

@@ -29,16 +29,16 @@ namespace ikan {
   }
   
   Entity& Entity::operator=(const Entity& other) {
-    IK_CORE_TRACE(LogModule::Entity, "Copying Entity with Handle withg = operator {0} ...", (uint32_t)entity_handle_);
     entity_handle_ = other.entity_handle_;
     scene_ = other.scene_;
+    IK_CORE_TRACE(LogModule::Entity, "Copying Entity using = operator with Handle {0} ...", (uint32_t)entity_handle_);
     return *this;
   }
   
   Entity& Entity::operator=(Entity&& other) {
-    IK_CORE_TRACE(LogModule::Entity, "Moving Entity with Handle withg = operator {0} ...", (uint32_t)entity_handle_);
     entity_handle_ = other.entity_handle_;
     scene_ = other.scene_;
+    IK_CORE_TRACE(LogModule::Entity, "Moving Entity using = operator with Handle {0} ...", (uint32_t)entity_handle_);
     return *this;
   }
   
@@ -47,5 +47,6 @@ namespace ikan {
   }
 
   Entity::operator entt::entity() const { return entity_handle_; }
+  Entity::operator uint32_t() const { return (uint32_t)entity_handle_; }
 
 }

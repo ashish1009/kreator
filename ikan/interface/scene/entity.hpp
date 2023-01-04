@@ -54,6 +54,8 @@ namespace ikan {
     // ----------------
     /// This function returns Entity as entity handle
     operator entt::entity() const;
+    /// This function returns the entity handle from this Entity
+    operator uint32_t() const;
 
   private:
     entt::entity entity_handle_{ entt::null };

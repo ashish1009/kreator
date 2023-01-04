@@ -90,7 +90,6 @@ namespace ikan {
     return *this;
   }
   glm::mat4 TransformComponent::GetTransform() const {
-    glm::mat4 rotation_matrix = glm::toMat4(glm::quat(rotation));
     return Math::GetTransformMatrix(translation, rotation, scale);
   }
   
