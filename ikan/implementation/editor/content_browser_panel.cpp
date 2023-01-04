@@ -11,8 +11,14 @@
 
 namespace ikan {
   
-  ContentBrowserPanel::ContentBrowserPanel(const std::string& root_path)
+  ContentBrowserPanel::ContentBrowserPanel(const std::string& root_path,
+                                           const std::vector<std::filesystem::path>& favourite_paths)
   : root_path_(root_path), current_directory_(root_path) {
+    // Add Pinned Paths
+    favourite_paths_.emplace_back("../../../ikan/core_assets");
+    for (const auto& path : favourite_paths)
+      favourite_paths_.emplace_back(path);
+
     IK_CORE_TRACE(LogModule::ContentBrowserPanel, "Creating Content Browser Panel ... ");
     IK_CORE_TRACE(LogModule::ContentBrowserPanel, "  Root Path : {0}", root_path_.string());
   }
@@ -20,6 +26,11 @@ namespace ikan {
   ContentBrowserPanel::~ContentBrowserPanel() {
     IK_CORE_WARN(LogModule::ContentBrowserPanel, "Destroying Content Browser Panel !!! ");
     IK_CORE_WARN(LogModule::ContentBrowserPanel, "  Root Path : {0}", root_path_.string());
+  }
+  
+  void ContentBrowserPanel::AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths) {
+    for (const auto& path : favourite_paths)
+      favourite_paths_.emplace_back(path);
   }
 
   void ContentBrowserPanel::RenderGui() {
@@ -87,8 +98,36 @@ namespace ikan {
     // Shows the content of the side pinned folders
     bool menu_opened = ImGui::TreeNodeEx((void*)"##SizeMenu", flags, "Favourits");
     if (menu_opened) {
-      // TODO: Add feature
+      // TODO: Add feature to add pinned path in run time
+      int32_t push_id = 0;
+      for (auto pinned_path : favourite_paths_) {
+        ImGui::PushID(++push_id);
+        
+        // Get the filename of the side menu content
+        const auto& filename = pinned_path.filename().c_str();
+        auto flag = ImGuiTreeNodeFlags_OpenOnArrow
+        | ImGuiTreeNodeFlags_SpanAvailWidth
+        | ((pinned_path == current_directory_) ? ImGuiTreeNodeFlags_Selected : 0);
+        
+        // Show the Pinned filder name
+        bool opened = ImGui::TreeNodeEx(filename,
+                                        flag,
+                                        filename);
+        
+        // If click then jump to that directosy
+        if (ImGui::IsItemClicked()) {
+          // Change current directory
+          current_directory_ = pinned_path;
+        }
 
+        // If opened the menu of current folder then show its content
+        if (opened) {
+          // TODO: Add Function
+          ImGui::TreePop();
+        }
+        
+        ImGui::PopID(); // ImGui::PushID(push_id);
+      } // for (auto pinned_path : pinned_paths_)
       ImGui::TreePop();
     } // if (menu_opened)
 

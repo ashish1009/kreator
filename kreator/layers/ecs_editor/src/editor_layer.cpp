@@ -11,6 +11,9 @@ namespace editor {
   
   EditorLayer::EditorLayer() : Layer("Kreator") {
     IK_INFO("Editor", "Creating Editor Layer instance ... ");
+    cbp_.AddFavouritPaths({
+      AM::ProjectPath("kreator/layers/ecs_editor/editor_assets"),
+    });
   }
   
   EditorLayer::~EditorLayer() {

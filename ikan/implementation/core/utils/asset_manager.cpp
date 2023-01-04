@@ -11,14 +11,21 @@ namespace ikan {
   
   std::string AssetManager::client_asset_path_;
   std::string AssetManager::core_asset_path_ = "../../../ikan/core_assets/";
-  
+  std::string AssetManager::project_path_ = "../../../";
+
   const std::string& AssetManager::GetCoreAssetBasePath() {
     return core_asset_path_;
   }
   const std::string& AssetManager::GetClientAssetBasePath() {
     return client_asset_path_;
   }
+  const std::string& AssetManager::GetProjectBasePath() {
+    return project_path_;
+  }
   
+  std::string AssetManager::ProjectPath(const std::string &asset_path) {
+    return project_path_ + asset_path;
+  }
   std::string AssetManager::CoreAsset(const std::string& asset_path) {
     return core_asset_path_ + asset_path;
   }

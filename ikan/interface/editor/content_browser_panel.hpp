@@ -16,12 +16,16 @@ namespace ikan {
   public:
     /// This constructor creates content Browser Panel instance with root path
     /// - Parameter root_path: root path of Content browser panel
-    ContentBrowserPanel(const std::string& root_path = "../../../");
+    ContentBrowserPanel(const std::string& root_path = "../../../",
+                        const std::vector<std::filesystem::path>& favourite_paths = {});
     /// This destructor destroy Content browser panel instance
     ~ContentBrowserPanel();
     
     /// This function renders Imgui for Contenct browser panel
     void RenderGui();
+    /// This funcfion add the favourit paths to the pannel
+    /// - Parameter favourite_paths: paths
+    void AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths);
 
     DELETE_COPY_MOVE_CONSTRUCTORS(ContentBrowserPanel)
     
@@ -57,6 +61,8 @@ namespace ikan {
     
     std::filesystem::path root_path_, current_directory_;
     ImGuiTextFilter search_filter_;
+
+    std::vector<std::filesystem::path> favourite_paths_;
   };
   
 }

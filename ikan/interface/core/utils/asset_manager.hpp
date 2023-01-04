@@ -21,7 +21,15 @@ namespace ikan {
     static const std::string& GetCoreAssetBasePath();
     /// This function returns the Client Asset Base path, relative to .exce
     static const std::string& GetClientAssetBasePath();
+    /// This function returns the Client Asset Base path, relative to .exce
+    static const std::string& GetProjectBasePath();
     
+    /// This function returns the entire Asset path relative to .exce NOTE: Add the asset path to base path
+    /// e.g.  Base path is "../../Folder1/Folder2/"
+    ///     asset_path is "Folder3/File_name.Extension"
+    /// returns : "../../Folder1/Folder2/Folder3/File_name.Extension"
+    /// - Parameter assetPath: aasset path relative to asset folder
+    static std::string ProjectPath(const std::string& asset_path);
     /// This function returns the entire Asset path relative to .exce/ NOTE: Add the asset path to base path
     /// e.g.  Base path is "../../Folder1/Folder2/"
     ///     asset_path is "Folder3/File_name.Extension"
@@ -40,6 +48,7 @@ namespace ikan {
   private:
     static std::string client_asset_path_;
     static std::string core_asset_path_;
+    static std::string project_path_;
   };
   
   using AM = AssetManager;
