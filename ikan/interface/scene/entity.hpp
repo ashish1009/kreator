@@ -23,10 +23,31 @@ namespace ikan {
     ///   - scene: Scene pointer to which this entity to be bound
     Entity(entt::entity handle, EnttScene* scene);
     
-    DEFINE_COPY_MOVE_CONSTRUCTORS(Entity);
-    
     /// This is default entity Destrcutor
     ~Entity();
+    
+    DEFINE_COPY_MOVE_CONSTRUCTORS(Entity);
+
+    // ----------------------
+    // Template APIs
+    // ----------------------
+    /// This function adds component in Current Entity
+    /// - parameter args: Arguments needed to construct the component NOTE : T is type of component
+    template<typename T, typename... Args> T& AddComponent(Args&&... args) {
+      IK_ASSERT(!HasComponent<T>(), "Entity already has component!");
+      return scene_->registry_.emplace<T>(entity_handle_, std::forward<Args>(args)...);
+    }
+
+    /// This function returns component from Current Entity NOTE : T is type of component
+    template<typename T> T& GetComponent() const {
+      IK_ASSERT(HasComponent<T>(), "Entity does not have component!");
+      return scene_->registry_.get<T>(entity_handle_);
+    }
+    
+    /// This function checks if Entity have a component return true if present NOTE : T is type of component
+    template<typename T> bool HasComponent() const {
+      return scene_->registry_.has<T>(entity_handle_);
+    }
     
     // ----------------
     // Operators

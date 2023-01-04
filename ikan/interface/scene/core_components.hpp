@@ -8,6 +8,9 @@
 #pragma once
 
 namespace ikan {
-  
+ 
+  struct IDComponent {
+    UUID id = 0;
+  };
   
 }

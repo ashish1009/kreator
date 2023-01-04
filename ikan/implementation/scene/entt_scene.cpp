@@ -7,6 +7,7 @@
 
 #include "entt_scene.hpp"
 #include "scene/entity.hpp"
+#include "scene/core_components.hpp"
 
 namespace ikan {
   
@@ -18,14 +19,20 @@ namespace ikan {
     IK_CORE_WARN("EnTT Scene", "Destroying Scene!!!");
   }
   
-  Entity EnttScene::CreateEntity() {
+  Entity EnttScene::CreateEntity(UUID uuid) {
     Entity entity {registry_.create(), this};
-    IK_CORE_INFO("EnTT Scene", "Stored Entity in Scene");
+
+    // Add the Mendatory components
+    entity.AddComponent<IDComponent>(uuid);
+
+    IK_CORE_TRACE("EnTT Scene", "Stored Entity in Scene");
+    IK_CORE_TRACE("EnTT Scene", "  ID   | {0}", entity.GetComponent<IDComponent>().id);
     return entity;
   }
   
   void EnttScene::DestroyEntity(Entity entity) {
     IK_CORE_WARN("EnTT Scene", "Removed Entity from Scene");
+    IK_CORE_WARN("EnTT Scene", "  ID   | {0}", entity.GetComponent<IDComponent>().id);
     registry_.destroy(entity);
   }
 

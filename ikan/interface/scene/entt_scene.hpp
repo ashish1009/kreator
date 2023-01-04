@@ -24,7 +24,9 @@ namespace ikan {
     ~EnttScene();
     
     /// This function create and Entity and store in scene registry
-    Entity CreateEntity();
+    /// - Parameters:
+    ///   - uuid: Unique ID of entity
+    Entity CreateEntity(UUID uuid = UUID());
     /// This function destory the entity from scene registry
     /// - Parameter entity: entity to be destroyed
     void DestroyEntity(Entity entity);
@@ -37,6 +39,8 @@ namespace ikan {
     // ------------------
     // Registry to store the entity handles
     entt::registry registry_;
+    
+    friend class Entity;
   };
   
 }
