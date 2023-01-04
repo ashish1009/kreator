@@ -101,25 +101,66 @@ namespace ikan {
   }
   QuadComponent::QuadComponent(const QuadComponent& other)
   : color(other.color) {
-    texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture)
+      texture = Renderer::GetTexture(other.texture->GetfilePath());
     IK_CORE_TRACE(LogModule::Component, "Copying Quad Component ...");
   }
   QuadComponent::QuadComponent(QuadComponent&& other)
   : color(other.color) {
-    texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture)
+      texture = Renderer::GetTexture(other.texture->GetfilePath());
     IK_CORE_TRACE(LogModule::Component, "Moving Quad Component ...");
   }
   QuadComponent& QuadComponent::operator=(const QuadComponent& other) {
     color = other.color;
-    texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture)
+      texture = Renderer::GetTexture(other.texture->GetfilePath());
     IK_CORE_TRACE(LogModule::Component, "Copying Quad Component using = operator...");
     return *this;
   }
   QuadComponent& QuadComponent::operator=(QuadComponent&& other) {
     color = other.color;
-    texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture)
+      texture = Renderer::GetTexture(other.texture->GetfilePath());
     IK_CORE_TRACE(LogModule::Component, "Moving Quad Component using = operator...");
     return *this;
   }
-  
+
+  // -------------------------------------------------------------------------
+  // Circle Component
+  // -------------------------------------------------------------------------
+  CircleComponent::CircleComponent() {
+    IK_CORE_TRACE(LogModule::Component, "Creating Circle Component ...");
+  }
+  CircleComponent::CircleComponent(const CircleComponent& other)
+  : color(other.color), thickness(other.thickness), fade(other.fade) {
+    if (other.texture)
+      texture = Renderer::GetTexture(other.texture->GetfilePath());
+    IK_CORE_TRACE(LogModule::Component, "Copying Circle Component ...");
+  }
+  CircleComponent::CircleComponent(CircleComponent&& other)
+  : color(other.color), thickness(other.thickness), fade(other.fade) {
+    if (other.texture)
+      texture = Renderer::GetTexture(other.texture->GetfilePath());
+    IK_CORE_TRACE(LogModule::Component, "Moving Circle Component ...");
+  }
+  CircleComponent& CircleComponent::operator=(const CircleComponent& other) {
+    color = other.color;
+    thickness = other.thickness;
+    fade = other.fade;
+    if (other.texture)
+      texture = Renderer::GetTexture(other.texture->GetfilePath());
+    IK_CORE_TRACE(LogModule::Component, "Copying Circle Component using = operator...");
+    return *this;
+  }
+  CircleComponent& CircleComponent::operator=(CircleComponent&& other) {
+    color = other.color;
+    thickness = other.thickness;
+    fade = other.fade;
+    if (other.texture)
+      texture = Renderer::GetTexture(other.texture->GetfilePath());
+    IK_CORE_TRACE(LogModule::Component, "Moving Quad Component using = operator...");
+    return *this;
+  }
+
 }

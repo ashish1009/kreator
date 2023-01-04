@@ -41,5 +41,16 @@ namespace ikan {
     QuadComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(QuadComponent);
   };
-  
+
+  struct CircleComponent {
+    std::shared_ptr<Texture> texture;
+    glm::vec4 color = {0.123f, 0.123f, 0.123f, 1.0f};
+    
+    float thickness = 1.0f;
+    float fade = 0.005f;
+    
+    CircleComponent();
+    DEFINE_COPY_MOVE_CONSTRUCTORS(CircleComponent);
+  };
+
 }

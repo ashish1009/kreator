@@ -31,6 +31,10 @@ namespace ikan {
     // ------------
     Entity e1 = CreateEntity();
     e1.AddComponent<QuadComponent>();
+
+    Entity e2 = CreateEntity();
+    e2.GetComponent<TransformComponent>().translation = { 2, 0, 0};
+    e2.AddComponent<CircleComponent>();
   }
   
   EnttScene::~EnttScene() {
@@ -86,13 +90,26 @@ namespace ikan {
     
     // Render 2D
     BatchRenderer::BeginBatch(editor_camera_.GetViewProjection(), editor_camera_.GetView());
+    
     auto quad_view = registry_.view<TransformComponent, QuadComponent>();
     // For all Mesg entity
     for (const auto& quad_entity : quad_view) {
       const auto& [transform_component, quad_component] = quad_view.get<TransformComponent, QuadComponent>(quad_entity);
       BatchRenderer::DrawQuad(transform_component.GetTransform(),
-                              quad_component.color);
+                              quad_component.color,
+                              (uint32_t)quad_entity);
     } // for (const auto& entity : mesh_view)
+    
+    auto circle_view = registry_.view<TransformComponent, CircleComponent>();
+    // For all Mesg entity
+    for (const auto& ciecle_entity : circle_view) {
+      const auto& [transform_component, circle_component] = circle_view.get<TransformComponent, CircleComponent>(ciecle_entity);
+      BatchRenderer::DrawCircle(transform_component.GetTransform(),
+                                circle_component.color,
+                                circle_component.thickness,
+                                circle_component.fade);
+    } // for (const auto& entity : mesh_view)
+
     BatchRenderer::EndBatch();
   }
   
