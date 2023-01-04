@@ -37,7 +37,6 @@ namespace editor {
     
   private:
     Viewport viewport_;
-    EditorCamera editor_camera_;
     EnttScene active_scene_;
   };
   

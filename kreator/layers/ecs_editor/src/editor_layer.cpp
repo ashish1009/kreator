@@ -19,8 +19,6 @@ namespace editor {
   
   void EditorLayer::Attach() {
     IK_INFO("Editor", "Attaching Editor Layer instance");
-    
-    Entity e1 = active_scene_.CreateEntity();
   }
   
   void EditorLayer::Detach() {
@@ -30,29 +28,22 @@ namespace editor {
   void EditorLayer::Update(Timestep ts) {
     if (viewport_.IsFramebufferResized()) {
       viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
-      editor_camera_.SetViewportSize(viewport_.width, viewport_.height);
+      active_scene_.SetViewport(viewport_.width, viewport_.height);
     }
     
-    editor_camera_.Update(ts);
     Renderer::ResetStatsEachFrame();
     
     viewport_.framebuffer->Bind();
 
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
-    
-    BatchRenderer::BeginBatch(editor_camera_.GetViewProjection(), editor_camera_.GetView());
-    BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, 0, 0},
-                                                     {0, 0, 0},
-                                                     {1, 1, 1}),
-                            {0.3, 0.4, 0.5, 1.0});
-    BatchRenderer::EndBatch();
+    active_scene_.Update(ts);
     
     viewport_.UpdateMousePos();
     viewport_.framebuffer->Unbind();
   }
   
   void EditorLayer::EventHandler(Event& event) {
-    editor_camera_.EventHandler(event);
+    active_scene_.EventHandler(event);
   }
     
   void EditorLayer::RenderGui() {
@@ -61,6 +52,7 @@ namespace editor {
     Renderer::RenderStatsGui(true);
     
     viewport_.RenderGui();
+    active_scene_.RenderGui();
     
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });

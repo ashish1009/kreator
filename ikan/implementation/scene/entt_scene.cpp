@@ -8,11 +8,14 @@
 #include "entt_scene.hpp"
 #include "scene/entity.hpp"
 #include "scene/core_components.hpp"
+#include "renderer/utils/batch_2d_renderer.hpp"
 
 namespace ikan {
   
   EnttScene::EnttScene() {
     IK_CORE_INFO(LogModule::EnttScene, "Creating Scene ...");
+    
+    Entity e1 = CreateEntity();
   }
   
   EnttScene::~EnttScene() {
@@ -53,7 +56,33 @@ namespace ikan {
     IK_CORE_WARN(LogModule::EnttScene, "  ID   | {0}", entity.GetComponent<IDComponent>().id);
     IK_CORE_WARN(LogModule::EnttScene, "  Number of entities Added in Scene | {0}", --num_entities_);
 
+    // Delete the eneity from the map
+    entity_id_map_.erase(entity);
+
     registry_.destroy(entity);
+  }
+  
+  void EnttScene::Update(Timestep ts) {
+    editor_camera_.Update(ts);
+    
+    BatchRenderer::BeginBatch(editor_camera_.GetViewProjection(), editor_camera_.GetView());
+    BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, 0, 0},
+                                                     {0, 0, 0},
+                                                     {1, 1, 1}),
+                            {0.3, 0.4, 0.5, 1.0});
+    BatchRenderer::EndBatch();
+  }
+  
+  void EnttScene::EventHandler(Event& e) {
+    editor_camera_.EventHandler(e);
+  }
+  
+  void EnttScene::SetViewport(uint32_t width, uint32_t height) {
+    editor_camera_.SetViewportSize(width, height);
+  }
+
+  void EnttScene::RenderGui() {
+    
   }
 
 }
