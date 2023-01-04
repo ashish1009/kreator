@@ -19,7 +19,9 @@ namespace ikan {
     /// This function render a hint message when hovered last imgui item
     /// - Parameters:
     ///   - description: String to be used as hint
-    static void HoveredMsg(const char* description);
+    ///   - error: flag to render text in red
+    static void HoveredMsg(const char* description,
+                           bool error = false);
     /// This function render a hint icon (?) and on hovered A hint string will be shown in subwindow
     /// on hovering the mouse
     /// - Parameters:
@@ -46,6 +48,27 @@ namespace ikan {
                       const glm::vec2& size,
                       const glm::vec2& uv0,
                       const glm::vec2& uv1);
+    /// This funcrtion renders a Image Button with lable ID
+    /// - Parameters:
+    ///   - lableId: lable ID
+    ///   - texId: Texture ID
+    ///   - size: size of textire
+    static bool ImageButton(const int32_t lable_id,
+                            uint32_t texId,
+                            const glm::vec2& size);
+    
+    /// This function renderes a image button
+    /// - Parameters:
+    ///   - lableId: image lable string
+    ///   - texId: texture id
+    ///   - size: size of image
+    ///   - bgColor: background color
+    ///   - padding: padding
+    static bool ImageButton(const std::string& lable_id,
+                            uint32_t texId,
+                            const glm::vec2& size,
+                            const glm::vec4& bgColor = glm::vec4(0.0f),
+                            int32_t padding = 0);
 
     MAKE_PURE_STATIC(PropertyGrid);
   };

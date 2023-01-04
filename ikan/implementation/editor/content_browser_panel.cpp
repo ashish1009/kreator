@@ -7,6 +7,7 @@
 
 #include "content_browser_panel.hpp"
 #include "editor/property_grid.hpp"
+#include "renderer/graphics/texture.hpp"
 
 namespace ikan {
   
@@ -95,12 +96,31 @@ namespace ikan {
   }
   
   void ContentBrowserPanel::Back() {
+    static std::shared_ptr<Texture> back_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/back.png"));
+    if (PropertyGrid::ImageButton("Back",
+                                  back_texture->GetRendererID(),
+                                  { 18.0f, 18.0f })) {
+    }
+    PropertyGrid::HoveredMsg("NOTE: Feature not implemented", true);
   }
   
   void ContentBrowserPanel::Forward() {
+    static std::shared_ptr<Texture> forward_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/forward.png"));
+    if (PropertyGrid::ImageButton("Forward",
+                                  forward_texture->GetRendererID(),
+                                  { 18.0f, 18.0f })) {
+    }
+    PropertyGrid::HoveredMsg("NOTE: Feature not implemented", true);
   }
   
   void ContentBrowserPanel::Home() {
+    static std::shared_ptr<Texture> home_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/home.png"));
+    if (PropertyGrid::ImageButton("home",
+                                  home_texture->GetRendererID(),
+                                  { 18.0f, 18.0f })) {
+      // Change the current directory
+      current_directory_ = root_path_;
+    }
   }
   
   void ContentBrowserPanel::Search() {
