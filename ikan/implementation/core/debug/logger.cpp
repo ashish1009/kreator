@@ -69,10 +69,10 @@ namespace ikan {
     
     // Create the Client Logger
     client_logger_ = std::make_shared<spdlog::logger>(
-                                               "APP  ",
-                                               begin(log_sinks),
-                                               end(log_sinks)
-                                               );
+                                                      "APP  ",
+                                                      begin(log_sinks),
+                                                      end(log_sinks)
+                                                      );
     spdlog::register_logger(client_logger_);
     
     auto spd_client_log_level = GetSpdLevelFromKreatorLevel(client_level);
@@ -127,7 +127,7 @@ namespace ikan {
   std::map<std::string, Logger::TagDetails>& Logger::GetEnabledTags() {
     return enabled_tags_;
   }
-
+  
   const Logger::TagDetails& Logger::GetDetail(const std::string& tag) {
     if (HasTag(tag))
       return enabled_tags_.at(tag);
@@ -138,11 +138,15 @@ namespace ikan {
     std::string tag_string = GetModuleName(tag);
     if (HasTag(tag_string))
       enabled_tags_.at(tag_string).enabled = false;
+    else
+      enabled_tags_[tag_string].enabled = false;
   }
   void Logger::EnableModule(LogModule tag) {
     std::string tag_string = GetModuleName(tag);
     if (HasTag(tag_string))
       enabled_tags_.at(tag_string).enabled = true;
+    else
+      enabled_tags_[tag_string].enabled = true;
   }
   
 }
