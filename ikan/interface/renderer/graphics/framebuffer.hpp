@@ -86,6 +86,8 @@ namespace ikan {
     [[nodiscard]] virtual RendererID GetDepthAttachmentId() const = 0;
     /// This function returns the Color Attachment iDs
     [[nodiscard]] virtual const std::vector<RendererID>& GetColorAttachmentIds() const = 0;
+    /// This function returns the pixel id (RED_ID) index stored in fremebuffer
+    [[nodiscard]] virtual uint32_t GetPixelIdIndex() const = 0;
 
     // -----------------
     // Static Function

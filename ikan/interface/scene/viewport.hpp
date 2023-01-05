@@ -12,7 +12,8 @@
 namespace ikan {
 
   class Entity;
-
+  class EnttScene;
+  
   struct Viewport {
     bool focused = false;
     bool hovered = false;
@@ -44,6 +45,9 @@ namespace ikan {
     void UpdateBound();
     /// This function returns true if viewport size is not same as framebuffer
     bool IsFramebufferResized();
+    /// This function updates the hoved entity
+    /// - Parameter scene: scene binded
+    void UpdateHoveredEntity(EnttScene* scene);
     /// This function render the viewport information in gui
     /// - Parameter is_open: flag to show or hide the widget
     void RenderGui(bool *is_open);

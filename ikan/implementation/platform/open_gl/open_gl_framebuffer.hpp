@@ -56,6 +56,8 @@ namespace ikan {
     RendererID GetDepthAttachmentId() const override;
     /// This function returns the Color Attachment iDs
     const std::vector<RendererID>& GetColorAttachmentIds() const override;
+    /// This function returns the pixel id (RED_ID) index stored in fremebuffer
+    uint32_t GetPixelIdIndex() const override;
     
   private:
     // ------------------
@@ -77,6 +79,8 @@ namespace ikan {
     // Stores the attachment ID for both color and depth
     std::vector<RendererID> color_attachment_ids_;
     RendererID depth_attachment_id_ = 0;
+    
+    uint32_t pixel_id_index_ = 0;
   };
   
 }

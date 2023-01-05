@@ -8,6 +8,7 @@
 #include "viewport.hpp"
 #include "editor/property_grid.hpp"
 #include "scene/entity.hpp"
+#include "scene/entt_scene.hpp"
 
 namespace ikan {
   
@@ -53,6 +54,21 @@ namespace ikan {
     width > 0 and
     height > 0 and // zero sized framebuffer is invalid
     (spec.width != width or spec.height != height);
+  }
+
+  void Viewport::UpdateHoveredEntity(EnttScene* scene) {
+    if (!hovered)
+      return;
+    
+    // Get pixel from rednerer
+    Renderer::GetEntityIdFromPixels(mouse_pos_x,
+                                    mouse_pos_y,
+                                    framebuffer->GetPixelIdIndex(),
+                                    hovered_entity_id_);
+    // Update hovered entity
+    hovered_entity_ = (hovered_entity_id_ > (int32_t)scene->GetMaxEntityId()) ?
+    nullptr :
+    scene->GetEnitityFromId(hovered_entity_id_);
   }
 
   void Viewport::RenderGui(bool *is_open) {

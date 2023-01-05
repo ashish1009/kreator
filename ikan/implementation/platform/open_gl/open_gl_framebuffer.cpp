@@ -226,6 +226,9 @@ namespace ikan {
                                                    GL_COLOR_ATTACHMENT0 + (int32_t)i,
                                                    GL_TEXTURE_2D
                                                    );
+            
+            pixel_id_index_ = (uint32_t)i;
+            
             IK_CORE_DEBUG(LogModule::FrameBuffer, "    InternalFormae | {0}", texture_utils::GetFormatNameFromEnum(internal_format));
             IK_CORE_DEBUG(LogModule::FrameBuffer, "    DataFormat     | {0}", texture_utils::GetFormatNameFromEnum(data_format));
 
@@ -327,9 +330,11 @@ namespace ikan {
   const std::vector<RendererID>& OpenGLFrameBuffer::GetColorAttachmentIds() const {
     return color_attachment_ids_;
   }
-  
   void OpenGLFrameBuffer::UpdateSpecificationColor(const glm::vec4& color) {
     specification_.color = color;
+  }
+  uint32_t OpenGLFrameBuffer::GetPixelIdIndex() const {
+    return pixel_id_index_;
   }
   
 }
