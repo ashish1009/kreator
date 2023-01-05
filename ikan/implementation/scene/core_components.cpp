@@ -110,35 +110,60 @@ namespace ikan {
   // -------------------------------------------------------------------------
   QuadComponent::QuadComponent() {
     IK_CORE_TRACE(LogModule::Component, "Creating Quad Component ...");
+    texture_comp.use = true;
   }
   QuadComponent::QuadComponent(const QuadComponent& other)
   : color(other.color) {
-    if (other.texture)
-      texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture_comp.component)
+      texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
     IK_CORE_TRACE(LogModule::Component, "Copying Quad Component ...");
   }
   QuadComponent::QuadComponent(QuadComponent&& other)
   : color(other.color) {
-    if (other.texture)
-      texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture_comp.component)
+      texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
     IK_CORE_TRACE(LogModule::Component, "Moving Quad Component ...");
   }
   QuadComponent& QuadComponent::operator=(const QuadComponent& other) {
     color = other.color;
-    if (other.texture)
-      texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture_comp.component)
+      texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
     IK_CORE_TRACE(LogModule::Component, "Copying Quad Component using = operator...");
     return *this;
   }
   QuadComponent& QuadComponent::operator=(QuadComponent&& other) {
     color = other.color;
-    if (other.texture)
-      texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture_comp.component)
+      texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
     IK_CORE_TRACE(LogModule::Component, "Moving Quad Component using = operator...");
     return *this;
   }
   
   void QuadComponent::RenderGui() {
+    ImGui::Columns(2);
+
+    static std::shared_ptr<Texture> no_texture = Renderer::GetTexture(AM::CoreAsset("textures/default/no_texture.png"));
+    size_t tex_id = ((texture_comp.component) ? texture_comp.component->GetRendererID() : no_texture->GetRendererID());
+    
+    // Show the image of texture
+    ImGui::Image((void*)tex_id,
+                 ImVec2(40.0f, 40.0f),
+                 ImVec2(0.0f, 1.0f),
+                 ImVec2(1.0f, 0.0f),
+                 ImVec4(1.0f, 1.0f, 1.0f, 1.0f),
+                 ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
+    
+    // Drop the texture here and load new texture
+    PropertyGrid::DropConent([this](const std::string& path)
+                             {
+      texture_comp.component.reset();
+      texture_comp.component = Renderer::GetTexture(path);
+    });
+
+    ImGui::SameLine();
+    ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
+
+    ImGui::Separator();
   }
 
   // -------------------------------------------------------------------------
@@ -149,22 +174,22 @@ namespace ikan {
   }
   CircleComponent::CircleComponent(const CircleComponent& other)
   : color(other.color), thickness(other.thickness), fade(other.fade) {
-    if (other.texture)
-      texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture_comp.component)
+      texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
     IK_CORE_TRACE(LogModule::Component, "Copying Circle Component ...");
   }
   CircleComponent::CircleComponent(CircleComponent&& other)
   : color(other.color), thickness(other.thickness), fade(other.fade) {
-    if (other.texture)
-      texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture_comp.component)
+      texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
     IK_CORE_TRACE(LogModule::Component, "Moving Circle Component ...");
   }
   CircleComponent& CircleComponent::operator=(const CircleComponent& other) {
     color = other.color;
     thickness = other.thickness;
     fade = other.fade;
-    if (other.texture)
-      texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture_comp.component)
+      texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
     IK_CORE_TRACE(LogModule::Component, "Copying Circle Component using = operator...");
     return *this;
   }
@@ -172,8 +197,8 @@ namespace ikan {
     color = other.color;
     thickness = other.thickness;
     fade = other.fade;
-    if (other.texture)
-      texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture_comp.component)
+      texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
     IK_CORE_TRACE(LogModule::Component, "Moving Quad Component using = operator...");
     return *this;
   }

@@ -29,10 +29,10 @@ namespace ikan {
     // ------------
     // TODO: Temp
     // ------------
-    Entity e1 = CreateEntity();
+    Entity e1 = CreateEntity("Quad");
     e1.AddComponent<QuadComponent>();
 
-    Entity e2 = CreateEntity();
+    Entity e2 = CreateEntity("Circle");
     e2.GetComponent<TransformComponent>().translation = { 2, 0, 0};
     e2.AddComponent<CircleComponent>();
   }
@@ -95,19 +95,33 @@ namespace ikan {
     // For all Mesg entity
     for (const auto& quad_entity : quad_view) {
       const auto& [transform_component, quad_component] = quad_view.get<TransformComponent, QuadComponent>(quad_entity);
-      BatchRenderer::DrawQuad(transform_component.GetTransform(),
-                              quad_component.color,
-                              (uint32_t)quad_entity);
+      if (quad_component.texture_comp.use and quad_component.texture_comp.component) {
+        BatchRenderer::DrawQuad(transform_component.GetTransform(),
+                                quad_component.texture_comp.component,
+                                quad_component.color);
+      } else {
+        BatchRenderer::DrawQuad(transform_component.GetTransform(),
+                                quad_component.color,
+                                (uint32_t)quad_entity);
+      }
     } // for (const auto& entity : mesh_view)
     
     auto circle_view = registry_.view<TransformComponent, CircleComponent>();
     // For all Mesg entity
     for (const auto& ciecle_entity : circle_view) {
       const auto& [transform_component, circle_component] = circle_view.get<TransformComponent, CircleComponent>(ciecle_entity);
-      BatchRenderer::DrawCircle(transform_component.GetTransform(),
+      if (circle_component.texture_comp.use and circle_component.texture_comp.component) {
+        BatchRenderer::DrawQuad(transform_component.GetTransform(),
+                                circle_component.texture_comp.component,
                                 circle_component.color,
                                 circle_component.thickness,
                                 circle_component.fade);
+      } else {
+        BatchRenderer::DrawCircle(transform_component.GetTransform(),
+                                  circle_component.color,
+                                  circle_component.thickness,
+                                  circle_component.fade);
+      }
     } // for (const auto& entity : mesh_view)
 
     BatchRenderer::EndBatch();
