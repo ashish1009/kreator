@@ -33,6 +33,16 @@ namespace ikan {
     /// - Parameter is_open: flag to show or hide the widget
     static void Framerate(bool *is_open);
     
+    // ---------------
+    // Controller
+    // ---------------
+    /// This function changes the imgui font
+    ///  - Parameters:
+    ///   - default_font_path: Default font file information
+    ///   - bold_font_path: bold font file information
+    static void ChangeFont(const ImguiFont& default_font_path,
+                           const ImguiFont& bold_font_path);
+
     MAKE_PURE_STATIC(ImguiAPI);
   };
   

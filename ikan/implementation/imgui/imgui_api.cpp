@@ -7,6 +7,7 @@
 
 #include "imgui_api.hpp"
 #include "editor/property_grid.hpp"
+#include "core/core_application.hpp"
 
 namespace ikan {
   
@@ -81,5 +82,11 @@ namespace ikan {
     ImGui::PopID();
     ImGui::End();
   }
-  
+
+  void ImguiAPI::ChangeFont(const ImguiFont& default_font_path,
+                            const ImguiFont& bold_font_path) {
+    auto& imguiLayer = Application::Get().GetImGuiLayer();
+    imguiLayer.SetFont(default_font_path, bold_font_path);
+  }
+
 }
