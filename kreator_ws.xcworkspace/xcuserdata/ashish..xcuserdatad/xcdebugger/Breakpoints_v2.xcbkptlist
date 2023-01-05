@@ -126,8 +126,8 @@
             filePath = "ikan/implementation/editor/scene_panel_manager.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "ScenePanelManager::RenderGui(is_opened)"
             landmarkType = "7">
          </BreakpointContent>
@@ -146,6 +146,69 @@
             endingLineNumber = "259"
             landmarkName = "PropertyGrid::TextBox(value, label, column_width_1, column_width_2, hint, modifiable, multiple, num_lines, error)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D159C024-AD91-45CB-8348-AA6C43D5E1E8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/editor/scene_panel_manager.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "DrawComponent(name, entity, ui_function)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "D159C024-AD91-45CB-8348-AA6C43D5E1E8 - 951fefb48d7fb969"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void ikan::DrawComponent&lt;ikan::TransformComponent, ikan::ScenePanelManager::PropertyPannel()::$_1&gt;(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; const&amp;, ikan::Entity const&amp;, ikan::ScenePanelManager::PropertyPannel()::$_1)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/kreator/ikan/implementation/editor/scene_panel_manager.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  uuid = "D159C024-AD91-45CB-8348-AA6C43D5E1E8 - 5b3dc6f45249d387"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void ikan::DrawComponent&lt;ikan::QuadComponent, ikan::ScenePanelManager::PropertyPannel()::$_2&gt;(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; const&amp;, ikan::Entity const&amp;, ikan::ScenePanelManager::PropertyPannel()::$_2)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/kreator/ikan/implementation/editor/scene_panel_manager.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  uuid = "D159C024-AD91-45CB-8348-AA6C43D5E1E8 - b3b2d0d570d1d3a4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void ikan::DrawComponent&lt;ikan::CircleComponent, ikan::ScenePanelManager::PropertyPannel()::$_3&gt;(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; const&amp;, ikan::Entity const&amp;, ikan::ScenePanelManager::PropertyPannel()::$_3)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/kreator/ikan/implementation/editor/scene_panel_manager.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "248">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

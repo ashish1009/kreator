@@ -58,7 +58,7 @@ namespace editor {
     
     viewport_.RenderGui(&setting_.viewport);
     cbp_.RenderGui(&setting_.cbp);
-    spm_.RenderGui(&setting_.cbp);
+    spm_.RenderGui(&setting_.spm);
 
     active_scene_.RenderGui();
     

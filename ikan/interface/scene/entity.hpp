@@ -49,6 +49,11 @@ namespace ikan {
     template<typename T> bool HasComponent() const {
       return scene_->registry_.has<T>(entity_handle_);
     }
+    /// This function removes component from Current Entity NOTE : T is type of component
+    template<typename T> void RemoveComponent() const {
+      IK_ASSERT(HasComponent<T>(), "Entity does not have component!");
+      scene_->registry_.remove<T>(entity_handle_);
+    }
     
     // ----------------
     // Operators
