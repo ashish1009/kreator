@@ -20,6 +20,12 @@ namespace editor {
       bool frame_rate = true;
       bool viewport = true;
       bool stats = true;
+      
+      /// This function changes the flag of setting for menu
+      /// - Parameters:
+      ///   - tag: tag of menu
+      ///   - flag: flag
+      static void UpdateSetting(std::string tag, bool& flag);
     };
     
     /// Layer Default Constructor to store the name of layer

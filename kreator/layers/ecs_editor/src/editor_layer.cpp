@@ -91,7 +91,7 @@ namespace editor {
     
     ImguiAPI::EndDcocking();
   }
-  
+    
   void EditorLayer::ShowMenu() {
     if (ImGui::BeginMenuBar()) {
       if (ImGui::BeginMenu("File")) {
@@ -103,58 +103,18 @@ namespace editor {
       
       if (ImGui::BeginMenu("Setting")) {
         if (ImGui::BeginMenu("Scene")) {
-          if (ImGui::MenuItem("Editor Camera",
-                              nullptr,
-                              active_scene_.GetSetting().editor_camera)) {
-            if (active_scene_.GetSetting().editor_camera)
-              active_scene_.GetSetting().editor_camera = false;
-            else
-              active_scene_.GetSetting().editor_camera = true;
-          }
+          Setting::UpdateSetting("Editor Camera", active_scene_.GetSetting().editor_camera);
           ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene"))
         }
         ImGui::Separator();
-        if (ImGui::MenuItem("Content Browser Panel",
-                            nullptr,
-                            setting_.cbp)) {
-          if (setting_.cbp)
-            setting_.cbp = false;
-          else
-            setting_.cbp = true;
-        }
-        if (ImGui::MenuItem("Scene Panel Manager",
-                            nullptr,
-                            setting_.spm)) {
-          if (setting_.spm)
-            setting_.spm = false;
-          else
-            setting_.spm = true;
-        }
+
+        Setting::UpdateSetting("Content Browser Panel", setting_.cbp);
+        Setting::UpdateSetting("Scene Panel", setting_.spm);
         ImGui::Separator();
-        if (ImGui::MenuItem("Frame Rate",
-                            nullptr,
-                            setting_.frame_rate)) {
-          if (setting_.frame_rate)
-            setting_.frame_rate = false;
-          else
-            setting_.frame_rate = true;
-        }
-        if (ImGui::MenuItem("Viewport",
-                            nullptr,
-                            setting_.viewport)) {
-          if (setting_.viewport)
-            setting_.viewport = false;
-          else
-            setting_.viewport = true;
-        }
-        if (ImGui::MenuItem("Renderer Stats",
-                            nullptr,
-                            setting_.stats)) {
-          if (setting_.stats)
-            setting_.stats = false;
-          else
-            setting_.stats = true;
-        }
+
+        Setting::UpdateSetting("Frame Rate", setting_.frame_rate);
+        Setting::UpdateSetting("Viewpoer", setting_.viewport);
+        Setting::UpdateSetting("Renderer Stats", setting_.stats);
 
         ImGui::EndMenu(); // ImGui::BeginMenu("Setting")
       }
@@ -162,4 +122,10 @@ namespace editor {
       ImGui::EndMenuBar(); // ImGui::BeginMenuBar()
     } // if (ImGui::BeginMenuBar())
   }
+
+  void EditorLayer::Setting::UpdateSetting(std::string tag, bool& flag) {
+    if (ImGui::MenuItem(tag.c_str(), nullptr, flag))
+      flag = (flag) ? false : true;
+  }
+
 } 
