@@ -301,9 +301,21 @@ namespace ikan {
     if (PropertyGrid::ImageButton("home",
                                   home_texture->GetRendererID(),
                                   { 18.0f, 18.0f })) {
+      // Do nothing if current path is same as root
+      if (current_directory_ == std::filesystem::path(root_path_)) {
+        return;
+      }
+      
       // Change the current directory
       current_directory_ = root_path_;
-
+      
+      // Clear the forward path history as we are at the top already
+      forward_path_history_.clear();
+      
+      // Clear the back path history as we are not considering any back from
+      // home for now
+      back_path_history_.clear();
+      
       // Clear the path hierarchy and add only home path
       path_hierarchy_.clear();
       path_hierarchy_.emplace_back(current_directory_);
