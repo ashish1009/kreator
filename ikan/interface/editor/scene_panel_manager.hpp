@@ -34,8 +34,15 @@ namespace ikan {
     DELETE_COPY_MOVE_CONSTRUCTORS(ScenePanelManager)
 
   private:
+    /// This function render a pannel for scene information
+    void ScenePannel();
+    /// This function draw the entity tree node
+    /// - Parameter entity_id: entity id from scene registry
+    void DrawEntityTreeNode(entt::entity entity_id);
+
     // Member Variables
     EnttScene* scene_context_;
+    Entity selected_entity_;
   };
   
 }

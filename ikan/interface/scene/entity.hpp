@@ -10,6 +10,7 @@
 // This file incldues the Entity class to store entt data
 
 #include "scene/entt_scene.hpp"
+#include "scene/core_components.hpp"
 
 namespace ikan {
   
@@ -39,7 +40,7 @@ namespace ikan {
     }
 
     /// This function returns component from Current Entity NOTE : T is type of component
-    template<typename T> T& GetComponent() const {
+    template<typename T> [[nodiscard("Return value discarded")]] T& GetComponent() const {
       IK_ASSERT(HasComponent<T>(), "Entity does not have component!");
       return scene_->registry_.get<T>(entity_handle_);
     }
@@ -56,6 +57,18 @@ namespace ikan {
     operator entt::entity() const;
     /// This function returns the entity handle from this Entity
     operator uint32_t() const;
+    /// This function returns if this entity is equal to other
+    /// - parameter other: other entity
+    bool operator ==(const Entity& other) const;
+    /// This function returns if this entity is not equal to other
+    /// - parameter other: other entity
+    bool operator !=(const Entity& other) const;    
+    /// This function returns if this entity is equal to other (only handle)
+    /// - parameter other: other entity handle
+    bool operator ==(const entt::entity& other) const;
+    /// This function returns if this entity is not equal to other (only handle)
+    /// - parameter other: other entity handle
+    bool operator !=(const entt::entity& other) const;
 
   private:
     entt::entity entity_handle_{ entt::null };

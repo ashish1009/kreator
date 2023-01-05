@@ -120,6 +120,7 @@ namespace ikan {
     std::function<void()> render_imgui_;
 
     friend class Entity;
+    friend class ScenePanelManager;
   };
   
 }
