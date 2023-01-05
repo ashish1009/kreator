@@ -235,6 +235,20 @@ namespace ikan {
             // DO NOTHING
           }
         } // Pressed?
+          // Drag the content from here
+        if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID)) {
+          const std::string& dragged_path = directory.path().string();
+          const char* ch = dragged_path.c_str();
+          ImGui::SetDragDropPayload("SelectedFile",
+                                    (void*)ch,
+                                    dragged_path.size(),
+                                    ImGuiCond_Always);
+          
+          PropertyGrid::ImageButton(push_id,
+                                    icon_texture->GetRendererID(),
+                                    { 20.0f, 20.0f });
+          ImGui::EndDragDropSource();
+        }
         ImGui::PopID(); // ImGui::PushID(filename_string.c_str());
 
         // Text Button : Directory name

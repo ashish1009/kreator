@@ -83,7 +83,7 @@ std::unique_ptr<ikan::Application> CreateApplication() {
     case SupportedApplicationType::Editor :
       application_spec.name = "Kreator";
       application_spec.window_specification.title = "Kreator";
-      application_spec.client_asset_path = "../../../kreator/layers/ecs_editor/assets/";
+      application_spec.client_asset_path = "../../../kreator/layers/ecs_editor/editor_assets/";
       application_spec.save_ini_file_path = "../../../kreator/layers/ecs_editor/ecs.ini";
       break;
     case SupportedApplicationType::RayTracing :
