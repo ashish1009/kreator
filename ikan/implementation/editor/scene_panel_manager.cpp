@@ -134,9 +134,9 @@ namespace ikan {
     // ----------------------
     // Draw other components
     // ----------------------
-    DrawComponent<TransformComponent>("Transform", selected_entity_, [](auto& tc) {  });
-    DrawComponent<QuadComponent>("Qaad", selected_entity_, [](auto& qc) {  });
-    DrawComponent<CircleComponent>("Circle", selected_entity_, [this](auto& cc) {  });
+    DrawComponent<TransformComponent>("Transform", selected_entity_, [](auto& tc) { tc.RenderGui(); });
+    DrawComponent<QuadComponent>("Qaad", selected_entity_, [](auto& qc) { qc.RenderGui(); });
+    DrawComponent<CircleComponent>("Circle", selected_entity_, [this](auto& cc) { cc.RenderGui(); });
   }
   
   void ScenePanelManager::DrawEntityTreeNode(entt::entity entity_id) {

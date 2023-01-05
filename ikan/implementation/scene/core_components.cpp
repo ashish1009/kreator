@@ -6,6 +6,7 @@
 //
 
 #include "core_components.hpp"
+#include "editor/property_grid.hpp"
 
 namespace ikan {
   
@@ -93,6 +94,17 @@ namespace ikan {
     return Math::GetTransformMatrix(translation, rotation, scale);
   }
   
+  void TransformComponent::RenderGui() {
+    PropertyGrid::Float3("Translation", translation, nullptr, 0.25f, 0.0f, 80.0f);
+    
+    glm::vec3 rotation_in_degree = glm::degrees(rotation);
+    PropertyGrid::Float3("Rotation", rotation_in_degree, nullptr, 0.25f, 0.0f, 80.0f);
+    rotation = glm::radians(rotation_in_degree);
+    
+    PropertyGrid::Float3("Scale", scale, nullptr, 0.25f, 1.0f, 80.0f);
+    ImGui::Separator();
+  }
+
   // -------------------------------------------------------------------------
   // Quad Component
   // -------------------------------------------------------------------------
@@ -124,6 +136,9 @@ namespace ikan {
       texture = Renderer::GetTexture(other.texture->GetfilePath());
     IK_CORE_TRACE(LogModule::Component, "Moving Quad Component using = operator...");
     return *this;
+  }
+  
+  void QuadComponent::RenderGui() {
   }
 
   // -------------------------------------------------------------------------
@@ -161,6 +176,9 @@ namespace ikan {
       texture = Renderer::GetTexture(other.texture->GetfilePath());
     IK_CORE_TRACE(LogModule::Component, "Moving Quad Component using = operator...");
     return *this;
+  }
+
+  void CircleComponent::RenderGui() {
   }
 
 }
