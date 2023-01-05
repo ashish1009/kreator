@@ -17,6 +17,23 @@ namespace ikan {
   enum class TextureFormat  {
     None = 0, RGBA
   };
+  
+  class Texture;
+  /// This structure holds the texture component with use flag
+  struct TextureComponent {
+    std::shared_ptr<Texture> component = nullptr;
+    bool use = false;
+    
+    // default constructor and destructors
+    TextureComponent() = default;
+    ~TextureComponent() noexcept = default;
+    
+    // Copy and Move Constructor and operator =
+    DEFINE_COPY_MOVE_CONSTRUCTORS(TextureComponent)
+    
+    // Parameter constructor
+    TextureComponent(const std::shared_ptr<Texture>& comp, bool use = true);
+  };
 
   /// Interface class for Storing Renderer Texture data. Implementation is depending on the Supported Renerer API.
   class Texture {

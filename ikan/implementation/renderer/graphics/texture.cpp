@@ -70,6 +70,38 @@ namespace ikan {
         IK_CORE_ASSERT(false, "Invalid Renderer API (None)"); break;
     }
   }
+  
+  // --------------------------------------------------------------------------
+  // Texture Component
+  // --------------------------------------------------------------------------
+  TextureComponent::TextureComponent(const std::shared_ptr<Texture>& comp, bool use)
+  : component(comp), use(use) {
+    IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent");
+  }
+  
+  TextureComponent::TextureComponent(const TextureComponent& other)
+  : component(other.component), use(other.use) {
+    IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent");
+  }
+  
+  TextureComponent::TextureComponent(TextureComponent&& other)
+  : component(other.component), use(other.use) {
+    IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent");
+  }
+  
+  TextureComponent& TextureComponent::operator=(const TextureComponent& other) {
+    component = other.component;
+    use = other.use;
+    IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent (=operator)");
+    return *this;
+  }
+  
+  TextureComponent& TextureComponent::operator=(TextureComponent&& other) {
+    component = other.component;
+    use = other.use;
+    IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent (=operator)");
+    return *this;
+  }
 
   // --------------------------------------------------------------------------
   // Texture Library
