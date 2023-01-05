@@ -57,6 +57,8 @@ namespace ikan {
     operator entt::entity() const;
     /// This function returns the entity handle from this Entity
     operator uint32_t() const;
+    /// This function returns entity as Boolean Check if entity handle is not null
+    operator bool() const;
     /// This function returns if this entity is equal to other
     /// - parameter other: other entity
     bool operator ==(const Entity& other) const;

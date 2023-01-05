@@ -48,6 +48,7 @@ namespace ikan {
 
   Entity::operator entt::entity() const { return entity_handle_; }
   Entity::operator uint32_t() const { return (uint32_t)entity_handle_; }
+  Entity::operator bool() const { return entity_handle_ != entt::null; }
   bool Entity::operator ==(const Entity& other) const { return entity_handle_ == other.entity_handle_ and scene_ == other.scene_; }
   bool Entity::operator !=(const Entity& other) const { return !(*this == other); }
   bool Entity::operator ==(const entt::entity& other) const { return entity_handle_ == other; }

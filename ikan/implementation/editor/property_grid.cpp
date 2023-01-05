@@ -243,4 +243,91 @@ namespace ikan {
     return modified;
   }
 
+  bool PropertyGrid::TextBox(std::string& value,
+                             const char* label,
+                             float column_width_1,
+                             float column_width_2,
+                             const char* hint,
+                             bool modifiable,
+                             bool multiple,
+                             int32_t num_lines,
+                             bool error) {
+    bool modified = false;
+    std::string ui_context_id = "##";
+
+    ImGui::Columns(2);
+    if (label and strcmp(label, "") != 0) {
+      ImGui::PushID(label);
+      ImGui::PushItemWidth(-1);
+      ImGui::SetColumnWidth(0, column_width_1);
+      ImGui::Text(label);
+      ImGui::PopItemWidth();
+      
+      ui_context_id += (std::string)label;
+    } else {
+      ImGui::PushID("No Lable Text box");
+      ImGui::SetColumnWidth(0, 0);
+    }
+    
+    if (hint) {
+      ImGui::SameLine();
+      HelpMarker(hint);
+    }
+    
+    ImGui::NextColumn();
+    
+    ImGui::PushItemWidth(-1);
+    ImGui::SetColumnWidth(1, column_width_2);
+    
+    // Copy the Name of entity to buffer that will be dumy text in property pannel
+    char buffer[256];
+    strcpy(buffer, value.c_str());
+        
+    // To make string Red in case error flag is true
+    if (error)
+      ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.9f, 0.2f, 0.2f, 1.0f));
+    
+    if (modifiable) {
+      // Take input text from User in Property pannel. that will be name(Tag) of Selected Entity
+      if (multiple) {
+        if (ImGui::InputTextEx(ui_context_id.c_str(),
+                               hint,
+                               buffer,
+                               IM_ARRAYSIZE(buffer),
+                               ImVec2(column_width_2, num_lines * 20.0f),
+                               ImGuiInputTextFlags_Multiline)) {
+          value    = buffer;
+          modified = true;
+        }
+      }
+      else {
+        if (ImGui::InputTextWithHint(ui_context_id.c_str(),
+                                     hint,
+                                     buffer,
+                                     IM_ARRAYSIZE(buffer),
+                                     ImGuiInputTextFlags_EnterReturnsTrue)) {
+          value    = buffer;
+          modified = true;
+        }
+      }
+    }
+    else
+      ImGui::InputText(ui_context_id.c_str(),
+                       (char*)value.c_str(),
+                       256,
+                       ImGuiInputTextFlags_ReadOnly);
+    
+    // Pop red color if error is enabled
+    if (error)
+      ImGui::PopStyleColor();
+    
+    ImGui::PopItemWidth();
+    ImGui::NextColumn();
+    ImGui::Columns(1);
+    
+    ImGui::PopID();
+    
+    return modified;
+  }
+
 }

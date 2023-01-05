@@ -8,6 +8,7 @@
 #include "scene_panel_manager.hpp"
 #include "scene/entity.hpp"
 #include "scene/core_components.hpp"
+#include "editor/property_grid.hpp"
 
 namespace ikan {
   
@@ -34,33 +35,54 @@ namespace ikan {
 
     ImGui::PopID(); // Scene Manager
     ImGui::End();   // Scene Manager
+    
+    ImGui::Begin("Entity Property");
+    ImGui::PushID("Entity Property");
+    
+    if (selected_entity_)
+      PropertyPannel();
+    
+    ImGui::PopID(); // Entity Property
+    ImGui::End();   // Entity Property
+
   }
   
   void ScenePanelManager::ScenePannel() {
     scene_context_->registry_.each([&](auto entity_id)
                                        {
-      const Entity& entity = scene_context_->entity_id_map_.at(entity_id);
-      entity.GetComponent<TagComponent>();
-      DrawEntityTreeNode(entity);
+      DrawEntityTreeNode(entity_id);
     });
+  }
+  
+  void ScenePanelManager::PropertyPannel() {
+    // ----------
+    // Tag
+    // ----------
+    auto& tag = selected_entity_.GetComponent<TagComponent>().tag;
+    PropertyGrid::TextBox(tag);
+    PropertyGrid::HoveredMsg(("Entity ID : " + std::to_string((uint32_t)selected_entity_)).c_str());
+    
+//    auto text_box_size = ImGui::GetItemRectSize();
   }
   
   void ScenePanelManager::DrawEntityTreeNode(entt::entity entity_id) {
     Entity& entity = scene_context_->entity_id_map_.at(entity_id);
     ImGuiTreeNodeFlags flags = ((selected_entity_ == entity) ?
                                 ImGuiTreeNodeFlags_Selected : 0)
-    | ImGuiTreeNodeFlags_SpanAvailWidth
-    | ImGuiTreeNodeFlags_Bullet;
+    | ImGuiTreeNodeFlags_SpanAvailWidth;
     const std::string& tag = entity.GetComponent<TagComponent>().tag;
     bool opened = ImGui::TreeNodeEx((void*)(tag.c_str()),
                                     flags,
                                     tag.c_str());
 
+    // TODO: Add Hovered message Feature later
+    
     // Update the selected entity if item is clicked
     if (ImGui::IsItemClicked() or ImGui::IsItemClicked(1))
       selected_entity_ = entity;
 
     if (opened) {
+      // TODO: Add Feature
       ImGui::TreePop();
     }
 

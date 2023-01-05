@@ -127,6 +127,26 @@ namespace ikan {
                        float reset_value = 0.0f,
                        float column_width = 100.0f );
 
+    /// This function renders the text box
+    /// - Parameters:
+    ///   - label: Lable for Variable
+    ///   - value: Value need to be edit or entered in box
+    ///   - column_width1: width of column of lable
+    ///   - column_width2: width of column of Value
+    ///   - hint: Hint to be shown in the text box. Null of no hind is given
+    ///   - modifiable: flag to check is string is constant or modifiable
+    ///   - multiple: flag to check if there are multiple line in text box
+    ///   - num_lines: if multipleLine is true then check number of line are there in text box
+    ///   - error: flag to check if text is error (if true text printed as red)
+    static bool TextBox(std::string& value,
+                        const char* label = nullptr,
+                        float column_width_1 = 100.0f,
+                        float column_width_2 = 300.0f,
+                        const char* hint = nullptr,
+                        bool modifiable = true,
+                        bool multiple = false,
+                        int32_t num_lines = 1,
+                        bool error = false);
     
   private:
     static bool FloatImpl(const std::vector<std::string>& buttons,
