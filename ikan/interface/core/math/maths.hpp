@@ -40,21 +40,21 @@ namespace ikan::Math {
   // APIs for Random Generator
   // ------------------------------------------------
   /// This function returns the random double number
-  double RandomDouble();
+  [[nodiscard]] double RandomDouble();
   /// This function returns the random double number in range
   /// - Parameters:
   ///   - min: Min range
   ///   - max: max range
-  double RandomDouble(double min, double max);
+  [[nodiscard]] double RandomDouble(double min, double max);
   /// This function returns the random vec 3
-  glm::vec3 RandomVec3();
+  [[nodiscard]] glm::vec3 RandomVec3();
   /// This function returns the random vec 3 in range
   /// - Parameters:
   ///   - min: range min
   ///   - max: range max
-  glm::vec3 RandomVec3(double min, double max);
+  [[nodiscard]] glm::vec3 RandomVec3(double min, double max);
   /// This funtion return the random vec3 in unit sphere
-  glm::vec3 RandomInUnitSphere();
+  [[nodiscard]] glm::vec3 RandomInUnitSphere();
   
   // ------------------------------------------------
   // APIs for Vec 3 data
@@ -67,7 +67,7 @@ namespace ikan::Math {
   float Vec3LengthSquared(const glm::vec3& v);
   /// This function returns the unit vector
   /// - Parameter v: vector
-  glm::vec3 UnitVector(glm::vec3 v);
+  glm::vec3 UnitVector(const glm::vec3& v);
 
   // ------------------------------------------------
   // APIs

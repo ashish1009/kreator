@@ -105,7 +105,7 @@ namespace ikan::Math {
     return v.x * v.x + v.y * v.y + v.z * v.z;
   }
   
-  glm::vec3 UnitVector(glm::vec3 v) {
+  glm::vec3 UnitVector(const glm::vec3& v) {
     return v / Vec3Length(v);
   }
 
