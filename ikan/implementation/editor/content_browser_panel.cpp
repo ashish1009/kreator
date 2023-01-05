@@ -35,11 +35,12 @@ namespace ikan {
 
   void ContentBrowserPanel::RenderGui(bool* is_open) {
     if (!is_open) return;
-    
     if (*is_open == false) return;
     
     ImGui::Begin("Content Browser", is_open);
     ImGui::PushID("Content Browser");
+    
+    side_child_width_ = ImGui::GetContentRegionAvailWidth() * 0.15;
     
     TitleIcon();
     
@@ -88,7 +89,7 @@ namespace ikan {
   void ContentBrowserPanel::SideMenu() {
     ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, RoundFactor);
     ImGui::BeginChild("SideArea",
-                      ImVec2(ImGui::GetWindowContentRegionWidth() * SideChildWidth,
+                      ImVec2(side_child_width_,
                              ImGui::GetWindowHeight() - WindowYOffset),
                       true, // Border
                       ImGuiWindowFlags_HorizontalScrollbar);
@@ -161,7 +162,7 @@ namespace ikan {
     // Push style
     ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, RoundFactor);
     ImGui::BeginChild("MainArea",
-                      ImVec2(ImGui::GetWindowContentRegionWidth() * (0.995f - SideChildWidth),
+                      ImVec2(ImGui::GetWindowContentRegionWidth() - side_child_width_,
                              ImGui::GetWindowHeight() - WindowYOffset),
                       true, // Border
                       ImGuiWindowFlags_HorizontalScrollbar);

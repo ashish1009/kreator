@@ -56,9 +56,10 @@ namespace ikan {
     // -------------------
     // Member Functions
     // -------------------
-    static constexpr float SideChildWidth = 0.15f;
     static constexpr float WindowYOffset  = 55.0f;
     static constexpr float RoundFactor    = 2.0f;
+
+    float side_child_width_ = 0.15f;
     
     std::filesystem::path root_path_, current_directory_;
     ImGuiTextFilter search_filter_;
