@@ -39,6 +39,7 @@ namespace editor {
     Viewport viewport_;
     EnttScene active_scene_;
     ContentBrowserPanel cbp_;
+    ScenePanelManager spm_;
   };
   
 }

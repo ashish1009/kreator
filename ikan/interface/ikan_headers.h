@@ -70,6 +70,7 @@
 #include <editor/property_grid.hpp>
 #include <editor/editor_camera.hpp>
 #include <editor/content_browser_panel.hpp>
+#include <editor/scene_panel_manager.hpp>
 
 // Scene
 #include <scene/viewport.hpp>

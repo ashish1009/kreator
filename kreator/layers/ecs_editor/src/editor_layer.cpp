@@ -14,6 +14,8 @@ namespace editor {
     cbp_.AddFavouritPaths({
       AM::ProjectPath("kreator/layers/ecs_editor/editor_assets"),
     });
+    
+    spm_.SetSceneContext(&active_scene_);
   }
   
   EditorLayer::~EditorLayer() {
@@ -57,6 +59,7 @@ namespace editor {
     viewport_.RenderGui();
     active_scene_.RenderGui();
     cbp_.RenderGui();
+    spm_.RenderGui();
     
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });

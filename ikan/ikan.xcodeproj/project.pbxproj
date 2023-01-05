@@ -53,6 +53,8 @@
 		B2584ED0295B7B3E00234714 /* maths.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2584ECE295B7B3E00234714 /* maths.hpp */; };
 		B2584ED3295B7FE200234714 /* text_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2584ED1295B7FE200234714 /* text_renderer.cpp */; };
 		B2584ED4295B7FE200234714 /* text_renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2584ED2295B7FE200234714 /* text_renderer.hpp */; };
+		B25F5DDE2966D3450030DE03 /* scene_panel_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25F5DDC2966D3450030DE03 /* scene_panel_manager.cpp */; };
+		B25F5DDF2966D3450030DE03 /* scene_panel_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B25F5DDD2966D3450030DE03 /* scene_panel_manager.hpp */; };
 		B27CF12A295EC6E000837A36 /* uuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF128295EC6E000837A36 /* uuid.cpp */; };
 		B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B27CF129295EC6E000837A36 /* uuid.hpp */; };
 		B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */; };
@@ -211,6 +213,8 @@
 		B2584ED2295B7FE200234714 /* text_renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = text_renderer.hpp; sourceTree = "<group>"; };
 		B2584ED5295B812600234714 /* text_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = text_shader.glsl; sourceTree = "<group>"; };
 		B2584ED6295B824400234714 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = vendors/freetype/lib/libfreetype.a; sourceTree = "<group>"; };
+		B25F5DDC2966D3450030DE03 /* scene_panel_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_panel_manager.cpp; sourceTree = "<group>"; };
+		B25F5DDD2966D3450030DE03 /* scene_panel_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_panel_manager.hpp; sourceTree = "<group>"; };
 		B27CF128295EC6E000837A36 /* uuid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = uuid.cpp; sourceTree = "<group>"; };
 		B27CF129295EC6E000837A36 /* uuid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = uuid.hpp; sourceTree = "<group>"; };
 		B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imgui.xcodeproj; path = imgui/imgui.xcodeproj; sourceTree = "<group>"; };
@@ -540,6 +544,7 @@
 				B2C0D8072959E161003F168B /* property_grid.cpp */,
 				B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */,
 				B20303D72965ADCE00563A34 /* content_browser_panel.cpp */,
+				B25F5DDC2966D3450030DE03 /* scene_panel_manager.cpp */,
 			);
 			path = editor;
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 				B2C0D8082959E161003F168B /* property_grid.hpp */,
 				B2581119295ADC2C00B0EDA7 /* editor_camera.hpp */,
 				B20303D82965ADCE00563A34 /* content_browser_panel.hpp */,
+				B25F5DDD2966D3450030DE03 /* scene_panel_manager.hpp */,
 			);
 			path = editor;
 			sourceTree = "<group>";
@@ -786,6 +792,7 @@
 				B2C0D81A295A01DF003F168B /* pipeline.hpp in Headers */,
 				B2F5265B2959776A00A83C65 /* shader.hpp in Headers */,
 				B2C0D816295A01D5003F168B /* open_gl_pipeline.hpp in Headers */,
+				B25F5DDF2966D3450030DE03 /* scene_panel_manager.hpp in Headers */,
 				B2250D042958751E0067C43B /* core_logger.h in Headers */,
 				B2B6CDD22958DF7700AE609E /* imgui_api.hpp in Headers */,
 				B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */,
@@ -925,6 +932,7 @@
 				B2FC3E892958826C00447A1A /* profiler.cpp in Sources */,
 				B24DD8392963045400525941 /* stb_image.cpp in Sources */,
 				B217E2FD2963133700311AE6 /* entity.cpp in Sources */,
+				B25F5DDE2966D3450030DE03 /* scene_panel_manager.cpp in Sources */,
 				B2FC40242958BAC400447A1A /* renderer_context.cpp in Sources */,
 				B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */,
 				B2FC40622958BD6100447A1A /* renderer_api.cpp in Sources */,
