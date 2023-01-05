@@ -37,13 +37,14 @@ namespace editor {
     }
     
     Renderer::ResetStatsEachFrame();
+    viewport_.UpdateMousePos();
     
     viewport_.framebuffer->Bind();
 
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
     active_scene_.Update(ts);
     
-    viewport_.UpdateMousePos();
+    UpdateHoveredEntity();
     viewport_.framebuffer->Unbind();
   }
   
@@ -126,6 +127,22 @@ namespace editor {
   void EditorLayer::Setting::UpdateSetting(std::string tag, bool& flag) {
     if (ImGui::MenuItem(tag.c_str(), nullptr, flag))
       flag = (flag) ? false : true;
+  }
+
+  void EditorLayer::UpdateHoveredEntity() {
+    if (!viewport_.hovered)
+      return;
+    
+    // Get pixel from rednerer
+    Renderer::GetEntityIdFromPixels(viewport_.mouse_pos_x,
+                                    viewport_.mouse_pos_y,
+                                    2,
+                                    viewport_.hovered_entity_id_);
+    IK_CRITICAL(LogModule::None, "{0}", viewport_.hovered_entity_id_);
+    // Update hovered entity
+    viewport_.hovered_entity_ = (viewport_.hovered_entity_id_ > (int32_t)active_scene_.GetMaxEntityId()) ?
+    nullptr :
+    active_scene_.GetEnitityFromId(viewport_.hovered_entity_id_);
   }
 
 } 

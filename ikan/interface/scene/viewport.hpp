@@ -11,6 +11,8 @@
 
 namespace ikan {
 
+  class Entity;
+
   struct Viewport {
     bool focused = false;
     bool hovered = false;
@@ -25,6 +27,9 @@ namespace ikan {
     ImVec2 cursor_pos;
 
     std::shared_ptr<FrameBuffer> framebuffer;
+
+    int32_t hovered_entity_id_ = -1; // Entity and ID hovered by mouse position
+    Entity* hovered_entity_ = nullptr; // Entity Handler to store Viewport
 
     DELETE_COPY_MOVE_CONSTRUCTORS(Viewport);
 

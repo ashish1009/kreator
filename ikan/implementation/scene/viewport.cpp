@@ -7,6 +7,7 @@
 
 #include "viewport.hpp"
 #include "editor/property_grid.hpp"
+#include "scene/entity.hpp"
 
 namespace ikan {
   
@@ -60,7 +61,7 @@ namespace ikan {
     ImGui::Begin("Viewport Data",nullptr, ImGuiWindowFlags_NoScrollbar);
     ImGui::PushID("Viewport Data");
 
-    ImGui::Columns(5);
+    ImGui::Columns(7);
     ImGui::SetColumnWidth(0, 90);
     ImGui::Text("%d x %d", mouse_pos_x, mouse_pos_y);
     PropertyGrid::HoveredMsg("Mouse relative position");
@@ -80,8 +81,26 @@ namespace ikan {
     ImGui::Text("%d x %d", width, height);
     PropertyGrid::HoveredMsg("Viewport Size");
     ImGui::NextColumn();
+    
+    if (hovered_entity_) {
+      std::string entityName = hovered_entity_->GetComponent<TagComponent>().tag;
+      ImGui::SetColumnWidth(4, 50);
+      ImGui::Text("ID : %d", (uint32_t)(*hovered_entity_));
+      ImGui::NextColumn();
+      
+      ImGui::SetColumnWidth(5, 100);
+      ImGui::Text("Name : %s ", entityName.c_str());
+      ImGui::NextColumn();
+    }
+    else {
+      ImGui::SetColumnWidth(4, 50);
+      ImGui::NextColumn();
+      
+      ImGui::SetColumnWidth(5, 50);
+      ImGui::NextColumn();
+    }
 
-    ImGui::SetColumnWidth(4, 100);
+    ImGui::SetColumnWidth(6, 100);
     auto color = framebuffer->GetSpecification().color;
     if (ImGui::ColorEdit4("", &color.x, ImGuiColorEditFlags_NoInputs)) {
       framebuffer->UpdateSpecificationColor(color);

@@ -110,20 +110,23 @@ namespace ikan {
     
     auto circle_view = registry_.view<TransformComponent, CircleComponent>();
     // For all Mesg entity
-    for (const auto& ciecle_entity : circle_view) {
-      const auto& [transform_component, circle_component] = circle_view.get<TransformComponent, CircleComponent>(ciecle_entity);
+    for (const auto& circle_entity : circle_view) {
+      const auto& [transform_component, circle_component] = circle_view.get<TransformComponent, CircleComponent>(circle_entity);
       if (circle_component.texture_comp.use and circle_component.texture_comp.component) {
         BatchRenderer::DrawCircle(transform_component.GetTransform(),
                                   circle_component.texture_comp.component,
                                   circle_component.color,
                                   circle_component.texture_comp.tiling_factor,
                                   circle_component.thickness,
-                                  circle_component.fade);
+                                  circle_component.fade,
+                                  (uint32_t)circle_entity);
+
       } else {
         BatchRenderer::DrawCircle(transform_component.GetTransform(),
                                   circle_component.color,
                                   circle_component.thickness,
-                                  circle_component.fade);
+                                  circle_component.fade,
+                                  (uint32_t)circle_entity);
       }
     } // for (const auto& entity : mesh_view)
 
@@ -205,8 +208,14 @@ namespace ikan {
     render_imgui_ = std::bind(&EnttScene::RenderImguiEditor, this);    
   }
   
-  EnttScene::Setting& EnttScene::GetSetting() {
-    return setting_;
+  Entity* EnttScene::GetEnitityFromId(int32_t id) {
+    if (entity_id_map_.find((entt::entity)id) != entity_id_map_.end())
+      return &entity_id_map_.at((entt::entity)id);
+    return nullptr;
   }
+
+  EnttScene::Setting& EnttScene::GetSetting() { return setting_; }
+  uint32_t EnttScene::GetNumEntities() const { return num_entities_; }
+  uint32_t EnttScene::GetMaxEntityId() const { return max_entity_id_; }
 
 }

@@ -69,9 +69,16 @@ namespace ikan {
     // ------------------
     // Getters
     // ------------------
+    /// This function returns the entity Ref from its id
+    /// - Parameter id: entity ID
+    Entity* GetEnitityFromId(int32_t id);
     /// This function returns the state of scene
     State GetState() const;
-    
+    /// This function returns the number of Entities stored in Scene
+    uint32_t GetNumEntities() const;
+    /// This function returns the Max Entity ID given to scene
+    uint32_t GetMaxEntityId() const;
+
     DELETE_COPY_MOVE_CONSTRUCTORS(EnttScene);
     
   private:

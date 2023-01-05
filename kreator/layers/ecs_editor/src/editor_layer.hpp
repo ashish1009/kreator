@@ -56,6 +56,8 @@ namespace editor {
     // --------------------
     /// This function render the menue bar
     void ShowMenu();
+    /// This function updates the hovered enetity id if mouse cursor points it
+    void UpdateHoveredEntity();
 
     // --------------------
     // Member variables
