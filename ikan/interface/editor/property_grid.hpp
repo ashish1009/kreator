@@ -148,6 +148,25 @@ namespace ikan {
                         int32_t num_lines = 1,
                         bool error = false);
     
+    /// This function catch the dragged content from content prowser pannel and call the function passed as ui_function
+    /// - Parameter uiFunction: Function
+    template<typename UIFunction> static void DropConent(UIFunction ui_function) {
+      if (ImGui::BeginDragDropTarget() and
+          !ImGui::IsMouseDragging(0) and
+          ImGui::IsMouseReleased(0)) {
+        if (const ImGuiPayload* data = ImGui::AcceptDragDropPayload("SelectedFile",
+                                                                    ImGuiDragDropFlags_AcceptBeforeDelivery)) {
+          char* file_path = new char[uint32_t(data->DataSize + 1)];
+          memcpy(file_path, (char*)data->Data, (size_t)data->DataSize);
+          file_path[data->DataSize] = '\0';
+          
+          ui_function(file_path);
+          delete[] file_path;
+        }
+        ImGui::EndDragDropTarget();
+      }
+    }
+    
   private:
     static bool FloatImpl(const std::vector<std::string>& buttons,
                           const char* label,
