@@ -23,6 +23,7 @@ namespace ikan {
       enum class TextureFormat {
         None = 0,
         RGBA8,
+        R32I,
         Depth24Stencil
       };
       

@@ -136,9 +136,8 @@ namespace editor {
     // Get pixel from rednerer
     Renderer::GetEntityIdFromPixels(viewport_.mouse_pos_x,
                                     viewport_.mouse_pos_y,
-                                    2,
+                                    1,
                                     viewport_.hovered_entity_id_);
-    IK_CRITICAL(LogModule::None, "{0}", viewport_.hovered_entity_id_);
     // Update hovered entity
     viewport_.hovered_entity_ = (viewport_.hovered_entity_id_ > (int32_t)active_scene_.GetMaxEntityId()) ?
     nullptr :

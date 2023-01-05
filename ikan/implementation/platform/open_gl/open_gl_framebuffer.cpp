@@ -21,6 +21,8 @@ namespace ikan {
       switch (format) {
         case FrameBuffer::Attachments::TextureFormat::RGBA8:
           return "RGBA8";
+        case FrameBuffer::Attachments::TextureFormat::R32I:
+          return "R32I";
         case FrameBuffer::Attachments::TextureFormat::Depth24Stencil:
           return "Depth24Stencil";
         case FrameBuffer::Attachments::TextureFormat::None:
@@ -36,8 +38,8 @@ namespace ikan {
     static bool IsDepthFormat(FrameBuffer::Attachments::TextureFormat format) {
       switch (format) {
         case FrameBuffer::Attachments::TextureFormat::RGBA8:
+        case FrameBuffer::Attachments::TextureFormat::R32I:
           return false;
-          
         case FrameBuffer::Attachments::TextureFormat::Depth24Stencil:
           return true;
           
@@ -168,9 +170,10 @@ namespace ikan {
 
     IK_CORE_DEBUG(LogModule::FrameBuffer, "Invalidating Open GL Framebuffer | {0}", renderer_id_);
     IK_CORE_DEBUG(LogModule::FrameBuffer, "  ---------------------------------------------------------");
-    IK_CORE_DEBUG(LogModule::FrameBuffer, "  Width  | {0}", specification_.width);
-    IK_CORE_DEBUG(LogModule::FrameBuffer, "  Height | {0}", specification_.height);
-    IK_CORE_DEBUG(LogModule::FrameBuffer, "  Color  | {0} : {1} : {2}", specification_.color.r, specification_.color.g, specification_.color.b);
+    IK_CORE_DEBUG(LogModule::FrameBuffer, "  Renderer ID | {0}", renderer_id_);
+    IK_CORE_DEBUG(LogModule::FrameBuffer, "  Width       | {0}", specification_.width);
+    IK_CORE_DEBUG(LogModule::FrameBuffer, "  Height      | {0}", specification_.height);
+    IK_CORE_DEBUG(LogModule::FrameBuffer, "  Color       | {0} : {1} : {2} : {3}", specification_.color.r, specification_.color.g, specification_.color.b, specification_.color.a);
     IK_CORE_DEBUG(LogModule::FrameBuffer, "  ---------------------");
     
     int32_t internal_format = 0;
@@ -209,6 +212,23 @@ namespace ikan {
             IK_CORE_DEBUG(LogModule::FrameBuffer, "    InternalFormae | {0}", texture_utils::GetFormatNameFromEnum(internal_format));
             IK_CORE_DEBUG(LogModule::FrameBuffer, "    DataFormat     | {0}", texture_utils::GetFormatNameFromEnum(data_format));
             break;
+          case FrameBuffer::Attachments::TextureFormat::R32I:
+            internal_format = GL_R32I;
+            data_format = GL_RED_INTEGER;
+            frame_buffer_utils::AttachTexture(
+                                              internal_format,
+                                              data_format,
+                                              specification_.width,
+                                              specification_.height
+                                              );
+            frame_buffer_utils::FramebufferTexture(
+                                                   color_attachment_ids_[i],
+                                                   GL_COLOR_ATTACHMENT0 + (int32_t)i,
+                                                   GL_TEXTURE_2D
+                                                   );
+            IK_CORE_DEBUG(LogModule::FrameBuffer, "    InternalFormae | {0}", texture_utils::GetFormatNameFromEnum(internal_format));
+            IK_CORE_DEBUG(LogModule::FrameBuffer, "    DataFormat     | {0}", texture_utils::GetFormatNameFromEnum(data_format));
+
         }; // switch (color_specifications_[i])
       } // for (size_t i = 0; i < color_attachment_ids_.size(); i++)
     } // if (color_specifications_.size())
@@ -223,6 +243,7 @@ namespace ikan {
       switch (depth_specification_) {
         case FrameBuffer::Attachments::TextureFormat::None:
         case FrameBuffer::Attachments::TextureFormat::RGBA8:
+        case FrameBuffer::Attachments::TextureFormat::R32I:
           break;
           
         case FrameBuffer::Attachments::TextureFormat::Depth24Stencil:

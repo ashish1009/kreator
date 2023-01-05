@@ -18,11 +18,14 @@ namespace ikan {
 #ifdef IK_DEBUG_FEATURE
     
     std::string GetFormatNameFromEnum(uint32_t format) {
-      if (format == GL_RGBA8) return "GL_RGBA8";
-      if (format == GL_RGBA)  return "GL_RGBA";
-      if (format == GL_RGB8)  return "GL_RGB8";
-      if (format == GL_RGB)   return "GL_RGB";
-      if (format == GL_RED)   return "GL_RED";
+      if (format == GL_RGBA8)       return "GL_RGBA8";
+      if (format == GL_RGBA)        return "GL_RGBA";
+      if (format == GL_RGB8)        return "GL_RGB8";
+      if (format == GL_RGB)         return "GL_RGB";
+      if (format == GL_RED)         return "GL_RED";
+      if (format == GL_R32I)        return "GL_R32I";
+      if (format == GL_RED_INTEGER) return "GL_RED_INTEGER";
+
       if (format == GL_DEPTH_COMPONENT)   return "GL_DEPTH_COMPONENT";
       else IK_CORE_ASSERT(false, "Add New Featured format herer too");
     }
@@ -43,6 +46,7 @@ namespace ikan {
         case GL_RGB8:
         case GL_RGBA:
         case GL_RED:
+        case GL_R32I:
           return GL_UNSIGNED_BYTE;
           
         case GL_DEPTH_COMPONENT:

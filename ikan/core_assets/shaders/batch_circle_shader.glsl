@@ -48,7 +48,7 @@ void main()
 #type fragment
 #version 330 core
 layout(location = 0) out vec4 o_Color;
-layout(location = 2) out int  o_IDBuffer;
+layout(location = 1) out int  o_IDBuffer;
 
 in VS_OUT
 {
