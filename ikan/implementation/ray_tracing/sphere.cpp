@@ -11,7 +11,7 @@ namespace ikan {
   
   Sphere::Sphere(const Sphere& other)
   : position(other.position), radius(other.radius) {
-    IK_CORE_TRACE(LogModule::Sphere, "Copying Sphere ...");
+//    IK_CORE_TRACE(LogModule::Sphere, "Copying Sphere ...");
   }
   
   Sphere::Sphere(const glm::vec3& position, float radius, int32_t material_index)

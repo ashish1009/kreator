@@ -37,8 +37,8 @@ namespace ikan {
                  glm::vec3& attenuation,
                  Ray& scattered_ray) const;
     
-    RayMaterial() =default;
-    DELETE_COPY_MOVE_CONSTRUCTORS(RayMaterial);
+    RayMaterial() = default;
+    DEFINE_COPY_MOVE_CONSTRUCTORS(RayMaterial);
     
   private:
     /// This function calculate the reflecatance for the dielectric

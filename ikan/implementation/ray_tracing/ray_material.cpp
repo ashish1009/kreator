@@ -19,6 +19,16 @@ namespace ikan {
     return v - 2*dot(v,n)*n;
   }
   
+  RayMaterial::RayMaterial(const RayMaterial& other)
+  : albedo(other.albedo), type(other.type), fuzz(other.fuzz), refractive_index(other.refractive_index) {
+//    IK_CORE_TRACE(LogModule::RayMaterial, "Copying Ray Material ...");
+  }
+  
+  RayMaterial::RayMaterial(RayMaterial&& other)
+  : albedo(other.albedo), type(other.type), fuzz(other.fuzz), refractive_index(other.refractive_index) {
+//    IK_CORE_TRACE(LogModule::RayMaterial, "Moving Ray Material ...");
+  }
+  
   bool RayMaterial::Scatter(const Ray &ray_in,
                          const HitPayload &payload,
                          glm::vec3 &attenuation,

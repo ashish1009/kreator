@@ -26,7 +26,7 @@ namespace ikan {
     EditorCamera, ContentBrowserPanel,
     
     // Ray Tracing
-    HitPayload, Ray, Sphere,
+    HitPayload, Ray, Sphere, RayMaterial,
     
     // Imgui
     Imgui
@@ -70,6 +70,7 @@ namespace ikan {
       case LogModule::HitPayload: return "HitPayload";
       case LogModule::Ray: return "Ray";
       case LogModule::Sphere: return "Sphere";
+      case LogModule::RayMaterial: return "RayMaterial";
         
       case LogModule::Imgui: return "ImGui";
 
