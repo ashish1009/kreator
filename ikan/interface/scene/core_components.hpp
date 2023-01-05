@@ -47,8 +47,8 @@ namespace ikan {
 
   struct CircleComponent {
     TextureComponent texture_comp;
-    glm::vec4 color = {0.123f, 0.123f, 0.123f, 1.0f};
-    
+    glm::vec4 color{1.0f};
+
     float thickness = 1.0f;
     float fade = 0.005f;
     

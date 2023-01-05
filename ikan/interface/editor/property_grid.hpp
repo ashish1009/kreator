@@ -149,12 +149,56 @@ namespace ikan {
                         int32_t num_lines = 1,
                         bool error = false);
     
+    template<typename UIFunction>
     /// This function renders the texture components
     /// - Parameters:
     ///   - texture_comp: texture component
     ///   - color: color of the texture
+    ///   - ui_function: function to render below texture Use
     static void RenderTextureComponent(TextureComponent& texture_comp,
-                                       glm::vec4& color);
+                                       glm::vec4& color,
+                                       UIFunction ui_function) {
+      ImGui::PushID("##PropertyGrid::TextureComponent");
+      ImGui::Columns(2);
+      ImGui::SetColumnWidth(0, 100);
+      
+      static std::shared_ptr<Texture> no_texture = Renderer::GetTexture(AM::CoreAsset("textures/default/no_texture.png"));
+      size_t tex_id = ((texture_comp.component) ? texture_comp.component->GetRendererID() : no_texture->GetRendererID());
+      
+      // Show the image of texture
+      ImGui::Image((void*)tex_id,
+                   ImVec2(40.0f, 40.0f),
+                   ImVec2(0.0f, 1.0f),
+                   ImVec2(1.0f, 0.0f),
+                   ImVec4(1.0f, 1.0f, 1.0f, 1.0f),
+                   ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
+      
+      // Drop the texture here and load new texture
+      PropertyGrid::DropConent([&texture_comp](const std::string& path)
+                               {
+        texture_comp.component.reset();
+        texture_comp.component = Renderer::GetTexture(path);
+      });
+      PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to "
+                               "upload the texture");
+      ImGui::NextColumn();
+      
+      // Check box to togle use of texture
+      ImGui::Checkbox("Use ", &texture_comp.use);
+      
+      ui_function();
+      //    ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
+      
+      if (texture_comp.use) {
+        ImGui::SameLine();
+        ImGui::DragFloat("", &texture_comp.tiling_factor, 1.0f, 1.0f, 1000.0f);
+        PropertyGrid::HoveredMsg("Tiling Factor");
+      }
+      
+      ImGui::Columns(1);
+      ImGui::Separator();
+      ImGui::PopID();
+    }
     
     /// This function catch the dragged content from content prowser pannel and call the function passed as ui_function
     /// - Parameter uiFunction: Function
