@@ -10,6 +10,7 @@
 // This file includes the wrapeer class to suppoer propert grid api
 
 #include <imgui_internal.h>
+#include "renderer/graphics/texture.hpp"
 
 namespace ikan {
   
@@ -147,6 +148,13 @@ namespace ikan {
                         bool multiple = false,
                         int32_t num_lines = 1,
                         bool error = false);
+    
+    /// This function renders the texture components
+    /// - Parameters:
+    ///   - texture_comp: texture component
+    ///   - color: color of the texture
+    static void RenderTextureComponent(TextureComponent& texture_comp,
+                                       glm::vec4& color);
     
     /// This function catch the dragged content from content prowser pannel and call the function passed as ui_function
     /// - Parameter uiFunction: Function

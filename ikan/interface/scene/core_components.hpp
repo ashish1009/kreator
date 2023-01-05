@@ -37,7 +37,7 @@ namespace ikan {
   
   struct QuadComponent {
     TextureComponent texture_comp;
-    glm::vec4 color = {0.123f, 0.123f, 0.123f, 1.0f};
+    glm::vec4 color{1.0f};
 
     void RenderGui();
 
