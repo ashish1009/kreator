@@ -257,8 +257,11 @@ namespace ikan {
     UpdateRayDirections();
   }
   
-  void EditorCamera::RendererGui() {
-    ImGui::Begin("Editor Camera");
+  void EditorCamera::RendererGui(bool *is_open) {
+    if (!is_open) return;
+    if (*is_open == false) return;
+    
+    ImGui::Begin("Editor Camera", is_open);
     ImGui::PushID("Editor Camera");
     
     static float fov_angle = glm::degrees(fov_);

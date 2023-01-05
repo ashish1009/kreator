@@ -13,6 +13,15 @@ namespace editor {
   
   class EditorLayer : public Layer {
   public:
+    struct Setting {
+      bool cbp = true;
+      bool spm = true;
+      
+      bool frame_rate = true;
+      bool viewport = true;
+      bool stats = true;
+    };
+    
     /// Layer Default Constructor to store the name of layer
     EditorLayer();
     /// Default Destructor
@@ -36,10 +45,21 @@ namespace editor {
     void EventHandler(Event& event) override;
     
   private:
+    // --------------------
+    // Member functions
+    // --------------------
+    /// This function render the menue bar
+    void ShowMenu();
+
+    // --------------------
+    // Member variables
+    // --------------------
     Viewport viewport_;
     EnttScene active_scene_;
     ContentBrowserPanel cbp_;
     ScenePanelManager spm_;
+    
+    Setting setting_;
   };
   
 }

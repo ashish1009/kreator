@@ -172,15 +172,15 @@ namespace ikan {
     RendererStatistics::Get().ResetAll();
   }
   
-  void Renderer::RenderStatsGui(bool summary) {
-    RendererStatistics::Get().RenderGui(summary);
+  void Renderer::RenderStatsGui(bool *is_open, bool summary) {
+    RendererStatistics::Get().RenderGui(is_open, summary);
   }
   
   // -----------------
   // Gui Widgets
   // -----------------
-  void Renderer::Framerate() {
-    ImguiAPI::Framerate();
+  void Renderer::Framerate(bool *is_open) {
+    ImguiAPI::Framerate(is_open);
   }
   
   // -------------------------------------------------------------------------

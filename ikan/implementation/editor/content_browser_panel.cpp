@@ -33,8 +33,12 @@ namespace ikan {
       favourite_paths_.emplace_back(path);
   }
 
-  void ContentBrowserPanel::RenderGui() {
-    ImGui::Begin("Content Browser");
+  void ContentBrowserPanel::RenderGui(bool* is_open) {
+    if (!is_open) return;
+    
+    if (*is_open == false) return;
+    
+    ImGui::Begin("Content Browser", is_open);
     ImGui::PushID("Content Browser");
     
     TitleIcon();

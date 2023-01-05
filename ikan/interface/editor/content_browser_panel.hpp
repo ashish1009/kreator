@@ -22,7 +22,8 @@ namespace ikan {
     ~ContentBrowserPanel();
     
     /// This function renders Imgui for Contenct browser panel
-    void RenderGui();
+    /// - Parameter is_open: flag to show or hide widget
+    void RenderGui(bool* is_open = nullptr);
     /// This funcfion add the favourit paths to the pannel
     /// - Parameter favourite_paths: paths
     void AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths);

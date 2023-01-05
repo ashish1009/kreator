@@ -75,7 +75,7 @@ namespace sandbox {
   
   void SandboxLayer::RenderGui() {
     Renderer::Framerate();
-    Renderer::RenderStatsGui(false);
+    Renderer::RenderStatsGui(nullptr, false);
   }
   
 } // namespace sandbox

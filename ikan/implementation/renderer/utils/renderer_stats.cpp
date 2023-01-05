@@ -31,7 +31,10 @@ namespace ikan {
     return instance;
   }
   
-  void RendererStatistics::RenderGui(bool summary) {
+  void RendererStatistics::RenderGui(bool *is_open, bool summary) {
+    if (!is_open) return;
+    if (*is_open == false) return;
+
     static std::string hovered_message = "";
     
     ImGui::Begin("Renderer Stats");

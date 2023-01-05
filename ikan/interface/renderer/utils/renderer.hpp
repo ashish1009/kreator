@@ -146,13 +146,17 @@ namespace ikan {
     /// This function resets all the renderer stats
     static void ResetStats();
     /// This function renderers Imgui to show renderer stats
-    static void RenderStatsGui(bool summary = false);
+    /// - Parameters:
+    ///   - is_open: flag to show or hide the widget
+    ///   - summary: show stats in summary or detailed
+    static void RenderStatsGui(bool *is_open = nullptr, bool summary = false);
 
     // -----------------
     // Gui Widgets
     // -----------------
     /// This function renders a widgit that shows the frame rate of the application
-    static void Framerate();
+    /// - Parameter is_open: flag to show or hide the widget
+    static void Framerate(bool *is_open = nullptr);
     
     // ----------------
     // Library

@@ -30,7 +30,8 @@ namespace ikan {
     // Widget
     // ------------
     /// This function renders a widgit that shows the frame rate of the application
-    static void Framerate();
+    /// - Parameter is_open: flag to show or hide the widget
+    static void Framerate(bool *is_open);
     
     MAKE_PURE_STATIC(ImguiAPI);
   };

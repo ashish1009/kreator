@@ -53,14 +53,18 @@ namespace editor {
     
   void EditorLayer::RenderGui() {
     ImguiAPI::StartDcocking();
-    Renderer::Framerate();
-    Renderer::RenderStatsGui(true);
+    Renderer::Framerate(&setting_.frame_rate);
+    Renderer::RenderStatsGui(&setting_.stats, true);
     
-    viewport_.RenderGui();
+    viewport_.RenderGui(&setting_.viewport);
+    cbp_.RenderGui(&setting_.cbp);
+    spm_.RenderGui(&setting_.cbp);
+
     active_scene_.RenderGui();
-    cbp_.RenderGui();
-    spm_.RenderGui();
     
+    // Show Menu bar
+    ShowMenu();
+
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
     ImGui::Begin("Kreator Viewport");
@@ -88,4 +92,74 @@ namespace editor {
     ImguiAPI::EndDcocking();
   }
   
+  void EditorLayer::ShowMenu() {
+    if (ImGui::BeginMenuBar()) {
+      if (ImGui::BeginMenu("File")) {
+        if (ImGui::MenuItem("Exit", "Cmd + Q")) {
+          Application::Get().Close();
+        }
+        ImGui::EndMenu(); // ImGui::BeginMenu("File")
+      } // if (ImGui::BeginMenu("File"))
+      
+      if (ImGui::BeginMenu("Setting")) {
+        if (ImGui::BeginMenu("Scene")) {
+          if (ImGui::MenuItem("Editor Camera",
+                              nullptr,
+                              active_scene_.GetSetting().editor_camera)) {
+            if (active_scene_.GetSetting().editor_camera)
+              active_scene_.GetSetting().editor_camera = false;
+            else
+              active_scene_.GetSetting().editor_camera = true;
+          }
+          ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene"))
+        }
+        ImGui::Separator();
+        if (ImGui::MenuItem("Content Browser Panel",
+                            nullptr,
+                            setting_.cbp)) {
+          if (setting_.cbp)
+            setting_.cbp = false;
+          else
+            setting_.cbp = true;
+        }
+        if (ImGui::MenuItem("Scene Panel Manager",
+                            nullptr,
+                            setting_.spm)) {
+          if (setting_.spm)
+            setting_.spm = false;
+          else
+            setting_.spm = true;
+        }
+        ImGui::Separator();
+        if (ImGui::MenuItem("Frame Rate",
+                            nullptr,
+                            setting_.frame_rate)) {
+          if (setting_.frame_rate)
+            setting_.frame_rate = false;
+          else
+            setting_.frame_rate = true;
+        }
+        if (ImGui::MenuItem("Viewport",
+                            nullptr,
+                            setting_.viewport)) {
+          if (setting_.viewport)
+            setting_.viewport = false;
+          else
+            setting_.viewport = true;
+        }
+        if (ImGui::MenuItem("Renderer Stats",
+                            nullptr,
+                            setting_.stats)) {
+          if (setting_.stats)
+            setting_.stats = false;
+          else
+            setting_.stats = true;
+        }
+
+        ImGui::EndMenu(); // ImGui::BeginMenu("Setting")
+      }
+
+      ImGui::EndMenuBar(); // ImGui::BeginMenuBar()
+    } // if (ImGui::BeginMenuBar())
+  }
 } 

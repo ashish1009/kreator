@@ -70,7 +70,10 @@ namespace ikan {
     ImGui::End();
   }
   
-  void ImguiAPI::Framerate() {
+  void ImguiAPI::Framerate(bool *is_open) {
+    if (!is_open) return;
+    if (*is_open == false) return;
+
     ImGui::Begin("Frame Rate");
     ImGui::PushID("Frame Rate");
     ImGui::Text("%.1f FPS", ImGui::GetIO().Framerate);

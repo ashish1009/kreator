@@ -28,7 +28,8 @@ namespace ikan {
     void SetSceneContext(EnttScene* context);
     
     /// This function renders imgui window for scene pannels
-    void RenderGui();
+    /// - Parameter is_opened: flag to show or hide the widget
+    void RenderGui(bool* is_opened = nullptr);
     
     DELETE_COPY_MOVE_CONSTRUCTORS(ScenePanelManager)
 

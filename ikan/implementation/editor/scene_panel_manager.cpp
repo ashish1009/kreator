@@ -21,8 +21,11 @@ namespace ikan {
     scene_context_ = context;
   }
   
-  void ScenePanelManager::RenderGui() {
-    ImGui::Begin("Scene Manager");
+  void ScenePanelManager::RenderGui(bool* is_opened) {
+    if (!is_opened) return;
+    if (*is_opened == false) return;
+
+    ImGui::Begin("Scene Manager", is_opened);
     ImGui::PushID("Scene Manager");
 
     ImGui::PopID(); // Scene Manager

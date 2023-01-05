@@ -40,7 +40,8 @@ namespace ikan {
     /// This function returns true if viewport size is not same as framebuffer
     bool IsFramebufferResized();
     /// This function render the viewport information in gui
-    void RenderGui();
+    /// - Parameter is_open: flag to show or hide the widget
+    void RenderGui(bool *is_open);
   };
   
 }

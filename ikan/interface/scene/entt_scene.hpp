@@ -23,6 +23,10 @@ namespace ikan {
     enum State : uint8_t {
       Play = 0, Edit = 1
     };
+    
+    struct Setting {
+      bool editor_camera = true;
+    };
 
     /// This Constructor creates the instance of Scene.
     EnttScene();
@@ -58,6 +62,9 @@ namespace ikan {
     void PlayScene();
     /// This function sets the Scene as edit mode
     void EditScene();
+    
+    /// This function returns the setting reference to change the setting
+    Setting& GetSetting();
 
     // ------------------
     // Getters
@@ -105,6 +112,8 @@ namespace ikan {
     // State of the scene
     State state_ = State::Edit;
 
+    Setting setting_;
+    
     // Function pointers
     std::function<void(Timestep)> update_;
     std::function<void(Event&)> event_handler_;

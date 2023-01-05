@@ -32,7 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
             endingLineNumber = "57"
-            landmarkName = "Viewport::RenderGui()"
+            landmarkName = "Viewport::RenderGui(is_open)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -46,8 +46,8 @@
             filePath = "ikan/implementation/editor/content_browser_panel.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "ContentBrowserPanel::MainArea()"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,9 +62,9 @@
             filePath = "ikan/implementation/editor/editor_camera.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
-            landmarkName = "EditorCamera::RendererGui()"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "EditorCamera::RendererGui(is_open)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -94,9 +94,9 @@
             filePath = "ikan/implementation/editor/editor_camera.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
-            landmarkName = "EditorCamera::RendererGui()"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
+            landmarkName = "EditorCamera::RendererGui(is_open)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

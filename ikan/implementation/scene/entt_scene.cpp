@@ -160,7 +160,7 @@ namespace ikan {
   }
   
   void EnttScene::RenderImguiEditor() {
-    editor_camera_.RendererGui();
+    editor_camera_.RendererGui(&setting_.editor_camera);
   }
   
   void EnttScene::RenderImguiRuntime() {
@@ -186,6 +186,10 @@ namespace ikan {
     update_ = std::bind(&EnttScene::UpdateEditor, this, std::placeholders::_1);
     event_handler_ = std::bind(&EnttScene::EventHandlerEditor, this, std::placeholders::_1);
     render_imgui_ = std::bind(&EnttScene::RenderImguiEditor, this);    
+  }
+  
+  EnttScene::Setting& EnttScene::GetSetting() {
+    return setting_;
   }
 
 }

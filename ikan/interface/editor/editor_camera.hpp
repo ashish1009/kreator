@@ -44,7 +44,8 @@ namespace ikan {
     /// - Parameter e: event instance
     bool EventHandler(Event& e);
     /// This function renders Gui Data for Editor Camera
-    void RendererGui();
+    /// - Parameter is_open: flag to render or hide the widget
+    void RendererGui(bool *is_open = nullptr);
 
     /// This function updates the viewport size for Editor Camera
     /// - Parameters:
