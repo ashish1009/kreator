@@ -110,7 +110,6 @@ namespace ikan {
   // -------------------------------------------------------------------------
   QuadComponent::QuadComponent() {
     IK_CORE_TRACE(LogModule::Component, "Creating Quad Component ...");
-    texture_comp.use = true;
   }
   QuadComponent::QuadComponent(const QuadComponent& other)
   : color(other.color) {
@@ -140,7 +139,10 @@ namespace ikan {
   }
   
   void QuadComponent::RenderGui() {
+    ImGui::PushID("Quad__");
+
     ImGui::Columns(2);
+    ImGui::SetColumnWidth(0, 100);
 
     static std::shared_ptr<Texture> no_texture = Renderer::GetTexture(AM::CoreAsset("textures/default/no_texture.png"));
     size_t tex_id = ((texture_comp.component) ? texture_comp.component->GetRendererID() : no_texture->GetRendererID());
@@ -159,11 +161,24 @@ namespace ikan {
       texture_comp.component.reset();
       texture_comp.component = Renderer::GetTexture(path);
     });
+    PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to "
+                             "upload the texture");
+    ImGui::NextColumn();
 
-    ImGui::SameLine();
+    // Check box to togle use of texture
+    ImGui::Checkbox("Use ", &texture_comp.use);
+
     ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
 
+    if (texture_comp.use) {
+      ImGui::SameLine();
+      ImGui::DragFloat("", &texture_comp.tiling_factor, 1.0f, 1.0f, 1000.0f);
+      PropertyGrid::HoveredMsg("Tiling Factor");
+    }
+
+    ImGui::Columns(1);
     ImGui::Separator();
+    ImGui::PopID();
   }
 
   // -------------------------------------------------------------------------

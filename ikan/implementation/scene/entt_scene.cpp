@@ -98,7 +98,9 @@ namespace ikan {
       if (quad_component.texture_comp.use and quad_component.texture_comp.component) {
         BatchRenderer::DrawQuad(transform_component.GetTransform(),
                                 quad_component.texture_comp.component,
-                                quad_component.color);
+                                quad_component.color,
+                                quad_component.texture_comp.tiling_factor,
+                                (uint32_t)quad_entity);
       } else {
         BatchRenderer::DrawQuad(transform_component.GetTransform(),
                                 quad_component.color,
@@ -111,11 +113,12 @@ namespace ikan {
     for (const auto& ciecle_entity : circle_view) {
       const auto& [transform_component, circle_component] = circle_view.get<TransformComponent, CircleComponent>(ciecle_entity);
       if (circle_component.texture_comp.use and circle_component.texture_comp.component) {
-        BatchRenderer::DrawQuad(transform_component.GetTransform(),
-                                circle_component.texture_comp.component,
-                                circle_component.color,
-                                circle_component.thickness,
-                                circle_component.fade);
+        BatchRenderer::DrawCircle(transform_component.GetTransform(),
+                                  circle_component.texture_comp.component,
+                                  circle_component.color,
+                                  circle_component.texture_comp.tiling_factor,
+                                  circle_component.thickness,
+                                  circle_component.fade);
       } else {
         BatchRenderer::DrawCircle(transform_component.GetTransform(),
                                   circle_component.color,

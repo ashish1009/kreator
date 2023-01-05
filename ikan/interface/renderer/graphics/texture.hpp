@@ -21,8 +21,9 @@ namespace ikan {
   class Texture;
   /// This structure holds the texture component with use flag
   struct TextureComponent {
-    std::shared_ptr<Texture> component = nullptr;
     bool use = false;
+    std::shared_ptr<Texture> component = nullptr;
+    float tiling_factor = 1.0f;
     
     // default constructor and destructors
     TextureComponent() = default;
