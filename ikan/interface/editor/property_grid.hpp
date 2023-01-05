@@ -69,6 +69,75 @@ namespace ikan {
                             const glm::vec2& size,
                             const glm::vec4& bgColor = glm::vec4(0.0f),
                             int32_t padding = 0);
+    
+    /// This function renders slider for float
+    /// - Parameters:
+    ///   - label: Lable for Variable
+    ///   - value: Value reference to be changed
+    ///   - checkbox_flag: flag to render either checkbox or lable
+    ///   - delta: step of Drag in float
+    ///   - INT_MIN: min value
+    ///   - INT_MAX: max value
+    ///   - reset_value: value of reset button pressed
+    ///   - column_width: width of column of lable
+    static bool Float1(const char* label,
+                       float& value,
+                       bool* checkbox_flag = nullptr,
+                       float delta = 0.1f,
+                       int32_t min_value = INT_MIN,
+                       int32_t max_value = INT_MAX,
+                       float reset_value = 0.0f,
+                       float column_width = 100.0f);
+
+    /// This function renders slider for float 3
+    /// - Parameters:
+    ///   - label: Lable for Variable
+    ///   - value: Value reference to be changed
+    ///   - checkbox_flag: flag to render either checkbox or lable
+    ///   - delta: step of Drag in float
+    ///   - INT_MIN: min value
+    ///   - INT_MAX: max value
+    ///   - reset_value: value of reset button pressed
+    ///   - column_width: width of column of lable
+    static bool Float2(const char* label,
+                       glm::vec2& value,
+                       bool* checkbox_flag = nullptr,
+                       float delta = 0.1f,
+                       int32_t min_value = INT_MIN,
+                       int32_t max_value = INT_MAX,
+                       float reset_value = 0.0f,
+                       float column_width = 100.0f );
+    
+    /// This function renders slider for float 3
+    /// - Parameters:
+    ///   - label: Lable for Variable
+    ///   - value: Value reference to be changed
+    ///   - checkbox_flag: flag to render either checkbox or lable
+    ///   - delta: step of Drag in float
+    ///   - INT_MIN: min value
+    ///   - INT_MAX: max value
+    ///   - reset_value: value of reset button pressed
+    ///   - column_width: width of column of lable
+    static bool Float3(const char* label,
+                       glm::vec3& value,
+                       bool* checkbox_flag = nullptr,
+                       float delta = 0.1f,
+                       int32_t min_value = INT_MIN,
+                       int32_t max_value = INT_MAX,
+                       float reset_value = 0.0f,
+                       float column_width = 100.0f );
+
+    
+  private:
+    static bool FloatImpl(const std::vector<std::string>& buttons,
+                          const char* label,
+                          const std::vector<float*>& values,
+                          bool* checkbox_flag,
+                          float delta,
+                          int32_t min_value,
+                          int32_t max_value,
+                          float reset_value,
+                          float column_width);
 
     MAKE_PURE_STATIC(PropertyGrid);
   };

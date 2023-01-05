@@ -160,7 +160,7 @@ namespace ikan {
   }
   
   void EnttScene::RenderImguiEditor() {
-//    editor_camera_.RendererGui();
+    editor_camera_.RendererGui();
   }
   
   void EnttScene::RenderImguiRuntime() {

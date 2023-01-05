@@ -7,6 +7,7 @@
 
 #include "editor_camera.hpp"
 #include "core/input.hpp"
+#include "editor/property_grid.hpp"
 
 namespace ikan {
   
@@ -259,6 +260,27 @@ namespace ikan {
   void EditorCamera::RendererGui() {
     ImGui::Begin("Editor Camera");
     ImGui::PushID("Editor Camera");
+    
+    static float fov_angle = glm::degrees(fov_);
+    bool modified = false;
+    if (PropertyGrid::Float1("FOV", fov_angle, nullptr, 1.0f, 10.0f, 120.0f)) {
+      fov_ = glm::radians(fov_angle);
+      modified = true;
+    }
+    ImGui::Separator();
+    
+    if (PropertyGrid::Float3("Focal Point", focal_point_, nullptr, 0.1f)) {
+      modified = true;
+    }
+    if (PropertyGrid::Float1("Distance", distance_, nullptr, 0.1f)) {
+      modified = true;
+    }
+
+    if (modified) {
+      UpdateCameraProjection();
+      UpdateCameraView();
+      UpdateRayDirections();
+    }
     
     ImGui::PopID();
     ImGui::End();
