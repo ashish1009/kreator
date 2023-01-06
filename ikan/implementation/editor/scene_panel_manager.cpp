@@ -120,20 +120,21 @@ namespace ikan {
                                        {
       DrawEntityTreeNode(entity_id);
     });
+    
+    // Reset the selected entity if mouse is clicked on empty space
+    if (ImGui::IsMouseDown((int32_t)MouseButton::ButtonLeft) and ImGui::IsWindowHovered()) {
+      selected_entity_ = {};
+    }
   }
   
   void ScenePanelManager::PropertyPannel() {
-    // ----------
     // Tag
-    // ----------
     auto& tag = selected_entity_.GetComponent<TagComponent>().tag;
     PropertyGrid::TextBox(tag);
     PropertyGrid::HoveredMsg(("Entity ID : " + std::to_string((uint32_t)selected_entity_)).c_str());
     ImGui::Separator();
     
-    // ----------------------
     // Draw other components
-    // ----------------------
     DrawComponent<TransformComponent>("Transform", selected_entity_, [](auto& tc) { tc.RenderGui(); });
     DrawComponent<QuadComponent>("Qaad", selected_entity_, [](auto& qc) { qc.RenderGui(); });
     DrawComponent<CircleComponent>("Circle", selected_entity_, [this](auto& cc) { cc.RenderGui(); });
@@ -162,7 +163,10 @@ namespace ikan {
   }
   
   void ScenePanelManager::SetSelectedEntity(Entity* entity) {
-    selected_entity_ = *entity;
+    if (entity)
+      selected_entity_ = *entity;
+    else if (selected_entity_)
+      selected_entity_ = {};
   }
   
 }
