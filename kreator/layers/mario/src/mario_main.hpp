@@ -38,6 +38,9 @@ namespace mario {
   private:
     EnttScene mario_scene_;
     Viewport viewport_ = Viewport({ 0.12, 0.23, 0.34, 1.0f });
+    
+    // Render Data
+    std::shared_ptr<Texture> tile_sprite_;
   };
   
 }

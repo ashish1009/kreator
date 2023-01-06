@@ -11,11 +11,18 @@
 
 #include <entt.hpp>
 #include "editor/editor_camera.hpp"
+#include "scene/scene_camera.hpp"
 
 namespace ikan {
 
   // Forward declaration
   class Entity;
+  
+  struct CameraData {
+    SceneCamera* scene_camera = nullptr;
+    glm::vec3 position;
+    glm::mat4 transform_matrix;
+  };
 
   class EnttScene {
   public:
@@ -63,12 +70,11 @@ namespace ikan {
     /// This function sets the Scene as edit mode
     void EditScene();
     
-    /// This function returns the setting reference to change the setting
-    Setting& GetSetting();
-
     // ------------------
     // Getters
     // ------------------
+    /// This function returns the setting reference to change the setting
+    Setting& GetSetting();
     /// This function returns the entity Ref from its id
     /// - Parameter id: entity ID
     Entity* GetEnitityFromId(int32_t id);
@@ -105,7 +111,14 @@ namespace ikan {
     void RenderImguiEditor();
     /// This function renderes the imgui of the scene in play mode
     void RenderImguiRuntime();
-
+    
+    /// This function updates the primary camera data
+    void UpdatePrimaryCameraData();
+    
+    /// This function renders the 2D Entities
+    /// - Parameter camera_view_projection_mat: camera view projection matrix
+    void Render2DEntities(const glm::mat4& camera_view_projection_mat);
+    
     // ------------------
     // Member variabls
     // ------------------
@@ -128,6 +141,8 @@ namespace ikan {
     std::function<void(Event&)> event_handler_;
     std::function<void()> render_imgui_;
 
+    CameraData primary_camera_data_;
+    
     friend class Entity;
     friend class ScenePanelManager;
   };

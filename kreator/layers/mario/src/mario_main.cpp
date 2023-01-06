@@ -19,6 +19,17 @@ namespace mario {
   
   void MarioLayer::Attach() {
     IK_INFO("Mario", "Attaching Mario Layer instance");
+    
+    mario_scene_.PlayScene();
+    
+    tile_sprite_ = Renderer::GetTexture(AM::ClientAsset("textures/tiles.png"));
+    
+    auto e = mario_scene_.CreateEntity();
+    e.AddComponent<QuadComponent>();
+    
+    auto c = mario_scene_.CreateEntity();
+    c.AddComponent<CameraComponent>().is_primary = true;
+
   }
   
   void MarioLayer::Detach() {
@@ -33,6 +44,9 @@ namespace mario {
     
     viewport_.framebuffer->Bind();
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
+    
+    mario_scene_.Update(ts);
+
     viewport_.framebuffer->Unbind();
   }
   

@@ -25,19 +25,6 @@ namespace ikan {
       PlayScene();
     else
       IK_ASSERT(false, "Invalid State");
-
-    // ------------
-    // TODO: Temp
-    // ------------
-    Entity e1 = CreateEntity("Quad");
-    e1.AddComponent<QuadComponent>();
-
-    Entity e2 = CreateEntity("Circle");
-    e2.GetComponent<TransformComponent>().translation = { 2, 0, 0};
-    e2.AddComponent<CircleComponent>();
-
-    Entity e3 = CreateEntity("Camera");
-    e3.AddComponent<CameraComponent>();
   }
   
   EnttScene::~EnttScene() {
@@ -85,58 +72,22 @@ namespace ikan {
   }
   
   void EnttScene::Update(Timestep ts) {
+    // update the primary scene camera for run time rendering
+    UpdatePrimaryCameraData();
+    
     update_(ts);
   }
   
   void EnttScene::UpdateEditor(Timestep ts) {
     editor_camera_.Update(ts);
     
-    // Render 2D
-    BatchRenderer::BeginBatch(editor_camera_.GetViewProjection());
-    
-    auto quad_view = registry_.view<TransformComponent, QuadComponent>();
-    // For all Mesg entity
-    for (const auto& quad_entity : quad_view) {
-      const auto& [transform_component, quad_component] = quad_view.get<TransformComponent, QuadComponent>(quad_entity);
-      if (quad_component.texture_comp.use and quad_component.texture_comp.component) {
-        BatchRenderer::DrawQuad(transform_component.GetTransform(),
-                                quad_component.texture_comp.component,
-                                quad_component.color,
-                                quad_component.texture_comp.tiling_factor,
-                                (uint32_t)quad_entity);
-      } else {
-        BatchRenderer::DrawQuad(transform_component.GetTransform(),
-                                quad_component.color,
-                                (uint32_t)quad_entity);
-      }
-    } // for (const auto& entity : mesh_view)
-    
-    auto circle_view = registry_.view<TransformComponent, CircleComponent>();
-    // For all Mesg entity
-    for (const auto& circle_entity : circle_view) {
-      const auto& [transform_component, circle_component] = circle_view.get<TransformComponent, CircleComponent>(circle_entity);
-      if (circle_component.texture_comp.use and circle_component.texture_comp.component) {
-        BatchRenderer::DrawCircle(transform_component.GetTransform(),
-                                  circle_component.texture_comp.component,
-                                  circle_component.color,
-                                  circle_component.texture_comp.tiling_factor,
-                                  circle_component.thickness,
-                                  circle_component.fade,
-                                  (uint32_t)circle_entity);
-
-      } else {
-        BatchRenderer::DrawCircle(transform_component.GetTransform(),
-                                  circle_component.color,
-                                  circle_component.thickness,
-                                  circle_component.fade,
-                                  (uint32_t)circle_entity);
-      }
-    } // for (const auto& entity : mesh_view)
-
-    BatchRenderer::EndBatch();
+    Render2DEntities(editor_camera_.GetViewProjection());
   }
   
   void EnttScene::UpdateRuntime(Timestep ts) {
+    if (primary_camera_data_.scene_camera) {
+      Render2DEntities(primary_camera_data_.scene_camera->GetProjection() * glm::inverse(primary_camera_data_.transform_matrix));
+    }
   }
   
   void EnttScene::EventHandler(Event& event) {
@@ -215,6 +166,66 @@ namespace ikan {
     if (entity_id_map_.find((entt::entity)id) != entity_id_map_.end())
       return &entity_id_map_.at((entt::entity)id);
     return nullptr;
+  }
+  
+  void EnttScene::UpdatePrimaryCameraData() {
+    auto camera_view = registry_.view<TransformComponent, CameraComponent>();
+    for (const auto& camera_entity : camera_view) {
+      const auto& [transform_component, camera_component] = camera_view.get<TransformComponent, CameraComponent>(camera_entity);
+      if (camera_component.is_primary) {
+        primary_camera_data_.scene_camera = camera_component.camera.get();
+        primary_camera_data_.position = transform_component.translation;
+        primary_camera_data_.transform_matrix = transform_component.GetTransform();
+        return;
+      }
+    }
+    primary_camera_data_.scene_camera = nullptr;
+  }
+  
+  void EnttScene::Render2DEntities(const glm::mat4& camera_view_projection_mat) {
+    // Render 2D
+    BatchRenderer::BeginBatch(camera_view_projection_mat);
+    
+    auto quad_view = registry_.view<TransformComponent, QuadComponent>();
+    // For all Mesg entity
+    for (const auto& quad_entity : quad_view) {
+      const auto& [transform_component, quad_component] = quad_view.get<TransformComponent, QuadComponent>(quad_entity);
+      if (quad_component.texture_comp.use and quad_component.texture_comp.component) {
+        BatchRenderer::DrawQuad(transform_component.GetTransform(),
+                                quad_component.texture_comp.component,
+                                quad_component.color,
+                                quad_component.texture_comp.tiling_factor,
+                                (uint32_t)quad_entity);
+      } else {
+        BatchRenderer::DrawQuad(transform_component.GetTransform(),
+                                quad_component.color,
+                                (uint32_t)quad_entity);
+      }
+    } // for (const auto& entity : mesh_view)
+    
+    auto circle_view = registry_.view<TransformComponent, CircleComponent>();
+    // For all Mesg entity
+    for (const auto& circle_entity : circle_view) {
+      const auto& [transform_component, circle_component] = circle_view.get<TransformComponent, CircleComponent>(circle_entity);
+      if (circle_component.texture_comp.use and circle_component.texture_comp.component) {
+        BatchRenderer::DrawCircle(transform_component.GetTransform(),
+                                  circle_component.texture_comp.component,
+                                  circle_component.color,
+                                  circle_component.texture_comp.tiling_factor,
+                                  circle_component.thickness,
+                                  circle_component.fade,
+                                  (uint32_t)circle_entity);
+        
+      } else {
+        BatchRenderer::DrawCircle(transform_component.GetTransform(),
+                                  circle_component.color,
+                                  circle_component.thickness,
+                                  circle_component.fade,
+                                  (uint32_t)circle_entity);
+      }
+    } // for (const auto& entity : mesh_view)
+    
+    BatchRenderer::EndBatch();
   }
 
   EnttScene::Setting& EnttScene::GetSetting() { return setting_; }
