@@ -31,6 +31,8 @@
 		B227F37329597F2B0055D871 /* open_gl_renderer_id_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B227F37129597F2B0055D871 /* open_gl_renderer_id_manager.cpp */; };
 		B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B227F37229597F2B0055D871 /* open_gl_renderer_id_manager.hpp */; };
 		B24C4A6C2967FDA000675599 /* libimguizmo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B24C4A392967FD3600675599 /* libimguizmo.a */; };
+		B24C4A772968638B00675599 /* scene_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24C4A752968638B00675599 /* scene_camera.cpp */; };
+		B24C4A782968638B00675599 /* scene_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24C4A762968638B00675599 /* scene_camera.hpp */; };
 		B24DD8162962FD9800525941 /* hit_payload.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD80D2962FD9800525941 /* hit_payload.cpp */; };
 		B24DD8172962FD9800525941 /* ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD80E2962FD9800525941 /* ray.cpp */; };
 		B24DD8182962FD9800525941 /* ray_material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD80F2962FD9800525941 /* ray_material.cpp */; };
@@ -197,6 +199,8 @@
 		B227F37229597F2B0055D871 /* open_gl_renderer_id_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_renderer_id_manager.hpp; sourceTree = "<group>"; };
 		B227F38B2959DBF40055D871 /* single_texture_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = single_texture_shader.glsl; sourceTree = "<group>"; };
 		B24C4A312967FD3600675599 /* imguizmo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imguizmo.xcodeproj; path = imguizmo/imguizmo.xcodeproj; sourceTree = "<group>"; };
+		B24C4A752968638B00675599 /* scene_camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_camera.cpp; sourceTree = "<group>"; };
+		B24C4A762968638B00675599 /* scene_camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_camera.hpp; sourceTree = "<group>"; };
 		B24DD80D2962FD9800525941 /* hit_payload.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hit_payload.cpp; sourceTree = "<group>"; };
 		B24DD80E2962FD9800525941 /* ray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ray.cpp; sourceTree = "<group>"; };
 		B24DD80F2962FD9800525941 /* ray_material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ray_material.cpp; sourceTree = "<group>"; };
@@ -496,6 +500,7 @@
 				B2F4956929630B8F003F9CB0 /* entt_scene.hpp */,
 				B217E2FC2963133700311AE6 /* entity.hpp */,
 				B2DAAB80296575AF003578D9 /* core_components.hpp */,
+				B24C4A762968638B00675599 /* scene_camera.hpp */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -507,6 +512,7 @@
 				B2F4956829630B8F003F9CB0 /* entt_scene.cpp */,
 				B217E2FB2963133700311AE6 /* entity.cpp */,
 				B2DAAB7F296575AF003578D9 /* core_components.cpp */,
+				B24C4A752968638B00675599 /* scene_camera.cpp */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -807,6 +813,7 @@
 				B24DD8382963045400525941 /* stb_image.h in Headers */,
 				B2250D02295873A70067C43B /* ikan_common.h in Headers */,
 				B2BCB84E295AE3410068FCA2 /* input.hpp in Headers */,
+				B24C4A782968638B00675599 /* scene_camera.hpp in Headers */,
 				B2BD9E16295CA7610076A2F9 /* framebuffer.hpp in Headers */,
 				B2C0D81A295A01DF003F168B /* pipeline.hpp in Headers */,
 				B2F5265B2959776A00A83C65 /* shader.hpp in Headers */,
@@ -999,6 +1006,7 @@
 				B2BCB84D295AE3410068FCA2 /* mac_os_input.cpp in Sources */,
 				B24DD8172962FD9800525941 /* ray.cpp in Sources */,
 				B258111A295ADC2C00B0EDA7 /* editor_camera.cpp in Sources */,
+				B24C4A772968638B00675599 /* scene_camera.cpp in Sources */,
 				B2E7600C2958D38100ADBE79 /* mac_os_window.cpp in Sources */,
 				B2C0D80D2959FB69003F168B /* open_gl_renderer_buffer.cpp in Sources */,
 				B2FC405E2958BD0900447A1A /* open_gl_renderer_api.cpp in Sources */,

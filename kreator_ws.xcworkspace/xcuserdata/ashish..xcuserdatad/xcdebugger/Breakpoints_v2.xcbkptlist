@@ -349,8 +349,8 @@
             filePath = "kreator/layers/sandbox/sandbox_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "SandboxLayer::Attach()"
             landmarkType = "7">
          </BreakpointContent>
@@ -416,6 +416,22 @@
             startingLineNumber = "81"
             endingLineNumber = "81"
             landmarkName = "OpenGLTexture::OpenGLTexture(file_path, min_linear, mag_linear)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "61D934B9-5A80-4E46-B4DA-72EC23F923DD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/scene/scene_camera.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "SceneCamera::SceneCamera(proj_type)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

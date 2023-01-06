@@ -26,6 +26,10 @@ namespace sandbox {
     sub_tex_ = SubTexture::CreateFromCoords(Renderer::GetTexture("/Users/ashish./iKan_storage/Github/Projects/other_ikan_chess_mario/Mario/assets/textures/Player.png", false, false),
                                             {0, 0});
     
+    EnttScene scene;
+    camera_ent = scene.CreateEntity();
+    camera_ent.AddComponent<CameraComponent>();
+    
   }
   void SandboxLayer::Detach() {
     IK_WARN("Sandbox", "Detaching Sandbox Layer instance ");

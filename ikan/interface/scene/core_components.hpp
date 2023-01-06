@@ -8,6 +8,7 @@
 #pragma once
 
 #include "renderer/graphics/texture.hpp"
+#include "scene/scene_camera.hpp"
 
 namespace ikan {
  
@@ -56,6 +57,17 @@ namespace ikan {
 
     CircleComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(CircleComponent);
+  };
+  
+  struct CameraComponent {
+    bool is_fixed_aspect_ratio = false;
+    bool is_primary = false;
+    std::shared_ptr<SceneCamera> camera;
+    
+    void RenderGui();
+    
+    CameraComponent(SceneCamera::ProjectionType proj_type = SceneCamera::ProjectionType::Orthographic);
+    DEFINE_COPY_MOVE_CONSTRUCTORS(CameraComponent);
   };
 
 }

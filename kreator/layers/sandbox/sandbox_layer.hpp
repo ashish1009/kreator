@@ -48,6 +48,8 @@ namespace sandbox {
     std::shared_ptr<Pipeline> pipeline_;
     std::shared_ptr<Texture> checkboard_, mario_;
     std::shared_ptr<SubTexture> sub_tex_;
+    
+    Entity camera_ent;
   };
   
 } 
