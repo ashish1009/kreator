@@ -85,10 +85,10 @@ namespace ikan {
                        float& value,
                        bool* checkbox_flag = nullptr,
                        float delta = 0.1f,
-                       float min_value = INT_MIN,
-                       float max_value = INT_MAX,
                        float reset_value = 0.0f,
-                       float column_width = 100.0f);
+                       float column_width = 100.0f,
+                       float min_value = INT_MIN,
+                       float max_value = INT_MAX);
 
     /// This function renders slider for float 3
     /// - Parameters:
@@ -104,10 +104,10 @@ namespace ikan {
                        glm::vec2& value,
                        bool* checkbox_flag = nullptr,
                        float delta = 0.1f,
-                       float min_value = INT_MIN,
-                       float max_value = INT_MAX,
                        float reset_value = 0.0f,
-                       float column_width = 100.0f );
+                       float column_width = 100.0f,
+                       float min_value = INT_MIN,
+                       float max_value = INT_MAX);
     
     /// This function renders slider for float 3
     /// - Parameters:
@@ -123,10 +123,10 @@ namespace ikan {
                        glm::vec3& value,
                        bool* checkbox_flag = nullptr,
                        float delta = 0.1f,
-                       float min_value = INT_MIN,
-                       float max_value = INT_MAX,
                        float reset_value = 0.0f,
-                       float column_width = 100.0f );
+                       float column_width = 100.0f,
+                       float min_value = INT_MIN,
+                       float max_value = INT_MAX);
 
     /// This function renders the text box
     /// - Parameters:
@@ -225,10 +225,10 @@ namespace ikan {
                           const std::vector<float*>& values,
                           bool* checkbox_flag,
                           float delta,
-                          float min_value,
-                          float max_value,
                           float reset_value,
-                          float column_width);
+                          float column_width,
+                          float min_value,
+                          float max_value);
 
     MAKE_PURE_STATIC(PropertyGrid);
   };

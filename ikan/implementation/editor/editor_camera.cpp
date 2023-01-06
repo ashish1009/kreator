@@ -266,16 +266,16 @@ namespace ikan {
     
     static float fov_angle = glm::degrees(fov_);
     bool modified = false;
-    if (PropertyGrid::Float1("FOV", fov_angle, nullptr, 1.0f, 10.0f, 120.0f)) {
+    if (PropertyGrid::Float1("FOV", fov_angle, nullptr, 1.0f, 75.0f, 100.0f, 10.0f, 120.0f)) {
       fov_ = glm::radians(fov_angle);
       modified = true;
     }
     ImGui::Separator();
     
-    if (PropertyGrid::Float3("Focal Point", focal_point_, nullptr, 0.1f)) {
+    if (PropertyGrid::Float3("Focal Point", focal_point_, nullptr, 0.1f, 0.0f)) {
       modified = true;
     }
-    if (PropertyGrid::Float1("Distance", distance_, nullptr, 0.1f)) {
+    if (PropertyGrid::Float1("Distance", distance_, nullptr, 0.1f, 0.0f)) {
       modified = true;
     }
 

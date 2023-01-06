@@ -146,33 +146,33 @@ namespace ikan {
                             float& value,
                             bool* checkbox_flag,
                             float delta,
-                            float min_value,
-                            float max_value,
                             float reset_value,
-                            float column_width) {
-    return FloatImpl({"X"}, label, {&value}, checkbox_flag, delta, min_value, max_value, reset_value, column_width);
+                            float column_width,
+                            float min_value,
+                            float max_value) {
+    return FloatImpl({"X"}, label, {&value}, checkbox_flag, delta, reset_value, column_width, min_value, max_value);
   }
 
   bool PropertyGrid::Float2(const char* label,
                             glm::vec2& value,
                             bool* checkbox_flag,
                             float delta,
-                            float min_value,
-                            float max_value,
                             float reset_value,
-                            float column_width) {
-    return FloatImpl({"X", "Y"}, label, {&value.x, &value.y}, checkbox_flag, delta, min_value, max_value, reset_value, column_width);
+                            float column_width,
+                            float min_value,
+                            float max_value) {
+    return FloatImpl({"X", "Y"}, label, {&value.x, &value.y}, checkbox_flag, delta, reset_value, column_width, min_value, max_value);
   }
 
   bool PropertyGrid::Float3(const char* label,
                             glm::vec3& value,
                             bool* checkbox_flag,
                             float delta,
-                            float min_value,
-                            float max_value,
                             float reset_value,
-                            float column_width) {
-    return FloatImpl({"X", "Y", "Z"}, label, {&value.x, &value.y, &value.z}, checkbox_flag, delta, min_value, max_value, reset_value, column_width);
+                            float column_width,
+                            float min_value,
+                            float max_value) {
+    return FloatImpl({"X", "Y", "Z"}, label, {&value.x, &value.y, &value.z}, checkbox_flag, delta, reset_value, column_width, min_value, max_value);
   }
   
   bool PropertyGrid::FloatImpl(const std::vector<std::string>& buttons,
@@ -180,10 +180,10 @@ namespace ikan {
                                const std::vector<float*>& values,
                                bool* checkbox_flag,
                                float delta,
-                               float min_value,
-                               float max_value,
                                float reset_value,
-                               float column_width) {
+                               float column_width,
+                               float min_value,
+                               float max_value) {
     bool modified = false;
     ImGuiIO& io   = ImGui::GetIO();
     auto bold_font = io.Fonts->Fonts[0];
