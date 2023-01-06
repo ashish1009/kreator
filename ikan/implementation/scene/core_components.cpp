@@ -186,7 +186,7 @@ namespace ikan {
       ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
     });
     
-    PropertyGrid::Float1("Thickness", thickness, nullptr, 0.05f, 0.0f, 1.0f);
+    PropertyGrid::Float1("Thickness", thickness, nullptr, 0.05f, 0.05f, 1.0f);
     PropertyGrid::Float1("Fade", fade, nullptr, 0.1f, 0.0f);
     ImGui::Separator();
   }

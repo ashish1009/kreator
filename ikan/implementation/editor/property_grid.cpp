@@ -146,8 +146,8 @@ namespace ikan {
                             float& value,
                             bool* checkbox_flag,
                             float delta,
-                            int32_t min_value,
-                            int32_t max_value,
+                            float min_value,
+                            float max_value,
                             float reset_value,
                             float column_width) {
     return FloatImpl({"X"}, label, {&value}, checkbox_flag, delta, min_value, max_value, reset_value, column_width);
@@ -157,8 +157,8 @@ namespace ikan {
                             glm::vec2& value,
                             bool* checkbox_flag,
                             float delta,
-                            int32_t min_value,
-                            int32_t max_value,
+                            float min_value,
+                            float max_value,
                             float reset_value,
                             float column_width) {
     return FloatImpl({"X", "Y"}, label, {&value.x, &value.y}, checkbox_flag, delta, min_value, max_value, reset_value, column_width);
@@ -168,8 +168,8 @@ namespace ikan {
                             glm::vec3& value,
                             bool* checkbox_flag,
                             float delta,
-                            int32_t min_value,
-                            int32_t max_value,
+                            float min_value,
+                            float max_value,
                             float reset_value,
                             float column_width) {
     return FloatImpl({"X", "Y", "Z"}, label, {&value.x, &value.y, &value.z}, checkbox_flag, delta, min_value, max_value, reset_value, column_width);
@@ -180,8 +180,8 @@ namespace ikan {
                                const std::vector<float*>& values,
                                bool* checkbox_flag,
                                float delta,
-                               int32_t min_value,
-                               int32_t max_value,
+                               float min_value,
+                               float max_value,
                                float reset_value,
                                float column_width) {
     bool modified = false;
