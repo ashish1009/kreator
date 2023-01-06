@@ -59,6 +59,11 @@ namespace editor {
     /// This function handles the mouse button event
     /// - Parameter e: mouse button pressed event
     bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
+    /// This function handles the key button press event
+    /// - Parameter e key button pressed event
+    bool OnKeyPressed(KeyPressedEvent& event);
+    /// This funciton Render the imguizmo
+    void OnImguizmoUpdate();
 
     // --------------------
     // Member variables

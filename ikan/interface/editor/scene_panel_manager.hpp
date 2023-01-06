@@ -34,6 +34,10 @@ namespace ikan {
     /// This Function update the selected entity of scene
     /// - Parameter entity: new selected entity
     void SetSelectedEntity(Entity* entity);
+    /// This Function update the selected entity of scene
+    Entity* GetSelectedEntity();
+    /// This function returns the context of panel
+    EnttScene* GetContext();
     
     DELETE_COPY_MOVE_CONSTRUCTORS(ScenePanelManager)
 

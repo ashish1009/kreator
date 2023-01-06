@@ -7,8 +7,9 @@
 
 #include "viewport.hpp"
 #include "editor/property_grid.hpp"
+#include "editor/scene_panel_manager.hpp"
 #include "scene/entity.hpp"
-#include "scene/entt_scene.hpp"
+#include <ImGuizmo.h>
 
 namespace ikan {
   
@@ -56,19 +57,27 @@ namespace ikan {
     (spec.width != width or spec.height != height);
   }
 
-  void Viewport::UpdateHoveredEntity(EnttScene* scene) {
+  void Viewport::UpdateHoveredEntity(ScenePanelManager* spm) {
     if (!hovered)
       return;
     
+    if (ImGuizmo::IsOver()) {
+      hovered_entity_ = spm->GetSelectedEntity();
+      return;
+    }
+
     // Get pixel from rednerer
     Renderer::GetEntityIdFromPixels(mouse_pos_x,
                                     mouse_pos_y,
                                     framebuffer->GetPixelIdIndex(),
                                     hovered_entity_id_);
-    // Update hovered entity
-    hovered_entity_ = (hovered_entity_id_ > (int32_t)scene->GetMaxEntityId()) ?
-    nullptr :
-    scene->GetEnitityFromId(hovered_entity_id_);
+    
+    if (EnttScene* scene = spm->GetContext(); scene) {
+      // Update hovered entity
+      hovered_entity_ = (hovered_entity_id_ > (int32_t)scene->GetMaxEntityId()) ?
+      nullptr :
+      scene->GetEnitityFromId(hovered_entity_id_);
+    }
   }
 
   void Viewport::RenderGui(bool *is_open) {

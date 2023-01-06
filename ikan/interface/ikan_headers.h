@@ -35,6 +35,7 @@
 
 // Imgui files
 #include <imgui.h>
+#include <ImGuizmo.h>
 
 // Common Files
 #include <ikan_common.h>
@@ -49,6 +50,10 @@
 
 #include <core/math/maths.hpp>
 #include <core/math/uuid.hpp>
+
+#include <core/events/mouse_event.hpp>
+#include <core/events/application_event.hpp>
+#include <core/events/key_event.hpp>
 
 #include <core/core_application.hpp>
 #include <core/layer.hpp>

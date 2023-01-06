@@ -12,7 +12,7 @@
 namespace ikan {
 
   class Entity;
-  class EnttScene;
+  class ScenePanelManager;
   
   struct Viewport {
     bool focused = false;
@@ -32,6 +32,8 @@ namespace ikan {
     int32_t hovered_entity_id_ = -1; // Entity and ID hovered by mouse position
     Entity* hovered_entity_ = nullptr; // Entity Handler to store Viewport
 
+    int32_t guizmo_type = -1;
+
     DELETE_COPY_MOVE_CONSTRUCTORS(Viewport);
 
     // -----------------
@@ -46,8 +48,8 @@ namespace ikan {
     /// This function returns true if viewport size is not same as framebuffer
     bool IsFramebufferResized();
     /// This function updates the hoved entity
-    /// - Parameter scene: scene binded
-    void UpdateHoveredEntity(EnttScene* scene);
+    /// - Parameter spm: scene panel manegr
+    void UpdateHoveredEntity(ScenePanelManager* spm);
     /// This function render the viewport information in gui
     /// - Parameter is_open: flag to show or hide the widget
     void RenderGui(bool *is_open);

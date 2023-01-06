@@ -198,6 +198,16 @@ namespace ikan {
       selected_entity_ = {};
   }
   
+  Entity* ScenePanelManager::GetSelectedEntity() {
+    if (selected_entity_ == (entt::entity)entt::null)
+      return nullptr;
+    return &selected_entity_;
+  }
+  
+  EnttScene* ScenePanelManager::GetContext() {
+    return scene_context_;
+  }
+  
   void ScenePanelManager::RightClickOptions() {
     if (ImGui::BeginMenu("New Entity")) {
       // Show option of Empty Entity

@@ -78,7 +78,9 @@ namespace ikan {
     uint32_t GetNumEntities() const;
     /// This function returns the Max Entity ID given to scene
     uint32_t GetMaxEntityId() const;
-
+    /// This function returns the editor camera of scene
+    EditorCamera* GetEditorCamera();
+    
     DELETE_COPY_MOVE_CONSTRUCTORS(EnttScene);
     
   private:

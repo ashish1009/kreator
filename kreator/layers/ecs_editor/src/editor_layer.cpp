@@ -44,7 +44,7 @@ namespace editor {
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
     active_scene_.Update(ts);
     
-    viewport_.UpdateHoveredEntity(&active_scene_);
+    viewport_.UpdateHoveredEntity(&spm_);
     viewport_.framebuffer->Unbind();
   }
   
@@ -53,6 +53,7 @@ namespace editor {
 
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(EditorLayer::OnMouseButtonPressed));
+    dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
   }
 
   bool EditorLayer::OnMouseButtonPressed(MouseButtonPressedEvent& e) {
@@ -65,6 +66,39 @@ namespace editor {
       }
     }
     
+    return false;
+  }
+  
+  bool EditorLayer::OnKeyPressed(KeyPressedEvent& event) {
+    if (event.GetRepeatCount() > 0)
+      return false;
+    
+    // Set control key
+    bool ctrl = Input::IsKeyPressed(KeyCode::LeftControl) or Input::IsKeyPressed(KeyCode::RightControl);
+    
+    switch (event.GetKeyCode()) {
+        // -------------------------------
+        // Gizmos
+        // -------------------------------
+      case KeyCode::Q:
+        if (ctrl)
+          viewport_.guizmo_type = -1;
+        break;
+      case KeyCode::W:
+        if (ctrl)
+          viewport_.guizmo_type = ImGuizmo::OPERATION::TRANSLATE;
+        break;
+      case KeyCode::E:
+        if (ctrl)
+          viewport_.guizmo_type = ImGuizmo::OPERATION::ROTATE;
+        break;
+      case KeyCode::R:
+        if (ctrl)
+          viewport_.guizmo_type = ImGuizmo::OPERATION::SCALE;
+        
+      default:
+        break;
+    }
     return false;
   }
 
@@ -101,6 +135,8 @@ namespace editor {
                  ImVec2{ 1, 0 });
     
     viewport_.UpdateBound();
+
+    OnImguizmoUpdate();
 
     ImGui::PopStyleVar();
     ImGui::PopID();
@@ -145,4 +181,60 @@ namespace editor {
       flag = (flag) ? false : true;
   }
 
+  void EditorLayer::OnImguizmoUpdate() {
+    Entity* selected_entity = spm_.GetSelectedEntity();
+    if (selected_entity and viewport_.guizmo_type != -1) {
+      ImGuizmo::SetOrthographic(false);
+      ImGuizmo::SetDrawlist();
+      
+      float window_width = (float)ImGui::GetWindowWidth();
+      float window_height = (float)ImGui::GetWindowHeight();
+      ImGuizmo::SetRect(ImGui::GetWindowPos().x,
+                        ImGui::GetWindowPos().y,
+                        window_width,
+                        window_height);
+      
+      // Camera
+      EditorCamera* editor_camera = active_scene_.GetEditorCamera();
+      
+      const glm::mat4& camera_projection = editor_camera->GetProjection();
+      const glm::mat4& camera_view = editor_camera->GetView();
+      
+      // Entity transform
+      auto& tc = selected_entity->GetComponent<TransformComponent>();
+      glm::mat4 transform = tc.GetTransform();
+      
+      // Snapping
+      bool snap = Input::IsKeyPressed(KeyCode::LeftControl);
+      float snap_value = 0.5f; // Snap to 0.5m for translation/scale
+      
+      // Snap to 45 degrees for rotation
+      if (viewport_.guizmo_type == ImGuizmo::OPERATION::ROTATE)
+        snap_value = 45.0f;
+      
+      float snap_values[3] = {
+        snap_value,
+        snap_value,
+        snap_value
+      };
+      
+      ImGuizmo::Manipulate(glm::value_ptr(camera_view),
+                           glm::value_ptr(camera_projection),
+                           (ImGuizmo::OPERATION)viewport_.guizmo_type,
+                           ImGuizmo::LOCAL,
+                           glm::value_ptr(transform),
+                           nullptr,
+                           snap ? snap_values : nullptr);
+      
+      if (ImGuizmo::IsUsing()) {
+        glm::vec3 translation, rotation, scale;
+        Math::DecomposeTransform(transform, translation, rotation, scale);
+        
+        glm::vec3 deltaRotation = rotation - tc.rotation;
+        tc.translation = translation;
+        tc.rotation += deltaRotation;
+        tc.scale = scale;
+      }
+    }
+  }
 } 
