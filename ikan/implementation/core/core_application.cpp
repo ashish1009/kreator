@@ -101,6 +101,9 @@ namespace ikan {
       // Window update each frame
       window_->Update();
       
+      // Reset the renderer stats each frame
+      Renderer::ResetStatsEachFrame();
+
       // Updating all the attached layer
       for (auto& layer : layer_stack_)
         layer->Update(time_step_);

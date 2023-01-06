@@ -36,7 +36,6 @@ namespace editor {
       active_scene_.SetViewport(viewport_.width, viewport_.height);
     }
     
-    Renderer::ResetStatsEachFrame();
     viewport_.UpdateMousePos();
     
     viewport_.framebuffer->Bind();

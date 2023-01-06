@@ -42,7 +42,6 @@ namespace sandbox {
 
     editor_camera.Update(ts);
     
-    Renderer::ResetStatsEachFrame();
     Renderer::Clear({0.2, 0.3, 0.4, 1.0});
     
     std::shared_ptr<SceneCamera> c = camera_ent.GetComponent<CameraComponent>().camera;

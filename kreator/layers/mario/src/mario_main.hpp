@@ -40,6 +40,7 @@ namespace mario {
     Viewport viewport_ = Viewport({ 0.12, 0.23, 0.34, 1.0f });
     
     // Render Data
+    Entity camera_entity_;
     std::shared_ptr<Texture> tile_sprite_;
   };
   

@@ -20,16 +20,18 @@ namespace mario {
   void MarioLayer::Attach() {
     IK_INFO("Mario", "Attaching Mario Layer instance");
     
+    // Set the scene as playing
     mario_scene_.PlayScene();
     
+    // Create the tile sprite
     tile_sprite_ = Renderer::GetTexture(AM::ClientAsset("textures/tiles.png"));
+    
+    // Create the camera entity
+    camera_entity_ = mario_scene_.CreateEntity();
+    camera_entity_.AddComponent<CameraComponent>().is_primary = true;
     
     auto e = mario_scene_.CreateEntity();
     e.AddComponent<QuadComponent>();
-    
-    auto c = mario_scene_.CreateEntity();
-    c.AddComponent<CameraComponent>().is_primary = true;
-
   }
   
   void MarioLayer::Detach() {
@@ -56,7 +58,7 @@ namespace mario {
   void MarioLayer::RenderGui() {
     ImguiAPI::StartDcocking();
     Renderer::Framerate();
-    Renderer::RenderStatsGui(nullptr, true);
+    Renderer::RenderStatsGui();
     
     viewport_.RenderGui();
     mario_scene_.RenderGui();
