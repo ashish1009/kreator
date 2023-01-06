@@ -53,7 +53,7 @@ public:
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Set up the type of applicaiton we want to create
-  SupportedApplicationType application_type = SupportedApplicationType::Editor;
+  SupportedApplicationType application_type = SupportedApplicationType::Sandbox;
   
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;
@@ -64,7 +64,7 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   // Window Specification
   application_spec.window_specification.title = "Untitled Window";
   application_spec.window_specification.width = 1200;
-  application_spec.window_specification.height = 800;
+  application_spec.window_specification.height = 900;
   application_spec.window_specification.v_sync = true;
   application_spec.window_specification.fullscreen = false;
   application_spec.window_specification.decorated = true;
@@ -95,6 +95,8 @@ std::unique_ptr<ikan::Application> CreateApplication() {
     case SupportedApplicationType::Mario :
       application_spec.name = "Mario";
       application_spec.window_specification.title = "Mario";
+      application_spec.window_specification.width = 1600;
+      application_spec.window_specification.height = 900;
       application_spec.client_asset_path = "../../../kreator/layers/mario/assets/";
       application_spec.save_ini_file_path = "../../../kreator/layers/mario/mario.ini";
       break;

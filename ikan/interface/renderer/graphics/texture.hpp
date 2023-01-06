@@ -92,6 +92,64 @@ namespace ikan {
                                                          uint32_t size);
   };
   
+  /// Wrepper class to load texture and render as sprite
+  class SubTexture {
+  public:
+    /// This Funtion create the subtexture instance with texture reference pointer and following params
+    /// - Parameters:
+    ///   - sprite_image: sprite_image
+    ///   - min: min bound of sub texture
+    ///   - max: mxn bound of sub texture
+    ///   - coords: coordinate sof sub image from sprite image with reference to the cell Size.
+    ///              e.g {1, 2} -> from top left corner of image use the block of size 'cell size'
+    ///             from 16th pixel frol eft and 32nd pixled from top (using 16 assuming cell size is {16, 17})
+    ///   - sprite_size: number of blocks to be taken at one time from sprite
+    ///   - cell_size: size of block in pixel to be used for 1 block
+    SubTexture(const std::shared_ptr<Texture>& sprite_image,
+               const glm::vec2& min,
+               const glm::vec2& max,
+               const glm::vec2& coords = {0.0f, 0.0f},
+               const glm::vec2& sprite_size = {1.0f, 1.0f},
+               const glm::vec2& cell_size = {16.0f, 16.0f});
+    
+    /// Default destructor
+    ~SubTexture() = default;
+    
+    // -----------------
+    // Getters
+    // -----------------
+    /// This function returns the texture reference of sprite
+    const std::shared_ptr<Texture> GetTexture() const;
+    /// This function returns Texture coordinates of Subtexture
+    const glm::vec2* GetTexCoord() const;
+    /// This function returns Sprite size of Subtexture
+    glm::vec2& GetSpriteSize();
+    /// This function returns Cell Size of Subtexture
+    glm::vec2& GetCellSize();
+    /// This function returnsCoordinates of Subtexture
+    glm::vec2& GetCoords();
+
+    /// This Funtion create the subtexture instance with texture reference pointer and following params
+    /// - Parameters:
+    ///   - sprite_image: sprite_image
+    ///   - coords: coordinate sof sub image from sprite image with reference to the cell Size.
+    ///              e.g {1, 2} -> from top left corner of image use the block of size 'cell size'
+    ///             from 16th pixel frol eft and 32nd pixled from top (using 16 assuming cell size is {16, 17})
+    ///   - sprite_size: number of blocks to be taken at one time from sprite
+    ///   - cell_size: size of block in pixel to be used for 1 block
+    static std::shared_ptr<SubTexture> CreateFromCoords(const std::shared_ptr<Texture>& sprite_image,
+                                                        const glm::vec2& coords,
+                                                        const glm::vec2& sprite_size = {1.0f, 1.0f},
+                                                        const glm::vec2& cell_size = {16.0f, 16.0f});
+
+  private:
+    std::shared_ptr<Texture> sprite_image_;
+    glm::vec2 texture_coord_[4];
+    glm::vec2 sprite_size_;
+    glm::vec2 cell_size_;
+    glm::vec2 coords_;
+  };
+  
   /// This class is the Interface for Storing Renderer Char Texture data. Implementation is depending on the Supported Renerer API.
   class CharTexture {
   public:
@@ -143,33 +201,6 @@ namespace ikan {
                                                [[maybe_unused]] char char_val);
   };
   
-  /// This class stores the compiled Texture in library
-  class TextureLibrary {
-  private:
-    // -----------
-    // Functions
-    // -----------
-    /// This function returns the Ref type of ikan::Texture. It creates a new if not present in the map
-    /// - Parameters:
-    ///   - path: path of textre
-    ///   - min_linear: min linear flag
-    ///   - mag_linear: max linear flag
-    [[nodiscard]] static std::shared_ptr<Texture> GetTexture(const std::string& path,
-                                                             bool min_linear = true,
-                                                             bool mag_linear = true);
-    /// This function deletes all the Texture present int the map
-    static void ResetTextures();
-    
-    // -----------
-    // Variables
-    // -----------
-    static std::unordered_map<std::string, std::shared_ptr<Texture>> texture_library_;
-    
-    MAKE_PURE_STATIC(TextureLibrary)
-    
-    friend class Renderer;
-  };
-  
   class Image {
   public:
     // -------------
@@ -212,6 +243,33 @@ namespace ikan {
                                                        uint32_t height,
                                                        TextureFormat format,
                                                        void* data = nullptr);
+  };
+
+  /// This class stores the compiled Texture in library
+  class TextureLibrary {
+  private:
+    // -----------
+    // Functions
+    // -----------
+    /// This function returns the Ref type of ikan::Texture. It creates a new if not present in the map
+    /// - Parameters:
+    ///   - path: path of textre
+    ///   - min_linear: min linear flag
+    ///   - mag_linear: max linear flag
+    [[nodiscard]] static std::shared_ptr<Texture> GetTexture(const std::string& path,
+                                                             bool min_linear = true,
+                                                             bool mag_linear = true);
+    /// This function deletes all the Texture present int the map
+    static void ResetTextures();
+    
+    // -----------
+    // Variables
+    // -----------
+    static std::unordered_map<std::string, std::shared_ptr<Texture>> texture_library_;
+    
+    MAKE_PURE_STATIC(TextureLibrary)
+    
+    friend class Renderer;
   };
   
 }

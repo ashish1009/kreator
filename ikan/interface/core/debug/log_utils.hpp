@@ -17,7 +17,7 @@ namespace ikan {
     
     // Renderer
     Renderer, Batch2DRenderer, Text,
-    FrameBuffer, Pipeline, VertexBuffer, IndexBuffer, Shader, Texture, RendererContext,
+    FrameBuffer, Pipeline, VertexBuffer, IndexBuffer, Shader, Texture, CharTexture, SubTexture, RendererContext,
     
     // Scene
     Entity, Component, EnttScene,
@@ -58,6 +58,8 @@ namespace ikan {
       case LogModule::IndexBuffer: return "Index Buffer";
       case LogModule::Shader: return "Shader";
       case LogModule::Texture: return "Texture";
+      case LogModule::CharTexture: return "Char Texture";
+      case LogModule::SubTexture: return "Sub Texture";
       case LogModule::RendererContext: return "Renderer Context";
 
       case LogModule::Entity: return "Entity";

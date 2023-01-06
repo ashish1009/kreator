@@ -179,6 +179,7 @@ namespace ikan {
         texture_comp.component.reset();
         texture_comp.component = Renderer::GetTexture(path);
       });
+      // TODO: Add hovered larger Image
       PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to "
                                "upload the texture");
       ImGui::NextColumn();

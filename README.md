@@ -66,6 +66,7 @@ Add the following library search paths
     - Interface and Implementation for storing Renderer Buffers and Arrays.
     - Interface and Implementation for Loading Texture file (using stb image files)
     - Texture Library to store loaded textures.
+    - Interface and Implementation for Frame buffer
 
   - Editor
     - Added Editor 3D camera
@@ -76,10 +77,27 @@ Add the following library search paths
   - Text Renderer
     - API created to render the Text either via Entity or without entity/Camera 
 
+  - Math
+    - AABB
+
 ----------------
 - ECS Project
   - Scene
     - Viewport to load and set the viewport
+    
+  - Editor
+    - Scene Hierarchy panel : To Grow With Time
+    - Property Grid API For ImGui : To Grow With Time
+    - Content Browser panel : To Optimize With Time
+    - ImGuimzo
+      - Mouse selectable entity
+
+  - Scene
+    - Entity Component System to make User friendly UI
+    - Entity class to store the component of entity
+    - Components : To Grow With Time
+    - Scene class to manage all entities : To Grow With Time
+
 ![](/kreator/layers/ecs_editor/output/ecs.png)
 
 ----------------
@@ -91,30 +109,20 @@ Add the following library search paths
 ----------------
 - ikan Engine
   - Fundamental Renderer
-    - Interface and Implementation for Frame buffer
+    - Subtexture loader
   
   - Materials
     - Added Material class to handle Shader uniforms as collective buffers
+    
+  - Audio
 ----------------
     
 - ECS Project
-  - Editor
-    - Scene Hierarchy panel : To Grow With Time
-      - Property Grid API For IM GUI
-      - Content Browser panel : To Optimize With Time
-      - ImGuimzo
-        - Mouse selectable entity
-
   - Math
     - AABB
-    - UUID
 
   - Scene
-    - Entity Component System to make User friendly UI
     - Serialise and Deserialize the scene
-    - Entity class to store the component of entity
-    - Components
-    - Scene class to manage all entities
 
   - 3D Mesh
     - Class to load and Render Model

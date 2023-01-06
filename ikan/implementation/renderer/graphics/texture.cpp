@@ -133,4 +133,44 @@ namespace ikan {
     }
   }
 
+  // --------------------------------------------------------------------------
+  // Sub Texture API
+  // --------------------------------------------------------------------------
+  SubTexture::SubTexture(const std::shared_ptr<Texture>& sprite_image,
+                         const glm::vec2& min,
+                         const glm::vec2& max,
+                         const glm::vec2& coords,
+                         const glm::vec2& sprite_size,
+                         const glm::vec2& cell_size)
+  : sprite_image_(sprite_image), sprite_size_(sprite_size), cell_size_(cell_size), coords_(coords) {
+    texture_coord_[0] = {min.x, min.y};
+    texture_coord_[1] = {max.x, min.y};
+    texture_coord_[2] = {max.x, max.y};
+    texture_coord_[3] = {min.x, max.y};
+  }
+  
+  std::shared_ptr<SubTexture> SubTexture::CreateFromCoords(const std::shared_ptr<Texture>& sprite_image,
+                                                           const glm::vec2& coords,
+                                                           const glm::vec2& sprite_size,
+                                                           const glm::vec2& cell_size) {
+    glm::vec2 min = {
+      (coords.x * cell_size.x) / sprite_image->GetWidth(),
+      (coords.y * cell_size.y) / sprite_image->GetHeight()
+    };
+    glm::vec2 max = {
+      ((coords.x + sprite_size.x) * cell_size.x) / sprite_image->GetWidth(),
+      ((coords.y + sprite_size.y) * cell_size.y) / sprite_image->GetHeight()
+    };
+    
+    IK_CORE_TRACE(LogModule::SubTexture, "Creating Sub Texture with following Data ");
+    IK_CORE_TRACE(LogModule::SubTexture, "  Sprite Image | {0}", sprite_image->GetName());
+    IK_CORE_TRACE(LogModule::SubTexture, "  Coordinates  | {0} : {1}", coords.x, coords.y);
+    IK_CORE_TRACE(LogModule::SubTexture, "  Sprite Size  | {0} : {1}", sprite_size.x, sprite_size.y);
+    IK_CORE_TRACE(LogModule::SubTexture, "  Cell Size    | {0} : {1}", cell_size.x, cell_size.y);
+    IK_CORE_TRACE(LogModule::SubTexture, "  Min Bound    | {0} : {1}", min.x, min.y);
+    IK_CORE_TRACE(LogModule::SubTexture, "  Max Bound    | {0} : {1}", max.x, max.y);
+    
+    return std::make_shared<SubTexture>(sprite_image, min, max, sprite_size, cell_size, coords);
+  }
+
 }
