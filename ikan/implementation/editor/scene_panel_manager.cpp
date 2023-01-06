@@ -136,6 +136,15 @@ namespace ikan {
       ImGui::EndPopup(); // ImGui::BeginPopupContextWindow()
     } // if (ImGui::BeginPopupContextWindow(0, // String ID
 
+    // Delete the entity
+    if (delete_entity_) {
+      // Delete entity from scene
+      scene_context_->DestroyEntity(selected_entity_);
+      
+      selected_entity_ = {};
+      delete_entity_ = false;
+    }
+
   }
   
   void ScenePanelManager::PropertyPannel() {
@@ -167,6 +176,15 @@ namespace ikan {
     if (ImGui::IsItemClicked() or ImGui::IsItemClicked(1))
       selected_entity_ = entity;
 
+    // Right click of mouse option
+    if (ImGui::BeginPopupContextItem()) {
+      // Delete Entity
+      if (ImGui::MenuItem("Delete Entity")) {
+        delete_entity_ = true;
+      }
+      ImGui::EndMenu(); // Add to group
+    }
+    
     if (opened) {
       // TODO: Add Feature
       ImGui::TreePop();

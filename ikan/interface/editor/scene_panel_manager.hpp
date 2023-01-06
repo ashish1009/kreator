@@ -51,6 +51,8 @@ namespace ikan {
     // Member Variables
     EnttScene* scene_context_;
     Entity selected_entity_;
+
+    bool delete_entity_ = false;
   };
   
 }
