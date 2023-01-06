@@ -225,7 +225,7 @@ namespace ikan {
     
     ImGui::Columns(1);
     
-    camera->RenderGui(true);
+    camera->RenderGui();
     ImGui::Separator();
   }
   

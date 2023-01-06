@@ -138,6 +138,17 @@ namespace ikan {
   }
   
   void EnttScene::RenderImguiRuntime() {
+    if (primary_camera_data_.scene_camera) {
+      ImGui::Begin("Primary Camera");
+      ImGui::PushID("Primary Camera");
+      
+      primary_camera_data_.scene_camera->RenderGui();
+      ImGui::Separator();
+      primary_camera_data_.transform_comp->RenderGui();
+      
+      ImGui::PopID();
+      ImGui::End();
+    }
   }
   
   void EnttScene::SetViewport(uint32_t width, uint32_t height) {
@@ -170,12 +181,14 @@ namespace ikan {
   
   void EnttScene::UpdatePrimaryCameraData() {
     auto camera_view = registry_.view<TransformComponent, CameraComponent>();
-    for (const auto& camera_entity : camera_view) {
+    for (auto& camera_entity : camera_view) {
       const auto& [transform_component, camera_component] = camera_view.get<TransformComponent, CameraComponent>(camera_entity);
       if (camera_component.is_primary) {
         primary_camera_data_.scene_camera = camera_component.camera.get();
         primary_camera_data_.position = transform_component.translation;
         primary_camera_data_.transform_matrix = transform_component.GetTransform();
+        
+        primary_camera_data_.transform_comp = &transform_component;
         return;
       }
     }

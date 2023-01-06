@@ -214,12 +214,7 @@ namespace ikan {
     RecalculateProjection();
   }
 
-  void SceneCamera::RenderGui(bool is_title_predefined) {
-    if (!is_title_predefined) {
-      ImGui::Begin("Scene Camera");
-      ImGui::PushID("Scene Camera");
-    }
-    
+  void SceneCamera::RenderGui() {
     ProjectionType new_proj_type = ProjectionType(PropertyGrid::ComboDrop("Projection Type",
                                                                           { "Perspective" , "Orthographic" },
                                                                           (uint32_t)projection_type_,
@@ -239,12 +234,17 @@ namespace ikan {
     } else {
       IK_ASSERT(false, "Invalid Projection Type");
     }
+  }
   
-    if (!is_title_predefined) {
-      ImGui::Separator();
-      ImGui::PopID();
-      ImGui::End();
-    }
+  void SceneCamera::RenderGuiWithTitle() {
+    ImGui::Begin("Scene Camera");
+    ImGui::PushID("Scene Camera");
+
+    RenderGui();
+    
+    ImGui::Separator();
+    ImGui::PopID();
+    ImGui::End();
   }
 
 }

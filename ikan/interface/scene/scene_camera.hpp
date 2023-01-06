@@ -36,11 +36,10 @@ namespace ikan {
     /// - Parameter far: new fat plane
     virtual void SetFar(float far);
 
+    /// This function renders Imgui pannel for Scene should cal this function between Imgui::Begin and Imgui::End
+    void RenderGui();
     /// This function renders Imgui pannel for Scene Camera
-    /// - Parameter is_title_predefined: Checks is there predefined title present.
-    ///                            (if true means called this function between
-    ///                            Imgui::Begin and Imgui::End)
-    void RenderGui(bool is_title_predefined = false);
+    void RenderGuiWithTitle();
 
     /// This function updates the new Orthographic Matrix (Only for Orthographic camera)
     /// - Parameters:

@@ -59,6 +59,7 @@ namespace mario {
     Renderer::RenderStatsGui(nullptr, true);
     
     viewport_.RenderGui();
+    mario_scene_.RenderGui();
 
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
