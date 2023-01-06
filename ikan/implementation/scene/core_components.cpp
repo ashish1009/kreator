@@ -213,6 +213,20 @@ namespace ikan {
     camera = std::make_shared<SceneCamera>(proj_type);
   }
   void CameraComponent::RenderGui() {
+    auto column_width = ImGui::GetWindowContentRegionMax().x / 2;
+    ImGui::Columns(2);
+
+    ImGui::SetColumnWidth(0, column_width);
+    ImGui::Checkbox("Primary", &is_primary); ImGui::SameLine();
+    
+    ImGui::NextColumn();
+    ImGui::SetColumnWidth(1, column_width);
+    ImGui::Checkbox("Fixed Aspect Ratio", &is_fixed_aspect_ratio);
+    
+    ImGui::Columns(1);
+    
+    camera->RenderGui(true);
+    ImGui::Separator();
   }
   
 }

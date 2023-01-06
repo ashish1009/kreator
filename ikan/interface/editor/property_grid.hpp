@@ -149,6 +149,19 @@ namespace ikan {
                         int32_t num_lines = 1,
                         bool error = false);
     
+    /// ComboDrop: Selectable drop option created
+    /// - Parameters:
+    ///   - label: is string to be printed
+    ///   - options: option of drop box
+    ///   - current_value: current selection value (index of option vector)
+    ///   - col_width_1: column width 1
+    ///   - col_width_2: column width 1
+    static uint32_t ComboDrop(const char* label,
+                              const std::vector<std::string>& options,
+                              uint32_t current_value,
+                              float col_width_1 = 200.0f,
+                              float col_width_2 = 200.0f);
+
     template<typename UIFunction>
     /// This function renders the texture components
     /// - Parameters:

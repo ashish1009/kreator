@@ -6,6 +6,7 @@
 //
 
 #include "scene_camera.hpp"
+#include "editor/property_grid.hpp"
 
 namespace ikan {
 
@@ -212,4 +213,38 @@ namespace ikan {
     // Recalculate the projection matrix
     RecalculateProjection();
   }
+
+  void SceneCamera::RenderGui(bool is_title_predefined) {
+    if (!is_title_predefined) {
+      ImGui::Begin("Scene Camera");
+      ImGui::PushID("Scene Camera");
+    }
+    
+    ProjectionType new_proj_type = ProjectionType(PropertyGrid::ComboDrop("Projection Type",
+                                                                          { "Perspective" , "Orthographic" },
+                                                                          (uint32_t)projection_type_,
+                                                                          ImGui::GetWindowContentRegionMax().x / 2));
+
+    // Render the property based on the projection type of camera
+    if (new_proj_type != projection_type_)
+      SetProjectionType(new_proj_type);
+    
+    if (projection_type_ == SceneCamera::ProjectionType::Perspective) {
+      float fov = glm::degrees(perspective_fov_);
+      if (PropertyGrid::Float1("Vertical FOV", fov, nullptr, 1.0f, 45.0f))
+        SetPerspectiveFOV(glm::radians(fov));
+    } else if (projection_type_ == SceneCamera::ProjectionType::Orthographic) {
+      if (PropertyGrid::Float1("Size", orthographic_size_, nullptr, 1.0f, 10.0f))
+        RecalculateProjection();
+    } else {
+      IK_ASSERT(false, "Invalid Projection Type");
+    }
+  
+    if (!is_title_predefined) {
+      ImGui::Separator();
+      ImGui::PopID();
+      ImGui::End();
+    }
+  }
+
 }

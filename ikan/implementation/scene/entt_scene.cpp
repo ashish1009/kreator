@@ -35,6 +35,9 @@ namespace ikan {
     Entity e2 = CreateEntity("Circle");
     e2.GetComponent<TransformComponent>().translation = { 2, 0, 0};
     e2.AddComponent<CircleComponent>();
+
+    Entity e3 = CreateEntity("Camera");
+    e3.AddComponent<CameraComponent>();
   }
   
   EnttScene::~EnttScene() {

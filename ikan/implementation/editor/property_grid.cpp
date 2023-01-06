@@ -329,4 +329,45 @@ namespace ikan {
     return modified;
   }
   
+  uint32_t PropertyGrid::ComboDrop(const char* label,
+                                   const std::vector<std::string>& options,
+                                   uint32_t current_value,
+                                   float col_width_1,
+                                   float col_width_2) {
+    uint32_t result = current_value;
+    
+    ImGui::Columns(2);
+    ImGui::SetColumnWidth(0, col_width_1);
+    ImGui::Text(label);
+    
+    ImGui::NextColumn();
+    ImGui::PushItemWidth(-1);
+    ImGui::SetColumnWidth(1, col_width_2);
+    
+    std::string ui_context_id = "##" + (std::string)label;
+    
+    const char* current_type = options[(size_t)current_value].c_str();
+    
+    if (ImGui::BeginCombo(ui_context_id.c_str(), current_type)) {
+      for (size_t i = 0; i < options.size(); i++) {
+        bool is_selected = current_type == options[i];
+        
+        if (ImGui::Selectable(options[i].c_str(), is_selected)) {
+          current_type = options[i].c_str();
+          result = (uint32_t)i;
+        }
+        
+        if (is_selected)
+          ImGui::SetItemDefaultFocus();
+      }
+      ImGui::EndCombo();
+    }
+    ImGui::PopItemWidth();
+    
+    ImGui::Columns(1);
+    ImGui::Separator();
+    
+    return result;
+  }
+  
 }
