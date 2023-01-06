@@ -26,7 +26,6 @@ namespace sandbox {
     sub_tex_ = SubTexture::CreateFromCoords(Renderer::GetTexture("/Users/ashish./iKan_storage/Github/Projects/other_ikan_chess_mario/Mario/assets/textures/Player.png", false, false),
                                             {0, 0});
     
-    EnttScene scene;
     camera_ent = scene.CreateEntity();
     camera_ent.AddComponent<CameraComponent>();
     
@@ -46,7 +45,12 @@ namespace sandbox {
     Renderer::ResetStatsEachFrame();
     Renderer::Clear({0.2, 0.3, 0.4, 1.0});
     
-    BatchRenderer::BeginBatch(editor_camera.GetViewProjection(), editor_camera.GetView());
+    std::shared_ptr<SceneCamera> c = camera_ent.GetComponent<CameraComponent>().camera;
+    auto& t = camera_ent.GetComponent<TransformComponent>();
+    glm::mat4 view_proj = c->GetProjection() * glm::inverse(t.GetTransform());
+
+//    BatchRenderer::BeginBatch(editor_camera.GetViewProjection(), editor_camera.GetView());
+    BatchRenderer::BeginBatch(view_proj);
     BatchRenderer::DrawCircle(Math::GetTransformMatrix({0, 0, 0},
                                                        {0, 0, 0},
                                                        {1, 1, 0}),

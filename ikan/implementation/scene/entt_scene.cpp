@@ -89,7 +89,7 @@ namespace ikan {
     editor_camera_.Update(ts);
     
     // Render 2D
-    BatchRenderer::BeginBatch(editor_camera_.GetViewProjection(), editor_camera_.GetView());
+    BatchRenderer::BeginBatch(editor_camera_.GetViewProjection());
     
     auto quad_view = registry_.view<TransformComponent, QuadComponent>();
     // For all Mesg entity

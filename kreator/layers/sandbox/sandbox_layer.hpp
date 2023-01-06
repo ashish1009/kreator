@@ -50,6 +50,8 @@ namespace sandbox {
     std::shared_ptr<SubTexture> sub_tex_;
     
     Entity camera_ent;
+    EnttScene scene;
+
   };
   
 } 

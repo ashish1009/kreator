@@ -28,9 +28,7 @@ namespace ikan {
     /// This function begins the Batch for 2D Rendere (to be called each frame)
     /// - Parameters:
     ///   - camera_view_projection_matrix: Camera View projection Matrix
-    ///   - camera_view_matrix: Camera View Matrix
-    static void BeginBatch(const glm::mat4& camera_view_projection_matrix,
-                           const glm::mat4& camera_view_matrix);
+    static void BeginBatch(const glm::mat4& camera_view_projection_matrix);
     /// This function Ends the current batch by rendering all the vertex
     static void EndBatch();
     
