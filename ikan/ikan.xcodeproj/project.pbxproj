@@ -30,6 +30,7 @@
 		B2250D042958751E0067C43B /* core_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250D032958751E0067C43B /* core_logger.h */; };
 		B227F37329597F2B0055D871 /* open_gl_renderer_id_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B227F37129597F2B0055D871 /* open_gl_renderer_id_manager.cpp */; };
 		B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B227F37229597F2B0055D871 /* open_gl_renderer_id_manager.hpp */; };
+		B24C4A6C2967FDA000675599 /* libimguizmo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B24C4A392967FD3600675599 /* libimguizmo.a */; };
 		B24DD8162962FD9800525941 /* hit_payload.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD80D2962FD9800525941 /* hit_payload.cpp */; };
 		B24DD8172962FD9800525941 /* ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD80E2962FD9800525941 /* ray.cpp */; };
 		B24DD8182962FD9800525941 /* ray_material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD80F2962FD9800525941 /* ray_material.cpp */; };
@@ -136,6 +137,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B24C4A382967FD3600675599 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B24C4A312967FD3600675599 /* imguizmo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B24C4A232967FD3600675599;
+			remoteInfo = imguizmo;
+		};
 		B2B6CDB02958D7D400AE609E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */;
@@ -188,6 +196,7 @@
 		B227F37129597F2B0055D871 /* open_gl_renderer_id_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_renderer_id_manager.cpp; sourceTree = "<group>"; };
 		B227F37229597F2B0055D871 /* open_gl_renderer_id_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_renderer_id_manager.hpp; sourceTree = "<group>"; };
 		B227F38B2959DBF40055D871 /* single_texture_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = single_texture_shader.glsl; sourceTree = "<group>"; };
+		B24C4A312967FD3600675599 /* imguizmo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imguizmo.xcodeproj; path = imguizmo/imguizmo.xcodeproj; sourceTree = "<group>"; };
 		B24DD80D2962FD9800525941 /* hit_payload.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hit_payload.cpp; sourceTree = "<group>"; };
 		B24DD80E2962FD9800525941 /* ray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ray.cpp; sourceTree = "<group>"; };
 		B24DD80F2962FD9800525941 /* ray_material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ray_material.cpp; sourceTree = "<group>"; };
@@ -300,6 +309,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B24C4A6C2967FDA000675599 /* libimguizmo.a in Frameworks */,
 				B2B6CDBA2958DAA300AE609E /* libimgui.a in Frameworks */,
 				B2FC405B2958BCA500447A1A /* libglad.a in Frameworks */,
 				B2FC400B29588C8200447A1A /* libglfw.a in Frameworks */,
@@ -444,6 +454,14 @@
 				B2FC3E872958826C00447A1A /* profiler.cpp */,
 			);
 			path = debug;
+			sourceTree = "<group>";
+		};
+		B24C4A322967FD3600675599 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B24C4A392967FD3600675599 /* libimguizmo.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		B24DD80B2962FD9800525941 /* ray_tracing */ = {
@@ -605,6 +623,7 @@
 		B2FC3EB529588BF300447A1A /* vendors */ = {
 			isa = PBXGroup;
 			children = (
+				B24C4A312967FD3600675599 /* imguizmo.xcodeproj */,
 				B216B25E295B4E6A00C05392 /* stb_image */,
 				B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */,
 				B2FC40412958BC3800447A1A /* glad.xcodeproj */,
@@ -888,6 +907,10 @@
 					ProductGroup = B2B6CDAB2958D7D400AE609E /* Products */;
 					ProjectRef = B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */;
 				},
+				{
+					ProductGroup = B24C4A322967FD3600675599 /* Products */;
+					ProjectRef = B24C4A312967FD3600675599 /* imguizmo.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -897,6 +920,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		B24C4A392967FD3600675599 /* libimguizmo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libimguizmo.a;
+			remoteRef = B24C4A382967FD3600675599 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B2B6CDB12958D7D400AE609E /* libimgui.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;

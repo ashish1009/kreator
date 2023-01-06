@@ -10,3 +10,6 @@
 [submodule "ikan/vendors/glm"]
 	path = ikan/vendors/glm
 	url = https://github.com/g-truc/glm
+[submodule "ikan/vendors/imguizmo/imguizmo"]
+	path = ikan/vendors/imguizmo/imguizmo
+	url = https://github.com/ashish1009/ImGuizmo
