@@ -125,6 +125,17 @@ namespace ikan {
     if (ImGui::IsMouseDown((int32_t)MouseButton::ButtonLeft) and ImGui::IsWindowHovered()) {
       selected_entity_ = {};
     }
+    
+    // Menu popup on Right Click
+    if (ImGui::BeginPopupContextWindow(0, // String ID
+                                       (int32_t)MouseButton::ButtonRight,
+                                       false // false : Right-click on blank space
+                                       )) {
+      RightClickOptions();
+      
+      ImGui::EndPopup(); // ImGui::BeginPopupContextWindow()
+    } // if (ImGui::BeginPopupContextWindow(0, // String ID
+
   }
   
   void ScenePanelManager::PropertyPannel() {
@@ -167,6 +178,31 @@ namespace ikan {
       selected_entity_ = *entity;
     else if (selected_entity_)
       selected_entity_ = {};
+  }
+  
+  void ScenePanelManager::RightClickOptions() {
+    if (ImGui::BeginMenu("New Entity")) {
+      // Show option of Empty Entity
+      if (ImGui::MenuItem("Empty Entity")) {
+        selected_entity_ = scene_context_->CreateEntity("Empty Entity");
+      }
+      // Show option for adding camera
+      ImGui::Separator();
+
+      if (ImGui::BeginMenu("3D Entity")) {
+        if (ImGui::MenuItem("Quad")) {
+          selected_entity_ = scene_context_->CreateEntity("Quad");
+          selected_entity_.AddComponent<QuadComponent>();
+        }
+        if (ImGui::MenuItem("Circle")) {
+          selected_entity_ = scene_context_->CreateEntity("Circle");
+          selected_entity_.AddComponent<CircleComponent>();
+        }
+
+        ImGui::EndMenu(); // 2D Entity
+      } //if (ImGui::BeginMenu("3D Entity"))
+      ImGui::EndMenu(); // New Entity
+    } // if (ImGui::BeginMenu("New Entity"))
   }
   
 }
