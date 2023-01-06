@@ -1154,6 +1154,7 @@
 					"${PROJECT_DIR}/vendors/stb_image",
 					"${PROJECT_DIR}/vendors/freetype/include/freetype2",
 					"${PROJECT_DIR}/vendors/entt/include",
+					"${PROJECT_DIR}/vendors/imguizmo/imguizmo",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1191,6 +1192,7 @@
 					"${PROJECT_DIR}/vendors/stb_image",
 					"${PROJECT_DIR}/vendors/freetype/include/freetype2",
 					"${PROJECT_DIR}/vendors/entt/include",
+					"${PROJECT_DIR}/vendors/imguizmo/imguizmo",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
