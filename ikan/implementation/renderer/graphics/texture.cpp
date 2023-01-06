@@ -173,4 +173,10 @@ namespace ikan {
     return std::make_shared<SubTexture>(sprite_image, min, max, sprite_size, cell_size, coords);
   }
 
+  const std::shared_ptr<Texture> SubTexture::GetSpriteImage() const { return sprite_image_; }
+  const glm::vec2* SubTexture::GetTexCoord() const { return texture_coord_; }
+  glm::vec2& SubTexture::GetSpriteSize() { return sprite_size_; }
+  glm::vec2& SubTexture::GetCellSize() { return cell_size_; }
+  glm::vec2& SubTexture::GetCoords() { return coords_; }
+
 }

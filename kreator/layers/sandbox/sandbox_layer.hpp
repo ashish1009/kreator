@@ -46,7 +46,8 @@ namespace sandbox {
     std::shared_ptr<VertexBuffer> vertex_buffer_;
     std::shared_ptr<IndexBuffer> index_buffer_;
     std::shared_ptr<Pipeline> pipeline_;
-    std::shared_ptr<Texture> checkboard_;
+    std::shared_ptr<Texture> checkboard_, mario_;
+    std::shared_ptr<SubTexture> sub_tex_;
   };
   
 } 

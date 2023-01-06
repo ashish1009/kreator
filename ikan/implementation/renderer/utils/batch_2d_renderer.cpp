@@ -564,6 +564,18 @@ namespace ikan {
                     );
   }
 
+  void BatchRenderer::DrawQuad(const glm::mat4& transform,
+                               const std::shared_ptr<SubTexture>& sub_texture,
+                               int32_t object_id) {
+    const glm::vec2* texture_coords = sub_texture->GetTexCoord();
+    DrawTextureQuad(transform,
+                    sub_texture->GetSpriteImage(),
+                    texture_coords,
+                    1.0f,
+                    glm::vec4(1.0f),
+                    object_id);
+  }
+
   void BatchRenderer::DrawTextureQuad(const glm::mat4& transform,
                                       const std::shared_ptr<Texture>& texture,
                                       const glm::vec2* texture_coords,

@@ -22,9 +22,11 @@ namespace sandbox {
     IK_INFO("Sandbox", "Attaching Sandbox Layer instance");
     checkboard_ = Renderer::GetTexture(AM::ClientAsset("textures/checkerboard.png"));
     TextRenderer::LoadFreetype(AM::ClientAsset("fonts/opensans/OpenSans-Bold.ttf"));
-
+    
+    sub_tex_ = SubTexture::CreateFromCoords(Renderer::GetTexture("/Users/ashish./iKan_storage/Github/Projects/other_ikan_chess_mario/Mario/assets/textures/Player.png", false, false),
+                                            {0, 0});
+    
   }
-  
   void SandboxLayer::Detach() {
     IK_WARN("Sandbox", "Detaching Sandbox Layer instance ");
   }
@@ -49,8 +51,8 @@ namespace sandbox {
     BatchRenderer::DrawQuad(Math::GetTransformMatrix({-3, 0, 0},
                                                      {0, 0, 0},
                                                      {1, 1, 0}),
-                            checkboard_,
-                            {0.2, 0.4, 0.6, 1.0});
+                            sub_tex_,
+                            -1);
     BatchRenderer::DrawLine({-1000, 0, 0}, {1000, 0, 0}, {0.8, 0.5, 0.3, 1.0});
     BatchRenderer::EndBatch();
     
