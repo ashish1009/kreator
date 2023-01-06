@@ -31,6 +31,10 @@ namespace ikan {
     /// - Parameter is_opened: flag to show or hide the widget
     void RenderGui(bool* is_opened = nullptr);
     
+    /// This Function update the selected entity of scene
+    /// - Parameter entity: new selected entity
+    void SetSelectedEntity(Entity* entity);
+    
     DELETE_COPY_MOVE_CONSTRUCTORS(ScenePanelManager)
 
   private:

@@ -50,8 +50,25 @@ namespace editor {
   
   void EditorLayer::EventHandler(Event& event) {
     active_scene_.EventHandler(event);
+
+    EventDispatcher dispatcher(event);
+    dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(EditorLayer::OnMouseButtonPressed));
   }
+
+  bool EditorLayer::OnMouseButtonPressed(MouseButtonPressedEvent& e) {
+    if (e.GetMouseButton() == MouseButton::ButtonLeft) {
+      if (viewport_.mouse_pos_x >= 0 and
+          viewport_.mouse_pos_y >= 0 and
+          viewport_.mouse_pos_x <= viewport_.width and
+          viewport_.mouse_pos_y <= viewport_.height and
+          viewport_.hovered_entity_) {
+        spm_.SetSelectedEntity(viewport_.hovered_entity_);
+      }
+    }
     
+    return false;
+  }
+
   void EditorLayer::RenderGui() {
     ImguiAPI::StartDcocking();
     Renderer::Framerate(&setting_.frame_rate);

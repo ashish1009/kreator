@@ -159,7 +159,10 @@ namespace ikan {
       // TODO: Add Feature
       ImGui::TreePop();
     }
-
+  }
+  
+  void ScenePanelManager::SetSelectedEntity(Entity* entity) {
+    selected_entity_ = *entity;
   }
   
 }

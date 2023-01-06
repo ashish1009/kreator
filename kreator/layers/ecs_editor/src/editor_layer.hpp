@@ -56,6 +56,9 @@ namespace editor {
     // --------------------
     /// This function render the menue bar
     void ShowMenu();
+    /// This function handles the mouse button event
+    /// - Parameter e: mouse button pressed event
+    bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
 
     // --------------------
     // Member variables
