@@ -81,10 +81,9 @@ namespace ikan {
   }
 
   void Viewport::RenderGui(bool *is_open) {
-    if (!is_open) return;
-    if (*is_open == false) return;
+    if (is_open and *is_open == false) return;
 
-    ImGui::Begin("Viewport Data",nullptr, ImGuiWindowFlags_NoScrollbar);
+    ImGui::Begin("Viewport Data", is_open, ImGuiWindowFlags_NoScrollbar);
     ImGui::PushID("Viewport Data");
 
     ImGui::Columns(7);

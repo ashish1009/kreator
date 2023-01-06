@@ -34,6 +34,10 @@ namespace mario {
     /// in the window. NOTE Core Application is taking care to call the EventHandler(event) API for all Layers
     /// - Parameter event: Event (Base class) intance. Dispatch event from Event Dispatcher
     void EventHandler(Event& event) override;
+    
+  private:
+    EnttScene mario_scene_;
+    Viewport viewport_ = Viewport({ 0.12, 0.23, 0.34, 1.0f });
   };
   
 }

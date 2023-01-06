@@ -72,10 +72,9 @@ namespace ikan {
   }
   
   void ImguiAPI::Framerate(bool *is_open) {
-    if (!is_open) return;
-    if (*is_open == false) return;
+    if (is_open and *is_open == false) return;
 
-    ImGui::Begin("Frame Rate");
+    ImGui::Begin("Frame Rate", is_open);
     ImGui::PushID("Frame Rate");
     ImGui::Text("%.1f FPS", ImGui::GetIO().Framerate);
     PropertyGrid::HoveredMsg(std::to_string((float)1000.0f/(float)ImGui::GetIO().Framerate).c_str());

@@ -52,7 +52,7 @@ namespace ikan {
     void UpdateHoveredEntity(ScenePanelManager* spm);
     /// This function render the viewport information in gui
     /// - Parameter is_open: flag to show or hide the widget
-    void RenderGui(bool *is_open);
+    void RenderGui(bool *is_open = nullptr);
   };
   
 }
