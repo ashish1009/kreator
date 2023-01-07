@@ -157,6 +157,13 @@ namespace ikan {
   
   void EnttScene::SetViewport(uint32_t width, uint32_t height) {
     editor_camera_.SetViewportSize(width, height);
+    
+    // Update the viewport of scene cameras
+    auto view = registry_.view<CameraComponent>();
+    for (auto entity : view) {
+      auto& cc = view.get<CameraComponent>(entity);
+      cc.camera->SetViewportSize(width, height);
+    }
   }
   
   void EnttScene::PlayScene() {

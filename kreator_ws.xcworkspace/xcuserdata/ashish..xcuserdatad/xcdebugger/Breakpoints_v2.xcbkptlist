@@ -30,8 +30,8 @@
             filePath = "ikan/implementation/scene/entt_scene.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
             landmarkName = "EnttScene::InstantiateScript(ts)"
             landmarkType = "7">
          </BreakpointContent>

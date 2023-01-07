@@ -76,6 +76,8 @@ namespace mario {
       mario_scene_.SetViewport(viewport_.width, viewport_.height);
     }
     
+    viewport_.UpdateMousePos();
+    
     viewport_.framebuffer->Bind();
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
     
