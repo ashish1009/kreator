@@ -94,6 +94,8 @@ namespace ikan {
     uint32_t GetMaxEntityId() const;
     /// This function returns the editor camera of scene
     EditorCamera* GetEditorCamera();
+    /// This function returns the reference of registry
+    entt::registry& GetRegistry();
     
     DELETE_COPY_MOVE_CONSTRUCTORS(EnttScene);
     

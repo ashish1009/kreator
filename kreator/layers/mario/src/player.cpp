@@ -15,6 +15,8 @@ namespace mario {
     
     player_entity_ = scene_->CreateEntity("Player");
     player_entity_.AddComponent<QuadComponent>();
+    
+    player_entity_.AddComponent<NativeScriptComponent>().Bind<ikan::FreeFallController>();
   }
   
   Player::~Player() {

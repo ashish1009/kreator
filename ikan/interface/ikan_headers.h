@@ -83,6 +83,7 @@
 #include <scene/entity.hpp>
 #include <scene/entt_scene.hpp>
 #include <scene/core_components.hpp>
+#include <scene/scriptable_entity.hpp>
 
 // Imgui API
 #include <imgui/imgui_api.hpp>

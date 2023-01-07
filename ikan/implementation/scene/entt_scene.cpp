@@ -274,5 +274,5 @@ namespace ikan {
   uint32_t EnttScene::GetNumEntities() const { return num_entities_; }
   uint32_t EnttScene::GetMaxEntityId() const { return max_entity_id_; }
   EditorCamera* EnttScene::GetEditorCamera() { return &editor_camera_; }
-
+  entt::registry& EnttScene::GetRegistry() { return registry_; }
 }

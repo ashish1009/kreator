@@ -25,5 +25,11 @@ namespace ikan {
     else
       IK_ASSERT(false, "Invalid Script name");
   }
+
+  // --------------------------------------------------------------------------
+  // Freefall controller class
+  // --------------------------------------------------------------------------
+  void FreeFallController::Update(Timestep ts) {
+  }
   
 }

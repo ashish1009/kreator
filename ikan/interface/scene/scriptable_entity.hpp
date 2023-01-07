@@ -5,7 +5,6 @@
 //  Created by Ashish . on 07/01/23.
 //
 
-
 #pragma once
 
 #include "scene/entity.hpp"
@@ -51,6 +50,14 @@ namespace ikan {
     Entity entity_;
     EnttScene* scene_;
     friend class EnttScene;
+  };
+  
+  class FreeFallController : public ScriptableEntity {
+  public:
+    void Update(Timestep ts) override;
+    
+  private:
+    float speed_ = 5.0f;
   };
   
 }
