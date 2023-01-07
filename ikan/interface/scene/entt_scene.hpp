@@ -12,19 +12,20 @@
 #include <entt.hpp>
 #include "editor/editor_camera.hpp"
 #include "scene/scene_camera.hpp"
-#include "scene/core_components.hpp"
 
 namespace ikan {
 
   // Forward declaration
   class Entity;
+  // TODO: For debug only
+  struct TransformComponent;
   
   struct CameraData {
     SceneCamera* scene_camera = nullptr;
     glm::vec3 position;
     glm::mat4 transform_matrix;
     
-    // For debugging only
+    // TODO: For debugging only
     TransformComponent* transform_comp;
     
     CameraData() = default;

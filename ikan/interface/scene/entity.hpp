@@ -10,7 +10,6 @@
 // This file incldues the Entity class to store entt data
 
 #include "scene/entt_scene.hpp"
-#include "scene/core_components.hpp"
 
 namespace ikan {
   

@@ -9,6 +9,7 @@
 #include "editor/property_grid.hpp"
 #include "editor/scene_panel_manager.hpp"
 #include "scene/entity.hpp"
+#include "scene/core_components.hpp"
 #include <ImGuizmo.h>
 
 namespace ikan {

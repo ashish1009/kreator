@@ -58,6 +58,8 @@
 		B2584ED4295B7FE200234714 /* text_renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2584ED2295B7FE200234714 /* text_renderer.hpp */; };
 		B25F5DDE2966D3450030DE03 /* scene_panel_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25F5DDC2966D3450030DE03 /* scene_panel_manager.cpp */; };
 		B25F5DDF2966D3450030DE03 /* scene_panel_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B25F5DDD2966D3450030DE03 /* scene_panel_manager.hpp */; };
+		B25F617029699D610042FE09 /* scriptable_entity.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B25F616F29699D610042FE09 /* scriptable_entity.hpp */; };
+		B25F617729699FC80042FE09 /* scriptable_entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25F617529699FC80042FE09 /* scriptable_entity.cpp */; };
 		B27CF12A295EC6E000837A36 /* uuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF128295EC6E000837A36 /* uuid.cpp */; };
 		B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B27CF129295EC6E000837A36 /* uuid.hpp */; };
 		B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */; };
@@ -228,6 +230,8 @@
 		B2584ED6295B824400234714 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = vendors/freetype/lib/libfreetype.a; sourceTree = "<group>"; };
 		B25F5DDC2966D3450030DE03 /* scene_panel_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_panel_manager.cpp; sourceTree = "<group>"; };
 		B25F5DDD2966D3450030DE03 /* scene_panel_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_panel_manager.hpp; sourceTree = "<group>"; };
+		B25F616F29699D610042FE09 /* scriptable_entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scriptable_entity.hpp; sourceTree = "<group>"; };
+		B25F617529699FC80042FE09 /* scriptable_entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scriptable_entity.cpp; sourceTree = "<group>"; };
 		B27CF128295EC6E000837A36 /* uuid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = uuid.cpp; sourceTree = "<group>"; };
 		B27CF129295EC6E000837A36 /* uuid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = uuid.hpp; sourceTree = "<group>"; };
 		B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imgui.xcodeproj; path = imgui/imgui.xcodeproj; sourceTree = "<group>"; };
@@ -501,6 +505,7 @@
 				B217E2FC2963133700311AE6 /* entity.hpp */,
 				B2DAAB80296575AF003578D9 /* core_components.hpp */,
 				B24C4A762968638B00675599 /* scene_camera.hpp */,
+				B25F616F29699D610042FE09 /* scriptable_entity.hpp */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -513,6 +518,7 @@
 				B217E2FB2963133700311AE6 /* entity.cpp */,
 				B2DAAB7F296575AF003578D9 /* core_components.cpp */,
 				B24C4A752968638B00675599 /* scene_camera.cpp */,
+				B25F617529699FC80042FE09 /* scriptable_entity.cpp */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -785,6 +791,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B25F617029699D610042FE09 /* scriptable_entity.hpp in Headers */,
 				B251B3FA295E15D300508210 /* viewport.hpp in Headers */,
 				B2F4956B29630B8F003F9CB0 /* entt_scene.hpp in Headers */,
 				B2FC3EB42958892200447A1A /* layer_stack.hpp in Headers */,
@@ -969,6 +976,7 @@
 				B2FC3E892958826C00447A1A /* profiler.cpp in Sources */,
 				B24DD8392963045400525941 /* stb_image.cpp in Sources */,
 				B217E2FD2963133700311AE6 /* entity.cpp in Sources */,
+				B25F617729699FC80042FE09 /* scriptable_entity.cpp in Sources */,
 				B25F5DDE2966D3450030DE03 /* scene_panel_manager.cpp in Sources */,
 				B2FC40242958BAC400447A1A /* renderer_context.cpp in Sources */,
 				B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */,

@@ -22,6 +22,7 @@
 #include <set>
 #include <dispatch/dispatch.h>
 #include <fstream>
+#include <cxxabi.h>
 
 // Library Files
 // glm math library
@@ -81,6 +82,7 @@
 #include <scene/viewport.hpp>
 #include <scene/entity.hpp>
 #include <scene/entt_scene.hpp>
+#include <scene/core_components.hpp>
 
 // Imgui API
 #include <imgui/imgui_api.hpp>
