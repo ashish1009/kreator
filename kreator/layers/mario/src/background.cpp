@@ -149,7 +149,7 @@ namespace mario {
 
           // Update the position
           auto& tc = entity.GetComponent<TransformComponent>();
-          tc.translation = { x, (map_height / 2.0f) - y, 0.0f };
+          tc.translation = { (float)x - (float)30, (map_height / 2.0f) - y, 0.0f };
           
 #define USE_SPRITE 0
 #if USE_SPRITE

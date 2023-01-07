@@ -274,43 +274,45 @@ namespace ikan {
   NativeScriptComponent::NativeScriptComponent(const NativeScriptComponent& other) {
     loader_function = other.loader_function;
 
-    for (const auto& script_name : other.script_names) {
-      script_names.push_back(script_name);
-      ScriptManager::UpdateScript(this, script_name, loader_function);
+    for (const auto& [name, script] : other.scrip_name_map) {
+      scrip_name_map[name] = script;
+      ScriptManager::UpdateScript(this, name, loader_function);
     }
   }
   NativeScriptComponent& NativeScriptComponent::operator=(const NativeScriptComponent& other) {
     loader_function = other.loader_function;
     
-    for (const auto& script_name : other.script_names) {
-      script_names.push_back(script_name);
-      ScriptManager::UpdateScript(this, script_name, loader_function);
+    for (const auto& [name, script] : other.scrip_name_map) {
+      scrip_name_map[name] = script;
+      ScriptManager::UpdateScript(this, name, loader_function);
     }
     return *this;
   }
   NativeScriptComponent::NativeScriptComponent(NativeScriptComponent&& other) {
     loader_function = other.loader_function;
     
-    for (const auto& script_name : other.script_names) {
-      script_names.push_back(script_name);
-      ScriptManager::UpdateScript(this, script_name, loader_function);
+    for (const auto& [name, script] : other.scrip_name_map) {
+      scrip_name_map[name] = script;
+      ScriptManager::UpdateScript(this, name, loader_function);
     }
   }
   NativeScriptComponent& NativeScriptComponent::operator=(NativeScriptComponent&& other) {
     loader_function = other.loader_function;
     
-    for (const auto& script_name : other.script_names) {
-      script_names.push_back(script_name);
-      ScriptManager::UpdateScript(this, script_name, loader_function);
+    for (const auto& [name, script] : other.scrip_name_map) {
+      scrip_name_map[name] = script;
+      ScriptManager::UpdateScript(this, name, loader_function);
     }
     return *this;
   }
   
   NativeScriptComponent::~NativeScriptComponent() {
-    for (auto script : instances)
+    for (const auto& [name, script] : scrip_name_map) {
       delete script;
+
+    }
     
-    instances.clear();
+    scrip_name_map.clear();
   }
   
   void NativeScriptComponent::RenderGui() {
