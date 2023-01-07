@@ -15,9 +15,6 @@ namespace mario {
     
     // Reinitialize the Batch Renderer
     BatchRenderer::Reinit(1000, 0, 0);
-    
-    // Create memory for background data
-    background_data_ = new BackgroudData(Renderer::GetTexture(AM::ClientAsset("textures/tiles.png"), false));
   }
   
   MarioLayer::~MarioLayer() {
@@ -32,6 +29,12 @@ namespace mario {
     // Set the scene as playing
     // ---------------------------------------------------------
     mario_scene_.PlayScene();
+    
+    // ---------------------------------------------------------
+    // Create memory for background data
+    // ---------------------------------------------------------
+    background_data_ = new BackgroudData(&mario_scene_,
+                                         Renderer::GetTexture(AM::ClientAsset("textures/tiles.png"), false));
 
     // ---------------------------------------------------------
     // Create the camera entity
@@ -44,34 +47,6 @@ namespace mario {
     camera_comp.camera->SetOrthographicSize(22.0f);
 
     camera_entity_.AddComponent<NativeScriptComponent>().Bind<CameraController>();
-    
-    // ---------------------------------------------------------
-    // Create the entity for each tile
-    // ---------------------------------------------------------
-    IK_INFO("Mario", "Creating Entity for each tile ");
-    // Extract the map width. MAP Width should be same for each New line string
-    size_t map_width = map_tile_pattern.find_first_of('0') + 1;
-    uint32_t map_height = static_cast<uint32_t>(strlen(map_tile_pattern.c_str())) / map_width;
-    
-    for (uint32_t y = 0; y < map_height; y++) {
-      for (uint32_t x = 0; x < map_width; x++) {
-        // Create entity if we have sub texture for the character we found in map
-        if (char tile_type = map_tile_pattern[x + y * map_width];
-            background_data_->tiles_char_map.find(tile_type) != background_data_->tiles_char_map.end()) {
-          auto entity = mario_scene_.CreateEntity(GetEntityNameFromChar(tile_type));
-          const auto& sprite_comp = entity.AddComponent<SpriteComponent>(background_data_->tiles_char_map[tile_type]);
-          const auto& sprite_size = sprite_comp.sub_texture->GetSpriteSize();
-          
-          auto& tc = entity.GetComponent<TransformComponent>();
-          tc.translation = { x, (map_height / 2.0f) - y, 0.0f };
-          tc.scale = { sprite_size.x, sprite_size.y , 0.0f};
-        }
-        else {
-          if (tile_type != ' ' and tile_type != '0') // No need to validate Space
-            IK_WARN("Mario", "    Char {0} at position Row {1} and Column {2} is not found in Tile Map", tile_type, y, x);
-        }
-      }
-    }
   }
   
   void MarioLayer::Detach() {
