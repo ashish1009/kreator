@@ -6,6 +6,7 @@
 //
 
 #include "mario_main.hpp"
+#include "camera_controller.h"
 
 namespace mario {
   
@@ -36,11 +37,13 @@ namespace mario {
     // Create the camera entity
     // ---------------------------------------------------------
     camera_entity_ = mario_scene_.CreateEntity();
+    camera_entity_.GetComponent<TransformComponent>().translation.y = 2.0f;
+
     auto& camera_comp = camera_entity_.AddComponent<CameraComponent>();
     camera_comp.is_primary = true;
     camera_comp.camera->SetOrthographicSize(22.0f);
 
-    camera_entity_.GetComponent<TransformComponent>().translation.y = 1.0f;
+    camera_entity_.AddComponent<NativeScriptComponent>().Bind<CameraController>();
     
     // ---------------------------------------------------------
     // Create the entity for each tile
