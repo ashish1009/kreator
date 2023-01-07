@@ -119,6 +119,7 @@ namespace ikan {
   };
   
   struct RigidBodyComponent {
+    int temp_data = -1; // TODO: Temporary as empty component can not be added yet
     void RenderGui();
   };
 
