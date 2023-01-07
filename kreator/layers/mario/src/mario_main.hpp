@@ -8,6 +8,7 @@
 #pragma once
 
 #include "background.hpp"
+#include "player.hpp"
 
 namespace mario {
   
@@ -44,6 +45,8 @@ namespace mario {
     // Render Data
     Entity camera_entity_;
     BackgroudData* background_data_;
+    
+    Player* player_;
   };
   
 }

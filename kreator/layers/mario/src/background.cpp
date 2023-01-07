@@ -92,13 +92,21 @@ namespace mario {
         // Create entity if we have sub texture for the character we found in map
         if (char tile_type = map_tile_pattern[x + y * map_width];
             tiles_char_map.find(tile_type) != tiles_char_map.end()) {
+
+          IK_INFO("Mario", " ---------------------------- ");
           auto entity = scene_->CreateEntity(GetEntityNameFromChar(tile_type));
-          const auto& sprite_comp = entity.AddComponent<SpriteComponent>(tiles_char_map[tile_type]);
-          const auto& sprite_size = sprite_comp.sub_texture->GetSpriteSize();
-          
           auto& tc = entity.GetComponent<TransformComponent>();
           tc.translation = { x, (map_height / 2.0f) - y, 0.0f };
+
+#define USE_SPRITE 0
+#if USE_SPRITE
+          const auto& sprite_comp = entity.AddComponent<SpriteComponent>(tiles_char_map[tile_type]);
+          const auto& sprite_size = sprite_comp.sub_texture->GetSpriteSize();
+
           tc.scale = { sprite_size.x, sprite_size.y , 0.0f};
+#else
+          entity.AddComponent<QuadComponent>();
+#endif
         }
         else {
           if (tile_type != ' ' and tile_type != '0') // No need to validate Space

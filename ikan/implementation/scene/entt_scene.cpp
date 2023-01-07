@@ -38,13 +38,13 @@ namespace ikan {
     IK_ASSERT((entity_id_map_.find(entity) == entity_id_map_.end()),
               "Entity Already Added");
     
-    // Store the entity in the entity uuid map. We Copy the Entity
-    entity_id_map_[entity] = std::move(entity);
-
     // Add the Mendatory components
     entity.AddComponent<IDComponent>(uuid);
     entity.AddComponent<TagComponent>(name);
     entity.AddComponent<TransformComponent>();
+
+    // Store the entity in the entity uuid map. We Copy the Entity
+    entity_id_map_[entity] = std::move(entity);
     
     // Updating the Max entity ID
     max_entity_id_ = entity;

@@ -19,7 +19,6 @@ namespace mario {
   
   MarioLayer::~MarioLayer() {
     IK_WARN("Mario", "Destroying Mario Layer instance !!! ");
-    delete background_data_;
   }
   
   void MarioLayer::Attach() {
@@ -47,10 +46,17 @@ namespace mario {
     camera_comp.camera->SetOrthographicSize(22.0f);
 
     camera_entity_.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+    
+    // --------------------------------------------------------
+    // Player
+    // --------------------------------------------------------
+    player_ = new Player(&mario_scene_);
   }
   
   void MarioLayer::Detach() {
     IK_WARN("Mario", "Detaching Mario Layer instance ");
+    delete background_data_;
+    delete player_;
   }
   
   void MarioLayer::Update(Timestep ts) {
