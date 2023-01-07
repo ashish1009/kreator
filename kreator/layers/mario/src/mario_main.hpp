@@ -41,7 +41,6 @@ namespace mario {
     
     // Render Data
     Entity camera_entity_;
-    std::shared_ptr<Texture> tile_sprite_;
   };
   
 }
