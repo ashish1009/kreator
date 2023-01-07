@@ -10,6 +10,14 @@
 
 namespace mario {
   
+#if MARIO_DEBUG
+  static std::string GetStateString(PlayerController::State state) {
+    switch (state) {
+      case PlayerController::State::Freefall : return "Free Fall";
+      default: IK_ASSERT(false);
+    }
+  }
+#endif
   Player::Player(EnttScene* scene)
   : scene_(scene) {
     IK_INFO("Mario", "Creating Mario Player");
@@ -30,7 +38,6 @@ namespace mario {
       }
       return false;
     });
-    native_script_comp.Bind<ikan::FreeFallController>();
     native_script_comp.Bind<mario::PlayerController>();
   }
   
@@ -42,17 +49,43 @@ namespace mario {
   void Player::RenderGui() {
     ImGui::Begin("Player Pos");
     ImGui::PushID("Player Pos");
+    
     player_entity_.GetComponent<TransformComponent>().RenderGui();
+    
     ImGui::PopID();
     ImGui::End();
+    
+    auto& scrip_name_map = player_entity_.GetComponent<NativeScriptComponent>().scrip_name_map;
+    for (auto& [name, script] : scrip_name_map) {
+      if (name == "mario::PlayerController") {
+        script->RenderGui();
+      }
+    }
+
   }
   
   void Player::Reset() {
     player_entity_.GetComponent<TransformComponent>().translation = {0, 0, 0};
   }
+  
 #endif
+
+  void PlayerController::RenderGui() {
+#if MARIO_DEBUG
+    ImGui::Begin("Player Controller");
+    ImGui::PushID("Player Controller");
+
+    ImGui::Text("State : %s", GetStateString(state_).c_str());
+    
+    ImGui::PopID();
+    ImGui::End();
+#endif
+  }
   
   void PlayerController::Update(Timestep ts) {
+    if (state_ == State::Freefall)
+      Freefall(ts);
+#if MOVE
     // Dummy copy of entity y Position
     auto translation = GetComponent<TransformComponent>().translation;
     if (Input::IsKeyPressed(KeyCode::Left))
@@ -60,6 +93,23 @@ namespace mario {
     if (Input::IsKeyPressed(KeyCode::Right))
       translation.x += speed_ * ts;
 
+    auto& tc = GetComponent<TransformComponent>();
+    const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
+    AABB world_aabb = original_aabb.GetWorldPosBoundingBox(Math::GetTransformMatrix(translation,
+                                                                                    tc.rotation,
+                                                                                    tc.scale));
+
+    // If no collision then update the position
+    if (!CollisionDetected(world_aabb))
+      tc.translation = translation;
+#endif
+  }
+  
+  void PlayerController::Freefall(Timestep ts) {
+    // Dummy copy of entity y Position
+    auto translation = GetComponent<TransformComponent>().translation;
+    translation.y -= speed_ * ts;
+    
     auto& tc = GetComponent<TransformComponent>();
     const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
     AABB world_aabb = original_aabb.GetWorldPosBoundingBox(Math::GetTransformMatrix(translation,

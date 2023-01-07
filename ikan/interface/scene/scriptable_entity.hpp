@@ -22,12 +22,14 @@ namespace ikan {
     T& GetComponent() {
       return entity_.GetComponent<T>();
     }
+    
+    virtual void RenderGui() {}
 
   protected:
     virtual void Create() {}
     virtual void Destroy() {}
     virtual void Update(Timestep ts) {}
-
+    
     /// This function detects the collistion of entity_ with AABB
     /// - Parameter aabb: AABB of bouding box
     bool CollisionDetected(const AABB& aabb);

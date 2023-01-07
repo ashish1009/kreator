@@ -15,11 +15,30 @@ namespace mario {
   
   class PlayerController : public ScriptableEntity {
   public:
+    enum class State {
+      Freefall
+    };
+    
+    /// Default destructor of playr controller
     PlayerController() = default;
     
+    /// This function update the player each frame based on the state of player
+    /// - Parameter ts: time step
     void Update(Timestep ts) override;
+    /// This function Renders Gui for debugging
+    void RenderGui() override;
     
   private:
+    /// This function trigger for player's freefall
+    /// - Parameter ts: time step
+    void Freefall(Timestep ts);
+    
+    // -----------------
+    // Member variables
+    // -----------------
+    State state_ = State::Freefall;
+    
+    // TODO: Link speed with camera controller speed
     float speed_ = 25.0f;
   };
 
