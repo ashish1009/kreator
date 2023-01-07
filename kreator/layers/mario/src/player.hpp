@@ -13,12 +13,14 @@ namespace mario {
   
   using namespace ikan;
   
+  // States of playe
+  
+#define FreeFalling BIT(1)
+  
+  using State = uint32_t;
+  
   class PlayerController : public ScriptableEntity {
   public:
-    enum class State {
-      Freefall
-    };
-    
     /// Default destructor of playr controller
     PlayerController() = default;
     
@@ -32,11 +34,18 @@ namespace mario {
     /// This function trigger for player's freefall
     /// - Parameter ts: time step
     void Freefall(Timestep ts);
+    /// This function checks is the the state in argumet is present in player or not
+    /// - Parameter state_bit: state bit
+    bool IsState(State state_bit);
+
+#if MARIO_DEBUG
+    std::string GetStateString();
+#endif
     
     // -----------------
     // Member variables
     // -----------------
-    State state_ = State::Freefall;
+    State state_bits_ = FreeFalling;
     
     // TODO: Link speed with camera controller speed
     float speed_ = 25.0f;

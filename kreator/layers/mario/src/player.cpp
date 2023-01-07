@@ -9,15 +9,7 @@
 #include "camera_controller.h"
 
 namespace mario {
-  
-#if MARIO_DEBUG
-  static std::string GetStateString(PlayerController::State state) {
-    switch (state) {
-      case PlayerController::State::Freefall : return "Free Fall";
-      default: IK_ASSERT(false);
-    }
-  }
-#endif
+    
   Player::Player(EnttScene* scene)
   : scene_(scene) {
     IK_INFO("Mario", "Creating Mario Player");
@@ -68,6 +60,13 @@ namespace mario {
     player_entity_.GetComponent<TransformComponent>().translation = {0, 0, 0};
   }
   
+  std::string PlayerController::GetStateString() {
+    std::string states = "";
+    if (IsState(FreeFalling))
+      states += "Freefalling | ";
+    return states;
+  }
+  
 #endif
 
   void PlayerController::RenderGui() {
@@ -75,7 +74,7 @@ namespace mario {
     ImGui::Begin("Player Controller");
     ImGui::PushID("Player Controller");
 
-    ImGui::Text("State : %s", GetStateString(state_).c_str());
+    ImGui::Text("State : %s", GetStateString().c_str());
     
     ImGui::PopID();
     ImGui::End();
@@ -83,7 +82,7 @@ namespace mario {
   }
   
   void PlayerController::Update(Timestep ts) {
-    if (state_ == State::Freefall)
+    if (IsState(FreeFalling))
       Freefall(ts);
 #if MOVE
     // Dummy copy of entity y Position
@@ -119,6 +118,10 @@ namespace mario {
     // If no collision then update the position
     if (!CollisionDetected(world_aabb))
       tc.translation = translation;
+  }
+  
+  bool PlayerController::IsState(State state_bit) {
+    return state_bits_ & state_bit;
   }
   
 }
