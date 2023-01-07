@@ -54,6 +54,7 @@
 		B24DD8302963000100525941 /* mario_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario_main.cpp; sourceTree = "<group>"; };
 		B24DD8312963000100525941 /* mario_main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario_main.hpp; sourceTree = "<group>"; };
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
+		B25F616929698F930042FE09 /* background.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = background.h; sourceTree = "<group>"; };
 		B275570829601F650020D552 /* renderer_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
 		B275570929601F650020D552 /* renderer_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
 		B2BD9DCB295C7D3C0076A2F9 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.dylib; sourceTree = "<group>"; };
@@ -193,6 +194,7 @@
 			children = (
 				B24DD8302963000100525941 /* mario_main.cpp */,
 				B24DD8312963000100525941 /* mario_main.hpp */,
+				B25F616929698F930042FE09 /* background.h */,
 			);
 			path = src;
 			sourceTree = "<group>";

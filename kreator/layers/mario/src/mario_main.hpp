@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "background.h"
+
 namespace mario {
   
   using namespace ikan;
@@ -41,6 +43,7 @@ namespace mario {
     
     // Render Data
     Entity camera_entity_;
+    BackgroudData* background_data_;
   };
   
 }

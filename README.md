@@ -108,7 +108,7 @@ Add the following library search paths
 ----------------
 - Mario
 
-![](/kreator/layers/mario/output/mario_1.png)
+![](/kreator/layers/mario/output/mario_2.png)
 
 ## Road Map  
 ----------------
