@@ -71,32 +71,47 @@ namespace mario {
   }
   
   void MarioLayer::Update(Timestep ts) {
+#if MARIO_DEBUG
     if (viewport_.IsFramebufferResized()) {
       viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
+      // TODO: Store the player position before resize and back it up after resize
       mario_scene_.SetViewport(viewport_.width, viewport_.height);
     }
-    
+
     viewport_.UpdateMousePos();
-    
     viewport_.framebuffer->Bind();
+
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
-    
     mario_scene_.Update(ts);
-    
-#if MARIO_DEBUG
+
     viewport_.UpdateHoveredEntity(&spm_);
-#endif
-    
     viewport_.framebuffer->Unbind();
+#else
+    Renderer::Clear({0.2, 0.3, 0.4, 1.0});
+    mario_scene_.Update(ts);
+#endif
   }
   
   void MarioLayer::EventHandler(Event& event) {
-#if MARIO_DEBUG
     EventDispatcher dispatcher(event);
+    dispatcher.Dispatch<WindowResizeEvent>(IK_BIND_EVENT_FN(MarioLayer::OnWindowResized));
+#if MARIO_DEBUG
     dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(MarioLayer::OnMouseButtonPressed));
 #endif
   }
   
+  bool MarioLayer::OnWindowResized(WindowResizeEvent &e) {
+    viewport_width_ = e.GetWidth();
+    viewport_height_ = e.GetHeight();
+    
+#if !MARIO_DEBUG
+    // TODO: Store the player position before resize and back it up after resize
+    mario_scene_.SetViewport(viewport_width_, viewport_height_);
+#endif
+    return false;
+  }
+  
+#if MARIO_DEBUG
   bool MarioLayer::OnMouseButtonPressed(MouseButtonPressedEvent& e) {
     if (e.GetMouseButton() == MouseButton::ButtonLeft) {
       if (viewport_.mouse_pos_x >= 0 and
@@ -106,22 +121,33 @@ namespace mario {
         spm_.SetSelectedEntity(viewport_.hovered_entity_);
       }
     }
-    
     return false;
   }
+#endif
   
   void MarioLayer::RenderGui() {
-    ImguiAPI::StartDcocking();
-    Renderer::Framerate();
-    Renderer::RenderStatsGui();
+#if MARIO_DEBUG
     
+    ImguiAPI::StartDcocking();
+    Renderer::RenderStatsGui();
+    Renderer::Framerate();
+
     viewport_.RenderGui();
     mario_scene_.RenderGui();
     
-#if MARIO_DEBUG
+    ImGui::Begin("Setting");
+    ImGui::PushID("Setting");
+    
+    if (ImGui::Button("Reset")) {
+      player_->Reset();
+      camera_entity_.GetComponent<TransformComponent>().translation.x = 0.0f;
+    }
+    
+    ImGui::PopID();
+    ImGui::End();
+    
     spm_.RenderGui();
     player_->RenderGui();
-#endif
 
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
@@ -148,6 +174,7 @@ namespace mario {
     ImGui::End();
 
     ImguiAPI::EndDcocking();
+#endif
   }
   
 }

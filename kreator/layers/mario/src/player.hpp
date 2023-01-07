@@ -7,6 +7,8 @@
 
 #pragma once
 
+#define MARIO_DEBUG 1
+
 namespace mario {
   
   using namespace ikan;
@@ -30,7 +32,10 @@ namespace mario {
     
     DELETE_COPY_MOVE_CONSTRUCTORS(Player);
     
+#if MARIO_DEBUG
     void RenderGui();
+    void Reset();
+#endif
     
   private:
     EnttScene* scene_;

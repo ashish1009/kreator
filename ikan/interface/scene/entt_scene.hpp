@@ -142,7 +142,11 @@ namespace ikan {
     // Number of Entity stored in Scene and Max ID given to Entity
     uint32_t num_entities_ = 0, max_entity_id_ = -1;
 
+    // Editor camera
     EditorCamera editor_camera_;
+    
+    // Viewport data
+    uint32_t viewport_width_ = 0, viewport_height_ = 0;
     
     // State of the scene
     State state_ = State::Edit;

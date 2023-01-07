@@ -7,8 +7,6 @@
 
 #pragma once
 
-#define MARIO_DEBUG 1
-
 #include "background.hpp"
 #include "player.hpp"
 
@@ -41,21 +39,29 @@ namespace mario {
     void EventHandler(Event& event) override;
     
   private:
+#if MARIO_DEBUG
     /// This function handles the mouse button event
     /// - Parameter e: mouse button pressed event
     bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
+#endif
+    
+    /// This function handles the window resize
+    /// - Parameter e: window resize event
+    bool OnWindowResized(WindowResizeEvent& e);
 
     EnttScene mario_scene_;
-    Viewport viewport_ = Viewport({ 0.12, 0.23, 0.34, 1.0f });
     
     // Render Data
     Entity camera_entity_;
     BackgroudData* background_data_;
     
     Player* player_;
+    
+    uint32_t viewport_width_ = 0, viewport_height_ = 0;
   
     // For Debug
 #if MARIO_DEBUG
+    Viewport viewport_ = Viewport({ 0.12, 0.23, 0.34, 1.0f });
     ScenePanelManager spm_;
 #endif
   };

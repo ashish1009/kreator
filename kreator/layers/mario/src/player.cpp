@@ -38,6 +38,7 @@ namespace mario {
     IK_WARN("Mario", "Destroying Mario Player");
   }
   
+#if MARIO_DEBUG
   void Player::RenderGui() {
     ImGui::Begin("Player Pos");
     ImGui::PushID("Player Pos");
@@ -46,9 +47,14 @@ namespace mario {
     ImGui::End();
   }
   
+  void Player::Reset() {
+    player_entity_.GetComponent<TransformComponent>().translation = {0, 0, 0};
+  }
+#endif
+  
   void PlayerController::Update(Timestep ts) {
     // Dummy copy of entity y Position
-    auto& translation = GetComponent<TransformComponent>().translation;
+    auto translation = GetComponent<TransformComponent>().translation;
     if (Input::IsKeyPressed(KeyCode::Left))
       translation.x -= speed_ * ts;
     if (Input::IsKeyPressed(KeyCode::Right))

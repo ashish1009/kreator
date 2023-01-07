@@ -156,6 +156,15 @@ namespace ikan {
   }
   
   void EnttScene::SetViewport(uint32_t width, uint32_t height) {
+    // TODO: for both running and editor???
+    if (viewport_width_ == width and viewport_height_ == height)
+      return;
+    
+    // Update viewport
+    viewport_width_ = width;
+    viewport_height_ = height;
+
+    // editor
     editor_camera_.SetViewportSize(width, height);
     
     // Update the viewport of scene cameras
