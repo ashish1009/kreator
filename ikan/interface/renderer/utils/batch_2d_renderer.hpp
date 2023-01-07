@@ -25,6 +25,14 @@ namespace ikan {
     /// This functio dhutdown the batch renderer and destoy all the buffer reserved on initialize
     static void Shutdown();
     
+    /// This function Re initialzes the Batch renderer. Create All buffers needed to store Data (Both
+    /// Renderer and CPU)
+    /// - Parameters:
+    ///   - max_quads: Number of quads
+    ///   - max_cirlces: Number of circles
+    ///   - max_lines: Number of lines
+    static void Reinit(uint32_t max_quads = 1, uint32_t max_cirlces = 1, uint32_t max_lines = 1);
+    
     /// This function begins the Batch for 2D Rendere (to be called each frame)
     /// - Parameters:
     ///   - camera_view_projection_matrix: Camera View projection Matrix

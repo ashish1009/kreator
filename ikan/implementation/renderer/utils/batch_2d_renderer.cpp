@@ -215,6 +215,21 @@ namespace ikan {
     InitCircleData();
     InitLineData();
   }
+  
+  void BatchRenderer::Reinit(uint32_t max_quads, uint32_t max_cirlces, uint32_t max_lines) {
+    delete quad_data_;
+    quad_data_ = nullptr;
+    
+    delete circle_data_;
+    circle_data_ = nullptr;
+    
+    delete line_data_;
+    line_data_ = nullptr;
+    
+    InitQuadData(max_quads);
+    InitCircleData(max_cirlces);
+    InitLineData(max_lines);
+  }
 
   void BatchRenderer::Shutdown() {
     IK_CORE_WARN(LogModule::Batch2DRenderer, "Shutting Down the Batch Renderer 2D !!!");
@@ -264,6 +279,9 @@ namespace ikan {
   }
   
   void BatchRenderer::InitQuadData(uint32_t max_quads) {
+    if (max_quads == 0)
+      return;
+    
     // Allocate memory for Quad Data
     quad_data_ = new QuadData();
     
@@ -336,6 +354,9 @@ namespace ikan {
   }
   
   void BatchRenderer::InitCircleData(uint32_t max_circles) {
+    if (max_circles == 0)
+      return;
+    
     // Allocate memory for Circle Data
     circle_data_ = new CircleData();
     
@@ -411,6 +432,9 @@ namespace ikan {
   }
   
   void BatchRenderer::InitLineData(uint32_t max_lines) {
+    if (max_lines == 0)
+      return;
+    
     // Allocate memory for Line Data
     line_data_ = new LineData();
     
@@ -448,6 +472,8 @@ namespace ikan {
     // ----------------------------------------------------------------------
     // Start batch for quads
     // ----------------------------------------------------------------------
+    if (!quad_data_)
+      return;
     quad_data_->environment.camera_view_projection_matrix = camera_view_projection_matrix;
     
     quad_data_->shader->Bind();
@@ -459,6 +485,8 @@ namespace ikan {
     // ----------------------------------------------------------------------
     // Start batch for circles
     // ----------------------------------------------------------------------
+    if (!circle_data_)
+      return;
     circle_data_->environment.camera_view_projection_matrix = camera_view_projection_matrix;
     
     circle_data_->shader->Bind();
@@ -469,6 +497,8 @@ namespace ikan {
     // ----------------------------------------------------------------------
     // Start batch for lines
     // ----------------------------------------------------------------------
+    if (!line_data_)
+      return;
     line_data_->shader->Bind();
     line_data_->shader->SetUniformMat4("u_ViewProjection", camera_view_projection_matrix);
     line_data_->StartBatch();
@@ -480,7 +510,7 @@ namespace ikan {
   }
 
   void BatchRenderer::Flush() {
-    if (quad_data_->index_count) {
+    if (quad_data_ and quad_data_->index_count) {
       uint32_t data_size = (uint32_t)((uint8_t*)quad_data_->vertex_buffer_ptr -
                                       (uint8_t*)quad_data_->vertex_buffer_base_ptr);
       quad_data_->vertex_buffer->SetData(quad_data_->vertex_buffer_base_ptr, data_size);
@@ -496,7 +526,7 @@ namespace ikan {
       Renderer::DrawIndexed(quad_data_->pipeline, quad_data_->index_count);
     }
     
-    if (circle_data_->index_count) {
+    if (circle_data_ and circle_data_->index_count) {
       uint32_t dataSize = (uint32_t)((uint8_t*)circle_data_->vertex_buffer_ptr -
                                      (uint8_t*)circle_data_->vertex_buffer_base_ptr);
       circle_data_->vertex_buffer->SetData(circle_data_->vertex_buffer_base_ptr, dataSize);
@@ -512,7 +542,7 @@ namespace ikan {
       Renderer::DrawIndexed(circle_data_->pipeline, circle_data_->index_count);
     }
     
-    if (line_data_->vertex_count) {
+    if (line_data_ and line_data_->vertex_count) {
       uint32_t dataSize = (uint32_t)((uint8_t*)line_data_->vertex_buffer_ptr -
                                      (uint8_t*)line_data_->vertex_buffer_base_ptr);
       line_data_->vertex_buffer->SetData(line_data_->vertex_buffer_base_ptr, dataSize);
