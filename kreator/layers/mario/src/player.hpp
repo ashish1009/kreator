@@ -11,6 +11,16 @@ namespace mario {
   
   using namespace ikan;
   
+  class PlayerController : public ScriptableEntity {
+  public:
+    PlayerController() = default;
+    
+    void Update(Timestep ts) override;
+    
+  private:
+    float speed_ = 25.0f;
+  };
+
   class Player {
   public:
     /// Constructor of mario Player
