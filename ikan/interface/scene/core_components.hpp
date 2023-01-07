@@ -117,4 +117,9 @@ namespace ikan {
     NativeScriptComponent() = default;
     DEFINE_COPY_MOVE_CONSTRUCTORS(NativeScriptComponent);
   };
+  
+  struct RigidBodyComponent {
+    void RenderGui();
+  };
+
 }

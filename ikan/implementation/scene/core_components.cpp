@@ -295,4 +295,11 @@ namespace ikan {
   
   void NativeScriptComponent::RenderGui() {
   }
+  
+  // -------------------------------------------------------------------------
+  // Rigid Body Component
+  // -------------------------------------------------------------------------
+  void RigidBodyComponent::RenderGui() {
+  }
+  
 }
