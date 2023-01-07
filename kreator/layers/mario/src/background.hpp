@@ -82,9 +82,9 @@ namespace mario {
   "                                                                                                                                                |l|u|r|u|l|   0"
   "                 XBXBX              XBXXXXBX                           S           XXXXX               B                                        |||o|||o|||   0"
   "                                                    Y                 SS                                                   S                  ............... 0"
-  "                                                    !                SSS                                                  SS                  ||||||||||||||| 0"
-  "                              Y                     !               SSSS                               Y                 SSS                  |u||u||u||u||u| 0"
-  "               <v>      S     !       S  S          !     <vv>     SSSSS                    <vvv>      !          <     SSSS         <v>      |o||o||o||o||o| 0"
+  "                                                    !                SSS                         *                        SS                  ||||||||||||||| 0"
+  "                              Y                     !               SSSS                        {1}    Y                 SSS                  |u||u||u||u||u| 0"
+  "               <v>      S     !       S  S          !     <vv>     SSSSS                       {213}   !                SSSS         <v>      |o||o||o||o||o| 0"
   "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG--------------------GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG0"
   "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG                    GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG0"
   ;
