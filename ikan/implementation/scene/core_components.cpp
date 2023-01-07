@@ -272,34 +272,45 @@ namespace ikan {
   }
   
   NativeScriptComponent::NativeScriptComponent(const NativeScriptComponent& other) {
-    script_idx = other.script_idx;
-    script_name = other.script_name;
     loader_function = other.loader_function;
-    
-    ScriptManager::UpdateScript(this, script_name, loader_function);
+
+    for (const auto& script_name : other.script_names) {
+      script_names.push_back(script_name);
+      ScriptManager::UpdateScript(this, script_name, loader_function);
+    }
   }
   NativeScriptComponent& NativeScriptComponent::operator=(const NativeScriptComponent& other) {
-    script_idx = other.script_idx;
-    script_name = other.script_name;
     loader_function = other.loader_function;
     
-    ScriptManager::UpdateScript(this, script_name, loader_function);
+    for (const auto& script_name : other.script_names) {
+      script_names.push_back(script_name);
+      ScriptManager::UpdateScript(this, script_name, loader_function);
+    }
     return *this;
   }
   NativeScriptComponent::NativeScriptComponent(NativeScriptComponent&& other) {
-    script_idx = other.script_idx;
-    script_name = other.script_name;
     loader_function = other.loader_function;
     
-    ScriptManager::UpdateScript(this, script_name, loader_function);
+    for (const auto& script_name : other.script_names) {
+      script_names.push_back(script_name);
+      ScriptManager::UpdateScript(this, script_name, loader_function);
+    }
   }
   NativeScriptComponent& NativeScriptComponent::operator=(NativeScriptComponent&& other) {
-    script_idx = other.script_idx;
-    script_name = other.script_name;
     loader_function = other.loader_function;
     
-    ScriptManager::UpdateScript(this, script_name, loader_function);
+    for (const auto& script_name : other.script_names) {
+      script_names.push_back(script_name);
+      ScriptManager::UpdateScript(this, script_name, loader_function);
+    }
     return *this;
+  }
+  
+  NativeScriptComponent::~NativeScriptComponent() {
+    for (auto script : instances)
+      delete script;
+    
+    instances.clear();
   }
   
   void NativeScriptComponent::RenderGui() {

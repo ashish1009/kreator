@@ -202,19 +202,19 @@ namespace ikan {
   void EnttScene::InstantiateScript(Timestep ts) {
     registry_.view<NativeScriptComponent>().each([=](auto entity, auto& nsc)
                                                  {
-      if (!nsc.instance) {
-        nsc.instance = nsc.InstantiateScript();
-        nsc.instance->entity_ = Entity{ entity, this };
-        nsc.instance->scene_ = this;
+      for (auto& instance : nsc.instances) {
+        if (!instance->scene_) {
+          instance->entity_ = Entity{ entity, this };
+          instance->scene_ = this;
+          
+          instance->Create();
+        }
         
-        nsc.instance->Create();
+        if (state_ == State::Play)
+          instance->Update(ts);
       }
-      
-      if (state_ == State::Play)
-        nsc.instance->Update(ts);
     });
   }
-
   
   void EnttScene::Render2DEntities(const glm::mat4& camera_view_projection_mat) {
     // Render 2D

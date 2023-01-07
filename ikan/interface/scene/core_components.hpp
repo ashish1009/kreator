@@ -83,31 +83,20 @@ namespace ikan {
 
   class ScriptableEntity;
   struct NativeScriptComponent {
-    std::string script_name;
-    uint32_t script_idx = 0;
-    ScriptableEntity* instance = nullptr;
-    
-    ScriptableEntity*(*InstantiateScript)();
-    void (*DestroyScript)(NativeScriptComponent*);
+    std::vector<std::string> script_names;
+    std::vector<ScriptableEntity*> instances;
     
     ScriptLoaderFn loader_function;
     
     template<typename T>
     void Bind() {
-      InstantiateScript = []() {
-        return static_cast<ScriptableEntity*>(new T());
-      };
-      
-      DestroyScript = [](NativeScriptComponent* nsc) {
-        delete nsc->instance;
-        nsc->instance = nullptr;
-      };
+      instances.push_back(static_cast<ScriptableEntity*>(new T()));
       
       // Store the script name
       int32_t status;
       std::string tname = typeid(T).name();
       char *demangled_name = abi::__cxa_demangle(tname.c_str(), NULL, NULL, &status);
-      script_name = demangled_name;
+      script_names.push_back(demangled_name);
       
       // Delete the allocated memory
       if(status == 0) {
@@ -119,7 +108,7 @@ namespace ikan {
     void RenderGui();
     
     NativeScriptComponent(ScriptLoaderFn loader_fun);
-    
+    ~NativeScriptComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(NativeScriptComponent);
   };
   
