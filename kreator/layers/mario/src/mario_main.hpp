@@ -7,6 +7,8 @@
 
 #pragma once
 
+#define MARIO_DEBUG 1
+
 #include "background.hpp"
 #include "player.hpp"
 
@@ -39,6 +41,10 @@ namespace mario {
     void EventHandler(Event& event) override;
     
   private:
+    /// This function handles the mouse button event
+    /// - Parameter e: mouse button pressed event
+    bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
+
     EnttScene mario_scene_;
     Viewport viewport_ = Viewport({ 0.12, 0.23, 0.34, 1.0f });
     
@@ -47,6 +53,11 @@ namespace mario {
     BackgroudData* background_data_;
     
     Player* player_;
+  
+    // For Debug
+#if MARIO_DEBUG
+    ScenePanelManager spm_;
+#endif
   };
   
 }

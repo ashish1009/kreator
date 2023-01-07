@@ -15,6 +15,10 @@ namespace mario {
     
     // Reinitialize the Batch Renderer
     BatchRenderer::Reinit(1000, 0, 0);
+    
+#if MARIO_DEBUG
+    spm_.SetSceneContext(&mario_scene_);
+#endif
   }
   
   MarioLayer::~MarioLayer() {
@@ -76,11 +80,32 @@ namespace mario {
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
     
     mario_scene_.Update(ts);
-
+    
+#if MARIO_DEBUG
+    viewport_.UpdateHoveredEntity(&spm_);
+#endif
+    
     viewport_.framebuffer->Unbind();
   }
   
   void MarioLayer::EventHandler(Event& event) {
+#if MARIO_DEBUG
+    EventDispatcher dispatcher(event);
+    dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(MarioLayer::OnMouseButtonPressed));
+#endif
+  }
+  
+  bool MarioLayer::OnMouseButtonPressed(MouseButtonPressedEvent& e) {
+    if (e.GetMouseButton() == MouseButton::ButtonLeft) {
+      if (viewport_.mouse_pos_x >= 0 and
+          viewport_.mouse_pos_y >= 0 and
+          viewport_.mouse_pos_x <= viewport_.width and
+          viewport_.mouse_pos_y <= viewport_.height) {
+        spm_.SetSelectedEntity(viewport_.hovered_entity_);
+      }
+    }
+    
+    return false;
   }
   
   void MarioLayer::RenderGui() {
@@ -90,6 +115,11 @@ namespace mario {
     
     viewport_.RenderGui();
     mario_scene_.RenderGui();
+    
+#if MARIO_DEBUG
+    spm_.RenderGui();
+    player_->RenderGui();
+#endif
 
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });

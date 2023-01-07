@@ -93,8 +93,7 @@ namespace ikan {
   }
   
   void ScenePanelManager::RenderGui(bool* is_opened) {
-    if (!is_opened) return;
-    if (*is_opened == false) return;
+    if (is_opened and *is_opened == false) return;
 
     ImGui::Begin("Scene Manager", is_opened);
     ImGui::PushID("Scene Manager");

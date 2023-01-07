@@ -32,12 +32,18 @@ namespace mario {
     });
     native_script_comp.Bind<ikan::FreeFallController>();
     native_script_comp.Bind<mario::PlayerController>();
-    
-    
   }
   
   Player::~Player() {
     IK_WARN("Mario", "Destroying Mario Player");
+  }
+  
+  void Player::RenderGui() {
+    ImGui::Begin("Player Pos");
+    ImGui::PushID("Player Pos");
+    player_entity_.GetComponent<TransformComponent>().RenderGui();
+    ImGui::PopID();
+    ImGui::End();
   }
   
   void PlayerController::Update(Timestep ts) {
@@ -47,6 +53,16 @@ namespace mario {
       translation.x -= speed_ * ts;
     if (Input::IsKeyPressed(KeyCode::Right))
       translation.x += speed_ * ts;
+
+    auto& tc = GetComponent<TransformComponent>();
+    const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
+    AABB world_aabb = original_aabb.GetWorldPosBoundingBox(Math::GetTransformMatrix(translation,
+                                                                                    tc.rotation,
+                                                                                    tc.scale));
+    
+    // If no collision then update the position
+    if (!CollisionDetected(world_aabb))
+      tc.translation = translation;
   }
   
 }

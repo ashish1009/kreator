@@ -30,6 +30,8 @@ namespace mario {
     
     DELETE_COPY_MOVE_CONSTRUCTORS(Player);
     
+    void RenderGui();
+    
   private:
     EnttScene* scene_;
     Entity player_entity_;
