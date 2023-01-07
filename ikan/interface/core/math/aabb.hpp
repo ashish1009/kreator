@@ -25,6 +25,10 @@ namespace ikan {
     ///   - max: Max bound for x, y and Z
     AABB(const glm::vec3& min, const glm::vec3& max);
     
+    /// Tihs function returns the World AABB bounding box of current aabb
+    /// - Parameter transform: new trasnform for which aabb bounding box is needed
+    AABB GetWorldPosBoundingBox(const glm::mat4& transform) const;
+    
     DEFINE_COPY_MOVE_CONSTRUCTORS(AABB)
   };
   

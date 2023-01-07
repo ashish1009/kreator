@@ -31,7 +31,30 @@ namespace ikan {
   // Scriptable Entity Base class
   // --------------------------------------------------------------------------
   bool ScriptableEntity::CollisionDetected(const AABB& aabb) {
-    return false;
+    bool collision_detected = false;
+    // Collistion deteection
+    scene_->GetRegistry().view<RigidBodyComponent>().each([&](entt::entity entity, auto& rc)
+                                                          {
+      // TODO: If no ther entity is there then no free fall.
+      if (entity_ == entity)
+        return;
+      
+      auto& other_tc = scene_->GetRegistry().get<TransformComponent>(entity);
+      const AABB& original_aabb = scene_->GetRegistry().get<RigidBodyComponent>(entity).aabb;
+      AABB world_aabb = original_aabb.GetWorldPosBoundingBox(other_tc.GetTransform());
+      
+      if (
+          world_aabb.min.x <= aabb.max.x &&
+          world_aabb.max.x >= aabb.min.x &&
+          world_aabb.min.y <= aabb.max.y &&
+          world_aabb.max.y >= aabb.min.y &&
+          world_aabb.min.z <= aabb.max.z &&
+          world_aabb.max.z >= aabb.min.z) {
+            collision_detected = true;
+            return;
+          }
+    });
+    return collision_detected;
   }
 
   // --------------------------------------------------------------------------
@@ -43,10 +66,13 @@ namespace ikan {
     translation.y -= speed_ * ts;
     
     auto& tc = GetComponent<TransformComponent>();
-    AABB aabb;
+    const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
+    AABB world_aabb = original_aabb.GetWorldPosBoundingBox(Math::GetTransformMatrix(translation,
+                                                                                    tc.rotation,
+                                                                                    tc.scale));
     
     // If no collision then update the position
-    if (!CollisionDetected(aabb))
+    if (!CollisionDetected(world_aabb))
       tc.translation = translation;
   }
   
