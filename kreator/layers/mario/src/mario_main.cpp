@@ -136,12 +136,12 @@ namespace mario {
     tiles_char_map['('] = SubTexture::CreateFromCoords(tile_sprite, { 0.0f, 0.0f }, { 1.0f, 2.0f });
     tiles_char_map['^'] = SubTexture::CreateFromCoords(tile_sprite, { 1.0f, 0.0f }, { 1.0f, 2.0f });
     tiles_char_map[')'] = SubTexture::CreateFromCoords(tile_sprite, { 2.0f, 0.0f }, { 1.0f, 2.0f });
-    tiles_char_map['.'] = SubTexture::CreateFromCoords(tile_sprite, { 19.0f, 25.0f });
-    tiles_char_map['u'] = SubTexture::CreateFromCoords(tile_sprite, { 20.0f, 24.0f });
-    tiles_char_map['o'] = SubTexture::CreateFromCoords(tile_sprite, { 21.0f, 24.0f });
-    tiles_char_map['|'] = SubTexture::CreateFromCoords(tile_sprite, { 21.0f, 25.0f });
-    tiles_char_map['l'] = SubTexture::CreateFromCoords(tile_sprite, { 20.0f, 25.0f });
-    tiles_char_map['r'] = SubTexture::CreateFromCoords(tile_sprite, { 22.0f, 25.0f });
+    tiles_char_map['.'] = SubTexture::CreateFromCoords(tile_sprite, { 19.0f, 27.0f });
+    tiles_char_map['u'] = SubTexture::CreateFromCoords(tile_sprite, { 20.0f, 26.0f });
+    tiles_char_map['o'] = SubTexture::CreateFromCoords(tile_sprite, { 21.0f, 26.0f });
+    tiles_char_map['|'] = SubTexture::CreateFromCoords(tile_sprite, { 21.0f, 27.0f });
+    tiles_char_map['l'] = SubTexture::CreateFromCoords(tile_sprite, { 20.0f, 27.0f });
+    tiles_char_map['r'] = SubTexture::CreateFromCoords(tile_sprite, { 22.0f, 27.0f });
   }
   
   MarioLayer::MarioLayer() : Layer("Kreator") {
@@ -168,10 +168,12 @@ namespace mario {
         if (char tile_type = map_tile_pattern[x + y * map_width];
             background_data_->tiles_char_map.find(tile_type) != background_data_->tiles_char_map.end()) {
           auto entity = mario_scene_.CreateEntity(GetEntityNameFromChar(tile_type));
-          entity.AddComponent<QuadComponent>();
+          const auto& sprite_comp = entity.AddComponent<SpriteComponent>(background_data_->tiles_char_map[tile_type]);
+          const auto& sprite_size = sprite_comp.sub_texture->GetSpriteSize();
+          
           auto& tc = entity.GetComponent<TransformComponent>();
-
           tc.translation = { x, (map_height / 2.0f) - y, 0.0f };
+          tc.scale = { sprite_size.x, sprite_size.y , 0.0f};
         }
         else {
           if (tile_type != ' ' || tile_type != '0') // No need to validate Space

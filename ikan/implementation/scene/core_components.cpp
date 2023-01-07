@@ -143,7 +143,37 @@ namespace ikan {
       ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
     });
   }
-
+  
+  // -------------------------------------------------------------------------
+  // Sprite Component
+  // -------------------------------------------------------------------------
+  SpriteComponent::SpriteComponent(std::shared_ptr<SubTexture> sub_tex)
+  : sub_texture(sub_tex) {
+    IK_CORE_TRACE(LogModule::Component, "Creating Sprite Component ...");
+  }
+  SpriteComponent::SpriteComponent(const SpriteComponent& other) {
+    if (other.sub_texture)
+      sub_texture = other.sub_texture;
+    IK_CORE_TRACE(LogModule::Component, "Copying Sprite Component ...");
+  }
+  SpriteComponent::SpriteComponent(SpriteComponent&& other) {
+    if (other.sub_texture)
+      sub_texture = other.sub_texture;
+    IK_CORE_TRACE(LogModule::Component, "Moving Sprite Component ...");
+  }
+  SpriteComponent& SpriteComponent::operator=(const SpriteComponent& other) {
+    if (other.sub_texture)
+      sub_texture = other.sub_texture;
+    IK_CORE_TRACE(LogModule::Component, "Copying Sprite Component using = operator...");
+    return *this;
+  }
+  SpriteComponent& SpriteComponent::operator=(SpriteComponent&& other) {
+    if (other.sub_texture)
+      sub_texture = other.sub_texture;
+    IK_CORE_TRACE(LogModule::Component, "Moving Sprite Component using = operator...");
+    return *this;
+  }
+  
   // -------------------------------------------------------------------------
   // Circle Component
   // -------------------------------------------------------------------------

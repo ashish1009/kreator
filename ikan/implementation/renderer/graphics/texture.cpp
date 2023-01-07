@@ -170,7 +170,7 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::SubTexture, "  Min Bound    | {0} : {1}", min.x, min.y);
     IK_CORE_TRACE(LogModule::SubTexture, "  Max Bound    | {0} : {1}", max.x, max.y);
     
-    return std::make_shared<SubTexture>(sprite_image, min, max, sprite_size, cell_size, coords);
+    return std::make_shared<SubTexture>(sprite_image, min, max, coords, sprite_size, cell_size);
   }
 
   const std::shared_ptr<Texture> SubTexture::GetSpriteImage() const { return sprite_image_; }

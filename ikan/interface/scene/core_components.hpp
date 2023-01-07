@@ -45,6 +45,12 @@ namespace ikan {
     QuadComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(QuadComponent);
   };
+  
+  struct SpriteComponent {
+    std::shared_ptr<SubTexture> sub_texture;
+    SpriteComponent(std::shared_ptr<SubTexture> sub_tex = nullptr);
+    DEFINE_COPY_MOVE_CONSTRUCTORS(SpriteComponent);
+  };
 
   struct CircleComponent {
     TextureComponent texture_comp;

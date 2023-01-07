@@ -216,6 +216,15 @@ namespace ikan {
       }
     } // for (const auto& entity : mesh_view)
     
+    auto sprite_view = registry_.view<TransformComponent, SpriteComponent>();
+    // For all Mesg entity
+    for (const auto& sprite_entity : sprite_view) {
+      const auto& [transform_component, sprite_component] = sprite_view.get<TransformComponent, SpriteComponent>(sprite_entity);
+      BatchRenderer::DrawQuad(transform_component.GetTransform(),
+                              sprite_component.sub_texture,
+                              (uint32_t)sprite_entity);
+    } // for (const auto& entity : mesh_view)
+
     auto circle_view = registry_.view<TransformComponent, CircleComponent>();
     // For all Mesg entity
     for (const auto& circle_entity : circle_view) {
