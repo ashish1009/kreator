@@ -10,6 +10,7 @@
 #include "renderer/graphics/texture.hpp"
 #include "scene/scene_camera.hpp"
 #include "scene/scriptable_entity.hpp"
+#include "core/math/aabb.hpp"
 
 namespace ikan {
  
@@ -123,8 +124,10 @@ namespace ikan {
   };
   
   struct RigidBodyComponent {
-    int temp_data = -1; // TODO: Temporary as empty component can not be added yet
+    AABB aabb;
     void RenderGui();
+    RigidBodyComponent(const AABB& aabb);
+    DEFINE_COPY_MOVE_CONSTRUCTORS(RigidBodyComponent);
   };
 
 }

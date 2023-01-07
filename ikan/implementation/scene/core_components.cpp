@@ -308,6 +308,21 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Rigid Body Component
   // -------------------------------------------------------------------------
+  RigidBodyComponent::RigidBodyComponent(const AABB& aabb) : aabb(aabb) { }
+  RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent& other) {
+    aabb = other.aabb;
+  }
+  RigidBodyComponent& RigidBodyComponent::operator=(const RigidBodyComponent& other) {
+    aabb = other.aabb;
+    return *this;
+  }
+  RigidBodyComponent::RigidBodyComponent(RigidBodyComponent&& other) {
+    aabb = other.aabb;
+  }
+  RigidBodyComponent& RigidBodyComponent::operator=(RigidBodyComponent&& other) {
+    aabb = other.aabb;
+    return *this;
+  }
   void RigidBodyComponent::RenderGui() {
   }
   

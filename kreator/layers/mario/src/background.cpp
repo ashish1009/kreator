@@ -140,8 +140,12 @@ namespace mario {
           auto entity = scene_->CreateEntity(GetEntityNameFromChar(tile_type));
 
           // Add rigid component
-          if (IsRigid(tile_type))
-            entity.AddComponent<RigidBodyComponent>();
+          if (IsRigid(tile_type)) {
+            AABB aabb;
+            aabb.min = { -0.5f, -0.5f, -0.5f };
+            aabb.max = { 0.5f, 0.5f, 0.5f };
+            entity.AddComponent<RigidBodyComponent>(aabb);
+          }
 
           // Update the position
           auto& tc = entity.GetComponent<TransformComponent>();
