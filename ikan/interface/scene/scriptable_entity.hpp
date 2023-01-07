@@ -50,7 +50,7 @@ namespace ikan {
   protected:
     Entity entity_;
     EnttScene* scene_;
-    friend class Scene;
+    friend class EnttScene;
   };
   
 }

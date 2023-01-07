@@ -7,6 +7,7 @@
 
 #include "scriptable_entity.hpp"
 #include "scene/core_components.hpp"
+#include "core/input.hpp"
 
 namespace ikan {
   

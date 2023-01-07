@@ -174,6 +174,10 @@ namespace ikan {
     return *this;
   }
   
+  void SpriteComponent::RenderGui() {
+    
+  }
+  
   // -------------------------------------------------------------------------
   // Circle Component
   // -------------------------------------------------------------------------
@@ -259,4 +263,36 @@ namespace ikan {
     ImGui::Separator();
   }
   
+  // -------------------------------------------------------------------------
+  // Native Script Component
+  // -------------------------------------------------------------------------
+  NativeScriptComponent::NativeScriptComponent(const NativeScriptComponent& other) {
+    script_idx = other.script_idx;
+    script_name = other.script_name;
+    
+    ScriptManager::UpdateScript(this, script_name);
+  }
+  NativeScriptComponent& NativeScriptComponent::operator=(const NativeScriptComponent& other) {
+    script_idx = other.script_idx;
+    script_name = other.script_name;
+    
+    ScriptManager::UpdateScript(this, script_name);
+    return *this;
+  }
+  NativeScriptComponent::NativeScriptComponent(NativeScriptComponent&& other) {
+    script_idx = other.script_idx;
+    script_name = other.script_name;
+    
+    ScriptManager::UpdateScript(this, script_name);
+  }
+  NativeScriptComponent& NativeScriptComponent::operator=(NativeScriptComponent&& other) {
+    script_idx = other.script_idx;
+    script_name = other.script_name;
+    
+    ScriptManager::UpdateScript(this, script_name);
+    return *this;
+  }
+  
+  void NativeScriptComponent::RenderGui() {
+  }
 }

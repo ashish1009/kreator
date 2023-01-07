@@ -72,9 +72,12 @@ namespace ikan {
   }
   
   void EnttScene::Update(Timestep ts) {
-    // update the primary scene camera for run time rendering
+    // Update the primary scene camera for run time rendering
     UpdatePrimaryCameraData();
     
+    // Update scripts
+    InstantiateScript(ts);
+
     update_(ts);
   }
   
@@ -194,6 +197,23 @@ namespace ikan {
     }
     primary_camera_data_.scene_camera = nullptr;
   }
+  
+  void EnttScene::InstantiateScript(Timestep ts) {
+    registry_.view<NativeScriptComponent>().each([=](auto entity, auto& nsc)
+                                                 {
+      if (!nsc.instance) {
+        nsc.instance = nsc.InstantiateScript();
+        nsc.instance->entity_ = Entity{ entity, this };
+        nsc.instance->scene_ = this;
+        
+        nsc.instance->Create();
+      }
+      
+      if (state_ == State::Play)
+        nsc.instance->Update(ts);
+    });
+  }
+
   
   void EnttScene::Render2DEntities(const glm::mat4& camera_view_projection_mat) {
     // Render 2D

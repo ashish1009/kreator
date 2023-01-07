@@ -50,6 +50,9 @@ namespace ikan {
   struct SpriteComponent {
     std::shared_ptr<SubTexture> sub_texture;
     SpriteComponent(std::shared_ptr<SubTexture> sub_tex = nullptr);
+    
+    void RenderGui();
+
     DEFINE_COPY_MOVE_CONSTRUCTORS(SpriteComponent);
   };
 

@@ -122,7 +122,10 @@ namespace ikan {
     
     /// This function updates the primary camera data
     void UpdatePrimaryCameraData();
-    
+    /// This functuion Insantiates all the native script
+    /// - Parameter ts: time step of each frame
+    void InstantiateScript(Timestep ts);
+
     /// This function renders the 2D Entities
     /// - Parameter camera_view_projection_mat: camera view projection matrix
     void Render2DEntities(const glm::mat4& camera_view_projection_mat);
