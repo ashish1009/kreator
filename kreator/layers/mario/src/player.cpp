@@ -6,6 +6,7 @@
 //
 
 #include "player.hpp"
+#include "camera_controller.h"
 
 namespace mario {
   
@@ -15,8 +16,7 @@ namespace mario {
     
     player_entity_ = scene_->CreateEntity("Player");
     player_entity_.AddComponent<QuadComponent>();
-    
-    player_entity_.AddComponent<NativeScriptComponent>().Bind<ikan::FreeFallController>();
+    player_entity_.AddComponent<NativeScriptComponent>(nullptr).Bind<ikan::FreeFallController>();
   }
   
   Player::~Player() {

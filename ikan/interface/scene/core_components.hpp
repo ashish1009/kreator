@@ -80,6 +80,7 @@ namespace ikan {
     DEFINE_COPY_MOVE_CONSTRUCTORS(CameraComponent);
   };
 
+  class ScriptableEntity;
   struct NativeScriptComponent {
     std::string script_name;
     uint32_t script_idx = 0;
@@ -87,6 +88,8 @@ namespace ikan {
     
     ScriptableEntity*(*InstantiateScript)();
     void (*DestroyScript)(NativeScriptComponent*);
+    
+    ScriptLoaderFn loader_function;
     
     template<typename T>
     void Bind() {
@@ -114,7 +117,8 @@ namespace ikan {
     
     void RenderGui();
     
-    NativeScriptComponent() = default;
+    NativeScriptComponent(ScriptLoaderFn loader_fun);
+    
     DEFINE_COPY_MOVE_CONSTRUCTORS(NativeScriptComponent);
   };
   

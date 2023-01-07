@@ -8,6 +8,7 @@
 #include "entt_scene.hpp"
 #include "scene/entity.hpp"
 #include "scene/core_components.hpp"
+#include "scene/scriptable_entity.hpp"
 #include "editor/property_grid.hpp"
 #include "renderer/utils/batch_2d_renderer.hpp"
 #include "renderer/utils/renderer.hpp"

@@ -7,6 +7,7 @@
 
 #include "core_components.hpp"
 #include "editor/property_grid.hpp"
+#include "scene/scriptable_entity.hpp"
 
 namespace ikan {
   
@@ -266,30 +267,38 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Native Script Component
   // -------------------------------------------------------------------------
+  NativeScriptComponent::NativeScriptComponent(ScriptLoaderFn loader_fun)
+  : loader_function(loader_fun) {
+  }
+  
   NativeScriptComponent::NativeScriptComponent(const NativeScriptComponent& other) {
     script_idx = other.script_idx;
     script_name = other.script_name;
+    loader_function = other.loader_function;
     
-    ScriptManager::UpdateScript(this, script_name);
+    ScriptManager::UpdateScript(this, script_name, loader_function);
   }
   NativeScriptComponent& NativeScriptComponent::operator=(const NativeScriptComponent& other) {
     script_idx = other.script_idx;
     script_name = other.script_name;
+    loader_function = other.loader_function;
     
-    ScriptManager::UpdateScript(this, script_name);
+    ScriptManager::UpdateScript(this, script_name, loader_function);
     return *this;
   }
   NativeScriptComponent::NativeScriptComponent(NativeScriptComponent&& other) {
     script_idx = other.script_idx;
     script_name = other.script_name;
+    loader_function = other.loader_function;
     
-    ScriptManager::UpdateScript(this, script_name);
+    ScriptManager::UpdateScript(this, script_name, loader_function);
   }
   NativeScriptComponent& NativeScriptComponent::operator=(NativeScriptComponent&& other) {
     script_idx = other.script_idx;
     script_name = other.script_name;
+    loader_function = other.loader_function;
     
-    ScriptManager::UpdateScript(this, script_name);
+    ScriptManager::UpdateScript(this, script_name, loader_function);
     return *this;
   }
   

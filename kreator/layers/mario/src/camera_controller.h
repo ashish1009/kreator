@@ -11,6 +11,8 @@ namespace mario {
   
   class CameraController : public ScriptableEntity {
   public:
+    CameraController() = default;
+    
     void Update(Timestep ts) override {
       // Dummy copy of entity y Position
       auto& translation = GetComponent<TransformComponent>().translation;
