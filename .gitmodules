@@ -13,3 +13,6 @@
 [submodule "ikan/vendors/imguizmo/imguizmo"]
 	path = ikan/vendors/imguizmo/imguizmo
 	url = https://github.com/ashish1009/ImGuizmo
+[submodule "ikan/vendors/yaml/yaml"]
+	path = ikan/vendors/yaml/yaml
+	url = https://github.com/ashish1009/yaml-cpp

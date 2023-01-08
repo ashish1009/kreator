@@ -90,6 +90,7 @@
 		B2C0D81A295A01DF003F168B /* pipeline.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2C0D818295A01DF003F168B /* pipeline.hpp */; };
 		B2C78066296AE470003F343E /* aabb_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2C78064296AE470003F343E /* aabb_renderer.cpp */; };
 		B2C78067296AE470003F343E /* aabb_renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2C78065296AE470003F343E /* aabb_renderer.hpp */; };
+		B2C78147296AF195003F343E /* libyaml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C78089296AF12C003F343E /* libyaml.a */; };
 		B2DAAB81296575B0003578D9 /* core_components.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2DAAB7F296575AF003578D9 /* core_components.cpp */; };
 		B2DAAB82296575B0003578D9 /* core_components.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2DAAB80296575AF003578D9 /* core_components.hpp */; };
 		B2E7600C2958D38100ADBE79 /* mac_os_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */; };
@@ -158,6 +159,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = B2B6CD9C2958D7D400AE609E;
 			remoteInfo = imgui;
+		};
+		B2C78088296AF12C003F343E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2C78084296AF12C003F343E /* yaml.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B2C78076296AF12C003F343E;
+			remoteInfo = yaml;
 		};
 		B2FC3F8829588C1B00447A1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -267,6 +275,7 @@
 		B2C78064296AE470003F343E /* aabb_renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aabb_renderer.cpp; sourceTree = "<group>"; };
 		B2C78065296AE470003F343E /* aabb_renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = aabb_renderer.hpp; sourceTree = "<group>"; };
 		B2C7806C296AE556003F343E /* aabb_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aabb_shader.glsl; sourceTree = "<group>"; };
+		B2C78084296AF12C003F343E /* yaml.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = yaml.xcodeproj; path = yaml/yaml.xcodeproj; sourceTree = "<group>"; };
 		B2DAAB7F296575AF003578D9 /* core_components.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = core_components.cpp; sourceTree = "<group>"; };
 		B2DAAB80296575AF003578D9 /* core_components.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_components.hpp; sourceTree = "<group>"; };
 		B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mac_os_window.cpp; sourceTree = "<group>"; };
@@ -326,6 +335,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2C78147296AF195003F343E /* libyaml.a in Frameworks */,
 				B24C4A6C2967FDA000675599 /* libimguizmo.a in Frameworks */,
 				B2B6CDBA2958DAA300AE609E /* libimgui.a in Frameworks */,
 				B2FC405B2958BCA500447A1A /* libglad.a in Frameworks */,
@@ -601,6 +611,14 @@
 			path = editor;
 			sourceTree = "<group>";
 		};
+		B2C78085296AF12C003F343E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B2C78089296AF12C003F343E /* libyaml.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B2F52648295976EF00A83C65 /* core_assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,8 +665,9 @@
 		B2FC3EB529588BF300447A1A /* vendors */ = {
 			isa = PBXGroup;
 			children = (
-				B24C4A312967FD3600675599 /* imguizmo.xcodeproj */,
 				B216B25E295B4E6A00C05392 /* stb_image */,
+				B2C78084296AF12C003F343E /* yaml.xcodeproj */,
+				B24C4A312967FD3600675599 /* imguizmo.xcodeproj */,
 				B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */,
 				B2FC40412958BC3800447A1A /* glad.xcodeproj */,
 				B2FC3F8429588C1B00447A1A /* glfw.xcodeproj */,
@@ -941,6 +960,10 @@
 					ProductGroup = B24C4A322967FD3600675599 /* Products */;
 					ProjectRef = B24C4A312967FD3600675599 /* imguizmo.xcodeproj */;
 				},
+				{
+					ProductGroup = B2C78085296AF12C003F343E /* Products */;
+					ProjectRef = B2C78084296AF12C003F343E /* yaml.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -962,6 +985,13 @@
 			fileType = archive.ar;
 			path = libimgui.a;
 			remoteRef = B2B6CDB02958D7D400AE609E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B2C78089296AF12C003F343E /* libyaml.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libyaml.a;
+			remoteRef = B2C78088296AF12C003F343E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		B2FC3F8929588C1B00447A1A /* libglfw.a */ = {

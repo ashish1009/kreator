@@ -1,0 +1,13 @@
+//
+//  prefix_header.pch
+//  yaml
+//
+//  Created by Ashish . on 08/01/23.
+//
+
+#pragma once
+
+// To remove documentation warning
+#pragma clang diagnostic ignored "-Wdocumentation"
+#pragma clang diagnostic ignored "-Wformat-security"
+
