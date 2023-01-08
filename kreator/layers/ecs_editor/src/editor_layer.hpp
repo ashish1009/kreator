@@ -69,9 +69,9 @@ namespace editor {
     // Member variables
     // --------------------
     Viewport viewport_;
-    EnttScene active_scene_;
     ContentBrowserPanel cbp_;
     ScenePanelManager spm_;
+    std::shared_ptr<EnttScene> active_scene_;
     
     Setting setting_;
   };

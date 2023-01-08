@@ -15,7 +15,8 @@ namespace editor {
       AM::ProjectPath("kreator/layers/ecs_editor/editor_assets"),
     });
     
-    spm_.SetSceneContext(&active_scene_);
+//    active_scene_ = std::make_shared<EnttScene>();
+//    spm_.SetSceneContext(active_scene_.get());
   }
   
   EditorLayer::~EditorLayer() {
@@ -31,9 +32,12 @@ namespace editor {
   }
   
   void EditorLayer::Update(Timestep ts) {
+    if (!active_scene_)
+      return;
+    
     if (viewport_.IsFramebufferResized()) {
       viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
-      active_scene_.SetViewport(viewport_.width, viewport_.height);
+      active_scene_->SetViewport(viewport_.width, viewport_.height);
     }
     
     viewport_.UpdateMousePos();
@@ -41,14 +45,15 @@ namespace editor {
     viewport_.framebuffer->Bind();
 
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
-    active_scene_.Update(ts);
+    active_scene_->Update(ts);
         
     viewport_.UpdateHoveredEntity(&spm_);
     viewport_.framebuffer->Unbind();
   }
   
   void EditorLayer::EventHandler(Event& event) {
-    active_scene_.EventHandler(event);
+    if (active_scene_)
+      active_scene_->EventHandler(event);
 
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(EditorLayer::OnMouseButtonPressed));
@@ -104,16 +109,26 @@ namespace editor {
 
   void EditorLayer::RenderGui() {
     ImguiAPI::StartDcocking();
-    
-    if (active_scene_.IsEditing()) {
+
+    if (!active_scene_) {
       Renderer::Framerate(&setting_.frame_rate);
       Renderer::RenderStatsGui(&setting_.stats, true);
       
       viewport_.RenderGui(&setting_.viewport);
       cbp_.RenderGui(&setting_.cbp);
-      spm_.RenderGui(&setting_.spm);
+      ImguiAPI::EndDcocking();
+      return;
     }
-    active_scene_.RenderGui();
+
+    if (active_scene_->IsEditing()) {
+      Renderer::Framerate(&setting_.frame_rate);
+      Renderer::RenderStatsGui(&setting_.stats, true);
+      
+      viewport_.RenderGui(&setting_.viewport);
+      spm_.RenderGui(&setting_.spm);
+      cbp_.RenderGui(&setting_.cbp);
+    }
+    active_scene_->RenderGui();
     
     // Show Menu bar
     ShowMenu();
@@ -156,10 +171,10 @@ namespace editor {
         ImGui::EndMenu(); // ImGui::BeginMenu("File")
       } // if (ImGui::BeginMenu("File"))
       
-      if (ImGui::BeginMenu("Setting", active_scene_.IsEditing())) {
+      if (ImGui::BeginMenu("Setting", active_scene_->IsEditing())) {
         if (ImGui::BeginMenu("Scene")) {
-          Setting::UpdateSetting("Editor Camera", active_scene_.GetSetting().editor_camera);
-          Setting::UpdateSetting("Scene Controller", active_scene_.GetSetting().scene_controller);
+          Setting::UpdateSetting("Editor Camera", active_scene_->GetSetting().editor_camera);
+          Setting::UpdateSetting("Scene Controller", active_scene_->GetSetting().scene_controller);
           ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene"))
         }
         ImGui::Separator();
@@ -198,7 +213,7 @@ namespace editor {
                         window_height);
       
       // Camera
-      EditorCamera* editor_camera = active_scene_.GetEditorCamera();
+      EditorCamera* editor_camera = active_scene_->GetEditorCamera();
       
       const glm::mat4& camera_projection = editor_camera->GetProjection();
       const glm::mat4& camera_view = editor_camera->GetView();
