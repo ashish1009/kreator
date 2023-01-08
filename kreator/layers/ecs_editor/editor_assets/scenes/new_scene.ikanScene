@@ -1,3 +1,31 @@
 Scene: Untitled
 Entities:
-  []
+  - Entity: 748352269508268733
+    TagComponent:
+      Tag: Camera
+    TransformComponent:
+      Translation: [0.0681308508, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 10
+      Near: -1
+      Far: 1
+    ? Entity: 5138536004778786499
+      TagComponent:
+        Tag: Circle
+      TransformComponent:
+        Translation: [-3.51288509, 0, 0]
+        Rotation: [0, 0, 0]
+        Scale: [1, 1, 1]
+      ? Entity: 923010640465929355
+        TagComponent:
+          Tag: Quad
+        TransformComponent:
+          Translation: [0, 0, 0]
+          Rotation: [0, 0, 0]
+          Scale: [1, 1, 1]

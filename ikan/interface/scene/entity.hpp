@@ -75,6 +75,14 @@ namespace ikan {
     /// This function returns if this entity is not equal to other (only handle)
     /// - parameter other: other entity handle
     bool operator !=(const entt::entity& other) const;
+    
+    // --------------
+    // Getters
+    // --------------
+    /// This function returns the UUID of Current entity
+    UUID GetUUID() const;
+    /// This function returns name of entity
+    const std::string& GetName() const;
 
   private:
     entt::entity entity_handle_{ entt::null };

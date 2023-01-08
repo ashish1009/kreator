@@ -280,7 +280,10 @@ namespace ikan {
     ImGui::NextColumn();
     
     ImGui::PushItemWidth(-1);
-    float column_width_2 = x - column_width_1 - 16.0f;
+    float column_width_2 = x - column_width_1;
+    if (num_columns > 2)
+      column_width_2 -= 16.0f;
+    
     ImGui::SetColumnWidth(1, column_width_2);
     
     // Copy the Name of entity to buffer that will be dumy text in property pannel
@@ -357,7 +360,7 @@ namespace ikan {
     ImGui::NextColumn();
     
     ImGui::PushItemWidth(-1);
-    float column_width_2 = x - column_width_1 - 16.0f;
+    float column_width_2 = x - column_width_1;
     ImGui::SetColumnWidth(1, column_width_2);
 
     // Copy the Name of entity to buffer that will be dumy text in property pannel

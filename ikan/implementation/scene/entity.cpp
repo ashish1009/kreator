@@ -6,6 +6,7 @@
 //
 
 #include "entity.hpp"
+#include "scene/core_components.hpp"
 
 namespace ikan {
   
@@ -53,5 +54,8 @@ namespace ikan {
   bool Entity::operator !=(const Entity& other) const { return !(*this == other); }
   bool Entity::operator ==(const entt::entity& other) const { return entity_handle_ == other; }
   bool Entity::operator !=(const entt::entity& other) const { return !(*this == other); }
+
+  UUID Entity::GetUUID() const { return GetComponent<IDComponent>().id; }
+  const std::string& Entity::GetName() const { return GetComponent<TagComponent>().tag; }
 
 }
