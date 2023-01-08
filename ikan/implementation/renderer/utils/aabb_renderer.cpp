@@ -98,14 +98,6 @@ namespace ikan {
     Renderer::EndWireframe();
   }
 
-  void AABBRenderer::DrawCube(const AABB& aabb) {
-    Draw(aabb);
-  }
-
-  void AABBRenderer::DrawQuad(const AABB& aabb) {
-    Draw(AABB({aabb.min.x, aabb.min.y, 0.0f}, {aabb.max.x, aabb.max.y, 0.0f}));
-  }
-  
   void AABBRenderer::Draw(const AABB& aabb) {
     // Flush the Scene
     if (s_data->num_cubes == s_data->max_box_per_batch) {

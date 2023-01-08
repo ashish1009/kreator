@@ -85,8 +85,9 @@ namespace ikan {
   
   void EnttScene::UpdateEditor(Timestep ts) {
     editor_camera_.Update(ts);
-    
     Render2DEntities(editor_camera_.GetViewProjection());
+    if (is_bounding_box_)
+      RenderBoudningBox(editor_camera_.GetViewProjection());
   }
   
   void EnttScene::UpdateRuntime(Timestep ts) {
@@ -300,6 +301,18 @@ namespace ikan {
     } // for (const auto& entity : mesh_view)
     
     BatchRenderer::EndBatch();
+  }
+  
+  void EnttScene::RenderBoudningBox(const glm::mat4& camera_view_projection_mat) {
+    AABBRenderer::BeginRenderer(camera_view_projection_mat);
+    auto aabb_view = registry_.view<TransformComponent, RigidBodyComponent>();
+    // For all Mesg entity
+    for (const auto& aabb_entity : aabb_view) {
+      const auto& [transform_component, aabb_component] = aabb_view.get<TransformComponent, RigidBodyComponent>(aabb_entity);
+      AABBRenderer::Draw(aabb_component.aabb);
+    } // for (const auto& entity : mesh_view)
+
+    AABBRenderer::EndRenderer();
   }
 
   EnttScene::Setting& EnttScene::GetSetting() { return setting_; }
