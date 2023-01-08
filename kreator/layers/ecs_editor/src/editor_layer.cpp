@@ -117,17 +117,16 @@ namespace editor {
   void EditorLayer::RenderGui() {
     ImguiAPI::StartDcocking();
 
-    Renderer::Framerate(&setting_.frame_rate);
-    Renderer::RenderStatsGui(&setting_.stats, true);
-    viewport_.RenderGui(&setting_.viewport);
-
     // Show Menu bar
     ShowMenu();
     
-    cbp_.RenderGui(&setting_.cbp);
-
     if (!active_scene_) {
       ImguiAPI::EndDcocking();
+      Renderer::Framerate(&setting_.frame_rate);
+      Renderer::RenderStatsGui(&setting_.stats, true);
+      viewport_.RenderGui(&setting_.viewport);
+      cbp_.RenderGui(&setting_.cbp);
+      
       return;
     }
 

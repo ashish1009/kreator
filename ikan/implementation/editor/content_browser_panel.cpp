@@ -40,7 +40,7 @@ namespace ikan {
     ImGui::Begin("Content Browser", is_open);
     ImGui::PushID("Content Browser");
     
-    side_child_width_ = ImGui::GetContentRegionAvailWidth() * 0.15;
+    side_child_width_ = ImGui::GetContentRegionAvailWidth() * 0.20;
     
     TitleIcon();
     
