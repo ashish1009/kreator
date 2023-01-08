@@ -307,4 +307,5 @@ namespace ikan {
   uint32_t EnttScene::GetMaxEntityId() const { return max_entity_id_; }
   EditorCamera* EnttScene::GetEditorCamera() { return &editor_camera_; }
   entt::registry& EnttScene::GetRegistry() { return registry_; }
+  bool EnttScene::IsEditing() const { return state_ == EnttScene::State::Edit; }
 }

@@ -104,13 +104,15 @@ namespace editor {
 
   void EditorLayer::RenderGui() {
     ImguiAPI::StartDcocking();
-    Renderer::Framerate(&setting_.frame_rate);
-    Renderer::RenderStatsGui(&setting_.stats, true);
     
-    viewport_.RenderGui(&setting_.viewport);
-    cbp_.RenderGui(&setting_.cbp);
-    spm_.RenderGui(&setting_.spm);
-
+    if (active_scene_.IsEditing()) {
+      Renderer::Framerate(&setting_.frame_rate);
+      Renderer::RenderStatsGui(&setting_.stats, true);
+      
+      viewport_.RenderGui(&setting_.viewport);
+      cbp_.RenderGui(&setting_.cbp);
+      spm_.RenderGui(&setting_.spm);
+    }
     active_scene_.RenderGui();
     
     // Show Menu bar
@@ -154,7 +156,7 @@ namespace editor {
         ImGui::EndMenu(); // ImGui::BeginMenu("File")
       } // if (ImGui::BeginMenu("File"))
       
-      if (ImGui::BeginMenu("Setting")) {
+      if (ImGui::BeginMenu("Setting", active_scene_.IsEditing())) {
         if (ImGui::BeginMenu("Scene")) {
           Setting::UpdateSetting("Editor Camera", active_scene_.GetSetting().editor_camera);
           Setting::UpdateSetting("Scene Controller", active_scene_.GetSetting().scene_controller);

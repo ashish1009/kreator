@@ -97,6 +97,8 @@ namespace ikan {
     EditorCamera* GetEditorCamera();
     /// This function returns the reference of registry
     entt::registry& GetRegistry();
+    /// This finction return is scene is in edit state
+    bool IsEditing() const;
     
     DELETE_COPY_MOVE_CONSTRUCTORS(EnttScene);
     
