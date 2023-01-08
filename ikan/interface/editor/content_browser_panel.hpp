@@ -27,6 +27,10 @@ namespace ikan {
     /// This funcfion add the favourit paths to the pannel
     /// - Parameter favourite_paths: paths
     void AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths);
+    /// This function returns the Current directory
+    const std::filesystem::path& GetCurrentDir() const;
+    /// This function returns the Root directory
+    const std::filesystem::path& GetRootDir() const;
 
     DELETE_COPY_MOVE_CONSTRUCTORS(ContentBrowserPanel)
     

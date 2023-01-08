@@ -334,6 +334,50 @@ namespace ikan {
     return modified;
   }
   
+  bool PropertyGrid::ReadOnlyTextBox(const char* label,
+                                     const std::string& value,
+                                     const char* hint,
+                                     float column_width_1) {
+    float x = ImGui::GetContentRegionAvailWidth();
+
+    bool modified = false;
+    ImGui::PushID(label);
+    
+    ImGui::Columns(2);
+    ImGui::PushItemWidth(-1);
+    ImGui::SetColumnWidth(0, column_width_1);
+    ImGui::Text(label);
+    ImGui::PopItemWidth();
+    
+    if (hint) {
+      ImGui::SameLine();
+      HelpMarker(hint);
+    }
+    
+    ImGui::NextColumn();
+    
+    ImGui::PushItemWidth(-1);
+    float column_width_2 = x - column_width_1 - 16.0f;
+    ImGui::SetColumnWidth(1, column_width_2);
+
+    // Copy the Name of entity to buffer that will be dumy text in property pannel
+    char buffer[256];
+    strcpy(buffer, value.c_str());
+    
+    std::string UIContextId = "##" + (std::string)label;
+    
+    ImGui::InputText(UIContextId.c_str(), (char*)value.c_str(), 256, ImGuiInputTextFlags_ReadOnly);
+    
+    ImGui::PopItemWidth();
+    ImGui::NextColumn();
+    ImGui::Columns(1);
+    
+    ImGui::PopID();
+    
+    return modified;
+  }
+
+  
   uint32_t PropertyGrid::ComboDrop(const char* label,
                                    const std::vector<std::string>& options,
                                    uint32_t current_value,

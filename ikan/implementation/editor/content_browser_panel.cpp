@@ -367,4 +367,12 @@ namespace ikan {
     }
   }
 
+  const std::filesystem::path& ContentBrowserPanel::GetCurrentDir() const {
+    return current_directory_;
+  }
+  
+  const std::filesystem::path& ContentBrowserPanel::GetRootDir() const {
+    return root_path_;
+  }
+
 }

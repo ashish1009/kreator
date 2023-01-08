@@ -148,7 +148,17 @@ namespace ikan {
                         bool multiple = false,
                         int32_t num_lines = 1,
                         bool error = false);
-    
+    /// This function renders the Text box to enter string
+    /// - Parameters:
+    ///   - label: Lable for Variable
+    ///   - value: Value need to be edit or entered in box
+    ///   - hint: Hint to be shown in the text box. Null of no hind is given
+    ///   - columnWidth: width of column of lable
+    static bool ReadOnlyTextBox(const char* label,
+                                const std::string& value,
+                                const char* hint,
+                                float column_width = 100.0f);
+
     /// ComboDrop: Selectable drop option created
     /// - Parameters:
     ///   - label: is string to be printed

@@ -21,6 +21,8 @@ namespace editor {
       bool viewport = true;
       bool stats = true;
       
+      bool save_scene = true;
+      
       /// This function changes the flag of setting for menu
       /// - Parameters:
       ///   - tag: tag of menu

@@ -134,6 +134,8 @@ namespace editor {
       Renderer::Framerate(&setting_.frame_rate);
       Renderer::RenderStatsGui(&setting_.stats, true);
       
+      SaveScene();
+      
       viewport_.RenderGui(&setting_.viewport);
       spm_.RenderGui(&setting_.spm);
       cbp_.RenderGui(&setting_.cbp);
@@ -193,6 +195,9 @@ namespace editor {
           Setting::UpdateSetting("Scene Controller", active_scene_->GetSetting().scene_controller);
           ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene"))
         }
+        ImGui::Separator();
+
+        Setting::UpdateSetting("Save Scene Widget", setting_.save_scene);
         ImGui::Separator();
 
         Setting::UpdateSetting("Content Browser Panel", setting_.cbp);
@@ -290,9 +295,39 @@ namespace editor {
   }
   
   const void EditorLayer::OpenScene(const std::string& path) {
+    IK_INFO("Opening saved scene from {0}", path.c_str());
+    
+    NewScene();
   }
   
   const void EditorLayer::SaveScene() {
+    if (!setting_ .save_scene)
+      return;
+    ImGui::Begin("Save File", &setting_.save_scene);
+    ImGui::PushID("Save File");
+
+    const auto& relative_path = (std::filesystem::relative(cbp_.GetCurrentDir(), cbp_.GetRootDir())).string();
+    PropertyGrid::ReadOnlyTextBox("Scene Directory",
+                                  relative_path,
+                                  "File will be saved at the Current directory in the active scene",
+                                  150.0f);
+    
+    static std::string file_name = "";
+    bool modified = PropertyGrid::TextBox(file_name,
+                                          "Scene Name",
+                                          2,
+                                          150.0f);
+    
+    if (modified) {
+      std::string file_path = cbp_.GetCurrentDir().string() + "/" + file_name + ".ikanScene";
+      
+      IK_INFO("Editor", "Saving Scene at {0}", file_path.c_str());
+      if (!file_path.empty()) {
+      }
+    }
+
+    ImGui::PopID();
+    ImGui::End();
   }
 
 } 
