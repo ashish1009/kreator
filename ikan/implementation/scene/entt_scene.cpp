@@ -17,9 +17,11 @@
 
 namespace ikan {
   
-  EnttScene::EnttScene() {
+  EnttScene::EnttScene(const std::string& file_path)
+  : file_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)) {
     IK_CORE_INFO(LogModule::EnttScene, "Creating Scene ...");
-    
+    IK_CORE_INFO(LogModule::EnttScene, "  Name | {0}", name_);
+
     // Set the Scene state and register their corresponding Functions
     if (state_ == State::Edit)
       EditScene();
@@ -31,6 +33,7 @@ namespace ikan {
   
   EnttScene::~EnttScene() {
     IK_CORE_WARN(LogModule::EnttScene, "Destroying Scene!!!");
+    IK_CORE_WARN(LogModule::EnttScene, "  Name | {0}", name_);
   }
   
   Entity EnttScene::CreateEntity(const std::string& name, UUID uuid) {
@@ -150,10 +153,17 @@ namespace ikan {
     ImGui::PushID("Scene Controller");
 
     PropertyGrid::CheckBox("Bounding Box", is_bounding_box_,
-                           ImGui::GetContentRegionAvailWidth() / 2);
-    ImGui::Separator();
-    
+                           ImGui::GetContentRegionAvailWidth() / 2);    
     ImGui::PopID();
+    ImGui::End();
+    
+    ImGui::Begin("Scene Data", &setting_.scene_data);
+    // Render Scene Information
+    ImGui::Text(" Scene | %s ", name_.c_str());
+    std::string hovered_msg =
+    "Num Entities   : " + std::to_string(num_entities_) + "\n"
+    "Max Entity ID  : " + std::to_string(max_entity_id_);
+    PropertyGrid::HoveredMsg(hovered_msg.c_str());
     ImGui::End();
   }
   

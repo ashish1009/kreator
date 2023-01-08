@@ -69,7 +69,8 @@ namespace editor {
     
     // Scene Manager
     /// This function creates a new scene instance
-    const void NewScene();
+    /// - Parameter scene_path: path of new scene
+    const void NewScene(const std::string& scene_path = "Unsaved Scene");
     /// This function opens already saved scene from path
     /// - Parameter scene_file_path: scene file path
     const void OpenScene(const std::string& scene_file_path);

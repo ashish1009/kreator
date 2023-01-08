@@ -292,12 +292,12 @@ namespace editor {
     active_scene_ = nullptr;
   }
 
-  const void EditorLayer::NewScene() {
+  const void EditorLayer::NewScene(const std::string& scene_path) {
     // Close the current scene
     CloseScene();
     
     // Create New Scene
-    active_scene_ = std::make_shared<EnttScene>();
+    active_scene_ = std::make_shared<EnttScene>(scene_path);
     spm_.SetSceneContext(active_scene_.get());
   }
   

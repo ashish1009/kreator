@@ -42,10 +42,13 @@ namespace ikan {
     struct Setting {
       bool editor_camera = true;
       bool scene_controller = true;
+      bool scene_data = true;
     };
 
     /// This Constructor creates the instance of Scene.
-    EnttScene();
+    /// - Parameters:
+    ///   - file_path: optional file path if we want to create a pre saved scene
+    EnttScene(const std::string& file_path = "Unsaved Scene");
     /// This destructor destoyes the scene instance
     ~EnttScene();
     
@@ -147,6 +150,9 @@ namespace ikan {
 
     // Number of Entity stored in Scene and Max ID given to Entity
     uint32_t num_entities_ = 0, max_entity_id_ = -1;
+
+    // Utils Memebers
+    std::string file_path_ = "Unknown Path", name_ = "Unsaved Scene";
 
     // Editor camera
     EditorCamera editor_camera_;

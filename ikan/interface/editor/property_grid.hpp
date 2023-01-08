@@ -156,7 +156,7 @@ namespace ikan {
     ///   - columnWidth: width of column of lable
     static bool ReadOnlyTextBox(const char* label,
                                 const std::string& value,
-                                const char* hint,
+                                const char* hint = nullptr,
                                 float column_width = 100.0f);
 
     /// ComboDrop: Selectable drop option created
