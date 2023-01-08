@@ -255,8 +255,8 @@
             filePath = "kreator/layers/ecs_editor/src/editor_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
             landmarkName = "EditorLayer::SaveScene()"
             landmarkType = "7">
          </BreakpointContent>
@@ -271,8 +271,8 @@
             filePath = "kreator/layers/ecs_editor/src/editor_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "323"
-            endingLineNumber = "323"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
             landmarkName = "EditorLayer::SaveScene()"
             landmarkType = "7">
          </BreakpointContent>

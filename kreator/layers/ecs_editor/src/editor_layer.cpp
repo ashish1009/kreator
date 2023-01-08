@@ -13,6 +13,7 @@ namespace editor {
     IK_INFO("Editor", "Creating Editor Layer instance ... ");
     cbp_.AddFavouritPaths({
       AM::ProjectPath("kreator/layers/ecs_editor/editor_assets"),
+      AM::ProjectPath("kreator/layers/ecs_editor/editor_assets/scenes"),
     });
   }
   
@@ -160,6 +161,14 @@ namespace editor {
                  ImVec2{ 0, 1 },
                  ImVec2{ 1, 0 });
     
+    PropertyGrid::DropConent([this](const std::string& path)
+                             {
+      if (StringUtils::GetExtensionFromFilePath(path) == "ikanScene")
+        OpenScene(path);
+      else
+        IK_WARN("Invalid file for Scene {0}", path.c_str());
+    });
+    
     viewport_.UpdateBound();
 
     OnImguizmoUpdate();
@@ -299,12 +308,19 @@ namespace editor {
     // Create New Scene
     active_scene_ = std::make_shared<EnttScene>(scene_path);
     spm_.SetSceneContext(active_scene_.get());
+
+    active_scene_->SetViewport((uint32_t)viewport_.width, (uint32_t)viewport_.height);
   }
   
   const void EditorLayer::OpenScene(const std::string& path) {
-    IK_INFO("Opening saved scene from {0}", path.c_str());
+    IK_INFO("Editor", "Opening saved scene from {0}", path.c_str());
     
-    NewScene();
+    NewScene(path);
+    
+    SceneSerializer serializer(active_scene_.get());
+    serializer.Deserialize(path);
+    
+    active_scene_->SetViewport((uint32_t)viewport_.width, (uint32_t)viewport_.height);
   }
   
   const void EditorLayer::SaveScene() {
@@ -330,6 +346,9 @@ namespace editor {
       
       IK_INFO("Editor", "Saving Scene at {0}", file_path.c_str());
       if (!file_path.empty()) {
+        active_scene_->SetFilePath(file_path);
+        SceneSerializer serializer(active_scene_.get());
+        serializer.Serialize(file_path);
       }
     }
 

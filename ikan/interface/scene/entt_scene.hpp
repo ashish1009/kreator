@@ -82,6 +82,10 @@ namespace ikan {
     /// This function sets the Scene as edit mode
     void EditScene();
     
+    /// This function update the scene path
+    /// - Parameter file_path: file path
+    void SetFilePath(const std::string& file_path);
+    
     // ------------------
     // Getters
     // ------------------
@@ -102,6 +106,8 @@ namespace ikan {
     entt::registry& GetRegistry();
     /// This finction return is scene is in edit state
     bool IsEditing() const;
+    /// This finction return Name of scene
+    const std::string GetName() const;
     
     DELETE_COPY_MOVE_CONSTRUCTORS(EnttScene);
     
@@ -177,6 +183,7 @@ namespace ikan {
 
     friend class Entity;
     friend class ScenePanelManager;
+    friend class SceneSerializer;
   };
   
 }

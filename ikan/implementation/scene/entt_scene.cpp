@@ -325,10 +325,16 @@ namespace ikan {
     AABBRenderer::EndRenderer();
   }
 
+  void EnttScene::SetFilePath(const std::string& file_path) {
+    file_path_ = file_path;
+    name_ = StringUtils::GetNameFromFilePath(file_path_);
+  }
   EnttScene::Setting& EnttScene::GetSetting() { return setting_; }
   uint32_t EnttScene::GetNumEntities() const { return num_entities_; }
   uint32_t EnttScene::GetMaxEntityId() const { return max_entity_id_; }
   EditorCamera* EnttScene::GetEditorCamera() { return &editor_camera_; }
   entt::registry& EnttScene::GetRegistry() { return registry_; }
   bool EnttScene::IsEditing() const { return state_ == EnttScene::State::Edit; }
+  const std::string EnttScene::GetName() const { return name_; }
+  
 }

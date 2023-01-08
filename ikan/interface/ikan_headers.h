@@ -48,6 +48,7 @@
 #include <core/utils/asserts.h>
 #include <core/utils/asset_manager.hpp>
 #include <core/utils/buffers.hpp>
+#include <core/utils/string_utils.hpp>
 
 #include <core/math/maths.hpp>
 #include <core/math/uuid.hpp>
@@ -85,6 +86,7 @@
 #include <scene/entt_scene.hpp>
 #include <scene/core_components.hpp>
 #include <scene/scriptable_entity.hpp>
+#include <scene/scene_serialiser.hpp>
 
 // Imgui API
 #include <imgui/imgui_api.hpp>
