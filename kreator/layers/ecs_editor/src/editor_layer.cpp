@@ -157,6 +157,7 @@ namespace editor {
       if (ImGui::BeginMenu("Setting")) {
         if (ImGui::BeginMenu("Scene")) {
           Setting::UpdateSetting("Editor Camera", active_scene_.GetSetting().editor_camera);
+          Setting::UpdateSetting("Scene Controller", active_scene_.GetSetting().scene_controller);
           ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene"))
         }
         ImGui::Separator();

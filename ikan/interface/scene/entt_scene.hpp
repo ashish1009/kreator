@@ -41,6 +41,7 @@ namespace ikan {
     
     struct Setting {
       bool editor_camera = true;
+      bool scene_controller = true;
     };
 
     /// This Constructor creates the instance of Scene.
@@ -151,15 +152,18 @@ namespace ikan {
     // State of the scene
     State state_ = State::Edit;
 
-    Setting setting_;
+    // Scene primary camera
+    CameraData primary_camera_data_;
     
     // Function pointers
     std::function<void(Timestep)> update_;
     std::function<void(Event&)> event_handler_;
     std::function<void()> render_imgui_;
-
-    CameraData primary_camera_data_;
     
+    // Scene Debugger
+    Setting setting_;
+    bool is_bounding_box_ = false;
+
     friend class Entity;
     friend class ScenePanelManager;
   };

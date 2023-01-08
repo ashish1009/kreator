@@ -162,6 +162,17 @@ namespace ikan {
                               float col_width_1 = 200.0f,
                               float col_width_2 = 200.0f);
 
+    /// This fucntion renders the CheckBox to select item
+    /// - Parameters:
+    ///   - label: Lable for Variable
+    ///   - value: Value reference to be changed
+    ///   - column_width_2: width of column of lable
+    ///   - column_width_2: width of column of Value
+    static bool CheckBox(const char* label,
+                         bool& value,
+                         float column_width_1 = 200.0f,
+                         float column_width_2 = 200.0f);
+
     template<typename UIFunction>
     /// This function renders the texture components
     /// - Parameters:

@@ -30,9 +30,9 @@
             filePath = "ikan/implementation/scene/entt_scene.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "EnttScene::UpdatePrimaryCameraData()"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
+            landmarkName = "EnttScene::InstantiateScript(ts)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

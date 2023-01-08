@@ -140,6 +140,20 @@ namespace ikan {
   
   void EnttScene::RenderImguiEditor() {
     editor_camera_.RendererGui(&setting_.editor_camera);
+    
+    // Scene Debugger
+    if (!setting_.scene_controller)
+      return;
+    
+    ImGui::Begin("Scene Controller", &setting_.scene_controller);
+    ImGui::PushID("Scene Controller");
+
+    PropertyGrid::CheckBox("Bounding Box", is_bounding_box_,
+                           ImGui::GetContentRegionAvailWidth() / 2);
+    ImGui::Separator();
+    
+    ImGui::PopID();
+    ImGui::End();
   }
   
   void EnttScene::RenderImguiRuntime() {
