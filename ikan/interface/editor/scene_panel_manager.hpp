@@ -51,6 +51,8 @@ namespace ikan {
     void DrawEntityTreeNode(entt::entity entity_id);
     /// This function renders the option menu on right click the empty space
     void RightClickOptions();
+    /// This function adds the component in the selected entity
+    void AddComponent();
 
     // Member Variables
     EnttScene* scene_context_;

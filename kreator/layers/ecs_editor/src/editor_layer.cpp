@@ -60,7 +60,8 @@ namespace editor {
       if (viewport_.mouse_pos_x >= 0 and
           viewport_.mouse_pos_y >= 0 and
           viewport_.mouse_pos_x <= viewport_.width and
-          viewport_.mouse_pos_y <= viewport_.height) {
+          viewport_.mouse_pos_y <= viewport_.height and
+          viewport_.hovered_entity_) {
         spm_.SetSelectedEntity(viewport_.hovered_entity_);
       }
     }

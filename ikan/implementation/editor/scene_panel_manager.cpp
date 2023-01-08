@@ -90,6 +90,7 @@ namespace ikan {
   
   void ScenePanelManager::SetSceneContext(EnttScene *context) {
     scene_context_ = context;
+    selected_entity_ = context->CreateEntity("T");
   }
   
   void ScenePanelManager::RenderGui(bool* is_opened) {
@@ -111,7 +112,6 @@ namespace ikan {
     
     ImGui::PopID(); // Entity Property
     ImGui::End();   // Entity Property
-
   }
   
   void ScenePanelManager::ScenePannel() {
@@ -143,14 +143,32 @@ namespace ikan {
       selected_entity_ = {};
       delete_entity_ = false;
     }
-
   }
   
   void ScenePanelManager::PropertyPannel() {
     // Tag
     auto& tag = selected_entity_.GetComponent<TagComponent>().tag;
-    PropertyGrid::TextBox(tag);
+    PropertyGrid::TextBox(tag, "", 3);
     PropertyGrid::HoveredMsg(("Entity ID : " + std::to_string((uint32_t)selected_entity_)).c_str());
+    auto text_box_size = ImGui::GetItemRectSize();
+
+    // Add Component Icon
+    // NOTE: we are adjusting this with text box, this would be next column of text box
+    ImGui::NextColumn();
+    ImGui::SetColumnWidth(2, 2 * text_box_size.y);
+    static std::shared_ptr<Texture> add_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/plus.png"));
+    if (PropertyGrid::ImageButton("Add",
+                                  add_texture->GetRendererID(),
+                                  { text_box_size.y, text_box_size.y } // Size
+                                  )) {
+      ImGui::OpenPopup("AddComponent");
+    }
+    
+    if (ImGui::BeginPopup("AddComponent")) {
+      AddComponent();
+      ImGui::EndPopup();
+    }
+    ImGui::Columns(1);
     ImGui::Separator();
     
     // Draw other components
@@ -217,7 +235,7 @@ namespace ikan {
       // Show option for adding camera
       ImGui::Separator();
 
-      if (ImGui::BeginMenu("3D Entity")) {
+      if (ImGui::BeginMenu("2D Entity")) {
         if (ImGui::MenuItem("Quad")) {
           selected_entity_ = scene_context_->CreateEntity("Quad");
           selected_entity_.AddComponent<QuadComponent>();
@@ -228,9 +246,12 @@ namespace ikan {
         }
 
         ImGui::EndMenu(); // 2D Entity
-      } //if (ImGui::BeginMenu("3D Entity"))
+      } //if (ImGui::BeginMenu("2D Entity"))
       ImGui::EndMenu(); // New Entity
     } // if (ImGui::BeginMenu("New Entity"))
+  }
+  
+  void ScenePanelManager::AddComponent() {
   }
   
 }
