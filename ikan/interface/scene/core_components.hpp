@@ -113,6 +113,7 @@ namespace ikan {
   struct RigidBodyComponent {
     AABB aabb;
     void RenderGui();
+    RigidBodyComponent() = default;
     RigidBodyComponent(const AABB& aabb);
     DEFINE_COPY_MOVE_CONSTRUCTORS(RigidBodyComponent);
   };

@@ -15,7 +15,7 @@ namespace ikan {
   
   /// Wrapper to store the AABB Box for any entity
   struct AABB {
-    glm::vec3 min, max;
+    glm::vec3 min{-0.5f}, max{0.5f};
     
     /// This is the default Constructor for creating AABB
     AABB();

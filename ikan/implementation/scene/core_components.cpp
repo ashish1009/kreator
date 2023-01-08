@@ -370,6 +370,9 @@ namespace ikan {
     return *this;
   }
   void RigidBodyComponent::RenderGui() {
+    PropertyGrid::Float3("Min Bound", aabb.min);
+    PropertyGrid::Float3("Max Bound", aabb.max);
+    ImGui::Separator();
   }
   
 }
