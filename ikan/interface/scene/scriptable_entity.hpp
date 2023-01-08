@@ -22,11 +22,9 @@ namespace ikan {
     }
     virtual ~ScriptableEntity() {}
 
-    template<typename T>
-    T& GetComponent() {
-      return entity_.GetComponent<T>();
-    }
-    
+    template<typename T> T& GetComponent() { return entity_.GetComponent<T>(); }
+    template<typename T> bool HasComponent() { return entity_.HasComponent<T>(); }
+
     virtual void RenderGui() {}
 
   protected:
@@ -65,6 +63,8 @@ namespace ikan {
   using ScriptLoaderFn = std::function<bool(NativeScriptComponent* sc, const std::string& script_name)>;  
   class ScriptManager {
   public:
+    static std::vector<std::string> scripts_;
+
     /// This function update the scrip bind function pointer
     /// - Parameters:
     ///   - sc: Native script component pointer

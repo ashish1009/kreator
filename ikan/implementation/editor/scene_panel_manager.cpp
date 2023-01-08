@@ -175,6 +175,7 @@ namespace ikan {
     DrawComponent<QuadComponent>("Qaad", selected_entity_, [](auto& qc) { qc.RenderGui(); });
     DrawComponent<CircleComponent>("Circle", selected_entity_, [this](auto& cc) { cc.RenderGui(); });
     DrawComponent<CameraComponent>("Camera", selected_entity_, [this](auto& cc) { cc.RenderGui(); });
+    DrawComponent<NativeScriptComponent>("Native Script", selected_entity_, [this](auto& nsc) { nsc.RenderGui(); });
   }
   
   void ScenePanelManager::DrawEntityTreeNode(entt::entity entity_id) {
@@ -257,6 +258,7 @@ namespace ikan {
     AddComponentMenu<CircleComponent>("Circle", [this]() {
       return selected_entity_.HasComponent<QuadComponent>() or selected_entity_.HasComponent<CircleComponent>();
     });
+    AddComponentMenu<NativeScriptComponent>("Native Script");
   }
   
 }

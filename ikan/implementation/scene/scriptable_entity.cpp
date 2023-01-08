@@ -14,6 +14,11 @@ namespace ikan {
   // --------------------------------------------------------------------------
   // Script Manager
   // --------------------------------------------------------------------------
+  std::vector<std::string> ScriptManager::scripts_ = {
+    "Select Script",
+    "ikan::FreeFallController",
+  };
+
   void ScriptManager::UpdateScript(NativeScriptComponent* sc,
                                    const std::string& script_name,
                                    ScriptLoaderFn loader_function) {
@@ -22,6 +27,7 @@ namespace ikan {
     if (script_name == "ikan::FreeFallController")
       sc->Bind<ikan::FreeFallController>();
     else {
+      IK_ASSERT(loader_function, "Invalid Script name");
       bool script_loaded = loader_function(sc, script_name);
       IK_ASSERT(script_loaded, "Invalid Script name");
     }
@@ -61,19 +67,24 @@ namespace ikan {
   // Freefall controller class
   // --------------------------------------------------------------------------
   void FreeFallController::Update(Timestep ts) {
-    // Dummy copy of entity y Position
-    auto translation = GetComponent<TransformComponent>().translation;
-    translation.y -= speed_ * ts;
-    
-    auto& tc = GetComponent<TransformComponent>();
-    const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
-    AABB world_aabb = original_aabb.GetWorldPosBoundingBox(Math::GetTransformMatrix(translation,
-                                                                                    tc.rotation,
-                                                                                    tc.scale));
-    
-    // If no collision then update the position
-    if (!CollisionDetected(world_aabb))
-      tc.translation = translation;
+    if (HasComponent<RigidBodyComponent>()) {
+      // Dummy copy of entity y Position
+      auto translation = GetComponent<TransformComponent>().translation;
+      translation.y -= speed_ * ts;
+      
+      auto& tc = GetComponent<TransformComponent>();
+      const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
+      AABB world_aabb = original_aabb.GetWorldPosBoundingBox(Math::GetTransformMatrix(translation,
+                                                                                      tc.rotation,
+                                                                                      tc.scale));
+      
+      // If no collision then update the position
+      if (!CollisionDetected(world_aabb))
+        tc.translation = translation;
+    } else {
+      auto& translation = GetComponent<TransformComponent>().translation;
+      translation.y -= speed_ * ts;
+    }
   }
   
 }
