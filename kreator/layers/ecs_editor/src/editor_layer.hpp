@@ -64,6 +64,17 @@ namespace editor {
     bool OnKeyPressed(KeyPressedEvent& event);
     /// This funciton Render the imguizmo
     void OnImguizmoUpdate();
+    
+    // Scene Manager
+    /// This function creates a new scene instance
+    const void NewScene();
+    /// This function opens already saved scene from path
+    /// - Parameter scene_file_path: scene file path
+    const void OpenScene(const std::string& scene_file_path);
+    /// This function Renders an Imgui widget that helps in saving scene
+    const void SaveScene();
+    /// This function closes the current scene
+    void CloseScene();
 
     // --------------------
     // Member variables

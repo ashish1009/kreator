@@ -297,6 +297,7 @@ namespace ikan {
     } else {
       IK_CORE_WARN(LogModule::FrameBuffer, "Framebuffer created without attachment");
     }
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
   }
   
   void OpenGLFrameBuffer::Bind() const {

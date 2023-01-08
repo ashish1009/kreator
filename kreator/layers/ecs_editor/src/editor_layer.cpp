@@ -14,9 +14,6 @@ namespace editor {
     cbp_.AddFavouritPaths({
       AM::ProjectPath("kreator/layers/ecs_editor/editor_assets"),
     });
-    
-//    active_scene_ = std::make_shared<EnttScene>();
-//    spm_.SetSceneContext(active_scene_.get());
   }
   
   EditorLayer::~EditorLayer() {
@@ -78,10 +75,20 @@ namespace editor {
     if (event.GetRepeatCount() > 0)
       return false;
     
+    // Set command key
+    bool cmd = Input::IsKeyPressed(KeyCode::LeftSuper) or Input::IsKeyPressed(KeyCode::RightSuper);
     // Set control key
     bool ctrl = Input::IsKeyPressed(KeyCode::LeftControl) or Input::IsKeyPressed(KeyCode::RightControl);
     
     switch (event.GetKeyCode()) {
+      case KeyCode::N:
+        if (cmd)
+          NewScene();
+        break;
+      case KeyCode::X:
+        if (cmd)
+          CloseScene();
+        break;
         // -------------------------------
         // Gizmos
         // -------------------------------
@@ -110,12 +117,16 @@ namespace editor {
   void EditorLayer::RenderGui() {
     ImguiAPI::StartDcocking();
 
+    Renderer::Framerate(&setting_.frame_rate);
+    Renderer::RenderStatsGui(&setting_.stats, true);
+    viewport_.RenderGui(&setting_.viewport);
+
+    // Show Menu bar
+    ShowMenu();
+    
+    cbp_.RenderGui(&setting_.cbp);
+
     if (!active_scene_) {
-      Renderer::Framerate(&setting_.frame_rate);
-      Renderer::RenderStatsGui(&setting_.stats, true);
-      
-      viewport_.RenderGui(&setting_.viewport);
-      cbp_.RenderGui(&setting_.cbp);
       ImguiAPI::EndDcocking();
       return;
     }
@@ -130,9 +141,6 @@ namespace editor {
     }
     active_scene_->RenderGui();
     
-    // Show Menu bar
-    ShowMenu();
-
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
     ImGui::Begin("Kreator Viewport");
@@ -165,13 +173,22 @@ namespace editor {
   void EditorLayer::ShowMenu() {
     if (ImGui::BeginMenuBar()) {
       if (ImGui::BeginMenu("File")) {
+        if (ImGui::BeginMenu("Scene")) {
+          if (ImGui::MenuItem("New", "Cmd + N"))
+            NewScene();
+          if (ImGui::MenuItem("Close", "Cmd + X"))
+            CloseScene();
+          
+          ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene"))
+        } // if (ImGui::BeginMenu("Scene"))
+        ImGui::Separator();
         if (ImGui::MenuItem("Exit", "Cmd + Q")) {
           Application::Get().Close();
         }
         ImGui::EndMenu(); // ImGui::BeginMenu("File")
       } // if (ImGui::BeginMenu("File"))
       
-      if (ImGui::BeginMenu("Setting", active_scene_->IsEditing())) {
+      if (ImGui::BeginMenu("Setting", active_scene_ and active_scene_->IsEditing())) {
         if (ImGui::BeginMenu("Scene")) {
           Setting::UpdateSetting("Editor Camera", active_scene_->GetSetting().editor_camera);
           Setting::UpdateSetting("Scene Controller", active_scene_->GetSetting().scene_controller);
@@ -255,4 +272,28 @@ namespace editor {
       }
     }
   }
+  
+  void EditorLayer::CloseScene() {
+    if (!active_scene_)
+      return;
+
+    active_scene_.reset();
+    active_scene_ = nullptr;
+  }
+
+  const void EditorLayer::NewScene() {
+    // Close the current scene
+    CloseScene();
+    
+    // Create New Scene
+    active_scene_ = std::make_shared<EnttScene>();
+    spm_.SetSceneContext(active_scene_.get());
+  }
+  
+  const void EditorLayer::OpenScene(const std::string& path) {
+  }
+  
+  const void EditorLayer::SaveScene() {
+  }
+
 } 

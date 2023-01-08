@@ -89,7 +89,7 @@ namespace ikan {
   
   void ScenePanelManager::SetSceneContext(EnttScene *context) {
     scene_context_ = context;
-    selected_entity_ = context->CreateEntity("T");
+    selected_entity_ = {};
   }
   
   void ScenePanelManager::RenderGui(bool* is_opened) {
