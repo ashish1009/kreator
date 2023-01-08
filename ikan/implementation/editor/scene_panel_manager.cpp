@@ -7,7 +7,6 @@
 
 #include "scene_panel_manager.hpp"
 #include "scene/entity.hpp"
-#include "scene/core_components.hpp"
 #include "editor/property_grid.hpp"
 
 namespace ikan {
@@ -250,8 +249,14 @@ namespace ikan {
       ImGui::EndMenu(); // New Entity
     } // if (ImGui::BeginMenu("New Entity"))
   }
-  
+
   void ScenePanelManager::AddComponent() {
+    AddComponentMenu<QuadComponent>("Quad", [this]() {
+      return selected_entity_.HasComponent<QuadComponent>() or selected_entity_.HasComponent<CircleComponent>();
+    });
+    AddComponentMenu<CircleComponent>("Circle", [this]() {
+      return selected_entity_.HasComponent<QuadComponent>() or selected_entity_.HasComponent<CircleComponent>();
+    });
   }
   
 }

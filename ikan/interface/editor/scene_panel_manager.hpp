@@ -9,6 +9,7 @@
 
 // This class includes the Scene Pannel manager class
 
+#include "scene/core_components.hpp"
 #include "scene/entity.hpp"
 
 namespace ikan {
@@ -53,6 +54,26 @@ namespace ikan {
     void RightClickOptions();
     /// This function adds the component in the selected entity
     void AddComponent();
+    
+    template <typename T>
+    /// This function create menu for add component
+    /// - Parameters:
+    ///   - menu_item: menu name
+    ///   - exclusive_func: exclusing function
+    void AddComponentMenu(const std::string& menu_item, std::function<bool()> exclusive_func = nullptr) {
+      if (!exclusive_func) {
+        exclusive_func = [this]() {
+          return selected_entity_.HasComponent<T>();
+        };
+      }
+      if (ImGui::MenuItem(menu_item.c_str(),
+                          nullptr, // Shortcut
+                          false, // Selected
+                          !exclusive_func())) {
+        selected_entity_.AddComponent<T>();
+        ImGui::CloseCurrentPopup();
+      }
+    }
 
     // Member Variables
     EnttScene* scene_context_;
