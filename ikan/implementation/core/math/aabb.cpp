@@ -9,7 +9,7 @@
 
 namespace ikan {
   
-  AABB::AABB() : min(0.0f), max(0.0f) {}
+  AABB::AABB() : min(-0.5f), max(0.5f) {}
   AABB::AABB(const glm::vec3& min, const glm::vec3& max) : min(min), max(max) { }
   AABB::AABB(const AABB& other) : min(other.min), max(other.max) { }
   AABB::AABB(AABB&& other) : min(other.min), max(other.max) { }

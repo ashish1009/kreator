@@ -182,4 +182,12 @@ namespace ikan {
     pipeline->Unbind();
   }
 
+  void OpenGLRendererAPI::DrawCube(const std::shared_ptr<Pipeline>& pipeline, uint32_t num_cubes) const {
+    pipeline->Bind();
+    glDrawArrays(GL_TRIANGLES, 0, 36 * num_cubes);
+    pipeline->Unbind();
+    
+    RendererStatistics::Get().draw_calls++;
+  }
+
 }

@@ -65,6 +65,7 @@
 #include <renderer/utils/renderer_stats.hpp>
 #include <renderer/utils/batch_2d_renderer.hpp>
 #include <renderer/utils/text_renderer.hpp>
+#include <renderer/utils/aabb_renderer.hpp>
 
 #include <renderer/graphics/shader.hpp>
 #include <renderer/graphics/renderer_buffer.hpp>

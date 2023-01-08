@@ -12,6 +12,7 @@
 #include "editor/property_grid.hpp"
 #include "renderer/utils/batch_2d_renderer.hpp"
 #include "renderer/utils/renderer.hpp"
+#include "renderer/utils/aabb_renderer.hpp"
 #include "renderer/graphics/texture.hpp"
 
 namespace ikan {

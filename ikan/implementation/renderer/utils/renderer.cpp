@@ -225,5 +225,8 @@ namespace ikan {
   void Renderer::DrawArrays(const std::shared_ptr<Pipeline>& pipeline, uint32_t count) {
     renderer_data_->renderer_api_instance->DrawArrays(pipeline, count);
   }
+  void Renderer::DrawCube(const std::shared_ptr<Pipeline>& pipeline, uint32_t num_cubes) {
+    renderer_data_->renderer_api_instance->DrawCube(pipeline, num_cubes);
+  }
 
 }

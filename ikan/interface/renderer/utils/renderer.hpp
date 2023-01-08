@@ -196,7 +196,12 @@ namespace ikan {
     ///   - count: number of Indices (if 0 then use index buffer of Vertex array)
     static void DrawArrays(const std::shared_ptr<Pipeline>& pipeline,
                            uint32_t count);
-
+    /// This function render the AABB
+    /// - Parameters:
+    ///   - pipeline: pipeline having vertex buffer and index buffer
+    ///   - num_cubes: number of cubes to render
+    static void DrawCube(const std::shared_ptr<Pipeline>& pipeline,
+                         uint32_t num_cubes);
 
   private:
     // -------------------

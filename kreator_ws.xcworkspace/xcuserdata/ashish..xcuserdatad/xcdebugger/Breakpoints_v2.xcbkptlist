@@ -30,9 +30,9 @@
             filePath = "ikan/implementation/scene/entt_scene.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "EnttScene::InstantiateScript(ts)"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "EnttScene::UpdatePrimaryCameraData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -226,6 +226,22 @@
             startingLineNumber = "70"
             endingLineNumber = "70"
             landmarkName = "FreeFallController::Update(ts)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8782F952-F67F-48BC-9ACA-8B213C5ED52E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/renderer/utils/aabb_renderer.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "AABBRenderer::Draw(aabb)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

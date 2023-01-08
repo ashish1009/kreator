@@ -97,7 +97,11 @@ namespace ikan {
     ///   - count: number of Indices (if 0 then use index buffer of Vertex array)
     virtual void DrawArrays(const std::shared_ptr<Pipeline>& pipeline,
                             uint32_t count) const = 0;
-
+    /// This API draws AABB
+    /// - Parameters:
+    ///   - pipeline: pipeline having vertex buffer and index buffer
+    ///   - num_cubes: number of cubes to render
+    virtual void DrawCube(const std::shared_ptr<Pipeline>& pipeline, uint32_t num_cubes = 1) const = 0;
     
     /// This function creates the instance of renderer API based on the supported API
     static std::unique_ptr<RendererAPI> Create();

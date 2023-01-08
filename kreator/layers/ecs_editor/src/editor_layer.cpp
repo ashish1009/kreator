@@ -42,7 +42,7 @@ namespace editor {
 
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
     active_scene_.Update(ts);
-    
+        
     viewport_.UpdateHoveredEntity(&spm_);
     viewport_.framebuffer->Unbind();
   }

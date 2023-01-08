@@ -26,9 +26,17 @@ namespace ikan {
     
     /// This function render the Box 3d
     /// - Parameter aabb: aabb of the box
-    static void Draw(const AABB& aabb);
-    
+    static void DrawCube(const AABB& aabb);
+    /// This function render the Box 3d
+    /// - Parameter aabb: aabb of the box
+    static void DrawQuad(const AABB& aabb);
+
     MAKE_PURE_STATIC(AABBRenderer);
+    
+  private:
+    /// This function render the Box 3d
+    /// - Parameter aabb: aabb of the box
+    static void Draw(const AABB& aabb);
   };
   
 } // namesapce editor

@@ -102,6 +102,12 @@ namespace ikan {
     ///   - count: number of Indices (if 0 then use index buffer of Vertex array)
     void DrawArrays(const std::shared_ptr<Pipeline>& pipeline,
                     uint32_t count) const override;
+    /// This API draws AABB
+    /// - Parameters:
+    ///   - pipeline: pipeline having vertex buffer and index buffer
+    ///   - num_cubes: number of cubes to render
+    void DrawCube(const std::shared_ptr<Pipeline>& pipeline,
+                  uint32_t num_cubes = 1) const override;
 
   };
   
