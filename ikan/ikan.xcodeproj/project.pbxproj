@@ -91,6 +91,8 @@
 		B2C78066296AE470003F343E /* aabb_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2C78064296AE470003F343E /* aabb_renderer.cpp */; };
 		B2C78067296AE470003F343E /* aabb_renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2C78065296AE470003F343E /* aabb_renderer.hpp */; };
 		B2C78147296AF195003F343E /* libyaml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C78089296AF12C003F343E /* libyaml.a */; };
+		B2C78408296AF2E5003F343E /* scene_serialiser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2C78406296AF2E5003F343E /* scene_serialiser.cpp */; };
+		B2C78409296AF2E5003F343E /* scene_serialiser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2C78407296AF2E5003F343E /* scene_serialiser.hpp */; };
 		B2DAAB81296575B0003578D9 /* core_components.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2DAAB7F296575AF003578D9 /* core_components.cpp */; };
 		B2DAAB82296575B0003578D9 /* core_components.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2DAAB80296575AF003578D9 /* core_components.hpp */; };
 		B2E7600C2958D38100ADBE79 /* mac_os_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */; };
@@ -276,6 +278,8 @@
 		B2C78065296AE470003F343E /* aabb_renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = aabb_renderer.hpp; sourceTree = "<group>"; };
 		B2C7806C296AE556003F343E /* aabb_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aabb_shader.glsl; sourceTree = "<group>"; };
 		B2C78084296AF12C003F343E /* yaml.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = yaml.xcodeproj; path = yaml/yaml.xcodeproj; sourceTree = "<group>"; };
+		B2C78406296AF2E5003F343E /* scene_serialiser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_serialiser.cpp; sourceTree = "<group>"; };
+		B2C78407296AF2E5003F343E /* scene_serialiser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_serialiser.hpp; sourceTree = "<group>"; };
 		B2DAAB7F296575AF003578D9 /* core_components.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = core_components.cpp; sourceTree = "<group>"; };
 		B2DAAB80296575AF003578D9 /* core_components.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_components.hpp; sourceTree = "<group>"; };
 		B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mac_os_window.cpp; sourceTree = "<group>"; };
@@ -525,6 +529,7 @@
 				B2DAAB80296575AF003578D9 /* core_components.hpp */,
 				B24C4A762968638B00675599 /* scene_camera.hpp */,
 				B25F616F29699D610042FE09 /* scriptable_entity.hpp */,
+				B2C78407296AF2E5003F343E /* scene_serialiser.hpp */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -538,6 +543,7 @@
 				B2DAAB7F296575AF003578D9 /* core_components.cpp */,
 				B24C4A752968638B00675599 /* scene_camera.cpp */,
 				B25F617529699FC80042FE09 /* scriptable_entity.cpp */,
+				B2C78406296AF2E5003F343E /* scene_serialiser.cpp */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -866,6 +872,7 @@
 				B2C78067296AE470003F343E /* aabb_renderer.hpp in Headers */,
 				B2FC405F2958BD0900447A1A /* open_gl_renderer_api.hpp in Headers */,
 				B24DD8282962FDA000525941 /* ray.hpp in Headers */,
+				B2C78409296AF2E5003F343E /* scene_serialiser.hpp in Headers */,
 				B2C0D80E2959FB69003F168B /* open_gl_renderer_buffer.hpp in Headers */,
 				B2C0D8002959E02B003F168B /* renderer_stats.hpp in Headers */,
 				B2584ED4295B7FE200234714 /* text_renderer.hpp in Headers */,
@@ -1043,6 +1050,7 @@
 				B2FC40162958B09000447A1A /* renderer.cpp in Sources */,
 				B2584ED3295B7FE200234714 /* text_renderer.cpp in Sources */,
 				B216B255295B2F6B00C05392 /* open_gl_texture.cpp in Sources */,
+				B2C78408296AF2E5003F343E /* scene_serialiser.cpp in Sources */,
 				B2C0D7FF2959E02B003F168B /* renderer_stats.cpp in Sources */,
 				B2FC3EA3295887FF00447A1A /* event.cpp in Sources */,
 				B2C0D8112959FB92003F168B /* renderer_buffer.cpp in Sources */,
@@ -1219,6 +1227,7 @@
 					"${PROJECT_DIR}/vendors/freetype/include/freetype2",
 					"${PROJECT_DIR}/vendors/entt/include",
 					"${PROJECT_DIR}/vendors/imguizmo/imguizmo",
+					"${PROJECT_DIR}/vendors/yaml/yaml/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1257,6 +1266,7 @@
 					"${PROJECT_DIR}/vendors/freetype/include/freetype2",
 					"${PROJECT_DIR}/vendors/entt/include",
 					"${PROJECT_DIR}/vendors/imguizmo/imguizmo",
+					"${PROJECT_DIR}/vendors/yaml/yaml/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

@@ -20,7 +20,7 @@ namespace ikan {
     FrameBuffer, Pipeline, VertexBuffer, IndexBuffer, Shader, Texture, CharTexture, SubTexture, RendererContext,
     
     // Scene
-    Entity, Component, EnttScene, SceneCamera,
+    Entity, Component, EnttScene, SceneCamera, SceneSerializer,
     
     // Editor
     EditorCamera, ContentBrowserPanel, ScenePanelManager,
@@ -68,6 +68,7 @@ namespace ikan {
       case LogModule::Component: return "Components";
       case LogModule::EnttScene: return "EnttScene";
       case LogModule::SceneCamera: return "Scene Camera";
+      case LogModule::SceneSerializer: return "SceneSerializer";
         
       case LogModule::EditorCamera: return "Editor Camera";
       case LogModule::ContentBrowserPanel: return "Content Browser";
