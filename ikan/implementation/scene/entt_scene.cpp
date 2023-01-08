@@ -309,7 +309,7 @@ namespace ikan {
     // For all Mesg entity
     for (const auto& aabb_entity : aabb_view) {
       const auto& [transform_component, aabb_component] = aabb_view.get<TransformComponent, RigidBodyComponent>(aabb_entity);
-      AABBRenderer::Draw(aabb_component.aabb);
+      AABBRenderer::Draw(aabb_component.aabb.GetWorldPosBoundingBox(transform_component.GetTransform()));
     } // for (const auto& entity : mesh_view)
 
     AABBRenderer::EndRenderer();
