@@ -92,30 +92,21 @@ namespace ikan {
     selected_entity_ = {};
   }
   
-  void ScenePanelManager::RenderGui(bool* is_opened) {
-    if (is_opened and *is_opened == false) return;
-
-    ImGui::Begin("Scene Manager", is_opened);
-    ImGui::PushID("Scene Manager");
-
+  void ScenePanelManager::RenderGui() {
     ScenePannel();
 
-    ImGui::PopID(); // Scene Manager
-    ImGui::End();   // Scene Manager
-    
-    ImGui::Begin("Entity Property");
-    ImGui::PushID("Entity Property");
-    
-    if (selected_entity_)
-      PropertyPannel();
-    
-    ImGui::PopID(); // Entity Property
-    ImGui::End();   // Entity Property
+    PropertyPannel();
   }
   
   void ScenePanelManager::ScenePannel() {
+    if (!setting_.scene_panel)
+      return;
+    
+    ImGui::Begin("Scene Manager", &setting_.scene_panel);
+    ImGui::PushID("Scene Manager");
+    
     scene_context_->registry_.each([&](auto entity_id)
-                                       {
+                                   {
       DrawEntityTreeNode(entity_id);
     });
     
@@ -133,7 +124,7 @@ namespace ikan {
       
       ImGui::EndPopup(); // ImGui::BeginPopupContextWindow()
     } // if (ImGui::BeginPopupContextWindow(0, // String ID
-
+    
     // Delete the entity
     if (delete_entity_) {
       // Delete entity from scene
@@ -142,41 +133,56 @@ namespace ikan {
       selected_entity_ = {};
       delete_entity_ = false;
     }
+    
+    ImGui::PopID();
+    ImGui::End();
   }
   
   void ScenePanelManager::PropertyPannel() {
-    // Tag
-    auto& tag = selected_entity_.GetComponent<TagComponent>().tag;
-    PropertyGrid::TextBox(tag, "", 3);
-    PropertyGrid::HoveredMsg(("Entity ID : " + std::to_string((uint32_t)selected_entity_)).c_str());
-    auto text_box_size = ImGui::GetItemRectSize();
-
-    // Add Component Icon
-    // NOTE: we are adjusting this with text box, this would be next column of text box
-    ImGui::NextColumn();
-    ImGui::SetColumnWidth(2, 2 * text_box_size.y);
-    static std::shared_ptr<Texture> add_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/plus.png"));
-    if (PropertyGrid::ImageButton("Add",
-                                  add_texture->GetRendererID(),
-                                  { text_box_size.y, text_box_size.y } // Size
-                                  )) {
-      ImGui::OpenPopup("AddComponent");
+    if (!setting_.property_panel)
+      return;
+    
+    ImGui::Begin("Entity Property", &setting_.property_panel);
+    ImGui::PushID("Entity Property");
+    
+    if (selected_entity_) {
+      
+      // Tag
+      auto& tag = selected_entity_.GetComponent<TagComponent>().tag;
+      PropertyGrid::TextBox(tag, "", 3);
+      PropertyGrid::HoveredMsg(("Entity ID : " + std::to_string((uint32_t)selected_entity_)).c_str());
+      auto text_box_size = ImGui::GetItemRectSize();
+      
+      // Add Component Icon
+      // NOTE: we are adjusting this with text box, this would be next column of text box
+      ImGui::NextColumn();
+      ImGui::SetColumnWidth(2, 2 * text_box_size.y);
+      static std::shared_ptr<Texture> add_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/plus.png"));
+      if (PropertyGrid::ImageButton("Add",
+                                    add_texture->GetRendererID(),
+                                    { text_box_size.y, text_box_size.y } // Size
+                                    )) {
+        ImGui::OpenPopup("AddComponent");
+      }
+      
+      if (ImGui::BeginPopup("AddComponent")) {
+        AddComponent();
+        ImGui::EndPopup();
+      }
+      ImGui::Columns(1);
+      ImGui::Separator();
+      
+      // Draw other components
+      DrawComponent<TransformComponent>("Transform", selected_entity_, [](auto& tc) { tc.RenderGui(); });
+      DrawComponent<QuadComponent>("Qaad", selected_entity_, [](auto& qc) { qc.RenderGui(); });
+      DrawComponent<CircleComponent>("Circle", selected_entity_, [this](auto& cc) { cc.RenderGui(); });
+      DrawComponent<CameraComponent>("Camera", selected_entity_, [this](auto& cc) { cc.RenderGui(); });
+      DrawComponent<NativeScriptComponent>("Native Script", selected_entity_, [this](auto& nsc) { nsc.RenderGui(); });
+      DrawComponent<RigidBodyComponent>("Rigid Body", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
     }
     
-    if (ImGui::BeginPopup("AddComponent")) {
-      AddComponent();
-      ImGui::EndPopup();
-    }
-    ImGui::Columns(1);
-    ImGui::Separator();
-    
-    // Draw other components
-    DrawComponent<TransformComponent>("Transform", selected_entity_, [](auto& tc) { tc.RenderGui(); });
-    DrawComponent<QuadComponent>("Qaad", selected_entity_, [](auto& qc) { qc.RenderGui(); });
-    DrawComponent<CircleComponent>("Circle", selected_entity_, [this](auto& cc) { cc.RenderGui(); });
-    DrawComponent<CameraComponent>("Camera", selected_entity_, [this](auto& cc) { cc.RenderGui(); });
-    DrawComponent<NativeScriptComponent>("Native Script", selected_entity_, [this](auto& nsc) { nsc.RenderGui(); });
-    DrawComponent<RigidBodyComponent>("Rigid Body", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
+    ImGui::PopID();
+    ImGui::End();
   }
   
   void ScenePanelManager::DrawEntityTreeNode(entt::entity entity_id) {
@@ -275,5 +281,7 @@ namespace ikan {
     });
     ImGui::Separator();
   }
+  
+  ScenePanelManager::Setting& ScenePanelManager::GetSetting() { return setting_; }
   
 }

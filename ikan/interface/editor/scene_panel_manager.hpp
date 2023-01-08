@@ -19,6 +19,11 @@ namespace ikan {
   /// This class is the wrapper to render scene pannel
   class ScenePanelManager {
   public:
+    struct Setting {
+      bool scene_panel = true;
+      bool property_panel = true;
+    };
+
     /// This Constructor creates Scene pannel manager instance
     ScenePanelManager(EnttScene* context = nullptr);
     /// This Destructor destroys Scene pannel manager instance
@@ -26,11 +31,9 @@ namespace ikan {
     
     /// This function update the scene contexrt
     /// - Parameter context: scene context
-    void SetSceneContext(EnttScene* context);
-    
+    void SetSceneContext(EnttScene* context);    
     /// This function renders imgui window for scene pannels
-    /// - Parameter is_opened: flag to show or hide the widget
-    void RenderGui(bool* is_opened = nullptr);
+    void RenderGui();
     
     /// This Function update the selected entity of scene
     /// - Parameter entity: new selected entity
@@ -39,6 +42,8 @@ namespace ikan {
     Entity* GetSelectedEntity();
     /// This function returns the context of panel
     EnttScene* GetContext();
+    /// This function returns the reference of setting
+    Setting& GetSetting();
     
     DELETE_COPY_MOVE_CONSTRUCTORS(ScenePanelManager)
 
@@ -78,6 +83,7 @@ namespace ikan {
     // Member Variables
     EnttScene* scene_context_;
     Entity selected_entity_;
+    Setting setting_;
 
     bool delete_entity_ = false;
   };

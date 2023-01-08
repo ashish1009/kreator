@@ -137,7 +137,7 @@ namespace editor {
       SaveScene();
       
       viewport_.RenderGui(&setting_.viewport);
-      spm_.RenderGui(&setting_.spm);
+      spm_.RenderGui();
       cbp_.RenderGui(&setting_.cbp);
     }
     active_scene_->RenderGui();
@@ -195,15 +195,22 @@ namespace editor {
           Setting::UpdateSetting("Scene Controller", active_scene_->GetSetting().scene_controller);
           ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene"))
         }
+        if (ImGui::BeginMenu("Scene Panels")) {
+          Setting::UpdateSetting("Entity Panel", spm_.GetSetting().scene_panel);
+          Setting::UpdateSetting("Property Panel", spm_.GetSetting().property_panel);
+          ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene Panel"))
+        }
         ImGui::Separator();
+        // -------------------------------------------------------------------
 
         Setting::UpdateSetting("Save Scene Widget", setting_.save_scene);
         ImGui::Separator();
-
+        // -------------------------------------------------------------------
+        
         Setting::UpdateSetting("Content Browser Panel", setting_.cbp);
-        Setting::UpdateSetting("Scene Panel", setting_.spm);
         ImGui::Separator();
-
+        // -------------------------------------------------------------------
+        
         Setting::UpdateSetting("Frame Rate", setting_.frame_rate);
         Setting::UpdateSetting("Viewpoer", setting_.viewport);
         Setting::UpdateSetting("Renderer Stats", setting_.stats);
