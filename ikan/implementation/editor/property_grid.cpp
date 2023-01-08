@@ -244,29 +244,33 @@ namespace ikan {
 
   bool PropertyGrid::TextBox(std::string& value,
                              const char* label,
+                             uint32_t num_columns,
                              float column_width_1,
-                             float column_width_2,
                              const char* hint,
                              bool modifiable,
                              bool multiple,
                              int32_t num_lines,
                              bool error) {
+    IK_CORE_ASSERT(num_columns >= 2, "Column should be minimum 2");
     bool modified = false;
     std::string ui_context_id = "##";
 
-    ImGui::Columns(2);
+    float x = ImGui::GetContentRegionAvailWidth();
+
+    ImGui::Columns(num_columns);
     if (label and strcmp(label, "") != 0) {
       ImGui::PushID(label);
       ImGui::PushItemWidth(-1);
-      ImGui::SetColumnWidth(0, column_width_1);
       ImGui::Text(label);
       ImGui::PopItemWidth();
       
       ui_context_id += (std::string)label;
     } else {
       ImGui::PushID("No Lable Text box");
-      ImGui::SetColumnWidth(0, 0);
+      column_width_1 = 0;
     }
+
+    ImGui::SetColumnWidth(0, column_width_1);
     
     if (hint) {
       ImGui::SameLine();
@@ -276,6 +280,7 @@ namespace ikan {
     ImGui::NextColumn();
     
     ImGui::PushItemWidth(-1);
+    float column_width_2 = x - column_width_1 - 16.0f;
     ImGui::SetColumnWidth(1, column_width_2);
     
     // Copy the Name of entity to buffer that will be dumy text in property pannel
@@ -304,7 +309,7 @@ namespace ikan {
                                      hint,
                                      buffer,
                                      IM_ARRAYSIZE(buffer),
-                                     ImGuiInputTextFlags_EnterReturnsTrue)) {
+                                     ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_AutoSelectAll)) {
           value    = buffer;
           modified = true;
         }
@@ -321,10 +326,10 @@ namespace ikan {
       ImGui::PopStyleColor();
     
     ImGui::PopItemWidth();
-    ImGui::NextColumn();
-    ImGui::Columns(1);
-    
     ImGui::PopID();
+    
+    if (num_columns == 2)
+      ImGui::Columns(1);
     
     return modified;
   }

@@ -130,10 +130,10 @@ namespace ikan {
 
     /// This function renders the text box
     /// - Parameters:
-    ///   - label: Lable for Variable
     ///   - value: Value need to be edit or entered in box
+    ///   - label: Lable for Variable
+    ///   - num_columns: we can add extra column if needed. If this is more then 2 then reset the column to back to 1 after calling
     ///   - column_width1: width of column of lable
-    ///   - column_width2: width of column of Value
     ///   - hint: Hint to be shown in the text box. Null of no hind is given
     ///   - modifiable: flag to check is string is constant or modifiable
     ///   - multiple: flag to check if there are multiple line in text box
@@ -141,8 +141,8 @@ namespace ikan {
     ///   - error: flag to check if text is error (if true text printed as red)
     static bool TextBox(std::string& value,
                         const char* label = nullptr,
+                        uint32_t num_columns = 2,
                         float column_width_1 = 100.0f,
-                        float column_width_2 = 300.0f,
                         const char* hint = nullptr,
                         bool modifiable = true,
                         bool multiple = false,
