@@ -11,13 +11,17 @@
 
 namespace mario {
   
-  using namespace ikan;
-  
-  // States of playe
-  
+  namespace player_data {
+    // Speed of player
+    static constexpr float speed_ = 15.0f;
+
+    // States of playe
+    using State = uint32_t;
 #define FreeFalling BIT(1)
+  }
   
-  using State = uint32_t;
+  using namespace player_data;
+  using namespace ikan;
   
   class PlayerController : public ScriptableEntity {
   public:
@@ -46,9 +50,6 @@ namespace mario {
     // Member variables
     // -----------------
     State state_bits_ = FreeFalling;
-    
-    // TODO: Link speed with camera controller speed
-    float speed_ = 25.0f;
   };
 
   class Player {

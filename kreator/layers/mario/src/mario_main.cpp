@@ -52,11 +52,11 @@ namespace mario {
     camera_entity_.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
                                                           const std::string& script_name) {
       if (script_name == "mario::CameraController") {
-        sc->Bind<mario::CameraController>();
+        sc->Bind<mario::CameraController>(10.0f);
         return true;
       }
       return false;
-    }).Bind<CameraController>();
+    }).Bind<CameraController>(player_data::speed_);
     
     // --------------------------------------------------------
     // Player

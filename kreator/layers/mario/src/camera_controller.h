@@ -11,7 +11,7 @@ namespace mario {
   
   class CameraController : public ScriptableEntity {
   public:
-    CameraController() = default;
+    CameraController(float speed) : speed_(speed) { }
     
     void Update(Timestep ts) override {
       // Dummy copy of entity y Position

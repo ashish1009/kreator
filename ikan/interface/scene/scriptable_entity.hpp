@@ -16,6 +16,10 @@ namespace ikan {
   
   class ScriptableEntity {
   public:
+    template <typename... Args>
+    ScriptableEntity(Args... args) {
+      
+    }
     virtual ~ScriptableEntity() {}
 
     template<typename T>

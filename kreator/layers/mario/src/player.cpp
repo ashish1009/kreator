@@ -88,9 +88,9 @@ namespace mario {
     // Dummy copy of entity y Position
     auto translation = GetComponent<TransformComponent>().translation;
     if (Input::IsKeyPressed(KeyCode::Left))
-      translation.x -= speed_ * ts;
+      translation.x -= player_data::speed_ * ts;
     if (Input::IsKeyPressed(KeyCode::Right))
-      translation.x += speed_ * ts;
+      translation.x += player_data::speed_ * ts;
 
     auto& tc = GetComponent<TransformComponent>();
     const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
@@ -107,7 +107,7 @@ namespace mario {
   void PlayerController::Freefall(Timestep ts) {
     // Dummy copy of entity y Position
     auto translation = GetComponent<TransformComponent>().translation;
-    translation.y -= speed_ * ts;
+    translation.y -= player_data::speed_ * ts;
     
     auto& tc = GetComponent<TransformComponent>();
     const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
