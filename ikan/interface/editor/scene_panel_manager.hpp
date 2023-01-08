@@ -66,7 +66,7 @@ namespace ikan {
           return selected_entity_.HasComponent<T>();
         };
       }
-      if (ImGui::MenuItem(menu_item.c_str()e,
+      if (ImGui::MenuItem(menu_item.c_str(),
                           nullptr, // Shortcut
                           false, // Selected
                           !exclusive_func())) {

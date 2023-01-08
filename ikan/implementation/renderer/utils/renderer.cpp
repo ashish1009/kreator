@@ -13,6 +13,7 @@
 #include "renderer/utils/renderer_stats.hpp"
 #include "renderer/utils/batch_2d_renderer.hpp"
 #include "renderer/utils/text_renderer.hpp"
+#include "renderer/utils/aabb_renderer.hpp"
 
 namespace ikan {
   
@@ -78,6 +79,7 @@ namespace ikan {
     IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
     BatchRenderer::Init();
     TextRenderer::Init();
+    AABBRenderer::Init();
   }
   
   void Renderer::Shutdown() {
@@ -86,6 +88,7 @@ namespace ikan {
     
     BatchRenderer::Shutdown();
     TextRenderer::Shutdown();
+    AABBRenderer::Shutdown();
     
     delete renderer_data_;
   }

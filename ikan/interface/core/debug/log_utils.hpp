@@ -16,7 +16,7 @@ namespace ikan {
     Assert, Event, AssetManager, Window, LayerStack, Application, Profiler, StringUtils,
     
     // Renderer
-    Renderer, Batch2DRenderer, Text,
+    Renderer, Batch2DRenderer, Text, AABBRenderer,
     FrameBuffer, Pipeline, VertexBuffer, IndexBuffer, Shader, Texture, CharTexture, SubTexture, RendererContext,
     
     // Scene
@@ -52,6 +52,8 @@ namespace ikan {
       case LogModule::Renderer: return "Renderer";
       case LogModule::Batch2DRenderer: return "Batch 2D";
       case LogModule::Text: return "Text Renderer";
+      case LogModule::AABBRenderer: return "AABBRenderer";
+        
       case LogModule::FrameBuffer: return "FrameBuffer";
       case LogModule::Pipeline: return "Pipeline";
       case LogModule::VertexBuffer: return "Vertex Buffer";
