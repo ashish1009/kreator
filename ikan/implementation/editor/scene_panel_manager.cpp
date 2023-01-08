@@ -245,6 +245,11 @@ namespace ikan {
           selected_entity_ = scene_context_->CreateEntity("Circle");
           selected_entity_.AddComponent<CircleComponent>();
         }
+        ImGui::Separator();
+        if (ImGui::MenuItem("Camera")) {
+          selected_entity_ = scene_context_->CreateEntity("Camera");
+          selected_entity_.AddComponent<CameraComponent>();
+        }
 
         ImGui::EndMenu(); // 2D Entity
       } //if (ImGui::BeginMenu("2D Entity"))
@@ -259,6 +264,9 @@ namespace ikan {
     AddComponentMenu<CircleComponent>("Circle", [this]() {
       return selected_entity_.HasComponent<QuadComponent>() or selected_entity_.HasComponent<CircleComponent>();
     });
+    ImGui::Separator();
+    
+    AddComponentMenu<CameraComponent>("Scene Camera");
     ImGui::Separator();
     
     AddComponentMenu<NativeScriptComponent>("Native Script");
