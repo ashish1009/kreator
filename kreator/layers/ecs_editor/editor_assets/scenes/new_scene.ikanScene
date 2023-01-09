@@ -29,6 +29,9 @@ Entities:
       Color: [1, 1, 1, 1]
       Thickness: 0.5
       Fade: 0.910000026
+    RigidBodyComponent:
+      AABB_Min: [-0.5, -0.5, 0]
+      AABB_Max: [0.5, 0.5, 0]
   - Entity: 14586685058200078907
     TagComponent:
       Tag: Quad
@@ -44,3 +47,6 @@ Entities:
     NativeScriptComponent:
       Script_name_0: ikan::FreeFallController
       Num_Scripts: 1
+    RigidBodyComponent:
+      AABB_Min: [-0.5, -0.5, 0]
+      AABB_Max: [0.5, 0.5, 0]

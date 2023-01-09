@@ -219,6 +219,18 @@ namespace ikan {
         out << YAML::EndMap; // NativeScriptComponent
       }
 
+      // ------------------------------------------------------------------------
+      if (entity.HasComponent<RigidBodyComponent>()) {
+        out << YAML::Key << "RigidBodyComponent";
+        out << YAML::BeginMap; // RigidBodyComponent
+        
+        auto& rc = entity.GetComponent<RigidBodyComponent>();
+        out << YAML::Key << "AABB_Min" << YAML::Value << rc.aabb.min;
+        out << YAML::Key << "AABB_Max" << YAML::Value << rc.aabb.max;
+        
+        out << YAML::EndMap; // RigidBodyComponent
+      }
+
       out << YAML::EndMap; // Entity
     } // for (const auto& [uuid, entity] : scene_->entity_id_map_)
     
@@ -371,15 +383,28 @@ namespace ikan {
           auto& sc = deserialized_entity.AddComponent<NativeScriptComponent>();
           int32_t num_scripts = script_component["Num_Scripts"].as<int32_t>();
           std::string name_tag = "Script_name_";
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
           for (int i = 0; i < num_scripts; i++) {
             name_tag += std::to_string(i);
             std::string script_name = script_component[name_tag].as<std::string>();
             
             ScriptManager::UpdateScript(&sc, script_name, nullptr);
+            IK_CORE_INFO(LogModule::SceneSerializer, "      Script | {0}", script_name);
           }
-
-          IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
         } // if (script_component)
+
+        // --------------------------------------------------------------------
+        auto rigid_body_component = entity["RigidBodyComponent"];
+        if (rigid_body_component) {
+          auto& rc = deserialized_entity.AddComponent<RigidBodyComponent>();
+          const auto& min = rigid_body_component["AABB_Min"].as<glm::vec3>();
+          const auto& max = rigid_body_component["AABB_Max"].as<glm::vec3>();
+          rc.aabb = AABB(min, max);
+          
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
+          IK_CORE_INFO(LogModule::SceneSerializer, "      AABB Min | {0} | {1} | {2}", min.x, min.y, min.z);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      AABB Max | {0} | {1} | {2}", max.x, max.y, max.z);
+        } // if (rigid_body_component)
 
       } // for (auto entity : entities)
     } // if (entities)

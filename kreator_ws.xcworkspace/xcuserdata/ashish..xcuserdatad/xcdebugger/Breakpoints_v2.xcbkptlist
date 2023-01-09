@@ -280,22 +280,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "31FBFF13-38FF-48FF-A7D9-607181C1B133"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/scene/scene_serialiser.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381"
-            landmarkName = "SceneSerializer::Deserialize(file_path)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "32135C9A-0C08-4E00-8B73-DE29D948D838"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -303,8 +287,8 @@
             filePath = "ikan/implementation/scene/scene_serialiser.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "382"
-            endingLineNumber = "382"
+            startingLineNumber = "394"
+            endingLineNumber = "394"
             landmarkName = "SceneSerializer::Deserialize(file_path)"
             landmarkType = "7">
          </BreakpointContent>
