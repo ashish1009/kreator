@@ -98,7 +98,7 @@ Add the following library search paths
     - Components : To Grow With Time
     - Scene class to manage all entities : To Grow With Time
 
-![](/kreator/layers/ecs_editor/output/ecs_3.png)
+![](/kreator/layers/ecs_editor/output/ecs_5.png)
 
 ----------------
 - Ray Tracing
