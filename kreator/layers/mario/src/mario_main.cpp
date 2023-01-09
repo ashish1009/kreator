@@ -104,10 +104,8 @@ namespace mario {
     viewport_width_ = e.GetWidth();
     viewport_height_ = e.GetHeight();
     
-#if !MARIO_DEBUG
     // TODO: Store the player position before resize and back it up after resize
     mario_scene_.SetViewport(viewport_width_, viewport_height_);
-#endif
     return false;
   }
   
@@ -127,7 +125,6 @@ namespace mario {
   
   void MarioLayer::RenderGui() {
 #if MARIO_DEBUG
-    
     ImguiAPI::StartDcocking();
     Renderer::RenderStatsGui();
     Renderer::Framerate();

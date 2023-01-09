@@ -7,7 +7,7 @@
 
 #pragma once
 
-#define MARIO_DEBUG 1
+#define MARIO_DEBUG 0
 
 namespace mario {
   
