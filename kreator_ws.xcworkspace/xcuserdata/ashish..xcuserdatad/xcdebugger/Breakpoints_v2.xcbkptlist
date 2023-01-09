@@ -158,8 +158,8 @@
             filePath = "kreator/layers/chess/src/chess_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "ChessLayer::RenderGui()"
             landmarkType = "7">
          </BreakpointContent>

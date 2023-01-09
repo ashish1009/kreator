@@ -77,7 +77,6 @@ namespace chess {
   }
   
   void ChessLayer::Update(Timestep ts) {
-#if CHESS_DEBUG
     if (viewport_.IsFramebufferResized()) {
       viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
       // TODO: Store the player position before resize and back it up after resize
@@ -87,20 +86,17 @@ namespace chess {
     viewport_.UpdateMousePos();
     viewport_.framebuffer->Bind();
     
-    Render(ts);
-    
-    viewport_.UpdateHoveredEntity(&spm_);
-    viewport_.framebuffer->Unbind();
-#else
-    Render(ts);
-#endif
-  }
-  
-  void ChessLayer::Render(Timestep ts) {
     Renderer::Clear({0.12f, 0.12f, 0.12f, 1.0f});
     chess_scene_.Update(ts);
+
+#if CHESS_DEBUG
+    viewport_.UpdateHoveredEntity(&spm_.GetSelectedEntity(), chess_scene_);
+#else
+    viewport_.UpdateHoveredEntity(nullptr, &chess_scene_);
+#endif
+    viewport_.framebuffer->Unbind();
   }
-  
+    
   void ChessLayer::EventHandler(Event& event) {
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<WindowResizeEvent>(IK_BIND_EVENT_FN(ChessLayer::OnWindowResized));
@@ -122,7 +118,10 @@ namespace chess {
           viewport_.mouse_pos_y >= 0 and
           viewport_.mouse_pos_x <= viewport_.width and
           viewport_.mouse_pos_y <= viewport_.height) {
+        
+#if CHESS_DEBUG
         spm_.SetSelectedEntity(viewport_.hovered_entity_);
+#endif
         
         if (viewport_.hovered_entity_) {
           const auto& position = viewport_.hovered_entity_->GetComponent<TransformComponent>().translation;
@@ -134,16 +133,17 @@ namespace chess {
   }
   
   void ChessLayer::RenderGui() {
-#if CHESS_DEBUG
     ImguiAPI::StartDcocking();
+
+#if CHESS_DEBUG
     Renderer::RenderStatsGui(nullptr, true);
     Renderer::Framerate();
     
-    viewport_.RenderGui();
     chess_scene_.RenderGui();
         
     spm_.RenderGui();
-    
+    viewport_.RenderGui();
+
     ImGui::Begin("Block Data");
     float width = ImGui::GetContentRegionAvailWidth() / 2;
     ImGui::SetCursorPos({ width - 50, 0 });
@@ -166,7 +166,8 @@ namespace chess {
       ImGui::PopID();
     }
     ImGui::End();
-    
+#endif
+
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
     ImGui::Begin("Chess");
@@ -192,7 +193,6 @@ namespace chess {
     ImGui::End();
     
     ImguiAPI::EndDcocking();
-#endif
   }
 
 }

@@ -47,10 +47,7 @@ namespace chess {
     /// This function handles the mouse button event
     /// - Parameter e: mouse button pressed event
     bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
-    /// This function renders the scene
-    /// - Parameter ts: Time step between 2 Frames
-    void Render(Timestep ts);
-
+    
     // --------------------
     // Member variables
     // --------------------
@@ -62,9 +59,10 @@ namespace chess {
     Block block_[MaxRows][MaxCols];
     Block* selected_block_ = nullptr;
         
+    Viewport viewport_ = Viewport({ 0.2, 0.2, 0.2, 1.0f });
+
     // For Debug
 #if CHESS_DEBUG
-    Viewport viewport_ = Viewport({ 0.2, 0.2, 0.2, 1.0f });
     ScenePanelManager spm_;
 #endif
   };

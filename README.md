@@ -107,8 +107,11 @@ Add the following library search paths
   
 ----------------
 - Mario
-
 ![](/kreator/layers/mario/output/mario_2.png)
+
+----------------
+- Chess
+![](/kreator/layers/chess/output/chess_1.png)
 
 ## Road Map  
 ----------------
