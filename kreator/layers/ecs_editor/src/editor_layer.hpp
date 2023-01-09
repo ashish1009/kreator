@@ -82,13 +82,14 @@ namespace editor {
     // --------------------
     // Member variables
     // --------------------
-    bool change_font = false;
+    bool change_font_ = false;
     Viewport viewport_;
     ContentBrowserPanel cbp_;
     ScenePanelManager spm_;
     std::shared_ptr<EnttScene> active_scene_;
     
     Setting setting_;
+    std::string current_font_name_ = "";
   };
   
 }

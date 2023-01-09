@@ -9,6 +9,8 @@
 
 namespace editor {
   
+  static std::unordered_map<std::string, std::array<std::string, 2>> available_fonts_map;
+  
   /// This structure stores the data for rendering text like frame rate and renderer versions
   struct SystemTextData {
     // Projection matrix for still camera to make text not move with camera
@@ -68,6 +70,12 @@ namespace editor {
       AM::ProjectPath("kreator/layers/ecs_editor/editor_assets"),
       AM::ProjectPath("kreator/layers/ecs_editor/editor_assets/scenes"),
     });
+    
+    available_fonts_map["Open Sans"][0] = "fonts/opensans/OpenSans-Bold.ttf";
+    available_fonts_map["Open Sans"][1] = "fonts/opensans/OpenSans-Regular.ttf";
+
+    available_fonts_map["Roberto"][0] = "fonts/roboto/Roboto-Bold.ttf";
+    available_fonts_map["Roberto"][1] = "fonts/roboto/Roboto-Regular.ttf";
   }
   
   EditorLayer::~EditorLayer() {
@@ -86,23 +94,23 @@ namespace editor {
   }
   
   void EditorLayer::Update(Timestep ts) {
+    if (current_font_name_ != "" and change_font_) {
+      // Decorate the Imgui Change the font of imgui
+      ImguiAPI::ChangeFont(
+                           // Regular Font information
+                           { AM::ClientAsset(available_fonts_map[current_font_name_][1]), 14.0f /* Size of font */ },
+                           // Bold Font information
+                           { AM::ClientAsset(available_fonts_map[current_font_name_][0]), 14.0f /* Size of font */ }
+                           );
+      change_font_ = false;
+    }
+    
     if (!active_scene_)
       return;
     
     if (viewport_.IsFramebufferResized()) {
       viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
       active_scene_->SetViewport(viewport_.width, viewport_.height);
-    }
-    
-    if (change_font) {
-      // Decorate the Imgui Change the font of imgui
-      ImguiAPI::ChangeFont(
-                           // Regular Font information
-                           { AM::ClientAsset("fonts/openSans/OpenSans-Regular.ttf"), 14.0f /* Size of font */ },
-                           // Bold Font information
-                           { AM::ClientAsset("fonts/openSans/OpenSans-Bold.ttf"), 14.0f /* Size of font */ }
-                           );
-      change_font = false;
     }
     
     viewport_.UpdateMousePos();
@@ -211,13 +219,7 @@ namespace editor {
       cbp_.RenderGui(&setting_.cbp);
     }
     active_scene_->RenderGui();
-    
-    ImGui::Begin("temp");
-    if (ImGui::Button("Font")) {
-      change_font = true;
-    }
-    ImGui::End();
-    
+        
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
     ImGui::Begin("Kreator Viewport");
@@ -293,6 +295,16 @@ namespace editor {
           }
           ImGui::EndMenu(); // ImGui::BeginMenu("Theme")
         } // if (ImGui::BeginMenu("Theme"))
+        if (ImGui::BeginMenu("Fonts")) {
+          for (const auto& [name, paths] : available_fonts_map) {
+            if (ImGui::MenuItem(name.c_str(), nullptr, false, current_font_name_ != name)) {
+              current_font_name_ = name;
+              change_font_ = true;
+            }
+          }
+          ImGui::EndMenu(); // ImGui::BeginMenu("Theme")
+        } // if (ImGui::BeginMenu("Theme"))
+
         ImGui::EndMenu(); // ImGui::BeginMenu("Properties")
       } // if (ImGui::BeginMenu("Properties"))
 
