@@ -117,29 +117,55 @@ namespace chess {
   }
   
   bool ChessLayer::OnMouseButtonPressed(MouseButtonPressedEvent& e) {
-#if CHESS_DEBUG
     if (e.GetMouseButton() == MouseButton::ButtonLeft) {
       if (viewport_.mouse_pos_x >= 0 and
           viewport_.mouse_pos_y >= 0 and
           viewport_.mouse_pos_x <= viewport_.width and
           viewport_.mouse_pos_y <= viewport_.height) {
         spm_.SetSelectedEntity(viewport_.hovered_entity_);
+        
+        if (viewport_.hovered_entity_) {
+          const auto& position = viewport_.hovered_entity_->GetComponent<TransformComponent>().translation;
+          selected_block_ = &block_[(uint32_t)(position.y / BlockSize)][(uint32_t)(position.x / BlockSize)];
+        }
       }
     }
-#endif
     return false;
   }
   
   void ChessLayer::RenderGui() {
 #if CHESS_DEBUG
     ImguiAPI::StartDcocking();
-    Renderer::RenderStatsGui();
+    Renderer::RenderStatsGui(nullptr, true);
     Renderer::Framerate();
     
     viewport_.RenderGui();
     chess_scene_.RenderGui();
         
     spm_.RenderGui();
+    
+    ImGui::Begin("Block Data");
+    float width = ImGui::GetContentRegionAvailWidth() / 2;
+    ImGui::SetCursorPos({ width - 50, 0 });
+    ImGui::Text("Selected Block");
+    ImGui::Separator();
+    if (selected_block_) {
+      ImGui::PushID("Selected Block");
+      ImGui::Columns(2);
+      ImGui::SetColumnWidth(0, width);
+      ImGui::Text("Position");
+      ImGui::Text("Piece");
+      
+      ImGui::NextColumn();
+      ImGui::Text("Row : %d | Col : %d", selected_block_->row, selected_block_->col);
+      if (selected_block_->piece)
+        ImGui::Text("%s", selected_block_->piece->GetName().c_str());
+      else
+        ImGui::Text("Empty");
+      ImGui::Columns(1);
+      ImGui::PopID();
+    }
+    ImGui::End();
     
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });

@@ -25,13 +25,13 @@ namespace chess {
     if (row == 0 or row == 7) return GetYPosPiece(col);
     else if (row == 1 or row == 6)
       return Piece::Type::Pawn;
-    else IK_ASSERT(false);
+    else return Piece::Type::None;
   }
   
   Color GetPieceStartColor(Position row) {
     if (row == 0 or row == 1) return Color::Black;
     else if (row == 6 or row == 7) return Color::White;
-    else IK_ASSERT(false);
+    else return Color::None;
   }
   
   std::shared_ptr<Piece> Piece::Create(Position row, Position col) {
@@ -43,7 +43,7 @@ namespace chess {
 //      case Piece::Type::Bishop: return std::make_shared<Bishop>(color);
 //      case Piece::Type::Knight: return std::make_shared<Knight>(color);
 //      case Piece::Type::Rook: return std::make_shared<Rook>(color);
-//      case Piece::Type::None:
+      case Piece::Type::None: return nullptr;
 //      default:
 //        IK_ASSERT(false);
     }
@@ -56,11 +56,23 @@ namespace chess {
   
   Piece::Piece(Piece::Type type, Color color, Position row, Position col)
   : type_(type), row_(row), col_(col), color_(color) {
-    
+    switch (type_) {
+      case Piece::Type::Pawn: name_ = "Pawn"; break;
+//      case Piece::Type::King: return std::make_shared<King>(color);
+//      case Piece::Type::Queen: return std::make_shared<Queen>(color);
+//      case Piece::Type::Bishop: return std::make_shared<Bishop>(color);
+//      case Piece::Type::Knight: return std::make_shared<Knight>(color);
+//      case Piece::Type::Rook: return std::make_shared<Rook>(color);
+      case Piece::Type::None: name_ = "Empty"; break;
+//      default:
+  //        IK_ASSERT(false);
+    }
   }
 
   Pawn::Pawn(Color color, Position row, Position col)
-  : Piece(Piece::Type::Pawn, color, row, col) { }
+  : Piece(Piece::Type::Pawn, color, row, col) {
+    texture_ = Renderer::GetTexture(AM::ClientAsset("textures/black/pawn.png"));
+  }
   
 //  King::King(Color color) {
 //    color_ = color;

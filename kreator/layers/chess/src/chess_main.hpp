@@ -60,6 +60,7 @@ namespace chess {
     
     // Cbess Data
     Block block_[MaxRows][MaxCols];
+    Block* selected_block_ = nullptr;
         
     // For Debug
 #if CHESS_DEBUG

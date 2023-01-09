@@ -45,6 +45,8 @@ namespace chess {
     Piece(Piece::Type type, Color color, Position row, Position col);
     virtual ~Piece() = default;
     
+    const std::string& GetName() const { return name_; }
+    
     /// This function create the pirce based on the type of piece
     /// - Parameters:
     ///   - row: x position
@@ -56,6 +58,7 @@ namespace chess {
     Position row_ = -1, col_ = -1;
     Color color_ = Color::None;
     std::shared_ptr<Texture> texture_;
+    std::string name_;
   };
   
   /// Class to store the pawn data and funtion
@@ -68,35 +71,35 @@ namespace chess {
 //  /// Class to store the King data and funtion
 //  class King : public Piece {
 //  public:
-//    King(Color color);
+//    King(Color color, Position row, Position col);
 //    ~King() = default;
 //  };
 //
 //  /// Class to store the queen data and funtion
 //  class Queen : public Piece {
 //  public:
-//    Queen(Color color);
+//    Queen(Color color, Position row, Position col);
 //    ~Queen() = default;
 //  };
 //
 //  /// Class to store the Bishop data and funtion
 //  class Bishop : public Piece {
 //  public:
-//    Bishop(Color color);
+//    Bishop(Color color, Position row, Position col);
 //    ~Bishop() = default;
 //  };
 //
 //  /// Class to store the Knight data and funtion
 //  class Knight : public Piece {
 //  public:
-//    Knight(Color color);
+//    Knight(Color color, Position row, Position col);
 //    ~Knight() = default;
 //  };
 //
 //  /// Class to store the Rook data and funtion
 //  class Rook : public Piece {
 //  public:
-//    Rook(Color color);
+//    Rook(Color color, Position row, Position col);
 //    ~Rook() = default;
 //  };
 
