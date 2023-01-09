@@ -7,6 +7,8 @@
 
 #pragma once
 
+#define CHESS_DEBUG 1
+
 namespace chess {
   
   using namespace ikan;
@@ -34,6 +36,29 @@ namespace chess {
     /// in the window. NOTE Core Application is taking care to call the EventHandler(event) API for all Layers
     /// - Parameter event: Event (Base class) intance. Dispatch event from Event Dispatcher
     void EventHandler(Event& event) override;
+  private:
+    // --------------------
+    // Member functions
+    // --------------------
+    /// This function handles the window resize
+    /// - Parameter e: window resize event
+    bool OnWindowResized(WindowResizeEvent& e);
+    /// This function handles the mouse button event
+    /// - Parameter e: mouse button pressed event
+    bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
+
+    // --------------------
+    // Member variables
+    // --------------------
+    uint32_t viewport_width_ = 0, viewport_height_ = 0;
+    EnttScene chess_scene_;
+    Entity camera_entity_;
+        
+    // For Debug
+#if CHESS_DEBUG
+    Viewport viewport_ = Viewport({ 0.2, 0.2, 0.2, 1.0f });
+    ScenePanelManager spm_;
+#endif
   };
   
 }
