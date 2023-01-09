@@ -11,6 +11,8 @@
 
 namespace chess {
   
+  static constexpr float BlockSize = 4.0f;
+  
   /// This structure stores the data of each blockl of chess. Data like
   struct Block {
     Position x = -1, y = -1;

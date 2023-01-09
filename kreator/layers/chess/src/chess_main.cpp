@@ -35,15 +35,35 @@ namespace chess {
     // Create the camera entity
     // ---------------------------------------------------------
     camera_entity_ = chess_scene_.CreateEntity();
-    camera_entity_.GetComponent<TransformComponent>().translation.y = 2.0f;
+    camera_entity_.GetComponent<TransformComponent>().translation.x = 14.0f;
+    camera_entity_.GetComponent<TransformComponent>().translation.y = 14.0f;
     
     auto& camera_comp = camera_entity_.AddComponent<CameraComponent>();
     camera_comp.is_primary = true;
     camera_comp.is_fixed_aspect_ratio = true;
-    camera_comp.camera->SetOrthographicSize(22.0f);
+    camera_comp.camera->SetOrthographicSize(45.0f);
     
-    auto e = chess_scene_.CreateEntity();
-    e.AddComponent<QuadComponent>();
+    // ----------------------------------------------------
+    // Add Blocks
+    // ----------------------------------------------------
+    for (uint32_t x = 0; x < MaxCols; x++ ) { // Rows
+      for (uint32_t y = 0; y < MaxRows; y++ ) { // Cols
+        // Update the position of block
+        block_[x][y].x = x;
+        block_[x][y].y = y;
+        
+        auto e = chess_scene_.CreateEntity("Block_" + std::to_string(x) + "_" + std::to_string(y));
+        
+        auto& quad_comp = e.AddComponent<QuadComponent>();
+        if (x % 2)
+          quad_comp.color = (y % 2) ? BlackColor : WhiteColor;
+        else
+          quad_comp.color = (y % 2) ? WhiteColor : BlackColor;
+        
+        e.GetComponent<TransformComponent>().translation = { x * BlockSize, y * BlockSize, 0 };
+        e.GetComponent<TransformComponent>().scale = { BlockSize, BlockSize, 0 };
+      } // Rows loop
+    } // Cols loop
   }
   
   void ChessLayer::Detach() {

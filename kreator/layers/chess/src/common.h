@@ -16,6 +16,9 @@ namespace chess {
   static constexpr uint32_t MaxRows = 8;
   static constexpr uint32_t MaxCols = 8;
   
+  static constexpr glm::vec4 BlackColor = { 0, 0, 0, 1 };
+  static constexpr glm::vec4 WhiteColor = { 1, 1, 1, 1 };
+  
   enum class Color {
     None, Black, White
   };
