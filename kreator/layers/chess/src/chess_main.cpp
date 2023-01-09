@@ -52,16 +52,22 @@ namespace chess {
         block_[x][y].x = x;
         block_[x][y].y = y;
         
+        // Create Chess Block Entity (Black or white)
         auto e = chess_scene_.CreateEntity("Block_" + std::to_string(x) + "_" + std::to_string(y));
         
+        // Create Quad component and update the color alternate
         auto& quad_comp = e.AddComponent<QuadComponent>();
         if (x % 2)
           quad_comp.color = (y % 2) ? BlackColor : WhiteColor;
         else
           quad_comp.color = (y % 2) ? WhiteColor : BlackColor;
         
+        // Update the position of block
         e.GetComponent<TransformComponent>().translation = { x * BlockSize, y * BlockSize, 0 };
         e.GetComponent<TransformComponent>().scale = { BlockSize, BlockSize, 0 };
+        
+        // Add the piece
+        block_[x][y].piece = Piece::Create(Piece::GetStartPieceType(x, y));
       } // Rows loop
     } // Cols loop
   }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
+		B2262960296C5DB600EBE59B /* piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B226295F296C5DB600EBE59B /* piece.cpp */; };
 		B24DD82F2962FFEE00525941 /* chess_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD82D2962FFEE00525941 /* chess_main.cpp */; };
 		B24DD8322963000100525941 /* mario_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD8302963000100525941 /* mario_main.cpp */; };
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
@@ -54,6 +55,7 @@
 		B2262959296C517800EBE59B /* block.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = block.hpp; sourceTree = "<group>"; };
 		B226295C296C517E00EBE59B /* piece.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = piece.hpp; sourceTree = "<group>"; };
 		B226295E296C54E800EBE59B /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		B226295F296C5DB600EBE59B /* piece.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = piece.cpp; sourceTree = "<group>"; };
 		B24DD82D2962FFEE00525941 /* chess_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chess_main.cpp; sourceTree = "<group>"; };
 		B24DD82E2962FFEE00525941 /* chess_main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chess_main.hpp; sourceTree = "<group>"; };
 		B24DD8302963000100525941 /* mario_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario_main.cpp; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				B24DD82E2962FFEE00525941 /* chess_main.hpp */,
 				B2262959296C517800EBE59B /* block.hpp */,
 				B226295C296C517E00EBE59B /* piece.hpp */,
+				B226295F296C5DB600EBE59B /* piece.cpp */,
 				B226295E296C54E800EBE59B /* common.h */,
 			);
 			path = src;
@@ -330,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2262960296C5DB600EBE59B /* piece.cpp in Sources */,
 				B24DD8322963000100525941 /* mario_main.cpp in Sources */,
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
 				B25F618B2969A9CF0042FE09 /* player.cpp in Sources */,
