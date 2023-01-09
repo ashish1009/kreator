@@ -1,17 +1,20 @@
 Scene: Untitled
 Entities:
-  - Entity: 14586685058200078907
+  - Entity: 13817939158919595343
     TagComponent:
-      Tag: Quad
+      Tag: Camera
     TransformComponent:
       Translation: [0, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Texture_Path: ../../../kreator/layers/ecs_editor/editor_assets/textures/basic/checkerboard.png
-      Texture_TilingFactor: 1
-      Color: [0.960784316, 0.593425572, 0.593425572, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 10
+      Near: -1
+      Far: 1
   - Entity: 1545398647754901552
     TagComponent:
       Tag: Circle
@@ -26,3 +29,18 @@ Entities:
       Color: [1, 1, 1, 1]
       Thickness: 0.5
       Fade: 0.910000026
+  - Entity: 14586685058200078907
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Texture_Path: ../../../kreator/layers/ecs_editor/editor_assets/textures/basic/checkerboard.png
+      Texture_TilingFactor: 1
+      Color: [0.960784316, 0.593425572, 0.593425572, 1]
+    NativeScriptComponent:
+      Script_name_0: ikan::FreeFallController
+      Num_Scripts: 1

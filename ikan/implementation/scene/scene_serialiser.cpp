@@ -77,6 +77,7 @@ namespace YAML {
       return true;
     }
   };
+  
 } // namespace YAML
 
 
@@ -88,13 +89,13 @@ namespace ikan {
     out << YAML::BeginSeq << v.x << v.y << v.z << YAML::EndSeq;
     return out;
   }
-  // yml << operator for glm vec 3
+  // yml << operator for glm vec 4
   static YAML::Emitter& operator<<(YAML::Emitter& out, const glm::vec4& v) {
     out << YAML::Flow;
     out << YAML::BeginSeq << v.x << v.y << v.z << v.a << YAML::EndSeq;
     return out;
   }
-  
+
   SceneSerializer::SceneSerializer(EnttScene* scene) : scene_(scene) { }
   SceneSerializer::~SceneSerializer() { }
 
@@ -199,7 +200,25 @@ namespace ikan {
 
         out << YAML::EndMap; // CircleComponent
       }
-      
+
+      // ------------------------------------------------------------------------
+      if (entity.HasComponent<NativeScriptComponent>()) {
+        out << YAML::Key << "NativeScriptComponent";
+        out << YAML::BeginMap; // NativeScriptComponent
+        
+        auto& sc = entity.GetComponent<NativeScriptComponent>();
+        std::string name_tag = "Script_name_";
+        int32_t i = 0;
+        for (const auto& [name, scriot] : sc.scrip_name_map) {
+          name_tag += std::to_string(i++);
+          out << YAML::Key << name_tag << YAML::Value << name;
+        }
+        
+        out << YAML::Key << "Num_Scripts" << YAML::Value << i;
+
+        out << YAML::EndMap; // NativeScriptComponent
+      }
+
       out << YAML::EndMap; // Entity
     } // for (const auto& [uuid, entity] : scene_->entity_id_map_)
     
@@ -345,6 +364,22 @@ namespace ikan {
           IK_CORE_INFO(LogModule::SceneSerializer, "      Fade              | {0}", cc.fade);
 
         } // if (circle_component)
+        
+        // --------------------------------------------------------------------
+        auto script_component = entity["NativeScriptComponent"];
+        if (script_component) {
+          auto& sc = deserialized_entity.AddComponent<NativeScriptComponent>();
+          int32_t num_scripts = script_component["Num_Scripts"].as<int32_t>();
+          std::string name_tag = "Script_name_";
+          for (int i = 0; i < num_scripts; i++) {
+            name_tag += std::to_string(i);
+            std::string script_name = script_component[name_tag].as<std::string>();
+            
+            ScriptManager::UpdateScript(&sc, script_name, nullptr);
+          }
+
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
+        } // if (script_component)
 
       } // for (auto entity : entities)
     } // if (entities)
