@@ -104,7 +104,8 @@ namespace ikan {
   void ImguiLayer::SetFont(const ImguiFont &default_font,
                            const ImguiFont &bold_font) {
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    
+    io.Fonts->ClearFonts();
+
     // Store the Bold font as well
     io.Fonts->AddFontFromFileTTF(bold_font.path.c_str(), bold_font.size);
     

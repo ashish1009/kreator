@@ -82,6 +82,7 @@ namespace editor {
     // --------------------
     // Member variables
     // --------------------
+    bool change_font = false;
     Viewport viewport_;
     ContentBrowserPanel cbp_;
     ScenePanelManager spm_;

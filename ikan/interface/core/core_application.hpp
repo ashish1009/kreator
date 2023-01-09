@@ -103,7 +103,9 @@ namespace ikan {
     [[nodiscard]] const Window& GetWindow() const;
     /// This fuinction returns the Imgui Layer pointer Reference
     [[nodiscard]] ImguiLayer& GetImGuiLayer() const;
-
+    /// This function returns the specification of application
+    [[nodiscard]] const Specification& GetSpecification() const;
+    
     /// This fuinction returns the reference instance of application
     static Application& Get();
 

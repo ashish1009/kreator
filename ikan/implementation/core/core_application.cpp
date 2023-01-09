@@ -134,6 +134,7 @@ namespace ikan {
   const Window& Application::GetWindow() const { return *window_; }
   ImguiLayer& Application::GetImGuiLayer() const { return *imgui_layer_; }
   Application& Application::Get() { return *instance_; }
+  const Application::Specification& Application::GetSpecification() const { return specification_; }
 
   // --------------------------------------------------------------------------
   // Application Specification

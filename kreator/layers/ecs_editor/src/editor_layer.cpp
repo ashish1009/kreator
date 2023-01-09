@@ -94,6 +94,17 @@ namespace editor {
       active_scene_->SetViewport(viewport_.width, viewport_.height);
     }
     
+    if (change_font) {
+      // Decorate the Imgui Change the font of imgui
+      ImguiAPI::ChangeFont(
+                           // Regular Font information
+                           { AM::ClientAsset("fonts/openSans/OpenSans-Regular.ttf"), 14.0f /* Size of font */ },
+                           // Bold Font information
+                           { AM::ClientAsset("fonts/openSans/OpenSans-Bold.ttf"), 14.0f /* Size of font */ }
+                           );
+      change_font = false;
+    }
+    
     viewport_.UpdateMousePos();
     
     viewport_.framebuffer->Bind();
@@ -200,6 +211,12 @@ namespace editor {
       cbp_.RenderGui(&setting_.cbp);
     }
     active_scene_->RenderGui();
+    
+    ImGui::Begin("temp");
+    if (ImGui::Button("Font")) {
+      change_font = true;
+    }
+    ImGui::End();
     
     // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });

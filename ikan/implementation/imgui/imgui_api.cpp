@@ -84,8 +84,13 @@ namespace ikan {
 
   void ImguiAPI::ChangeFont(const ImguiFont& default_font_path,
                             const ImguiFont& bold_font_path) {
-    auto& imguiLayer = Application::Get().GetImGuiLayer();
-    imguiLayer.SetFont(default_font_path, bold_font_path);
+    auto& imgui_layer = Application::Get().GetImGuiLayer();
+    imgui_layer.Detach();
+    
+    imgui_layer.Attach();
+    imgui_layer.SetIniFilePath(Application::Get().GetSpecification().save_ini_file_path);
+
+    imgui_layer.SetFont(default_font_path, bold_font_path);
   }
 
   void ImguiAPI::SetGreyThemeColors() {
