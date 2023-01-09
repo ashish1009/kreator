@@ -12,7 +12,7 @@
 namespace ikan {
 
   class Entity;
-  class ScenePanelManager;
+  class EnttScene;
   
   struct Viewport {
     bool focused = false;
@@ -48,8 +48,9 @@ namespace ikan {
     /// This function returns true if viewport size is not same as framebuffer
     bool IsFramebufferResized();
     /// This function updates the hoved entity
-    /// - Parameter spm: scene panel manegr
-    void UpdateHoveredEntity(ScenePanelManager* spm);
+    /// - Parameter current_selected_entity: current selected entity pointer
+    /// - Parameter scene: scene
+    void UpdateHoveredEntity(Entity* current_selected_entity, EnttScene* scene);
     /// This function render the viewport information in gui
     /// - Parameter is_open: flag to show or hide the widget
     void RenderGui(bool *is_open = nullptr);

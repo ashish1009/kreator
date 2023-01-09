@@ -58,12 +58,12 @@ namespace ikan {
     (spec.width != width or spec.height != height);
   }
 
-  void Viewport::UpdateHoveredEntity(ScenePanelManager* spm) {
+  void Viewport::UpdateHoveredEntity(Entity* current_selected_entity, EnttScene* scene) {
     if (!hovered)
       return;
     
     if (ImGuizmo::IsOver()) {
-      hovered_entity_ = spm->GetSelectedEntity();
+      hovered_entity_ = current_selected_entity;
       return;
     }
 
@@ -73,7 +73,7 @@ namespace ikan {
                                     framebuffer->GetPixelIdIndex(),
                                     hovered_entity_id_);
     
-    if (EnttScene* scene = spm->GetContext(); scene) {
+    if (scene) {
       // Update hovered entity
       hovered_entity_ = (hovered_entity_id_ > (int32_t)scene->GetMaxEntityId()) ?
       nullptr :

@@ -84,7 +84,7 @@ namespace mario {
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
     mario_scene_.Update(ts);
 
-    viewport_.UpdateHoveredEntity(&spm_);
+    viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), &mario_scene_);
     viewport_.framebuffer->Unbind();
 #else
     Renderer::Clear({0.2, 0.3, 0.4, 1.0});

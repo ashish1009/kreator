@@ -194,7 +194,7 @@ namespace editor {
     
     SystemTextData::Render(viewport_.width, viewport_.height);
         
-    viewport_.UpdateHoveredEntity(&spm_);
+    viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
     viewport_.framebuffer->Unbind();
   }
   
