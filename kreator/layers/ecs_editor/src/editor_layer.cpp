@@ -17,8 +17,8 @@ namespace editor {
   
   struct FontData {
     std::string base_path;
-    std::string bold_font_name;
     std::vector<std::string> font_names;
+    std::vector<std::string> bold_font_names;
   };
   
   // Available fonts
@@ -86,23 +86,23 @@ namespace editor {
     
     FontData open_sans;
     open_sans.base_path = "fonts/";
-    open_sans.bold_font_name = "Bold";
     open_sans.font_names = {
-      "Bold",
-      "BoldItalic",
-      "ExtraBold",
-      "ExtraBoldItalic",
       "Italic",
       "Light",
       "LightItalic",
       "Regular",
+    };
+    open_sans.bold_font_names = {
+      "Bold",
+      "BoldItalic",
+      "ExtraBold",
+      "ExtraBoldItalic",
       "SemiBold",
       "SemiBoldItalic",
     };
-    
+
     FontData roberto;
     roberto.base_path = "fonts/";
-    roberto.bold_font_name = "Bold";
     roberto.font_names = {
       "ThinItalic",
       "Thin",
@@ -113,14 +113,16 @@ namespace editor {
       "LightItalic",
       "Light",
       "Italic",
+      "Black",
+    };
+    roberto.bold_font_names = {
       "BoldItalic",
       "Bold",
       "BlackItalic",
-      "Black",
     };
     
     available_fonts_map_["Opensans"] = open_sans;
-    available_fonts_map_["Roberto"] = roberto;
+    available_fonts_map_["Roboto"] = roberto;
   }
   
   EditorLayer::~EditorLayer() {
@@ -131,7 +133,7 @@ namespace editor {
     IK_INFO("Editor", "Attaching Editor Layer instance");
     
     // Change Text renderer Font
-    TextRenderer::LoadFreetype(AM::ClientAsset("fonts/opensans/OpenSans-Regular.ttf"));
+    TextRenderer::LoadFreetype(AM::ClientAsset("fonts/Opensans/Regular.ttf"));
   }
   
   void EditorLayer::Detach() {
@@ -341,19 +343,35 @@ namespace editor {
           ImGui::EndMenu(); // ImGui::BeginMenu("Theme")
         } // if (ImGui::BeginMenu("Theme"))
         if (ImGui::BeginMenu("Fonts")) {
-          for (const auto& [font_type_name, font_data] : available_fonts_map_) {
-            if (ImGui::BeginMenu(font_type_name.c_str())) {
+          for (const auto& [folder_name, font_data] : available_fonts_map_) {
+            if (ImGui::BeginMenu((folder_name + "Regular").c_str())) {
               for (const auto& font_name : font_data.font_names) {
-                if (ImGui::MenuItem(font_name.c_str(), nullptr, false, current_font_name_ != font_name)) {
-                  current_font_name_ = font_name;
-                  current_font_path_ = font_data.base_path + font_name + ".ttf";
-                  current_bold_font_path_ = font_data.base_path + font_data.bold_font_name + ".ttf";
+                if (ImGui::MenuItem(font_name.c_str(),
+                                    nullptr,
+                                    false,
+                                    current_font_name_ != folder_name + font_name)) {
+                  current_font_name_ = folder_name + font_name;
+                  current_font_path_ = font_data.base_path + folder_name + "/" + font_name + ".ttf";
+                  change_font_ = true;
+                }
+              }
+              ImGui::EndMenu(); // Fonts  Regular
+            } // regular if
+            if (ImGui::BeginMenu((folder_name + "Bold").c_str())) {
+              for (const auto& font_name : font_data.bold_font_names) {
+                if (ImGui::MenuItem(font_name.c_str(),
+                                    nullptr,
+                                    false,
+                                    current_bold_font_name_ != folder_name + font_name)) {
+                  current_bold_font_name_ = folder_name + font_name;
+                  current_bold_font_path_ = font_data.base_path + folder_name + "/" + font_name + ".ttf";
                   change_font_ = true;
                 }
               }
               ImGui::EndMenu(); // Fonts  name.c_str
-            }
-          }
+            } // Bold if
+            ImGui::Separator();
+          } // For (font map)
           ImGui::EndMenu(); // ImGui::BeginMenu("Theme")
         } // if (ImGui::BeginMenu("Theme"))
 

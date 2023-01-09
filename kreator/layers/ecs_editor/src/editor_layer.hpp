@@ -82,17 +82,19 @@ namespace editor {
     // --------------------
     // Member variables
     // --------------------
-    bool change_font_ = false;
     Viewport viewport_;
     ContentBrowserPanel cbp_;
     ScenePanelManager spm_;
     std::shared_ptr<EnttScene> active_scene_;
     
     Setting setting_;
-    
-    std::string current_font_name_ = "";
-    std::string current_font_path_ = "";
-    std::string current_bold_font_path_ = "";
+
+    // Font
+    bool change_font_ = true;
+    std::string current_font_name_ = "OpensansRegular";
+    std::string current_font_path_ = "fonts/Opensans/Regular.ttf";
+    std::string current_bold_font_name_ = "OpensansBold";
+    std::string current_bold_font_path_ = "fonts/Opensans/Bold.ttf";
   };
   
 }
