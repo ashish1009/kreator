@@ -197,7 +197,8 @@ namespace ikan {
     auto view = registry_.view<CameraComponent>();
     for (auto entity : view) {
       auto& cc = view.get<CameraComponent>(entity);
-      cc.camera->SetViewportSize(width, height);
+      if (!cc.is_fixed_aspect_ratio)
+        cc.camera->SetViewportSize(width, height);
     }
   }
   
@@ -336,5 +337,5 @@ namespace ikan {
   entt::registry& EnttScene::GetRegistry() { return registry_; }
   bool EnttScene::IsEditing() const { return state_ == EnttScene::State::Edit; }
   const std::string EnttScene::GetName() const { return name_; }
-  
+  const CameraData& EnttScene::GetPrimaryCameraData() const { return primary_camera_data_; }
 }

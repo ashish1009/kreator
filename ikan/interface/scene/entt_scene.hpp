@@ -108,6 +108,8 @@ namespace ikan {
     bool IsEditing() const;
     /// This finction return Name of scene
     const std::string GetName() const;
+    /// This function returns the primary camera data
+    const CameraData& GetPrimaryCameraData() const;
     
     DELETE_COPY_MOVE_CONSTRUCTORS(EnttScene);
     

@@ -50,9 +50,10 @@ namespace mario {
     // Member variables
     // --------------------
     uint32_t viewport_width_ = 0, viewport_height_ = 0;
-
     EnttScene mario_scene_;
     Entity camera_entity_;
+    
+    // mario Data
     BackgroudData* background_data_;
     Player* player_;    
   

@@ -7,7 +7,8 @@
 
 #pragma once
 
-#define CHESS_DEBUG 1
+#include "piece.hpp"
+#include "block.hpp"
 
 namespace chess {
   
@@ -46,6 +47,9 @@ namespace chess {
     /// This function handles the mouse button event
     /// - Parameter e: mouse button pressed event
     bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
+    /// This function renders the scene
+    /// - Parameter ts: Time step between 2 Frames
+    void Render(Timestep ts);
 
     // --------------------
     // Member variables
@@ -53,6 +57,9 @@ namespace chess {
     uint32_t viewport_width_ = 0, viewport_height_ = 0;
     EnttScene chess_scene_;
     Entity camera_entity_;
+    
+    // Cbess Data
+    Block block_[MaxRows][MaxCols];
         
     // For Debug
 #if CHESS_DEBUG

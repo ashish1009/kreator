@@ -39,8 +39,11 @@ namespace chess {
     
     auto& camera_comp = camera_entity_.AddComponent<CameraComponent>();
     camera_comp.is_primary = true;
+    camera_comp.is_fixed_aspect_ratio = true;
     camera_comp.camera->SetOrthographicSize(22.0f);
-
+    
+    auto e = chess_scene_.CreateEntity();
+    e.AddComponent<QuadComponent>();
   }
   
   void ChessLayer::Detach() {
@@ -58,15 +61,18 @@ namespace chess {
     viewport_.UpdateMousePos();
     viewport_.framebuffer->Bind();
     
-    Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
-    chess_scene_.Update(ts);
+    Render(ts);
     
     viewport_.UpdateHoveredEntity(&spm_);
     viewport_.framebuffer->Unbind();
 #else
-    Renderer::Clear({0.2, 0.2, 0.2, 1.0});
-    chess_scene_.Update(ts);
+    Render(ts);
 #endif
+  }
+  
+  void ChessLayer::Render(Timestep ts) {
+    Renderer::Clear({0.12f, 0.12f, 0.12f, 1.0f});
+    chess_scene_.Update(ts);
   }
   
   void ChessLayer::EventHandler(Event& event) {
@@ -97,7 +103,6 @@ namespace chess {
 #endif
     return false;
   }
-
   
   void ChessLayer::RenderGui() {
 #if CHESS_DEBUG
