@@ -16,7 +16,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
             endingLineNumber = "41"
-            landmarkName = "RenderFramerate(viewport_width, viewport_height)"
+            landmarkName = "Render(viewport_width, viewport_height)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

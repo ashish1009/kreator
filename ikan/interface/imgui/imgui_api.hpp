@@ -43,6 +43,18 @@ namespace ikan {
     static void ChangeFont(const ImguiFont& default_font_path,
                            const ImguiFont& bold_font_path);
 
+    // -------
+    // Theme
+    // -------
+    /// This fucntions sets the Grey theme of Imgui
+    static void SetGreyThemeColors();
+    /// This fucntions sets the Light Grey theme of Imgui
+    static void SetLightGreyThemeColors();
+    /// This fucntions sets the Light theme of Imgui
+    static void SetLightThemeColors();
+    /// This fucntions sets the Dark theme of Imgui
+    static void SetDarkThemeColors();
+
     MAKE_PURE_STATIC(ImguiAPI);
   };
   

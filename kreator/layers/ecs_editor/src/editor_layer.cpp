@@ -256,6 +256,30 @@ namespace editor {
         ImGui::EndMenu(); // ImGui::BeginMenu("File")
       } // if (ImGui::BeginMenu("File"))
       
+      if (ImGui::BeginMenu("Properties")) {
+        if (ImGui::BeginMenu("Theme")) {
+          if (ImGui::MenuItem("Light", nullptr)) {
+            viewport_.framebuffer->UpdateSpecificationColor({0.82f, 0.82f, 0.82f, 1.0f});
+            ImguiAPI::SetLightThemeColors();
+          }
+          if (ImGui::MenuItem("Dark", nullptr)) {
+            viewport_.framebuffer->UpdateSpecificationColor({0.08f, 0.08f, 0.08f, 1.0f});
+            ImguiAPI::SetDarkThemeColors();
+          }
+          if (ImGui::MenuItem("Grey", nullptr)) {
+            viewport_.framebuffer->UpdateSpecificationColor({0.18f, 0.18f, 0.18f, 1.0f});
+            ImguiAPI::SetGreyThemeColors();
+          }
+          if (ImGui::MenuItem("Light Grey", nullptr)) {
+            viewport_.framebuffer->UpdateSpecificationColor({0.25f, 0.25f, 0.25f, 1.0f});
+            ImguiAPI::SetLightGreyThemeColors();
+          }
+          ImGui::EndMenu(); // ImGui::BeginMenu("Theme")
+        } // if (ImGui::BeginMenu("Theme"))
+        ImGui::EndMenu(); // ImGui::BeginMenu("Properties")
+      } // if (ImGui::BeginMenu("Properties"))
+
+      
       if (ImGui::BeginMenu("Setting", active_scene_ and active_scene_->IsEditing())) {
         if (ImGui::BeginMenu("Scene")) {
           Setting::UpdateSetting("Editor Camera", active_scene_->GetSetting().editor_camera);
