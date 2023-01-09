@@ -39,7 +39,7 @@ namespace ikan {
     // -----------------
     // Member function
     // -----------------
-    Viewport(const glm::vec4& fb_color = glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
+    Viewport(const glm::vec4& fb_color = glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
     
     /// This function updates the Mouse position inside the viewport. Should be called each frame to get mouse position precisely
     void UpdateMousePos();

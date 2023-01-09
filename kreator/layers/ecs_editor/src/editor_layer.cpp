@@ -9,6 +9,59 @@
 
 namespace editor {
   
+  /// This structure stores the data for rendering text like frame rate and renderer versions
+  struct SystemTextData {
+    // Projection matrix for still camera to make text not move with camera
+    glm::mat4 still_camera_projection;
+    
+    // Render the Frame rate position
+    glm::vec3 frame_rate_text_pos = { 5.0f, 5.0f, 0.3f };
+    // Render the Renderer version position
+    glm::vec3 renderer_info_text_pos;
+    
+    // Text size and color
+    glm::vec2 text_size = { 0.25f, 0.25f };
+    glm::vec4 text_color = { 0.0f, 0.0f, 0.0f, 1.0f };
+    
+    uint32_t viewport_width = 1600;
+    uint32_t viewport_height = 900;
+    
+    void UpdateData(uint32_t width, uint32_t height) {
+      if (viewport_width == width and viewport_height == height)
+        return;
+      
+      viewport_width = width;
+      viewport_height = height;
+      
+      still_camera_projection = glm::ortho( 0.0f, (float)viewport_width, 0.0f, (float)viewport_height);
+      renderer_info_text_pos = { viewport_width - 220.0f, 1.0f, 0.3f };
+    }
+    
+    static void Render(uint32_t viewport_width, uint32_t viewport_height) {
+      static SystemTextData text_rednerer_data;
+      
+      /// Render the Frame rate
+      TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)),
+                               text_rednerer_data.still_camera_projection,
+                               text_rednerer_data.frame_rate_text_pos,
+                               text_rednerer_data.text_size,
+                               text_rednerer_data.text_color);
+      
+      /// Render the Renderer Version
+      static const Renderer::Capabilities& rendererCapability = Renderer::Capabilities::Get();
+      static std::string rendererInfo = "(c) Kreator | "
+      + rendererCapability.renderer + " | "
+      + rendererCapability.version;
+      TextRenderer::RenderText(rendererInfo,
+                               text_rednerer_data.still_camera_projection,
+                               text_rednerer_data.renderer_info_text_pos,
+                               text_rednerer_data.text_size,
+                               text_rednerer_data.text_color);
+      
+      text_rednerer_data.UpdateData(viewport_width, viewport_height);
+    }
+  };
+  
   EditorLayer::EditorLayer() : Layer("Kreator") {
     IK_INFO("Editor", "Creating Editor Layer instance ... ");
     cbp_.AddFavouritPaths({
@@ -23,6 +76,9 @@ namespace editor {
   
   void EditorLayer::Attach() {
     IK_INFO("Editor", "Attaching Editor Layer instance");
+    
+    // Change Text renderer Font
+    TextRenderer::LoadFreetype(AM::ClientAsset("fonts/opensans/OpenSans-Regular.ttf"));
   }
   
   void EditorLayer::Detach() {
@@ -44,6 +100,8 @@ namespace editor {
 
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
     active_scene_->Update(ts);
+    
+    SystemTextData::Render(viewport_.width, viewport_.height);
         
     viewport_.UpdateHoveredEntity(&spm_);
     viewport_.framebuffer->Unbind();
