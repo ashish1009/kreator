@@ -95,6 +95,12 @@ namespace editor {
     std::string current_font_path_ = "fonts/Opensans/Regular.ttf";
     std::string current_bold_font_name_ = "OpensansBold";
     std::string current_bold_font_path_ = "fonts/Opensans/Bold.ttf";
+    
+    // Theme
+    enum class Theme {
+      Light, Dark, Grey, LightGrey
+    };
+    Theme current_theme_ = Theme::LightGrey;
   };
   
 }

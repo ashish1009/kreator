@@ -121,8 +121,8 @@ namespace editor {
       "BlackItalic",
     };
     
-    available_fonts_map_["Opensans"] = open_sans;
     available_fonts_map_["Roboto"] = roberto;
+    available_fonts_map_["Opensans"] = open_sans;
   }
   
   EditorLayer::~EditorLayer() {
@@ -133,7 +133,10 @@ namespace editor {
     IK_INFO("Editor", "Attaching Editor Layer instance");
     
     // Change Text renderer Font
-    TextRenderer::LoadFreetype(AM::ClientAsset("fonts/Opensans/Regular.ttf"));
+    TextRenderer::LoadFreetype(AM::ClientAsset(current_font_path_.c_str()));
+
+    viewport_.framebuffer->UpdateSpecificationColor({0.25f, 0.25f, 0.25f, 1.0f});
+    ImguiAPI::SetLightGreyThemeColors();
   }
   
   void EditorLayer::Detach() {
@@ -141,7 +144,7 @@ namespace editor {
   }
   
   void EditorLayer::Update(Timestep ts) {
-    if (current_font_path_ != "" and change_font_) {
+    if (change_font_) {
       // Decorate the Imgui Change the font of imgui
       ImguiAPI::ChangeFont(
                            // Regular Font information
@@ -149,6 +152,28 @@ namespace editor {
                            // Bold Font information
                            { AM::ClientAsset(current_bold_font_path_), 14.0f /* Size of font */ }
                            );
+      switch (current_theme_) {
+        case Theme::Light:
+          viewport_.framebuffer->UpdateSpecificationColor({0.82f, 0.82f, 0.82f, 1.0f});
+          ImguiAPI::SetLightThemeColors();
+          break;
+        case Theme::Dark:
+          viewport_.framebuffer->UpdateSpecificationColor({0.08f, 0.08f, 0.08f, 1.0f});
+          ImguiAPI::SetDarkThemeColors();
+          break;
+        case Theme::Grey:
+          viewport_.framebuffer->UpdateSpecificationColor({0.18f, 0.18f, 0.18f, 1.0f});
+          ImguiAPI::SetGreyThemeColors();
+          break;
+        case Theme::LightGrey:
+          viewport_.framebuffer->UpdateSpecificationColor({0.25f, 0.25f, 0.25f, 1.0f});
+          ImguiAPI::SetLightGreyThemeColors();
+          break;
+
+        default:
+          IK_ASSERT(false);
+      }
+      
       change_font_ = false;
     }
     
@@ -327,18 +352,22 @@ namespace editor {
           if (ImGui::MenuItem("Light", nullptr)) {
             viewport_.framebuffer->UpdateSpecificationColor({0.82f, 0.82f, 0.82f, 1.0f});
             ImguiAPI::SetLightThemeColors();
+            current_theme_ = Theme::Light;
           }
           if (ImGui::MenuItem("Dark", nullptr)) {
             viewport_.framebuffer->UpdateSpecificationColor({0.08f, 0.08f, 0.08f, 1.0f});
             ImguiAPI::SetDarkThemeColors();
+            current_theme_ = Theme::Dark;
           }
           if (ImGui::MenuItem("Grey", nullptr)) {
             viewport_.framebuffer->UpdateSpecificationColor({0.18f, 0.18f, 0.18f, 1.0f});
             ImguiAPI::SetGreyThemeColors();
+            current_theme_ = Theme::Grey;
           }
           if (ImGui::MenuItem("Light Grey", nullptr)) {
             viewport_.framebuffer->UpdateSpecificationColor({0.25f, 0.25f, 0.25f, 1.0f});
             ImguiAPI::SetLightGreyThemeColors();
+            current_theme_ = Theme::LightGrey;
           }
           ImGui::EndMenu(); // ImGui::BeginMenu("Theme")
         } // if (ImGui::BeginMenu("Theme"))
