@@ -70,27 +70,38 @@ namespace chess {
   
   Pawn::Pawn(Color color, Position row, Position col)
   : Piece(Piece::Type::Pawn, color, row, col) {
-    texture_ = Renderer::GetTexture(AM::ClientAsset("textures/black/pawn.png"));
+    std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
+    texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "pawn.png"));
   }
   
   King::King(Color color, Position row, Position col)
   : Piece(Piece::Type::King, color, row, col) {
+    std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
+    texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "king.png"));
   }
   
   Queen::Queen(Color color, Position row, Position col)
   : Piece(Piece::Type::Queen, color, row, col) {
+    std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
+    texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "queen.png"));
   }
   
   Bishop::Bishop(Color color, Position row, Position col)
   : Piece(Piece::Type::Bishop, color, row, col) {
+    std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
+    texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "bishop.png"));
   }
   
   Knight::Knight(Color color, Position row, Position col)
   : Piece(Piece::Type::Knight, color, row, col) {
+    std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
+    texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "knight.png"));
   }
   
   Rook::Rook(Color color, Position row, Position col)
   : Piece(Piece::Type::Rook, color, row, col) {
+    std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
+    texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "rook.png"));
   }
   
 }
