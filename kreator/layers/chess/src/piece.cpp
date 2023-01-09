@@ -38,14 +38,14 @@ namespace chess {
     Color color = GetPieceStartColor(row);
     switch (GetStartPieceType(row, col)) {
       case Piece::Type::Pawn: return std::make_shared<Pawn>(color, row, col);
-//      case Piece::Type::King: return std::make_shared<King>(color);
-//      case Piece::Type::Queen: return std::make_shared<Queen>(color);
-//      case Piece::Type::Bishop: return std::make_shared<Bishop>(color);
-//      case Piece::Type::Knight: return std::make_shared<Knight>(color);
-//      case Piece::Type::Rook: return std::make_shared<Rook>(color);
+      case Piece::Type::King: return std::make_shared<King>(color, row, col);
+      case Piece::Type::Queen: return std::make_shared<Queen>(color, row, col);
+      case Piece::Type::Bishop: return std::make_shared<Bishop>(color, row, col);
+      case Piece::Type::Knight: return std::make_shared<Knight>(color, row, col);
+      case Piece::Type::Rook: return std::make_shared<Rook>(color, row, col);
       case Piece::Type::None: return nullptr;
-//      default:
-//        IK_ASSERT(false);
+      default:
+        IK_ASSERT(false);
     }
     return nullptr;
   }
@@ -53,69 +53,44 @@ namespace chess {
   // -------------------------------------------
   // Pieces
   // -------------------------------------------
-  
   Piece::Piece(Piece::Type type, Color color, Position row, Position col)
   : type_(type), row_(row), col_(col), color_(color) {
     switch (type_) {
       case Piece::Type::Pawn: name_ = "Pawn"; break;
-//      case Piece::Type::King: return std::make_shared<King>(color);
-//      case Piece::Type::Queen: return std::make_shared<Queen>(color);
-//      case Piece::Type::Bishop: return std::make_shared<Bishop>(color);
-//      case Piece::Type::Knight: return std::make_shared<Knight>(color);
-//      case Piece::Type::Rook: return std::make_shared<Rook>(color);
+      case Piece::Type::King: name_ = "King"; break;
+      case Piece::Type::Queen: name_ = "Queen"; break;
+      case Piece::Type::Bishop: name_ = "Bishop"; break;
+      case Piece::Type::Knight: name_ = "Knight"; break;
+      case Piece::Type::Rook: name_ = "Rook"; break;
       case Piece::Type::None: name_ = "Empty"; break;
-//      default:
-  //        IK_ASSERT(false);
+      default:
+        IK_ASSERT(false);
     }
   }
-
+  
   Pawn::Pawn(Color color, Position row, Position col)
   : Piece(Piece::Type::Pawn, color, row, col) {
     texture_ = Renderer::GetTexture(AM::ClientAsset("textures/black/pawn.png"));
   }
   
-//  King::King(Color color) {
-//    color_ = color;
-//    type_ = Piece::Type::King;
-//
-//  }
-//  King::~King() {
-//
-//  }
-//
-//  Queen::Queen(Color color) {
-//    color_ = color;
-//    type_ = Piece::Type::Queen;
-//
-//  }
-//  Queen::~Queen() {
-//
-//  }
-//
-//  Bishop::Bishop(Color color) {
-//    color_ = color;
-//    type_ = Piece::Type::Bishop;
-//
-//  }
-//  Bishop::~Bishop() {
-//
-//  }
-//
-//  Knight::Knight(Color color) {
-//    color_ = color;
-//    type_ = Piece::Type::Knight;
-//
-//  }
-//  Knight::~Knight() {
-//
-//  }
-//
-//  Rook::Rook(Color color) {
-//    color_ = color;
-//    type_ = Piece::Type::Rook;
-//
-//  }
-//  Rook::~Rook() {
-//
-//  }
+  King::King(Color color, Position row, Position col)
+  : Piece(Piece::Type::King, color, row, col) {
+  }
+  
+  Queen::Queen(Color color, Position row, Position col)
+  : Piece(Piece::Type::Queen, color, row, col) {
+  }
+  
+  Bishop::Bishop(Color color, Position row, Position col)
+  : Piece(Piece::Type::Bishop, color, row, col) {
+  }
+  
+  Knight::Knight(Color color, Position row, Position col)
+  : Piece(Piece::Type::Knight, color, row, col) {
+  }
+  
+  Rook::Rook(Color color, Position row, Position col)
+  : Piece(Piece::Type::Rook, color, row, col) {
+  }
+  
 }

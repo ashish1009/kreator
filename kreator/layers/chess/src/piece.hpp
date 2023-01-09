@@ -68,39 +68,39 @@ namespace chess {
     ~Pawn() = default;
   };
 
-//  /// Class to store the King data and funtion
-//  class King : public Piece {
-//  public:
-//    King(Color color, Position row, Position col);
-//    ~King() = default;
-//  };
-//
-//  /// Class to store the queen data and funtion
-//  class Queen : public Piece {
-//  public:
-//    Queen(Color color, Position row, Position col);
-//    ~Queen() = default;
-//  };
-//
-//  /// Class to store the Bishop data and funtion
-//  class Bishop : public Piece {
-//  public:
-//    Bishop(Color color, Position row, Position col);
-//    ~Bishop() = default;
-//  };
-//
-//  /// Class to store the Knight data and funtion
-//  class Knight : public Piece {
-//  public:
-//    Knight(Color color, Position row, Position col);
-//    ~Knight() = default;
-//  };
-//
-//  /// Class to store the Rook data and funtion
-//  class Rook : public Piece {
-//  public:
-//    Rook(Color color, Position row, Position col);
-//    ~Rook() = default;
-//  };
+  /// Class to store the King data and funtion
+  class King : public Piece {
+  public:
+    King(Color color, Position row, Position col);
+    ~King() = default;
+  };
+
+  /// Class to store the queen data and funtion
+  class Queen : public Piece {
+  public:
+    Queen(Color color, Position row, Position col);
+    ~Queen() = default;
+  };
+
+  /// Class to store the Bishop data and funtion
+  class Bishop : public Piece {
+  public:
+    Bishop(Color color, Position row, Position col);
+    ~Bishop() = default;
+  };
+
+  /// Class to store the Knight data and funtion
+  class Knight : public Piece {
+  public:
+    Knight(Color color, Position row, Position col);
+    ~Knight() = default;
+  };
+
+  /// Class to store the Rook data and funtion
+  class Rook : public Piece {
+  public:
+    Rook(Color color, Position row, Position col);
+    ~Rook() = default;
+  };
 
 }
