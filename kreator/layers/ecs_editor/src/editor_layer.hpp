@@ -89,7 +89,10 @@ namespace editor {
     std::shared_ptr<EnttScene> active_scene_;
     
     Setting setting_;
+    
     std::string current_font_name_ = "";
+    std::string current_font_path_ = "";
+    std::string current_bold_font_path_ = "";
   };
   
 }

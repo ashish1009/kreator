@@ -7,10 +7,23 @@
 
 #include "editor_layer.hpp"
 
+
+/*
+ Open Sans -> Base Path , vector
+ Roberto
+ */
+
 namespace editor {
   
-  static std::unordered_map<std::string, std::array<std::string, 2>> available_fonts_map;
+  struct FontData {
+    std::string base_path;
+    std::string bold_font_name;
+    std::vector<std::string> font_names;
+  };
   
+  // Available fonts
+  static std::unordered_map<std::string /* Folder name */, FontData> available_fonts_map_;
+    
   /// This structure stores the data for rendering text like frame rate and renderer versions
   struct SystemTextData {
     // Projection matrix for still camera to make text not move with camera
@@ -71,11 +84,43 @@ namespace editor {
       AM::ProjectPath("kreator/layers/ecs_editor/editor_assets/scenes"),
     });
     
-    available_fonts_map["Open Sans"][0] = "fonts/opensans/OpenSans-Bold.ttf";
-    available_fonts_map["Open Sans"][1] = "fonts/opensans/OpenSans-Regular.ttf";
-
-    available_fonts_map["Roberto"][0] = "fonts/roboto/Roboto-Bold.ttf";
-    available_fonts_map["Roberto"][1] = "fonts/roboto/Roboto-Regular.ttf";
+    FontData open_sans;
+    open_sans.base_path = "fonts/";
+    open_sans.bold_font_name = "Bold";
+    open_sans.font_names = {
+      "Bold",
+      "BoldItalic",
+      "ExtraBold",
+      "ExtraBoldItalic",
+      "Italic",
+      "Light",
+      "LightItalic",
+      "Regular",
+      "SemiBold",
+      "SemiBoldItalic",
+    };
+    
+    FontData roberto;
+    roberto.base_path = "fonts/";
+    roberto.bold_font_name = "Bold";
+    roberto.font_names = {
+      "ThinItalic",
+      "Thin",
+      "SemiMedium",
+      "Regular",
+      "MediumItalic",
+      "Medium",
+      "LightItalic",
+      "Light",
+      "Italic",
+      "BoldItalic",
+      "Bold",
+      "BlackItalic",
+      "Black",
+    };
+    
+    available_fonts_map_["Opensans"] = open_sans;
+    available_fonts_map_["Roberto"] = roberto;
   }
   
   EditorLayer::~EditorLayer() {
@@ -94,13 +139,13 @@ namespace editor {
   }
   
   void EditorLayer::Update(Timestep ts) {
-    if (current_font_name_ != "" and change_font_) {
+    if (current_font_path_ != "" and change_font_) {
       // Decorate the Imgui Change the font of imgui
       ImguiAPI::ChangeFont(
                            // Regular Font information
-                           { AM::ClientAsset(available_fonts_map[current_font_name_][1]), 14.0f /* Size of font */ },
+                           { AM::ClientAsset(current_font_path_), 14.0f /* Size of font */ },
                            // Bold Font information
-                           { AM::ClientAsset(available_fonts_map[current_font_name_][0]), 14.0f /* Size of font */ }
+                           { AM::ClientAsset(current_bold_font_path_), 14.0f /* Size of font */ }
                            );
       change_font_ = false;
     }
@@ -296,10 +341,17 @@ namespace editor {
           ImGui::EndMenu(); // ImGui::BeginMenu("Theme")
         } // if (ImGui::BeginMenu("Theme"))
         if (ImGui::BeginMenu("Fonts")) {
-          for (const auto& [name, paths] : available_fonts_map) {
-            if (ImGui::MenuItem(name.c_str(), nullptr, false, current_font_name_ != name)) {
-              current_font_name_ = name;
-              change_font_ = true;
+          for (const auto& [font_type_name, font_data] : available_fonts_map_) {
+            if (ImGui::BeginMenu(font_type_name.c_str())) {
+              for (const auto& font_name : font_data.font_names) {
+                if (ImGui::MenuItem(font_name.c_str(), nullptr, false, current_font_name_ != font_name)) {
+                  current_font_name_ = font_name;
+                  current_font_path_ = font_data.base_path + font_name + ".ttf";
+                  current_bold_font_path_ = font_data.base_path + font_data.bold_font_name + ".ttf";
+                  change_font_ = true;
+                }
+              }
+              ImGui::EndMenu(); // Fonts  name.c_str
             }
           }
           ImGui::EndMenu(); // ImGui::BeginMenu("Theme")
