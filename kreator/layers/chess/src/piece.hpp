@@ -11,6 +11,8 @@
 
 namespace chess {
   
+  using namespace ikan;
+  
   struct StartPosition {
     static constexpr Position King = 3;
     static constexpr Position Queen = 4;
@@ -34,52 +36,68 @@ namespace chess {
       None, Pawn, King, Queen, Bishop, Knight, Rook
     };
     
+    /// Cosntructor of base piece class
+    /// - Parameters:
+    ///   - type: type of piece
+    ///   - color: color of piece
+    ///   - row: row of position
+    ///   - col: col position
+    Piece(Piece::Type type, Color color, Position row, Position col);
     virtual ~Piece() = default;
     
     /// This function create the pirce based on the type of piece
-    /// - Parameter type: piece type
-    static std::shared_ptr<Piece> Create(Type type);
-    
-    /// This function returns the type of piece at position x, y in start game
     /// - Parameters:
-    ///   - start_x: x position
-    ///   - start_y: y position
-    static Type GetStartPieceType(Position start_x, Position start_y);
-    
-  private:
+    ///   - row: x position
+    ///   - col: y position
+    static std::shared_ptr<Piece> Create(Position row, Position col);
+
+  protected:
     Type type_ = Type::None;
-    Position x_ = -1, y_ = -1;
+    Position row_ = -1, col_ = -1;
     Color color_ = Color::None;
+    std::shared_ptr<Texture> texture_;
   };
   
   /// Class to store the pawn data and funtion
   class Pawn : public Piece {
   public:
+    Pawn(Color color, Position row, Position col);
+    ~Pawn() = default;
   };
 
-  /// Class to store the King data and funtion
-  class King : public Piece {
-  public:
-  };
-
-  /// Class to store the queen data and funtion
-  class Queen : public Piece {
-  public:
-  };
-
-  /// Class to store the Bishop data and funtion
-  class Bishop : public Piece {
-  public:
-  };
-
-  /// Class to store the Knight data and funtion
-  class Knight : public Piece {
-  public:
-  };
-
-  /// Class to store the Rook data and funtion
-  class Rook : public Piece {
-  public:
-  };
+//  /// Class to store the King data and funtion
+//  class King : public Piece {
+//  public:
+//    King(Color color);
+//    ~King() = default;
+//  };
+//
+//  /// Class to store the queen data and funtion
+//  class Queen : public Piece {
+//  public:
+//    Queen(Color color);
+//    ~Queen() = default;
+//  };
+//
+//  /// Class to store the Bishop data and funtion
+//  class Bishop : public Piece {
+//  public:
+//    Bishop(Color color);
+//    ~Bishop() = default;
+//  };
+//
+//  /// Class to store the Knight data and funtion
+//  class Knight : public Piece {
+//  public:
+//    Knight(Color color);
+//    ~Knight() = default;
+//  };
+//
+//  /// Class to store the Rook data and funtion
+//  class Rook : public Piece {
+//  public:
+//    Rook(Color color);
+//    ~Rook() = default;
+//  };
 
 }

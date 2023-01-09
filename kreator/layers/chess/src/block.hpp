@@ -15,7 +15,7 @@ namespace chess {
   
   /// This structure stores the data of each blockl of chess. Data like
   struct Block {
-    Position x = -1, y = -1;
+    Position row = -1, col = -1;
     std::shared_ptr<Piece> piece = nullptr;
   };
   

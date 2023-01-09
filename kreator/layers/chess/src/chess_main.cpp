@@ -46,28 +46,28 @@ namespace chess {
     // ----------------------------------------------------
     // Add Blocks
     // ----------------------------------------------------
-    for (uint32_t x = 0; x < MaxCols; x++ ) { // Rows
-      for (uint32_t y = 0; y < MaxRows; y++ ) { // Cols
+    for (uint32_t row = 0; row < MaxRows; row++ ) { // Rows
+      for (uint32_t col = 0; col < MaxCols; col++ ) { // Cols
         // Update the position of block
-        block_[x][y].x = x;
-        block_[x][y].y = y;
+        block_[row][col].row = row;
+        block_[row][col].col = col;
         
         // Create Chess Block Entity (Black or white)
-        auto e = chess_scene_.CreateEntity("Block_" + std::to_string(x) + "_" + std::to_string(y));
+        auto e = chess_scene_.CreateEntity("Block_" + std::to_string(row) + "_" + std::to_string(col));
         
         // Create Quad component and update the color alternate
         auto& quad_comp = e.AddComponent<QuadComponent>();
-        if (x % 2)
-          quad_comp.color = (y % 2) ? BlackColor : WhiteColor;
+        if (row % 2)
+          quad_comp.color = (col % 2) ? BlackColor : WhiteColor;
         else
-          quad_comp.color = (y % 2) ? WhiteColor : BlackColor;
+          quad_comp.color = (col % 2) ? WhiteColor : BlackColor;
         
         // Update the position of block
-        e.GetComponent<TransformComponent>().translation = { x * BlockSize, y * BlockSize, 0 };
+        e.GetComponent<TransformComponent>().translation = { row * BlockSize, col * BlockSize, 0 };
         e.GetComponent<TransformComponent>().scale = { BlockSize, BlockSize, 0 };
         
         // Add the piece
-        block_[x][y].piece = Piece::Create(Piece::GetStartPieceType(x, y));
+        block_[row][col].piece = Piece::Create(row, col);
       } // Rows loop
     } // Cols loop
   }
