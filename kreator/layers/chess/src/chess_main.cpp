@@ -222,11 +222,8 @@ namespace chess {
                 
                 // Validate empty blocks
                 for (const auto& [row, col] : moves) {
-                  if (block_[row][col].piece) {
-                    break;
-                  }
-                  
-                  CreatePossibleMoveEntity(row, col);
+                  if (!block_[row][col].piece) 
+                    CreatePossibleMoveEntity(row, col);
                 } // for (const auto& [row, col] : moves.empty_blocks_)
               }
 

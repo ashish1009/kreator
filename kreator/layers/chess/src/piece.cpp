@@ -23,8 +23,8 @@ namespace chess {
   
   Piece::Type GetStartPieceType(Position row, Position col) {
     if (row == 0 or row == 7) return GetYPosPiece(col);
-    else if (row == 1 or row == 6)
-      return Piece::Type::Pawn;
+//    else if (row == 1 or row == 6)
+//      return Piece::Type::Pawn;
     else return Piece::Type::None;
   }
   
@@ -95,7 +95,7 @@ namespace chess {
       
       Position col = start_col_;
       while (col++ > col_limit) {
-        positions_.push_back(std::make_pair(col, start_row_));
+        positions_.push_back(std::make_pair(start_row_, col));
       }
     }
     
@@ -107,7 +107,7 @@ namespace chess {
 
       Position col = start_col_;
       while (col-- > col_limit) {
-        positions_.push_back(std::make_pair(col, start_row_));
+        positions_.push_back(std::make_pair(start_row_, col));
       }
     }
     
@@ -233,6 +233,20 @@ namespace chess {
 
   PossiblePositions King::GetPossibleMovePositions() {
     PossiblePositions result;
+    PossibleMoves possible_moves(row_, col_, result);
+    
+    possible_moves.Upward(row_ + 1);
+    possible_moves.Downward(row_ - 1);
+
+    possible_moves.Right(col_ + 1);
+    possible_moves.Left(col_ - 1);
+
+    possible_moves.UpLeft(row_ + 1, col_ -1);
+    possible_moves.UpRight(row_ + 1, col_ + 1);
+    
+    possible_moves.DownLeft(row_ - 1, col_ - 1);
+    possible_moves.DownRight(row_ - 1, col_ + 1);
+
     return result;
   }
 
@@ -244,6 +258,20 @@ namespace chess {
 
   PossiblePositions Queen::GetPossibleMovePositions() {
     PossiblePositions result;
+    PossibleMoves possible_moves(row_, col_, result);
+    
+    possible_moves.Upward(MaxRows - 1);
+    possible_moves.Downward(0);
+
+    possible_moves.Right(MaxCols - 1);
+    possible_moves.Left(0);
+
+    possible_moves.UpLeft(MaxRows - 1, 0);
+    possible_moves.UpRight(MaxRows - 1, MaxCols - 1);
+
+    possible_moves.DownLeft(0, 0);
+    possible_moves.DownRight(0, MaxCols - 1);
+
     return result;
   }
 
@@ -255,6 +283,14 @@ namespace chess {
 
   PossiblePositions Bishop::GetPossibleMovePositions() {
     PossiblePositions result;
+    PossibleMoves possible_moves(row_, col_, result);
+    
+    possible_moves.UpLeft(MaxRows - 1, 0);
+    possible_moves.UpRight(MaxRows - 1, MaxCols - 1);
+    
+    possible_moves.DownLeft(0, 0);
+    possible_moves.DownRight(0, MaxCols - 1);
+
     return result;
   }
 
@@ -277,6 +313,14 @@ namespace chess {
 
   PossiblePositions Rook::GetPossibleMovePositions() {
     PossiblePositions result;
+    PossibleMoves possible_moves(row_, col_, result);
+    
+    possible_moves.Upward(MaxRows - 1);
+    possible_moves.Downward(0);
+    
+    possible_moves.Right(MaxCols - 1);
+    possible_moves.Left(0);
+
     return result;
   }
 
