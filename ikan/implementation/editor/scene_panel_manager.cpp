@@ -105,9 +105,19 @@ namespace ikan {
     ImGui::Begin("Scene Manager", &setting_.scene_panel);
     ImGui::PushID("Scene Manager");
     
+    static ImGuiTextFilter entity_filter;
+    ImGui::SetNextItemWidth(ImGui::GetFontSize() * 16);
+    if (PropertyGrid::Search(entity_filter.InputBuf, "Search ... "))
+      entity_filter.Build();
+    
+    ImGui::Separator();
+
     scene_context_->registry_.each([&](auto entity_id)
                                    {
-      DrawEntityTreeNode(entity_id);
+      const std::string& tag = scene_context_->registry_.get<TagComponent>(entity_id).tag;
+      // If Search filter pass the result then render the entity name
+      if(entity_filter.PassFilter(tag.c_str()))
+        DrawEntityTreeNode(entity_id);
     });
     
     // Reset the selected entity if mouse is clicked on empty space
