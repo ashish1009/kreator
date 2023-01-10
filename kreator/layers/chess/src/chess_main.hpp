@@ -61,7 +61,9 @@ namespace chess {
     Block* selected_block_ = nullptr;
     Entity background_entity_;
     
+    // Block Hits
     Entity hovered_block_entity_;
+    Entity selected_block_entity_;
 
     // For Debug
 #if CHESS_DEBUG

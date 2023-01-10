@@ -113,7 +113,7 @@ Add the following library search paths
 ----------------
 - Chess
 
-![](/kreator/layers/chess/output/chess_3.png)
+![](/kreator/layers/chess/output/chess_5.png)
 
 ## Road Map  
 ----------------

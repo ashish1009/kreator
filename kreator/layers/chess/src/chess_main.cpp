@@ -56,7 +56,7 @@ namespace chess {
     }
 
     // ----------------------------------------------------
-    // Hovered Block Entity
+    // Block Hint Entities
     // ----------------------------------------------------
     hovered_block_entity_ = chess_scene_.CreateEntity("Hovered Block");
     hovered_block_entity_.GetComponent<TransformComponent>().scale = {BlockSize, BlockSize, 1};
@@ -64,6 +64,14 @@ namespace chess {
       auto& quad_comp = hovered_block_entity_.AddComponent<QuadComponent>();
       quad_comp.texture_comp.use = true;
       quad_comp.texture_comp.component = Renderer::GetTexture(AM::ClientAsset("textures/common/hovered_block.png"));
+    }
+
+    selected_block_entity_ = chess_scene_.CreateEntity("Selected Block");
+    selected_block_entity_.GetComponent<TransformComponent>().scale = {BlockSize, BlockSize, 1};
+    {
+      auto& quad_comp = selected_block_entity_.AddComponent<QuadComponent>();
+      quad_comp.texture_comp.use = true;
+      quad_comp.texture_comp.component = Renderer::GetTexture(AM::ClientAsset("textures/common/selected_block.png"));
     }
 
     // ----------------------------------------------------
@@ -181,10 +189,22 @@ namespace chess {
           const auto& position = viewport_.hovered_entity_->GetComponent<TransformComponent>().translation;
           uint32_t row = (uint32_t)(position.y / BlockSize);
           uint32_t col = (uint32_t)(position.x / BlockSize);
-          if (row >= 0 and row < MaxRows and col >= 0 and col < MaxCols)
+          if (row >= 0 and row < MaxRows and col >= 0 and col < MaxCols) {
             selected_block_ = &block_[row][col];
-          else
+            if (selected_block_->piece) {
+              // TODO: Later do validation
+              auto& selected_pos = selected_block_entity_.GetComponent<TransformComponent>().translation;
+              if (position.x == selected_pos.x and position.y == selected_pos.y) {
+                // Reset the selected Block square
+                selected_pos = {0, 0, -0.5}; // Move to background NOT VISIBLE
+              } else {
+                selected_pos = {position.x, position.y, 0.25};
+              }
+            }
+          }
+          else {
             selected_block_ = nullptr;
+          }
         } else {
           selected_block_ = nullptr;
         }

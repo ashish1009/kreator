@@ -126,8 +126,8 @@
             filePath = "kreator/layers/chess/src/chess_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "ChessLayer::OnMouseButtonPressed(e)"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "kreator/layers/chess/src/chess_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
             landmarkName = "ChessLayer::RenderGui()"
             landmarkType = "7">
          </BreakpointContent>
