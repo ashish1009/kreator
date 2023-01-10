@@ -90,7 +90,7 @@ namespace chess {
     chess_scene_.Update(ts);
 
 #if CHESS_DEBUG
-    viewport_.UpdateHoveredEntity(&spm_.GetSelectedEntity(), chess_scene_);
+    viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), &chess_scene_);
 #else
     viewport_.UpdateHoveredEntity(nullptr, &chess_scene_);
 #endif

@@ -102,15 +102,17 @@ Add the following library search paths
 
 ----------------
 - Ray Tracing
-  - Ray Tracing Scene and Renderer
+
 ![](/kreator/layers/ray_tracing/output/ray_tracing.png)
   
 ----------------
 - Mario
+
 ![](/kreator/layers/mario/output/mario_2.png)
 
 ----------------
 - Chess
+
 ![](/kreator/layers/chess/output/chess_1.png)
 
 ## Road Map  
@@ -122,10 +124,12 @@ Add the following library search paths
   - Materials
     - Added Material class to handle Shader uniforms as collective buffers
     
+  - Design Physics Engine
   - Audio
+
 ----------------
-    
 - ECS Project
+  - Embed scripts 
   - Math
     - AABB
 
@@ -171,9 +175,5 @@ Add the following library search paths
   
 ----------------
 - 2D Games
-  - Mario
-  - Chess
-
-
-## TODOs
-
+  - Mario : On Going
+  - Chess : On Going
