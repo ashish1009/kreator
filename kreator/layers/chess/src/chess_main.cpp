@@ -269,6 +269,7 @@ namespace chess {
                 ValidatePossibleMoved(moves.down_left);
                 ValidatePossibleMoved(moves.down_right);
               } else { // if (selected_piece_)
+                // TODO: ??
               } // if (selected_piece_)
             } // if (selected_block_->piece)
           } // if (row >= 0 and row < MaxRows and col >= 0 and col < MaxCols)
@@ -290,12 +291,11 @@ namespace chess {
       if (block_[row][col].piece) {
         if (block_[row][col].piece->GetColor() != selected_piece_->GetColor()) {
           CreatePossibleMoveEntity(row, col);
-          
-          // TODO: Extra Validation for Pawns (Diagonal)
         }
         break;
       } else {
-        CreatePossibleMoveEntity(row, col);
+        if (selected_piece_->ValidateIfPawn(col))
+          CreatePossibleMoveEntity(row, col);
       }
       idx++;
     } // for (const auto& [row, col] : moves.empty_blocks_)

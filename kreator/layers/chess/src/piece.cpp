@@ -212,13 +212,21 @@ namespace chess {
     
     if (direction_ == Direction::Up) {
       possible_moves.Upward(row_ + 1);
+      possible_moves.UpLeft(row_ + 1, col_ -1);
+      possible_moves.UpRight(row_ + 1, col_ + 1);
     } else if (direction_ == Direction::Down) {
       possible_moves.Downward(row_ - 1);
+      possible_moves.DownLeft(row_ - 1, col_ - 1);
+      possible_moves.DownRight(row_ - 1, col_ + 1);
     } else {
       IK_ASSERT(false);
     }
     
     return result;
+  }
+  
+  bool Pawn::ValidateIfPawn(Position col) {
+    return col == col_;
   }
   
   King::King(Color color, Position row, Position col)

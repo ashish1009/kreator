@@ -53,6 +53,9 @@ namespace chess {
     
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
     [[nodiscard]] virtual PossibleMoves GetPossibleMovePositions() = 0;
+    /// This function extra validats the position. In all case it return the true onl;y check for pawns
+    /// - Parameter col: columnb of piece
+    virtual bool ValidateIfPawn(Position col) { return true; }
     
     /// This function returns the color name string
     std::string GetColorStr() const;
@@ -101,6 +104,9 @@ namespace chess {
 
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
     PossibleMoves GetPossibleMovePositions() override;
+    /// This function returns true if validation is successfully
+    /// - Parameter col: columnb of piece
+    bool ValidateIfPawn(Position col) override;
     
   private:
     Direction direction_;
