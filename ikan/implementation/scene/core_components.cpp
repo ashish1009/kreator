@@ -114,27 +114,39 @@ namespace ikan {
   }
   QuadComponent::QuadComponent(const QuadComponent& other)
   : color(other.color) {
-    if (other.texture_comp.component)
+    if (other.texture_comp.component) {
+      texture_comp.use = other.texture_comp.use;
+      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
       texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
+    }
     IK_CORE_TRACE(LogModule::Component, "Copying Quad Component ...");
   }
   QuadComponent::QuadComponent(QuadComponent&& other)
   : color(other.color) {
-    if (other.texture_comp.component)
+    if (other.texture_comp.component) {
+      texture_comp.use = other.texture_comp.use;
+      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
       texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
+    }
     IK_CORE_TRACE(LogModule::Component, "Moving Quad Component ...");
   }
   QuadComponent& QuadComponent::operator=(const QuadComponent& other) {
     color = other.color;
-    if (other.texture_comp.component)
+    if (other.texture_comp.component) {
+      texture_comp.use = other.texture_comp.use;
+      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
       texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
+    }
     IK_CORE_TRACE(LogModule::Component, "Copying Quad Component using = operator...");
     return *this;
   }
   QuadComponent& QuadComponent::operator=(QuadComponent&& other) {
     color = other.color;
-    if (other.texture_comp.component)
+    if (other.texture_comp.component) {
+      texture_comp.use = other.texture_comp.use;
+      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
       texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
+    }
     IK_CORE_TRACE(LogModule::Component, "Moving Quad Component using = operator...");
     return *this;
   }
@@ -187,22 +199,31 @@ namespace ikan {
   }
   CircleComponent::CircleComponent(const CircleComponent& other)
   : color(other.color), thickness(other.thickness), fade(other.fade) {
-    if (other.texture_comp.component)
+    if (other.texture_comp.component) {
+      texture_comp.use = other.texture_comp.use;
+      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
       texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
+    }
     IK_CORE_TRACE(LogModule::Component, "Copying Circle Component ...");
   }
   CircleComponent::CircleComponent(CircleComponent&& other)
   : color(other.color), thickness(other.thickness), fade(other.fade) {
-    if (other.texture_comp.component)
+    if (other.texture_comp.component) {
+      texture_comp.use = other.texture_comp.use;
+      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
       texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
+    }
     IK_CORE_TRACE(LogModule::Component, "Moving Circle Component ...");
   }
   CircleComponent& CircleComponent::operator=(const CircleComponent& other) {
     color = other.color;
     thickness = other.thickness;
     fade = other.fade;
-    if (other.texture_comp.component)
+    if (other.texture_comp.component) {
+      texture_comp.use = other.texture_comp.use;
+      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
       texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
+    }
     IK_CORE_TRACE(LogModule::Component, "Copying Circle Component using = operator...");
     return *this;
   }
@@ -210,8 +231,11 @@ namespace ikan {
     color = other.color;
     thickness = other.thickness;
     fade = other.fade;
-    if (other.texture_comp.component)
+    if (other.texture_comp.component) {
+      texture_comp.use = other.texture_comp.use;
+      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
       texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
+    }
     IK_CORE_TRACE(LogModule::Component, "Moving Quad Component using = operator...");
     return *this;
   }
