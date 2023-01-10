@@ -24,11 +24,13 @@ namespace chess {
     static constexpr Position Bishop_2 = 5;
   };
   
+  using PossiblePositions = std::vector<std::pair<Position, Position>>;
+  
   struct PossibleMoveBlocks {
     /// Possible block positions where piece can move . Blocks should be empty
-    std::vector<std::pair<Position, Position>> empty_blocks_;
+    PossiblePositions empty_blocks_;
     /// Possible block positions where piece can move . Blocks should have piece
-    std::vector<std::pair<Position, Position>> piece_blocks_;
+    PossiblePositions piece_blocks_;
   };
     
   /// Base class for all piece. Stores the following data

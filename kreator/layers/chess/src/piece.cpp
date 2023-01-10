@@ -86,22 +86,37 @@ namespace chess {
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "pawn.png"));
   }
   
+  void GetPossibleStraightUpMove(Position start_row, Position start_col, Position limit, PossiblePositions& positions) {
+    Position row = start_row;
+    while (row++ < limit) {
+      positions.push_back(std::make_pair(row, start_col));
+    }
+  }
+
+  void GetPossibleStraightDownMove(Position start_row, Position start_col, Position limit, PossiblePositions& positions) {
+    Position row = start_row;
+    while (row-- > limit) {
+      positions.push_back(std::make_pair(row, start_col));
+    }
+  }
+
   PossibleMoveBlocks Pawn::GetPossibleMovePositions() {
     PossibleMoveBlocks result;
     
     if (direction_ == Direction::Up) {
-      Position row = row_;
-      while (row++ < MaxRows) {
-        result.empty_blocks_.push_back(std::make_pair(row, col_));        
+      if (row_ < MaxRows - 1 and row_ >= 0) {
+        GetPossibleStraightUpMove(row_, col_, row_ + 1, result.empty_blocks_);
+        
+        result.piece_blocks_.push_back(std::make_pair(row_ + 1, col_ + 1));
+        result.piece_blocks_.push_back(std::make_pair(row_ + 1, col_ - 1));
       }
-      
-      result.piece_blocks_.push_back(std::make_pair(row_ + 1, col_ + 1));
-      result.piece_blocks_.push_back(std::make_pair(row_ + 1, col_ - 1));
     } else if (direction_ == Direction::Down) {
-      result.empty_blocks_.push_back(std::make_pair(row_ - 1, col_));
-      
-      result.piece_blocks_.push_back(std::make_pair(row_ - 1, col_ + 1));
-      result.piece_blocks_.push_back(std::make_pair(row_ - 1, col_ - 1));
+      if (row_ < MaxRows and row_ > 0) {
+        GetPossibleStraightDownMove(row_, col_, row_ - 1, result.empty_blocks_);
+        
+        result.piece_blocks_.push_back(std::make_pair(row_ - 1, col_ + 1));
+        result.piece_blocks_.push_back(std::make_pair(row_ - 1, col_ - 1));
+      }
     } else {
       IK_ASSERT(false);
     }
