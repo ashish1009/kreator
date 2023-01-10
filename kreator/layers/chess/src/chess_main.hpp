@@ -51,15 +51,15 @@ namespace chess {
     // --------------------
     // Member variables
     // --------------------
+    Viewport viewport_ = Viewport({ 0.2, 0.2, 0.2, 1.0f });
     uint32_t viewport_width_ = 0, viewport_height_ = 0;
     EnttScene chess_scene_;
     Entity camera_entity_;
     
-    // Cbess Data
+    // Chess Data
     Block block_[MaxRows][MaxCols];
     Block* selected_block_ = nullptr;
-        
-    Viewport viewport_ = Viewport({ 0.2, 0.2, 0.2, 1.0f });
+    Entity background_entity_;
 
     // For Debug
 #if CHESS_DEBUG

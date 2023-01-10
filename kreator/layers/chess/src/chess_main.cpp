@@ -43,11 +43,11 @@ namespace chess {
     camera_comp.is_fixed_aspect_ratio = true;
     
     // Background Block
-    auto back_e = chess_scene_.CreateEntity("Background");
-    back_e.GetComponent<TransformComponent>().translation = {(BlockSize * (MaxCols - 1)) / 2, (BlockSize * (MaxRows - 1)) / 2, -0.2f};
-    back_e.GetComponent<TransformComponent>().scale = {BlockSize * (MaxCols + 1), BlockSize * (MaxRows + 1), 1};
+    background_entity_ = chess_scene_.CreateEntity("Background");
+    background_entity_.GetComponent<TransformComponent>().translation = {(BlockSize * (MaxCols - 1)) / 2, (BlockSize * (MaxRows - 1)) / 2, -0.2f};
+    background_entity_.GetComponent<TransformComponent>().scale = {BlockSize * (MaxCols + 1), BlockSize * (MaxRows + 1), 1};
     
-    auto& quad_comp = back_e.AddComponent<QuadComponent>();
+    auto& quad_comp = background_entity_.AddComponent<QuadComponent>();
     quad_comp.texture_comp.use = true;
     quad_comp.texture_comp.component = Renderer::GetTexture(AM::ClientAsset("textures/common/background.png"));
     
@@ -146,8 +146,21 @@ namespace chess {
 #endif
         
         if (viewport_.hovered_entity_) {
+          // For background we do not need click feature for chess
+          if (*viewport_.hovered_entity_ == background_entity_) {
+            selected_block_ = nullptr;
+            return false;
+          }
+          
           const auto& position = viewport_.hovered_entity_->GetComponent<TransformComponent>().translation;
-          selected_block_ = &block_[(uint32_t)(position.y / BlockSize)][(uint32_t)(position.x / BlockSize)];
+          uint32_t row = (uint32_t)(position.y / BlockSize);
+          uint32_t col = (uint32_t)(position.x / BlockSize);
+          if (row >= 0 and row < MaxRows and col >= 0 and col < MaxCols)
+            selected_block_ = &block_[row][col];
+          else
+            selected_block_ = nullptr;
+        } else {
+          selected_block_ = nullptr;
         }
       }
     }
