@@ -57,6 +57,8 @@ namespace chess {
     
     /// This function returns the color name string
     std::string GetColorStr() const;
+    /// This function returns the type of piece
+    Type GetType() const { return type_; }
     /// This function return the name string og piece
     const std::string& GetName() const { return name_; }
     /// This function return the Row of piece
@@ -78,6 +80,7 @@ namespace chess {
     Color color_ = Color::None;
     std::shared_ptr<Texture> texture_;
     std::string name_;
+    Entity* entity_;
   };
   
   /// Class to store the pawn data and funtion

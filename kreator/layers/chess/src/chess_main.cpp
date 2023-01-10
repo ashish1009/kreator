@@ -112,6 +112,14 @@ namespace chess {
 
           quad_comp.texture_comp.use = true;
           quad_comp.texture_comp.component = piece->GetTexture();
+
+          // Hack to flip knight image
+          if (piece->GetType() == Piece::Type::Knight) {
+            static int32_t knight_count = 0;
+            if (knight_count++ %2 == 0) {
+              p_e.GetComponent<TransformComponent>().scale.x *= -1.0f;
+            }
+          }
         } // if (block_[row][col].piece)
       } // Rows loop
     } // Cols loop
