@@ -64,32 +64,113 @@ namespace chess {
     : start_row_(start_row), start_col_(start_col), positions_(positions) {}
     
     /// This function update the possible positions in Straight Up direction
-    /// - Parameters:
-    ///   - start_row: start row of piece
-    ///   - start_col: start column of piece
-    ///   - limit: range row that need to be validate
-    ///   - positions: positions reference to be updated
-    void Upward(Position limit) {
+    /// - Parameter row_limit: range row that need to be validate
+    void Upward(Position row_limit) {
+      if (start_row_ >= MaxRows - 1 or start_row_ < 0)
+        return;
+      
       Position row = start_row_;
-      while (row++ < limit) {
+      while (row++ < row_limit) {
         positions_.push_back(std::make_pair(row, start_col_));
       }
     }
     
     /// This function update the possible positions in Straight Down direction
-    /// - Parameters:
-    ///   - start_row: start row of piece
-    ///   - start_col: start column of piece
-    ///   - limit: range row that need to be validate
-    ///   - positions: positions reference to be updated
-    void Downward(Position limit) {
+    /// - Parameter row_limit: range row that need to be validate
+    void Downward(Position row_limit) {
+      if (start_row_ >= MaxRows or start_row_ <= 0)
+        return;
+      
       Position row = start_row_;
-      while (row-- > limit) {
+      while (row-- > row_limit) {
         positions_.push_back(std::make_pair(row, start_col_));
       }
     }
-
     
+    /// This function update the possible positions in Straight Right direction
+    /// - Parameter col_limit: range row that need to be validate
+    void Right(Position col_limit) {
+      if (start_col_ >= MaxCols - 1 or start_col_ < 0)
+        return;
+      
+      Position col = start_col_;
+      while (col++ > col_limit) {
+        positions_.push_back(std::make_pair(col, start_row_));
+      }
+    }
+    
+    /// This function update the possible positions in Straight Left direction
+    /// - Parameter col_limit: range row that need to be validate
+    void Left(Position col_limit) {
+      if (start_col_ >= MaxCols or start_col_ <= 0)
+        return;
+
+      Position col = start_col_;
+      while (col-- > col_limit) {
+        positions_.push_back(std::make_pair(col, start_row_));
+      }
+    }
+    
+    /// This function update the possible positions in Diaginal Up Right direction
+    /// - Parameters:
+    ///   - row_limit: range row that need to be validate
+    ///   - col_limit: range column that need to be validate
+    void UpRight(Position row_limit, Position col_limit) {
+      if (start_row_ >= MaxRows - 1 or start_row_ < 0 or start_col_ >= MaxCols - 1 or start_col_ < 0)
+        return;
+      
+      Position row = start_row_;
+      Position col = start_col_;
+      while (row++ < row_limit and col++ < col_limit) {
+        positions_.push_back(std::make_pair(row, col));
+      }
+    }
+    
+    /// This function update the possible positions in Diaginal Up Left direction
+    /// - Parameters:
+    ///   - row_limit: range row that need to be validate
+    ///   - col_limit: range column that need to be validate
+    void UpLeft(Position row_limit, Position col_limit) {
+      if (start_row_ >= MaxRows - 1 or start_row_ < 0 or start_col_ >= MaxCols or start_col_ <= 0)
+        return;
+
+      Position row = start_row_;
+      Position col = start_col_;
+      while (row++ < row_limit and col-- > col_limit) {
+        positions_.push_back(std::make_pair(row, col));
+      }
+    }
+    
+    /// This function update the possible positions in Diagonal Down Right direction
+    /// - Parameters:
+    ///   - row_limit: range row that need to be validate
+    ///   - col_limit: range column that need to be validate
+    void DownRight(Position row_limit, Position col_limit) {
+      if (start_row_ >= MaxRows or start_row_ <= 0 or start_col_ >= MaxCols - 1 or start_col_ < 0)
+        return;
+
+      Position row = start_row_;
+      Position col = start_col_;
+      while (row-- > row_limit and col++ < col_limit) {
+        positions_.push_back(std::make_pair(row, col));
+      }
+    }
+    
+    /// This function update the possible positions in Diagonal Down Left direction
+    /// - Parameters:
+    ///   - row_limit: range row that need to be validate
+    ///   - col_limit: range column that need to be validate
+    void DownLeft(Position row_limit, Position col_limit) {
+      if (start_row_ >= MaxRows or start_row_ <= 0 or start_col_ >= MaxCols or start_col_ <= 0)
+        return;
+      
+      Position row = start_row_;
+      Position col = start_col_;
+      while (row-- > row_limit and col-- > col_limit) {
+        positions_.push_back(std::make_pair(row, col));
+      }
+    }
+
     Position start_row_;
     Position start_col_;
     PossiblePositions& positions_;
@@ -125,25 +206,18 @@ namespace chess {
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "pawn.png"));
   }
   
-  PossibleMoveBlocks Pawn::GetPossibleMovePositions() {
-    PossibleMoveBlocks result;
-    
-    PossibleMoves possible_moves(row_, col_, result.empty_blocks_);
+  PossiblePositions Pawn::GetPossibleMovePositions() {
+    PossiblePositions result;
+    PossibleMoves possible_moves(row_, col_, result);
     
     if (direction_ == Direction::Up) {
-      if (row_ < MaxRows - 1 and row_ >= 0) {
-        possible_moves.Upward(row_ + 1);
-        
-        result.piece_blocks_.push_back(std::make_pair(row_ + 1, col_ + 1));
-        result.piece_blocks_.push_back(std::make_pair(row_ + 1, col_ - 1));
-      }
+      possible_moves.Upward(row_ + 1);
+      possible_moves.UpLeft(row_ + 1, col_ -1);
+      possible_moves.UpRight(row_ + 1, col_ + 1);
     } else if (direction_ == Direction::Down) {
-      if (row_ < MaxRows and row_ > 0) {
-        possible_moves.Downward(row_ - 1);
-        
-        result.piece_blocks_.push_back(std::make_pair(row_ - 1, col_ + 1));
-        result.piece_blocks_.push_back(std::make_pair(row_ - 1, col_ - 1));
-      }
+      possible_moves.Downward(row_ - 1);
+      possible_moves.DownLeft(row_ - 1, col_ - 1);
+      possible_moves.DownRight(row_ - 1, col_ + 1);
     } else {
       IK_ASSERT(false);
     }
@@ -157,8 +231,8 @@ namespace chess {
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "king.png"));
   }
 
-  PossibleMoveBlocks King::GetPossibleMovePositions() {
-    PossibleMoveBlocks result;
+  PossiblePositions King::GetPossibleMovePositions() {
+    PossiblePositions result;
     return result;
   }
 
@@ -168,8 +242,8 @@ namespace chess {
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "queen.png"));
   }
 
-  PossibleMoveBlocks Queen::GetPossibleMovePositions() {
-    PossibleMoveBlocks result;
+  PossiblePositions Queen::GetPossibleMovePositions() {
+    PossiblePositions result;
     return result;
   }
 
@@ -179,8 +253,8 @@ namespace chess {
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "bishop.png"));
   }
 
-  PossibleMoveBlocks Bishop::GetPossibleMovePositions() {
-    PossibleMoveBlocks result;
+  PossiblePositions Bishop::GetPossibleMovePositions() {
+    PossiblePositions result;
     return result;
   }
 
@@ -190,8 +264,8 @@ namespace chess {
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "knight.png"));
   }
 
-  PossibleMoveBlocks Knight::GetPossibleMovePositions() {
-    PossibleMoveBlocks result;
+  PossiblePositions Knight::GetPossibleMovePositions() {
+    PossiblePositions result;
     return result;
   }
 
@@ -201,8 +275,8 @@ namespace chess {
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "rook.png"));
   }
 
-  PossibleMoveBlocks Rook::GetPossibleMovePositions() {
-    PossibleMoveBlocks result;
+  PossiblePositions Rook::GetPossibleMovePositions() {
+    PossiblePositions result;
     return result;
   }
 

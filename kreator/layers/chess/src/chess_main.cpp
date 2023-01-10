@@ -218,10 +218,10 @@ namespace chess {
 
               // Render Possible Move outlines
               if (selected_piece_) {
-                PossibleMoveBlocks moves = selected_piece_->GetPossibleMovePositions();
+                PossiblePositions moves = selected_piece_->GetPossibleMovePositions();
                 
                 // Validate empty blocks
-                for (const auto& [row, col] : moves.empty_blocks_) {
+                for (const auto& [row, col] : moves) {
                   if (block_[row][col].piece) {
                     break;
                   }

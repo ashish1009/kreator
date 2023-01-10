@@ -25,14 +25,7 @@ namespace chess {
   };
   
   using PossiblePositions = std::vector<std::pair<Position, Position>>;
-  
-  struct PossibleMoveBlocks {
-    /// Possible block positions where piece can move . Blocks should be empty
-    PossiblePositions empty_blocks_;
-    /// Possible block positions where piece can move . Blocks should have piece
-    PossiblePositions piece_blocks_;
-  };
-    
+      
   /// Base class for all piece. Stores the following data
   ///  - Type of piece
   ///  - Color of piece
@@ -55,7 +48,7 @@ namespace chess {
     virtual ~Piece() = default;
     
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    [[nodiscard]] virtual PossibleMoveBlocks GetPossibleMovePositions() = 0;
+    [[nodiscard]] virtual PossiblePositions GetPossibleMovePositions() = 0;
     
     /// This function returns the color name string
     std::string GetColorStr() const;
@@ -101,7 +94,7 @@ namespace chess {
     ~Pawn() = default;
 
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    PossibleMoveBlocks GetPossibleMovePositions() override;
+    PossiblePositions GetPossibleMovePositions() override;
     
   private:
     Direction direction_;
@@ -120,7 +113,7 @@ namespace chess {
     ~King() = default;
 
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    PossibleMoveBlocks GetPossibleMovePositions() override;
+    PossiblePositions GetPossibleMovePositions() override;
   };
 
   /// Class to store the queen data and funtion
@@ -136,7 +129,7 @@ namespace chess {
     ~Queen() = default;
 
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    PossibleMoveBlocks GetPossibleMovePositions() override;
+    PossiblePositions GetPossibleMovePositions() override;
   };
 
   /// Class to store the Bishop data and funtion
@@ -152,7 +145,7 @@ namespace chess {
     ~Bishop() = default;
 
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    PossibleMoveBlocks GetPossibleMovePositions() override;
+    PossiblePositions GetPossibleMovePositions() override;
   };
 
   /// Class to store the Knight data and funtion
@@ -168,7 +161,7 @@ namespace chess {
     ~Knight() = default;
 
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    PossibleMoveBlocks GetPossibleMovePositions() override;
+    PossiblePositions GetPossibleMovePositions() override;
   };
 
   /// Class to store the Rook data and funtion
@@ -184,7 +177,7 @@ namespace chess {
     ~Rook() = default;
 
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    PossibleMoveBlocks GetPossibleMovePositions() override;
+    PossiblePositions GetPossibleMovePositions() override;
   };
 
 }
