@@ -248,12 +248,10 @@ namespace chess {
     int32_t idx = 0;
     for (const auto& [row, col] : positions) {
       if (block_[row][col].piece) {
-        if (idx == positions.size() - 1) {
-          // Validate
+        if (block_[row][col].piece->GetColor() != selected_piece_->GetColor()) {
           CreatePossibleMoveEntity(row, col);
-        } else {
-          break;
         }
+        break;
       } else {
         CreatePossibleMoveEntity(row, col);
       }

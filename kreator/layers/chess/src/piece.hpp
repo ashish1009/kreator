@@ -56,6 +56,8 @@ namespace chess {
     
     /// This function returns the color name string
     std::string GetColorStr() const;
+    /// This function returns the color
+    Color GetColor() const { return color_; }
     /// This function returns the type of piece
     Type GetType() const { return type_; }
     /// This function return the name string og piece
