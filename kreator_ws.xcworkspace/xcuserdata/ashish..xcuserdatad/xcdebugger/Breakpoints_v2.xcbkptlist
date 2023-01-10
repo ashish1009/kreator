@@ -126,8 +126,8 @@
             filePath = "kreator/layers/chess/src/chess_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "ChessLayer::OnMouseButtonPressed(e)"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "kreator/layers/chess/src/chess_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
             landmarkName = "ChessLayer::RenderGui()"
             landmarkType = "7">
          </BreakpointContent>
@@ -167,16 +167,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F87E8AF5-C083-4CEA-AB5A-0C5057EB70F4"
-            shouldBeEnabled = "Yes"
+            uuid = "CD5F628E-3194-44FA-BE07-29C4167F7138"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kreator/layers/chess/src/chess_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "ChessLayer::Update(ts)"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "ChessLayer::ClearPossibleMoveEntity()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CD5F628E-3194-44FA-BE07-29C4167F7138 - c45badc774a7df5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "chess::ChessLayer::OnMouseButtonPressed(ikan::MouseButtonPressedEvent&amp;)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/kreator/kreator/layers/chess/src/chess_main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "296">
+               </Location>
+               <Location
+                  uuid = "CD5F628E-3194-44FA-BE07-29C4167F7138 - d186e6bd15e221e4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "chess::ChessLayer::ClearPossibleMoveEntity()"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/kreator/kreator/layers/chess/src/chess_main.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E14AFABE-F01D-437F-BA35-8222344D9F41"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "612"
+            endingLineNumber = "612"
+            landmarkName = "BatchRenderer::DrawTextureQuad(transform, texture, texture_coords, tiling_factor, tint_color, object_id)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

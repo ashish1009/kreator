@@ -13,7 +13,7 @@ namespace chess {
     IK_INFO("Chess", "Creating Chess Layer instance ... ");
     
     // Reinitialize the Batch Renderer
-    BatchRenderer::Reinit(100, 0, 0);
+    BatchRenderer::Reinit(200, 0, 0);
     
 #if CHESS_DEBUG
     spm_.SetSceneContext(&chess_scene_);
@@ -149,14 +149,6 @@ namespace chess {
         hovered_block_entity_.GetComponent<TransformComponent>().translation = { position.x, position.y, 0.3 };
       }
     }
-    
-    // Render Possible Move outlines
-    {
-      if (selected_piece_) {
-        selected_piece_->GetPossibleMovePositions();
-      }
-    }
-    
     viewport_.framebuffer->Unbind();
   }
     
@@ -201,27 +193,66 @@ namespace chess {
             
             // Selected Piece
             if (selected_block_->piece) {
-              selected_piece_ = selected_block_->piece.get();
-              
+              // Update the position of selected Block
               // TODO: Later do validation
               auto& selected_pos = selected_block_entity_.GetComponent<TransformComponent>().translation;
               if (position.x == selected_pos.x and position.y == selected_pos.y) {
-                // Reset the selected Block square
+                // Reset Selected block entity outline box
                 selected_pos = {0, 0, -0.5}; // Move to background NOT VISIBLE
+                selected_piece_ = nullptr;
               } else {
                 selected_pos = {position.x, position.y, 0.25};
+                selected_piece_ = selected_block_->piece.get();
               }
+
+              // Delete the entity of possible move
+              ClearPossibleMoveEntity();
+
+              // Render Possible Move outlines
+              if (selected_piece_) {
+                PossibleMoveBlocks moves = selected_piece_->GetPossibleMovePositions();
+                
+                // Validate empty blocks
+                for (const auto& [row, col] : moves.empty_blocks_) {
+                  if (block_[row][col].piece) {
+                    break;
+                  }
+                  
+                  CreatePossibleMoveEntity(row, col);
+                } // for (const auto& [row, col] : moves.empty_blocks_)
+              }
+
             }
-          }
+          } // if (row >= 0 and row < MaxRows and col >= 0 and col < MaxCols)
           else {
             selected_block_ = nullptr;
           }
-        } else {
+        } else { // if (viewport_.hovered_entity_)
           selected_block_ = nullptr;
         }
       }
     }
     return false;
+  }
+  
+  void ChessLayer::CreatePossibleMoveEntity(Position row, Position col) {
+    Entity e = chess_scene_.CreateEntity("Possible_" + std::to_string(row) + "_" + std::to_string(col));
+    e.GetComponent<TransformComponent>().translation = {col, row, 0.3f};
+    e.GetComponent<TransformComponent>().scale = {BlockSize, BlockSize, 1.0f};
+    
+    auto& quad_comp = e.AddComponent<QuadComponent>();
+    quad_comp.texture_comp.use = true;
+    quad_comp.texture_comp.component = Renderer::GetTexture(AM::ClientAsset("textures/common/possible_move.png"));
+    possible_move_entities_.push_back(e);
+  }
+  
+  void ChessLayer::ClearPossibleMoveEntity() {
+    if (possible_move_entities_.size() > 0) {
+      for (auto& entity : possible_move_entities_) {
+        chess_scene_.DestroyEntity(entity);
+      }
+      possible_move_entities_.clear();
+    }
   }
   
   void ChessLayer::RenderGui() {

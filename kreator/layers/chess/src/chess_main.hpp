@@ -47,6 +47,13 @@ namespace chess {
     /// This function handles the mouse button event
     /// - Parameter e: mouse button pressed event
     bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
+    /// This function cleare the possible move entities from scene
+    void ClearPossibleMoveEntity();
+    /// This function creates the entity for possible move
+    /// - Parameters:
+    ///   - row: row
+    ///   - col: col
+    void CreatePossibleMoveEntity(Position row, Position col);
     
     // --------------------
     // Member variables
@@ -66,6 +73,7 @@ namespace chess {
     // Block Hits
     Entity hovered_block_entity_;
     Entity selected_block_entity_;
+    std::vector<Entity> possible_move_entities_;
 
     // For Debug
 #if CHESS_DEBUG

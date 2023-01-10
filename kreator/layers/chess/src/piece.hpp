@@ -53,7 +53,7 @@ namespace chess {
     virtual ~Piece() = default;
     
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    virtual PossibleMoveBlocks GetPossibleMovePositions() = 0;
+    [[nodiscard]] virtual PossibleMoveBlocks GetPossibleMovePositions() = 0;
     
     /// This function returns the color name string
     std::string GetColorStr() const;

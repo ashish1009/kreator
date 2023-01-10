@@ -557,9 +557,9 @@ namespace ikan {
   
   void BatchRenderer::NextBatch() {
     EndBatch();
-    quad_data_->StartBatch();
-    circle_data_->StartBatch();
-    line_data_->StartBatch();
+    if (quad_data_) quad_data_->StartBatch();
+    if (circle_data_) circle_data_->StartBatch();
+    if (line_data_) line_data_->StartBatch();
   }
   
   void BatchRenderer::DrawQuad(const glm::mat4& transform,

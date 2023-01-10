@@ -88,6 +88,24 @@ namespace chess {
   
   PossibleMoveBlocks Pawn::GetPossibleMovePositions() {
     PossibleMoveBlocks result;
+    
+    if (direction_ == Direction::Up) {
+      Position row = row_;
+      while (row++ < MaxRows) {
+        result.empty_blocks_.push_back(std::make_pair(row, col_));        
+      }
+      
+      result.piece_blocks_.push_back(std::make_pair(row_ + 1, col_ + 1));
+      result.piece_blocks_.push_back(std::make_pair(row_ + 1, col_ - 1));
+    } else if (direction_ == Direction::Down) {
+      result.empty_blocks_.push_back(std::make_pair(row_ - 1, col_));
+      
+      result.piece_blocks_.push_back(std::make_pair(row_ - 1, col_ + 1));
+      result.piece_blocks_.push_back(std::make_pair(row_ - 1, col_ - 1));
+    } else {
+      IK_ASSERT(false);
+    }
+    
     return result;
   }
   
