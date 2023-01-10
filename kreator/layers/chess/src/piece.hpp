@@ -24,6 +24,13 @@ namespace chess {
     static constexpr Position Bishop_2 = 5;
   };
   
+  struct PossibleMoveBlocks {
+    /// Possible block positions where piece can move . Blocks should be empty
+    std::vector<std::pair<Position, Position>> empty_blocks_;
+    /// Possible block positions where piece can move . Blocks should have piece
+    std::vector<std::pair<Position, Position>> piece_blocks_;
+  };
+    
   /// Base class for all piece. Stores the following data
   ///  - Type of piece
   ///  - Color of piece
@@ -44,6 +51,9 @@ namespace chess {
     ///   - col: col position
     Piece(Piece::Type type, Color color, Position row, Position col);
     virtual ~Piece() = default;
+    
+    /// This function returns the possible moves of a piece (vectore of pair of row and columns)
+    virtual PossibleMoveBlocks GetPossibleMovePositions() = 0;
     
     /// This function returns the color name string
     std::string GetColorStr() const;
@@ -73,43 +83,103 @@ namespace chess {
   /// Class to store the pawn data and funtion
   class Pawn : public Piece {
   public:
+    // Direction of pawn as it can move only in one direction
+    enum class Direction : uint8_t { Up, Down };
+    
+    /// Cosntructor of base piece class
+    /// - Parameters:
+    ///   - type: type of piece
+    ///   - color: color of piece
+    ///   - row: row of position
+    ///   - col: col position
     Pawn(Color color, Position row, Position col);
     ~Pawn() = default;
+
+    /// This function returns the possible moves of a piece (vectore of pair of row and columns)
+    PossibleMoveBlocks GetPossibleMovePositions() override;
+    
+  private:
+    Direction direction_;
   };
 
   /// Class to store the King data and funtion
   class King : public Piece {
   public:
+    /// Cosntructor of base piece class
+    /// - Parameters:
+    ///   - type: type of piece
+    ///   - color: color of piece
+    ///   - row: row of position
+    ///   - col: col position
     King(Color color, Position row, Position col);
     ~King() = default;
+
+    /// This function returns the possible moves of a piece (vectore of pair of row and columns)
+    PossibleMoveBlocks GetPossibleMovePositions() override;
   };
 
   /// Class to store the queen data and funtion
   class Queen : public Piece {
   public:
+    /// Cosntructor of base piece class
+    /// - Parameters:
+    ///   - type: type of piece
+    ///   - color: color of piece
+    ///   - row: row of position
+    ///   - col: col position
     Queen(Color color, Position row, Position col);
     ~Queen() = default;
+
+    /// This function returns the possible moves of a piece (vectore of pair of row and columns)
+    PossibleMoveBlocks GetPossibleMovePositions() override;
   };
 
   /// Class to store the Bishop data and funtion
   class Bishop : public Piece {
   public:
+    /// Cosntructor of base piece class
+    /// - Parameters:
+    ///   - type: type of piece
+    ///   - color: color of piece
+    ///   - row: row of position
+    ///   - col: col position
     Bishop(Color color, Position row, Position col);
     ~Bishop() = default;
+
+    /// This function returns the possible moves of a piece (vectore of pair of row and columns)
+    PossibleMoveBlocks GetPossibleMovePositions() override;
   };
 
   /// Class to store the Knight data and funtion
   class Knight : public Piece {
   public:
+    /// Cosntructor of base piece class
+    /// - Parameters:
+    ///   - type: type of piece
+    ///   - color: color of piece
+    ///   - row: row of position
+    ///   - col: col position
     Knight(Color color, Position row, Position col);
     ~Knight() = default;
+
+    /// This function returns the possible moves of a piece (vectore of pair of row and columns)
+    PossibleMoveBlocks GetPossibleMovePositions() override;
   };
 
   /// Class to store the Rook data and funtion
   class Rook : public Piece {
   public:
+    /// Cosntructor of base piece class
+    /// - Parameters:
+    ///   - type: type of piece
+    ///   - color: color of piece
+    ///   - row: row of position
+    ///   - col: col position
     Rook(Color color, Position row, Position col);
     ~Rook() = default;
+
+    /// This function returns the possible moves of a piece (vectore of pair of row and columns)
+    PossibleMoveBlocks GetPossibleMovePositions() override;
   };
 
 }

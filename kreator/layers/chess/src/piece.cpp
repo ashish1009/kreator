@@ -34,6 +34,12 @@ namespace chess {
     else return Color::None;
   }
   
+  Pawn::Direction GetpawnDirection(Position row) {
+    if (row == 0 or row == 1) return Pawn::Direction::Up;
+    else if (row == 6 or row == 7) return Pawn::Direction::Down;
+    IK_ASSERT(false);
+  }
+  
   std::shared_ptr<Piece> Piece::Create(Position row, Position col) {
     Color color = GetPieceStartColor(row);
     switch (GetStartPieceType(row, col)) {
@@ -75,9 +81,14 @@ namespace chess {
   }
   
   Pawn::Pawn(Color color, Position row, Position col)
-  : Piece(Piece::Type::Pawn, color, row, col) {
+  : Piece(Piece::Type::Pawn, color, row, col), direction_(GetpawnDirection(row)) {
     std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "pawn.png"));
+  }
+  
+  PossibleMoveBlocks Pawn::GetPossibleMovePositions() {
+    PossibleMoveBlocks result;
+    return result;
   }
   
   King::King(Color color, Position row, Position col)
@@ -85,29 +96,54 @@ namespace chess {
     std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "king.png"));
   }
-  
+
+  PossibleMoveBlocks King::GetPossibleMovePositions() {
+    PossibleMoveBlocks result;
+    return result;
+  }
+
   Queen::Queen(Color color, Position row, Position col)
   : Piece(Piece::Type::Queen, color, row, col) {
     std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "queen.png"));
   }
-  
+
+  PossibleMoveBlocks Queen::GetPossibleMovePositions() {
+    PossibleMoveBlocks result;
+    return result;
+  }
+
   Bishop::Bishop(Color color, Position row, Position col)
   : Piece(Piece::Type::Bishop, color, row, col) {
     std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "bishop.png"));
   }
-  
+
+  PossibleMoveBlocks Bishop::GetPossibleMovePositions() {
+    PossibleMoveBlocks result;
+    return result;
+  }
+
   Knight::Knight(Color color, Position row, Position col)
   : Piece(Piece::Type::Knight, color, row, col) {
     std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "knight.png"));
   }
-  
+
+  PossibleMoveBlocks Knight::GetPossibleMovePositions() {
+    PossibleMoveBlocks result;
+    return result;
+  }
+
   Rook::Rook(Color color, Position row, Position col)
   : Piece(Piece::Type::Rook, color, row, col) {
     std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "rook.png"));
   }
-  
+
+  PossibleMoveBlocks Rook::GetPossibleMovePositions() {
+    PossibleMoveBlocks result;
+    return result;
+  }
+
 }

@@ -67,6 +67,7 @@ Add the following library search paths
     - Interface and Implementation for Loading Texture file (using stb image files)
     - Texture Library to store loaded textures.
     - Interface and Implementation for Frame buffer
+    - Subtexture loader
 
   - Editor
     - Added Editor 3D camera
@@ -117,10 +118,7 @@ Add the following library search paths
 
 ## Road Map  
 ----------------
-- ikan Engine
-  - Fundamental Renderer
-    - Subtexture loader
-  
+- ikan Engine  
   - Materials
     - Added Material class to handle Shader uniforms as collective buffers
     

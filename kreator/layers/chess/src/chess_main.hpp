@@ -59,6 +59,8 @@ namespace chess {
     // Chess Data
     Block block_[MaxRows][MaxCols];
     Block* selected_block_ = nullptr;
+    Piece* selected_piece_ = nullptr;
+    
     Entity background_entity_;
     
     // Block Hits

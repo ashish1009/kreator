@@ -150,6 +150,13 @@ namespace chess {
       }
     }
     
+    // Render Possible Move outlines
+    {
+      if (selected_piece_) {
+        selected_piece_->GetPossibleMovePositions();
+      }
+    }
+    
     viewport_.framebuffer->Unbind();
   }
     
@@ -191,7 +198,11 @@ namespace chess {
           uint32_t col = (uint32_t)(position.x / BlockSize);
           if (row >= 0 and row < MaxRows and col >= 0 and col < MaxCols) {
             selected_block_ = &block_[row][col];
+            
+            // Selected Piece
             if (selected_block_->piece) {
+              selected_piece_ = selected_block_->piece.get();
+              
               // TODO: Later do validation
               auto& selected_pos = selected_block_entity_.GetComponent<TransformComponent>().translation;
               if (position.x == selected_pos.x and position.y == selected_pos.y) {
