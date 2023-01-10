@@ -49,6 +49,12 @@ namespace chess {
     std::string GetColorStr() const;
     /// This function return the name string og piece
     const std::string& GetName() const { return name_; }
+    /// This function return the Row of piece
+    Position Row() const { return row_; }
+    /// This function return the column of piece
+    Position Col() const { return col_; }
+    /// This function returns the texture of piece
+    std::shared_ptr<Texture> GetTexture() { return texture_; }
     
     /// This function create the pirce based on the type of piece
     /// - Parameters:

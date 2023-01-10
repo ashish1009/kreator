@@ -7,7 +7,7 @@
 
 #pragma once
 
-#define CHESS_DEBUG 1
+#define CHESS_DEBUG 0
 
 namespace chess {
   
@@ -16,8 +16,8 @@ namespace chess {
   static constexpr uint32_t MaxRows = 8;
   static constexpr uint32_t MaxCols = 8;
   
-  static constexpr glm::vec4 BlackColor = { 0, 0, 0, 1 };
-  static constexpr glm::vec4 WhiteColor = { 1, 1, 1, 1 };
+  static constexpr glm::vec4 BlackColor = { 0.39f, 0.21f, 0.21f, 1 };
+  static constexpr glm::vec4 WhiteColor = { 0.47f, 0.59f, 0.27f, 1 };
   
   enum class Color {
     None, Black, White

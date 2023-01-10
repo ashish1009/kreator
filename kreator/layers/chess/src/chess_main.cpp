@@ -74,6 +74,13 @@ namespace chess {
           std::shared_ptr<Piece> piece = block_[row][col].piece;
           std::string piece_name = piece->GetColorStr() + "_" + piece->GetName();
           Entity p_e = chess_scene_.CreateEntity(piece_name);
+          
+          auto& quad_comp = p_e.AddComponent<QuadComponent>();
+          p_e.GetComponent<TransformComponent>().translation = { piece->Col() * BlockSize, piece->Row() * BlockSize, 0.1f };
+          p_e.GetComponent<TransformComponent>().scale = { BlockSize / 2, BlockSize / 2, 0 };
+
+          quad_comp.texture_comp.use = true;
+          quad_comp.texture_comp.component = piece->GetTexture();
         } // if (block_[row][col].piece)
       } // Rows loop
     } // Cols loop
