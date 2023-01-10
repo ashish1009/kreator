@@ -56,6 +56,45 @@ namespace chess {
     return nullptr;
   }
   
+  // --------------------------
+  // Possible Move Validation
+  // --------------------------
+  struct PossibleMoves {
+    PossibleMoves(Position start_row, Position start_col, PossiblePositions& positions)
+    : start_row_(start_row), start_col_(start_col), positions_(positions) {}
+    
+    /// This function update the possible positions in Straight Up direction
+    /// - Parameters:
+    ///   - start_row: start row of piece
+    ///   - start_col: start column of piece
+    ///   - limit: range row that need to be validate
+    ///   - positions: positions reference to be updated
+    void Upward(Position limit) {
+      Position row = start_row_;
+      while (row++ < limit) {
+        positions_.push_back(std::make_pair(row, start_col_));
+      }
+    }
+    
+    /// This function update the possible positions in Straight Down direction
+    /// - Parameters:
+    ///   - start_row: start row of piece
+    ///   - start_col: start column of piece
+    ///   - limit: range row that need to be validate
+    ///   - positions: positions reference to be updated
+    void Downward(Position limit) {
+      Position row = start_row_;
+      while (row-- > limit) {
+        positions_.push_back(std::make_pair(row, start_col_));
+      }
+    }
+
+    
+    Position start_row_;
+    Position start_col_;
+    PossiblePositions& positions_;
+  };
+  
   // -------------------------------------------
   // Pieces
   // -------------------------------------------
@@ -86,33 +125,21 @@ namespace chess {
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "pawn.png"));
   }
   
-  void GetPossibleStraightUpMove(Position start_row, Position start_col, Position limit, PossiblePositions& positions) {
-    Position row = start_row;
-    while (row++ < limit) {
-      positions.push_back(std::make_pair(row, start_col));
-    }
-  }
-
-  void GetPossibleStraightDownMove(Position start_row, Position start_col, Position limit, PossiblePositions& positions) {
-    Position row = start_row;
-    while (row-- > limit) {
-      positions.push_back(std::make_pair(row, start_col));
-    }
-  }
-
   PossibleMoveBlocks Pawn::GetPossibleMovePositions() {
     PossibleMoveBlocks result;
     
+    PossibleMoves possible_moves(row_, col_, result.empty_blocks_);
+    
     if (direction_ == Direction::Up) {
       if (row_ < MaxRows - 1 and row_ >= 0) {
-        GetPossibleStraightUpMove(row_, col_, row_ + 1, result.empty_blocks_);
+        possible_moves.Upward(row_ + 1);
         
         result.piece_blocks_.push_back(std::make_pair(row_ + 1, col_ + 1));
         result.piece_blocks_.push_back(std::make_pair(row_ + 1, col_ - 1));
       }
     } else if (direction_ == Direction::Down) {
       if (row_ < MaxRows and row_ > 0) {
-        GetPossibleStraightDownMove(row_, col_, row_ - 1, result.empty_blocks_);
+        possible_moves.Downward(row_ - 1);
         
         result.piece_blocks_.push_back(std::make_pair(row_ - 1, col_ + 1));
         result.piece_blocks_.push_back(std::make_pair(row_ - 1, col_ - 1));
