@@ -43,7 +43,7 @@ namespace chess {
     camera_comp.is_fixed_aspect_ratio = true;
     
     // ----------------------------------------------------
-    // Background Block
+    // Background Block Entity (Board Outline)
     // ----------------------------------------------------
     background_entity_ = chess_scene_.CreateEntity("Background");
     background_entity_.GetComponent<TransformComponent>().translation = {(BlockSize * (MaxCols - 1)) / 2, (BlockSize * (MaxRows - 1)) / 2, -0.2f};
@@ -55,9 +55,9 @@ namespace chess {
       quad_comp.texture_comp.component = Renderer::GetTexture(AM::ClientAsset("textures/common/background.png"));
     }
 
-    // ----------------------------------------------------
-    // Block Hint Entities
-    // ----------------------------------------------------
+    // -------------------------------------------------------------------
+    // Block Hint Entities (Hovered Selected and Possible move outline)
+    // -------------------------------------------------------------------
     hovered_block_entity_ = chess_scene_.CreateEntity("Hovered Block");
     hovered_block_entity_.GetComponent<TransformComponent>().scale = {BlockSize, BlockSize, 1};
     {
@@ -75,15 +75,17 @@ namespace chess {
     }
 
     // ----------------------------------------------------
-    // Add Blocks
+    // Create Blocks
     // ----------------------------------------------------
     for (uint32_t row = 0; row < MaxRows; row++ ) { // Rows
       for (uint32_t col = 0; col < MaxCols; col++ ) { // Cols
         // Update the position of block
+        // ------------------------------
         block_[row][col].row = row;
         block_[row][col].col = col;
         
         // Create Chess Block Entity (Black or white)
+        // ------------------------------------------------
         auto b_e = chess_scene_.CreateEntity("Block_" + std::to_string(row) + "_" + std::to_string(col));
         
         // Create Quad component and update the color alternate
@@ -97,10 +99,13 @@ namespace chess {
         b_e.GetComponent<TransformComponent>().translation = { row * BlockSize, col * BlockSize, 0 };
         b_e.GetComponent<TransformComponent>().scale = { BlockSize, BlockSize, 0 };
         
-        // Add the piece
+        // Add the piece to the block
+        // ------------------------------
         block_[row][col].piece = Piece::Create(row, col);
         
+        // ----------------------------------------------------
         // Create Piece Entities
+        // ----------------------------------------------------
         if (block_[row][col].piece) {
           std::shared_ptr<Piece> piece = block_[row][col].piece;
           std::string piece_name = piece->GetColorStr() + "_" + piece->GetName();
@@ -113,7 +118,9 @@ namespace chess {
           quad_comp.texture_comp.use = true;
           quad_comp.texture_comp.component = piece->GetTexture();
 
+          // ----------------------------------------------------
           // Hack to flip knight image
+          // ----------------------------------------------------
           if (piece->GetType() == Piece::Type::Knight) {
             static int32_t knight_count = 0;
             if (knight_count++ %2 == 0) {
@@ -148,7 +155,9 @@ namespace chess {
     viewport_.UpdateHoveredEntity(nullptr, &chess_scene_);
 #endif
     
-    // Hovered Block
+    // ----------------------------------------------------
+    // Update the Hovered Block
+    // ----------------------------------------------------
     {
       if (viewport_.hovered_entity_ and
           *viewport_.hovered_entity_ != background_entity_ and
@@ -186,40 +195,71 @@ namespace chess {
         spm_.SetSelectedEntity(viewport_.hovered_entity_);
 #endif
         
+        // ----------------------------------------------------
+        // Mouse Click Validations
+        // ----------------------------------------------------
         if (viewport_.hovered_entity_) {
+          
+          // ------------------------------------------------------------------
           // For background we do not need click feature for chess
+          // ------------------------------------------------------------------
           if (*viewport_.hovered_entity_ == background_entity_) {
             selected_block_ = nullptr;
             return false;
           }
           
+          // ------------------------------------------------------------------
+          // If Hovered entity is inside the chess board then update the
+          // Selected Block pointer
+          // ------------------------------------------------------------------
           const auto& position = viewport_.hovered_entity_->GetComponent<TransformComponent>().translation;
           uint32_t row = (uint32_t)(position.y / BlockSize);
           uint32_t col = (uint32_t)(position.x / BlockSize);
+          
           if (row >= 0 and row < MaxRows and col >= 0 and col < MaxCols) {
+            // Update the Selected Block Pointer
+            // ---------------------------------
             selected_block_ = &block_[row][col];
             
-            // Selected Piece
             if (selected_block_->piece) {
-              // Update the position of selected Block
-              // TODO: Later do validation
+              // -----------------------------------------------------------------
+              // if selected block is not empty.
+              //  - Render the Selected Block outline
+              //  - Validate the piece
+              // -----------------------------------------------------------------
+              // TODO: Later do other validation??
               auto& selected_pos = selected_block_entity_.GetComponent<TransformComponent>().translation;
+              
               if (position.x == selected_pos.x and position.y == selected_pos.y) {
-                // Reset Selected block entity outline box
+                // ---------------------------------------------------------------
+                // If We click same block again then reset the selected block by
+                // moving the selected block outline entity in background.
+                // Also Update the selected piece
+                // ---------------------------------------------------------------
                 selected_pos = {0, 0, -0.5}; // Move to background NOT VISIBLE
                 selected_piece_ = nullptr;
               } else {
+                // ---------------------------------------------------------------
+                // If this click is new block then Update the position of the
+                // selected block entity position same as the selected block position
+                // ---------------------------------------------------------------
                 selected_pos = {position.x, position.y, 0.25};
                 selected_piece_ = selected_block_->piece.get();
               }
 
-              // Delete the entity of possible move
+              // ---------------------------------------------------------------
+              // Delete the entity of possible move. Everytime we click the new
+              // block or same block. Clear the possible move block outline entities
+              // ---------------------------------------------------------------
               ClearPossibleMoveEntity();
 
+              // ---------------------------------------------------------------
               // Render Possible Move outlines
+              // ---------------------------------------------------------------
               if (selected_piece_) {
                 PossibleMoves moves = selected_piece_->GetPossibleMovePositions();
                 
+                // Validate the moves and Create entity for possible moves
                 ValidatePossibleMoved(moves.up);
                 ValidatePossibleMoved(moves.down);
                 ValidatePossibleMoved(moves.right);
@@ -228,9 +268,9 @@ namespace chess {
                 ValidatePossibleMoved(moves.up_left);
                 ValidatePossibleMoved(moves.down_left);
                 ValidatePossibleMoved(moves.down_right);
-              }
-
-            }
+              } else { // if (selected_piece_)
+              } // if (selected_piece_)
+            } // if (selected_block_->piece)
           } // if (row >= 0 and row < MaxRows and col >= 0 and col < MaxCols)
           else {
             selected_block_ = nullptr;
@@ -250,6 +290,8 @@ namespace chess {
       if (block_[row][col].piece) {
         if (block_[row][col].piece->GetColor() != selected_piece_->GetColor()) {
           CreatePossibleMoveEntity(row, col);
+          
+          // TODO: Extra Validation for Pawns (Diagonal)
         }
         break;
       } else {

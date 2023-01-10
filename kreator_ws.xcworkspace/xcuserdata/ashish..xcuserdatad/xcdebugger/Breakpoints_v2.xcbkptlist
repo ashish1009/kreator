@@ -62,8 +62,8 @@
             filePath = "kreator/layers/chess/src/chess_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "ChessLayer::OnMouseButtonPressed(e)"
             landmarkType = "7">
             <Locations>
@@ -110,8 +110,8 @@
             filePath = "kreator/layers/chess/src/chess_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
             landmarkName = "ChessLayer::OnMouseButtonPressed(e)"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "kreator/layers/chess/src/chess_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "ChessLayer::ValidatePossibleMoved(positions)"
             landmarkType = "7">
          </BreakpointContent>
