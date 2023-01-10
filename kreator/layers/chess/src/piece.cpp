@@ -23,8 +23,8 @@ namespace chess {
   
   Piece::Type GetStartPieceType(Position row, Position col) {
     if (row == 0 or row == 7) return GetYPosPiece(col);
-    else if (row == 1 or row == 6)
-      return Piece::Type::Pawn;
+//    else if (row == 1 or row == 6)
+//      return Piece::Type::Pawn;
     else return Piece::Type::None;
   }
   
@@ -59,9 +59,9 @@ namespace chess {
   // --------------------------
   // Possible Move Validation
   // --------------------------
-  struct PossibleMoves {
-    PossibleMoves(Position start_row, Position start_col, PossiblePositions& positions)
-    : start_row_(start_row), start_col_(start_col), positions_(positions) {}
+  struct PossibleMovesValidator {
+    PossibleMovesValidator(Position start_row, Position start_col, PossibleMoves& moves)
+    : start_row_(start_row), start_col_(start_col), moves_(moves) {}
     
     /// This function update the possible positions in Straight Up direction
     /// - Parameter row_limit: range row that need to be validate
@@ -71,7 +71,7 @@ namespace chess {
       
       Position row = start_row_;
       while (row++ < row_limit) {
-        positions_.push_back(std::make_pair(row, start_col_));
+        moves_.up.push_back(std::make_pair(row, start_col_));
       }
     }
     
@@ -83,7 +83,7 @@ namespace chess {
       
       Position row = start_row_;
       while (row-- > row_limit) {
-        positions_.push_back(std::make_pair(row, start_col_));
+        moves_.down.push_back(std::make_pair(row, start_col_));
       }
     }
     
@@ -95,7 +95,7 @@ namespace chess {
       
       Position col = start_col_;
       while (col++ > col_limit) {
-        positions_.push_back(std::make_pair(start_row_, col));
+        moves_.right.push_back(std::make_pair(start_row_, col));
       }
     }
     
@@ -107,7 +107,7 @@ namespace chess {
 
       Position col = start_col_;
       while (col-- > col_limit) {
-        positions_.push_back(std::make_pair(start_row_, col));
+        moves_.left.push_back(std::make_pair(start_row_, col));
       }
     }
     
@@ -122,7 +122,7 @@ namespace chess {
       Position row = start_row_;
       Position col = start_col_;
       while (row++ < row_limit and col++ < col_limit) {
-        positions_.push_back(std::make_pair(row, col));
+        moves_.up_right.push_back(std::make_pair(row, col));
       }
     }
     
@@ -137,7 +137,7 @@ namespace chess {
       Position row = start_row_;
       Position col = start_col_;
       while (row++ < row_limit and col-- > col_limit) {
-        positions_.push_back(std::make_pair(row, col));
+        moves_.up_left.push_back(std::make_pair(row, col));
       }
     }
     
@@ -152,7 +152,7 @@ namespace chess {
       Position row = start_row_;
       Position col = start_col_;
       while (row-- > row_limit and col++ < col_limit) {
-        positions_.push_back(std::make_pair(row, col));
+        moves_.down_right.push_back(std::make_pair(row, col));
       }
     }
     
@@ -167,13 +167,13 @@ namespace chess {
       Position row = start_row_;
       Position col = start_col_;
       while (row-- > row_limit and col-- > col_limit) {
-        positions_.push_back(std::make_pair(row, col));
+        moves_.down_left.push_back(std::make_pair(row, col));
       }
     }
 
     Position start_row_;
     Position start_col_;
-    PossiblePositions& positions_;
+    PossibleMoves& moves_;
   };
   
   // -------------------------------------------
@@ -206,9 +206,9 @@ namespace chess {
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "pawn.png"));
   }
   
-  PossiblePositions Pawn::GetPossibleMovePositions() {
-    PossiblePositions result;
-    PossibleMoves possible_moves(row_, col_, result);
+  PossibleMoves Pawn::GetPossibleMovePositions() {
+    PossibleMoves result;
+    PossibleMovesValidator possible_moves(row_, col_, result);
     
     if (direction_ == Direction::Up) {
       possible_moves.Upward(row_ + 1);
@@ -227,9 +227,9 @@ namespace chess {
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "king.png"));
   }
 
-  PossiblePositions King::GetPossibleMovePositions() {
-    PossiblePositions result;
-    PossibleMoves possible_moves(row_, col_, result);
+  PossibleMoves King::GetPossibleMovePositions() {
+    PossibleMoves result;
+    PossibleMovesValidator possible_moves(row_, col_, result);
     
     possible_moves.Upward(row_ + 1);
     possible_moves.Downward(row_ - 1);
@@ -252,9 +252,9 @@ namespace chess {
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "queen.png"));
   }
 
-  PossiblePositions Queen::GetPossibleMovePositions() {
-    PossiblePositions result;
-    PossibleMoves possible_moves(row_, col_, result);
+  PossibleMoves Queen::GetPossibleMovePositions() {
+    PossibleMoves result;
+    PossibleMovesValidator possible_moves(row_, col_, result);
     
     possible_moves.Upward(MaxRows - 1);
     possible_moves.Downward(0);
@@ -277,9 +277,9 @@ namespace chess {
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "bishop.png"));
   }
 
-  PossiblePositions Bishop::GetPossibleMovePositions() {
-    PossiblePositions result;
-    PossibleMoves possible_moves(row_, col_, result);
+  PossibleMoves Bishop::GetPossibleMovePositions() {
+    PossibleMoves result;
+    PossibleMovesValidator possible_moves(row_, col_, result);
     
     possible_moves.UpLeft(MaxRows - 1, 0);
     possible_moves.UpRight(MaxRows - 1, MaxCols - 1);
@@ -290,33 +290,34 @@ namespace chess {
     return result;
   }
 
-  Knight::Knight(Color color, Position row, Position col)
-  : Piece(Piece::Type::Knight, color, row, col) {
-    std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
-    texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "knight.png"));
-  }
-
-  PossiblePositions Knight::GetPossibleMovePositions() {
-    PossiblePositions result;
-    return result;
-  }
-
   Rook::Rook(Color color, Position row, Position col)
   : Piece(Piece::Type::Rook, color, row, col) {
     std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
     texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "rook.png"));
   }
-
-  PossiblePositions Rook::GetPossibleMovePositions() {
-    PossiblePositions result;
-    PossibleMoves possible_moves(row_, col_, result);
+  
+  PossibleMoves Rook::GetPossibleMovePositions() {
+    PossibleMoves result;
+    PossibleMovesValidator possible_moves(row_, col_, result);
     
     possible_moves.Upward(MaxRows - 1);
     possible_moves.Downward(0);
     
     possible_moves.Right(MaxCols - 1);
     possible_moves.Left(0);
+    
+    return result;
+  }
+  
+  Knight::Knight(Color color, Position row, Position col)
+  : Piece(Piece::Type::Knight, color, row, col) {
+    std::string texture_path = color == Color::Black ? "textures/black/" : "textures/white/";
+    texture_ = Renderer::GetTexture(AM::ClientAsset(texture_path + "knight.png"));
+  }
 
+  PossibleMoves Knight::GetPossibleMovePositions() {
+    PossibleMoves result;
+    PossibleMovesValidator possible_moves(row_, col_, result);
     return result;
   }
 

@@ -25,6 +25,10 @@ namespace chess {
   };
   
   using PossiblePositions = std::vector<std::pair<Position, Position>>;
+  
+  struct PossibleMoves {
+    PossiblePositions up, down, right, left, up_right, up_left, down_right, down_left;
+  };
       
   /// Base class for all piece. Stores the following data
   ///  - Type of piece
@@ -48,7 +52,7 @@ namespace chess {
     virtual ~Piece() = default;
     
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    [[nodiscard]] virtual PossiblePositions GetPossibleMovePositions() = 0;
+    [[nodiscard]] virtual PossibleMoves GetPossibleMovePositions() = 0;
     
     /// This function returns the color name string
     std::string GetColorStr() const;
@@ -94,7 +98,7 @@ namespace chess {
     ~Pawn() = default;
 
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    PossiblePositions GetPossibleMovePositions() override;
+    PossibleMoves GetPossibleMovePositions() override;
     
   private:
     Direction direction_;
@@ -113,7 +117,7 @@ namespace chess {
     ~King() = default;
 
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    PossiblePositions GetPossibleMovePositions() override;
+    PossibleMoves GetPossibleMovePositions() override;
   };
 
   /// Class to store the queen data and funtion
@@ -129,7 +133,7 @@ namespace chess {
     ~Queen() = default;
 
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    PossiblePositions GetPossibleMovePositions() override;
+    PossibleMoves GetPossibleMovePositions() override;
   };
 
   /// Class to store the Bishop data and funtion
@@ -145,23 +149,7 @@ namespace chess {
     ~Bishop() = default;
 
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    PossiblePositions GetPossibleMovePositions() override;
-  };
-
-  /// Class to store the Knight data and funtion
-  class Knight : public Piece {
-  public:
-    /// Cosntructor of base piece class
-    /// - Parameters:
-    ///   - type: type of piece
-    ///   - color: color of piece
-    ///   - row: row of position
-    ///   - col: col position
-    Knight(Color color, Position row, Position col);
-    ~Knight() = default;
-
-    /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    PossiblePositions GetPossibleMovePositions() override;
+    PossibleMoves GetPossibleMovePositions() override;
   };
 
   /// Class to store the Rook data and funtion
@@ -175,9 +163,25 @@ namespace chess {
     ///   - col: col position
     Rook(Color color, Position row, Position col);
     ~Rook() = default;
+    
+    /// This function returns the possible moves of a piece (vectore of pair of row and columns)
+    PossibleMoves GetPossibleMovePositions() override;
+  };
+  
+  /// Class to store the Knight data and funtion
+  class Knight : public Piece {
+  public:
+    /// Cosntructor of base piece class
+    /// - Parameters:
+    ///   - type: type of piece
+    ///   - color: color of piece
+    ///   - row: row of position
+    ///   - col: col position
+    Knight(Color color, Position row, Position col);
+    ~Knight() = default;
 
     /// This function returns the possible moves of a piece (vectore of pair of row and columns)
-    PossiblePositions GetPossibleMovePositions() override;
+    PossibleMoves GetPossibleMovePositions() override;
   };
 
 }

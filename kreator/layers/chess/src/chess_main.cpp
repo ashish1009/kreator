@@ -218,17 +218,16 @@ namespace chess {
 
               // Render Possible Move outlines
               if (selected_piece_) {
-                PossiblePositions moves = selected_piece_->GetPossibleMovePositions();
+                PossibleMoves moves = selected_piece_->GetPossibleMovePositions();
                 
-                // Validate empty blocks
-                for (const auto& [row, col] : moves) {
-                  if (block_[row][col].piece) {
-                    // validate
-                  } else {
-                    // Extra Validation for Pawn
-                    CreatePossibleMoveEntity(row, col);
-                  }
-                } // for (const auto& [row, col] : moves.empty_blocks_)
+                ValidatePossibleMoved(moves.up);
+                ValidatePossibleMoved(moves.down);
+                ValidatePossibleMoved(moves.right);
+                ValidatePossibleMoved(moves.left);
+                ValidatePossibleMoved(moves.up_right);
+                ValidatePossibleMoved(moves.up_left);
+                ValidatePossibleMoved(moves.down_left);
+                ValidatePossibleMoved(moves.down_right);
               }
 
             }
@@ -242,6 +241,18 @@ namespace chess {
       }
     }
     return false;
+  }
+  
+  void ChessLayer::ValidatePossibleMoved(const PossiblePositions& positions) {
+    // Validate empty blocks
+    for (const auto& [row, col] : positions) {
+      if (block_[row][col].piece) {
+        break;
+      } else {
+        // Extra Validation for Pawn
+        CreatePossibleMoveEntity(row, col);
+      }
+    } // for (const auto& [row, col] : moves.empty_blocks_)
   }
   
   void ChessLayer::CreatePossibleMoveEntity(Position row, Position col) {

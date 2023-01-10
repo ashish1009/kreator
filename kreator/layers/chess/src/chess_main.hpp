@@ -54,6 +54,9 @@ namespace chess {
     ///   - row: row
     ///   - col: col
     void CreatePossibleMoveEntity(Position row, Position col);
+    /// This function validates the possible moves of pirce
+    /// - Parameter positions: postitons to be validated
+    void ValidatePossibleMoved(const PossiblePositions& positions);
     
     // --------------------
     // Member variables
