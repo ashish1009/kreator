@@ -7,7 +7,7 @@
 
 #pragma once
 
-#define CHESS_DEBUG 0
+#define CHESS_DEBUG 1
 
 namespace chess {
   

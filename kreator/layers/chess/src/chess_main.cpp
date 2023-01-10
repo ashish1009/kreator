@@ -35,13 +35,21 @@ namespace chess {
     // Create the camera entity
     // ---------------------------------------------------------
     camera_entity_ = chess_scene_.CreateEntity();
-    camera_entity_.GetComponent<TransformComponent>().translation.x = 14.0f;
-    camera_entity_.GetComponent<TransformComponent>().translation.y = 14.0f;
+    camera_entity_.GetComponent<TransformComponent>().translation.x = (BlockSize * (MaxCols - 1)) / 2;
+    camera_entity_.GetComponent<TransformComponent>().translation.y = (BlockSize * (MaxRows - 1)) / 2;
     
     auto& camera_comp = camera_entity_.AddComponent<CameraComponent>();
     camera_comp.is_primary = true;
     camera_comp.is_fixed_aspect_ratio = true;
-    camera_comp.camera->SetOrthographicSize(45.0f);
+    
+    // Background Block
+    auto back_e = chess_scene_.CreateEntity("Background");
+    back_e.GetComponent<TransformComponent>().translation = {(BlockSize * (MaxCols - 1)) / 2, (BlockSize * (MaxRows - 1)) / 2, -0.2f};
+    back_e.GetComponent<TransformComponent>().scale = {BlockSize * (MaxCols + 1), BlockSize * (MaxRows + 1), 1};
+    
+    auto& quad_comp = back_e.AddComponent<QuadComponent>();
+    quad_comp.texture_comp.use = true;
+    quad_comp.texture_comp.component = Renderer::GetTexture(AM::ClientAsset("textures/common/background.png"));
     
     // ----------------------------------------------------
     // Add Blocks
