@@ -222,8 +222,12 @@ namespace chess {
                 
                 // Validate empty blocks
                 for (const auto& [row, col] : moves) {
-                  if (!block_[row][col].piece) 
+                  if (block_[row][col].piece) {
+                    // validate
+                  } else {
+                    // Extra Validation for Pawn
                     CreatePossibleMoveEntity(row, col);
+                  }
                 } // for (const auto& [row, col] : moves.empty_blocks_)
               }
 
@@ -294,6 +298,30 @@ namespace chess {
       ImGui::PopID();
     }
     ImGui::End();
+
+
+    ImGui::Begin("Selected Piece");
+    width = ImGui::GetContentRegionAvailWidth() / 2;
+    ImGui::SetCursorPos({ width - 50, 0 });
+    ImGui::Text("Selected Piece");
+    ImGui::Separator();
+    if (selected_piece_) {
+      ImGui::PushID("Selected Piece");
+      ImGui::Columns(2);
+      ImGui::SetColumnWidth(0, width);
+      ImGui::Text("Name");
+      ImGui::Text("Position");
+      ImGui::Text("Color");
+      
+      ImGui::NextColumn();
+      ImGui::Text("%s", selected_piece_->GetName().c_str());
+      ImGui::Text("Row : %d | Col : %d", selected_piece_->Row(), selected_piece_->Col());
+      ImGui::Text("%s", selected_piece_->GetColorStr().c_str());
+      ImGui::Columns(1);
+      ImGui::PopID();
+    }
+    ImGui::End();
+
 #endif
 
     // Viewport

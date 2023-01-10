@@ -23,8 +23,8 @@ namespace chess {
   
   Piece::Type GetStartPieceType(Position row, Position col) {
     if (row == 0 or row == 7) return GetYPosPiece(col);
-//    else if (row == 1 or row == 6)
-//      return Piece::Type::Pawn;
+    else if (row == 1 or row == 6)
+      return Piece::Type::Pawn;
     else return Piece::Type::None;
   }
   
@@ -212,12 +212,8 @@ namespace chess {
     
     if (direction_ == Direction::Up) {
       possible_moves.Upward(row_ + 1);
-      possible_moves.UpLeft(row_ + 1, col_ -1);
-      possible_moves.UpRight(row_ + 1, col_ + 1);
     } else if (direction_ == Direction::Down) {
       possible_moves.Downward(row_ - 1);
-      possible_moves.DownLeft(row_ - 1, col_ - 1);
-      possible_moves.DownRight(row_ - 1, col_ + 1);
     } else {
       IK_ASSERT(false);
     }
