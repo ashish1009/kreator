@@ -23,8 +23,8 @@ namespace chess {
   
   Piece::Type GetStartPieceType(Position row, Position col) {
     if (row == 0 or row == 7) return GetYPosPiece(col);
-//    else if (row == 1 or row == 6)
-//      return Piece::Type::Pawn;
+    else if (row == 1 or row == 6)
+      return Piece::Type::Pawn;
     else return Piece::Type::None;
   }
   

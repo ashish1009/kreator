@@ -245,13 +245,19 @@ namespace chess {
   
   void ChessLayer::ValidatePossibleMoved(const PossiblePositions& positions) {
     // Validate empty blocks
+    int32_t idx = 0;
     for (const auto& [row, col] : positions) {
       if (block_[row][col].piece) {
-        break;
+        if (idx == positions.size() - 1) {
+          // Validate
+          CreatePossibleMoveEntity(row, col);
+        } else {
+          break;
+        }
       } else {
-        // Extra Validation for Pawn
         CreatePossibleMoveEntity(row, col);
       }
+      idx++;
     } // for (const auto& [row, col] : moves.empty_blocks_)
   }
   
