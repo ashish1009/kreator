@@ -60,6 +60,8 @@ namespace chess {
     Block block_[MaxRows][MaxCols];
     Block* selected_block_ = nullptr;
     Entity background_entity_;
+    
+    Entity hovered_block_entity_;
 
     // For Debug
 #if CHESS_DEBUG

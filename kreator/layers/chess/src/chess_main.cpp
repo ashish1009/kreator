@@ -42,15 +42,30 @@ namespace chess {
     camera_comp.is_primary = true;
     camera_comp.is_fixed_aspect_ratio = true;
     
+    // ----------------------------------------------------
     // Background Block
+    // ----------------------------------------------------
     background_entity_ = chess_scene_.CreateEntity("Background");
     background_entity_.GetComponent<TransformComponent>().translation = {(BlockSize * (MaxCols - 1)) / 2, (BlockSize * (MaxRows - 1)) / 2, -0.2f};
     background_entity_.GetComponent<TransformComponent>().scale = {BlockSize * (MaxCols + 1), BlockSize * (MaxRows + 1), 1};
     
-    auto& quad_comp = background_entity_.AddComponent<QuadComponent>();
-    quad_comp.texture_comp.use = true;
-    quad_comp.texture_comp.component = Renderer::GetTexture(AM::ClientAsset("textures/common/background.png"));
-    
+    {
+      auto& quad_comp = background_entity_.AddComponent<QuadComponent>();
+      quad_comp.texture_comp.use = true;
+      quad_comp.texture_comp.component = Renderer::GetTexture(AM::ClientAsset("textures/common/background.png"));
+    }
+
+    // ----------------------------------------------------
+    // Hovered Block Entity
+    // ----------------------------------------------------
+    hovered_block_entity_ = chess_scene_.CreateEntity("Hovered Block");
+    hovered_block_entity_.GetComponent<TransformComponent>().scale = {BlockSize, BlockSize, 1};
+    {
+      auto& quad_comp = hovered_block_entity_.AddComponent<QuadComponent>();
+      quad_comp.texture_comp.use = true;
+      quad_comp.texture_comp.component = Renderer::GetTexture(AM::ClientAsset("textures/common/hovered_block.png"));
+    }
+
     // ----------------------------------------------------
     // Add Blocks
     // ----------------------------------------------------
@@ -116,6 +131,17 @@ namespace chess {
 #else
     viewport_.UpdateHoveredEntity(nullptr, &chess_scene_);
 #endif
+    
+    // Hovered Block
+    {
+      if (viewport_.hovered_entity_ and
+          *viewport_.hovered_entity_ != background_entity_ and
+          *viewport_.hovered_entity_ != hovered_block_entity_) {
+        const auto& position = viewport_.hovered_entity_->GetComponent<TransformComponent>().translation;
+        hovered_block_entity_.GetComponent<TransformComponent>().translation = { position.x, position.y, 0.3 };
+      }
+    }
+    
     viewport_.framebuffer->Unbind();
   }
     
