@@ -22,21 +22,21 @@ namespace chess {
   }
   
   Piece::Type GetStartPieceType(Position row, Position col) {
-    if (row == 0 or row == 7) return GetYPosPiece(col);
-    else if (row == 1)
+    if (row == StartPosition::Special_black_row or row == StartPosition::Special_white_row) return GetYPosPiece(col);
+    else if (row == StartPosition::Pawn_black_row or row == StartPosition::Pawn_white_row)
       return Piece::Type::Pawn;
     else return Piece::Type::None;
   }
   
   Color GetPieceStartColor(Position row) {
-    if (row == 0 or row == 1) return Color::Black;
-    else if (row == 6 or row == 7) return Color::White;
+    if (row == StartPosition::Special_black_row or row == StartPosition::Pawn_black_row) return Color::Black;
+    else if (row == StartPosition::Pawn_white_row or row ==StartPosition:: Special_white_row) return Color::White;
     else return Color::None;
   }
   
   Pawn::Direction GetpawnDirection(Position row) {
-    if (row == 0 or row == 1) return Pawn::Direction::Up;
-    else if (row == 6 or row == 7) return Pawn::Direction::Down;
+    if (row == StartPosition::Special_black_row or row == StartPosition::Pawn_black_row) return Pawn::Direction::Up;
+    else if (row == StartPosition::Pawn_white_row or row == StartPosition::Special_white_row) return Pawn::Direction::Down;
     IK_ASSERT(false);
   }
   

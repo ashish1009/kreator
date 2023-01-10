@@ -14,6 +14,11 @@ namespace chess {
   using namespace ikan;
   
   struct StartPosition {
+    static constexpr Position Pawn_black_row = 1;
+    static constexpr Position Pawn_white_row = 6;
+    static constexpr Position Special_black_row = 0;
+    static constexpr Position Special_white_row = 7;
+    
     static constexpr Position King = 3;
     static constexpr Position Queen = 4;
     static constexpr Position Rook_1 = 0;
