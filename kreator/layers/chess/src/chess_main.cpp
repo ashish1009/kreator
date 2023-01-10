@@ -53,21 +53,28 @@ namespace chess {
         block_[row][col].col = col;
         
         // Create Chess Block Entity (Black or white)
-        auto e = chess_scene_.CreateEntity("Block_" + std::to_string(row) + "_" + std::to_string(col));
+        auto b_e = chess_scene_.CreateEntity("Block_" + std::to_string(row) + "_" + std::to_string(col));
         
         // Create Quad component and update the color alternate
-        auto& quad_comp = e.AddComponent<QuadComponent>();
+        auto& quad_comp = b_e.AddComponent<QuadComponent>();
         if (row % 2)
           quad_comp.color = (col % 2) ? BlackColor : WhiteColor;
         else
           quad_comp.color = (col % 2) ? WhiteColor : BlackColor;
         
         // Update the position of block
-        e.GetComponent<TransformComponent>().translation = { row * BlockSize, col * BlockSize, 0 };
-        e.GetComponent<TransformComponent>().scale = { BlockSize, BlockSize, 0 };
+        b_e.GetComponent<TransformComponent>().translation = { row * BlockSize, col * BlockSize, 0 };
+        b_e.GetComponent<TransformComponent>().scale = { BlockSize, BlockSize, 0 };
         
         // Add the piece
         block_[row][col].piece = Piece::Create(row, col);
+        
+        // Create Piece Entities
+        if (block_[row][col].piece) {
+          std::shared_ptr<Piece> piece = block_[row][col].piece;
+          std::string piece_name = piece->GetColorStr() + "_" + piece->GetName();
+          Entity p_e = chess_scene_.CreateEntity(piece_name);
+        } // if (block_[row][col].piece)
       } // Rows loop
     } // Cols loop
   }

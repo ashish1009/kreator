@@ -45,6 +45,9 @@ namespace chess {
     Piece(Piece::Type type, Color color, Position row, Position col);
     virtual ~Piece() = default;
     
+    /// This function returns the color name string
+    std::string GetColorStr() const;
+    /// This function return the name string og piece
     const std::string& GetName() const { return name_; }
     
     /// This function create the pirce based on the type of piece

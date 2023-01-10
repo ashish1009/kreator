@@ -53,6 +53,12 @@ namespace chess {
   // -------------------------------------------
   // Pieces
   // -------------------------------------------
+  std::string Piece::GetColorStr() const {
+    if (color_ == Color::White) return "White";
+    else if (color_ == Color::Black) return "Black";
+    else IK_ASSERT(false);
+  }
+  
   Piece::Piece(Piece::Type type, Color color, Position row, Position col)
   : type_(type), row_(row), col_(col), color_(color) {
     switch (type_) {
