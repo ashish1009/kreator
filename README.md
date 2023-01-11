@@ -110,11 +110,33 @@ Add the following library search paths
 - Mario
 
 With Tile
-![](/kreator/layers/mario/output/mario_6.png)
-
+<table>
+  <tr>
+     <td>Scene 1</td>
+     <td>Scene 2</td>
+     <td>Scene 3</td>
+  </tr>
+  <tr>
+    <td><img src="kreator/layers/mario/output/tile/mario_1.png" width=480 height=240></td>
+    <td><img src="kreator/layers/mario/output/tile/mario_2.png" width=480 height=240></td>
+    <td><img src="kreator/layers/mario/output/tile/mario_3.png" width=480 height=240></td>
+  </tr>
+ </table>
+ 
 Without Tile
-![](/kreator/layers/mario/output/mario_5.png)
-
+<table>
+  <tr>
+     <td>Scene 1</td>
+     <td>Scene 2</td>
+     <td>Scene 3</td>
+  </tr>
+  <tr>
+    <td><img src="kreator/layers/mario/output/texture/mario_1.png" width=480 height=240></td>
+    <td><img src="kreator/layers/mario/output/texture/mario_2.png" width=480 height=240></td>
+    <td><img src="kreator/layers/mario/output/texture/mario_3.png" width=480 height=240></td>
+  </tr>
+ </table>
+ 
 ----------------
 - Chess
 

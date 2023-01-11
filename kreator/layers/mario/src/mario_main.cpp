@@ -26,7 +26,7 @@ namespace mario {
     else
       spm_.SetSceneContext(&mario_texture_scene_);
 #else
-    use_sprite_ = true;
+    use_sprite_ = false;
 #endif
   }
   
