@@ -10,12 +10,16 @@
 
 namespace mario {
   
+  static glm::mat4 still_camera_projection;
+
   MarioLayer::MarioLayer() : Layer("Kreator") {
     IK_INFO("Mario", "Creating Mario Layer instance ... ");
     
     viewport_width_ = Application::Get().GetSpecification().window_specification.width;
     viewport_height_ = Application::Get().GetSpecification().window_specification.height;
     
+    still_camera_projection = glm::ortho( 0.0f, (float)viewport_width_, 0.0f, (float)viewport_height_);
+
     // Reinitialize the Batch Renderer
     BatchRenderer::Reinit(1000, 0, 0);
     
@@ -56,6 +60,9 @@ namespace mario {
   void MarioLayer::Attach() {
     IK_INFO("Mario", "Attaching Mario Layer instance");
     
+    // Change Text renderer Font
+    TextRenderer::LoadFreetype(AM::ClientAsset("fonts/mario.ttf"));
+
     // ---------------------------------------------------------
     // Set the scene as playing
     // ---------------------------------------------------------
@@ -92,14 +99,21 @@ namespace mario {
       mario_tile_scene_.Update(ts);
     } else {
       mario_texture_scene_.Update(ts);
-      
+
       static SceneCamera fixed_camera;
       static std::shared_ptr<Texture> bg_texture = Renderer::GetTexture(AM::ClientAsset("textures/background/background.png"));
-      
+
       BatchRenderer::BeginBatch(fixed_camera.GetProjection());
       BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, -0, -0.5}, {0, 0, 0}, {18, 10, 1}), bg_texture);
       BatchRenderer::EndBatch();
     }
+    
+    /// Render the Frame rate
+    TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)),
+                             still_camera_projection,
+                             { 5.0f, 5.0f, 0.3f },
+                             { 0.35f, 0.35f },
+                             {0, 0, 1, 1});
   }
   
   void MarioLayer::Update(Timestep ts) {
@@ -109,6 +123,8 @@ namespace mario {
       // TODO: Store the player position before resize and back it up after resize
       mario_tile_scene_.SetViewport(viewport_.width, viewport_.height);
       mario_texture_scene_.SetViewport(viewport_.width, viewport_.height);
+
+      still_camera_projection = glm::ortho( 0.0f, (float)viewport_.width, 0.0f, (float)viewport_.height);
     }
 
     viewport_.UpdateMousePos();
@@ -141,6 +157,8 @@ namespace mario {
     // TODO: Store the player position before resize and back it up after resize
     mario_tile_scene_.SetViewport(viewport_width_, viewport_height_);
     mario_texture_scene_.SetViewport(viewport_width_, viewport_height_);
+
+    still_camera_projection = glm::ortho( 0.0f, (float)viewport_width_, 0.0f, (float)viewport_height_);
     return false;
   }
   
