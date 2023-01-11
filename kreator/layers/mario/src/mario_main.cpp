@@ -13,6 +13,9 @@ namespace mario {
   MarioLayer::MarioLayer() : Layer("Kreator") {
     IK_INFO("Mario", "Creating Mario Layer instance ... ");
     
+    viewport_width_ = Application::Get().GetSpecification().window_specification.width;
+    viewport_height_ = Application::Get().GetSpecification().window_specification.height;
+    
     // Reinitialize the Batch Renderer
     BatchRenderer::Reinit(1000, 0, 0);
     
@@ -82,13 +85,33 @@ namespace mario {
     viewport_.framebuffer->Bind();
 
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
+    
     mario_scene_.Update(ts);
 
+#if !USE_SPRITE
+    static SceneCamera fixed_camera;
+    static std::shared_ptr<Texture> bg_texture = Renderer::GetTexture(AM::ClientAsset("textures/background/background.png"));
+    
+    BatchRenderer::BeginBatch(fixed_camera.GetProjection());
+    BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, -0, -0.5}, {0, 0, 0}, {18, 10, 1}), bg_texture);
+    BatchRenderer::EndBatch();
+#endif
+    
     viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), &mario_scene_);
     viewport_.framebuffer->Unbind();
 #else
     Renderer::Clear({0.2, 0.3, 0.4, 1.0});
     mario_scene_.Update(ts);
+    
+#if !USE_SPRITE
+    static SceneCamera fixed_camera;
+    static std::shared_ptr<Texture> bg_texture = Renderer::GetTexture(AM::ClientAsset("textures/background/background.png"));
+
+    BatchRenderer::BeginBatch(fixed_camera.GetProjection());
+    BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, -0, -0.5}, {0, 0, 0}, {18, 10, 1}), bg_texture);
+    BatchRenderer::EndBatch();
+#endif
+
 #endif
   }
   

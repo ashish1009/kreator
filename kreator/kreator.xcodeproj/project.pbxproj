@@ -61,6 +61,7 @@
 		B24DD8302963000100525941 /* mario_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario_main.cpp; sourceTree = "<group>"; };
 		B24DD8312963000100525941 /* mario_main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario_main.hpp; sourceTree = "<group>"; };
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
+		B25A1532296EDE6600250AF1 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		B25F616929698F930042FE09 /* background.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = background.hpp; sourceTree = "<group>"; };
 		B25F61792969A3360042FE09 /* camera_controller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = camera_controller.h; sourceTree = "<group>"; };
 		B25F617A2969A40F0042FE09 /* background.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = background.cpp; sourceTree = "<group>"; };
@@ -214,6 +215,7 @@
 				B25F61792969A3360042FE09 /* camera_controller.h */,
 				B25F61892969A9CF0042FE09 /* player.cpp */,
 				B25F618A2969A9CF0042FE09 /* player.hpp */,
+				B25A1532296EDE6600250AF1 /* common.h */,
 			);
 			path = src;
 			sourceTree = "<group>";

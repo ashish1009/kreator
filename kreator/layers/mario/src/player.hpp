@@ -7,7 +7,7 @@
 
 #pragma once
 
-#define MARIO_DEBUG 1
+#include "common.h"
 
 namespace mario {
   

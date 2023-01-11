@@ -8,9 +8,7 @@
 #include "background.hpp"
 
 namespace mario {
-  
-#define USE_SPRITE 0
-  
+    
   /// This function returns the entity name from Char code
   /// - Parameter type: Char of tile map
   static std::string GetEntityNameFromChar(char type) {
@@ -284,7 +282,7 @@ namespace mario {
               if (GetEntityNameFromChar(tile_type) == "Cloud" or
                   GetEntityNameFromChar(tile_type) == "Grass" or
                   GetEntityNameFromChar(tile_type) == "Block") {
-                entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height / 2.0f) - y + 0.5, 0.1f };
+                entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height / 2.0f) - y + 0.5, -0.1f };
                 entity.GetComponent<TransformComponent>().scale = { 4.0f, 2.0f, 1.0f };
               }
               else if (GetEntityNameFromChar(tile_type) == "Forest") {
