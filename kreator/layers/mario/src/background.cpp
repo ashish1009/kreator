@@ -17,6 +17,7 @@ namespace mario {
         
       case '|' : return "Castel Brick";
       case 'o' : return "Castel Gate";
+      case 'E' : return "Castel";
       case 'u' : return "castel Gate Domb";
       case '.' : return "Castel Domb";
       case 'l' : return "Castel Windlow Left";
@@ -58,6 +59,7 @@ namespace mario {
         
       case '|' : return false; // "Castel Brick";
       case 'o' : return false; // "Castel Gate";
+      case 'E' : return true; // "Castel Gate";
       case 'u' : return false; // "castel Gate Domb";
       case '.' : return false; // "Castel Domb";
       case 'l' : return false; // "Castel Windlow Left";
@@ -97,12 +99,12 @@ namespace mario {
     switch(type) {
       case '|' : // "Castel Brick";
       case 'o' : // "Castel Gate";
+      case 'E' : // "Castel Gate";
       case 'u' : // "castel Gate Domb";
       case '.' : // "Castel Domb";
       case 'l' : // "Castel Windlow Left";
       case 'r' : // "Castel Window Right";
         
-      case '-' :// "Bridge";
       case 'b' :// "UsedBonus";
         return true;
 
@@ -111,6 +113,7 @@ namespace mario {
       case 'B' : // "Bonus";
       case 'S' : // "Steps";
       case '8' : // "Steps";
+      case '-' :// "Bridge";
 
       case 'Y' : // "Pipe";
       case '!' : // "Pipe Base";
@@ -151,6 +154,13 @@ namespace mario {
       case '2' : // "Forest 2";
       case '3' : // "Forest 3";
 
+      case '|' : // "Castel Brick";
+      case 'o' : // "Castel Gate";
+      case 'u' : // "castel Gate Domb";
+      case '.' : // "Castel Domb";
+      case 'l' : // "Castel Windlow Left";
+      case 'r' : // "Castel Window Right";
+
         return false;
     };
     return true;
@@ -188,6 +198,7 @@ namespace mario {
     tiles_char_map['.'] = SubTexture::CreateFromCoords(tile_sprite, { 19.0f, 27.0f }); // Castel Doomb
     tiles_char_map['u'] = SubTexture::CreateFromCoords(tile_sprite, { 20.0f, 26.0f }); // Castel Gate Domb
     tiles_char_map['o'] = SubTexture::CreateFromCoords(tile_sprite, { 21.0f, 26.0f }); // Castel gate
+    tiles_char_map['E'] = SubTexture::CreateFromCoords(tile_sprite, { 21.0f, 26.0f }); // Castel gate
     tiles_char_map['|'] = SubTexture::CreateFromCoords(tile_sprite, { 21.0f, 27.0f }); // Castel Brick
     tiles_char_map['l'] = SubTexture::CreateFromCoords(tile_sprite, { 20.0f, 27.0f }); // Castel Window Left
     tiles_char_map['r'] = SubTexture::CreateFromCoords(tile_sprite, { 22.0f, 27.0f }); // Castel Window Right
@@ -203,6 +214,8 @@ namespace mario {
     texture_char_map['1'] = Renderer::GetTexture(AM::ClientAsset("textures/background/tree.png"));
     texture_char_map['Y'] = Renderer::GetTexture(AM::ClientAsset("textures/background/pipe_y.png"));
     texture_char_map['!'] = Renderer::GetTexture(AM::ClientAsset("textures/background/pipe_|.png"));
+    texture_char_map['-'] = Renderer::GetTexture(AM::ClientAsset("textures/background/bridge.png"));
+    texture_char_map['E'] = Renderer::GetTexture(AM::ClientAsset("textures/background/castel.png"));
   }
   
   Entity BackgroudData::CreateBackgroundEntity(EnttScene* scene, char tile_type, uint32_t x, uint32_t y) {
@@ -264,13 +277,14 @@ namespace mario {
                   GetEntityNameFromChar(tile_type) == "Block") {
                 entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height_ / 2.0f) - y + 0.5, -0.1f };
                 entity.GetComponent<TransformComponent>().scale = { 4.0f, 2.0f, 1.0f };
-              }
-              else if (GetEntityNameFromChar(tile_type) == "Forest") {
+              } else if (GetEntityNameFromChar(tile_type) == "Forest") {
                 entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height_ / 2.0f) - y + 0.5, -0.1f };
                 entity.GetComponent<TransformComponent>().scale = { 4.0f, 4.0f, 1.0f };
-              }
-              else if (GetEntityNameFromChar(tile_type) == "Pipe") {
+              } else if (GetEntityNameFromChar(tile_type) == "Pipe") {
                 entity.GetComponent<TransformComponent>().scale = { 2.0f, 1.0f, 1.0f };
+              } else if (GetEntityNameFromChar(tile_type) == "Castel") {
+                entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height_ / 2.0f) - y + 8.5, -0.1f };
+                entity.GetComponent<TransformComponent>().scale = { 20.0f, 20.0f, 1.0f };
               }
             } // if (RenderQuad(tile_type))
           } // if (IsSubtexture(tile_type))
