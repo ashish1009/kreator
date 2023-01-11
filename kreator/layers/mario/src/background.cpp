@@ -109,13 +109,6 @@ namespace mario {
       case 'Y' :// "Pipe";
       case 'b' :// "UsedBonus";
         
-      case '}' : // "Grass }";
-      case '{' : // "Grass {";
-      case '*' : // "Grass *";
-      case '1' : // "Grass 1";
-      case '4' : // "Grass 1";
-      case '2' : // "Grass 2";
-      case '3' : // "Grass 3";
         return true;
 #if USE_SPRITE
       case 'G' : // "Ground";
@@ -123,6 +116,14 @@ namespace mario {
       case 'B' : // "Bonus";
       case 'S' : // "Steps";
       case '8' : // "Steps";
+
+      case '}' : // "Forest }";
+      case '{' : // "Forest {";
+      case '*' : // "Forest *";
+      case '1' : // "Forest 1";
+      case '4' : // "Forest 1";
+      case '2' : // "Forest 2";
+      case '3' : // "Forest 3";
 
       case '(' : // Cloud Left
       case '^' : // Cloud
@@ -147,6 +148,14 @@ namespace mario {
       case 'v' : // "Grass";
       case '>' : // "Grass >>";
 
+      case '}' : // "Forest }";
+      case '{' : // "Forest {";
+      case '*' : // "Forest *";
+      case '1' : // "Forest 1";
+      case '4' : // "Forest 1";
+      case '2' : // "Forest 2";
+      case '3' : // "Forest 3";
+
         return false;
 #endif
     };
@@ -159,8 +168,17 @@ namespace mario {
     switch(type) {
       case '(' : // Cloud Left
       case ')' : // Cloud Right
+        
       case '<' : // "Grass <";
       case '>' : // "Grass >>";
+        
+      case '}' : // "Forest }";
+      case '{' : // "Forest {";
+      case '*' : // "Forest *";
+      case '4' : // "Forest 4";
+      case '2' : // "Forest 2";
+      case '3' : // "Forest 3";
+
         return false;
     };
 #endif
@@ -211,6 +229,7 @@ namespace mario {
     texture_char_map['B'] = Renderer::GetTexture(AM::ClientAsset("textures/background/bonus.png"));
     texture_char_map['8'] = Renderer::GetTexture(AM::ClientAsset("textures/background/block.png"));
     texture_char_map['S'] = Renderer::GetTexture(AM::ClientAsset("textures/background/brick_block.png"));
+    texture_char_map['1'] = Renderer::GetTexture(AM::ClientAsset("textures/background/tree.png"));
   }
   
   void BackgroudData::CreateEntities() {
@@ -256,15 +275,16 @@ namespace mario {
               qc.texture_comp.use = true;
               qc.texture_comp.component = texture_char_map[tile_type];
                 
-              if (GetEntityNameFromChar(tile_type) == "Cloud" or GetEntityNameFromChar(tile_type) == "Grass" ) {
+              if (GetEntityNameFromChar(tile_type) == "Cloud" or
+                  GetEntityNameFromChar(tile_type) == "Grass" or
+                  GetEntityNameFromChar(tile_type) == "Block") {
                 entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height / 2.0f) - y + 0.5, 0.1f };
                 entity.GetComponent<TransformComponent>().scale = { 4.0f, 2.0f, 1.0f };
               }
-              if (GetEntityNameFromChar(tile_type) == "Block") {
-                entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height / 2.0f) - y + 0.5f, 0.1f };
-                entity.GetComponent<TransformComponent>().scale = { 4.0f, 2.0f, 1.0f };
+              else if (GetEntityNameFromChar(tile_type) == "Forest") {
+                entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height / 2.0f) - y + 0.5, -0.1f };
+                entity.GetComponent<TransformComponent>().scale = { 4.0f, 4.0f, 1.0f };
               }
-
             } // if (RenderQuad(tile_type))
           } // if (IsSubtexture(tile_type))
         } // if (char tile_type = map_tile_pattern[x + y * map_width];
