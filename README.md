@@ -109,7 +109,7 @@ Add the following library search paths
 ----------------
 - Mario
 
-![](/kreator/layers/mario/output/mario_2.png)
+![](/kreator/layers/mario/output/mario_4.png)
 
 ----------------
 - Chess

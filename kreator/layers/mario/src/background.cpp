@@ -104,8 +104,6 @@ namespace mario {
       case '-' :// "Bridge";
       case '!' :// "Pipe Base";
       case 'Y' :// "Pipe";
-      case 'X' :// "Bricks";
-      case 'B' :// "Bonus";
       case 'b' :// "UsedBonus";
         
       case '}' : // "Grass }";
@@ -116,7 +114,9 @@ namespace mario {
       case '3' : // "Grass 3";
         return true;
 #if USE_SPRITE
-      case 'G' :// "Ground";
+      case 'G' : // "Ground";
+      case 'X' : // "Bricks";
+      case 'B' :// "Bonus";
 
       case '(' : // Cloud Left
       case '^' : // Cloud
@@ -128,6 +128,8 @@ namespace mario {
         return true;
 #else
       case 'G' : // "Ground";
+      case 'X' : // "Bricks";
+      case 'B' : // "Bonus";
 
       case '(' : // Cloud Left
       case '^' : // Cloud
@@ -194,7 +196,9 @@ namespace mario {
     // Textures
     texture_char_map['^'] = Renderer::GetTexture(AM::ClientAsset("textures/background/cloud.png"));
     texture_char_map['v'] = Renderer::GetTexture(AM::ClientAsset("textures/background/grass.png"));
-    texture_char_map['G'] = Renderer::GetTexture(AM::ClientAsset("textures/background/ground.jpeg"));
+    texture_char_map['G'] = Renderer::GetTexture(AM::ClientAsset("textures/background/ground.png"));
+    texture_char_map['X'] = Renderer::GetTexture(AM::ClientAsset("textures/background/brick.png"));
+    texture_char_map['B'] = Renderer::GetTexture(AM::ClientAsset("textures/background/bonus.png"));
   }
   
   void BackgroudData::CreateEntities() {
