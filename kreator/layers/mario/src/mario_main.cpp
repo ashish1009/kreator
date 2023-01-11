@@ -40,7 +40,8 @@ namespace mario {
     // Create memory for background data
     // ---------------------------------------------------------
     background_data_ = new BackgroudData(&mario_scene_,
-                                         Renderer::GetTexture(AM::ClientAsset("textures/tiles.png"), false));
+                                         Renderer::GetTexture(AM::ClientAsset("textures/tiles.png"), false),
+                                         false);
 
     // ---------------------------------------------------------
     // Create the camera entity

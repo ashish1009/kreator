@@ -14,10 +14,8 @@
             filePath = "kreator/layers/mario/src/background.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
-            landmarkName = "BackgroudData::CreateEntities()"
-            landmarkType = "7">
+            startingLineNumber = "311"
+            endingLineNumber = "311">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,8 +28,8 @@
             filePath = "kreator/layers/mario/src/background.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "BackgroudData::StoreTiles()"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,25 +44,9 @@
             filePath = "kreator/layers/mario/src/background.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "RenderQuad(type)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EE30E19A-DFC7-47A8-9C18-A110A6D1B55E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kreator/layers/mario/src/background.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "IsSubtexture(type)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -78,8 +60,8 @@
             filePath = "kreator/layers/mario/src/mario_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "MarioLayer::Update(ts)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +76,8 @@
             filePath = "kreator/layers/mario/src/mario_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "MarioLayer::OnWindowResized(e)"
             landmarkType = "7">
          </BreakpointContent>

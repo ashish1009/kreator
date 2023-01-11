@@ -93,7 +93,7 @@ namespace mario {
   
   /// This function returns should it render subtexture or quad with texture
   /// - Parameter type: Char of tile map
-  static bool IsSubtexture(char type) {
+  static bool IsSubtexture(char type, bool is_sprite) {
     switch(type) {
       case '|' : // "Castel Brick";
       case 'o' : // "Castel Gate";
@@ -104,9 +104,8 @@ namespace mario {
         
       case '-' :// "Bridge";
       case 'b' :// "UsedBonus";
-        
         return true;
-#if USE_SPRITE
+
       case 'G' : // "Ground";
       case 'X' : // "Bricks";
       case 'B' : // "Bonus";
@@ -131,42 +130,15 @@ namespace mario {
       case '<' : // "Grass <";
       case 'v' : // "Grass v";
       case '>' : // "Grass >>";
-        return true;
-#else
-      case 'G' : // "Ground";
-      case 'X' : // "Bricks";
-      case 'B' : // "Bonus";
-      case 'S' : // "Steps";
-      case '8' : // "Steps";
-
-      case 'Y' : // "Pipe";
-      case '!' : // "Pipe Base";
-
-      case '(' : // Cloud Left
-      case '^' : // Cloud
-      case ')' : // Cloud Right
-
-      case '<' : // "Grass <";
-      case 'v' : // "Grass";
-      case '>' : // "Grass >>";
-
-      case '}' : // "Forest }";
-      case '{' : // "Forest {";
-      case '*' : // "Forest *";
-      case '1' : // "Forest 1";
-      case '4' : // "Forest 1";
-      case '2' : // "Forest 2";
-      case '3' : // "Forest 3";
-
-        return false;
-#endif
+        if (is_sprite)
+          return true;
+        else return false;
     };
     IK_ASSERT(false, "Invalid Type");
   }
   
   /// This function returns should a quad to render if no subtexture
   bool RenderQuad(char type) {
-#if !USE_SPRITE
     switch(type) {
       case '(' : // Cloud Left
       case ')' : // Cloud Right
@@ -183,7 +155,6 @@ namespace mario {
 
         return false;
     };
-#endif
     return true;
   }
 
@@ -266,7 +237,7 @@ namespace mario {
           auto& tc = entity.GetComponent<TransformComponent>();
           tc.translation = { (float)x - (float)30, (map_height / 2.0f) - y, 0.0f };
           
-          if (IsSubtexture(tile_type)) {
+          if (IsSubtexture(tile_type, is_sptrite)) {
             // Add sprite component
             const auto& sprite_comp = entity.AddComponent<SpriteComponent>(tiles_char_map[tile_type]);
             const auto& sprite_size = sprite_comp.sub_texture->GetSpriteSize();
