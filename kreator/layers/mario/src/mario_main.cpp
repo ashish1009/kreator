@@ -47,7 +47,7 @@ namespace mario {
       camera_entity.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
                                                            const std::string& script_name) {
         if (script_name == "mario::CameraController") {
-          sc->Bind<mario::CameraController>(10.0f);
+          sc->Bind<mario::CameraController>(60.0f);
           return true;
         }
         return false;
@@ -108,28 +108,16 @@ namespace mario {
     
     // Score and All text
     {
-      TextRenderer::RenderText("MARIO",
-                               text_data_.still_camera_projection,
-                               { text_data_.score_pos_col_1_y, text_data_.score_pos_row_1_y, 0.3f },
-                               text_data_.size,
-                               text_data_.color);
-      TextRenderer::RenderText("WORLD",
-                               text_data_.still_camera_projection,
-                               { text_data_.score_pos_col_2_y, text_data_.score_pos_row_1_y, 0.3f },
-                               text_data_.size,
-                               text_data_.color);
-
-      TextRenderer::RenderText("WORLD",
-                               text_data_.still_camera_projection,
-                               { text_data_.score_pos_col_3_y, text_data_.score_pos_row_1_y, 0.3f },
-                               text_data_.size,
-                               text_data_.color);
-
-      TextRenderer::RenderText("TIME",
-                               text_data_.still_camera_projection,
-                               { text_data_.score_pos_col_4_y, text_data_.score_pos_row_1_y, 0.3f },
-                               text_data_.size,
-                               text_data_.color);
+      text_data_.Render("MARIO", 0, 0);
+      text_data_.Render(std::to_string(score_), 1, 0);
+      
+      text_data_.Render("x" + std::to_string(coins_), 1, 1);
+      
+      text_data_.Render("WORLD", 0, 2);
+      text_data_.Render(std::to_string(world_) + " - " + std::to_string(level_), 1, 2);
+      
+      text_data_.Render("TIME", 0, 3);
+      text_data_.Render(std::to_string(time_), 1, 3);
     }
     
     /// Render the Frame rate
