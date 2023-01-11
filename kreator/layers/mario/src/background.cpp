@@ -33,7 +33,7 @@ namespace mario {
       case 'b' : return "UsedBonus";
         
       case '<' : return "Grass <";
-      case 'v' : return "Grass v";
+      case 'v' : return "Grass";
       case '>' : return "Grass >>";
         
       case '(' : return "Cloud Left";
@@ -110,10 +110,6 @@ namespace mario {
       case 'B' :// "Bonus";
       case 'b' :// "UsedBonus";
         
-      case '<' : // "Grass <";
-      case 'v' : // "Grass v";
-      case '>' : // "Grass >>";
-        
       case '}' : // "Grass }";
       case '{' : // "Grass {";
       case '*' : // "Grass *";
@@ -122,14 +118,23 @@ namespace mario {
       case '3' : // "Grass 3";
         return true;
 #if USE_SPRITE
-      case '(' :
-      case '^' :
-      case ')' :
+      case '(' : // Cloud Left
+      case '^' : // Cloud
+      case ')' : // Cloud Right
+
+      case '<' : // "Grass <";
+      case 'v' : // "Grass v";
+      case '>' : // "Grass >>";
         return true;
 #else
-      case '(' :
-      case '^' :
-      case ')' :
+      case '(' : // Cloud Left
+      case '^' : // Cloud
+      case ')' : // Cloud Right
+        
+      case '<' : // "Grass <";
+      case 'v' : // "Grass";
+      case '>' : // "Grass >>";
+
         return false;
 #endif
     };
@@ -170,7 +175,9 @@ namespace mario {
     tiles_char_map['l'] = SubTexture::CreateFromCoords(tile_sprite, { 20.0f, 27.0f }); // Castel Window Left
     tiles_char_map['r'] = SubTexture::CreateFromCoords(tile_sprite, { 22.0f, 27.0f }); // Castel Window Right
     
+    // Textures
     texture_char_map['^'] = Renderer::GetTexture(AM::ClientAsset("textures/background/cloud.png"));
+    texture_char_map['v'] = Renderer::GetTexture(AM::ClientAsset("textures/background/grass.png"));
   }
   
   void BackgroudData::CreateEntities() {
@@ -211,13 +218,14 @@ namespace mario {
             // Change scale acc to sprite
             tc.scale = { sprite_size.x, sprite_size.y , 0.0f};
           } else {
-            // Some HACK for cloud size
+            // Some HACK for cloud and Grass
             {
-              if (GetEntityNameFromChar(tile_type) == "Cloud") {
+              if (GetEntityNameFromChar(tile_type) == "Cloud" or GetEntityNameFromChar(tile_type) == "Grass" ) {
                 auto& qc = entity.AddComponent<QuadComponent>();
                 qc.texture_comp.use = true;
                 qc.texture_comp.component = texture_char_map[tile_type];
                 
+                entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height / 2.0f) - y + 0.5, 0.1f };
                 entity.GetComponent<TransformComponent>().scale = { 4.0f, 2.0f, 1.0f };
               }
             }
