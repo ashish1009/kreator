@@ -89,12 +89,10 @@ namespace mario {
     IK_ASSERT(false, "Invalid Type");
   }
   
-  /// This function returns is char of tile is rigid
+  /// This function returns should it render subtexture or quad with texture
   /// - Parameter type: Char of tile map
   static bool IsSubtexture(char type) {
     switch(type) {
-      case 'G' :// "Ground";
-        
       case '|' : // "Castel Brick";
       case 'o' : // "Castel Gate";
       case 'u' : // "castel Gate Domb";
@@ -118,6 +116,8 @@ namespace mario {
       case '3' : // "Grass 3";
         return true;
 #if USE_SPRITE
+      case 'G' :// "Ground";
+
       case '(' : // Cloud Left
       case '^' : // Cloud
       case ')' : // Cloud Right
@@ -127,10 +127,12 @@ namespace mario {
       case '>' : // "Grass >>";
         return true;
 #else
+      case 'G' : // "Ground";
+
       case '(' : // Cloud Left
       case '^' : // Cloud
       case ')' : // Cloud Right
-        
+
       case '<' : // "Grass <";
       case 'v' : // "Grass";
       case '>' : // "Grass >>";
@@ -139,6 +141,20 @@ namespace mario {
 #endif
     };
     IK_ASSERT(false, "Invalid Type");
+  }
+  
+  /// This function returns should a quad to render if no subtexture
+  bool RenderQuad(char type) {
+#if !USE_SPRITE
+    switch(type) {
+      case '(' : // Cloud Left
+      case ')' : // Cloud Right
+      case '<' : // "Grass <";
+      case '>' : // "Grass >>";
+        return false;
+    };
+#endif
+    return true;
   }
 
   void BackgroudData::StoreTiles() {
@@ -178,6 +194,7 @@ namespace mario {
     // Textures
     texture_char_map['^'] = Renderer::GetTexture(AM::ClientAsset("textures/background/cloud.png"));
     texture_char_map['v'] = Renderer::GetTexture(AM::ClientAsset("textures/background/grass.png"));
+    texture_char_map['G'] = Renderer::GetTexture(AM::ClientAsset("textures/background/ground.jpeg"));
   }
   
   void BackgroudData::CreateEntities() {
@@ -218,19 +235,18 @@ namespace mario {
             // Change scale acc to sprite
             tc.scale = { sprite_size.x, sprite_size.y , 0.0f};
           } else {
-            // Some HACK for cloud and Grass
-            {
-              if (GetEntityNameFromChar(tile_type) == "Cloud" or GetEntityNameFromChar(tile_type) == "Grass" ) {
-                auto& qc = entity.AddComponent<QuadComponent>();
-                qc.texture_comp.use = true;
-                qc.texture_comp.component = texture_char_map[tile_type];
+            if (RenderQuad(tile_type)) { // Some HACK for cloud and Grass
+              auto& qc = entity.AddComponent<QuadComponent>();
+              qc.texture_comp.use = true;
+              qc.texture_comp.component = texture_char_map[tile_type];
                 
+              if (GetEntityNameFromChar(tile_type) == "Cloud" or GetEntityNameFromChar(tile_type) == "Grass" ) {
                 entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height / 2.0f) - y + 0.5, 0.1f };
                 entity.GetComponent<TransformComponent>().scale = { 4.0f, 2.0f, 1.0f };
               }
-            }
-          }
-        }
+            } // if (RenderQuad(tile_type))
+          } // if (IsSubtexture(tile_type))
+        } // if (char tile_type = map_tile_pattern[x + y * map_width];
         else {
           if (tile_type != ' ' and tile_type != '0') // No need to validate Space
             IK_WARN("Mario", "    Char {0} at position Row {1} and Column {2} is not found in Tile Map", tile_type, y, x);
