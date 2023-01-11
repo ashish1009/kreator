@@ -48,6 +48,11 @@ namespace mario {
     /// This function render the scene
     /// - Parameter ts: Time step between 2 Frames
     void Render(Timestep ts);
+    /// This function create the camera enity
+    /// - Parameters:
+    ///   - scene: active scene
+    ///   - camera_entity: canmera entity reference
+    void CreateCamera(EnttScene* scene, Entity& camera_entity);
 
     // --------------------
     // Member variables
@@ -57,7 +62,7 @@ namespace mario {
     Entity tile_camera_entity_, texture_camera_entity;
     
     // mario Data
-    bool use_sprite_ = false;
+    bool use_sprite_ = true;
     BackgroudData* background_data_;
     Player* player_;    
   

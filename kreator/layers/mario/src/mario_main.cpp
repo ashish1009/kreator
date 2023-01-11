@@ -20,12 +20,37 @@ namespace mario {
     BatchRenderer::Reinit(1000, 0, 0);
     
 #if MARIO_DEBUG
-    spm_.SetSceneContext(&mario_texture_scene_);
+    use_sprite_ = true;
+    if (use_sprite_)
+      spm_.SetSceneContext(&mario_tile_scene_);
+    else
+      spm_.SetSceneContext(&mario_texture_scene_);
+#else
+    use_sprite_ = false;
 #endif
   }
   
   MarioLayer::~MarioLayer() {
     IK_WARN("Mario", "Destroying Mario Layer instance !!! ");
+  }
+  
+  void MarioLayer::CreateCamera(EnttScene* scene, Entity& camera_entity) {
+    camera_entity = scene->CreateEntity("Camera");
+    camera_entity.GetComponent<TransformComponent>().translation.y = 2.0f;
+    {
+      auto& camera_comp = camera_entity.AddComponent<CameraComponent>();
+      camera_comp.is_primary = true;
+      camera_comp.camera->SetOrthographicSize(22.0f);
+      
+      camera_entity.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
+                                                           const std::string& script_name) {
+        if (script_name == "mario::CameraController") {
+          sc->Bind<mario::CameraController>(10.0f);
+          return true;
+        }
+        return false;
+      }).Bind<CameraController>(player_data::speed_);
+    }
   }
   
   void MarioLayer::Attach() {
@@ -35,43 +60,14 @@ namespace mario {
     // Set the scene as playing
     // ---------------------------------------------------------
     mario_texture_scene_.PlayScene();
-    texture_camera_entity = mario_texture_scene_.CreateEntity();
-    texture_camera_entity.GetComponent<TransformComponent>().translation.y = 2.0f;
-    {
-      auto& camera_comp = texture_camera_entity.AddComponent<CameraComponent>();
-      camera_comp.is_primary = true;
-      camera_comp.camera->SetOrthographicSize(22.0f);
-      
-      texture_camera_entity.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
-                                                            const std::string& script_name) {
-        if (script_name == "mario::CameraController") {
-          sc->Bind<mario::CameraController>(10.0f);
-          return true;
-        }
-        return false;
-      }).Bind<CameraController>(player_data::speed_);
-    }
+    mario_tile_scene_.PlayScene();
+
     // ---------------------------------------------------------
     // Create the camera entity
     // ---------------------------------------------------------
-    mario_tile_scene_.PlayScene();
-    tile_camera_entity_ = mario_tile_scene_.CreateEntity();
-    tile_camera_entity_.GetComponent<TransformComponent>().translation.y = 2.0f;
-    
-    {
-      auto& camera_comp = tile_camera_entity_.AddComponent<CameraComponent>();
-      camera_comp.is_primary = true;
-      camera_comp.camera->SetOrthographicSize(22.0f);
-      
-      tile_camera_entity_.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
-                                                            const std::string& script_name) {
-        if (script_name == "mario::CameraController") {
-          sc->Bind<mario::CameraController>(10.0f);
-          return true;
-        }
-        return false;
-      }).Bind<CameraController>(player_data::speed_);
-    }
+    CreateCamera(&mario_tile_scene_, tile_camera_entity_);
+    CreateCamera(&mario_texture_scene_, texture_camera_entity);
+
     // --------------------------------------------------------
     // Player
     // --------------------------------------------------------
@@ -111,6 +107,7 @@ namespace mario {
     if (viewport_.IsFramebufferResized()) {
       viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
       // TODO: Store the player position before resize and back it up after resize
+      mario_tile_scene_.SetViewport(viewport_.width, viewport_.height);
       mario_texture_scene_.SetViewport(viewport_.width, viewport_.height);
     }
 
@@ -143,6 +140,7 @@ namespace mario {
     
     // TODO: Store the player position before resize and back it up after resize
     mario_tile_scene_.SetViewport(viewport_width_, viewport_height_);
+    mario_texture_scene_.SetViewport(viewport_width_, viewport_height_);
     return false;
   }
   
@@ -171,6 +169,17 @@ namespace mario {
     
     ImGui::Begin("Setting");
     ImGui::PushID("Setting");
+    
+    if (ImGui::Button("ToggleScene")) {
+      use_sprite_ = use_sprite_ ? false : true ;
+      
+      if (use_sprite_)
+        spm_.SetSceneContext(&mario_tile_scene_);
+      else
+        spm_.SetSceneContext(&mario_texture_scene_);
+    }
+    
+    ImGui::Text("%d", use_sprite_);
     
     if (ImGui::Button("Reset")) {
       player_->Reset();

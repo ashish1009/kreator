@@ -93,7 +93,7 @@ namespace mario {
   
   /// This function returns should it render subtexture or quad with texture
   /// - Parameter type: Char of tile map
-  static bool IsSubtexture(char type, bool is_sprite) {
+  static bool IsSubtexture(char type) {
     switch(type) {
       case '|' : // "Castel Brick";
       case 'o' : // "Castel Gate";
@@ -130,9 +130,7 @@ namespace mario {
       case '<' : // "Grass <";
       case 'v' : // "Grass v";
       case '>' : // "Grass >>";
-        if (is_sprite)
-          return true;
-        else return false;
+        return false;
     };
     IK_ASSERT(false, "Invalid Type");
   }
@@ -242,6 +240,7 @@ namespace mario {
 
           IK_INFO("Mario", " ---------------------------- ");
   
+          // Tile Scene
           {
             Entity entity = CreateBackgroundEntity(tile_scene_, tile_type, x, y);
             // Add sprite component
@@ -252,6 +251,7 @@ namespace mario {
             auto& tc = entity.GetComponent<TransformComponent>();
             tc.scale = { sprite_size.x, sprite_size.y , 0.0f};
           }
+          // Texture Scene
           {
             Entity entity = CreateBackgroundEntity(texture_scene_, tile_type, x, y);
             if (RenderQuad(tile_type)) { // Some HACK for cloud and Grass
