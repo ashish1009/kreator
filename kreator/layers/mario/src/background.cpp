@@ -27,8 +27,8 @@ namespace mario {
       case 'S' : return "Steps";
       case '8' : return "Block";
       case '-' : return "Bridge";
-      case '!' : return "Pipe Base";
       case 'Y' : return "Pipe";
+      case '!' : return "Pipe";
       case 'X' : return "Bricks";
       case 'B' : return "Bonus";
       case 'b' : return "UsedBonus";
@@ -105,8 +105,6 @@ namespace mario {
       case 'r' : // "Castel Window Right";
         
       case '-' :// "Bridge";
-      case '!' :// "Pipe Base";
-      case 'Y' :// "Pipe";
       case 'b' :// "UsedBonus";
         
         return true;
@@ -116,6 +114,9 @@ namespace mario {
       case 'B' : // "Bonus";
       case 'S' : // "Steps";
       case '8' : // "Steps";
+
+      case 'Y' : // "Pipe";
+      case '!' : // "Pipe Base";
 
       case '}' : // "Forest }";
       case '{' : // "Forest {";
@@ -139,6 +140,9 @@ namespace mario {
       case 'B' : // "Bonus";
       case 'S' : // "Steps";
       case '8' : // "Steps";
+
+      case 'Y' : // "Pipe";
+      case '!' : // "Pipe Base";
 
       case '(' : // Cloud Left
       case '^' : // Cloud
@@ -230,6 +234,8 @@ namespace mario {
     texture_char_map['8'] = Renderer::GetTexture(AM::ClientAsset("textures/background/block.png"));
     texture_char_map['S'] = Renderer::GetTexture(AM::ClientAsset("textures/background/brick_block.png"));
     texture_char_map['1'] = Renderer::GetTexture(AM::ClientAsset("textures/background/tree.png"));
+    texture_char_map['Y'] = Renderer::GetTexture(AM::ClientAsset("textures/background/pipe_y.png"));
+    texture_char_map['!'] = Renderer::GetTexture(AM::ClientAsset("textures/background/pipe_|.png"));
   }
   
   void BackgroudData::CreateEntities() {
@@ -284,6 +290,9 @@ namespace mario {
               else if (GetEntityNameFromChar(tile_type) == "Forest") {
                 entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height / 2.0f) - y + 0.5, -0.1f };
                 entity.GetComponent<TransformComponent>().scale = { 4.0f, 4.0f, 1.0f };
+              }
+              else if (GetEntityNameFromChar(tile_type) == "Pipe") {
+                entity.GetComponent<TransformComponent>().scale = { 2.0f, 1.0f, 1.0f };
               }
             } // if (RenderQuad(tile_type))
           } // if (IsSubtexture(tile_type))
