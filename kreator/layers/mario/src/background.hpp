@@ -46,6 +46,7 @@ namespace mario {
    l : Castel Windlow Left
    r : Castel Window Right
    S : Steps
+   8 : Steps
    - : Bridge
    ! : Pipe Base
    Y : Pipe Head
@@ -62,6 +63,7 @@ namespace mario {
    } : Forest }
    * : Forest *
    1 : Forest 1
+   4 : Forest 4
    2 : Forest 2
    3 : Forest 3
    / -------------------------------------------------------------------------------------- */
@@ -76,16 +78,16 @@ namespace mario {
   "                                                                                                                                 (^)                                              |u|       0"
   "                                                                                                 (^)                                                                              |o|       0"
   "                                                                                                                                              (^)                               .......     0"
-  "                                                 B                  XXXX                             B            XBX                                                           |u|r|u|     0"
+  "                                                 B                  SXXS                             B            XBX                                                           |u|r|u|     0"
   "                                                                                                                                                                                |o|||o|     0"
   "                                                                                                                                                                              ...........   0"
   "                                                                                                                                                                              |||||||||||   0"
   "                                                                                                                                                                              |l|u|r|u|l|   0"
   "                                               XBXBX              XBXXXXBX                           S           XXXXX               B                                        |||o|||o|||   0"
   "                                                                                  Y                 SS                                                   S                  ............... 0"
-  "                                                                                  !                SSS                         *                        SS                  ||||||||||||||| 0"
-  "                                                            Y                     !               SSSS                        {1}    Y                 SSS                  |u||u||u||u||u| 0"
-  "                                             <v>      S     !       S  S          !     <vv>     SSSSS                       {213}   !                SSSS         <v>      |o||o||o||o||o| 0"
+  "                                       *                                          !                SSS                         *                        SS                  ||||||||||||||| 0"
+  "                                      {4}                   Y                     !               SSSS                        {4}    Y                 SSS                  |u||u||u||u||u| 0"
+  "                          <vv>       {213}            8     !       S  S          !     <vv>     SSSSS                       {213}   !                SSSS         <v>      |o||o||o||o||o| 0"
   "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG--------------------GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG0"
   "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG                    GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG0"
   ;

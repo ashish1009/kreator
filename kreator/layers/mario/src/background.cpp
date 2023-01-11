@@ -25,6 +25,7 @@ namespace mario {
       case 'r' : return "Castel Window Right";
         
       case 'S' : return "Steps";
+      case '8' : return "Block";
       case '-' : return "Bridge";
       case '!' : return "Pipe Base";
       case 'Y' : return "Pipe";
@@ -40,12 +41,13 @@ namespace mario {
       case '^' : return "Cloud";
       case ')' : return "Cloud Right";
         
-      case '}' : return "Grass }";
-      case '{' : return "Grass {";
-      case '*' : return "Grass *";
-      case '1' : return "Grass 1";
-      case '2' : return "Grass 2";
-      case '3' : return "Grass 3";
+      case '}' : return "Forest }";
+      case '{' : return "Forest {";
+      case '*' : return "Forest *";
+      case '1' : return "Forest";
+      case '4' : return "Forest 4";
+      case '2' : return "Forest 2";
+      case '3' : return "Forest 3";
     };
     IK_ASSERT(false, "Invalid Type");
   }
@@ -64,6 +66,7 @@ namespace mario {
       case 'r' : return false; // "Castel Window Right";
         
       case 'S' : return true; // "Steps";
+      case '8' : return true; // "Steps";
       case '-' : return true; // "Bridge";
       case '!' : return true; // "Pipe Base";
       case 'Y' : return true; // "Pipe";
@@ -79,12 +82,13 @@ namespace mario {
       case '^' : return false; // "Cloud";
       case ')' : return false; // "Cloud Right";
         
-      case '}' : return false; // "Grass }";
-      case '{' : return false; // "Grass {";
-      case '*' : return false; // "Grass *";
-      case '1' : return false; // "Grass 1";
-      case '2' : return false; // "Grass 2";
-      case '3' : return false; // "Grass 3";
+      case '}' : return false; // "Forest }";
+      case '{' : return false; // "Forest {";
+      case '*' : return false; // "Forest *";
+      case '1' : return false; // "Forest";
+      case '4' : return false; // "Forest 4";
+      case '2' : return false; // "Forest 2";
+      case '3' : return false; // "Forest 3";
     };
     IK_ASSERT(false, "Invalid Type");
   }
@@ -100,7 +104,6 @@ namespace mario {
       case 'l' : // "Castel Windlow Left";
       case 'r' : // "Castel Window Right";
         
-      case 'S' :// "Steps";
       case '-' :// "Bridge";
       case '!' :// "Pipe Base";
       case 'Y' :// "Pipe";
@@ -110,13 +113,16 @@ namespace mario {
       case '{' : // "Grass {";
       case '*' : // "Grass *";
       case '1' : // "Grass 1";
+      case '4' : // "Grass 1";
       case '2' : // "Grass 2";
       case '3' : // "Grass 3";
         return true;
 #if USE_SPRITE
       case 'G' : // "Ground";
       case 'X' : // "Bricks";
-      case 'B' :// "Bonus";
+      case 'B' : // "Bonus";
+      case 'S' : // "Steps";
+      case '8' : // "Steps";
 
       case '(' : // Cloud Left
       case '^' : // Cloud
@@ -130,6 +136,8 @@ namespace mario {
       case 'G' : // "Ground";
       case 'X' : // "Bricks";
       case 'B' : // "Bonus";
+      case 'S' : // "Steps";
+      case '8' : // "Steps";
 
       case '(' : // Cloud Left
       case '^' : // Cloud
@@ -167,6 +175,7 @@ namespace mario {
     tiles_char_map['B'] = SubTexture::CreateFromCoords(tile_sprite, { 24.0f, 27.0f }); // Bonus
     tiles_char_map['b'] = SubTexture::CreateFromCoords(tile_sprite, { 27.0f, 27.0f }); // Used Bonus
     tiles_char_map['S'] = SubTexture::CreateFromCoords(tile_sprite, { 0.0f, 26.0f });  // Steps
+    tiles_char_map['8'] = SubTexture::CreateFromCoords(tile_sprite, { 0.0f, 26.0f });  // Steps
     tiles_char_map['-'] = SubTexture::CreateFromCoords(tile_sprite, { 15.0f, 18.5f }); // Bridge
     tiles_char_map['Y'] = SubTexture::CreateFromCoords(tile_sprite, { 0.0f, 19.0f }, { 2.0f, 1.0f }); // Pipe Top
     tiles_char_map['!'] = SubTexture::CreateFromCoords(tile_sprite, { 0.0f, 18.0f }, { 2.0f, 1.0f }); // Pipe base
@@ -179,6 +188,7 @@ namespace mario {
     tiles_char_map['}'] = SubTexture::CreateFromCoords(tile_sprite, { 10.0f, 19.0f }); // Forest Right
     tiles_char_map['*'] = SubTexture::CreateFromCoords(tile_sprite, { 9.0f, 19.0f });  // Forest Top
     tiles_char_map['1'] = SubTexture::CreateFromCoords(tile_sprite, { 8.0f, 18.0f });  // Forest Mid
+    tiles_char_map['4'] = SubTexture::CreateFromCoords(tile_sprite, { 8.0f, 18.0f });  // Forest Mid
     tiles_char_map['2'] = SubTexture::CreateFromCoords(tile_sprite, { 9.0f, 18.0f });  // Forest top left
     tiles_char_map['3'] = SubTexture::CreateFromCoords(tile_sprite, { 10.0f, 18.0f }); // Forest top Right
     
@@ -199,6 +209,8 @@ namespace mario {
     texture_char_map['G'] = Renderer::GetTexture(AM::ClientAsset("textures/background/ground.png"));
     texture_char_map['X'] = Renderer::GetTexture(AM::ClientAsset("textures/background/brick.png"));
     texture_char_map['B'] = Renderer::GetTexture(AM::ClientAsset("textures/background/bonus.png"));
+    texture_char_map['8'] = Renderer::GetTexture(AM::ClientAsset("textures/background/block.png"));
+    texture_char_map['S'] = Renderer::GetTexture(AM::ClientAsset("textures/background/brick_block.png"));
   }
   
   void BackgroudData::CreateEntities() {
@@ -248,6 +260,11 @@ namespace mario {
                 entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height / 2.0f) - y + 0.5, 0.1f };
                 entity.GetComponent<TransformComponent>().scale = { 4.0f, 2.0f, 1.0f };
               }
+              if (GetEntityNameFromChar(tile_type) == "Block") {
+                entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height / 2.0f) - y + 0.5f, 0.1f };
+                entity.GetComponent<TransformComponent>().scale = { 4.0f, 2.0f, 1.0f };
+              }
+
             } // if (RenderQuad(tile_type))
           } // if (IsSubtexture(tile_type))
         } // if (char tile_type = map_tile_pattern[x + y * map_width];
