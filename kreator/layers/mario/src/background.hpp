@@ -89,9 +89,9 @@ namespace mario {
   "                                                                                                                                                                              |l|u|r|u|l|   0"
   "                                               XBXBX              XBXXXXBX                           S           XXXXX               B                                        |||o|||o|||   0"
   "                                                                                  Y                 SS                                                   S                  ............... 0"
-  "                                       *                    Y                     !                SSS                         *                        SS                  ||||||||||||||| 0"
-  "                                      {4}                   !                     !               SSSS                        {4}    Y                 SSS                  |u||u||u||u||u| 0"
-  "                          <vv>       {213}            8     !       S  S          !     <vv>     SSSSS                       {213}   !                SSSS         <v>      |o||o||o||o||o| 0"
+  "                                                *             Y                   !                SSS                         *                        SS                  ||||||||||||||| 0"
+  "                                               {4}            !                   !               SSSS                        {4}    Y                 SSS                  |u||u||u||u||u| 0"
+  "                          <v>      <vv>       {213}     8     !     S  S          !     <vv>     SSSSS                       {213}   !                SSSS         <v>      |o||o||o||o||o| 0"
   "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG--------------------GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG0"
   "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG                    GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG0"
   ;

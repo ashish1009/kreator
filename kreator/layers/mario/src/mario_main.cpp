@@ -26,7 +26,7 @@ namespace mario {
     else
       spm_.SetSceneContext(&mario_texture_scene_);
 #else
-    use_sprite_ = false;
+    use_sprite_ = true;
 #endif
   }
   
@@ -161,12 +161,15 @@ namespace mario {
   void MarioLayer::RenderGui() {
 #if MARIO_DEBUG
     ImguiAPI::StartDcocking();
-    Renderer::RenderStatsGui();
+    Renderer::RenderStatsGui(nullptr, true);
     Renderer::Framerate();
 
     viewport_.RenderGui();
-    mario_texture_scene_.RenderGui();
-    
+    if (use_sprite_)
+      mario_tile_scene_.RenderGui();
+    else
+      mario_texture_scene_.RenderGui();
+
     ImGui::Begin("Setting");
     ImGui::PushID("Setting");
     
@@ -178,9 +181,8 @@ namespace mario {
       else
         spm_.SetSceneContext(&mario_texture_scene_);
     }
-    
-    ImGui::Text("%d", use_sprite_);
-    
+    ImGui::SameLine();
+        
     if (ImGui::Button("Reset")) {
       player_->Reset();
       tile_camera_entity_.GetComponent<TransformComponent>().translation.x = 0.0f;
