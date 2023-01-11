@@ -60,8 +60,8 @@
             filePath = "kreator/layers/mario/src/mario_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "MarioLayer::Update(ts)"
             landmarkType = "7">
          </BreakpointContent>
@@ -76,8 +76,8 @@
             filePath = "kreator/layers/mario/src/mario_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "MarioLayer::OnWindowResized(e)"
             landmarkType = "7">
          </BreakpointContent>

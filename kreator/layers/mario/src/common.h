@@ -7,6 +7,5 @@
 
 #pragma once
 
-#define MARIO_DEBUG 0
-#define USE_SPRITE 1
+#define MARIO_DEBUG 1
 

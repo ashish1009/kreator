@@ -13,7 +13,6 @@ namespace mario {
   using namespace ikan;
   
   struct BackgroudData {
-    bool is_sptrite = true;
     // Sprite texture for background tiles
     std::shared_ptr<Texture> tile_sprite;
     
@@ -21,8 +20,8 @@ namespace mario {
     std::unordered_map<char, std::shared_ptr<SubTexture>> tiles_char_map;
     std::unordered_map<char, std::shared_ptr<Texture>> texture_char_map;
 
-    BackgroudData(EnttScene* scene, std::shared_ptr<Texture> sprite_iamge, bool is_sptrite)
-    : scene_(scene), is_sptrite(is_sptrite) {
+    BackgroudData(EnttScene* tile_scene, EnttScene* texture_scene, std::shared_ptr<Texture> sprite_iamge)
+    : tile_scene_(tile_scene), texture_scene_(texture_scene) {
       // Create the tile sprite
       tile_sprite = sprite_iamge;
 
@@ -34,7 +33,10 @@ namespace mario {
     void CreateEntities();
     
   private:
-    EnttScene* scene_;
+    Entity CreateBackgroundEntity(EnttScene* scene, char tile_type, uint32_t x, uint32_t y);
+    
+    uint32_t map_height_;
+    EnttScene* tile_scene_, *texture_scene_;
   };
 
   /* --------------------------------------------------------------------------------------

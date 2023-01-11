@@ -45,15 +45,19 @@ namespace mario {
     /// This function handles the window resize
     /// - Parameter e: window resize event
     bool OnWindowResized(WindowResizeEvent& e);
+    /// This function render the scene
+    /// - Parameter ts: Time step between 2 Frames
+    void Render(Timestep ts);
 
     // --------------------
     // Member variables
     // --------------------
     uint32_t viewport_width_ = 0, viewport_height_ = 0;
-    EnttScene mario_scene_;
-    Entity camera_entity_;
+    EnttScene mario_tile_scene_, mario_texture_scene_;
+    Entity tile_camera_entity_, texture_camera_entity;
     
     // mario Data
+    bool use_sprite_ = false;
     BackgroudData* background_data_;
     Player* player_;    
   

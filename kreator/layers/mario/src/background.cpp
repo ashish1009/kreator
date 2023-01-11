@@ -207,6 +207,24 @@ namespace mario {
     texture_char_map['!'] = Renderer::GetTexture(AM::ClientAsset("textures/background/pipe_|.png"));
   }
   
+  Entity BackgroudData::CreateBackgroundEntity(EnttScene* scene, char tile_type, uint32_t x, uint32_t y) {
+    auto entity = scene->CreateEntity(GetEntityNameFromChar(tile_type));
+    
+    // Add rigid component
+    if (IsRigid(tile_type)) {
+      AABB aabb;
+      aabb.min = { -0.5f, -0.5f, -0.5f };
+      aabb.max = { 0.5f, 0.5f, 0.5f };
+      entity.AddComponent<RigidBodyComponent>(aabb);
+    }
+    
+    // Update the position
+    auto& tc = entity.GetComponent<TransformComponent>();
+    tc.translation = { (float)x - (float)30, (map_height_ / 2.0f) - y, 0.0f };
+
+    return entity;
+  }
+  
   void BackgroudData::CreateEntities() {
     // ---------------------------------------------------------
     // Create the entity for each tile
@@ -214,37 +232,28 @@ namespace mario {
     IK_INFO("Mario", "Creating Entity for each tile ");
     // Extract the map width. MAP Width should be same for each New line string
     size_t map_width = map_tile_pattern.find_first_of('0') + 1;
-    uint32_t map_height = static_cast<uint32_t>(strlen(map_tile_pattern.c_str())) / map_width;
+    map_height_ = static_cast<uint32_t>(strlen(map_tile_pattern.c_str())) / map_width;
     
-    for (uint32_t y = 0; y < map_height; y++) {
+    for (uint32_t y = 0; y < map_height_; y++) {
       for (uint32_t x = 0; x < map_width; x++) {
         // Create entity if we have sub texture for the character we found in map
         if (char tile_type = map_tile_pattern[x + y * map_width];
             tiles_char_map.find(tile_type) != tiles_char_map.end() or texture_char_map.find(tile_type) != texture_char_map.end()) {
 
           IK_INFO("Mario", " ---------------------------- ");
-          auto entity = scene_->CreateEntity(GetEntityNameFromChar(tile_type));
-
-          // Add rigid component
-          if (IsRigid(tile_type)) {
-            AABB aabb;
-            aabb.min = { -0.5f, -0.5f, -0.5f };
-            aabb.max = { 0.5f, 0.5f, 0.5f };
-            entity.AddComponent<RigidBodyComponent>(aabb);
-          }
-
-          // Update the position
-          auto& tc = entity.GetComponent<TransformComponent>();
-          tc.translation = { (float)x - (float)30, (map_height / 2.0f) - y, 0.0f };
-          
-          if (IsSubtexture(tile_type, is_sptrite)) {
+  
+          {
+            Entity entity = CreateBackgroundEntity(tile_scene_, tile_type, x, y);
             // Add sprite component
             const auto& sprite_comp = entity.AddComponent<SpriteComponent>(tiles_char_map[tile_type]);
             const auto& sprite_size = sprite_comp.sub_texture->GetSpriteSize();
             
             // Change scale acc to sprite
+            auto& tc = entity.GetComponent<TransformComponent>();
             tc.scale = { sprite_size.x, sprite_size.y , 0.0f};
-          } else {
+          }
+          {
+            Entity entity = CreateBackgroundEntity(texture_scene_, tile_type, x, y);
             if (RenderQuad(tile_type)) { // Some HACK for cloud and Grass
               auto& qc = entity.AddComponent<QuadComponent>();
               qc.texture_comp.use = true;
@@ -253,11 +262,11 @@ namespace mario {
               if (GetEntityNameFromChar(tile_type) == "Cloud" or
                   GetEntityNameFromChar(tile_type) == "Grass" or
                   GetEntityNameFromChar(tile_type) == "Block") {
-                entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height / 2.0f) - y + 0.5, -0.1f };
+                entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height_ / 2.0f) - y + 0.5, -0.1f };
                 entity.GetComponent<TransformComponent>().scale = { 4.0f, 2.0f, 1.0f };
               }
               else if (GetEntityNameFromChar(tile_type) == "Forest") {
-                entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height / 2.0f) - y + 0.5, -0.1f };
+                entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height_ / 2.0f) - y + 0.5, -0.1f };
                 entity.GetComponent<TransformComponent>().scale = { 4.0f, 4.0f, 1.0f };
               }
               else if (GetEntityNameFromChar(tile_type) == "Pipe") {

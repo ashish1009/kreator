@@ -20,7 +20,7 @@ namespace mario {
     BatchRenderer::Reinit(1000, 0, 0);
     
 #if MARIO_DEBUG
-    spm_.SetSceneContext(&mario_scene_);
+    spm_.SetSceneContext(&mario_texture_scene_);
 #endif
   }
   
@@ -34,38 +34,55 @@ namespace mario {
     // ---------------------------------------------------------
     // Set the scene as playing
     // ---------------------------------------------------------
-    mario_scene_.PlayScene();
-    
-    // ---------------------------------------------------------
-    // Create memory for background data
-    // ---------------------------------------------------------
-    background_data_ = new BackgroudData(&mario_scene_,
-                                         Renderer::GetTexture(AM::ClientAsset("textures/tiles.png"), false),
-                                         false);
-
+    mario_texture_scene_.PlayScene();
+    texture_camera_entity = mario_texture_scene_.CreateEntity();
+    texture_camera_entity.GetComponent<TransformComponent>().translation.y = 2.0f;
+    {
+      auto& camera_comp = texture_camera_entity.AddComponent<CameraComponent>();
+      camera_comp.is_primary = true;
+      camera_comp.camera->SetOrthographicSize(22.0f);
+      
+      texture_camera_entity.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
+                                                            const std::string& script_name) {
+        if (script_name == "mario::CameraController") {
+          sc->Bind<mario::CameraController>(10.0f);
+          return true;
+        }
+        return false;
+      }).Bind<CameraController>(player_data::speed_);
+    }
     // ---------------------------------------------------------
     // Create the camera entity
     // ---------------------------------------------------------
-    camera_entity_ = mario_scene_.CreateEntity();
-    camera_entity_.GetComponent<TransformComponent>().translation.y = 2.0f;
-
-    auto& camera_comp = camera_entity_.AddComponent<CameraComponent>();
-    camera_comp.is_primary = true;
-    camera_comp.camera->SetOrthographicSize(22.0f);
-
-    camera_entity_.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
-                                                          const std::string& script_name) {
-      if (script_name == "mario::CameraController") {
-        sc->Bind<mario::CameraController>(10.0f);
-        return true;
-      }
-      return false;
-    }).Bind<CameraController>(player_data::speed_);
+    mario_tile_scene_.PlayScene();
+    tile_camera_entity_ = mario_tile_scene_.CreateEntity();
+    tile_camera_entity_.GetComponent<TransformComponent>().translation.y = 2.0f;
     
+    {
+      auto& camera_comp = tile_camera_entity_.AddComponent<CameraComponent>();
+      camera_comp.is_primary = true;
+      camera_comp.camera->SetOrthographicSize(22.0f);
+      
+      tile_camera_entity_.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
+                                                            const std::string& script_name) {
+        if (script_name == "mario::CameraController") {
+          sc->Bind<mario::CameraController>(10.0f);
+          return true;
+        }
+        return false;
+      }).Bind<CameraController>(player_data::speed_);
+    }
     // --------------------------------------------------------
     // Player
     // --------------------------------------------------------
-    player_ = new Player(&mario_scene_);
+    player_ = new Player(&mario_tile_scene_);
+
+    // ---------------------------------------------------------
+    // Create memory for background data
+    // ---------------------------------------------------------
+    background_data_ = new BackgroudData(&mario_tile_scene_, &mario_texture_scene_,
+                                         Renderer::GetTexture(AM::ClientAsset("textures/tiles.png"), false));
+
   }
   
   void MarioLayer::Detach() {
@@ -74,45 +91,41 @@ namespace mario {
     delete player_;
   }
   
+  void MarioLayer::Render(Timestep ts) {
+    if (use_sprite_) {
+      mario_tile_scene_.Update(ts);
+    } else {
+      mario_texture_scene_.Update(ts);
+      
+      static SceneCamera fixed_camera;
+      static std::shared_ptr<Texture> bg_texture = Renderer::GetTexture(AM::ClientAsset("textures/background/background.png"));
+      
+      BatchRenderer::BeginBatch(fixed_camera.GetProjection());
+      BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, -0, -0.5}, {0, 0, 0}, {18, 10, 1}), bg_texture);
+      BatchRenderer::EndBatch();
+    }
+  }
+  
   void MarioLayer::Update(Timestep ts) {
 #if MARIO_DEBUG
     if (viewport_.IsFramebufferResized()) {
       viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
       // TODO: Store the player position before resize and back it up after resize
-      mario_scene_.SetViewport(viewport_.width, viewport_.height);
+      mario_texture_scene_.SetViewport(viewport_.width, viewport_.height);
     }
 
     viewport_.UpdateMousePos();
     viewport_.framebuffer->Bind();
 
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
-    
-    mario_scene_.Update(ts);
+    Render(ts);
 
-#if !USE_SPRITE
-    static SceneCamera fixed_camera;
-    static std::shared_ptr<Texture> bg_texture = Renderer::GetTexture(AM::ClientAsset("textures/background/background.png"));
-    
-    BatchRenderer::BeginBatch(fixed_camera.GetProjection());
-    BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, -0, -0.5}, {0, 0, 0}, {18, 10, 1}), bg_texture);
-    BatchRenderer::EndBatch();
-#endif
-    
-    viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), &mario_scene_);
+    viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), &mario_texture_scene_);
     viewport_.framebuffer->Unbind();
 #else
     Renderer::Clear({0.2, 0.3, 0.4, 1.0});
-    mario_scene_.Update(ts);
+    Render(ts);
     
-#if !USE_SPRITE
-    static SceneCamera fixed_camera;
-    static std::shared_ptr<Texture> bg_texture = Renderer::GetTexture(AM::ClientAsset("textures/background/background.png"));
-
-    BatchRenderer::BeginBatch(fixed_camera.GetProjection());
-    BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, -0, -0.5}, {0, 0, 0}, {18, 10, 1}), bg_texture);
-    BatchRenderer::EndBatch();
-#endif
-
 #endif
   }
   
@@ -129,7 +142,7 @@ namespace mario {
     viewport_height_ = e.GetHeight();
     
     // TODO: Store the player position before resize and back it up after resize
-    mario_scene_.SetViewport(viewport_width_, viewport_height_);
+    mario_tile_scene_.SetViewport(viewport_width_, viewport_height_);
     return false;
   }
   
@@ -154,14 +167,15 @@ namespace mario {
     Renderer::Framerate();
 
     viewport_.RenderGui();
-    mario_scene_.RenderGui();
+    mario_texture_scene_.RenderGui();
     
     ImGui::Begin("Setting");
     ImGui::PushID("Setting");
     
     if (ImGui::Button("Reset")) {
       player_->Reset();
-      camera_entity_.GetComponent<TransformComponent>().translation.x = 0.0f;
+      tile_camera_entity_.GetComponent<TransformComponent>().translation.x = 0.0f;
+      texture_camera_entity.GetComponent<TransformComponent>().translation.x = 0.0f;
     }
     
     ImGui::PopID();
