@@ -9,6 +9,8 @@
 
 namespace mario {
   
+#define USE_SPRITE 0
+  
   /// This function returns the entity name from Char code
   /// - Parameter type: Char of tile map
   static std::string GetEntityNameFromChar(char type) {
@@ -34,9 +36,9 @@ namespace mario {
       case 'v' : return "Grass v";
       case '>' : return "Grass >>";
         
-      case '(' : return "Cloud (";
-      case '^' : return "Cloud ^";
-      case ')' : return "Cloud )>";
+      case '(' : return "Cloud Left";
+      case '^' : return "Cloud";
+      case ')' : return "Cloud Right";
         
       case '}' : return "Grass }";
       case '{' : return "Grass {";
@@ -73,9 +75,9 @@ namespace mario {
       case 'v' : return false; // "Grass v";
       case '>' : return false; // "Grass >>";
         
-      case '(' : return false; // "Cloud (";
-      case '^' : return false; // "Cloud ^";
-      case ')' : return false; // "Cloud )>";
+      case '(' : return false; // "Cloud Left";
+      case '^' : return false; // "Cloud";
+      case ')' : return false; // "Cloud Right";
         
       case '}' : return false; // "Grass }";
       case '{' : return false; // "Grass {";
@@ -86,6 +88,54 @@ namespace mario {
     };
     IK_ASSERT(false, "Invalid Type");
   }
+  
+  /// This function returns is char of tile is rigid
+  /// - Parameter type: Char of tile map
+  static bool IsSubtexture(char type) {
+    switch(type) {
+      case 'G' :// "Ground";
+        
+      case '|' : // "Castel Brick";
+      case 'o' : // "Castel Gate";
+      case 'u' : // "castel Gate Domb";
+      case '.' : // "Castel Domb";
+      case 'l' : // "Castel Windlow Left";
+      case 'r' : // "Castel Window Right";
+        
+      case 'S' :// "Steps";
+      case '-' :// "Bridge";
+      case '!' :// "Pipe Base";
+      case 'Y' :// "Pipe";
+      case 'X' :// "Bricks";
+      case 'B' :// "Bonus";
+      case 'b' :// "UsedBonus";
+        
+      case '<' : // "Grass <";
+      case 'v' : // "Grass v";
+      case '>' : // "Grass >>";
+        
+      case '}' : // "Grass }";
+      case '{' : // "Grass {";
+      case '*' : // "Grass *";
+      case '1' : // "Grass 1";
+      case '2' : // "Grass 2";
+      case '3' : // "Grass 3";
+        return true;
+#if USE_SPRITE
+      case '(' :
+      case '^' :
+      case ')' :
+        return true;
+#else
+      case '(' :
+      case '^' :
+      case ')' :
+        return false;
+#endif
+    };
+    IK_ASSERT(false, "Invalid Type");
+  }
+
   void BackgroudData::StoreTiles() {
     // Setup all the tile map
     tiles_char_map['G'] = SubTexture::CreateFromCoords(tile_sprite, { 0.0f, 27.0f });  // Ground
@@ -119,6 +169,8 @@ namespace mario {
     tiles_char_map['|'] = SubTexture::CreateFromCoords(tile_sprite, { 21.0f, 27.0f }); // Castel Brick
     tiles_char_map['l'] = SubTexture::CreateFromCoords(tile_sprite, { 20.0f, 27.0f }); // Castel Window Left
     tiles_char_map['r'] = SubTexture::CreateFromCoords(tile_sprite, { 22.0f, 27.0f }); // Castel Window Right
+    
+    texture_char_map['^'] = Renderer::GetTexture(AM::ClientAsset("textures/background/cloud.png"));
   }
   
   void BackgroudData::CreateEntities() {
@@ -134,7 +186,7 @@ namespace mario {
       for (uint32_t x = 0; x < map_width; x++) {
         // Create entity if we have sub texture for the character we found in map
         if (char tile_type = map_tile_pattern[x + y * map_width];
-            tiles_char_map.find(tile_type) != tiles_char_map.end()) {
+            tiles_char_map.find(tile_type) != tiles_char_map.end() or texture_char_map.find(tile_type) != texture_char_map.end()) {
 
           IK_INFO("Mario", " ---------------------------- ");
           auto entity = scene_->CreateEntity(GetEntityNameFromChar(tile_type));
@@ -151,17 +203,25 @@ namespace mario {
           auto& tc = entity.GetComponent<TransformComponent>();
           tc.translation = { (float)x - (float)30, (map_height / 2.0f) - y, 0.0f };
           
-#define USE_SPRITE 0
-#if USE_SPRITE
-          // Add sprite component
-          const auto& sprite_comp = entity.AddComponent<SpriteComponent>(tiles_char_map[tile_type]);
-          const auto& sprite_size = sprite_comp.sub_texture->GetSpriteSize();
-
-          // Change scale acc to sprite
-          tc.scale = { sprite_size.x, sprite_size.y , 0.0f};
-#else
-          entity.AddComponent<QuadComponent>();
-#endif
+          if (IsSubtexture(tile_type)) {
+            // Add sprite component
+            const auto& sprite_comp = entity.AddComponent<SpriteComponent>(tiles_char_map[tile_type]);
+            const auto& sprite_size = sprite_comp.sub_texture->GetSpriteSize();
+            
+            // Change scale acc to sprite
+            tc.scale = { sprite_size.x, sprite_size.y , 0.0f};
+          } else {
+            // Some HACK for cloud size
+            {
+              if (GetEntityNameFromChar(tile_type) == "Cloud") {
+                auto& qc = entity.AddComponent<QuadComponent>();
+                qc.texture_comp.use = true;
+                qc.texture_comp.component = texture_char_map[tile_type];
+                
+                entity.GetComponent<TransformComponent>().scale = { 4.0f, 2.0f, 1.0f };
+              }
+            }
+          }
         }
         else {
           if (tile_type != ' ' and tile_type != '0') // No need to validate Space

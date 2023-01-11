@@ -199,7 +199,6 @@ namespace chess {
         // Mouse Click Validations
         // ----------------------------------------------------
         if (viewport_.hovered_entity_) {
-          
           // ------------------------------------------------------------------
           // For background we do not need click feature for chess
           // ------------------------------------------------------------------

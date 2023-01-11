@@ -17,7 +17,8 @@ namespace mario {
     
     // Map of subtexture to the Char (defined in s_MapTiles) of their corresponding tile.
     std::unordered_map<char, std::shared_ptr<SubTexture>> tiles_char_map;
-    
+    std::unordered_map<char, std::shared_ptr<Texture>> texture_char_map;
+
     BackgroudData(EnttScene* scene, std::shared_ptr<Texture> sprite_iamge)
     : scene_(scene) {
       // Create the tile sprite
@@ -69,8 +70,8 @@ namespace mario {
   static std::string map_tile_pattern =
   "                                                                                                                                                                                            0"
   "                                                                                                                                                                                            0"
-  "                                                                                                         (^)                                       (^^)                                     0"
-  "                                     (^)                  (^^^)                                                                                                                    .        0"
+  "                                                                                                         (^)                                        (^)                                     0"
+  "                                     (^)                    (^)                                                                                                                    .        0"
   "                                                                                                                                                                                  ...       0"
   "                                                                                                                                                                                  |u|       0"
   "                                                                                                                                                                                  |o|       0"

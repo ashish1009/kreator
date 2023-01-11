@@ -53,7 +53,7 @@ public:
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Set up the type of applicaiton we want to create
-  SupportedApplicationType application_type = SupportedApplicationType::Chess;
+  SupportedApplicationType application_type = SupportedApplicationType::Mario;
   
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;
