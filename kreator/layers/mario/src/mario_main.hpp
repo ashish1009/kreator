@@ -14,6 +14,33 @@ namespace mario {
   
   using namespace ikan;
   
+  struct TextData {
+    const glm::vec2 size = { 0.6f, 0.6f };
+    const glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+    glm::mat4 still_camera_projection;
+    
+    float score_pos_row_1_y = 0.0f;
+    float score_pos_row_2_y = 0.0f;
+    
+    float score_pos_col_1_y = 50.0f;
+    float score_pos_col_2_y = 50.0f;
+    float score_pos_col_3_y = 50.0f;
+    float score_pos_col_4_y = 50.0f;
+    
+    void Update(float width, float height) {
+      still_camera_projection = glm::ortho( 0.0f, (float)width, 0.0f, (float)height);
+      
+      score_pos_row_1_y = (float)height - 50;
+      score_pos_row_2_y = (float)height - 70;
+      
+      score_pos_col_1_y = 50.0f;
+      score_pos_col_2_y = ((float)width / 2.0f) - 50.0f;
+      score_pos_col_3_y = ((float)width / 2.0f) + 50.0f;
+      score_pos_col_4_y = (float)width - 50.0f;
+    }
+  };
+  
   class MarioLayer : public Layer {
   public:
     /// Layer Default Constructor to store the name of layer
@@ -64,7 +91,9 @@ namespace mario {
     // mario Data
     bool use_sprite_ = true;
     BackgroudData* background_data_;
-    Player* player_;    
+    Player* player_;
+    
+    TextData text_data_;
   
     // For Debug
 #if MARIO_DEBUG

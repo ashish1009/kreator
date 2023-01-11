@@ -10,31 +10,13 @@
 
 namespace mario {
   
-  static glm::mat4 still_camera_projection;
-  static float score_pos_row_1_y = 0.0f;
-  static float score_pos_row_2_y = 0.0f;
-  
-  static float score_pos_col_1_y = 50.0f;
-  static float score_pos_col_2_y = 50.0f;
-  static float score_pos_col_3_y = 50.0f;
-  static float score_pos_col_4_y = 50.0f;
-
   MarioLayer::MarioLayer() : Layer("Kreator") {
     IK_INFO("Mario", "Creating Mario Layer instance ... ");
     
     viewport_width_ = Application::Get().GetSpecification().window_specification.width;
     viewport_height_ = Application::Get().GetSpecification().window_specification.height;
-    
-    still_camera_projection = glm::ortho( 0.0f, (float)viewport_width_, 0.0f, (float)viewport_height_);
 
-    score_pos_row_1_y = (float)viewport_height_ - 50;
-    score_pos_row_2_y = (float)viewport_height_ - 70;
-    
-    score_pos_col_1_y = 50.0f;
-    score_pos_col_2_y = ((float)viewport_width_ / 2.0f) - 50.0f;
-    score_pos_col_3_y = ((float)viewport_width_ / 2.0f) + 50.0f;
-    score_pos_col_4_y = (float)viewport_width_ - 50.0f;
-
+    text_data_.Update(viewport_width_, viewport_height_);
 
     // Reinitialize the Batch Renderer
     BatchRenderer::Reinit(1000, 0, 0);
@@ -127,32 +109,32 @@ namespace mario {
     // Score and All text
     {
       TextRenderer::RenderText("MARIO",
-                               still_camera_projection,
-                               { score_pos_col_1_y, score_pos_row_1_y, 0.3f },
-                               { 0.6f, 0.6f },
-                               { 1.0f, 1.0f, 1.0f, 1.0f });
+                               text_data_.still_camera_projection,
+                               { text_data_.score_pos_col_1_y, text_data_.score_pos_row_1_y, 0.3f },
+                               text_data_.size,
+                               text_data_.color);
       TextRenderer::RenderText("WORLD",
-                               still_camera_projection,
-                               { score_pos_col_2_y, score_pos_row_1_y, 0.3f },
-                               { 0.6f, 0.6f },
-                               { 1.0f, 1.0f, 1.0f, 1.0f });
+                               text_data_.still_camera_projection,
+                               { text_data_.score_pos_col_2_y, text_data_.score_pos_row_1_y, 0.3f },
+                               text_data_.size,
+                               text_data_.color);
 
       TextRenderer::RenderText("WORLD",
-                               still_camera_projection,
-                               { score_pos_col_3_y, score_pos_row_1_y, 0.3f },
-                               { 0.6f, 0.6f },
-                               { 1.0f, 1.0f, 1.0f, 1.0f });
+                               text_data_.still_camera_projection,
+                               { text_data_.score_pos_col_3_y, text_data_.score_pos_row_1_y, 0.3f },
+                               text_data_.size,
+                               text_data_.color);
 
       TextRenderer::RenderText("TIME",
-                               still_camera_projection,
-                               { score_pos_col_4_y, score_pos_row_1_y, 0.3f },
-                               { 0.6f, 0.6f },
-                               { 1.0f, 1.0f, 1.0f, 1.0f });
+                               text_data_.still_camera_projection,
+                               { text_data_.score_pos_col_4_y, text_data_.score_pos_row_1_y, 0.3f },
+                               text_data_.size,
+                               text_data_.color);
     }
     
     /// Render the Frame rate
     TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)),
-                             still_camera_projection,
+                             text_data_.still_camera_projection,
                              { 5.0f, 5.0f, 0.3f },
                              { 0.35f, 0.35f },
                              { 0, 0, 1, 1 });
@@ -166,14 +148,7 @@ namespace mario {
       mario_tile_scene_.SetViewport(viewport_.width, viewport_.height);
       mario_texture_scene_.SetViewport(viewport_.width, viewport_.height);
 
-      still_camera_projection = glm::ortho( 0.0f, (float)viewport_.width, 0.0f, (float)viewport_.height);
-      score_pos_row_1_y = (float)viewport_.height - 50;
-      score_pos_row_2_y = (float)viewport_.height - 70;
-      
-      score_pos_col_2_y = ((float)viewport_.width / 2.0f) - 250.0f;
-      score_pos_col_3_y = ((float)viewport_.width / 2.0f) + 150.0f;
-      score_pos_col_4_y = (float)viewport_.width - 150.0f;
-
+      text_data_.Update(viewport_.width, viewport_.height);
     }
 
     viewport_.UpdateMousePos();
@@ -207,14 +182,8 @@ namespace mario {
     mario_tile_scene_.SetViewport(viewport_width_, viewport_height_);
     mario_texture_scene_.SetViewport(viewport_width_, viewport_height_);
 
-    still_camera_projection = glm::ortho( 0.0f, (float)viewport_width_, 0.0f, (float)viewport_height_);
-
-    score_pos_row_1_y = (float)viewport_height_ - 50;
-    score_pos_row_2_y = (float)viewport_height_ - 70;
-
-    score_pos_col_2_y = ((float)viewport_width_ / 2.0f) - 50.0f;
-    score_pos_col_3_y = ((float)viewport_width_ / 2.0f) + 50.0f;
-    score_pos_col_4_y = (float)viewport_width_ - 50.0f;
+    // Text Data Update
+    text_data_.Update(viewport_width_, viewport_height_);
 
     return false;
   }

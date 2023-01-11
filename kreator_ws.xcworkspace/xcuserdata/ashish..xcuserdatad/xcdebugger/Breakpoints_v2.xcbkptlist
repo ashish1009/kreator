@@ -60,9 +60,9 @@
             filePath = "kreator/layers/mario/src/mario_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "MarioLayer::EventHandler(event)"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "MarioLayer::Update(ts)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -76,25 +76,9 @@
             filePath = "kreator/layers/mario/src/mario_main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "MarioLayer::Render(ts)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "61B1AAE7-777F-4C0F-9D8F-6B3F483AF3E1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kreator/layers/mario/src/mario_main.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "MarioLayer::Update(ts)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
