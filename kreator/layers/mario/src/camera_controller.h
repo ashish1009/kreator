@@ -15,11 +15,11 @@ namespace mario {
     
     void Update(Timestep ts) override {
       // Dummy copy of entity y Position
-      auto& translation = GetComponent<TransformComponent>().translation;
+      auto& tc = GetComponent<TransformComponent>();
       if (Input::IsKeyPressed(KeyCode::Left))
-        translation.x -= speed_ * ts;
+        tc.UpdateTranslation_X(tc.Translation().x - (speed_ * ts));
       if (Input::IsKeyPressed(KeyCode::Right))
-        translation.x += speed_ * ts;
+        tc.UpdateTranslation_X(tc.Translation().x + (speed_ * ts));
     }
     
   private:

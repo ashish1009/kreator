@@ -232,7 +232,7 @@ namespace ikan {
       const auto& [transform_component, camera_component] = camera_view.get<TransformComponent, CameraComponent>(camera_entity);
       if (camera_component.is_primary) {
         primary_camera_data_.scene_camera = camera_component.camera.get();
-        primary_camera_data_.position = transform_component.translation;
+        primary_camera_data_.position = transform_component.Translation();
         primary_camera_data_.transform_matrix = transform_component.GetTransform();
         
         primary_camera_data_.transform_comp = &transform_component;

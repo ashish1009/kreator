@@ -93,51 +93,6 @@ namespace mario {
     IK_ASSERT(false, "Invalid Type");
   }
   
-  /// This function returns should it render subtexture or quad with texture
-  /// - Parameter type: Char of tile map
-  static bool IsSubtexture(char type) {
-    switch(type) {
-      case '|' : // "Castel Brick";
-      case 'o' : // "Castel Gate";
-      case 'E' : // "Castel Gate";
-      case 'u' : // "castel Gate Domb";
-      case '.' : // "Castel Domb";
-      case 'l' : // "Castel Windlow Left";
-      case 'r' : // "Castel Window Right";
-        
-      case 'b' :// "UsedBonus";
-        return true;
-
-      case 'G' : // "Ground";
-      case 'X' : // "Bricks";
-      case 'B' : // "Bonus";
-      case 'S' : // "Steps";
-      case '8' : // "Steps";
-      case '-' :// "Bridge";
-
-      case 'Y' : // "Pipe";
-      case '!' : // "Pipe Base";
-
-      case '}' : // "Forest }";
-      case '{' : // "Forest {";
-      case '*' : // "Forest *";
-      case '1' : // "Forest 1";
-      case '4' : // "Forest 1";
-      case '2' : // "Forest 2";
-      case '3' : // "Forest 3";
-
-      case '(' : // Cloud Left
-      case '^' : // Cloud
-      case ')' : // Cloud Right
-
-      case '<' : // "Grass <";
-      case 'v' : // "Grass v";
-      case '>' : // "Grass >>";
-        return false;
-    };
-    IK_ASSERT(false, "Invalid Type");
-  }
-  
   /// This function returns should a quad to render if no subtexture
   bool RenderQuad(char type) {
     switch(type) {
@@ -231,7 +186,7 @@ namespace mario {
     
     // Update the position
     auto& tc = entity.GetComponent<TransformComponent>();
-    tc.translation = { (float)x - (float)30, (map_height_ / 2.0f) - y, 0.0f };
+    tc.UpdateTranslation({ (float)x - (float)30, (map_height_ / 2.0f) - y, 0.0f });
 
     return entity;
   }
@@ -262,7 +217,7 @@ namespace mario {
             
             // Change scale acc to sprite
             auto& tc = entity.GetComponent<TransformComponent>();
-            tc.scale = { sprite_size.x, sprite_size.y , 0.0f};
+            tc.UpdateScale({ sprite_size.x, sprite_size.y , 0.0f});
           }
           // Texture Scene
           {
@@ -275,16 +230,16 @@ namespace mario {
               if (GetEntityNameFromChar(tile_type) == "Cloud" or
                   GetEntityNameFromChar(tile_type) == "Grass" or
                   GetEntityNameFromChar(tile_type) == "Block") {
-                entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height_ / 2.0f) - y + 0.5, -0.1f };
-                entity.GetComponent<TransformComponent>().scale = { 4.0f, 2.0f, 1.0f };
+                entity.GetComponent<TransformComponent>().UpdateTranslation({ (float)x - (float)30, (map_height_ / 2.0f) - y + 0.5, -0.1f });
+                entity.GetComponent<TransformComponent>().UpdateScale({ 4.0f, 2.0f, 1.0f });
               } else if (GetEntityNameFromChar(tile_type) == "Forest") {
-                entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height_ / 2.0f) - y + 0.5, -0.1f };
-                entity.GetComponent<TransformComponent>().scale = { 4.0f, 4.0f, 1.0f };
+                entity.GetComponent<TransformComponent>().UpdateTranslation({ (float)x - (float)30, (map_height_ / 2.0f) - y + 0.5, -0.1f });
+                entity.GetComponent<TransformComponent>().UpdateScale({ 4.0f, 4.0f, 1.0f });
               } else if (GetEntityNameFromChar(tile_type) == "Pipe") {
-                entity.GetComponent<TransformComponent>().scale = { 2.0f, 1.0f, 1.0f };
+                entity.GetComponent<TransformComponent>().UpdateScale({ 2.0f, 1.0f, 1.0f });
               } else if (GetEntityNameFromChar(tile_type) == "Castel") {
-                entity.GetComponent<TransformComponent>().translation = { (float)x - (float)30, (map_height_ / 2.0f) - y + 8.5, -0.1f };
-                entity.GetComponent<TransformComponent>().scale = { 20.0f, 20.0f, 1.0f };
+                entity.GetComponent<TransformComponent>().UpdateTranslation({ (float)x - (float)30, (map_height_ / 2.0f) - y + 8.5, -0.1f });
+                entity.GetComponent<TransformComponent>().UpdateScale({ 20.0f, 20.0f, 1.0f });
               }
             } // if (RenderQuad(tile_type))
           } // if (IsSubtexture(tile_type))

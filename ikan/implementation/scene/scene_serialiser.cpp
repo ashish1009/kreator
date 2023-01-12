@@ -131,9 +131,9 @@ namespace ikan {
         out << YAML::BeginMap; // TransformComponent
         
         auto& tc = entity.GetComponent<TransformComponent>();
-        out << YAML::Key << "Translation" << YAML::Value << tc.translation;
-        out << YAML::Key << "Rotation" << YAML::Value << tc.rotation;
-        out << YAML::Key << "Scale" << YAML::Value << tc.scale;
+        out << YAML::Key << "Translation" << YAML::Value << tc.Translation();
+        out << YAML::Key << "Rotation" << YAML::Value << tc.Rotation();
+        out << YAML::Key << "Scale" << YAML::Value << tc.Scale();
         
         out << YAML::EndMap; // TransformComponent
       }
@@ -274,14 +274,14 @@ namespace ikan {
         if (transform_component) {
           // Entities always have transforms
           auto& tc = deserialized_entity.GetComponent<TransformComponent>();
-          tc.translation = transform_component["Translation"].as<glm::vec3>();
-          tc.rotation = transform_component["Rotation"].as<glm::vec3>();
-          tc.scale = transform_component["Scale"].as<glm::vec3>();
+          tc.UpdateTranslation(transform_component["Translation"].as<glm::vec3>());
+          tc.UpdateRotation(transform_component["Rotation"].as<glm::vec3>());
+          tc.UpdateScale(transform_component["Scale"].as<glm::vec3>());
           
           IK_CORE_INFO(LogModule::SceneSerializer, "    Transform Component");
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Translation   | {0} | {1} | {2}", tc.translation.x, tc.translation.y, tc.translation.z);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Rotation      | {0} | {1} | {2}", tc.rotation.x, tc.rotation.y, tc.rotation.z);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Scale         | {0} | {1} | {2}", tc.scale.x, tc.scale.y, tc.scale.z);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Translation   | {0} | {1} | {2}", tc.Translation().x, tc.Translation().y, tc.Translation().z);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Rotation      | {0} | {1} | {2}", tc.Rotation().x, tc.Rotation().y, tc.Rotation().z);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Scale         | {0} | {1} | {2}", tc.Scale().x, tc.Scale().y, tc.Scale().z);
         } // if (transform_component)
         
         // --------------------------------------------------------------------

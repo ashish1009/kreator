@@ -495,10 +495,10 @@ namespace editor {
         glm::vec3 translation, rotation, scale;
         Math::DecomposeTransform(transform, translation, rotation, scale);
         
-        glm::vec3 deltaRotation = rotation - tc.rotation;
-        tc.translation = translation;
-        tc.rotation += deltaRotation;
-        tc.scale = scale;
+        glm::vec3 deltaRotation = rotation - tc.Rotation();
+        tc.UpdateTranslation(translation);
+        tc.UpdateRotation(tc.Rotation() + deltaRotation);
+        tc.UpdateScale(scale);
       }
     }
   }

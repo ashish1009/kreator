@@ -69,21 +69,21 @@ namespace ikan {
   void FreeFallController::Update(Timestep ts) {
     if (HasComponent<RigidBodyComponent>()) {
       // Dummy copy of entity y Position
-      auto translation = GetComponent<TransformComponent>().translation;
+      auto translation = GetComponent<TransformComponent>().Translation();
       translation.y -= speed_ * ts;
       
       auto& tc = GetComponent<TransformComponent>();
       const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
       AABB world_aabb = original_aabb.GetWorldPosBoundingBox(Math::GetTransformMatrix(translation,
-                                                                                      tc.rotation,
-                                                                                      tc.scale));
+                                                                                      tc.Rotation(),
+                                                                                      tc.Scale()));
       
       // If no collision then update the position
       if (!CollisionDetected(world_aabb))
-        tc.translation = translation;
+        tc.UpdateTranslation(translation);
     } else {
-      auto& translation = GetComponent<TransformComponent>().translation;
-      translation.y -= speed_ * ts;
+      auto& tc = GetComponent<TransformComponent>();
+      tc.UpdateTranslation_Y(tc.Translation().y - speed_ * ts);
     }
   }
   

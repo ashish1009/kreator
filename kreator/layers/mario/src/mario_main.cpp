@@ -38,7 +38,8 @@ namespace mario {
   
   void MarioLayer::CreateCamera(EnttScene* scene, Entity& camera_entity) {
     camera_entity = scene->CreateEntity("Camera");
-    camera_entity.GetComponent<TransformComponent>().translation.y = 2.0f;
+    auto& tc = camera_entity.GetComponent<TransformComponent>();
+    tc.UpdateTranslation({0, 2, 0});
     {
       auto& camera_comp = camera_entity.AddComponent<CameraComponent>();
       camera_comp.is_primary = true;
@@ -108,16 +109,20 @@ namespace mario {
     
     // Score and All text
     {
-      text_data_.Render("MARIO", 0, 0);
-      text_data_.Render(std::to_string(score_), 1, 0);
+//      text_data_.Render("MARIO", 0, 0);
+//      text_data_.Render("MARIO", 1, 0);
+//      text_data_.Render(std::to_string(score_), 1, 0);
       
-      text_data_.Render("x" + std::to_string(coins_), 1, 1);
+//      text_data_.Render("MARIO", 1, 1);
+//      text_data_.Render("x" + std::to_string(coins_), 1, 1);
       
-      text_data_.Render("WORLD", 0, 2);
-      text_data_.Render(std::to_string(world_) + " - " + std::to_string(level_), 1, 2);
+//      text_data_.Render("WORLD", 0, 2);
+//      text_data_.Render("MARIO", 1, 2);
+//      text_data_.Render(std::to_string(world_) + " - " + std::to_string(level_), 1, 2);
       
-      text_data_.Render("TIME", 0, 3);
-      text_data_.Render(std::to_string(time_), 1, 3);
+//      text_data_.Render("TIME", 0, 3);
+//      text_data_.Render("MARIO", 1, 3);
+//      text_data_.Render(std::to_string(time_), 1, 3);
     }
     
     /// Render the Frame rate
@@ -217,8 +222,8 @@ namespace mario {
         
     if (ImGui::Button("Reset")) {
       player_->Reset();
-      tile_camera_entity_.GetComponent<TransformComponent>().translation.x = 0.0f;
-      texture_camera_entity.GetComponent<TransformComponent>().translation.x = 0.0f;
+      tile_camera_entity_.GetComponent<TransformComponent>().UpdateTranslation_X(0.0f);
+      texture_camera_entity.GetComponent<TransformComponent>().UpdateTranslation_X(0.0f);
     }
     
     ImGui::PopID();

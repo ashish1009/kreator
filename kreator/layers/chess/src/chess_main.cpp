@@ -35,8 +35,8 @@ namespace chess {
     // Create the camera entity
     // ---------------------------------------------------------
     camera_entity_ = chess_scene_.CreateEntity();
-    camera_entity_.GetComponent<TransformComponent>().translation.x = (BlockSize * (MaxCols - 1)) / 2;
-    camera_entity_.GetComponent<TransformComponent>().translation.y = (BlockSize * (MaxRows - 1)) / 2;
+    auto& c_tc = camera_entity_.GetComponent<TransformComponent>();
+    c_tc.UpdateTranslation({(BlockSize * (MaxCols - 1)) / 2, (BlockSize * (MaxRows - 1)) / 2, c_tc.Translation().z });
     
     auto& camera_comp = camera_entity_.AddComponent<CameraComponent>();
     camera_comp.is_primary = true;
@@ -46,8 +46,9 @@ namespace chess {
     // Background Block Entity (Board Outline)
     // ----------------------------------------------------
     background_entity_ = chess_scene_.CreateEntity("Background");
-    background_entity_.GetComponent<TransformComponent>().translation = {(BlockSize * (MaxCols - 1)) / 2, (BlockSize * (MaxRows - 1)) / 2, -0.2f};
-    background_entity_.GetComponent<TransformComponent>().scale = {BlockSize * (MaxCols + 1), BlockSize * (MaxRows + 1), 1};
+    auto& b_tc = background_entity_.GetComponent<TransformComponent>();
+    b_tc.UpdateTranslation({(BlockSize * (MaxCols - 1)) / 2, (BlockSize * (MaxRows - 1)) / 2, -0.2f});
+    background_entity_.GetComponent<TransformComponent>().UpdateScale({BlockSize * (MaxCols + 1), BlockSize * (MaxRows + 1), 1});
     
     {
       auto& quad_comp = background_entity_.AddComponent<QuadComponent>();
@@ -59,7 +60,7 @@ namespace chess {
     // Block Hint Entities (Hovered Selected and Possible move outline)
     // -------------------------------------------------------------------
     hovered_block_entity_ = chess_scene_.CreateEntity("Hovered Block");
-    hovered_block_entity_.GetComponent<TransformComponent>().scale = {BlockSize, BlockSize, 1};
+    hovered_block_entity_.GetComponent<TransformComponent>().UpdateScale({BlockSize, BlockSize, 1});
     {
       auto& quad_comp = hovered_block_entity_.AddComponent<QuadComponent>();
       quad_comp.texture_comp.use = true;
@@ -67,7 +68,7 @@ namespace chess {
     }
 
     selected_block_entity_ = chess_scene_.CreateEntity("Selected Block");
-    selected_block_entity_.GetComponent<TransformComponent>().scale = {BlockSize, BlockSize, 1};
+    selected_block_entity_.GetComponent<TransformComponent>().UpdateScale({BlockSize, BlockSize, 1});
     {
       auto& quad_comp = selected_block_entity_.AddComponent<QuadComponent>();
       quad_comp.texture_comp.use = true;
@@ -96,8 +97,8 @@ namespace chess {
           quad_comp.color = (col % 2) ? WhiteColor : BlackColor;
         
         // Update the position of block
-        b_e.GetComponent<TransformComponent>().translation = { row * BlockSize, col * BlockSize, 0 };
-        b_e.GetComponent<TransformComponent>().scale = { BlockSize, BlockSize, 0 };
+        b_e.GetComponent<TransformComponent>().UpdateTranslation({ row * BlockSize, col * BlockSize, 0 });
+        b_e.GetComponent<TransformComponent>().UpdateScale({ BlockSize, BlockSize, 0 });
         
         // Add the piece to the block
         // ------------------------------
@@ -112,8 +113,8 @@ namespace chess {
           Entity p_e = chess_scene_.CreateEntity(piece_name);
           
           auto& quad_comp = p_e.AddComponent<QuadComponent>();
-          p_e.GetComponent<TransformComponent>().translation = { piece->Col() * BlockSize, piece->Row() * BlockSize, 0.1f };
-          p_e.GetComponent<TransformComponent>().scale = { BlockSize / 2, BlockSize / 2, 0 };
+          p_e.GetComponent<TransformComponent>().UpdateTranslation({ piece->Col() * BlockSize, piece->Row() * BlockSize, 0.1f });
+          p_e.GetComponent<TransformComponent>().UpdateScale({ BlockSize / 2, BlockSize / 2, 0 });
 
           quad_comp.texture_comp.use = true;
           quad_comp.texture_comp.component = piece->GetTexture();
@@ -124,7 +125,8 @@ namespace chess {
           if (piece->GetType() == Piece::Type::Knight) {
             static int32_t knight_count = 0;
             if (knight_count++ %2 == 0) {
-              p_e.GetComponent<TransformComponent>().scale.x *= -1.0f;
+              auto& tc = p_e.GetComponent<TransformComponent>();
+              tc.UpdateScale({ tc.Scale().x * -1.0f, tc.Scale().y, tc.Scale().z });
             }
           }
         } // if (block_[row][col].piece)
@@ -162,8 +164,8 @@ namespace chess {
       if (viewport_.hovered_entity_ and
           *viewport_.hovered_entity_ != background_entity_ and
           *viewport_.hovered_entity_ != hovered_block_entity_) {
-        const auto& position = viewport_.hovered_entity_->GetComponent<TransformComponent>().translation;
-        hovered_block_entity_.GetComponent<TransformComponent>().translation = { position.x, position.y, 0.3 };
+        const auto& position = viewport_.hovered_entity_->GetComponent<TransformComponent>().Translation();
+        hovered_block_entity_.GetComponent<TransformComponent>().UpdateTranslation({ position.x, position.y, 0.3 });
       }
     }
     viewport_.framebuffer->Unbind();
@@ -211,7 +213,7 @@ namespace chess {
           // If Hovered entity is inside the chess board then update the
           // Selected Block pointer
           // ------------------------------------------------------------------
-          const auto& position = viewport_.hovered_entity_->GetComponent<TransformComponent>().translation;
+          const auto& position = viewport_.hovered_entity_->GetComponent<TransformComponent>().Translation();
           uint32_t row = (uint32_t)(position.y / BlockSize);
           uint32_t col = (uint32_t)(position.x / BlockSize);
           
@@ -227,7 +229,8 @@ namespace chess {
               //  - Validate the piece
               // -----------------------------------------------------------------
               // TODO: Later do other validation??
-              auto& selected_pos = selected_block_entity_.GetComponent<TransformComponent>().translation;
+              auto& tc = selected_block_entity_.GetComponent<TransformComponent>();
+              const auto& selected_pos = tc.Translation();
               
               if (position.x == selected_pos.x and position.y == selected_pos.y) {
                 // ---------------------------------------------------------------
@@ -235,14 +238,14 @@ namespace chess {
                 // moving the selected block outline entity in background.
                 // Also Update the selected piece
                 // ---------------------------------------------------------------
-                selected_pos = {0, 0, -0.5}; // Move to background NOT VISIBLE
+                tc.UpdateTranslation({0, 0, -0.5}); // Move to background NOT VISIBLE
                 selected_piece_ = nullptr;
               } else {
                 // ---------------------------------------------------------------
                 // If this click is new block then Update the position of the
                 // selected block entity position same as the selected block position
                 // ---------------------------------------------------------------
-                selected_pos = {position.x, position.y, 0.25};
+                tc.UpdateTranslation({position.x, position.y, 0.25});
                 selected_piece_ = selected_block_->piece.get();
               }
 
@@ -302,8 +305,8 @@ namespace chess {
   
   void ChessLayer::CreatePossibleMoveEntity(Position row, Position col) {
     Entity e = chess_scene_.CreateEntity("Possible_" + std::to_string(row) + "_" + std::to_string(col));
-    e.GetComponent<TransformComponent>().translation = {col, row, 0.3f};
-    e.GetComponent<TransformComponent>().scale = {BlockSize, BlockSize, 1.0f};
+    e.GetComponent<TransformComponent>().UpdateTranslation({col, row, 0.3f});
+    e.GetComponent<TransformComponent>().UpdateScale({BlockSize, BlockSize, 1.0f});
     
     auto& quad_comp = e.AddComponent<QuadComponent>();
     quad_comp.texture_comp.use = true;

@@ -1,0 +1,14 @@
+Scene: Untitled
+Entities:
+  - Entity: 9094263441424444439
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: false
+      Texture_Path: ""
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]

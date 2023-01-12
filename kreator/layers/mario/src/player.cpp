@@ -57,7 +57,7 @@ namespace mario {
   }
   
   void Player::Reset() {
-    player_entity_.GetComponent<TransformComponent>().translation = {0, 0, 0};
+    player_entity_.GetComponent<TransformComponent>().UpdateTranslation({0, 0, 0});
   }
   
   std::string PlayerController::GetStateString() {
@@ -86,7 +86,7 @@ namespace mario {
       Freefall(ts);
 #if MOVE
     // Dummy copy of entity y Position
-    auto translation = GetComponent<TransformComponent>().translation;
+    auto translation = GetComponent<TransformComponent>().Translation();
     if (Input::IsKeyPressed(KeyCode::Left))
       translation.x -= player_data::speed_ * ts;
     if (Input::IsKeyPressed(KeyCode::Right))
@@ -95,29 +95,29 @@ namespace mario {
     auto& tc = GetComponent<TransformComponent>();
     const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
     AABB world_aabb = original_aabb.GetWorldPosBoundingBox(Math::GetTransformMatrix(translation,
-                                                                                    tc.rotation,
-                                                                                    tc.scale));
+                                                                                    tc.Rotation(),
+                                                                                    tc.Scale()));
 
     // If no collision then update the position
     if (!CollisionDetected(world_aabb))
-      tc.translation = translation;
+      tc.Translation() = translation;
 #endif
   }
   
   void PlayerController::Freefall(Timestep ts) {
     // Dummy copy of entity y Position
-    auto translation = GetComponent<TransformComponent>().translation;
+    auto translation = GetComponent<TransformComponent>().Translation();
     translation.y -= player_data::speed_ * ts;
     
     auto& tc = GetComponent<TransformComponent>();
     const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
     AABB world_aabb = original_aabb.GetWorldPosBoundingBox(Math::GetTransformMatrix(translation,
-                                                                                    tc.rotation,
-                                                                                    tc.scale));
+                                                                                    tc.Rotation(),
+                                                                                    tc.Scale()));
     
     // If no collision then update the position
     if (!CollisionDetected(world_aabb))
-      tc.translation = translation;
+      tc.UpdateTranslation(translation);
   }
   
   bool PlayerController::IsState(State state_bit) {

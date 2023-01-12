@@ -13,13 +13,13 @@
 #include "core/math/aabb.hpp"
 
 namespace ikan {
- 
+  
   struct IDComponent {
     UUID id = 0;
     IDComponent(const UUID& id);
     DEFINE_COPY_MOVE_CONSTRUCTORS(IDComponent);
   };
-
+  
   struct TagComponent {
     std::string tag = "Default Entity";
     TagComponent(const std::string& tag);
@@ -27,15 +27,37 @@ namespace ikan {
   };
   
   struct TransformComponent {
+    TransformComponent(const glm::vec3& translation = { 0.0f, 0.0f, 0.0f });
+    void RenderGui();
+
+    glm::mat4 transform;
     glm::vec3 translation{0.0f};
     glm::vec3 rotation{0.0f};
     glm::vec3 scale{1.0f};
-    
-    TransformComponent(const glm::vec3& translation = { 0.0f, 0.0f, 0.0f });
-    glm::mat4 GetTransform() const;
-    void RenderGui();
 
+    const glm::mat4& GetTransform() const;
+    const glm::vec3& Translation() const;
+    const glm::vec3& Rotation() const;
+    const glm::vec3& Scale() const;
+
+    void UpdateTranslation_X(float value);
+    void UpdateRotation_X(float value);
+    void UpdateScale_X(float value);
+
+    void UpdateTranslation_Y(float value);
+    void UpdateRotation_Y(float value);
+    void UpdateScale_Y(float value);
+
+    void UpdateTranslation_Z(float value);
+    void UpdateRotation_Z(float value);
+    void UpdateScale_Z(float value);
+
+    void UpdateTranslation(const glm::vec3& value);
+    void UpdateRotation(const glm::vec3& value);
+    void UpdateScale(const glm::vec3& value);
+    
     DEFINE_COPY_MOVE_CONSTRUCTORS(TransformComponent);
+  private:
   };
   
   struct QuadComponent {

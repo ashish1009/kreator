@@ -68,41 +68,79 @@ namespace ikan {
   TransformComponent::TransformComponent(const glm::vec3& translation)
   : translation(translation) {
     IK_CORE_TRACE(LogModule::Component, "Creating Transform Component ...");
+    transform = Math::GetTransformMatrix(translation, rotation, scale);
   }
   TransformComponent::TransformComponent(const TransformComponent& other)
-  : translation(other.translation), scale(other.scale), rotation(other.rotation) {
+  : translation(other.Translation()), scale(other.Scale()), rotation(other.Rotation()) {
     IK_CORE_TRACE(LogModule::Component, "Copying Transform Component ...");
+    transform = Math::GetTransformMatrix(translation, rotation, scale);
   }
   TransformComponent::TransformComponent(TransformComponent&& other)
-  : translation(other.translation), scale(other.scale), rotation(other.rotation) {
+  : translation(other.Translation()), scale(other.Scale()), rotation(other.Rotation()) {
     IK_CORE_TRACE(LogModule::Component, "Moving Transform Component ...");
+    transform = Math::GetTransformMatrix(translation, rotation, scale);
   }
   TransformComponent& TransformComponent::operator=(const TransformComponent& other) {
-    translation = other.translation;
-    scale = other.scale;
-    rotation = other.rotation;
+    translation = other.Translation();
+    scale = other.Scale();
+    rotation = other.Rotation();
+    transform = Math::GetTransformMatrix(translation, rotation, scale);
     IK_CORE_TRACE(LogModule::Component, "Copying Transform Component using = operator...");
     return *this;
   }
   TransformComponent& TransformComponent::operator=(TransformComponent&& other) {
-    translation = other.translation;
-    scale = other.scale;
-    rotation = other.rotation;
+    translation = other.Translation();
+    scale = other.Scale();
+    rotation = other.Rotation();
+    transform = Math::GetTransformMatrix(translation, rotation, scale);
     IK_CORE_TRACE(LogModule::Component, "Moving Transform Component using = operator...");
     return *this;
   }
-  glm::mat4 TransformComponent::GetTransform() const {
-    return Math::GetTransformMatrix(translation, rotation, scale);
-  }
+
+  const glm::mat4& TransformComponent::GetTransform() const { return transform; }
+  const glm::vec3& TransformComponent::Translation() const { return translation; }
+  const glm::vec3& TransformComponent::Rotation() const { return rotation; }
+  const glm::vec3& TransformComponent::Scale() const { return scale; }
   
+  void TransformComponent::UpdateTranslation_X(float value) { UpdateTranslation({value, translation.y, translation.z} ); }
+  void TransformComponent::UpdateRotation_X(float value) { UpdateTranslation({translation.x, value, translation.z} ); }
+  void TransformComponent::UpdateScale_X(float value) { UpdateTranslation({translation.x, translation.y, value} ); }
+  
+  void TransformComponent::UpdateTranslation_Y(float value) { UpdateRotation({value, rotation.y, rotation.z} ); }
+  void TransformComponent::UpdateRotation_Y(float value) { UpdateRotation({rotation.x, value, rotation.z} ); }
+  void TransformComponent::UpdateScale_Y(float value) { UpdateRotation({rotation.x, rotation.y, value} ); }
+  
+  void TransformComponent::UpdateTranslation_Z(float value) { UpdateScale({value, scale.y, scale.z} ); }
+  void TransformComponent::UpdateRotation_Z(float value) { UpdateScale({scale.x, value, scale.z} ); }
+  void TransformComponent::UpdateScale_Z(float value) { UpdateScale({scale.x, scale.y, value} ); }
+
+  void TransformComponent::UpdateTranslation(const glm::vec3& value) {
+    translation = value;
+    transform = Math::GetTransformMatrix(translation, rotation, scale);
+  }
+  void TransformComponent::UpdateRotation(const glm::vec3& value) {
+    rotation = value;
+    transform = Math::GetTransformMatrix(translation, rotation, scale);
+  }
+  void TransformComponent::UpdateScale(const glm::vec3& value) {
+    scale = value;
+    transform = Math::GetTransformMatrix(translation, rotation, scale);
+  }
+
   void TransformComponent::RenderGui() {
-    PropertyGrid::Float3("Translation", translation, nullptr, 0.25f, 0.0f, 80.0f);
+    if (PropertyGrid::Float3("Translation", translation, nullptr, 0.25f, 0.0f, 80.0f)) {
+      transform = Math::GetTransformMatrix(translation, rotation, scale);
+    }
     
     glm::vec3 rotation_in_degree = glm::degrees(rotation);
-    PropertyGrid::Float3("Rotation", rotation_in_degree, nullptr, 0.25f, 0.0f, 80.0f);
-    rotation = glm::radians(rotation_in_degree);
+    if (PropertyGrid::Float3("Rotation", rotation_in_degree, nullptr, 0.25f, 0.0f, 80.0f)) {
+      rotation = glm::radians(rotation_in_degree);
+      transform = Math::GetTransformMatrix(translation, rotation, scale);
+    }
     
-    PropertyGrid::Float3("Scale", scale, nullptr, 0.25f, 1.0f, 80.0f);
+    if (PropertyGrid::Float3("Scale", scale, nullptr, 0.25f, 1.0f, 80.0f)) {
+      transform = Math::GetTransformMatrix(translation, rotation, scale);
+    }
     ImGui::Separator();
   }
 
