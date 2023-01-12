@@ -48,7 +48,7 @@ namespace mario {
       camera_entity.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
                                                            const std::string& script_name) {
         if (script_name == "mario::CameraController") {
-          sc->Bind<mario::CameraController>(60.0f);
+          sc->Bind<mario::CameraController>(player_data::speed_);
           return true;
         }
         return false;
@@ -94,22 +94,22 @@ namespace mario {
   }
   
   void MarioLayer::Render(Timestep ts) {
-    if (use_sprite_) {
-      mario_tile_scene_.Update(ts);
-    } else {
-      mario_texture_scene_.Update(ts);
-
-      static SceneCamera fixed_camera;
-      static std::shared_ptr<Texture> bg_texture = Renderer::GetTexture(AM::ClientAsset("textures/background/background.png"));
-
-      BatchRenderer::BeginBatch(fixed_camera.GetProjection());
-      BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, -0, -0.5}, {0, 0, 0}, {18, 10, 1}), bg_texture);
-      BatchRenderer::EndBatch();
-    }
+//    if (use_sprite_) {
+//      mario_tile_scene_.Update(ts);
+//    } else {
+//      mario_texture_scene_.Update(ts);
+//
+//      static SceneCamera fixed_camera;
+//      static std::shared_ptr<Texture> bg_texture = Renderer::GetTexture(AM::ClientAsset("textures/background/background.png"));
+//
+//      BatchRenderer::BeginBatch(fixed_camera.GetProjection());
+//      BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, -0, -0.5}, {0, 0, 0}, {18, 10, 1}), bg_texture);
+//      BatchRenderer::EndBatch();
+//    }
     
     // Score and All text
     {
-//      text_data_.Render("MARIO", 0, 0);
+      text_data_.Render("MARIO", 0, 0);
 //      text_data_.Render("MARIO", 1, 0);
 //      text_data_.Render(std::to_string(score_), 1, 0);
       
@@ -126,11 +126,11 @@ namespace mario {
     }
     
     /// Render the Frame rate
-    TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)),
-                             text_data_.still_camera_projection,
-                             { 5.0f, 5.0f, 0.3f },
-                             { 0.35f, 0.35f },
-                             { 0, 0, 1, 1 });
+//    TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)),
+//                             text_data_.still_camera_projection,
+//                             { 5.0f, 5.0f, 0.3f },
+//                             { 0.35f, 0.35f },
+//                             { 0, 0, 1, 1 });
   }
   
   void MarioLayer::Update(Timestep ts) {

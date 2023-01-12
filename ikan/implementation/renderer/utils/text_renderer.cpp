@@ -20,6 +20,7 @@ namespace ikan {
       glm::vec3 position;
       glm::vec4 color;
       glm::vec2 texture_coord;
+      float texture_index;
       int32_t object_id;
     };
     
@@ -62,17 +63,18 @@ namespace ikan {
     text_data_ = new TextData();
     
     // Allocating the memory for vertex Buffer Pointer
-    text_data_->vertex_buffer_base_ptr = new TextData::Vertex[TextData::VertexForSingleChar];
+    text_data_->vertex_buffer_base_ptr = new TextData::Vertex[TextData::VertexForSingleChar * 100];
     
     // Create Pipeline instance
     text_data_->pipeline = Pipeline::Create();
     
     // Create vertes Buffer
-    text_data_->vertex_buffer = VertexBuffer::Create(sizeof(TextData::Vertex) * TextData::VertexForSingleChar);
+    text_data_->vertex_buffer = VertexBuffer::Create(sizeof(TextData::Vertex) * TextData::VertexForSingleChar * 100);
     text_data_->vertex_buffer->AddLayout({
       { "a_Position",  ShaderDataType::Float3 },
       { "a_Color",     ShaderDataType::Float4 },
       { "a_TexCoords", ShaderDataType::Float2 },
+      { "a_TexIndex",  ShaderDataType::Float },
       { "a_ObjectID",  ShaderDataType::Int },
     });
     text_data_->pipeline->AddVertexBuffer(text_data_->vertex_buffer);
@@ -161,6 +163,9 @@ namespace ikan {
     // Rescaling the text as it render too large in begining
     glm::vec2 scale = scale_ * glm::vec2(1.00f);
     
+    std::shared_ptr<CharTexture> ch_t[16];
+    uint32_t i = 0; float a = 0.0f;
+    text_data_->vertex_buffer_ptr = text_data_->vertex_buffer_base_ptr;
     for (c = text.begin(); c != text.end(); c++) {
       std::shared_ptr<CharTexture> ch = text_data_->char_texture_map[*c];
       
@@ -181,26 +186,18 @@ namespace ikan {
         { xpos + w, ypos    , zpos },
         { xpos + w, ypos + h, zpos },
       };
-      
-      text_data_->vertex_buffer_ptr = text_data_->vertex_buffer_base_ptr;
-      
+            
       // Each Vertex of Char
+      a = (float)i;
       for (size_t i = 0; i < TextData::VertexForSingleChar; i++) {
         text_data_->vertex_buffer_ptr->position      = vertex_position[i];
         text_data_->vertex_buffer_ptr->color         = color;
+        text_data_->vertex_buffer_ptr->texture_index = a;
         text_data_->vertex_buffer_ptr->texture_coord = text_data_->base_texture_coords[i];
         text_data_->vertex_buffer_ptr->object_id     = -1;
         text_data_->vertex_buffer_ptr++;
       }
-      
-      uint32_t dataSize = (uint32_t)((uint8_t*)text_data_->vertex_buffer_ptr - (uint8_t*)text_data_->vertex_buffer_base_ptr);
-      text_data_->vertex_buffer->SetData(text_data_->vertex_buffer_base_ptr, dataSize);
-      
-      // Render the Scene
-      text_data_->shader->Bind();
-      ch->Bind();
-      Renderer::DrawArrays(text_data_->pipeline, 6);
-      
+            
       // now advance cursors for next glyph (note that advance is number of
       // 1/64 pixels) bitshift by 6 to get value in pixels (2^6 = 64 (divide
       // amount of 1/64th pixels by 64 to get amount of pixels))
@@ -208,6 +205,19 @@ namespace ikan {
       
       // Renderer Vertex count stat
       RendererStatistics::Get().vertex_count += TextData::VertexForSingleChar;
+      
+      ch_t[i] = ch;
+      i++;
     }
+    
+    uint32_t dataSize = (uint32_t)((uint8_t*)text_data_->vertex_buffer_ptr - (uint8_t*)text_data_->vertex_buffer_base_ptr);
+    text_data_->vertex_buffer->SetData(text_data_->vertex_buffer_base_ptr, dataSize);
+    
+    // Render the Scene
+    text_data_->shader->Bind();
+    for (int j = 0; j < i; j ++)
+      ch_t[j]->Bind(j);
+    Renderer::DrawArrays(text_data_->pipeline, 6 * i);
+
   }
 }

@@ -154,8 +154,6 @@ Without Tile
 ----------------
 - ECS Project
   - Embed scripts 
-  - Math
-    - AABB
 
   - Scene
     - Serialise and Deserialize the scene
@@ -197,7 +195,3 @@ Without Tile
     - API for Environment
     - Render Mesh
   
-----------------
-- 2D Games
-  - Mario : On Going
-  - Chess : On Going

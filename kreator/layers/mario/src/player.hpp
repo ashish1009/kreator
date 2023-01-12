@@ -13,7 +13,7 @@ namespace mario {
   
   namespace player_data {
     // Speed of player
-    static constexpr float speed_ = 15.0f;
+    static constexpr float speed_ = 60.0f;
 
     // States of playe
     using State = uint32_t;
