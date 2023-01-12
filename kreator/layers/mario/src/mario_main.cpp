@@ -38,8 +38,7 @@ namespace mario {
   
   void MarioLayer::CreateCamera(EnttScene* scene, Entity& camera_entity) {
     camera_entity = scene->CreateEntity("Camera");
-    auto& tc = camera_entity.GetComponent<TransformComponent>();
-    tc.UpdateTranslation({0, 2, 0});
+    camera_entity.GetComponent<TransformComponent>().translation.y = 2.0f;
     {
       auto& camera_comp = camera_entity.AddComponent<CameraComponent>();
       camera_comp.is_primary = true;
@@ -48,7 +47,7 @@ namespace mario {
       camera_entity.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
                                                            const std::string& script_name) {
         if (script_name == "mario::CameraController") {
-          sc->Bind<mario::CameraController>(player_data::speed_);
+          sc->Bind<mario::CameraController>(60.0f);
           return true;
         }
         return false;
@@ -94,43 +93,42 @@ namespace mario {
   }
   
   void MarioLayer::Render(Timestep ts) {
-//    if (use_sprite_) {
-//      mario_tile_scene_.Update(ts);
-//    } else {
-//      mario_texture_scene_.Update(ts);
-//
-//      static SceneCamera fixed_camera;
-//      static std::shared_ptr<Texture> bg_texture = Renderer::GetTexture(AM::ClientAsset("textures/background/background.png"));
-//
-//      BatchRenderer::BeginBatch(fixed_camera.GetProjection());
-//      BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, -0, -0.5}, {0, 0, 0}, {18, 10, 1}), bg_texture);
-//      BatchRenderer::EndBatch();
-//    }
+    if (use_sprite_) {
+      mario_tile_scene_.Update(ts);
+    } else {
+      mario_texture_scene_.Update(ts);
+
+      static SceneCamera fixed_camera;
+      static std::shared_ptr<Texture> bg_texture = Renderer::GetTexture(AM::ClientAsset("textures/background/background.png"));
+
+      BatchRenderer::BeginBatch(fixed_camera.GetProjection());
+      BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, -0, -0.5}, {0, 0, 0}, {18, 10, 1}), bg_texture);
+      BatchRenderer::EndBatch();
+    }
     
     // Score and All text
     {
+      TextRenderer::BeginBatch(text_data_.still_camera_projection);
+      
       text_data_.Render("MARIO", 0, 0);
-//      text_data_.Render("MARIO", 1, 0);
-//      text_data_.Render(std::to_string(score_), 1, 0);
+      text_data_.Render(std::to_string(score_), 1, 0);
       
-//      text_data_.Render("MARIO", 1, 1);
-//      text_data_.Render("x" + std::to_string(coins_), 1, 1);
+      text_data_.Render("x" + std::to_string(coins_), 1, 1);
       
-//      text_data_.Render("WORLD", 0, 2);
-//      text_data_.Render("MARIO", 1, 2);
-//      text_data_.Render(std::to_string(world_) + " - " + std::to_string(level_), 1, 2);
+      text_data_.Render("WORLD", 0, 2);
+      text_data_.Render(std::to_string(world_) + " - " + std::to_string(level_), 1, 2);
       
-//      text_data_.Render("TIME", 0, 3);
-//      text_data_.Render("MARIO", 1, 3);
-//      text_data_.Render(std::to_string(time_), 1, 3);
+      text_data_.Render("TIME", 0, 3);
+      text_data_.Render(std::to_string(time_), 1, 3);
+      
+      /// Render the Frame rate
+      TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)),
+                               { 5.0f, 5.0f, 0.3f },
+                               { 0.35f, 0.35f },
+                               { 0, 0, 1, 1 });
+      
+      TextRenderer::EndBatch();
     }
-    
-    /// Render the Frame rate
-//    TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)),
-//                             text_data_.still_camera_projection,
-//                             { 5.0f, 5.0f, 0.3f },
-//                             { 0.35f, 0.35f },
-//                             { 0, 0, 1, 1 });
   }
   
   void MarioLayer::Update(Timestep ts) {
@@ -222,8 +220,8 @@ namespace mario {
         
     if (ImGui::Button("Reset")) {
       player_->Reset();
-      tile_camera_entity_.GetComponent<TransformComponent>().UpdateTranslation_X(0.0f);
-      texture_camera_entity.GetComponent<TransformComponent>().UpdateTranslation_X(0.0f);
+      tile_camera_entity_.GetComponent<TransformComponent>().translation.x = 0.0f;
+      texture_camera_entity.GetComponent<TransformComponent>().translation.x = 0.0f;
     }
     
     ImGui::PopID();

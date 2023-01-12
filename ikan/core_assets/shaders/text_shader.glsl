@@ -19,11 +19,11 @@ out vec4 v_Color;
 out float v_TexIndex;
 out float v_ObjectID;
 
-uniform mat4 u_ViewProjection;
+uniform mat4 v_Projection;
 
 void main()
 {
-  gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+  gl_Position = v_Projection * vec4(a_Position, 1.0);
   v_TexCoords = a_TexCoord;
   v_Color = a_Color;
   v_TexIndex = a_TexIndex;

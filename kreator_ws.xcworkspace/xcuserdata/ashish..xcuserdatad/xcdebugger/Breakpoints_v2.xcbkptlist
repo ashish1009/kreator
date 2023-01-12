@@ -30,9 +30,9 @@
             filePath = "ikan/implementation/renderer/utils/text_renderer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
-            landmarkName = "TextRenderer::RenderText(text, view_projection_camera, position, scale_, color)"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "TextRenderer::RenderText(text, position, scale, color)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

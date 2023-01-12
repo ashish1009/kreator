@@ -15,7 +15,7 @@ namespace mario {
   using namespace ikan;
   
   struct TextData {
-    const glm::vec2 size = { 10.6f, 10.6f };
+    const glm::vec2 size = { 0.6f, 0.6f };
     const glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
 
     glm::mat4 still_camera_projection;
@@ -25,7 +25,7 @@ namespace mario {
     void Update(float width, float height) {
       still_camera_projection = glm::ortho( 0.0f, (float)width, 0.0f, (float)height);
       
-      score_pos_row[0] = (float)height - 350;
+      score_pos_row[0] = (float)height - 50;
       score_pos_row[1] = (float)height - 80;
       
       score_pos_col[0] = 50.0f;
@@ -36,7 +36,6 @@ namespace mario {
     
     void Render(const std::string& title, uint32_t row, uint32_t col) {
       TextRenderer::RenderText(title,
-                               still_camera_projection,
                                { score_pos_col[col], score_pos_row[row], 0.3f },
                                size,
                                color);

@@ -32,6 +32,8 @@ namespace ikan {
     std::shared_ptr<VertexBuffer> vertex_buffer;
     std::shared_ptr<Shader> shader;
     
+    std::array<std::shared_ptr<CharTexture>, kMaxTextureSlotsInShader> char_textures;
+    
     /// Map to store the Char Texture for each character
     std::map<char, std::shared_ptr<CharTexture>> char_texture_map;
     
@@ -43,6 +45,8 @@ namespace ikan {
     
     /// Store the Base Texture coordinga
     glm::vec2 base_texture_coords[VertexForSingleChar];
+    
+    uint32_t num_slots_used = 0;
     
     /// Constructor
     TextData() {
@@ -63,13 +67,13 @@ namespace ikan {
     text_data_ = new TextData();
     
     // Allocating the memory for vertex Buffer Pointer
-    text_data_->vertex_buffer_base_ptr = new TextData::Vertex[TextData::VertexForSingleChar * 100];
+    text_data_->vertex_buffer_base_ptr = new TextData::Vertex[TextData::VertexForSingleChar * kMaxTextureSlotsInShader];
     
     // Create Pipeline instance
     text_data_->pipeline = Pipeline::Create();
     
     // Create vertes Buffer
-    text_data_->vertex_buffer = VertexBuffer::Create(sizeof(TextData::Vertex) * TextData::VertexForSingleChar * 100);
+    text_data_->vertex_buffer = VertexBuffer::Create(sizeof(TextData::Vertex) * TextData::VertexForSingleChar * kMaxTextureSlotsInShader);
     text_data_->vertex_buffer->AddLayout({
       { "a_Position",  ShaderDataType::Float3 },
       { "a_Color",     ShaderDataType::Float4 },
@@ -93,8 +97,8 @@ namespace ikan {
     IK_CORE_INFO(LogModule::Text, "Initialised the Text Renderer");
     IK_CORE_INFO(LogModule::Text, "  ---------------------------------------------------------");
     IK_CORE_INFO(LogModule::Text, "  Vertex Buffer Used | {0} B ({1} KB) ",
-                 TextData::VertexForSingleChar * sizeof(TextData::Vertex),
-                 TextData::VertexForSingleChar * sizeof(TextData::Vertex) / 1000.0f );
+                 TextData::VertexForSingleChar * sizeof(TextData::Vertex) * kMaxTextureSlotsInShader,
+                 TextData::VertexForSingleChar * sizeof(TextData::Vertex) * kMaxTextureSlotsInShader / 1000.0f );
     IK_CORE_INFO(LogModule::Text, "  Shader used        | {0}", text_data_->shader->GetName());
     IK_CORE_INFO(LogModule::Text, "  ---------------------------------------------------------");
   }
@@ -103,8 +107,8 @@ namespace ikan {
     IK_CORE_WARN(LogModule::Text, "Shutting down the Text Renderer !!!");
     IK_CORE_WARN(LogModule::Text, "  ---------------------------------------------------------");
     IK_CORE_WARN(LogModule::Text, "  Vertex Buffer Used | {0} B ({1} KB) ",
-                 TextData::VertexForSingleChar * sizeof(TextData::Vertex),
-                 TextData::VertexForSingleChar * sizeof(TextData::Vertex) / 1000.0f );
+                 TextData::VertexForSingleChar * sizeof(TextData::Vertex) * kMaxTextureSlotsInShader,
+                 TextData::VertexForSingleChar * sizeof(TextData::Vertex) * kMaxTextureSlotsInShader / 1000.0f );
     IK_CORE_WARN(LogModule::Text, "  Shader used        | {0}", text_data_->shader->GetName());
     IK_CORE_WARN(LogModule::Text, "  ---------------------------------------------------------");
 
@@ -148,25 +152,34 @@ namespace ikan {
     FT_Done_FreeType(ft);
   }
   
-  void TextRenderer::RenderText(std::string text,
-                                const glm::mat4& view_projection_camera,
-                                glm::vec3 position,
-                                const glm::vec2& scale_,
-                                const glm::vec4& color) {
+  void TextRenderer::BeginBatch(const glm::mat4& camera_view_projection_matrix) {
     // Update camera to shader
     text_data_->shader->Bind();
-    text_data_->shader->SetUniformMat4("u_ViewProjection", view_projection_camera);
+    text_data_->shader->SetUniformMat4("v_Projection", camera_view_projection_matrix);
+
+    NextBatch();
+  }
+  void TextRenderer::EndBatch() {
+    uint32_t dataSize = (uint32_t)((uint8_t*)text_data_->vertex_buffer_ptr - (uint8_t*)text_data_->vertex_buffer_base_ptr);
+    text_data_->vertex_buffer->SetData(text_data_->vertex_buffer_base_ptr, dataSize);
     
-    // iterate through all characters
-    std::string::const_iterator c;
-    
-    // Rescaling the text as it render too large in begining
-    glm::vec2 scale = scale_ * glm::vec2(1.00f);
-    
-    std::shared_ptr<CharTexture> ch_t[16];
-    uint32_t i = 0; float a = 0.0f;
-    text_data_->vertex_buffer_ptr = text_data_->vertex_buffer_base_ptr;
-    for (c = text.begin(); c != text.end(); c++) {
+    // Render the Scene
+    text_data_->shader->Bind();
+    for (int j = 0; j < text_data_->num_slots_used; j ++)
+      text_data_->char_textures[j]->Bind(j);
+    Renderer::DrawArrays(text_data_->pipeline, 6 * text_data_->num_slots_used);
+  }
+
+  void TextRenderer::RenderText(std::string text,
+                                glm::vec3 position,
+                                const glm::vec2& scale,
+                                const glm::vec4& color) {
+    float a = 0.0f;
+    for (std::string::const_iterator c = text.begin(); c != text.end(); c++) {
+      if (text_data_->num_slots_used >= kMaxTextureSlotsInShader) {
+        Flush();
+      }
+      
       std::shared_ptr<CharTexture> ch = text_data_->char_texture_map[*c];
       
       float xpos = position.x + ch->GetBearing().x * scale.x;
@@ -188,7 +201,7 @@ namespace ikan {
       };
             
       // Each Vertex of Char
-      a = (float)i;
+      a = (float)text_data_->num_slots_used;
       for (size_t i = 0; i < TextData::VertexForSingleChar; i++) {
         text_data_->vertex_buffer_ptr->position      = vertex_position[i];
         text_data_->vertex_buffer_ptr->color         = color;
@@ -206,18 +219,19 @@ namespace ikan {
       // Renderer Vertex count stat
       RendererStatistics::Get().vertex_count += TextData::VertexForSingleChar;
       
-      ch_t[i] = ch;
-      i++;
+      text_data_->char_textures[text_data_->num_slots_used] = ch;
+      text_data_->num_slots_used++;
     }
-    
-    uint32_t dataSize = (uint32_t)((uint8_t*)text_data_->vertex_buffer_ptr - (uint8_t*)text_data_->vertex_buffer_base_ptr);
-    text_data_->vertex_buffer->SetData(text_data_->vertex_buffer_base_ptr, dataSize);
-    
-    // Render the Scene
-    text_data_->shader->Bind();
-    for (int j = 0; j < i; j ++)
-      ch_t[j]->Bind(j);
-    Renderer::DrawArrays(text_data_->pipeline, 6 * i);
-
   }
+  
+  void TextRenderer::Flush() {
+    EndBatch();
+    NextBatch();
+  }
+  
+  void TextRenderer::NextBatch() {
+    text_data_->vertex_buffer_ptr = text_data_->vertex_buffer_base_ptr;
+    text_data_->num_slots_used = 0;
+  }
+  
 }

@@ -27,6 +27,13 @@ namespace ikan {
     /// NOTE: Load the Font before using any other API In clientw
     static void LoadFreetype(const std::string& font_file_path);
     
+    /// This function begins the Batch for 2D Rendere (to be called each frame)
+    /// - Parameters:
+    ///   - camera_view_projection_matrix: Camera View projection Matrix
+    static void BeginBatch(const glm::mat4& camera_view_projection_matrix);
+    /// This function Ends the current batch by rendering all the vertex
+    static void EndBatch();
+
     /// This functions renders the Text in Window using postition and sclae
     /// - Parameters:
     ///   - text: Text to be rendereed
@@ -34,12 +41,17 @@ namespace ikan {
     ///   - scale: Text Poistion
     ///   - color: Color of text
     static void RenderText(std::string text,
-                           const glm::mat4& view_projection_camera,
                            glm::vec3 position,
                            const glm::vec2& scale,
                            const glm::vec4& color);
     
     MAKE_PURE_STATIC(TextRenderer);
+    
+  private:
+    /// This function flsh a single batch
+    static void Flush();
+    /// This function moves to next batch in single frame
+    static void NextBatch();
   };
   
 }

@@ -55,9 +55,9 @@ namespace editor {
     static void Render(uint32_t viewport_width, uint32_t viewport_height) {
       static SystemTextData text_rednerer_data;
       
+      TextRenderer::BeginBatch(text_rednerer_data.still_camera_projection);
       /// Render the Frame rate
       TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)),
-                               text_rednerer_data.still_camera_projection,
                                text_rednerer_data.frame_rate_text_pos,
                                text_rednerer_data.text_size,
                                text_rednerer_data.text_color);
@@ -68,10 +68,11 @@ namespace editor {
       + rendererCapability.renderer + " | "
       + rendererCapability.version;
       TextRenderer::RenderText(rendererInfo,
-                               text_rednerer_data.still_camera_projection,
                                text_rednerer_data.renderer_info_text_pos,
                                text_rednerer_data.text_size,
                                text_rednerer_data.text_color);
+      
+      TextRenderer::EndBatch();
       
       text_rednerer_data.UpdateData(viewport_width, viewport_height);
     }

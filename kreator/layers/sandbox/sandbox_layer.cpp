@@ -35,10 +35,10 @@ namespace sandbox {
   }
   
   void SandboxLayer::Update(Timestep ts) {
-    glm::mat4 still_camera_projection =  glm::ortho( 0.0f,
-                                                    (float)editor_camera.GetViewportWidth(),
-                                                    0.0f,
-                                                    (float)editor_camera.GetViewportHeight());
+//    glm::mat4 still_camera_projection =  glm::ortho( 0.0f,
+//                                                    (float)editor_camera.GetViewportWidth(),
+//                                                    0.0f,
+//                                                    (float)editor_camera.GetViewportHeight());
 
     editor_camera.Update(ts);
     
@@ -64,7 +64,6 @@ namespace sandbox {
     BatchRenderer::EndBatch();
     
     TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)),
-                             still_camera_projection,
                              { 5.0f, 5.0f, 0.3f },
                              { 0.25f, 0.25f },
                              { 0.1f, 0.1f, 0.1f, 1.0f });
