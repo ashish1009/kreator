@@ -46,8 +46,8 @@
             filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "640"
-            endingLineNumber = "640"
+            startingLineNumber = "622"
+            endingLineNumber = "622"
             landmarkName = "BatchRenderer::DrawTextureQuad(transform, texture, texture_coords, tiling_factor, tint_color, object_id)"
             landmarkType = "7">
          </BreakpointContent>

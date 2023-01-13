@@ -90,16 +90,8 @@ namespace ecs {
     if (use_editor_camera_) {
       editor_camera_.Update(ts);
       Render2DEntities(editor_camera_.GetViewProjection());
-      
-      // For debugging only
-      if (is_bounding_box_)
-        RenderBoudningBox(editor_camera_.GetViewProjection());
     } else {
       UpdateRuntime(ts);
-      
-      // For debugging only
-      if (is_bounding_box_)
-        RenderBoudningBox(GetPrimaryCameraData().scene_camera->GetProjection() * glm::inverse(GetPrimaryCameraData().transform_comp->GetTransform()));
     }
   }
   
@@ -324,19 +316,19 @@ namespace ecs {
       }
     } // for (const auto& entity : mesh_view)
     
+    if (is_bounding_box_)
+      RenderBoudningBox();
+        
     BatchRenderer::EndBatch();
   }
   
-  void EnttScene::RenderBoudningBox(const glm::mat4& camera_view_projection_mat) {
-    AABBRenderer::BeginRenderer(camera_view_projection_mat);
+  void EnttScene::RenderBoudningBox() {
     auto aabb_view = registry_.view<TransformComponent, RigidBodyComponent>();
     // For all Mesg entity
     for (const auto& aabb_entity : aabb_view) {
       const auto& [transform_component, aabb_component] = aabb_view.get<TransformComponent, RigidBodyComponent>(aabb_entity);
-      AABBRenderer::Draw(aabb_component.aabb.GetWorldAABBPos(transform_component.GetTransform()));
+      BatchRenderer::DrawRect(transform_component.GetTransform(), {0.97f, 0.53f, 0.278f, 1.0f});
     } // for (const auto& entity : mesh_view)
-
-    AABBRenderer::EndRenderer();
   }
 
   void EnttScene::SetFilePath(const std::string& file_path) {

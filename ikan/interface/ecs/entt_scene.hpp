@@ -150,8 +150,7 @@ namespace ecs {
     /// - Parameter camera_view_projection_mat: camera view projection matrix
     void Render2DEntities(const glm::mat4& camera_view_projection_mat);
     /// This function renders the 2D Entities
-    /// - Parameter camera_view_projection_mat: camera view projection matrix
-    void RenderBoudningBox(const glm::mat4& camera_view_projection_mat);
+    void RenderBoudningBox();
 
     // ------------------
     // Member variabls

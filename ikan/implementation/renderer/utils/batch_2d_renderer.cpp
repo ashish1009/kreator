@@ -757,5 +757,30 @@ namespace ikan {
     line_data_->vertex_count += LineData::kVertexForSingleLine;
     RendererStatistics::Get().vertex_count += LineData::kVertexForSingleLine;
   }
-
+  
+  void BatchRenderer::DrawRect(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
+  {
+    glm::vec3 p0 = glm::vec3(position.x - size.x * 0.5f, position.y - size.y * 0.5f, position.z);
+    glm::vec3 p1 = glm::vec3(position.x + size.x * 0.5f, position.y - size.y * 0.5f, position.z);
+    glm::vec3 p2 = glm::vec3(position.x + size.x * 0.5f, position.y + size.y * 0.5f, position.z);
+    glm::vec3 p3 = glm::vec3(position.x - size.x * 0.5f, position.y + size.y * 0.5f, position.z);
+    
+    DrawLine(p0, p1, color);
+    DrawLine(p1, p2, color);
+    DrawLine(p2, p3, color);
+    DrawLine(p3, p0, color);
+  }
+  
+  void BatchRenderer::DrawRect(const glm::mat4& transform, const glm::vec4& color)
+  {
+    glm::vec3 line_vertices[4];
+    for (size_t i = 0; i < 4; i++)
+      line_vertices[i] = transform * quad_data_->vertex_base_position[i];
+    
+    DrawLine(line_vertices[0], line_vertices[1], color);
+    DrawLine(line_vertices[1], line_vertices[2], color);
+    DrawLine(line_vertices[2], line_vertices[3], color);
+    DrawLine(line_vertices[3], line_vertices[0], color);
+  }
+  
 }

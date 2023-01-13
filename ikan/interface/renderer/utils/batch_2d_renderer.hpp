@@ -110,6 +110,21 @@ namespace ikan {
                          const glm::vec3& p1,
                          const glm::vec4& color);
     
+    /// This function draws a Recttangle using position and size of rectangle
+    /// - Parameters:
+    ///   - position: position of rectangle
+    ///   - size: size of rectang;e
+    ///   - color: Color of line
+    static void DrawRect(const glm::vec3& position,
+                         const glm::vec2& size,
+                         const glm::vec4& color);
+    /// This function draws a Recttangle using position and size of rectangle
+    /// - Parameters:
+    ///   - transform: transform
+    ///   - color: Color of line
+    static void DrawRect(const glm::mat4& transform,
+                         const glm::vec4& color);
+    
     MAKE_PURE_STATIC(BatchRenderer);
     
   private:
