@@ -476,6 +476,7 @@ namespace ecs {
       type = new_body_type;
 
     PropertyGrid::CheckBox("Fixed Rotation", fixed_rotation, ImGui::GetWindowContentRegionMax().x / 2);
+    ImGui::Separator();
   }
   
   // -------------------------------------------------------------------------
@@ -524,6 +525,8 @@ namespace ecs {
     PropertyGrid::Float1("Friction", friction);
     PropertyGrid::Float1("Restitution", restitution);
     PropertyGrid::Float1("Restitution Threshold", restitution_threshold);
+    
+    ImGui::Separator();
   }
   
 }

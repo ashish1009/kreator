@@ -270,7 +270,7 @@ namespace ecs {
         out << YAML::Key << "Size" << YAML::Value << bcc.size;
         
         out << YAML::Key << "Density" << YAML::Value << bcc.density;
-        out << YAML::Key << "Friction" << YAML::Value << bcc.size;
+        out << YAML::Key << "Friction" << YAML::Value << bcc.friction;
         out << YAML::Key << "Restitution" << YAML::Value << bcc.restitution;
         out << YAML::Key << "Restitution Threshold" << YAML::Value << bcc.restitution_threshold;
         

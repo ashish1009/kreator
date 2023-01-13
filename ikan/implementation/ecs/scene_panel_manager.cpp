@@ -188,7 +188,9 @@ namespace ecs {
       DrawComponent<CircleComponent>("Circle", selected_entity_, [this](auto& cc) { cc.RenderGui(); });
       DrawComponent<CameraComponent>("Camera", selected_entity_, [this](auto& cc) { cc.RenderGui(); });
       DrawComponent<NativeScriptComponent>("Native Script", selected_entity_, [this](auto& nsc) { nsc.RenderGui(); });
-      DrawComponent<NativeBodyTypeComponent>("Rigid Body", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
+      DrawComponent<NativeBodyTypeComponent>("Native Body Type", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
+      DrawComponent<RigidBodyComponent>("Rigid Body", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
+      DrawComponent<BoxColloiderComponent>("Box Collider", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
     }
     
     ImGui::PopID();
@@ -287,7 +289,7 @@ namespace ecs {
     
     AddComponentMenu<NativeScriptComponent>("Native Script");
     
-    // Rigid body component
+    // Native Body Type Component
     {
       NativeBodyTypeComponent::Type type = NativeBodyTypeComponent::Type::AABB;
       if (selected_entity_.HasComponent<CircleComponent>())
@@ -298,6 +300,9 @@ namespace ecs {
       }, type);
     }
     ImGui::Separator();
+    
+    AddComponentMenu<RigidBodyComponent>("Rigid Body");
+    AddComponentMenu<BoxColloiderComponent>("Box Collider");
   }
   
   ScenePanelManager::Setting& ScenePanelManager::GetSetting() { return setting_; }
