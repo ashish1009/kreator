@@ -7,7 +7,7 @@
 
 #include "sphere.hpp"
 
-namespace ikan {
+namespace ray_tracing {
   
   Sphere::Sphere(const Sphere& other)
   : position(other.position), radius(other.radius) {

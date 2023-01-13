@@ -9,10 +9,12 @@
 
 // This class includes the Scene Pannel manager class
 
-#include "scene/core_components.hpp"
-#include "scene/entity.hpp"
+#include "ecs/core_components.hpp"
+#include "ecs/entity.hpp"
 
-namespace ikan {
+namespace ecs {
+  
+  using namespace ikan;
   
   class EnttScene;
   

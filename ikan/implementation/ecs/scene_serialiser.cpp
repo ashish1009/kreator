@@ -6,8 +6,8 @@
 //
 
 #include "scene_serialiser.hpp"
-#include "scene/entity.hpp"
-#include "scene/core_components.hpp"
+#include "ecs/entity.hpp"
+#include "ecs/core_components.hpp"
 
 #include <yaml-cpp/yaml.h>
 
@@ -81,7 +81,7 @@ namespace YAML {
 } // namespace YAML
 
 
-namespace ikan {
+namespace ecs {
   
   // yml << operator for glm vec 3
   static YAML::Emitter& operator<<(YAML::Emitter& out, const glm::vec3& v) {

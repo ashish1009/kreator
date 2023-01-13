@@ -9,7 +9,9 @@
 
 #include "renderer/graphics/framebuffer.hpp"
 
-namespace ikan {
+namespace ecs {
+  
+  using namespace ikan;
 
   class Entity;
   class EnttScene;

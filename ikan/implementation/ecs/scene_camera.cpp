@@ -8,7 +8,7 @@
 #include "scene_camera.hpp"
 #include "editor/property_grid.hpp"
 
-namespace ikan {
+namespace ecs {
 
   namespace camera_utils {
 #ifdef IK_DEBUG_FEATURE

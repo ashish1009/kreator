@@ -7,12 +7,12 @@
 
 #include "viewport.hpp"
 #include "editor/property_grid.hpp"
-#include "editor/scene_panel_manager.hpp"
-#include "scene/entity.hpp"
-#include "scene/core_components.hpp"
+#include "ecs/scene_panel_manager.hpp"
+#include "ecs/entity.hpp"
+#include "ecs/core_components.hpp"
 #include <ImGuizmo.h>
 
-namespace ikan {
+namespace ecs {
   
   Viewport::Viewport(const glm::vec4& fb_color) {
     FrameBuffer::Specification fb_spec;

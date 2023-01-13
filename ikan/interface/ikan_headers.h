@@ -78,15 +78,15 @@
 #include <editor/property_grid.hpp>
 #include <editor/editor_camera.hpp>
 #include <editor/content_browser_panel.hpp>
-#include <editor/scene_panel_manager.hpp>
 
-// Scene
-#include <scene/viewport.hpp>
-#include <scene/entity.hpp>
-#include <scene/entt_scene.hpp>
-#include <scene/core_components.hpp>
-#include <scene/scriptable_entity.hpp>
-#include <scene/scene_serialiser.hpp>
+// ECS
+#include <ecs/viewport.hpp>
+#include <ecs/entity.hpp>
+#include <ecs/entt_scene.hpp>
+#include <ecs/core_components.hpp>
+#include <ecs/scriptable_entity.hpp>
+#include <ecs/scene_serialiser.hpp>
+#include <ecs/scene_panel_manager.hpp>
 
 // Imgui API
 #include <imgui/imgui_api.hpp>

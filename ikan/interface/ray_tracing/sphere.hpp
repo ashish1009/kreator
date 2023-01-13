@@ -11,7 +11,7 @@
 #include "hit_payload.hpp"
 #include "ray_material.hpp"
 
-namespace ikan {
+namespace ray_tracing {
   
   /// Basic Sphere class to store sphere data and functions
   struct Sphere {

@@ -9,6 +9,8 @@
 
 namespace mario {
   
+  using namespace ecs;
+  
   class CameraController : public ScriptableEntity {
   public:
     CameraController(float speed) : speed_(speed) { }

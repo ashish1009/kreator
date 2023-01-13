@@ -7,7 +7,7 @@
 
 #include "hit_payload.hpp"
 
-namespace ikan {
+namespace ray_tracing {
   
   HitPayload::HitPayload(const HitPayload& other)
   : hit_distance(other.hit_distance), world_normal(other.world_normal),

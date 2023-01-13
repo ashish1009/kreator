@@ -11,9 +11,11 @@
 
 #include <entt.hpp>
 #include "editor/editor_camera.hpp"
-#include "scene/scene_camera.hpp"
+#include "ecs/scene_camera.hpp"
 
-namespace ikan {
+namespace ecs {
+  
+  using namespace ikan;
 
   // Forward declaration
   class Entity;

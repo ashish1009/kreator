@@ -10,6 +10,7 @@
 namespace sandbox {
   
   using namespace ikan;
+  using namespace ecs;
   
   class  SandboxLayer : public Layer {
   public:

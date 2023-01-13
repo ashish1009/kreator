@@ -22,6 +22,7 @@ namespace mario {
   
   using namespace player_data;
   using namespace ikan;
+  using namespace ecs;
   
   class PlayerController : public ScriptableEntity {
   public:

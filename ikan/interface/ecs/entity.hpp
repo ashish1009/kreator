@@ -9,9 +9,11 @@
 
 // This file incldues the Entity class to store entt data
 
-#include "scene/entt_scene.hpp"
+#include "ecs/entt_scene.hpp"
 
-namespace ikan {
+namespace ecs {
+  
+  using namespace ikan;
   
   /// enTT Wrapper class to get, add .. APIs
   class Entity {

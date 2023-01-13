@@ -7,10 +7,12 @@
 
 #pragma once
 
-#include "scene/entity.hpp"
+#include "ecs/entity.hpp"
 #include "core/math/aabb.hpp"
 
-namespace ikan {
+namespace ecs {
+  
+  using namespace ikan;
   
   class NativeScriptComponent;
   
@@ -52,7 +54,9 @@ namespace ikan {
   
 }
 
-namespace ikan {
+namespace ecs {
+  
+  using namespace ikan;
   
   // ---------------------------------------------------------------------------
   // This file holds all the native scripts. For now we are using only C type

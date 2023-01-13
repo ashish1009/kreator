@@ -9,9 +9,11 @@
 
 // This file includes the ScenSerializer class to load and save the scene
 
-#include "scene/entt_scene.hpp"
+#include "ecs/entt_scene.hpp"
 
-namespace ikan {
+namespace ecs {
+  
+  using namespace ikan;
   
   class SceneSerializer {
   public:

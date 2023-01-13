@@ -7,7 +7,7 @@
 
 #include "ray.hpp"
 
-namespace ikan {
+namespace ray_tracing {
   
   Ray& Ray::operator=(const Ray &other) {
 //    IK_CORE_TRACE(LogModule::Ray, "Copying Ray ...");

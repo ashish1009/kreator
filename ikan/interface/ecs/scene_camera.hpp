@@ -11,7 +11,9 @@
 
 // This file includes the Scene camera class
 
-namespace ikan {
+namespace ecs {
+  
+  using namespace ikan;
   
   /// Scene Camera class to store the projection for active scene
   class SceneCamera : public Camera {

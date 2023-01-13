@@ -6,10 +6,10 @@
 //
 
 #include "scene_panel_manager.hpp"
-#include "scene/entity.hpp"
+#include "ecs/entity.hpp"
 #include "editor/property_grid.hpp"
 
-namespace ikan {
+namespace ecs {
   
   /// This function renders the components in property pannel. Takes the function pointer in argument
   /// - Parameters:

@@ -7,9 +7,9 @@
 
 #include "core_components.hpp"
 #include "editor/property_grid.hpp"
-#include "scene/scriptable_entity.hpp"
+#include "ecs/scriptable_entity.hpp"
 
-namespace ikan {
+namespace ecs {
   
   // -------------------------------------------------------------------------
   // ID Component

@@ -389,7 +389,7 @@
 				B2FC3E852958796F00447A1A /* ikan_headers.h */,
 				B2250CD82958616B0067C43B /* core */,
 				B2FC400E2958B00B00447A1A /* renderer */,
-				B251B3EE295E155A00508210 /* scene */,
+				B251B3EE295E155A00508210 /* ecs */,
 				B2C0D8062959E151003F168B /* editor */,
 				B24DD81B2962FDA000525941 /* ray_tracing */,
 				B2B6CDB32958D89D00AE609E /* imgui */,
@@ -402,7 +402,7 @@
 			children = (
 				B2250CE42958639D0067C43B /* core */,
 				B2FC400F2958B01900447A1A /* renderer */,
-				B251B3F2295E156A00508210 /* scene */,
+				B251B3F2295E156A00508210 /* ecs */,
 				B2C0D8042959E13C003F168B /* editor */,
 				B24DD80B2962FD9800525941 /* ray_tracing */,
 				B2B6CDB22958D88C00AE609E /* imgui */,
@@ -520,7 +520,7 @@
 			path = ray_tracing;
 			sourceTree = "<group>";
 		};
-		B251B3EE295E155A00508210 /* scene */ = {
+		B251B3EE295E155A00508210 /* ecs */ = {
 			isa = PBXGroup;
 			children = (
 				B251B3F9295E15D300508210 /* viewport.hpp */,
@@ -530,11 +530,12 @@
 				B24C4A762968638B00675599 /* scene_camera.hpp */,
 				B25F616F29699D610042FE09 /* scriptable_entity.hpp */,
 				B2C78407296AF2E5003F343E /* scene_serialiser.hpp */,
+				B25F5DDD2966D3450030DE03 /* scene_panel_manager.hpp */,
 			);
-			path = scene;
+			path = ecs;
 			sourceTree = "<group>";
 		};
-		B251B3F2295E156A00508210 /* scene */ = {
+		B251B3F2295E156A00508210 /* ecs */ = {
 			isa = PBXGroup;
 			children = (
 				B251B3F7295E15CA00508210 /* viewport.cpp */,
@@ -544,8 +545,9 @@
 				B24C4A752968638B00675599 /* scene_camera.cpp */,
 				B25F617529699FC80042FE09 /* scriptable_entity.cpp */,
 				B2C78406296AF2E5003F343E /* scene_serialiser.cpp */,
+				B25F5DDC2966D3450030DE03 /* scene_panel_manager.cpp */,
 			);
-			path = scene;
+			path = ecs;
 			sourceTree = "<group>";
 		};
 		B2584ECB295B7B2B00234714 /* math */ = {
@@ -601,7 +603,6 @@
 				B2C0D8072959E161003F168B /* property_grid.cpp */,
 				B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */,
 				B20303D72965ADCE00563A34 /* content_browser_panel.cpp */,
-				B25F5DDC2966D3450030DE03 /* scene_panel_manager.cpp */,
 			);
 			path = editor;
 			sourceTree = "<group>";
@@ -612,7 +613,6 @@
 				B2C0D8082959E161003F168B /* property_grid.hpp */,
 				B2581119295ADC2C00B0EDA7 /* editor_camera.hpp */,
 				B20303D82965ADCE00563A34 /* content_browser_panel.hpp */,
-				B25F5DDD2966D3450030DE03 /* scene_panel_manager.hpp */,
 			);
 			path = editor;
 			sourceTree = "<group>";

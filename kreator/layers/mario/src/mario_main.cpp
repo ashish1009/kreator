@@ -19,7 +19,7 @@ namespace mario {
     text_data_.Update(viewport_width_, viewport_height_);
 
     // Reinitialize the Batch Renderer
-    BatchRenderer::Reinit(1000, 0, 0);
+    BatchRenderer::Reinit(2000, 0, 0);
     
 #if MARIO_DEBUG
     use_sprite_ = true;

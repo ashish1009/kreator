@@ -8,11 +8,13 @@
 #pragma once
 
 #include "renderer/graphics/texture.hpp"
-#include "scene/scene_camera.hpp"
-#include "scene/scriptable_entity.hpp"
+#include "ecs/scene_camera.hpp"
+#include "ecs/scriptable_entity.hpp"
 #include "core/math/aabb.hpp"
 
-namespace ikan {
+namespace ecs {
+  
+  using namespace ikan;
   
   struct IDComponent {
     UUID id = 0;

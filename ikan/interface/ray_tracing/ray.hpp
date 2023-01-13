@@ -7,7 +7,9 @@
 
 #pragma once
 
-namespace ikan {
+namespace ray_tracing {
+  
+  using namespace ikan;
   
   /// Basic Ray class to store the data for each ray
   struct Ray {

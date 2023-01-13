@@ -7,7 +7,7 @@
 
 #include "ray_material.hpp"
 
-namespace ikan {
+namespace ray_tracing {
   
   bool NearZeroVec(const::glm::vec3 e) {
     // Return true if the vector is close to zero in all dimensions.

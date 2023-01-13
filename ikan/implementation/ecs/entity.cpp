@@ -6,9 +6,9 @@
 //
 
 #include "entity.hpp"
-#include "scene/core_components.hpp"
+#include "ecs/core_components.hpp"
 
-namespace ikan {
+namespace ecs {
   
   Entity::Entity() {
     IK_CORE_TRACE(LogModule::Entity, "Creating Default Entity with No Handle ...");

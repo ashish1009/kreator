@@ -10,7 +10,7 @@
 #include "ray_material.hpp"
 #include "sphere.hpp"
 
-namespace ikan {
+namespace ray_tracing {
   
   class RayScene {
   public:

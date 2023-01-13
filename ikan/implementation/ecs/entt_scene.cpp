@@ -6,16 +6,16 @@
 //
 
 #include "entt_scene.hpp"
-#include "scene/entity.hpp"
-#include "scene/core_components.hpp"
-#include "scene/scriptable_entity.hpp"
+#include "ecs/entity.hpp"
+#include "ecs/core_components.hpp"
+#include "ecs/scriptable_entity.hpp"
 #include "editor/property_grid.hpp"
 #include "renderer/utils/batch_2d_renderer.hpp"
 #include "renderer/utils/renderer.hpp"
 #include "renderer/utils/aabb_renderer.hpp"
 #include "renderer/graphics/texture.hpp"
 
-namespace ikan {
+namespace ecs {
   
   EnttScene::EnttScene(const std::string& file_path)
   : file_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)) {
