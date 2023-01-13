@@ -422,28 +422,28 @@ namespace ecs {
   RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent& other) {
     type = other.type;
     aabb = other.aabb;
-    sphere = other.sphere;
+    circle = other.circle;
   }
   RigidBodyComponent& RigidBodyComponent::operator=(const RigidBodyComponent& other) {
     type = other.type;
     aabb = other.aabb;
-    sphere = other.sphere;
+    circle = other.circle;
     return *this;
   }
   RigidBodyComponent::RigidBodyComponent(RigidBodyComponent&& other) {
     type = other.type;
     aabb = other.aabb;
-    sphere = other.sphere;
+    circle = other.circle;
   }
   RigidBodyComponent& RigidBodyComponent::operator=(RigidBodyComponent&& other) {
     type = other.type;
     aabb = other.aabb;
-    sphere = other.sphere;
+    circle = other.circle;
     return *this;
   }
   void RigidBodyComponent::RenderGui() {
     Type new_proj_type = Type(PropertyGrid::ComboDrop("Body Type",
-                                                      { "AABB" , "Sphere" },
+                                                      { "AABB" , "Circle" },
                                                       (uint32_t)type,
                                                       ImGui::GetWindowContentRegionMax().x / 2));
     
@@ -454,10 +454,11 @@ namespace ecs {
     if (type == Type::AABB) {
       PropertyGrid::Float3("Min Bound", aabb.min, nullptr, 0.1f, -0.5f);
       PropertyGrid::Float3("Max Bound", aabb.max, nullptr, 0.1f, 0.5f);
-    } else if (type == Type::Sphere) {
-      PropertyGrid::Float3("Posotion", sphere.position);
-      PropertyGrid::Float1("Radius", sphere.radius);
+    } else if (type == Type::Circle) {
+      PropertyGrid::Float3("Posotion", circle.position);
+      PropertyGrid::Float1("Radius", circle.radius);
     }
+    
     ImGui::Separator();
   }
   

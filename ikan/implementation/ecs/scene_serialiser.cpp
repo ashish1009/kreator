@@ -242,8 +242,8 @@ namespace ecs {
         out << YAML::Key << "AABB_Min" << YAML::Value << rc.aabb.min;
         out << YAML::Key << "AABB_Max" << YAML::Value << rc.aabb.max;
 
-        out << YAML::Key << "Sphere_pos" << YAML::Value << rc.sphere.position;
-        out << YAML::Key << "Sphere_radius" << YAML::Value << rc.sphere.radius;
+        out << YAML::Key << "Cirlce_pos" << YAML::Value << rc.circle.position;
+        out << YAML::Key << "Cirlce_radius" << YAML::Value << rc.circle.radius;
 
         out << YAML::EndMap; // RigidBodyComponent
       }
@@ -424,10 +424,10 @@ namespace ecs {
           const auto& min = rigid_body_component["AABB_Min"].as<glm::vec3>();
           const auto& max = rigid_body_component["AABB_Max"].as<glm::vec3>();
           
-          const auto& sp_p = rigid_body_component["Sphere_pos"].as<glm::vec3>();
-          const auto& sp_r = rigid_body_component["Sphere_radius"].as<float>();
+          const auto& sp_p = rigid_body_component["Circle_pos"].as<glm::vec3>();
+          const auto& sp_r = rigid_body_component["Circle_radius"].as<float>();
 
-          rc.sphere = BoundingSphere(sp_p, sp_r);
+          rc.circle = BoundingCircle(sp_p, sp_r);
           
           IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
           IK_CORE_INFO(LogModule::SceneSerializer, "      AABB Min | {0} | {1} | {2}", min.x, min.y, min.z);

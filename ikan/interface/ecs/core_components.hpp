@@ -11,7 +11,7 @@
 #include "ecs/scene_camera.hpp"
 #include "ecs/scriptable_entity.hpp"
 #include "physics/aabb.hpp"
-#include "physics/bounding_sphere.hpp"
+#include "physics/bounding_circle.hpp"
 
 namespace ecs {
   
@@ -137,13 +137,13 @@ namespace ecs {
   
   struct RigidBodyComponent {
     enum class Type : uint8_t {
-      AABB, Sphere, Point
+      AABB, Circle, Point
     };
     
     Type type;
     
     AABB aabb;
-    BoundingSphere sphere;
+    BoundingCircle circle;
     
     void RenderGui();
     RigidBodyComponent(Type type);

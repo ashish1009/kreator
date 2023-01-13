@@ -291,7 +291,7 @@ namespace ecs {
     {
       RigidBodyComponent::Type type = RigidBodyComponent::Type::AABB;
       if (selected_entity_.HasComponent<CircleComponent>())
-        type = RigidBodyComponent::Type::Sphere;
+        type = RigidBodyComponent::Type::Circle;
       
       AddComponentMenu<RigidBodyComponent>("Rigid Body", [this]() {
         return selected_entity_.HasComponent<RigidBodyComponent>() or selected_entity_.HasComponent<CameraComponent>();
