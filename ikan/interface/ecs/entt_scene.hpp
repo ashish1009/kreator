@@ -112,6 +112,8 @@ namespace ecs {
     const std::string GetName() const;
     /// This function returns the primary camera data
     const CameraData& GetPrimaryCameraData() const;
+    /// This function returns the flag to use editor camera
+    bool UseEditorCamera() const;
     
     DELETE_COPY_MOVE_CONSTRUCTORS(EnttScene);
     

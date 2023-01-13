@@ -460,12 +460,6 @@ namespace editor {
                         window_width,
                         window_height);
       
-      // Camera
-      EditorCamera* editor_camera = active_scene_->GetEditorCamera();
-      
-      const glm::mat4& camera_projection = editor_camera->GetProjection();
-      const glm::mat4& camera_view = editor_camera->GetView();
-      
       // Entity transform
       auto& tc = selected_entity->GetComponent<TransformComponent>();
       glm::mat4 transform = tc.GetTransform();
@@ -484,13 +478,34 @@ namespace editor {
         snap_value
       };
       
-      ImGuizmo::Manipulate(glm::value_ptr(camera_view),
-                           glm::value_ptr(camera_projection),
-                           (ImGuizmo::OPERATION)viewport_.guizmo_type,
-                           ImGuizmo::LOCAL,
-                           glm::value_ptr(transform),
-                           nullptr,
-                           snap ? snap_values : nullptr);
+      if (!active_scene_->UseEditorCamera()) {
+        // Camera
+        const glm::mat4& camera_projection = active_scene_->GetPrimaryCameraData().scene_camera->GetProjection();
+        const glm::mat4& camera_view = glm::inverse(active_scene_->GetPrimaryCameraData().transform_comp->GetTransform());
+        
+        ImGuizmo::Manipulate(glm::value_ptr(camera_view),
+                             glm::value_ptr(camera_projection),
+                             (ImGuizmo::OPERATION)viewport_.guizmo_type,
+                             ImGuizmo::LOCAL,
+                             glm::value_ptr(transform),
+                             nullptr,
+                             snap ? snap_values : nullptr);
+
+      } else {
+        // Camera
+        EditorCamera* editor_camera = active_scene_->GetEditorCamera();
+        
+        const glm::mat4& camera_projection = editor_camera->GetProjection();
+        const glm::mat4& camera_view = editor_camera->GetView();
+        
+        ImGuizmo::Manipulate(glm::value_ptr(camera_view),
+                             glm::value_ptr(camera_projection),
+                             (ImGuizmo::OPERATION)viewport_.guizmo_type,
+                             ImGuizmo::LOCAL,
+                             glm::value_ptr(transform),
+                             nullptr,
+                             snap ? snap_values : nullptr);
+      }
       
       if (ImGuizmo::IsUsing()) {
         glm::vec3 translation, rotation, scale;

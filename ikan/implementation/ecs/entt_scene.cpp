@@ -351,4 +351,5 @@ namespace ecs {
   bool EnttScene::IsEditing() const { return state_ == EnttScene::State::Edit; }
   const std::string EnttScene::GetName() const { return name_; }
   const CameraData& EnttScene::GetPrimaryCameraData() const { return primary_camera_data_; }
+  bool EnttScene::UseEditorCamera() const { return use_editor_camera_; }
 }
