@@ -5,24 +5,6 @@ Setting_scene_data: true
 Use_editor_camera: false
 Bounding_box: true
 Entities:
-  - Entity: 11051988522368281070
-    TagComponent:
-      Tag: Circle
-    TransformComponent:
-      Translation: [0, 2.42152166, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    CircleComponent:
-      Texture_Use: false
-      Texture_Path: ""
-      Texture_TilingFactor: 1
-      Color: [0.284196854, 0.53308332, 0.702325583, 1]
-      Thickness: 1
-      Fade: 0.00499999989
-    RigidBodyComponent:
-      Type: 1
-      AABB_Min: [-0.5, -0.5, -0.5]
-      AABB_Max: [0.5, 0.5, 0.5]
   - Entity: 16697700742118643392
     TagComponent:
       Tag: Circle
@@ -42,8 +24,10 @@ Entities:
       Num_Scripts: 1
     RigidBodyComponent:
       Type: 1
-      AABB_Min: [-0.5, -0.5, 0]
-      AABB_Max: [0.5, 0.5, 0]
+      AABB_Min: [-0.5, -0.5, -0.5]
+      AABB_Max: [0.5, 0.5, 0.5]
+      Sphere_pos: [0, 0, 0]
+      Sphere_radius: 2
   - Entity: 6941579517432877966
     TagComponent:
       Tag: Camera
@@ -73,5 +57,7 @@ Entities:
       Color: [0.623255849, 0.257998943, 0.257998943, 1]
     RigidBodyComponent:
       Type: 0
-      AABB_Min: [-0.5, -0.5, 0]
-      AABB_Max: [0.5, 0.5, 0]
+      AABB_Min: [-0.5, -0.5, -0.5]
+      AABB_Max: [0.5, 0.5, 0.5]
+      Sphere_pos: [0, 0, 0]
+      Sphere_radius: 0

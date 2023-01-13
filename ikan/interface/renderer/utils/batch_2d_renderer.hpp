@@ -74,6 +74,21 @@ namespace ikan {
 
     /// This function draws circle with color
     /// - Parameters:
+    ///   - position: Center Circle
+    ///   - radisu: radisu
+    ///   - color: Color of Circle
+    ///   - thickness: thickneess of Circle
+    ///   - fade: fade of Circle Edge
+    ///   - object_id: Pixel ID of Circle
+    static void DrawCircle(const glm::vec3& position,
+                           const float radius,
+                           const glm::vec4& color,
+                           float thickness = 1.0f,
+                           float fade = (float)0.005,
+                           int32_t object_id = -1);
+
+    /// This function draws circle with color
+    /// - Parameters:
     ///   - transform: Transformation matrix of Circle
     ///   - color: Color of Circle
     ///   - thickness: thickneess of Circle

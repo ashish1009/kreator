@@ -308,11 +308,11 @@ namespace ecs {
                                   (uint32_t)circle_entity);
         
       } else {
-        BatchRenderer::DrawCircle(transform_component.GetTransform(),
-                                  circle_component.color,
-                                  circle_component.thickness,
-                                  circle_component.fade,
-                                  (uint32_t)circle_entity);
+//        BatchRenderer::DrawCircle(transform_component.GetTransform(),
+//                                  circle_component.color,
+//                                  circle_component.thickness,
+//                                  circle_component.fade,
+//                                  (uint32_t)circle_entity);
       }
     } // for (const auto& entity : mesh_view)
     
@@ -331,7 +331,7 @@ namespace ecs {
       if (rigid_component.type == RigidBodyComponent::Type::AABB)
         BatchRenderer::DrawRect(transform_component.GetTransform(), color);
       else if (rigid_component.type == RigidBodyComponent::Type::Sphere)
-        BatchRenderer::DrawCircle(transform_component.GetTransform(), color);
+        BatchRenderer::DrawCircle(rigid_component.sphere.position, rigid_component.sphere.radius, color);
     } // for (const auto& entity : mesh_view)
   }
 

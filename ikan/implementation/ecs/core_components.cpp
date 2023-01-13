@@ -422,19 +422,23 @@ namespace ecs {
   RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent& other) {
     type = other.type;
     aabb = other.aabb;
+    sphere = other.sphere;
   }
   RigidBodyComponent& RigidBodyComponent::operator=(const RigidBodyComponent& other) {
     type = other.type;
     aabb = other.aabb;
+    sphere = other.sphere;
     return *this;
   }
   RigidBodyComponent::RigidBodyComponent(RigidBodyComponent&& other) {
     type = other.type;
     aabb = other.aabb;
+    sphere = other.sphere;
   }
   RigidBodyComponent& RigidBodyComponent::operator=(RigidBodyComponent&& other) {
     type = other.type;
     aabb = other.aabb;
+    sphere = other.sphere;
     return *this;
   }
   void RigidBodyComponent::RenderGui() {
@@ -447,8 +451,13 @@ namespace ecs {
     if (new_proj_type != type)
       type = new_proj_type;
     
-    PropertyGrid::Float3("Min Bound", aabb.min);
-    PropertyGrid::Float3("Max Bound", aabb.max);
+    if (type == Type::AABB) {
+      PropertyGrid::Float3("Min Bound", aabb.min);
+      PropertyGrid::Float3("Max Bound", aabb.max);
+    } else if (type == Type::Sphere) {
+      PropertyGrid::Float3("Posotion", sphere.position);
+      PropertyGrid::Float1("Radius", sphere.radius);
+    }
     ImGui::Separator();
   }
   

@@ -11,6 +11,7 @@
 #include "ecs/scene_camera.hpp"
 #include "ecs/scriptable_entity.hpp"
 #include "physics/aabb.hpp"
+#include "physics/bounding_sphere.hpp"
 
 namespace ecs {
   
@@ -140,7 +141,9 @@ namespace ecs {
     };
     
     Type type;
+    
     AABB aabb;
+    BoundingSphere sphere;
     
     void RenderGui();
     RigidBodyComponent(Type type);

@@ -651,6 +651,23 @@ namespace ikan {
     RendererStatistics::Get().index_count += BatchRendererData::IndicesForSingleElement;
     RendererStatistics::Get().vertex_count += BatchRendererData::VertexForSingleElement;
   }
+  
+  void BatchRenderer::DrawCircle(const glm::vec3& position,
+                                 const float radius,
+                                 const glm::vec4& color,
+                                 float thickness,
+                                 float fade,
+                                 int32_t object_id) {
+    auto transform  = Math::GetTransformMatrix(position, {0, 0, 0}, {radius, radius, 0.0f});
+    DrawTextureCircle(transform,
+                      nullptr,
+                      1.0f, // tiling factor
+                      color,
+                      thickness,
+                      fade,
+                      object_id);
+  }
+
 
   void BatchRenderer::DrawCircle(const glm::mat4& transform,
                                  const glm::vec4& color,

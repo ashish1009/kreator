@@ -238,9 +238,13 @@ namespace ecs {
         
         uint32_t type = (uint32_t)rc.type;
         out << YAML::Key << "Type" << YAML::Value << type;
+        
         out << YAML::Key << "AABB_Min" << YAML::Value << rc.aabb.min;
         out << YAML::Key << "AABB_Max" << YAML::Value << rc.aabb.max;
-        
+
+        out << YAML::Key << "Sphere_pos" << YAML::Value << rc.sphere.position;
+        out << YAML::Key << "Sphere_radius" << YAML::Value << rc.sphere.radius;
+
         out << YAML::EndMap; // RigidBodyComponent
       }
 
@@ -419,11 +423,17 @@ namespace ecs {
           auto& rc = deserialized_entity.AddComponent<RigidBodyComponent>((RigidBodyComponent::Type)type);
           const auto& min = rigid_body_component["AABB_Min"].as<glm::vec3>();
           const auto& max = rigid_body_component["AABB_Max"].as<glm::vec3>();
-          rc.aabb = AABB(min, max);
+          
+          const auto& sp_p = rigid_body_component["Sphere_pos"].as<glm::vec3>();
+          const auto& sp_r = rigid_body_component["Sphere_radius"].as<float>();
+
+          rc.sphere = BoundingSphere(sp_p, sp_r);
           
           IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
           IK_CORE_INFO(LogModule::SceneSerializer, "      AABB Min | {0} | {1} | {2}", min.x, min.y, min.z);
           IK_CORE_INFO(LogModule::SceneSerializer, "      AABB Max | {0} | {1} | {2}", max.x, max.y, max.z);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Sphere Position | {0} | {1} | {2}", sp_p.x, sp_p.y, sp_p.z);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Sphere Radius | {0} ", sp_r);
         } // if (rigid_body_component)
 
       } // for (auto entity : entities)
