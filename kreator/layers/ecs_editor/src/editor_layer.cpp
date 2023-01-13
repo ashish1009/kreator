@@ -309,18 +309,20 @@ namespace editor {
                  ImVec2{ 0, 1 },
                  ImVec2{ 1, 0 });
     
-    PropertyGrid::DropConent([this](const std::string& path)
-                             {
-      if (StringUtils::GetExtensionFromFilePath(path) == "ikanScene")
-        OpenScene(path);
-      else
-        IK_WARN("Invalid file for Scene {0}", path.c_str());
-    });
-    
+    if (active_scene_->IsEditing()) {
+      PropertyGrid::DropConent([this](const std::string& path)
+                               {
+        if (StringUtils::GetExtensionFromFilePath(path) == "ikanScene")
+          OpenScene(path);
+        else
+          IK_WARN("Invalid file for Scene {0}", path.c_str());
+      });
+            
+      OnImguizmoUpdate();
+    }
+
     viewport_.UpdateBound();
-
-    OnImguizmoUpdate();
-
+    
     ImGui::PopStyleVar();
     ImGui::PopID();
     ImGui::End();
