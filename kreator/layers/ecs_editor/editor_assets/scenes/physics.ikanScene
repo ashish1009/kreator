@@ -5,37 +5,24 @@ Setting_scene_data: true
 Use_editor_camera: false
 Bounding_box: true
 Entities:
-  - Entity: 6512586262452856846
+  - Entity: 11051988522368281070
     TagComponent:
-      Tag: Quad
+      Tag: Circle
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [0, 2.42152166, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
-    QuadComponent:
+    CircleComponent:
       Texture_Use: false
       Texture_Path: ""
       Texture_TilingFactor: 1
-      Color: [0.623255849, 0.257998943, 0.257998943, 1]
+      Color: [0.284196854, 0.53308332, 0.702325583, 1]
+      Thickness: 1
+      Fade: 0.00499999989
     RigidBodyComponent:
-      Type: 0
-      AABB_Min: [-0.5, -0.5, 0]
-      AABB_Max: [0.5, 0.5, 0]
-  - Entity: 6941579517432877966
-    TagComponent:
-      Tag: Camera
-    TransformComponent:
-      Translation: [0, 0, 14.5]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    CameraComponent:
-      FixedAspectRatio: false
-      Primary: true
-      ProjectionType: 0
-      PerspectiveFOV: 0.785398185
-      OrthographicSize: 10
-      Near: 0.00999999978
-      Far: 10000
+      Type: 1
+      AABB_Min: [-0.5, -0.5, -0.5]
+      AABB_Max: [0.5, 0.5, 0.5]
   - Entity: 16697700742118643392
     TagComponent:
       Tag: Circle
@@ -57,21 +44,34 @@ Entities:
       Type: 1
       AABB_Min: [-0.5, -0.5, 0]
       AABB_Max: [0.5, 0.5, 0]
-  - Entity: 11051988522368281070
+  - Entity: 6941579517432877966
     TagComponent:
-      Tag: Circle
+      Tag: Camera
     TransformComponent:
-      Translation: [0, 2.42152166, 0]
+      Translation: [0, 0, 14.5]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
-    CircleComponent:
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 0
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 10
+      Near: 0.00999999978
+      Far: 10000
+  - Entity: 6512586262452856846
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
       Texture_Use: false
       Texture_Path: ""
       Texture_TilingFactor: 1
-      Color: [0.284196854, 0.53308332, 0.702325583, 1]
-      Thickness: 1
-      Fade: 0.00499999989
+      Color: [0.623255849, 0.257998943, 0.257998943, 1]
     RigidBodyComponent:
-      Type: 1
-      AABB_Min: [-0.5, -0.5, -0.5]
-      AABB_Max: [0.5, 0.5, 0.5]
+      Type: 0
+      AABB_Min: [-0.5, -0.5, 0]
+      AABB_Max: [0.5, 0.5, 0]

@@ -26,8 +26,6 @@ namespace ikan {
   
   BoundingSphere BoundingSphere::GetWorldSpherePos(const glm::mat4& transform) const {
     BoundingSphere Sphere;
-    // Update the Bounding box based on the transform of the mesh
-    Sphere.position = glm::vec3(transform * glm::vec4(Sphere.position.x, Sphere.position.y, Sphere.position.z, 1.0));
     return Sphere;
   }
   

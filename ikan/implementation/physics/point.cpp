@@ -24,8 +24,6 @@ namespace ikan {
   
   Point Point::GetWorldPointPos(const glm::mat4& transform) const {
     Point point;
-    // Update the Bounding box based on the transform of the mesh
-    point.position = glm::vec3(transform * glm::vec4(point.position.x, point.position.y, point.position.z, 1.0));
     return point;
   }
   

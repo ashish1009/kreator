@@ -420,16 +420,20 @@ namespace ecs {
   // -------------------------------------------------------------------------
   RigidBodyComponent::RigidBodyComponent(RigidBodyComponent::Type type) : type(type) { }
   RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent& other) {
+    type = other.type;
     aabb = other.aabb;
   }
   RigidBodyComponent& RigidBodyComponent::operator=(const RigidBodyComponent& other) {
+    type = other.type;
     aabb = other.aabb;
     return *this;
   }
   RigidBodyComponent::RigidBodyComponent(RigidBodyComponent&& other) {
+    type = other.type;
     aabb = other.aabb;
   }
   RigidBodyComponent& RigidBodyComponent::operator=(RigidBodyComponent&& other) {
+    type = other.type;
     aabb = other.aabb;
     return *this;
   }

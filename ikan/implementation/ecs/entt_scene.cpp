@@ -323,12 +323,15 @@ namespace ecs {
   }
   
   void EnttScene::RenderBoudningBox() {
+    static glm::vec4 color = {0.97f, 0.53f, 0.278f, 1.0f};
     auto rigid_view = registry_.view<TransformComponent, RigidBodyComponent>();
     // For all Mesg entity
     for (const auto& rigid_entity : rigid_view) {
       const auto& [transform_component, rigid_component] = rigid_view.get<TransformComponent, RigidBodyComponent>(rigid_entity);
       if (rigid_component.type == RigidBodyComponent::Type::AABB)
-        BatchRenderer::DrawRect(transform_component.GetTransform(), {0.97f, 0.53f, 0.278f, 1.0f});
+        BatchRenderer::DrawRect(transform_component.GetTransform(), color);
+      else if (rigid_component.type == RigidBodyComponent::Type::Sphere)
+        BatchRenderer::DrawCircle(transform_component.GetTransform(), color);
     } // for (const auto& entity : mesh_view)
   }
 
