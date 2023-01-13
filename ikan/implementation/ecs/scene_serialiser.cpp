@@ -244,6 +244,7 @@ namespace ecs {
 
         out << YAML::Key << "Cirlce_pos" << YAML::Value << rc.circle.position;
         out << YAML::Key << "Cirlce_radius" << YAML::Value << rc.circle.radius;
+        out << YAML::Key << "Cirlce_rotation" << YAML::Value << rc.circle.rotation;
 
         out << YAML::EndMap; // RigidBodyComponent
       }
@@ -424,16 +425,18 @@ namespace ecs {
           const auto& min = rigid_body_component["AABB_Min"].as<glm::vec3>();
           const auto& max = rigid_body_component["AABB_Max"].as<glm::vec3>();
           
-          const auto& sp_p = rigid_body_component["Circle_pos"].as<glm::vec3>();
-          const auto& sp_r = rigid_body_component["Circle_radius"].as<float>();
+          const auto& sp_po = rigid_body_component["Circle_pos"].as<glm::vec3>();
+          const auto& sp_ra = rigid_body_component["Circle_radius"].as<glm::vec3>();
+          const auto& sp_ro = rigid_body_component["Cirlce_rotation"].as<glm::vec3>();
 
-          rc.circle = BoundingCircle(sp_p, sp_r);
+          rc.circle = BoundingCircle(sp_po, sp_ra, sp_ro);
           
           IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
           IK_CORE_INFO(LogModule::SceneSerializer, "      AABB Min | {0} | {1} | {2}", min.x, min.y, min.z);
           IK_CORE_INFO(LogModule::SceneSerializer, "      AABB Max | {0} | {1} | {2}", max.x, max.y, max.z);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Sphere Position | {0} | {1} | {2}", sp_p.x, sp_p.y, sp_p.z);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Sphere Radius | {0} ", sp_r);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Sphere Position | {0} | {1} | {2}", sp_po.x, sp_po.y, sp_po.z);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Sphere Radius   | {0} | {1} | {2}", sp_ra.x, sp_ra.y, sp_ra.z);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Sphere Rotation | {0} | {1} | {2}", sp_ro.x, sp_ro.y, sp_ro.z);
         } // if (rigid_body_component)
 
       } // for (auto entity : entities)

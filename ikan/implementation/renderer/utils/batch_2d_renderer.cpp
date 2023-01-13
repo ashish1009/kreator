@@ -653,12 +653,12 @@ namespace ikan {
   }
   
   void BatchRenderer::DrawCircle(const glm::vec3& position,
-                                 const float radius,
+                                 const glm::vec3& radius,
                                  const glm::vec4& color,
                                  float thickness,
                                  float fade,
                                  int32_t object_id) {
-    auto transform  = Math::GetTransformMatrix(position, {0, 0, 0}, {radius, radius, 0.0f});
+    auto transform  = Math::GetTransformMatrix(position, {0, 0, 0}, radius);
     DrawTextureCircle(transform,
                       nullptr,
                       1.0f, // tiling factor

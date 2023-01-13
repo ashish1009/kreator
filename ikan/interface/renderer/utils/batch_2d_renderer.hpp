@@ -83,7 +83,7 @@ namespace ikan {
     ///   - fade: fade of Circle Edge
     ///   - object_id: Pixel ID of Circle
     static void DrawCircle(const glm::vec3& position,
-                           const float radius,
+                           const glm::vec3& radius,
                            const glm::vec4& color,
                            float thickness = 1.0f,
                            float fade = (float)0.005,

@@ -456,7 +456,7 @@ namespace ecs {
       PropertyGrid::Float3("Max Bound", aabb.max, nullptr, 0.1f, 0.5f);
     } else if (type == Type::Circle) {
       PropertyGrid::Float3("Posotion", circle.position);
-      PropertyGrid::Float1("Radius", circle.radius);
+      PropertyGrid::Float3("Radius", circle.radius);
     }
     
     ImGui::Separator();

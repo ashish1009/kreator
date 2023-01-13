@@ -37,7 +37,8 @@ Entities:
       AABB_Min: [-0.5, -0.5, -0.5]
       AABB_Max: [0.5, 0.5, 0.5]
       Circle_pos: [0, 0, 0]
-      Circle_radius: 0
+      Circle_radius: [0, 0, 0]
+      Cirlce_rotation: [0, 0, 0]
   - Entity: 13649222609640839231
     TagComponent:
       Tag: Circle
@@ -57,4 +58,5 @@ Entities:
       AABB_Min: [-0.5, -0.5, -0.5]
       AABB_Max: [0.5, 0.5, 0.5]
       Circle_pos: [0, 0, 0]
-      Circle_radius: 1
+      Circle_radius: [1, 1, 1]
+      Cirlce_rotation: [0, 0, 0]
