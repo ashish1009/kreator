@@ -47,7 +47,7 @@ namespace ecs {
       
       auto& other_tc = scene_->GetRegistry().get<TransformComponent>(entity);
       const AABB& original_aabb = scene_->GetRegistry().get<RigidBodyComponent>(entity).aabb;
-      AABB world_aabb = original_aabb.GetWorldPosBoundingBox(other_tc.GetTransform());
+      AABB world_aabb = original_aabb.GetWorldAABBPos(other_tc.GetTransform());
       
       if (
           world_aabb.min.x <= aabb.max.x &&
@@ -77,7 +77,7 @@ namespace ecs {
     
     auto& tc = GetComponent<TransformComponent>();
     const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
-    AABB world_aabb = original_aabb.GetWorldPosBoundingBox(Math::GetTransformMatrix(translation,
+    AABB world_aabb = original_aabb.GetWorldAABBPos(Math::GetTransformMatrix(translation,
                                                                                     tc.Rotation(),
                                                                                     tc.Scale()));
     

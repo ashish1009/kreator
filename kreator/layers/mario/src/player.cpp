@@ -111,7 +111,7 @@ namespace mario {
     
     auto& tc = GetComponent<TransformComponent>();
     const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
-    AABB world_aabb = original_aabb.GetWorldPosBoundingBox(Math::GetTransformMatrix(translation,
+    AABB world_aabb = original_aabb.GetWorldAABBPos(Math::GetTransformMatrix(translation,
                                                                                     tc.Rotation(),
                                                                                     tc.Scale()));
     
