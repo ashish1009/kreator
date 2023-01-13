@@ -466,10 +466,10 @@ namespace ecs {
     return *this;
   }
   void RigidBodyComponent::RenderGui() {
-    BodyType new_body_type = BodyType(PropertyGrid::ComboDrop("Rigid Body Type",
-                                                              { "Static" , "Dynamic", "Kinamatic" },
-                                                              (uint32_t)type,
-                                                              ImGui::GetWindowContentRegionMax().x / 2));
+    physics::BodyType new_body_type = physics::BodyType(PropertyGrid::ComboDrop("Rigid Body Type",
+                                                                                { "Static" , "Dynamic", "Kinamatic" },
+                                                                                (uint32_t)type,
+                                                                                ImGui::GetWindowContentRegionMax().x / 2));
     
     // Render the property based on the projection type of camera
     if (new_body_type != type)

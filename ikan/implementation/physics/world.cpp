@@ -9,7 +9,7 @@
 
 namespace physics {
   
-  World::World(const glm::vec2& gravity) {
+  World::World(const Vec2& gravity) {
   }
   
 }

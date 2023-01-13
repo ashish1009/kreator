@@ -13,6 +13,8 @@
 #include "core/math/aabb.hpp"
 #include "core/math/bounding_circle.hpp"
 
+#include "physics/body.hpp"
+
 namespace ecs {
   
   using namespace ikan;
@@ -145,8 +147,7 @@ namespace ecs {
   };
   
   struct RigidBodyComponent {
-    enum class BodyType { Static = 0, Dynamic = 1, Kinematic = 2 };
-    BodyType type = BodyType::Static;
+    physics::BodyType type = physics::BodyType::StaticBody;
     bool fixed_rotation = false;
 
     void RenderGui();

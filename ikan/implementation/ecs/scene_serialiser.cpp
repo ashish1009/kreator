@@ -459,7 +459,7 @@ namespace ecs {
           auto& rc = deserialized_entity.AddComponent<RigidBodyComponent>();
 
           auto type = rigid_body_component["Type"].as<uint8_t>();
-          rc.type = (RigidBodyComponent::BodyType)type;
+          rc.type = (physics::BodyType)type;
           rc.fixed_rotation = rigid_body_component["Fixed Rotation"].as<bool>();
 
           IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
