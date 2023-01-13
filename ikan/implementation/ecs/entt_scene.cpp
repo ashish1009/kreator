@@ -268,6 +268,28 @@ namespace ecs {
     // Render 2D
     BatchRenderer::BeginBatch(camera_view_projection_mat);
     
+    auto circle_view = registry_.view<TransformComponent, CircleComponent>();
+    // For all Mesg entity
+    for (const auto& circle_entity : circle_view) {
+      const auto& [transform_component, circle_component] = circle_view.get<TransformComponent, CircleComponent>(circle_entity);
+      if (circle_component.texture_comp.use and circle_component.texture_comp.component) {
+        BatchRenderer::DrawCircle(transform_component.GetTransform(),
+                                  circle_component.texture_comp.component,
+                                  circle_component.color,
+                                  circle_component.texture_comp.tiling_factor,
+                                  circle_component.thickness,
+                                  circle_component.fade,
+                                  (uint32_t)circle_entity);
+        
+      } else {
+        BatchRenderer::DrawCircle(transform_component.GetTransform(),
+                                  circle_component.color,
+                                  circle_component.thickness,
+                                  circle_component.fade,
+                                  (uint32_t)circle_entity);
+      }
+    } // for (const auto& entity : mesh_view)
+
     auto quad_view = registry_.view<TransformComponent, QuadComponent>();
     // For all Mesg entity
     for (const auto& quad_entity : quad_view) {
@@ -293,28 +315,6 @@ namespace ecs {
                               sprite_component.sub_texture,
                               (uint32_t)sprite_entity);
     } // for (const auto& entity : mesh_view)
-
-    auto circle_view = registry_.view<TransformComponent, CircleComponent>();
-    // For all Mesg entity
-    for (const auto& circle_entity : circle_view) {
-      const auto& [transform_component, circle_component] = circle_view.get<TransformComponent, CircleComponent>(circle_entity);
-      if (circle_component.texture_comp.use and circle_component.texture_comp.component) {
-        BatchRenderer::DrawCircle(transform_component.GetTransform(),
-                                  circle_component.texture_comp.component,
-                                  circle_component.color,
-                                  circle_component.texture_comp.tiling_factor,
-                                  circle_component.thickness,
-                                  circle_component.fade,
-                                  (uint32_t)circle_entity);
-        
-      } else {
-        BatchRenderer::DrawCircle(transform_component.GetTransform(),
-                                  circle_component.color,
-                                  circle_component.thickness,
-                                  circle_component.fade,
-                                  (uint32_t)circle_entity);
-      }
-    } // for (const auto& entity : mesh_view)
     
     if (is_bounding_box_)
       RenderBoudningBox();
@@ -328,10 +328,10 @@ namespace ecs {
     // For all Mesg entity
     for (const auto& rigid_entity : rigid_view) {
       const auto& [transform_component, rigid_component] = rigid_view.get<TransformComponent, RigidBodyComponent>(rigid_entity);
-      if (rigid_component.type == RigidBodyComponent::Type::AABB)
+      if (rigid_component.type == RigidBodyComponent::Type::Sphere)
+        BatchRenderer::DrawCircle(rigid_component.sphere.position, rigid_component.sphere.radius + 0.05, color, 0.05, 0.005, (uint32_t)rigid_entity);
+      else if (rigid_component.type == RigidBodyComponent::Type::AABB)
         BatchRenderer::DrawRect(rigid_component.aabb.GetWorldAABBPos(transform_component.GetTransform()), color);
-      else if (rigid_component.type == RigidBodyComponent::Type::Sphere)
-        BatchRenderer::DrawCircle(rigid_component.sphere.position, rigid_component.sphere.radius + 0.05, color, 0.05);
     } // for (const auto& entity : mesh_view)
   }
 

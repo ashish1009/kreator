@@ -5,29 +5,11 @@ Setting_scene_data: true
 Use_editor_camera: false
 Bounding_box: true
 Entities:
-  - Entity: 6512586262452856846
-    TagComponent:
-      Tag: Quad
-    TransformComponent:
-      Translation: [4.38552094, 0, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: false
-      Texture_Path: ""
-      Texture_TilingFactor: 1
-      Color: [0.623255849, 0.257998943, 0.257998943, 1]
-    RigidBodyComponent:
-      Type: 0
-      AABB_Min: [-0.5, -0.5, -0.5]
-      AABB_Max: [0.5, 0.5, 0.5]
-      Sphere_pos: [0, 0, 0]
-      Sphere_radius: 0
   - Entity: 6941579517432877966
     TagComponent:
       Tag: Camera
     TransformComponent:
-      Translation: [0, 0, 14.5]
+      Translation: [0, 0, 4.25]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
@@ -38,26 +20,29 @@ Entities:
       OrthographicSize: 10
       Near: 0.00999999978
       Far: 10000
-  - Entity: 16697700742118643392
+  - Entity: 17612409814523213282
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: false
+      Texture_Path: ""
+      Texture_TilingFactor: 1
+      Color: [0.288934588, 0.54006505, 0.586046517, 1]
+  - Entity: 10388117037874218812
     TagComponent:
       Tag: Circle
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [0.0303566158, 0, 0.100000001]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CircleComponent:
       Texture_Use: false
       Texture_Path: ""
       Texture_TilingFactor: 1
-      Color: [0.595170319, 0.734883726, 0.519545734, 1]
-      Thickness: 1
+      Color: [0.506734014, 0.669767439, 0.308404565, 1]
+      Thickness: 0.449999988
       Fade: 0.00499999989
-    NativeScriptComponent:
-      Script_name_0: ecs::MovementController
-      Num_Scripts: 1
-    RigidBodyComponent:
-      Type: 1
-      AABB_Min: [-0.5, -0.5, -0.5]
-      AABB_Max: [0.5, 0.5, 0.5]
-      Sphere_pos: [0, 0, 0]
-      Sphere_radius: 1
