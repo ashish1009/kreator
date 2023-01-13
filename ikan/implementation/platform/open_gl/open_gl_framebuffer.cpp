@@ -131,6 +131,7 @@ namespace ikan {
   }
 
   OpenGLFrameBuffer::~OpenGLFrameBuffer() {
+#ifdef IK_DEBUG_FEATURE
     IK_CORE_WARN(LogModule::FrameBuffer, "Destroying Open GL Framebuffer !!!");
     IK_CORE_WARN(LogModule::FrameBuffer, "  Renderer ID | {0}", renderer_id_);
     uint32_t i = 0;
@@ -139,6 +140,7 @@ namespace ikan {
       IK_CORE_WARN(LogModule::FrameBuffer, "  Renderer ID | {0}", color_id);
       IK_CORE_WARN(LogModule::FrameBuffer, "  Format      | {0}", frame_buffer_utils::GetTextureFormateStringFromEnum(color_specifications_[i++]));
     }
+#endif
     IDManager::RemoveTextureId(&color_attachment_ids_[0], (uint32_t)color_attachment_ids_.size());
 
     IK_CORE_WARN(LogModule::FrameBuffer, "  Depth Attachments ");

@@ -28,7 +28,9 @@ namespace ikan {
     IK_CORE_DEBUG(LogModule::VertexBuffer, "  Size             | {0} Bytes ({1} KB {2} MB)",
                   size_, size_ / 1000, size_ / 1000000);
     
+#ifdef IK_DEBUG_FEATURE
     uint32_t total_size = RendererStatistics::Get().vertex_buffer_size;
+#endif
     IK_CORE_DEBUG(LogModule::VertexBuffer, "  Total Size Used  | {0} Bytes ({1} KB {2} MB)",
                   total_size, total_size / 1000, total_size / 1000000);
   }
@@ -45,7 +47,9 @@ namespace ikan {
     IK_CORE_DEBUG(LogModule::VertexBuffer, "  Renderer ID      | {0}", renderer_id_);
     IK_CORE_DEBUG(LogModule::VertexBuffer, "  Size             | {0} Bytes ({1} KB, {2} MB)",
                   size_, size_ / 1000, size_ / 1000000);
+#ifdef IK_DEBUG_FEATURE
     uint32_t total_size = RendererStatistics::Get().vertex_buffer_size;
+#endif
     IK_CORE_DEBUG(LogModule::VertexBuffer, "  Total Size Used  | {0} Bytes ({1} KB {2} MB)",
                   total_size, total_size / 1000, total_size / 1000000);
     
