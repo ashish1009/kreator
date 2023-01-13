@@ -10,8 +10,8 @@
 #include "renderer/graphics/texture.hpp"
 #include "ecs/scene_camera.hpp"
 #include "ecs/scriptable_entity.hpp"
-#include "physics/aabb.hpp"
-#include "physics/bounding_circle.hpp"
+#include "core/math/aabb.hpp"
+#include "core/math/bounding_circle.hpp"
 
 namespace ecs {
   

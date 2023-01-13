@@ -110,8 +110,8 @@
             filePath = "ikan/implementation/ecs/scriptable_entity.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "ScriptManager::UpdateScript(sc, script_name, loader_function)"
             landmarkType = "7">
          </BreakpointContent>

@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "physics/aabb.hpp"
+#include "core/math/aabb.hpp"
 
 // This file includes batch renderer that is resposible for
 // - Initialize all Renderer buffer and store them for rendering 1 Batch in single
