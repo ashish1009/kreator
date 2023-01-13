@@ -382,16 +382,18 @@ namespace ecs {
     const ImGuiTreeNodeFlags tree_node_flags =
     ImGuiTreeNodeFlags_SpanAvailWidth |
     ImGuiTreeNodeFlags_AllowItemOverlap |
+    ImGuiTreeNodeFlags_DefaultOpen |
     ImGuiTreeNodeFlags_FramePadding;
     
     // Render the title named as entity name
     bool open = ImGui::TreeNodeEx("Scripts", tree_node_flags);
-    
     if (open) {
       for (const auto& [name, script] : scrip_name_map) {
         bool opened = ImGui::TreeNodeEx(name.c_str(), ImGuiTreeNodeFlags_Bullet);
-        if (opened)
+        if (opened) {
+          script->RenderGui();
           ImGui::TreePop();
+        }
       }
       ImGui::TreePop();
     }

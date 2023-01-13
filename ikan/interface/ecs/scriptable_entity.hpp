@@ -15,6 +15,29 @@ namespace ecs {
   using namespace ikan;
   
   class NativeScriptComponent;
+
+  // Using Typedefs
+  using ScriptLoaderFn = std::function<bool(NativeScriptComponent* sc, const std::string& script_name)>;
+
+  // ---------------------------------------------------------------------------
+  // This file holds all the native scripts. For now we are using only C type
+  // Scripts so we have to pre define all of them. No Runtime script is supported
+  // yet. So store all the script name as their class name in ScriptManager::scripts_
+  // ---------------------------------------------------------------------------
+  class ScriptManager {
+  public:
+    static std::vector<std::string> scripts_;
+    
+    /// This function update the scrip bind function pointer
+    /// - Parameters:
+    ///   - sc: Native script component pointer
+    ///   - script_name: Script name
+    static void UpdateScript(NativeScriptComponent* sc,
+                             const std::string& script_name,
+                             ScriptLoaderFn loader_function);
+    
+    MAKE_PURE_STATIC(ScriptManager);
+  };
   
   class ScriptableEntity {
   public:
@@ -44,40 +67,10 @@ namespace ecs {
     friend class EnttScene;
   };
   
-  class FreeFallController : public ScriptableEntity {
+  class MovementController : public ScriptableEntity {
   public:
     void Update(Timestep ts) override;
-    
-  private:
-    float speed_ = 5.0f;
+    void RenderGui() override;
   };
-  
-}
 
-namespace ecs {
-  
-  using namespace ikan;
-  
-  // ---------------------------------------------------------------------------
-  // This file holds all the native scripts. For now we are using only C type
-  // Scripts so we have to pre define all of them. No Runtime script is supported
-  // yet. So store all the script name as their class name in ScriptManager::scripts_
-  // ---------------------------------------------------------------------------
-  // Using Typedefs
-  using ScriptLoaderFn = std::function<bool(NativeScriptComponent* sc, const std::string& script_name)>;  
-  class ScriptManager {
-  public:
-    static std::vector<std::string> scripts_;
-
-    /// This function update the scrip bind function pointer
-    /// - Parameters:
-    ///   - sc: Native script component pointer
-    ///   - script_name: Script name
-    static void UpdateScript(NativeScriptComponent* sc,
-                             const std::string& script_name,
-                             ScriptLoaderFn loader_function);
-    
-    MAKE_PURE_STATIC(ScriptManager);
-  };
-  
 }

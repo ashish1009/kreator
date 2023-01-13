@@ -16,16 +16,16 @@ namespace ecs {
   // --------------------------------------------------------------------------
   std::vector<std::string> ScriptManager::scripts_ = {
     "Select Script",
-    "ecs::FreeFallController",
+    "ecs::MovementController",
   };
 
   void ScriptManager::UpdateScript(NativeScriptComponent* sc,
                                    const std::string& script_name,
                                    ScriptLoaderFn loader_function) {
-    if (script_name == "ikan::ScriptableEntity")
+    if (script_name == "ecs::ScriptableEntity")
       sc->Bind<ecs::ScriptableEntity>();
-    if (script_name == "ikan::FreeFallController")
-      sc->Bind<ecs::FreeFallController>();
+    if (script_name == "ecs::MovementController")
+      sc->Bind<ecs::MovementController>();
     else {
       IK_ASSERT(loader_function, "Invalid Script name");
       bool script_loaded = loader_function(sc, script_name);
@@ -62,29 +62,16 @@ namespace ecs {
     });
     return collision_detected;
   }
-
-  // --------------------------------------------------------------------------
-  // Freefall controller class
-  // --------------------------------------------------------------------------
-  void FreeFallController::Update(Timestep ts) {
-    if (HasComponent<RigidBodyComponent>()) {
-      // Dummy copy of entity y Position
-      auto translation = GetComponent<TransformComponent>().Translation();
-      translation.y -= speed_ * ts;
-      
-      auto& tc = GetComponent<TransformComponent>();
-      const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
-      AABB world_aabb = original_aabb.GetWorldPosBoundingBox(Math::GetTransformMatrix(translation,
-                                                                                      tc.Rotation(),
-                                                                                      tc.Scale()));
-      
-      // If no collision then update the position
-      if (!CollisionDetected(world_aabb))
-        tc.UpdateTranslation(translation);
-    } else {
-      auto& tc = GetComponent<TransformComponent>();
-      tc.UpdateTranslation_Y(tc.Translation().y - speed_ * ts);
-    }
+  
+  // ------------------------------------------------------------------------
+  // Movement controller
+  // ------------------------------------------------------------------------
+  void MovementController::Update(Timestep ts) {
+    
+  }
+  
+  void MovementController::RenderGui() {
+    ImGui::Separator();
   }
   
 }
