@@ -89,6 +89,12 @@ namespace ecs {
     out << YAML::BeginSeq << v.x << v.y << v.z << YAML::EndSeq;
     return out;
   }
+  // yml << operator for glm vec 2
+  static YAML::Emitter& operator<<(YAML::Emitter& out, const glm::vec2& v) {
+    out << YAML::Flow;
+    out << YAML::BeginSeq << v.x << v.y << YAML::EndSeq;
+    return out;
+  }
   // yml << operator for glm vec 4
   static YAML::Emitter& operator<<(YAML::Emitter& out, const glm::vec4& v) {
     out << YAML::Flow;
@@ -229,6 +235,18 @@ namespace ecs {
       }
 
       // ------------------------------------------------------------------------
+      if (entity.HasComponent<NativeBodyTypeComponent>()) {
+        out << YAML::Key << "NativeBodyTypeComponent";
+        out << YAML::BeginMap; // NativeBodyTypeComponent
+        
+        auto& rc = entity.GetComponent<NativeBodyTypeComponent>();
+        
+        uint32_t type = (uint32_t)rc.type;
+        out << YAML::Key << "Type" << YAML::Value << type;
+        out << YAML::EndMap; // NativeBodyTypeComponent
+      }
+
+      // ------------------------------------------------------------------------
       if (entity.HasComponent<RigidBodyComponent>()) {
         out << YAML::Key << "RigidBodyComponent";
         out << YAML::BeginMap; // RigidBodyComponent
@@ -237,7 +255,26 @@ namespace ecs {
         
         uint32_t type = (uint32_t)rc.type;
         out << YAML::Key << "Type" << YAML::Value << type;
+        out << YAML::Key << "Fixed Rotation" << YAML::Value << rc.fixed_rotation;
         out << YAML::EndMap; // RigidBodyComponent
+      }
+
+      // ------------------------------------------------------------------------
+      if (entity.HasComponent<BoxColloiderComponent>()) {
+        out << YAML::Key << "BoxColloiderComponent";
+        out << YAML::BeginMap; // BoxColloiderComponent
+        
+        auto& bcc = entity.GetComponent<BoxColloiderComponent>();
+        
+        out << YAML::Key << "Offset" << YAML::Value << bcc.offset;
+        out << YAML::Key << "Size" << YAML::Value << bcc.size;
+        
+        out << YAML::Key << "Density" << YAML::Value << bcc.density;
+        out << YAML::Key << "Friction" << YAML::Value << bcc.size;
+        out << YAML::Key << "Restitution" << YAML::Value << bcc.restitution;
+        out << YAML::Key << "Restitution Threshold" << YAML::Value << bcc.restitution_threshold;
+        
+        out << YAML::EndMap; // BoxColloiderComponent
       }
 
       out << YAML::EndMap; // Entity
@@ -408,13 +445,49 @@ namespace ecs {
         } // if (script_component)
 
         // --------------------------------------------------------------------
-        auto rigid_body_component = entity["RigidBodyComponent"];
-        if (rigid_body_component) {
-          auto type = rigid_body_component["Type"].as<uint8_t>();
-          deserialized_entity.AddComponent<RigidBodyComponent>((RigidBodyComponent::Type)type);
+        auto native_body_component = entity["NativeBodyTypeComponent"];
+        if (native_body_component) {
+          auto type = native_body_component["Type"].as<uint8_t>();
+          deserialized_entity.AddComponent<NativeBodyTypeComponent>((NativeBodyTypeComponent::Type)type);
           IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
           IK_CORE_INFO(LogModule::SceneSerializer, "      Type | {0}", type);
+        } // if (native_body_component)
+
+        // --------------------------------------------------------------------
+        auto rigid_body_component = entity["RigidBodyComponent"];
+        if (rigid_body_component) {
+          auto& rc = deserialized_entity.AddComponent<RigidBodyComponent>();
+
+          auto type = rigid_body_component["Type"].as<uint8_t>();
+          rc.type = (RigidBodyComponent::BodyType)type;
+          rc.fixed_rotation = rigid_body_component["Fixed Rotation"].as<bool>();
+
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Type           | {0}", type);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Fixed Rotation | {0}", rc.fixed_rotation);
         } // if (rigid_body_component)
+
+        // --------------------------------------------------------------------
+        auto bol_colloider_component = entity["BoxColloiderComponent"];
+        if (bol_colloider_component) {
+          auto& bcc = deserialized_entity.AddComponent<BoxColloiderComponent>();
+
+          bcc.offset = bol_colloider_component["Offset"].as<glm::vec2>();
+          bcc.size = bol_colloider_component["Size"].as<glm::vec2>();
+
+          bcc.density = bol_colloider_component["Density"].as<float>();
+          bcc.friction = bol_colloider_component["Friction"].as<float>();
+          bcc.restitution = bol_colloider_component["Restitution"].as<float>();
+          bcc.restitution_threshold = bol_colloider_component["Restitution Threshold"].as<float>();
+
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Offset                | {0} | {0}", bcc.offset.x, bcc.offset.y);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Size                  | {0} | {0}", bcc.size.x, bcc.size.y);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Density               | {0}", bcc.density);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Friction              | {0}", bcc.friction);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution           | {0}", bcc.restitution);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution Threshold | {0}", bcc.restitution_threshold);
+        } // if (bol_colloider_component)
 
       } // for (auto entity : entities)
     } // if (entities)

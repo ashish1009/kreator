@@ -20,7 +20,7 @@ namespace mario {
     AABB aabb;
     aabb.min = { -0.5f, -0.5f, -0.5f };
     aabb.max = { 0.5f, 0.5f, 0.5f };
-    player_entity_.AddComponent<RigidBodyComponent>(RigidBodyComponent::Type::AABB);
+    player_entity_.AddComponent<NativeBodyTypeComponent>(NativeBodyTypeComponent::Type::AABB);
     
     auto& native_script_comp = player_entity_.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
                                                                                     const std::string& script_name) {

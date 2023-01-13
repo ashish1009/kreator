@@ -135,16 +135,38 @@ namespace ecs {
     DEFINE_COPY_MOVE_CONSTRUCTORS(NativeScriptComponent);
   };
   
-  struct RigidBodyComponent {
-    enum class Type : uint8_t {
-      AABB, Circle, Point
-    };
-    
+  struct NativeBodyTypeComponent {
+    enum class Type : uint8_t { AABB, Circle, Point };
     Type type;
     
     void RenderGui();
-    RigidBodyComponent(Type type);
+    NativeBodyTypeComponent(Type type);
+    DEFINE_COPY_MOVE_CONSTRUCTORS(NativeBodyTypeComponent);
+  };
+  
+  struct RigidBodyComponent {
+    enum class BodyType { Static = 0, Dynamic = 1, Kinematic = 2 };
+    BodyType type = BodyType::Static;
+    bool fixed_rotation = false;
+
+    void RenderGui();
+    RigidBodyComponent() = default;
     DEFINE_COPY_MOVE_CONSTRUCTORS(RigidBodyComponent);
+  };
+  
+  struct BoxColloiderComponent {
+    glm::vec2 offset = { 0.0f, 0.0f };
+    glm::vec2 size = { 0.5f, 0.5f };
+    
+    // TODO: Move to physics material
+    float density  = 1.0f;
+    float friction = 0.5f;
+    float restitution = 0.0f;
+    float restitution_threshold = 0.5f;
+
+    void RenderGui();
+    BoxColloiderComponent() = default;
+    DEFINE_COPY_MOVE_CONSTRUCTORS(BoxColloiderComponent);
   };
 
 }

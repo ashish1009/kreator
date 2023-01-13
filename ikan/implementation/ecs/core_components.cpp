@@ -418,22 +418,22 @@ namespace ecs {
   // -------------------------------------------------------------------------
   // Rigid Body Component
   // -------------------------------------------------------------------------
-  RigidBodyComponent::RigidBodyComponent(RigidBodyComponent::Type type) : type(type) { }
-  RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent& other) {
+  NativeBodyTypeComponent::NativeBodyTypeComponent(NativeBodyTypeComponent::Type type) : type(type) { }
+  NativeBodyTypeComponent::NativeBodyTypeComponent(const NativeBodyTypeComponent& other) {
     type = other.type;
   }
-  RigidBodyComponent& RigidBodyComponent::operator=(const RigidBodyComponent& other) {
-    type = other.type;
-    return *this;
-  }
-  RigidBodyComponent::RigidBodyComponent(RigidBodyComponent&& other) {
-    type = other.type;
-  }
-  RigidBodyComponent& RigidBodyComponent::operator=(RigidBodyComponent&& other) {
+  NativeBodyTypeComponent& NativeBodyTypeComponent::operator=(const NativeBodyTypeComponent& other) {
     type = other.type;
     return *this;
   }
-  void RigidBodyComponent::RenderGui() {
+  NativeBodyTypeComponent::NativeBodyTypeComponent(NativeBodyTypeComponent&& other) {
+    type = other.type;
+  }
+  NativeBodyTypeComponent& NativeBodyTypeComponent::operator=(NativeBodyTypeComponent&& other) {
+    type = other.type;
+    return *this;
+  }
+  void NativeBodyTypeComponent::RenderGui() {
     Type new_proj_type = Type(PropertyGrid::ComboDrop("Body Type",
                                                       { "AABB" , "Circle" },
                                                       (uint32_t)type,
@@ -442,6 +442,88 @@ namespace ecs {
     // Render the property based on the projection type of camera
     if (new_proj_type != type)
       type = new_proj_type;
+  }
+  
+  // -------------------------------------------------------------------------
+  // Rigid Body Component
+  // -------------------------------------------------------------------------
+  RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent& other) {
+    type = other.type;
+    fixed_rotation = other.fixed_rotation;
+  }
+  RigidBodyComponent& RigidBodyComponent::operator=(const RigidBodyComponent& other) {
+    type = other.type;
+    fixed_rotation = other.fixed_rotation;
+    return *this;
+  }
+  RigidBodyComponent::RigidBodyComponent(RigidBodyComponent&& other) {
+    type = other.type;
+    fixed_rotation = other.fixed_rotation;
+  }
+  RigidBodyComponent& RigidBodyComponent::operator=(RigidBodyComponent&& other) {
+    type = other.type;
+    fixed_rotation = other.fixed_rotation;
+    return *this;
+  }
+  void RigidBodyComponent::RenderGui() {
+    BodyType new_body_type = BodyType(PropertyGrid::ComboDrop("Rigid Body Type",
+                                                              { "Static" , "Dynamic", "Kinamatic" },
+                                                              (uint32_t)type,
+                                                              ImGui::GetWindowContentRegionMax().x / 2));
+    
+    // Render the property based on the projection type of camera
+    if (new_body_type != type)
+      type = new_body_type;
+
+    PropertyGrid::CheckBox("Fixed Rotation", fixed_rotation, ImGui::GetWindowContentRegionMax().x / 2);
+  }
+  
+  // -------------------------------------------------------------------------
+  // Box Colloider Component
+  // -------------------------------------------------------------------------
+  BoxColloiderComponent::BoxColloiderComponent(const BoxColloiderComponent& other) {
+    offset = other.offset;
+    size = other.size;
+    density = other.density;
+    friction = other.friction;
+    restitution = other.restitution;
+    restitution_threshold = other.restitution_threshold;
+  }
+  BoxColloiderComponent& BoxColloiderComponent::operator=(const BoxColloiderComponent& other) {
+    offset = other.offset;
+    size = other.size;
+    density = other.density;
+    friction = other.friction;
+    restitution = other.restitution;
+    restitution_threshold = other.restitution_threshold;
+    return *this;
+  }
+  BoxColloiderComponent::BoxColloiderComponent(BoxColloiderComponent&& other) {
+    offset = other.offset;
+    size = other.size;
+    density = other.density;
+    friction = other.friction;
+    restitution = other.restitution;
+    restitution_threshold = other.restitution_threshold;
+  }
+  BoxColloiderComponent& BoxColloiderComponent::operator=(BoxColloiderComponent&& other) {
+    offset = other.offset;
+    size = other.size;
+    density = other.density;
+    friction = other.friction;
+    restitution = other.restitution;
+    restitution_threshold = other.restitution_threshold;
+    return *this;
+  }
+  void BoxColloiderComponent::RenderGui() {
+    PropertyGrid::Float2("Offset", offset);
+    PropertyGrid::Float2("Size", size);
+    ImGui::Separator();
+    
+    PropertyGrid::Float1("Density", density);
+    PropertyGrid::Float1("Friction", friction);
+    PropertyGrid::Float1("Restitution", restitution);
+    PropertyGrid::Float1("Restitution Threshold", restitution_threshold);
   }
   
 }

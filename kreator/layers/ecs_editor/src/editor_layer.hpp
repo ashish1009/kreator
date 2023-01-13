@@ -84,7 +84,7 @@ namespace editor {
     // Member variables
     // --------------------
     Viewport viewport_;
-    ContentBrowserPanel cbp_;
+    ContentBrowserPanel cbp_ = ContentBrowserPanel("../../../kreator/layers/ecs_editor/editor_assets/scenes");
     ScenePanelManager spm_;
     std::shared_ptr<EnttScene> active_scene_;
     

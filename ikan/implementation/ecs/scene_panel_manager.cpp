@@ -188,7 +188,7 @@ namespace ecs {
       DrawComponent<CircleComponent>("Circle", selected_entity_, [this](auto& cc) { cc.RenderGui(); });
       DrawComponent<CameraComponent>("Camera", selected_entity_, [this](auto& cc) { cc.RenderGui(); });
       DrawComponent<NativeScriptComponent>("Native Script", selected_entity_, [this](auto& nsc) { nsc.RenderGui(); });
-      DrawComponent<RigidBodyComponent>("Rigid Body", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
+      DrawComponent<NativeBodyTypeComponent>("Rigid Body", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
     }
     
     ImGui::PopID();
@@ -289,12 +289,12 @@ namespace ecs {
     
     // Rigid body component
     {
-      RigidBodyComponent::Type type = RigidBodyComponent::Type::AABB;
+      NativeBodyTypeComponent::Type type = NativeBodyTypeComponent::Type::AABB;
       if (selected_entity_.HasComponent<CircleComponent>())
-        type = RigidBodyComponent::Type::Circle;
+        type = NativeBodyTypeComponent::Type::Circle;
       
-      AddComponentMenu<RigidBodyComponent>("Rigid Body", [this]() {
-        return selected_entity_.HasComponent<RigidBodyComponent>() or selected_entity_.HasComponent<CameraComponent>();
+      AddComponentMenu<NativeBodyTypeComponent>("Native Body Type", [this]() {
+        return selected_entity_.HasComponent<NativeBodyTypeComponent>() or selected_entity_.HasComponent<CameraComponent>();
       }, type);
     }
     ImGui::Separator();

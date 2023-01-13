@@ -39,7 +39,7 @@ namespace ecs {
   bool ScriptableEntity::CollisionDetected(const AABB& aabb) {
     bool collision_detected = false;
     // Collistion deteection
-    scene_->GetRegistry().view<RigidBodyComponent>().each([&](entt::entity entity, auto& rc)
+    scene_->GetRegistry().view<NativeBodyTypeComponent>().each([&](entt::entity entity, auto& rc)
                                                           {
       // TODO: If no ther entity is there then no free fall.
       if (entity_ == entity)
@@ -90,7 +90,7 @@ namespace ecs {
   bool ScriptableEntity::CollisionDetected(const BoundingCircle& circle) {
     bool collision_detected = false;
     // Collistion deteection
-    scene_->GetRegistry().view<RigidBodyComponent>().each([&](entt::entity entity, auto& rc)
+    scene_->GetRegistry().view<NativeBodyTypeComponent>().each([&](entt::entity entity, auto& rc)
                                                           {
       // TODO: If no ther entity is there then no free fall.
       if (entity_ == entity)
