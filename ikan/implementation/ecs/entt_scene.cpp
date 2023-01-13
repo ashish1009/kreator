@@ -323,11 +323,12 @@ namespace ecs {
   }
   
   void EnttScene::RenderBoudningBox() {
-    auto aabb_view = registry_.view<TransformComponent, RigidBodyComponent>();
+    auto rigid_view = registry_.view<TransformComponent, RigidBodyComponent>();
     // For all Mesg entity
-    for (const auto& aabb_entity : aabb_view) {
-      const auto& [transform_component, aabb_component] = aabb_view.get<TransformComponent, RigidBodyComponent>(aabb_entity);
-      BatchRenderer::DrawRect(transform_component.GetTransform(), {0.97f, 0.53f, 0.278f, 1.0f});
+    for (const auto& rigid_entity : rigid_view) {
+      const auto& [transform_component, rigid_component] = rigid_view.get<TransformComponent, RigidBodyComponent>(rigid_entity);
+      if (rigid_component.type == RigidBodyComponent::Type::AABB)
+        BatchRenderer::DrawRect(transform_component.GetTransform(), {0.97f, 0.53f, 0.278f, 1.0f});
     } // for (const auto& entity : mesh_view)
   }
 

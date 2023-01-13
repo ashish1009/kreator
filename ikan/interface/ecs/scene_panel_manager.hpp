@@ -62,12 +62,12 @@ namespace ecs {
     /// This function adds the component in the selected entity
     void AddComponent();
     
-    template <typename T>
+    template <typename T, typename... Args>
     /// This function create menu for add component
     /// - Parameters:
     ///   - menu_item: menu name
     ///   - exclusive_func: exclusing function
-    void AddComponentMenu(const std::string& menu_item, std::function<bool()> exclusive_func = nullptr) {
+    void AddComponentMenu(const std::string& menu_item, std::function<bool()> exclusive_func = nullptr, Args&&... args) {
       if (!exclusive_func) {
         exclusive_func = [this]() {
           return selected_entity_.HasComponent<T>();
@@ -77,7 +77,7 @@ namespace ecs {
                           nullptr, // Shortcut
                           false, // Selected
                           !exclusive_func())) {
-        selected_entity_.AddComponent<T>();
+        selected_entity_.AddComponent<T>(std::forward<Args>(args)...);
         ImGui::CloseCurrentPopup();
       }
     }

@@ -235,6 +235,9 @@ namespace ecs {
         out << YAML::BeginMap; // RigidBodyComponent
         
         auto& rc = entity.GetComponent<RigidBodyComponent>();
+        
+        uint32_t type = (uint32_t)rc.type;
+        out << YAML::Key << "Type" << YAML::Value << type;
         out << YAML::Key << "AABB_Min" << YAML::Value << rc.aabb.min;
         out << YAML::Key << "AABB_Max" << YAML::Value << rc.aabb.max;
         
@@ -412,7 +415,8 @@ namespace ecs {
         // --------------------------------------------------------------------
         auto rigid_body_component = entity["RigidBodyComponent"];
         if (rigid_body_component) {
-          auto& rc = deserialized_entity.AddComponent<RigidBodyComponent>();
+          auto type = rigid_body_component["Type"].as<uint8_t>();
+          auto& rc = deserialized_entity.AddComponent<RigidBodyComponent>((RigidBodyComponent::Type)type);
           const auto& min = rigid_body_component["AABB_Min"].as<glm::vec3>();
           const auto& max = rigid_body_component["AABB_Max"].as<glm::vec3>();
           rc.aabb = AABB(min, max);

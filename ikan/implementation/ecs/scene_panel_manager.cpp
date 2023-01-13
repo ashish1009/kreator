@@ -286,9 +286,17 @@ namespace ecs {
     ImGui::Separator();
     
     AddComponentMenu<NativeScriptComponent>("Native Script");
-    AddComponentMenu<RigidBodyComponent>("Rigid Body", [this]() {
-      return selected_entity_.HasComponent<RigidBodyComponent>() or selected_entity_.HasComponent<CameraComponent>();
-    });
+    
+    // Rigid body component
+    {
+      RigidBodyComponent::Type type = RigidBodyComponent::Type::AABB;
+      if (selected_entity_.HasComponent<CircleComponent>())
+        type = RigidBodyComponent::Type::Sphere;
+      
+      AddComponentMenu<RigidBodyComponent>("Rigid Body", [this]() {
+        return selected_entity_.HasComponent<RigidBodyComponent>() or selected_entity_.HasComponent<CameraComponent>();
+      }, type);
+    }
     ImGui::Separator();
   }
   

@@ -418,7 +418,7 @@ namespace ecs {
   // -------------------------------------------------------------------------
   // Rigid Body Component
   // -------------------------------------------------------------------------
-  RigidBodyComponent::RigidBodyComponent(const AABB& aabb) : aabb(aabb) { }
+  RigidBodyComponent::RigidBodyComponent(RigidBodyComponent::Type type) : type(type) { }
   RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent& other) {
     aabb = other.aabb;
   }
@@ -434,6 +434,15 @@ namespace ecs {
     return *this;
   }
   void RigidBodyComponent::RenderGui() {
+    Type new_proj_type = Type(PropertyGrid::ComboDrop("Body Type",
+                                                      { "AABB" , "Sphere" },
+                                                      (uint32_t)type,
+                                                      ImGui::GetWindowContentRegionMax().x / 2));
+    
+    // Render the property based on the projection type of camera
+    if (new_proj_type != type)
+      type = new_proj_type;
+    
     PropertyGrid::Float3("Min Bound", aabb.min);
     PropertyGrid::Float3("Max Bound", aabb.max);
     ImGui::Separator();

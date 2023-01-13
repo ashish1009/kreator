@@ -135,10 +135,15 @@ namespace ecs {
   };
   
   struct RigidBodyComponent {
+    enum class Type : uint8_t {
+      AABB, Sphere, Point
+    };
+    
+    Type type;
     AABB aabb;
+    
     void RenderGui();
-    RigidBodyComponent() = default;
-    RigidBodyComponent(const AABB& aabb);
+    RigidBodyComponent(Type type);
     DEFINE_COPY_MOVE_CONSTRUCTORS(RigidBodyComponent);
   };
 
