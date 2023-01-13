@@ -93,6 +93,10 @@
 		B2C78147296AF195003F343E /* libyaml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C78089296AF12C003F343E /* libyaml.a */; };
 		B2C78408296AF2E5003F343E /* scene_serialiser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2C78406296AF2E5003F343E /* scene_serialiser.cpp */; };
 		B2C78409296AF2E5003F343E /* scene_serialiser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2C78407296AF2E5003F343E /* scene_serialiser.hpp */; };
+		B2C7CAD32971E77D00E61B08 /* world_callbacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2C7CAD12971E77D00E61B08 /* world_callbacks.cpp */; };
+		B2C7CAD42971E77D00E61B08 /* world_callbacks.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2C7CAD22971E77D00E61B08 /* world_callbacks.hpp */; };
+		B2C7CADC2971E89100E61B08 /* draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2C7CADA2971E89100E61B08 /* draw.cpp */; };
+		B2C7CADD2971E89100E61B08 /* draw.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2C7CADB2971E89100E61B08 /* draw.hpp */; };
 		B2DAAB81296575B0003578D9 /* core_components.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2DAAB7F296575AF003578D9 /* core_components.cpp */; };
 		B2DAAB82296575B0003578D9 /* core_components.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2DAAB80296575AF003578D9 /* core_components.hpp */; };
 		B2E7600C2958D38100ADBE79 /* mac_os_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */; };
@@ -113,6 +117,8 @@
 		B2F96B22297173D500B28EE4 /* point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F96B20297173D500B28EE4 /* point.cpp */; };
 		B2F96B26297174B500B28EE4 /* bounding_circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F96B24297174B500B28EE4 /* bounding_circle.cpp */; };
 		B2F96B27297174B500B28EE4 /* bounding_circle.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F96B25297174B500B28EE4 /* bounding_circle.hpp */; };
+		B2F96B402971D13A00B28EE4 /* world.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F96B3E2971D13A00B28EE4 /* world.cpp */; };
+		B2F96B412971D13A00B28EE4 /* world.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F96B3F2971D13A00B28EE4 /* world.hpp */; };
 		B2FC3E862958796F00447A1A /* ikan_headers.h in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3E852958796F00447A1A /* ikan_headers.h */; };
 		B2FC3E892958826C00447A1A /* profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC3E872958826C00447A1A /* profiler.cpp */; };
 		B2FC3E8A2958826C00447A1A /* profiler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3E882958826C00447A1A /* profiler.hpp */; };
@@ -284,6 +290,10 @@
 		B2C78084296AF12C003F343E /* yaml.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = yaml.xcodeproj; path = yaml/yaml.xcodeproj; sourceTree = "<group>"; };
 		B2C78406296AF2E5003F343E /* scene_serialiser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_serialiser.cpp; sourceTree = "<group>"; };
 		B2C78407296AF2E5003F343E /* scene_serialiser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_serialiser.hpp; sourceTree = "<group>"; };
+		B2C7CAD12971E77D00E61B08 /* world_callbacks.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = world_callbacks.cpp; sourceTree = "<group>"; };
+		B2C7CAD22971E77D00E61B08 /* world_callbacks.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = world_callbacks.hpp; sourceTree = "<group>"; };
+		B2C7CADA2971E89100E61B08 /* draw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = draw.cpp; sourceTree = "<group>"; };
+		B2C7CADB2971E89100E61B08 /* draw.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = draw.hpp; sourceTree = "<group>"; };
 		B2DAAB7F296575AF003578D9 /* core_components.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = core_components.cpp; sourceTree = "<group>"; };
 		B2DAAB80296575AF003578D9 /* core_components.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_components.hpp; sourceTree = "<group>"; };
 		B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mac_os_window.cpp; sourceTree = "<group>"; };
@@ -304,6 +314,8 @@
 		B2F96B20297173D500B28EE4 /* point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = point.cpp; sourceTree = "<group>"; };
 		B2F96B24297174B500B28EE4 /* bounding_circle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bounding_circle.cpp; sourceTree = "<group>"; };
 		B2F96B25297174B500B28EE4 /* bounding_circle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = bounding_circle.hpp; sourceTree = "<group>"; };
+		B2F96B3E2971D13A00B28EE4 /* world.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = world.cpp; sourceTree = "<group>"; };
+		B2F96B3F2971D13A00B28EE4 /* world.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = world.hpp; sourceTree = "<group>"; };
 		B2FC3E852958796F00447A1A /* ikan_headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_headers.h; sourceTree = "<group>"; };
 		B2FC3E872958826C00447A1A /* profiler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = profiler.cpp; sourceTree = "<group>"; };
 		B2FC3E882958826C00447A1A /* profiler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = profiler.hpp; sourceTree = "<group>"; };
@@ -663,6 +675,9 @@
 		B2F96B17297172FD00B28EE4 /* physics */ = {
 			isa = PBXGroup;
 			children = (
+				B2F96B3F2971D13A00B28EE4 /* world.hpp */,
+				B2C7CAD22971E77D00E61B08 /* world_callbacks.hpp */,
+				B2C7CADB2971E89100E61B08 /* draw.hpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -670,6 +685,9 @@
 		B2F96B1D2971730F00B28EE4 /* physics */ = {
 			isa = PBXGroup;
 			children = (
+				B2F96B3E2971D13A00B28EE4 /* world.cpp */,
+				B2C7CAD12971E77D00E61B08 /* world_callbacks.cpp */,
+				B2C7CADA2971E89100E61B08 /* draw.cpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -870,8 +888,10 @@
 				B2FC40292958BBC500447A1A /* open_gl_renderer_context.hpp in Headers */,
 				B2F96B1F2971736900B28EE4 /* point.hpp in Headers */,
 				B2FC3E862958796F00447A1A /* ikan_headers.h in Headers */,
+				B2C7CAD42971E77D00E61B08 /* world_callbacks.hpp in Headers */,
 				B216B25D295B2F7400C05392 /* texture.hpp in Headers */,
 				B2FC3EA92958880800447A1A /* event.hpp in Headers */,
+				B2C7CADD2971E89100E61B08 /* draw.hpp in Headers */,
 				B2FC3EAB2958880800447A1A /* application_event.hpp in Headers */,
 				B2FC401E2958B6AC00447A1A /* glfw_window.hpp in Headers */,
 				B2F52668295979FE00A83C65 /* string_utils.hpp in Headers */,
@@ -892,6 +912,7 @@
 				B2BD9E16295CA7610076A2F9 /* framebuffer.hpp in Headers */,
 				B2C0D81A295A01DF003F168B /* pipeline.hpp in Headers */,
 				B2F5265B2959776A00A83C65 /* shader.hpp in Headers */,
+				B2F96B412971D13A00B28EE4 /* world.hpp in Headers */,
 				B2C0D816295A01D5003F168B /* open_gl_pipeline.hpp in Headers */,
 				B25F5DDF2966D3450030DE03 /* scene_panel_manager.hpp in Headers */,
 				B2250D042958751E0067C43B /* core_logger.h in Headers */,
@@ -1086,6 +1107,7 @@
 				B2C0D7FF2959E02B003F168B /* renderer_stats.cpp in Sources */,
 				B2FC3EA3295887FF00447A1A /* event.cpp in Sources */,
 				B2C0D8112959FB92003F168B /* renderer_buffer.cpp in Sources */,
+				B2F96B402971D13A00B28EE4 /* world.cpp in Sources */,
 				B227F37329597F2B0055D871 /* open_gl_renderer_id_manager.cpp in Sources */,
 				B2F4956A29630B8F003F9CB0 /* entt_scene.cpp in Sources */,
 				B2F5265A2959776A00A83C65 /* shader.cpp in Sources */,
@@ -1094,9 +1116,11 @@
 				B2C0D815295A01D5003F168B /* open_gl_pipeline.cpp in Sources */,
 				B2FC3EA1295887FF00447A1A /* application_event.cpp in Sources */,
 				B2250CDB295861BF0067C43B /* core_application.cpp in Sources */,
+				B2C7CAD32971E77D00E61B08 /* world_callbacks.cpp in Sources */,
 				B24DD8182962FD9800525941 /* ray_material.cpp in Sources */,
 				B2F526632959777F00A83C65 /* shader_uniform.cpp in Sources */,
 				B25F61872969A8440042FE09 /* aabb.cpp in Sources */,
+				B2C7CADC2971E89100E61B08 /* draw.cpp in Sources */,
 				B2F52667295979FE00A83C65 /* string_utils.cpp in Sources */,
 				B2C0D819295A01DF003F168B /* pipeline.cpp in Sources */,
 				B2BCB84D295AE3410068FCA2 /* mac_os_input.cpp in Sources */,

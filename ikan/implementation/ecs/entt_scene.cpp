@@ -213,6 +213,12 @@ namespace ecs {
     update_ = std::bind(&EnttScene::UpdateRuntime, this, std::placeholders::_1);
     event_handler_ = std::bind(&EnttScene::EventHandlerRuntime, this, std::placeholders::_1);
     render_imgui_ = std::bind(&EnttScene::RenderImguiRuntime, this);
+    
+    RuntimeStart();
+  }
+  
+  void EnttScene::RuntimeStart() {
+    physics_world_ = new physics::World({0, 9.8});
   }
   
   void EnttScene::EditScene() {
@@ -221,7 +227,10 @@ namespace ecs {
     state_ = State::Edit;
     update_ = std::bind(&EnttScene::UpdateEditor, this, std::placeholders::_1);
     event_handler_ = std::bind(&EnttScene::EventHandlerEditor, this, std::placeholders::_1);
-    render_imgui_ = std::bind(&EnttScene::RenderImguiEditor, this);    
+    render_imgui_ = std::bind(&EnttScene::RenderImguiEditor, this);
+    
+    delete physics_world_;
+    physics_world_ = nullptr;
   }
   
   Entity* EnttScene::GetEnitityFromId(int32_t id) {

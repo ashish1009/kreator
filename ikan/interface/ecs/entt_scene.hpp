@@ -13,6 +13,8 @@
 #include "editor/editor_camera.hpp"
 #include "ecs/scene_camera.hpp"
 
+#include "physics/world.hpp"
+
 namespace ecs {
   
   using namespace ikan;
@@ -151,6 +153,9 @@ namespace ecs {
     void Render2DEntities(const glm::mat4& camera_view_projection_mat);
     /// This function renders the 2D Entities
     void RenderBoudningBox();
+    
+    /// This function starts the runtime physics
+    void RuntimeStart();
 
     // ------------------
     // Member variabls
@@ -185,7 +190,10 @@ namespace ecs {
     // Scene Debugger
     Setting setting_;
     bool use_editor_camera_ = true;
-
+    
+    // Physics Data
+    physics::World* physics_world_ = nullptr;
+    
     friend class Entity;
     friend class ScenePanelManager;
     friend class SceneSerializer;
