@@ -421,24 +421,16 @@ namespace ecs {
   RigidBodyComponent::RigidBodyComponent(RigidBodyComponent::Type type) : type(type) { }
   RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent& other) {
     type = other.type;
-//    aabb = other.aabb;
-//    circle = other.circle;
   }
   RigidBodyComponent& RigidBodyComponent::operator=(const RigidBodyComponent& other) {
     type = other.type;
-//    aabb = other.aabb;
-//    circle = other.circle;
     return *this;
   }
   RigidBodyComponent::RigidBodyComponent(RigidBodyComponent&& other) {
     type = other.type;
-//    aabb = other.aabb;
-//    circle = other.circle;
   }
   RigidBodyComponent& RigidBodyComponent::operator=(RigidBodyComponent&& other) {
     type = other.type;
-//    aabb = other.aabb;
-//    circle = other.circle;
     return *this;
   }
   void RigidBodyComponent::RenderGui() {
@@ -450,16 +442,6 @@ namespace ecs {
     // Render the property based on the projection type of camera
     if (new_proj_type != type)
       type = new_proj_type;
-    
-//    if (type == Type::AABB) {
-//      PropertyGrid::Float3("Min Bound", aabb.min, nullptr, 0.1f, -0.5f);
-//      PropertyGrid::Float3("Max Bound", aabb.max, nullptr, 0.1f, 0.5f);
-//    } else if (type == Type::Circle) {
-//      PropertyGrid::Float3("Posotion", circle.position);
-//      PropertyGrid::Float3("Radius", circle.radius);
-//    }
-    
-    ImGui::Separator();
   }
   
 }

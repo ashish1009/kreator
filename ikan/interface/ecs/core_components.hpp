@@ -142,9 +142,6 @@ namespace ecs {
     
     Type type;
     
-//    AABB aabb;
-//    BoundingCircle circle;
-    
     void RenderGui();
     RigidBodyComponent(Type type);
     DEFINE_COPY_MOVE_CONSTRUCTORS(RigidBodyComponent);

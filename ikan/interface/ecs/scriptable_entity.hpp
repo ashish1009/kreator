@@ -9,6 +9,7 @@
 
 #include "ecs/entity.hpp"
 #include "physics/aabb.hpp"
+#include "physics/bounding_circle.hpp"
 
 namespace ecs {
   
@@ -57,9 +58,12 @@ namespace ecs {
     virtual void Destroy() {}
     virtual void Update(Timestep ts) {}
     
-    /// This function detects the collistion of entity_ with AABB
+    /// This function detects the collistion of entity_ aabb with aabb
     /// - Parameter aabb: AABB of bouding box
     bool CollisionDetected(const AABB& aabb);
+    /// This function detects the collistion of entity_ circle with aabb
+    /// - Parameter cirlce: circle of bouding box
+    bool CollisionDetected(const BoundingCircle& cirlce);
 
   protected:
     Entity entity_;
@@ -73,7 +77,7 @@ namespace ecs {
     void RenderGui() override;
     
   private:
-    float speed_ = 20.0f;
+    float speed_ = 10.0f;
   };
 
 }

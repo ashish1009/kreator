@@ -26,9 +26,14 @@ namespace ikan {
     return *this;
   }
   
-  BoundingCircle BoundingCircle::GetWorldSpherePos(const glm::mat4& transform) const {
-    BoundingCircle Sphere;
-    return Sphere;
+  BoundingCircle BoundingCircle::GetWorldSpherePos(const glm::vec3& position,
+                                                   const glm::vec3& rotation,
+                                                   const glm::vec3& scale) {
+    BoundingCircle circle;
+    circle.position = position;
+    circle.radius = scale / 2.0f;
+    circle.rotation = rotation;
+    return circle;
   }
   
 } // namesapce ikan

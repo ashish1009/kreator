@@ -21,8 +21,13 @@ namespace ikan {
     BoundingCircle(const glm::vec3& pos, const glm::vec3& radius = glm::vec3(1.0f), const glm::vec3& rotation = glm::vec3(0.0f));
     
     /// Tihs function returns the World AABB bounding box of current aabb
-    /// - Parameter transform: new trasnform for which aabb bounding box is needed
-    BoundingCircle GetWorldSpherePos(const glm::mat4& transform) const;
+    /// - Parameters:
+    ///   - position: position
+    ///   - scale: scale
+    ///   - rotation: rotation
+    static BoundingCircle GetWorldSpherePos(const glm::vec3& position,
+                                            const glm::vec3& rotation,
+                                            const glm::vec3& scale);
     
     DEFINE_COPY_MOVE_CONSTRUCTORS(BoundingCircle)
 
