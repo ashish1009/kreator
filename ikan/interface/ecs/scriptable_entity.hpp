@@ -8,7 +8,7 @@
 #pragma once
 
 #include "ecs/entity.hpp"
-#include "core/math/aabb.hpp"
+#include "physics/aabb.hpp"
 
 namespace ecs {
   
@@ -71,6 +71,9 @@ namespace ecs {
   public:
     void Update(Timestep ts) override;
     void RenderGui() override;
+    
+  private:
+    float speed_ = 20.0f;
   };
 
 }

@@ -9,8 +9,6 @@
 
 // This class includes the AABB class to store bounding box
 
-#include <glm/glm.hpp>
-
 namespace ikan {
   
   /// Wrapper to store the AABB Box for any entity

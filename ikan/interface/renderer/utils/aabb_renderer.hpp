@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "core/math/aabb.hpp"
+#include "physics/aabb.hpp"
 
 namespace ikan {
   

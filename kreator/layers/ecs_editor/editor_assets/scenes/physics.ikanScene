@@ -2,26 +2,21 @@ Scene: Untitled
 Setting_editor_camera: true
 Setting_scene_controller: true
 Setting_scene_data: true
-Use_editor_camera: true
+Use_editor_camera: false
 Bounding_box: true
 Entities:
-  - Entity: 16697700742118643392
+  - Entity: 6512586262452856846
     TagComponent:
-      Tag: Circle
+      Tag: Quad
     TransformComponent:
-      Translation: [-2, 0.528386474, 0]
+      Translation: [0, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
-    CircleComponent:
+    QuadComponent:
       Texture_Use: false
       Texture_Path: ""
       Texture_TilingFactor: 1
-      Color: [0.595170319, 0.734883726, 0.519545734, 1]
-      Thickness: 1
-      Fade: 0.00499999989
-    NativeScriptComponent:
-      Script_name_0: ecs::MovementController
-      Num_Scripts: 1
+      Color: [0.934883714, 0.530492127, 0.530492127, 1]
     RigidBodyComponent:
       AABB_Min: [-0.5, -0.5, 0]
       AABB_Max: [0.5, 0.5, 0]
@@ -40,18 +35,23 @@ Entities:
       OrthographicSize: 10
       Near: 0.00999999978
       Far: 10000
-  - Entity: 6512586262452856846
+  - Entity: 16697700742118643392
     TagComponent:
-      Tag: Quad
+      Tag: Circle
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [-2.37321091, 0.875650883, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
-    QuadComponent:
+    CircleComponent:
       Texture_Use: false
       Texture_Path: ""
       Texture_TilingFactor: 1
-      Color: [0.934883714, 0.530492127, 0.530492127, 1]
+      Color: [0.595170319, 0.734883726, 0.519545734, 1]
+      Thickness: 1
+      Fade: 0.00499999989
+    NativeScriptComponent:
+      Script_name_0: ecs::MovementController
+      Num_Scripts: 1
     RigidBodyComponent:
       AABB_Min: [-0.5, -0.5, 0]
       AABB_Max: [0.5, 0.5, 0]

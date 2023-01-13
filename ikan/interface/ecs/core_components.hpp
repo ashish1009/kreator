@@ -10,7 +10,7 @@
 #include "renderer/graphics/texture.hpp"
 #include "ecs/scene_camera.hpp"
 #include "ecs/scriptable_entity.hpp"
-#include "core/math/aabb.hpp"
+#include "physics/aabb.hpp"
 
 namespace ecs {
   
