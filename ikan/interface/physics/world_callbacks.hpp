@@ -18,10 +18,10 @@ namespace physics {
   public:
     virtual ~DestructionListener() {}
     
-    /// Called when any joint is about to be destroyed due to the destruction of one of its attached bodies.
+    /// This function Called when any joint is about to be destroyed due to the destruction of one of its attached bodies.
     virtual void SayGoodbye(Joint* joint) = 0;
     
-    /// Called when any fixture is about to be destroyed due to the destruction of its parent body.
+    /// This function Called when any fixture is about to be destroyed due to the destruction of its parent body.
     virtual void SayGoodbye(Fixture* fixture) = 0;
   };
   
