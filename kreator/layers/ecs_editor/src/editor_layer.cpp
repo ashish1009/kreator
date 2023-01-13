@@ -7,12 +7,6 @@
 
 #include "editor_layer.hpp"
 
-
-/*
- Open Sans -> Base Path , vector
- Roberto
- */
-
 namespace editor {
   
   struct FontData {
@@ -134,10 +128,14 @@ namespace editor {
     IK_INFO("Editor", "Attaching Editor Layer instance");
     
     // Change Text renderer Font
-    TextRenderer::LoadFreetype(AM::ClientAsset(current_font_path_.c_str()));
+    TextRenderer::LoadFreetype(AM::ClientAsset("fonts/Opensans/Bold.ttf"));
 
     viewport_.framebuffer->UpdateSpecificationColor({0.25f, 0.25f, 0.25f, 1.0f});
     ImguiAPI::SetLightGreyThemeColors();
+    
+    // TODO: Temo
+    NewScene();
+    OpenScene(AM::ClientAsset("scenes/physics.ikanScene"));
   }
   
   void EditorLayer::Detach() {

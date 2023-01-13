@@ -87,10 +87,14 @@ namespace ecs {
   }
   
   void EnttScene::UpdateEditor(Timestep ts) {
-    editor_camera_.Update(ts);
-    Render2DEntities(editor_camera_.GetViewProjection());
-    if (is_bounding_box_)
-      RenderBoudningBox(editor_camera_.GetViewProjection());
+    if (use_editor_camera_) {
+      editor_camera_.Update(ts);
+      Render2DEntities(editor_camera_.GetViewProjection());
+      if (is_bounding_box_)
+        RenderBoudningBox(editor_camera_.GetViewProjection());
+    } else {
+      UpdateRuntime(ts);
+    }
   }
   
   void EnttScene::UpdateRuntime(Timestep ts) {
@@ -143,7 +147,8 @@ namespace ecs {
   }
   
   void EnttScene::RenderImguiEditor() {
-    editor_camera_.RendererGui(&setting_.editor_camera);
+    if (use_editor_camera_)
+      editor_camera_.RendererGui(&setting_.editor_camera);
     
     // Scene Debugger
     if (!setting_.scene_controller)
@@ -152,8 +157,9 @@ namespace ecs {
     ImGui::Begin("Scene Controller", &setting_.scene_controller);
     ImGui::PushID("Scene Controller");
 
-    PropertyGrid::CheckBox("Bounding Box", is_bounding_box_,
-                           ImGui::GetContentRegionAvailWidth() / 2);    
+    PropertyGrid::CheckBox("Bounding Box", is_bounding_box_, ImGui::GetContentRegionAvailWidth() / 2);
+    PropertyGrid::CheckBox("Use Editor Camera", use_editor_camera_, ImGui::GetContentRegionAvailWidth() / 2);
+    
     ImGui::PopID();
     ImGui::End();
     

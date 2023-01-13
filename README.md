@@ -1,7 +1,7 @@
 # kreator
 A Complete package for rendering. An Engine(ikan) to support render API. Editor to use create application using the 'ikan' Engine
 
-![](/resources/branding/i_kan.png)
+![](/resources/logo/i_kan.png)
 
 ## Getting Started
 XCode 13 is recommended

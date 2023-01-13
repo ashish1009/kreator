@@ -184,6 +184,7 @@ namespace ecs {
     // Scene Debugger
     Setting setting_;
     bool is_bounding_box_ = false;
+    bool use_editor_camera_ = true;
 
     friend class Entity;
     friend class ScenePanelManager;
