@@ -90,10 +90,16 @@ namespace ecs {
     if (use_editor_camera_) {
       editor_camera_.Update(ts);
       Render2DEntities(editor_camera_.GetViewProjection());
+      
+      // For debugging only
       if (is_bounding_box_)
         RenderBoudningBox(editor_camera_.GetViewProjection());
     } else {
       UpdateRuntime(ts);
+      
+      // For debugging only
+      if (is_bounding_box_)
+        RenderBoudningBox(GetPrimaryCameraData().scene_camera->GetProjection() * glm::inverse(GetPrimaryCameraData().transform_comp->GetTransform()));
     }
   }
   
@@ -151,25 +157,26 @@ namespace ecs {
       editor_camera_.RendererGui(&setting_.editor_camera);
     
     // Scene Debugger
-    if (!setting_.scene_controller)
-      return;
-    
-    ImGui::Begin("Scene Controller", &setting_.scene_controller);
-    ImGui::PushID("Scene Controller");
-
-    PropertyGrid::CheckBox("Bounding Box", is_bounding_box_, ImGui::GetContentRegionAvailWidth() / 2);
-    PropertyGrid::CheckBox("Use Editor Camera", use_editor_camera_, ImGui::GetContentRegionAvailWidth() / 2);
-    
-    ImGui::PopID();
-    ImGui::End();
-    
+    if (setting_.scene_controller) {
+      ImGui::Begin("Scene Controller", &setting_.scene_controller);
+      ImGui::PushID("Scene Controller");
+      
+      PropertyGrid::CheckBox("Bounding Box", is_bounding_box_, ImGui::GetContentRegionAvailWidth() / 2);
+      PropertyGrid::CheckBox("Use Editor Camera", use_editor_camera_, ImGui::GetContentRegionAvailWidth() / 2);
+      
+      ImGui::PopID();
+      ImGui::End();
+    }
+  
     ImGui::Begin("Scene Data", &setting_.scene_data);
+   
     // Render Scene Information
     ImGui::Text(" Scene | %s ", name_.c_str());
     std::string hovered_msg =
     "Num Entities   : " + std::to_string(num_entities_) + "\n"
     "Max Entity ID  : " + std::to_string(max_entity_id_);
     PropertyGrid::HoveredMsg(hovered_msg.c_str());
+    
     ImGui::End();
   }
   

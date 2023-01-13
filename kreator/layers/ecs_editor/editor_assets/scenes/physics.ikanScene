@@ -1,4 +1,9 @@
 Scene: Untitled
+Setting_editor_camera: true
+Setting_scene_controller: true
+Setting_scene_data: true
+Use_editor_camera: true
+Bounding_box: true
 Entities:
   - Entity: 6512586262452856846
     TagComponent:
@@ -12,18 +17,38 @@ Entities:
       Texture_Path: ""
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      AABB_Min: [-0.5, -0.5, 0]
+      AABB_Max: [0.5, 0.5, 0]
   - Entity: 6941579517432877966
     TagComponent:
       Tag: Camera
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [0, 0, 14.5]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
       FixedAspectRatio: false
       Primary: true
-      ProjectionType: 1
+      ProjectionType: 0
       PerspectiveFOV: 0.785398185
       OrthographicSize: 10
-      Near: -1
-      Far: 1
+      Near: 0.00999999978
+      Far: 10000
+  - Entity: 16697700742118643392
+    TagComponent:
+      Tag: Circle
+    TransformComponent:
+      Translation: [-2, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CircleComponent:
+      Texture_Use: false
+      Texture_Path: ""
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Thickness: 1
+      Fade: 0.00499999989
+    RigidBodyComponent:
+      AABB_Min: [-0.5, -0.5, 0]
+      AABB_Max: [0.5, 0.5, 0]

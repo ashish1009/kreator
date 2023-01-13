@@ -107,6 +107,16 @@ namespace ecs {
     YAML::Emitter out;
     out << YAML::BeginMap;
     out << YAML::Key << "Scene" << YAML::Value << "Untitled";
+    
+    // Scene Debugger data
+    {
+      out << YAML::Key << "Setting_editor_camera" << YAML::Value << scene_->setting_.editor_camera;
+      out << YAML::Key << "Setting_scene_controller" << YAML::Value << scene_->setting_.scene_controller;
+      out << YAML::Key << "Setting_scene_data" << YAML::Value << scene_->setting_.scene_data;
+      out << YAML::Key << "Use_editor_camera" << YAML::Value << scene_->use_editor_camera_;
+      out << YAML::Key << "Bounding_box" << YAML::Value << scene_->is_bounding_box_;
+    }
+    
     out << YAML::Key << "Entities" << YAML::Value << YAML::BeginSeq;
 
     // Serialize the scene for all the entities
@@ -252,6 +262,12 @@ namespace ecs {
     IK_CORE_INFO(LogModule::SceneSerializer, "Deserialising scene");
     IK_CORE_INFO(LogModule::SceneSerializer, "  Path | {0}", file_path);
     IK_CORE_INFO(LogModule::SceneSerializer, "  Name | {0}", scene_name);
+    
+    scene_->setting_.editor_camera = data["Setting_editor_camera"].as<bool>();
+    scene_->setting_.scene_controller = data["Setting_scene_controller"].as<bool>();
+    scene_->setting_.scene_data = data["Setting_scene_data"].as<bool>();
+    scene_->use_editor_camera_ = data["Use_editor_camera"].as<bool>();
+    scene_->is_bounding_box_ = data["Bounding_box"].as<bool>();
 
     auto entities = data["Entities"];
     if (entities) {
