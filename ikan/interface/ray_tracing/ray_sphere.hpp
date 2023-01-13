@@ -14,7 +14,7 @@
 namespace ray_tracing {
   
   /// Basic Sphere class to store sphere data and functions
-  struct Sphere {
+  struct RaySphere {
     glm::vec3 position;
     float radius = 0.5f;
     
@@ -32,10 +32,10 @@ namespace ray_tracing {
     ///   - position: position of sphere center
     ///   - radius: rdius of sphere
     ///   - material_index: material index
-    Sphere(const glm::vec3& position, float radius, int32_t material_index);
-    Sphere() = default;
+    RaySphere(const glm::vec3& position, float radius, int32_t material_index);
+    RaySphere() = default;
     
-    DEFINE_COPY_MOVE_CONSTRUCTORS(Sphere);
+    DEFINE_COPY_MOVE_CONSTRUCTORS(RaySphere);
   };
   
 }

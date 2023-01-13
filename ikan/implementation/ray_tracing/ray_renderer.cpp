@@ -96,7 +96,7 @@ namespace ray_tracing {
         break;
       }
       
-      const Sphere& sphere = active_scene_->spheres[payload.object_idx];
+      const RaySphere& sphere = active_scene_->spheres[payload.object_idx];
       const RayMaterial& material = active_scene_->materials[sphere.material_index];
       if (i == 0)
         color = material.albedo;
@@ -122,7 +122,7 @@ namespace ray_tracing {
     float hit_distance = std::numeric_limits<float>::max();
     
     for (size_t i = 0; i < active_scene_->spheres.size(); i++) {
-      const Sphere& sphere = active_scene_->spheres[i];
+      const RaySphere& sphere = active_scene_->spheres[i];
       if (sphere.Hit(ray, hit_distance)) {
         closest_sphere_idx = (int32_t)i;
       } else {
@@ -140,7 +140,7 @@ namespace ray_tracing {
     payload.hit_distance = hit_distance;
     payload.object_idx = object_idx;
     
-    const Sphere closest_sphere = active_scene_->spheres[object_idx];
+    const RaySphere closest_sphere = active_scene_->spheres[object_idx];
     payload.world_position = ray.At(payload.hit_distance);
     payload.world_normal = (payload.world_position - closest_sphere.position) / closest_sphere.radius;
     

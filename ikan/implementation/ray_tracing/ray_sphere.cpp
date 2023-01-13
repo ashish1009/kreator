@@ -5,19 +5,19 @@
 //  Created by Ashish . on 31/12/22.
 //
 
-#include "sphere.hpp"
+#include "ray_sphere.hpp"
 
 namespace ray_tracing {
   
-  Sphere::Sphere(const Sphere& other)
+  RaySphere::RaySphere(const RaySphere& other)
   : position(other.position), radius(other.radius) {
 //    IK_CORE_TRACE(LogModule::Sphere, "Copying Sphere ...");
   }
   
-  Sphere::Sphere(const glm::vec3& position, float radius, int32_t material_index)
+  RaySphere::RaySphere(const glm::vec3& position, float radius, int32_t material_index)
   : position(position), radius(radius), material_index(material_index) { }
   
-  bool Sphere::Hit(const Ray& ray,
+  bool RaySphere::Hit(const Ray& ray,
                    float& hit_distance) const {
     //       at^2       +       bt        +       c             = 0
     // (bx^2 + by^2)t^2 + 2(axbx + ayby)t + (ax^2 + ay^2 - r^2) = 0

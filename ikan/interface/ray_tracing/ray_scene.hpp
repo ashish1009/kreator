@@ -8,13 +8,13 @@
 #pragma once
 
 #include "ray_material.hpp"
-#include "sphere.hpp"
+#include "ray_sphere.hpp"
 
 namespace ray_tracing {
   
   class RayScene {
   public:
-    std::vector<Sphere> spheres;
+    std::vector<RaySphere> spheres;
     std::vector<RayMaterial> materials;
     
     RayScene() = default;

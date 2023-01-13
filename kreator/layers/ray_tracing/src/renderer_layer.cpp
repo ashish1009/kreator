@@ -45,7 +45,7 @@ namespace ray_tracing {
       mat.type = RayMaterial::Type::Lambertian;
     }
     {
-      Sphere sphere;
+      RaySphere sphere;
       sphere.position = {0.0f, 1.0f, 0.0f};
       sphere.radius = 2.0f;
       sphere.material_index = 2;
@@ -53,7 +53,7 @@ namespace ray_tracing {
       scene_.spheres.push_back(sphere);
     }
     {
-      Sphere sphere;
+      RaySphere sphere;
       sphere.position = {-5.0f, 1.0f, 0.0f};
       sphere.radius = 2.0f;
       sphere.material_index = 1;
@@ -61,7 +61,7 @@ namespace ray_tracing {
       scene_.spheres.push_back(sphere);
     }
     {
-      Sphere sphere;
+      RaySphere sphere;
       sphere.position = {5.0f, 1.0f, 5.0f};
       sphere.radius = 2.0f;
       sphere.material_index = 0;
@@ -69,7 +69,7 @@ namespace ray_tracing {
       scene_.spheres.push_back(sphere);
     }
     {
-      Sphere sphere;
+      RaySphere sphere;
       sphere.position = {-7.0f, 0.0f, 3.0f};
       sphere.radius = 1.0f;
       sphere.material_index = 2;
@@ -77,7 +77,7 @@ namespace ray_tracing {
       scene_.spheres.push_back(sphere);
     }
     {
-      Sphere sphere;
+      RaySphere sphere;
       sphere.position = {-2.0f, 0.0f, 4.0f};
       sphere.radius = 1.0f;
       sphere.material_index = 1;
@@ -85,7 +85,7 @@ namespace ray_tracing {
       scene_.spheres.push_back(sphere);
     }
     {
-      Sphere sphere;
+      RaySphere sphere;
       sphere.position = {1.0f, 0.0f, 7.0f};
       sphere.radius = 1.0f;
       sphere.material_index = 0;
@@ -93,7 +93,7 @@ namespace ray_tracing {
       scene_.spheres.push_back(sphere);
     }
     {
-      Sphere sphere;
+      RaySphere sphere;
       sphere.position = {0.0f, -101.0f, 0.0f};
       sphere.radius = 100.0f;
       

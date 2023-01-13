@@ -67,11 +67,27 @@ namespace ecs {
   // Movement controller
   // ------------------------------------------------------------------------
   void MovementController::Update(Timestep ts) {
+    // Dummy copy of entity Position
+    auto translation = GetComponent<TransformComponent>().Translation();
     
+    if (Input::IsKeyPressed(KeyCode::Left))
+      translation.x -= speed_ * ts;
+    if (Input::IsKeyPressed(KeyCode::Right))
+      translation.x += speed_ * ts;
+    
+    auto& tc = GetComponent<TransformComponent>();
+    const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
+    AABB world_aabb = original_aabb.GetWorldPosBoundingBox(Math::GetTransformMatrix(translation,
+                                                                                    tc.Rotation(),
+                                                                                    tc.Scale()));
+    
+    // If no collision then update the position
+    if (!CollisionDetected(world_aabb))
+      tc.UpdateTranslation(translation);
   }
   
   void MovementController::RenderGui() {
-    ImGui::Separator();
+    ImGui::Text("Speed : %f", speed_);
   }
   
 }

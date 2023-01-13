@@ -37,8 +37,8 @@
 		B24DD8172962FD9800525941 /* ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD80E2962FD9800525941 /* ray.cpp */; };
 		B24DD8182962FD9800525941 /* ray_material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD80F2962FD9800525941 /* ray_material.cpp */; };
 		B24DD8192962FD9800525941 /* ray_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD8102962FD9800525941 /* ray_renderer.cpp */; };
-		B24DD81A2962FD9800525941 /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD8112962FD9800525941 /* sphere.cpp */; };
-		B24DD8232962FDA000525941 /* sphere.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24DD81C2962FDA000525941 /* sphere.hpp */; };
+		B24DD81A2962FD9800525941 /* ray_sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD8112962FD9800525941 /* ray_sphere.cpp */; };
+		B24DD8232962FDA000525941 /* ray_sphere.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24DD81C2962FDA000525941 /* ray_sphere.hpp */; };
 		B24DD8242962FDA000525941 /* ray_material.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24DD81D2962FDA000525941 /* ray_material.hpp */; };
 		B24DD8262962FDA000525941 /* ray_renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24DD81F2962FDA000525941 /* ray_renderer.hpp */; };
 		B24DD8272962FDA000525941 /* hit_payload.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24DD8202962FDA000525941 /* hit_payload.hpp */; };
@@ -111,6 +111,8 @@
 		B2F52668295979FE00A83C65 /* string_utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F52666295979FE00A83C65 /* string_utils.hpp */; };
 		B2F96B1F2971736900B28EE4 /* point.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F96B1E2971736900B28EE4 /* point.hpp */; };
 		B2F96B22297173D500B28EE4 /* point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F96B20297173D500B28EE4 /* point.cpp */; };
+		B2F96B26297174B500B28EE4 /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F96B24297174B500B28EE4 /* sphere.cpp */; };
+		B2F96B27297174B500B28EE4 /* sphere.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F96B25297174B500B28EE4 /* sphere.hpp */; };
 		B2FC3E862958796F00447A1A /* ikan_headers.h in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3E852958796F00447A1A /* ikan_headers.h */; };
 		B2FC3E892958826C00447A1A /* profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC3E872958826C00447A1A /* profiler.cpp */; };
 		B2FC3E8A2958826C00447A1A /* profiler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3E882958826C00447A1A /* profiler.hpp */; };
@@ -223,8 +225,8 @@
 		B24DD80E2962FD9800525941 /* ray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ray.cpp; sourceTree = "<group>"; };
 		B24DD80F2962FD9800525941 /* ray_material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ray_material.cpp; sourceTree = "<group>"; };
 		B24DD8102962FD9800525941 /* ray_renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ray_renderer.cpp; sourceTree = "<group>"; };
-		B24DD8112962FD9800525941 /* sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sphere.cpp; sourceTree = "<group>"; };
-		B24DD81C2962FDA000525941 /* sphere.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sphere.hpp; sourceTree = "<group>"; };
+		B24DD8112962FD9800525941 /* ray_sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ray_sphere.cpp; sourceTree = "<group>"; };
+		B24DD81C2962FDA000525941 /* ray_sphere.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ray_sphere.hpp; sourceTree = "<group>"; };
 		B24DD81D2962FDA000525941 /* ray_material.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ray_material.hpp; sourceTree = "<group>"; };
 		B24DD81F2962FDA000525941 /* ray_renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ray_renderer.hpp; sourceTree = "<group>"; };
 		B24DD8202962FDA000525941 /* hit_payload.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = hit_payload.hpp; sourceTree = "<group>"; };
@@ -300,6 +302,8 @@
 		B2F52666295979FE00A83C65 /* string_utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = string_utils.hpp; sourceTree = "<group>"; };
 		B2F96B1E2971736900B28EE4 /* point.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = point.hpp; sourceTree = "<group>"; };
 		B2F96B20297173D500B28EE4 /* point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = point.cpp; sourceTree = "<group>"; };
+		B2F96B24297174B500B28EE4 /* sphere.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sphere.cpp; sourceTree = "<group>"; };
+		B2F96B25297174B500B28EE4 /* sphere.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sphere.hpp; sourceTree = "<group>"; };
 		B2FC3E852958796F00447A1A /* ikan_headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_headers.h; sourceTree = "<group>"; };
 		B2FC3E872958826C00447A1A /* profiler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = profiler.cpp; sourceTree = "<group>"; };
 		B2FC3E882958826C00447A1A /* profiler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = profiler.hpp; sourceTree = "<group>"; };
@@ -508,7 +512,7 @@
 				B24DD80F2962FD9800525941 /* ray_material.cpp */,
 				B24DD8102962FD9800525941 /* ray_renderer.cpp */,
 				B24DD80E2962FD9800525941 /* ray.cpp */,
-				B24DD8112962FD9800525941 /* sphere.cpp */,
+				B24DD8112962FD9800525941 /* ray_sphere.cpp */,
 			);
 			path = ray_tracing;
 			sourceTree = "<group>";
@@ -521,7 +525,7 @@
 				B24DD81F2962FDA000525941 /* ray_renderer.hpp */,
 				B24DD8222962FDA000525941 /* ray_scene.hpp */,
 				B24DD8212962FDA000525941 /* ray.hpp */,
-				B24DD81C2962FDA000525941 /* sphere.hpp */,
+				B24DD81C2962FDA000525941 /* ray_sphere.hpp */,
 			);
 			path = ray_tracing;
 			sourceTree = "<group>";
@@ -655,6 +659,7 @@
 			children = (
 				B25F61862969A8440042FE09 /* aabb.hpp */,
 				B2F96B1E2971736900B28EE4 /* point.hpp */,
+				B2F96B25297174B500B28EE4 /* sphere.hpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -664,6 +669,7 @@
 			children = (
 				B25F61852969A8440042FE09 /* aabb.cpp */,
 				B2F96B20297173D500B28EE4 /* point.cpp */,
+				B2F96B24297174B500B28EE4 /* sphere.cpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -891,6 +897,7 @@
 				B2250D042958751E0067C43B /* core_logger.h in Headers */,
 				B2B6CDD22958DF7700AE609E /* imgui_api.hpp in Headers */,
 				B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */,
+				B2F96B27297174B500B28EE4 /* sphere.hpp in Headers */,
 				B216B256295B2F6B00C05392 /* open_gl_texture.hpp in Headers */,
 				B2C78067296AE470003F343E /* aabb_renderer.hpp in Headers */,
 				B2FC405F2958BD0900447A1A /* open_gl_renderer_api.hpp in Headers */,
@@ -906,7 +913,7 @@
 				B25F61882969A8440042FE09 /* aabb.hpp in Headers */,
 				B20303DA2965ADCE00563A34 /* content_browser_panel.hpp in Headers */,
 				B2FC3E9A295886FE00447A1A /* mouse_codes.h in Headers */,
-				B24DD8232962FDA000525941 /* sphere.hpp in Headers */,
+				B24DD8232962FDA000525941 /* ray_sphere.hpp in Headers */,
 				B2FC3E96295884A400447A1A /* asset_manager.hpp in Headers */,
 				B2F526532959774B00A83C65 /* open_gl_shader_compiler.hpp in Headers */,
 				B2581117295AD76B00B0EDA7 /* camera.hpp in Headers */,
@@ -1066,6 +1073,7 @@
 				B216B265295B516A00C05392 /* batch_2d_renderer.cpp in Sources */,
 				B2C78066296AE470003F343E /* aabb_renderer.cpp in Sources */,
 				B2BD9E15295CA7610076A2F9 /* framebuffer.cpp in Sources */,
+				B2F96B26297174B500B28EE4 /* sphere.cpp in Sources */,
 				B2BD9E0E295CA7560076A2F9 /* open_gl_framebuffer.cpp in Sources */,
 				B27CF12A295EC6E000837A36 /* uuid.cpp in Sources */,
 				B2581116295AD76B00B0EDA7 /* camera.cpp in Sources */,
@@ -1101,7 +1109,7 @@
 				B2F526522959774B00A83C65 /* open_gl_shader_compiler.cpp in Sources */,
 				B2FC3EA0295887FF00447A1A /* key_event.cpp in Sources */,
 				B20303D92965ADCE00563A34 /* content_browser_panel.cpp in Sources */,
-				B24DD81A2962FD9800525941 /* sphere.cpp in Sources */,
+				B24DD81A2962FD9800525941 /* ray_sphere.cpp in Sources */,
 				B24DD8192962FD9800525941 /* ray_renderer.cpp in Sources */,
 				B2FC3E912958840D00447A1A /* buffers.cpp in Sources */,
 				B24DD8162962FD9800525941 /* hit_payload.cpp in Sources */,

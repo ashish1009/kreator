@@ -97,4 +97,4 @@
 #include <ray_tracing/ray_scene.hpp>
 #include <ray_tracing/ray_renderer.hpp>
 #include <ray_tracing/hit_payload.hpp>
-#include <ray_tracing/sphere.hpp>
+#include <ray_tracing/ray_sphere.hpp>
