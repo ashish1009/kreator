@@ -799,5 +799,18 @@ namespace ikan {
     DrawLine(line_vertices[2], line_vertices[3], color);
     DrawLine(line_vertices[3], line_vertices[0], color);
   }
+
+  void BatchRenderer::DrawRect(const AABB& aabb, const glm::vec4& color)
+  {
+    glm::vec3 p0 = glm::vec3(0.0f + aabb.min.x, 0.0f + aabb.min.y, 0.0f);
+    glm::vec3 p1 = glm::vec3(0.0f + aabb.max.x, 0.0f + aabb.min.y, 0.0f);
+    glm::vec3 p2 = glm::vec3(0.0f + aabb.max.x, 0.0f + aabb.max.y, 0.0f);
+    glm::vec3 p3 = glm::vec3(0.0f + aabb.min.x, 0.0f + aabb.max.y, 0.0f);
+    
+    DrawLine(p0, p1, color);
+    DrawLine(p1, p2, color);
+    DrawLine(p2, p3, color);
+    DrawLine(p3, p0, color);
+  }
   
 }

@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "physics/aabb.hpp"
+
 // This file includes batch renderer that is resposible for
 // - Initialize all Renderer buffer and store them for rendering 1 Batch in single
 // draw call
@@ -132,6 +134,12 @@ namespace ikan {
     ///   - color: Color of line
     static void DrawRect(const glm::vec3& position,
                          const glm::vec2& size,
+                         const glm::vec4& color);
+    /// This function draws a Recttangle using position and size of rectangle
+    /// - Parameters:
+    ///   - aabb: aabb of rectangle
+    ///   - color: Color of line
+    static void DrawRect(const AABB& aabb,
                          const glm::vec4& color);
     /// This function draws a Recttangle using position and size of rectangle
     /// - Parameters:

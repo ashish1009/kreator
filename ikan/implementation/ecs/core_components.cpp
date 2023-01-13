@@ -452,8 +452,8 @@ namespace ecs {
       type = new_proj_type;
     
     if (type == Type::AABB) {
-      PropertyGrid::Float3("Min Bound", aabb.min);
-      PropertyGrid::Float3("Max Bound", aabb.max);
+      PropertyGrid::Float3("Min Bound", aabb.min, nullptr, 0.1f, -0.5f);
+      PropertyGrid::Float3("Max Bound", aabb.max, nullptr, 0.1f, 0.5f);
     } else if (type == Type::Sphere) {
       PropertyGrid::Float3("Posotion", sphere.position);
       PropertyGrid::Float1("Radius", sphere.radius);
