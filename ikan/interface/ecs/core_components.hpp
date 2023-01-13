@@ -142,8 +142,8 @@ namespace ecs {
     
     Type type;
     
-    AABB aabb;
-    BoundingCircle circle;
+//    AABB aabb;
+//    BoundingCircle circle;
     
     void RenderGui();
     RigidBodyComponent(Type type);

@@ -20,8 +20,7 @@ namespace mario {
     AABB aabb;
     aabb.min = { -0.5f, -0.5f, -0.5f };
     aabb.max = { 0.5f, 0.5f, 0.5f };
-    auto& aabb_comp = player_entity_.AddComponent<RigidBodyComponent>(RigidBodyComponent::Type::AABB);
-    aabb_comp.aabb = aabb;
+    player_entity_.AddComponent<RigidBodyComponent>(RigidBodyComponent::Type::AABB);
     
     auto& native_script_comp = player_entity_.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
                                                                                     const std::string& script_name) {
@@ -111,8 +110,7 @@ namespace mario {
     translation.y -= player_data::speed_ * ts;
     
     auto& tc = GetComponent<TransformComponent>();
-    const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
-    AABB world_aabb = original_aabb.GetWorldAABBPos(Math::GetTransformMatrix(translation,
+    AABB world_aabb = AABB::GetWorldAABBPos(Math::GetTransformMatrix(translation,
                                                                                     tc.Rotation(),
                                                                                     tc.Scale()));
     

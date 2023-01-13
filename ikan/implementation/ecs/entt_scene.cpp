@@ -153,7 +153,6 @@ namespace ecs {
       ImGui::Begin("Scene Controller", &setting_.scene_controller);
       ImGui::PushID("Scene Controller");
       
-      PropertyGrid::CheckBox("Bounding Box", is_bounding_box_, ImGui::GetContentRegionAvailWidth() / 2);
       PropertyGrid::CheckBox("Use Editor Camera", use_editor_camera_, ImGui::GetContentRegionAvailWidth() / 2);
       
       ImGui::PopID();
@@ -316,25 +315,9 @@ namespace ecs {
                               (uint32_t)sprite_entity);
     } // for (const auto& entity : mesh_view)
     
-    if (is_bounding_box_)
-      RenderBoudningBox();
-        
     BatchRenderer::EndBatch();
   }
   
-  void EnttScene::RenderBoudningBox() {
-    static glm::vec4 color = {0.97f, 0.53f, 0.278f, 1.0f};
-    auto rigid_view = registry_.view<TransformComponent, RigidBodyComponent>();
-    // For all Mesg entity
-    for (const auto& rigid_entity : rigid_view) {
-      const auto& [transform_component, rigid_component] = rigid_view.get<TransformComponent, RigidBodyComponent>(rigid_entity);
-      if (rigid_component.type == RigidBodyComponent::Type::Circle)
-        BatchRenderer::DrawCircle(rigid_component.circle.position, rigid_component.circle.radius, color, 0.05, 0.005, (uint32_t)rigid_entity);
-      else if (rigid_component.type == RigidBodyComponent::Type::AABB)
-        BatchRenderer::DrawRect(rigid_component.aabb.GetWorldAABBPos(transform_component.GetTransform()), color);
-    } // for (const auto& entity : mesh_view)
-  }
-
   void EnttScene::SetFilePath(const std::string& file_path) {
     file_path_ = file_path;
     name_ = StringUtils::GetNameFromFilePath(file_path_);

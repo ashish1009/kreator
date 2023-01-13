@@ -25,7 +25,7 @@ namespace ikan {
     
     /// Tihs function returns the World AABB bounding box of current aabb
     /// - Parameter transform: new trasnform for which aabb bounding box is needed
-    AABB GetWorldAABBPos(const glm::mat4& transform) const;
+    static AABB GetWorldAABBPos(const glm::mat4& transform);
     
     DEFINE_COPY_MOVE_CONSTRUCTORS(AABB)
   };

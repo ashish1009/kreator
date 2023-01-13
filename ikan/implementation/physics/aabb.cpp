@@ -24,11 +24,11 @@ namespace ikan {
     return *this;
   }
   
-  AABB AABB::GetWorldAABBPos(const glm::mat4& transform) const {
+  AABB AABB::GetWorldAABBPos(const glm::mat4& transform) {
     AABB aabb;
     // Update the Bounding box based on the transform of the mesh
-    aabb.min = glm::vec3(transform * glm::vec4(min.x, min.y, min.z, 1.0));
-    aabb.max = glm::vec3(transform * glm::vec4(max.x, max.y, max.z, 1.0));
+    aabb.min = glm::vec3(transform * glm::vec4(-0.5f, -0.5f, -0.5f, 1.0));
+    aabb.max = glm::vec3(transform * glm::vec4(0.5f, 0.5f, 0.5f, 1.0));
     return aabb;
   }
   

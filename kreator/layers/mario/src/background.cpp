@@ -181,8 +181,7 @@ namespace mario {
       AABB aabb;
       aabb.min = { -0.5f, -0.5f, -0.5f };
       aabb.max = { 0.5f, 0.5f, 0.5f };
-      auto& aabb_comp = entity.AddComponent<RigidBodyComponent>(RigidBodyComponent::Type::AABB);
-      aabb_comp.aabb = aabb;
+      entity.AddComponent<RigidBodyComponent>(RigidBodyComponent::Type::AABB);
     }
     
     // Update the position

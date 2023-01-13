@@ -114,7 +114,6 @@ namespace ecs {
       out << YAML::Key << "Setting_scene_controller" << YAML::Value << scene_->setting_.scene_controller;
       out << YAML::Key << "Setting_scene_data" << YAML::Value << scene_->setting_.scene_data;
       out << YAML::Key << "Use_editor_camera" << YAML::Value << scene_->use_editor_camera_;
-      out << YAML::Key << "Bounding_box" << YAML::Value << scene_->is_bounding_box_;
     }
     
     out << YAML::Key << "Entities" << YAML::Value << YAML::BeginSeq;
@@ -238,14 +237,6 @@ namespace ecs {
         
         uint32_t type = (uint32_t)rc.type;
         out << YAML::Key << "Type" << YAML::Value << type;
-        
-        out << YAML::Key << "AABB_Min" << YAML::Value << rc.aabb.min;
-        out << YAML::Key << "AABB_Max" << YAML::Value << rc.aabb.max;
-
-        out << YAML::Key << "Cirlce_pos" << YAML::Value << rc.circle.position;
-        out << YAML::Key << "Cirlce_radius" << YAML::Value << rc.circle.radius;
-        out << YAML::Key << "Cirlce_rotation" << YAML::Value << rc.circle.rotation;
-
         out << YAML::EndMap; // RigidBodyComponent
       }
 
@@ -275,7 +266,6 @@ namespace ecs {
     scene_->setting_.scene_controller = data["Setting_scene_controller"].as<bool>();
     scene_->setting_.scene_data = data["Setting_scene_data"].as<bool>();
     scene_->use_editor_camera_ = data["Use_editor_camera"].as<bool>();
-    scene_->is_bounding_box_ = data["Bounding_box"].as<bool>();
 
     auto entities = data["Entities"];
     if (entities) {
@@ -421,22 +411,9 @@ namespace ecs {
         auto rigid_body_component = entity["RigidBodyComponent"];
         if (rigid_body_component) {
           auto type = rigid_body_component["Type"].as<uint8_t>();
-          auto& rc = deserialized_entity.AddComponent<RigidBodyComponent>((RigidBodyComponent::Type)type);
-          const auto& min = rigid_body_component["AABB_Min"].as<glm::vec3>();
-          const auto& max = rigid_body_component["AABB_Max"].as<glm::vec3>();
-          
-          const auto& sp_po = rigid_body_component["Circle_pos"].as<glm::vec3>();
-          const auto& sp_ra = rigid_body_component["Circle_radius"].as<glm::vec3>();
-          const auto& sp_ro = rigid_body_component["Cirlce_rotation"].as<glm::vec3>();
-
-          rc.circle = BoundingCircle(sp_po, sp_ra, sp_ro);
-          
+          deserialized_entity.AddComponent<RigidBodyComponent>((RigidBodyComponent::Type)type);
           IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
-          IK_CORE_INFO(LogModule::SceneSerializer, "      AABB Min | {0} | {1} | {2}", min.x, min.y, min.z);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      AABB Max | {0} | {1} | {2}", max.x, max.y, max.z);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Sphere Position | {0} | {1} | {2}", sp_po.x, sp_po.y, sp_po.z);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Sphere Radius   | {0} | {1} | {2}", sp_ra.x, sp_ra.y, sp_ra.z);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Sphere Rotation | {0} | {1} | {2}", sp_ro.x, sp_ro.y, sp_ro.z);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Type | {0}", type);
         } // if (rigid_body_component)
 
       } // for (auto entity : entities)

@@ -46,8 +46,7 @@ namespace ecs {
         return;
       
       auto& other_tc = scene_->GetRegistry().get<TransformComponent>(entity);
-      const AABB& original_aabb = scene_->GetRegistry().get<RigidBodyComponent>(entity).aabb;
-      AABB world_aabb = original_aabb.GetWorldAABBPos(other_tc.GetTransform());
+      AABB world_aabb = AABB::GetWorldAABBPos(other_tc.GetTransform());
       
       if (
           world_aabb.min.x <= aabb.max.x &&
@@ -76,10 +75,9 @@ namespace ecs {
       translation.x += speed_ * ts;
     
     auto& tc = GetComponent<TransformComponent>();
-    const AABB& original_aabb = GetComponent<RigidBodyComponent>().aabb;
-    AABB world_aabb = original_aabb.GetWorldAABBPos(Math::GetTransformMatrix(translation,
-                                                                                    tc.Rotation(),
-                                                                                    tc.Scale()));
+    AABB world_aabb = AABB::GetWorldAABBPos(Math::GetTransformMatrix(translation,
+                                                                     tc.Rotation(),
+                                                                     tc.Scale()));
     
     // If no collision then update the position
     if (!CollisionDetected(world_aabb))
