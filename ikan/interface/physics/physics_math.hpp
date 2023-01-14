@@ -7,6 +7,8 @@
 
 #pragma once
 
+#define PI      3.14159265359f
+
 namespace physics {
   
   /// A 2D column vector.
@@ -86,7 +88,7 @@ namespace physics {
     
     /// Negate this vector.
     Vec3 operator -() const { Vec3 v; v.Set(-x, -y, -z); return v; }
-
+    
     /// Add a vector to this vector.
     void operator += (const Vec3& v) { x += v.x; y += v.y; z += v.z; }
     
@@ -98,7 +100,7 @@ namespace physics {
     
     float x, y, z;
   };
-
+  
   /// A 2-by-2 matrix. Stored in column-major order.
   struct Mat22 {
     /// The default constructor does nothing (for performance).
@@ -197,7 +199,7 @@ namespace physics {
     
     Vec3 ex, ey, ez;
   };
-
+  
   /// Rotation
   struct Rot {
     Rot() = default;
@@ -232,7 +234,7 @@ namespace physics {
     /// Sine and cosine
     float s, c;
   };
-
+  
   /// A transform contains translation and rotation. It is used to represent the position and orientation of rigid frames.
   struct Transform {
     /// The default constructor does nothing.
@@ -280,20 +282,10 @@ namespace physics {
     /// Fraction of the current time step in the range [0,1] c0 and a0 are the positions at alpha0.
     float alpha0;
   };
-
+  
   // -------------------------------------------------------
   // Operators
   // -------------------------------------------------------
-  
-  /// Perform the cross product on two vectors.
-  inline Vec3 Cross(const Vec3& a, const Vec3& b) {
-    return Vec3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
-  }
-  
-  /// Perform the dot product on two vectors.
-  inline float Dot(const Vec3& a, const Vec3& b) {
-    return a.x * b.x + a.y * b.y + a.z * b.z;
-  }
   
   /// Perform the dot product on two vectors.
   inline float Dot(const Vec2& a, const Vec2& b) {
@@ -304,7 +296,7 @@ namespace physics {
   inline float Cross(const Vec2& a, const Vec2& b) {
     return a.x * b.y - a.y * b.x;
   }
-
+  
   /// Perform the cross product on a vector and a scalar. In 2D this produces a vector.
   inline Vec2 Cross(const Vec2& a, float s) {
     return Vec2(s * a.y, -s * a.x);
@@ -346,4 +338,224 @@ namespace physics {
   inline bool operator != (const Vec2& a, const Vec2& b) {
     return a.x != b.x || a.y != b.y;
   }
+  
+  inline float Distance(const Vec2& a, const Vec2& b) {
+    Vec2 c = a - b;
+    return c.Length();
+  }
+  
+  inline float DistanceSquared(const Vec2& a, const Vec2& b) {
+    Vec2 c = a - b;
+    return Dot(c, c);
+  }
+  
+  inline Vec3 operator * (float s, const Vec3& a) {
+    return Vec3(s * a.x, s * a.y, s * a.z);
+  }
+  
+  /// Add two vectors component-wise.
+  inline Vec3 operator + (const Vec3& a, const Vec3& b) {
+    return Vec3(a.x + b.x, a.y + b.y, a.z + b.z);
+  }
+  
+  /// Subtract two vectors component-wise.
+  inline Vec3 operator - (const Vec3& a, const Vec3& b) {
+    return Vec3(a.x - b.x, a.y - b.y, a.z - b.z);
+  }
+  
+  /// Perform the cross product on two vectors.
+  inline Vec3 Cross(const Vec3& a, const Vec3& b) {
+    return Vec3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
+  }
+  
+  /// Perform the dot product on two vectors.
+  inline float Dot(const Vec3& a, const Vec3& b) {
+    return a.x * b.x + a.y * b.y + a.z * b.z;
+  }
+  
+  inline Mat22 operator + (const Mat22& A, const Mat22& B) {
+    return Mat22(A.ex + B.ex, A.ey + B.ey);
+  }
+  
+  // A * B
+  inline Mat22 Mul(const Mat22& A, const Mat22& B) {
+    return Mat22(Mul(A, B.ex), Mul(A, B.ey));
+  }
+  
+  // A^T * B
+  inline Mat22 MulT(const Mat22& A, const Mat22& B) {
+    Vec2 c1(Dot(A.ex, B.ex), Dot(A.ey, B.ex));
+    Vec2 c2(Dot(A.ex, B.ey), Dot(A.ey, B.ey));
+    return Mat22(c1, c2);
+  }
+  
+  /// Multiply a matrix times a vector.
+  inline Vec3 Mul(const Mat33& A, const Vec3& v) {
+    return v.x * A.ex + v.y * A.ey + v.z * A.ez;
+  }
+  
+  /// Multiply a matrix times a vector.
+  inline Vec2 Mul22(const Mat33& A, const Vec2& v) {
+    return Vec2(A.ex.x * v.x + A.ey.x * v.y, A.ex.y * v.x + A.ey.y * v.y);
+  }
+  
+  /// Multiply two rotations: q * r
+  inline Rot Mul(const Rot& q, const Rot& r) {
+    // [qc -qs] * [rc -rs] = [qc*rc-qs*rs -qc*rs-qs*rc]
+    // [qs  qc]   [rs  rc]   [qs*rc+qc*rs -qs*rs+qc*rc]
+    // s = qs * rc + qc * rs
+    // c = qc * rc - qs * rs
+    Rot qr;
+    qr.s = q.s * r.c + q.c * r.s;
+    qr.c = q.c * r.c - q.s * r.s;
+    return qr;
+  }
+  
+  /// Transpose multiply two rotations: qT * r
+  inline Rot MulT(const Rot& q, const Rot& r) {
+    // [ qc qs] * [rc -rs] = [qc*rc+qs*rs -qc*rs+qs*rc]
+    // [-qs qc]   [rs  rc]   [-qs*rc+qc*rs qs*rs+qc*rc]
+    // s = qc * rs - qs * rc
+    // c = qc * rc + qs * rs
+    Rot qr;
+    qr.s = q.c * r.s - q.s * r.c;
+    qr.c = q.c * r.c + q.s * r.s;
+    return qr;
+  }
+  
+  /// Rotate a vector
+  inline Vec2 Mul(const Rot& q, const Vec2& v) {
+    return Vec2(q.c * v.x - q.s * v.y, q.s * v.x + q.c * v.y);
+  }
+  
+  /// Inverse rotate a vector
+  inline Vec2 MulT(const Rot& q, const Vec2& v) {
+    return Vec2(q.c * v.x + q.s * v.y, -q.s * v.x + q.c * v.y);
+  }
+  
+  inline Vec2 Mul(const Transform& T, const Vec2& v) {
+    float x = (T.q.c * v.x - T.q.s * v.y) + T.p.x;
+    float y = (T.q.s * v.x + T.q.c * v.y) + T.p.y;
+    
+    return Vec2(x, y);
+  }
+  
+  inline Vec2 MulT(const Transform& T, const Vec2& v) {
+    float px = v.x - T.p.x;
+    float py = v.y - T.p.y;
+    float x = (T.q.c * px + T.q.s * py);
+    float y = (-T.q.s * px + T.q.c * py);
+    
+    return Vec2(x, y);
+  }
+  
+  // v2 = A.q.Rot(B.q.Rot(v1) + B.p) + A.p
+  //    = (A.q * B.q).Rot(v1) + A.q.Rot(B.p) + A.p
+  inline Transform Mul(const Transform& A, const Transform& B) {
+    Transform C;
+    C.q = Mul(A.q, B.q);
+    C.p = Mul(A.q, B.p) + A.p;
+    return C;
+  }
+  
+  // v2 = A.q' * (B.q * v1 + B.p - A.p)
+  //    = A.q' * B.q * v1 + A.q' * (B.p - A.p)
+  inline Transform MulT(const Transform& A, const Transform& B) {
+    Transform C;
+    C.q = MulT(A.q, B.q);
+    C.p = MulT(A.q, B.p - A.p);
+    return C;
+  }
+
+  template <typename T>
+  inline T Abs(T a) {
+    return a > T(0) ? a : -a;
+  }
+  
+  inline Vec2 Abs(const Vec2& a) {
+    return Vec2(Abs(a.x), Abs(a.y));
+  }
+  
+  inline Mat22 Abs(const Mat22& A) {
+    return Mat22(Abs(A.ex), Abs(A.ey));
+  }
+  
+  template <typename T>
+  inline T Min(T a, T b) {
+    return a < b ? a : b;
+  }
+  
+  inline Vec2 Min(const Vec2& a, const Vec2& b) {
+    return Vec2(Min(a.x, b.x), Min(a.y, b.y));
+  }
+  
+  template <typename T>
+  inline T Max(T a, T b) {
+    return a > b ? a : b;
+  }
+  
+  inline Vec2 Max(const Vec2& a, const Vec2& b) {
+    return Vec2(Max(a.x, b.x), Max(a.y, b.y));
+  }
+  
+  template <typename T>
+  inline T Clamp(T a, T low, T high) {
+    return Max(low, Min(a, high));
+  }
+  
+  inline Vec2 Clamp(const Vec2& a, const Vec2& low, const Vec2& high) {
+    return Max(low, Min(a, high));
+  }
+  
+  template<typename T> inline void Swap(T& a, T& b) {
+    T tmp = a;
+    a = b;
+    b = tmp;
+  }
+
+  /// "Next Largest Power of 2
+  /// Given a binary integer value x, the next largest power of 2 can be computed by a SWAR algorithm
+  /// that recursively "folds" the upper bits into the lower bits. This process yields a bit vector with
+  /// the same most significant 1 as x, but all 1's below it. Adding 1 to that value yields the next
+  /// largest power of 2. For a 32-bit value:"
+  inline uint32_t NextPowerOfTwo(uint32_t x) {
+    x |= (x >> 1);
+    x |= (x >> 2);
+    x |= (x >> 4);
+    x |= (x >> 8);
+    x |= (x >> 16);
+    return x + 1;
+  }
+  
+  inline bool IsPowerOfTwo(uint32_t x) {
+    bool result = x > 0 && (x & (x - 1)) == 0;
+    return result;
+  }
+  
+  // https://fgiesen.wordpress.com/2012/08/15/linear-interpolation-past-present-and-future/
+  inline void Sweep::GetTransform(Transform* xf, float beta) const {
+    xf->p = (1.0f - beta) * c0 + beta * c;
+    float angle = (1.0f - beta) * a0 + beta * a;
+    xf->q.Set(angle);
+    
+    // Shift to origin
+    xf->p -= Mul(xf->q, localCenter);
+  }
+  
+  inline void Sweep::Advance(float alpha) {
+    IK_ASSERT(alpha0 < 1.0f);
+    float beta = (alpha - alpha0) / (1.0f - alpha0);
+    c0 += beta * (c - c0);
+    a0 += beta * (a - a0);
+    alpha0 = alpha;
+  }
+  
+  /// Normalize an angle in radians to be between -pi and pi
+  inline void Sweep::Normalize() {
+    float twoPi = 2.0f * PI;
+    float d =  twoPi * floorf(a0 / twoPi);
+    a0 -= d;
+    a -= d;
+  }
+  
 }
