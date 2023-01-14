@@ -255,6 +255,31 @@ namespace physics {
     Vec2 p;
     Rot q;
   };
+  
+  /// This describes the motion of a body/shape for TOI computation. Shapes are defined with respect
+  /// to the body origin, which may no coincide with the center of mass. However, to support dynamics
+  /// we must interpolate the center of mass position.
+  struct Sweep {
+    /// Get the interpolated transform at a specific time.
+    /// - Parameters:
+    ///   - transform: the output transform
+    ///   - beta: is a factor in [0,1], where 0 indicates alpha0.
+    void GetTransform(Transform* transform, float beta) const;
+    
+    /// Advance the sweep forward, yielding a new initial state.
+    /// - Parameter alpha: the new initial time.
+    void Advance(float alpha);
+    
+    /// Normalize the angles.
+    void Normalize();
+    
+    Vec2 localCenter;  ///< local center of mass position
+    Vec2 c0, c;    ///< center world positions
+    float a0, a;    ///< world angles
+    
+    /// Fraction of the current time step in the range [0,1] c0 and a0 are the positions at alpha0.
+    float alpha0;
+  };
 
   // -------------------------------------------------------
   // Operators
