@@ -82,7 +82,7 @@ namespace physics {
     uint32_t GetFlags() const;
 
   protected:
-    uint32_t m_drawFlags;
+    uint32_t draw_flags;
   };
   
 
