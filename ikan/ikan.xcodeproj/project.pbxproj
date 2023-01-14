@@ -30,6 +30,8 @@
 		B222C3272972B8C70060FA5D /* shape_contact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B222C3252972B8C70060FA5D /* shape_contact.cpp */; };
 		B222C3282972B8C70060FA5D /* shape_contact.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B222C3262972B8C70060FA5D /* shape_contact.hpp */; };
 		B222C32C2972BAF30060FA5D /* colloid_circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B222C32A2972BAF30060FA5D /* colloid_circle.cpp */; };
+		B222C32F2972C0570060FA5D /* colloid_polygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B222C32E2972C0570060FA5D /* colloid_polygon.cpp */; };
+		B222C3322972C2800060FA5D /* colloid_edge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B222C3302972C2800060FA5D /* colloid_edge.cpp */; };
 		B2250CCF29585E310067C43B /* prefix_header.pch in Headers */ = {isa = PBXBuildFile; fileRef = B2250CCE29585E310067C43B /* prefix_header.pch */; };
 		B2250CD4295860420067C43B /* core_entry_point.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CD3295860420067C43B /* core_entry_point.h */; };
 		B2250CDB295861BF0067C43B /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD9295861BF0067C43B /* core_application.cpp */; };
@@ -254,6 +256,8 @@
 		B222C3252972B8C70060FA5D /* shape_contact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shape_contact.cpp; sourceTree = "<group>"; };
 		B222C3262972B8C70060FA5D /* shape_contact.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shape_contact.hpp; sourceTree = "<group>"; };
 		B222C32A2972BAF30060FA5D /* colloid_circle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = colloid_circle.cpp; sourceTree = "<group>"; };
+		B222C32E2972C0570060FA5D /* colloid_polygon.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = colloid_polygon.cpp; sourceTree = "<group>"; };
+		B222C3302972C2800060FA5D /* colloid_edge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = colloid_edge.cpp; sourceTree = "<group>"; };
 		B2250CBD29584D060067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCE29585E310067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		B2250CD3295860420067C43B /* core_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_entry_point.h; sourceTree = "<group>"; };
@@ -448,6 +452,8 @@
 			isa = PBXGroup;
 			children = (
 				B222C32A2972BAF30060FA5D /* colloid_circle.cpp */,
+				B222C32E2972C0570060FA5D /* colloid_polygon.cpp */,
+				B222C3302972C2800060FA5D /* colloid_edge.cpp */,
 			);
 			path = collision;
 			sourceTree = "<group>";
@@ -1216,6 +1222,7 @@
 				B251B3F8295E15CA00508210 /* viewport.cpp in Sources */,
 				B222C31F2972ACAD0060FA5D /* chain_shape.cpp in Sources */,
 				B222C32C2972BAF30060FA5D /* colloid_circle.cpp in Sources */,
+				B222C3322972C2800060FA5D /* colloid_edge.cpp in Sources */,
 				B2C0D8092959E161003F168B /* property_grid.cpp in Sources */,
 				B216B265295B516A00C05392 /* batch_2d_renderer.cpp in Sources */,
 				B2C78066296AE470003F343E /* aabb_renderer.cpp in Sources */,
@@ -1245,6 +1252,7 @@
 				B2C0D815295A01D5003F168B /* open_gl_pipeline.cpp in Sources */,
 				B2FC3EA1295887FF00447A1A /* application_event.cpp in Sources */,
 				B2250CDB295861BF0067C43B /* core_application.cpp in Sources */,
+				B222C32F2972C0570060FA5D /* colloid_polygon.cpp in Sources */,
 				B27CAAC829729862009DB914 /* collision.cpp in Sources */,
 				B2C7CAD32971E77D00E61B08 /* world_callbacks.cpp in Sources */,
 				B24DD8182962FD9800525941 /* ray_material.cpp in Sources */,
