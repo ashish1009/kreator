@@ -294,5 +294,37 @@ namespace physics {
   inline float Dot(const Vec3& a, const Vec3& b) {
     return a.x * b.x + a.y * b.y + a.z * b.z;
   }
+  
+  /// Perform the dot product on two vectors.
+  inline float Dot(const Vec2& a, const Vec2& b) {
+    return a.x * b.x + a.y * b.y;
+  }
+  
+  /// Perform the cross product on two vectors. In 2D this produces a scalar.
+  inline float Cross(const Vec2& a, const Vec2& b) {
+    return a.x * b.y - a.y * b.x;
+  }
+
+  /// Perform the cross product on a vector and a scalar. In 2D this produces a vector.
+  inline Vec2 Cross(const Vec2& a, float s) {
+    return Vec2(s * a.y, -s * a.x);
+  }
+  
+  /// Perform the cross product on a scalar and a vector. In 2D this produces a vector.
+  inline Vec2 Cross(float s, const Vec2& a) {
+    return Vec2(-s * a.y, s * a.x);
+  }
+  
+  /// Multiply a matrix times a vector. If a rotation matrix is provided, then this transforms the vector from one frame to another.
+  inline Vec2 Mul(const Mat22& A, const Vec2& v) {
+    return Vec2(A.ex.x * v.x + A.ey.x * v.y, A.ex.y * v.x + A.ey.y * v.y);
+  }
+  
+  /// Multiply a matrix transpose times a vector. If a rotation matrix is provided, then this transforms the vector from one frame to another (inverse transform).
+  inline Vec2 MulT(const Mat22& A, const Vec2& v) {
+    return Vec2(Dot(v, A.ex), Dot(v, A.ey));
+  }
+  
+  
 
 }
