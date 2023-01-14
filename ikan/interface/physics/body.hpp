@@ -15,13 +15,13 @@ namespace physics {
   /// The body type.  static: zero mass, zero velocity, may be manually moved
   /// kinematic: zero mass, non-zero velocity set by user, moved by solver
   /// dynamic: positive mass, non-zero velocity determined by forces, moved by solver
-  enum BodyType { StaticBody = 0, KinematicBody, DynamicBody };
+  enum class BodyType : uint8_t { StaticBody = 0, KinematicBody, DynamicBody };
   
   /// A body definition holds all the data needed to construct a rigid body.
   /// You can safely re-use body definitions. Shapes are added to a body after construction.
   struct BodyDef {
     /// The body type: static, kinematic, or dynamic. Note: if a dynamic body would have zero mass, the mass is set to one.
-    BodyType type;
+    BodyType type = BodyType::StaticBody;
     /// The world position of the body. Avoid creating bodies at the origin since this can lead to many overlapping shapes.
     Vec2 position{0.0f, 0.0f};
     /// The world angle of the body in radians.
@@ -42,22 +42,22 @@ namespace physics {
     float angular_damping;
     /// Set this flag to false if this body should never fall asleep. Note that
     /// this increases CPU usage.
-    bool allow_sleep;
+    bool allow_sleep = true;
     /// Is this body initially awake or sleeping?
-    bool awake;
+    bool awake = true;
     /// Should this body be prevented from rotating? Useful for characters.
-    bool fixed_otation;
+    bool fixed_otation = false;
     /// Is this a fast moving body that should be prevented from tunneling through
     /// other moving bodies? Note that all bodies are prevented from tunneling through
     /// kinematic and static bodies. This setting is only considered on dynamic bodies.
     /// @warning You should use this flag sparingly since it increases processing time.
-    bool bullet;
+    bool bullet = false;
     /// Does this body start out enabled?
-    bool enabled;
+    bool enabled= true;
     /// Use this to store application specific body data.
     BodyUserData user_data;
     /// Scale the gravity applied to this body.
-    float gravity_scale;
+    float gravity_scale = 1.0f;
   };
   
   /// A rigid body. These are created via b2World::CreateBody.
