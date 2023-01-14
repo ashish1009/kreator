@@ -17,6 +17,7 @@
 #include "motor_joint.hpp"
 #include "prismatic_joint.hpp"
 #include "revolute_joint.hpp"
+#include "friction_joint.hpp"
 
 namespace physics {
   
