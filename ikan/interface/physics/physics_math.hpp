@@ -11,6 +11,11 @@
 
 namespace physics {
   
+  /// This function is used to ensure that a floating point number is not a NaN or infinity.
+  inline bool IsValid(float x) {
+    return isfinite(x);
+  }
+  
   /// A 2D column vector.
   struct Vec2 {
     /// Default constructor does nothing (for performance).
@@ -64,7 +69,7 @@ namespace physics {
     }
     
     /// Does this vector contain finite coordinates?
-    bool IsValid() const { return isfinite(x) && isfinite(y); }
+    bool IsValid() const { return physics::IsValid(x) && physics::IsValid(y); }
     
     /// Get the skew vector such that dot(skew_vec, other) == cross(vec, other)
     Vec2 Skew() const { return Vec2(-y, x); }

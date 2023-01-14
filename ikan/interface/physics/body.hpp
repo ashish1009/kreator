@@ -62,7 +62,10 @@ namespace physics {
   
   /// A rigid body. These are created via World::CreateBody.
   class Body {
-    
+  public:
+    /// Get the body transform for the body's origin.
+    /// @return the world transform of the body's origin.
+    const Transform& GetTransform() const;
   };
   
 }
