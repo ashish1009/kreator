@@ -46,6 +46,8 @@
 		B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B227F37229597F2B0055D871 /* open_gl_renderer_id_manager.hpp */; };
 		B22E79F72972A61900609CCA /* circle_shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B22E79F52972A61900609CCA /* circle_shape.cpp */; };
 		B22E79F82972A61900609CCA /* circle_shape.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B22E79F62972A61900609CCA /* circle_shape.hpp */; };
+		B2414EAF29732C610035D4BD /* stack_allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2414EAD29732C610035D4BD /* stack_allocator.cpp */; };
+		B2414EB029732C610035D4BD /* stack_allocator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2414EAE29732C610035D4BD /* stack_allocator.hpp */; };
 		B24C4A6C2967FDA000675599 /* libimguizmo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B24C4A392967FD3600675599 /* libimguizmo.a */; };
 		B24C4A772968638B00675599 /* scene_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24C4A752968638B00675599 /* scene_camera.cpp */; };
 		B24C4A782968638B00675599 /* scene_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24C4A762968638B00675599 /* scene_camera.hpp */; };
@@ -303,6 +305,8 @@
 		B227F38B2959DBF40055D871 /* single_texture_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = single_texture_shader.glsl; sourceTree = "<group>"; };
 		B22E79F52972A61900609CCA /* circle_shape.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = circle_shape.cpp; sourceTree = "<group>"; };
 		B22E79F62972A61900609CCA /* circle_shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = circle_shape.hpp; sourceTree = "<group>"; };
+		B2414EAD29732C610035D4BD /* stack_allocator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stack_allocator.cpp; sourceTree = "<group>"; };
+		B2414EAE29732C610035D4BD /* stack_allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = stack_allocator.hpp; sourceTree = "<group>"; };
 		B24C4A312967FD3600675599 /* imguizmo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imguizmo.xcodeproj; path = imguizmo/imguizmo.xcodeproj; sourceTree = "<group>"; };
 		B24C4A752968638B00675599 /* scene_camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_camera.cpp; sourceTree = "<group>"; };
 		B24C4A762968638B00675599 /* scene_camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_camera.hpp; sourceTree = "<group>"; };
@@ -845,6 +849,7 @@
 				B2F481872972EAD500B611DD /* wheel_joint.hpp */,
 				B2C7CAD22971E77D00E61B08 /* world_callbacks.hpp */,
 				B2F96B3F2971D13A00B28EE4 /* world.hpp */,
+				B2414EAE29732C610035D4BD /* stack_allocator.hpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -885,6 +890,7 @@
 				B2F4818B2972EAD500B611DD /* wheel_joint.cpp */,
 				B2C7CAD12971E77D00E61B08 /* world_callbacks.cpp */,
 				B2F96B3E2971D13A00B28EE4 /* world.cpp */,
+				B2414EAD29732C610035D4BD /* stack_allocator.cpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -1093,6 +1099,7 @@
 				B2F96B1F2971736900B28EE4 /* point.hpp in Headers */,
 				B2FC3E862958796F00447A1A /* ikan_headers.h in Headers */,
 				B2C7CAE52971ECD400E61B08 /* body.hpp in Headers */,
+				B2414EB029732C610035D4BD /* stack_allocator.hpp in Headers */,
 				B222C3182972A8F30060FA5D /* edge_shape.hpp in Headers */,
 				B2C7CAD42971E77D00E61B08 /* world_callbacks.hpp in Headers */,
 				B216B25D295B2F7400C05392 /* texture.hpp in Headers */,
@@ -1305,6 +1312,7 @@
 				B27CAAD029729D22009DB914 /* broad_phase.cpp in Sources */,
 				B2F481A62972EBB400B611DD /* motor_joint.cpp in Sources */,
 				B2F96B22297173D500B28EE4 /* point.cpp in Sources */,
+				B2414EAF29732C610035D4BD /* stack_allocator.cpp in Sources */,
 				B2FC3EA2295887FF00447A1A /* mouse_event.cpp in Sources */,
 				B2FC401D2958B6AC00447A1A /* glfw_window.cpp in Sources */,
 				B2FC40282958BBC500447A1A /* open_gl_renderer_context.cpp in Sources */,

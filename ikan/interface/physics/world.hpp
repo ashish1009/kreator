@@ -11,7 +11,7 @@
 #include "contact_manager.hpp"
 #include "block_allocator.hpp"
 
-//#include "stack_allocator.hpp"
+#include "stack_allocator.hpp"
 #include "time_setup.hpp"
 #include "world_callbacks.hpp"
 
