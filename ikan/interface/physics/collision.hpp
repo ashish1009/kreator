@@ -79,6 +79,20 @@ namespace physics {
     int32_t point_count;                ///< the number of manifold points
   };
 
+  /// This is used to compute the current state of a contact manifold.
+  struct WorldManifold {
+    /// Evaluate the manifold with supplied transforms. This assumes
+    /// modest motion from the original state. This does not change the
+    /// point count, impulses, etc. The radii must come from the shapes
+    /// that generated the manifold.
+    void Initialize(const Manifold* manifold,
+                    const Transform& xfA, float radiusA,
+                    const Transform& xfB, float radiusB);
+    
+    Vec2 normal;                ///< world vector pointing from A to B
+    Vec2 points[MaxManifoldPoints];    ///< world contact point (point of intersection)
+    float separations[MaxManifoldPoints];  ///< a negative value indicates overlap, in meters
+  };
   
   /// Ray-cast input data. The ray extends from p1 to p1 + maxFraction * (p2 - p1).
   struct RayCastInput {
