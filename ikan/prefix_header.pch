@@ -56,3 +56,4 @@
 
 // Physics
 #include "physics/physics_common.h"
+#include "physics/settings.hpp"

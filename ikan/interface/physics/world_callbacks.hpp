@@ -27,6 +27,15 @@ namespace physics {
     virtual void SayGoodbye(Fixture* fixture) = 0;
   };
   
+  class ContactFilter {
+  public:
+    virtual ~ContactFilter() {}
+    
+    /// Return true if contact calculations should be performed between these two shapes.
+    /// @warning for performance reasons this is only called when the AABBs begin to overlap.
+    virtual bool ShouldCollide(Fixture* fixtureA, Fixture* fixtureB);
+  };
+
   /// Contact impulses for reporting. Impulses are used instead of forces because
   /// sub-step forces may approach infinity for rigid body collisions. These
   /// match up one-to-one with the contact points in b2Manifold.

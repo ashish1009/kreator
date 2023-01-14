@@ -7,8 +7,6 @@
 
 #pragma once
 
-#include "settings.hpp"
-
 namespace physics {
   
 #define NOT_USED(x) ((void)(x))

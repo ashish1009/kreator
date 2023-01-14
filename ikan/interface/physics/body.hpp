@@ -13,7 +13,8 @@
 namespace physics {
   
   struct ContactEdge;
-  
+  class World;
+
   /// The body type.  static: zero mass, zero velocity, may be manually moved
   /// kinematic: zero mass, non-zero velocity set by user, moved by solver
   /// dynamic: positive mass, non-zero velocity determined by forces, moved by solver
@@ -75,11 +76,27 @@ namespace physics {
     ContactEdge* GetContactList();
     const ContactEdge* GetContactList() const;
     
-    
     /// Set the sleep state of the body. A sleeping body has very
     /// low CPU cost.
     /// @param flag set to true to wake the body, false to put it to sleep.
     void SetAwake(bool flag);
+    /// Get the sleeping state of this body.
+    /// @return true if the body is awake.
+    bool IsAwake() const;
+
+    /// Get the parent world of this body.
+    World* GetWorld();
+    const World* GetWorld() const;
+    
+    // This is used to prevent connected bodies from colliding.
+    // It may lie, depending on the collideConnected flag.
+    bool ShouldCollide(const Body* other) const;
+    
+  private:
+    friend class ContactManager;
+    
+    BodyType type_;
+    ContactEdge* contact_list_;
   };
   
 }

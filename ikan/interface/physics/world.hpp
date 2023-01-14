@@ -8,6 +8,7 @@
 #pragma once
 
 #include "physics_math.hpp"
+#include "contact_manager.hpp"
 
 namespace physics {
   
@@ -24,10 +25,17 @@ namespace physics {
     World(const Vec2& gravity);
 
   private:
+    friend class Body;
+    friend class Fixture;
+    friend class ContactManager;
+    friend class Controller;
+
     DestructionListener* destruction_listener_ = nullptr;
     Draw* debug_draw_ = nullptr;
 
     Body* body_list_;
+    
+    ContactManager contact_manager;
   };
   
 }
