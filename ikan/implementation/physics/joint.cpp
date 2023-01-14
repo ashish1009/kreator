@@ -18,6 +18,7 @@
 #include "prismatic_joint.hpp"
 #include "revolute_joint.hpp"
 #include "friction_joint.hpp"
+#include "draw.hpp"
 
 namespace physics {
   
@@ -128,7 +129,7 @@ namespace physics {
         break;
         
       default:
-        Assert(false);
+        IK_ASSERT(false);
         break;
     }
     
@@ -179,13 +180,13 @@ namespace physics {
         break;
         
       default:
-        Assert(false);
+        IK_ASSERT(false);
         break;
     }
   }
   
   Joint::Joint(const JointDef* def) {
-    Assert(def->bodyA != def->bodyB);
+    IK_ASSERT(def->bodyA != def->bodyB);
     
     m_type = def->type;
     m_prev = nullptr;
@@ -212,7 +213,7 @@ namespace physics {
     return m_bodyA->IsEnabled() && m_bodyB->IsEnabled();
   }
   
-  void Joint::Draw(Draw* draw) const {
+  void Joint::Draw(physics::Draw* draw) const {
     const Transform& xf1 = m_bodyA->GetTransform();
     const Transform& xf2 = m_bodyB->GetTransform();
     Vec2 x1 = xf1.p;

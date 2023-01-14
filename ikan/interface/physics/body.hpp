@@ -121,9 +121,16 @@ namespace physics {
     /// @return the same vector expressed in world coordinates.
     Vec2 GetWorldVector(const Vec2& localVector) const;
 
+    /// Get the world body origin position.
+    /// @return the world position of the body's origin.
+    const Vec2& GetPosition() const;
+
     /// Get the angle in radians.
     /// @return the current world rotation angle in radians.
     float GetAngle() const;
+    
+    /// Get the active state of the body.
+    bool IsEnabled() const;
 
   private:
     friend class DistanceJoint;
@@ -149,6 +156,7 @@ namespace physics {
     friend class WheelJoint;
     friend class WeldJoint;
     friend class FrictionJoint;
+    friend class MotorJoint;
     
     BodyType type_;
     ContactEdge* contact_list_;
@@ -192,5 +200,13 @@ namespace physics {
     return Mul(m_xf.q, localVector);
   }
 
-  
+  inline const Vec2& Body::GetPosition() const
+  {
+    return m_xf.p;
+  }
+  inline bool Body::IsEnabled() const
+  {
+    return (m_flags & enabledFlag) == enabledFlag;
+  }
+
 }
