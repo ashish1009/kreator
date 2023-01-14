@@ -23,6 +23,8 @@
 		B222C3182972A8F30060FA5D /* edge_shape.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B222C3162972A8F30060FA5D /* edge_shape.hpp */; };
 		B222C31B2972AA9C0060FA5D /* polygon_shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B222C3192972AA9C0060FA5D /* polygon_shape.cpp */; };
 		B222C31C2972AA9C0060FA5D /* polygon_shape.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B222C31A2972AA9C0060FA5D /* polygon_shape.hpp */; };
+		B222C31F2972ACAD0060FA5D /* chain_shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B222C31D2972ACAD0060FA5D /* chain_shape.cpp */; };
+		B222C3202972ACAD0060FA5D /* chain_shape.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B222C31E2972ACAD0060FA5D /* chain_shape.hpp */; };
 		B2250CCF29585E310067C43B /* prefix_header.pch in Headers */ = {isa = PBXBuildFile; fileRef = B2250CCE29585E310067C43B /* prefix_header.pch */; };
 		B2250CD4295860420067C43B /* core_entry_point.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CD3295860420067C43B /* core_entry_point.h */; };
 		B2250CDB295861BF0067C43B /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD9295861BF0067C43B /* core_application.cpp */; };
@@ -240,6 +242,8 @@
 		B222C3162972A8F30060FA5D /* edge_shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = edge_shape.hpp; sourceTree = "<group>"; };
 		B222C3192972AA9C0060FA5D /* polygon_shape.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = polygon_shape.cpp; sourceTree = "<group>"; };
 		B222C31A2972AA9C0060FA5D /* polygon_shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = polygon_shape.hpp; sourceTree = "<group>"; };
+		B222C31D2972ACAD0060FA5D /* chain_shape.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chain_shape.cpp; sourceTree = "<group>"; };
+		B222C31E2972ACAD0060FA5D /* chain_shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chain_shape.hpp; sourceTree = "<group>"; };
 		B2250CBD29584D060067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCE29585E310067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		B2250CD3295860420067C43B /* core_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_entry_point.h; sourceTree = "<group>"; };
@@ -741,6 +745,7 @@
 				B22E79F62972A61900609CCA /* circle_shape.hpp */,
 				B222C3162972A8F30060FA5D /* edge_shape.hpp */,
 				B222C31A2972AA9C0060FA5D /* polygon_shape.hpp */,
+				B222C31E2972ACAD0060FA5D /* chain_shape.hpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -763,6 +768,7 @@
 				B22E79F52972A61900609CCA /* circle_shape.cpp */,
 				B222C3152972A8F30060FA5D /* edge_shape.cpp */,
 				B222C3192972AA9C0060FA5D /* polygon_shape.cpp */,
+				B222C31D2972ACAD0060FA5D /* chain_shape.cpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -969,6 +975,7 @@
 				B222C3182972A8F30060FA5D /* edge_shape.hpp in Headers */,
 				B2C7CAD42971E77D00E61B08 /* world_callbacks.hpp in Headers */,
 				B216B25D295B2F7400C05392 /* texture.hpp in Headers */,
+				B222C3202972ACAD0060FA5D /* chain_shape.hpp in Headers */,
 				B2FC3EA92958880800447A1A /* event.hpp in Headers */,
 				B2C7CADD2971E89100E61B08 /* draw.hpp in Headers */,
 				B2FC3EAB2958880800447A1A /* application_event.hpp in Headers */,
@@ -1182,6 +1189,7 @@
 				B2584ECF295B7B3E00234714 /* maths.cpp in Sources */,
 				B216B25C295B2F7400C05392 /* texture.cpp in Sources */,
 				B251B3F8295E15CA00508210 /* viewport.cpp in Sources */,
+				B222C31F2972ACAD0060FA5D /* chain_shape.cpp in Sources */,
 				B2C0D8092959E161003F168B /* property_grid.cpp in Sources */,
 				B216B265295B516A00C05392 /* batch_2d_renderer.cpp in Sources */,
 				B2C78066296AE470003F343E /* aabb_renderer.cpp in Sources */,

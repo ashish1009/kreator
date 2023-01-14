@@ -62,10 +62,10 @@ namespace physics {
     /// @returns true if valid
     bool Validate() const;
     
-    Vec2 m_centroid;
-    Vec2 m_vertices[MaxPolygonVertices];
-    Vec2 m_normals[MaxPolygonVertices];
-    int32_t m_count;
+    Vec2 centroid_;
+    Vec2 vertices_[MaxPolygonVertices];
+    Vec2 normals_[MaxPolygonVertices];
+    int32_t count_;
   };
   
 }

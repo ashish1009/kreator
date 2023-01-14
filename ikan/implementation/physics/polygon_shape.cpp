@@ -18,38 +18,38 @@ namespace physics {
   }
   
   void PolygonShape::SetAsBox(float hx, float hy) {
-    m_count = 4;
-    m_vertices[0].Set(-hx, -hy);
-    m_vertices[1].Set( hx, -hy);
-    m_vertices[2].Set( hx,  hy);
-    m_vertices[3].Set(-hx,  hy);
-    m_normals[0].Set(0.0f, -1.0f);
-    m_normals[1].Set(1.0f, 0.0f);
-    m_normals[2].Set(0.0f, 1.0f);
-    m_normals[3].Set(-1.0f, 0.0f);
-    m_centroid.SetZero();
+    count_ = 4;
+    vertices_[0].Set(-hx, -hy);
+    vertices_[1].Set( hx, -hy);
+    vertices_[2].Set( hx,  hy);
+    vertices_[3].Set(-hx,  hy);
+    normals_[0].Set(0.0f, -1.0f);
+    normals_[1].Set(1.0f, 0.0f);
+    normals_[2].Set(0.0f, 1.0f);
+    normals_[3].Set(-1.0f, 0.0f);
+    centroid_.SetZero();
   }
   
   void PolygonShape::SetAsBox(float hx, float hy, const Vec2& center, float angle) {
-    m_count = 4;
-    m_vertices[0].Set(-hx, -hy);
-    m_vertices[1].Set( hx, -hy);
-    m_vertices[2].Set( hx,  hy);
-    m_vertices[3].Set(-hx,  hy);
-    m_normals[0].Set(0.0f, -1.0f);
-    m_normals[1].Set(1.0f, 0.0f);
-    m_normals[2].Set(0.0f, 1.0f);
-    m_normals[3].Set(-1.0f, 0.0f);
-    m_centroid = center;
+    count_ = 4;
+    vertices_[0].Set(-hx, -hy);
+    vertices_[1].Set( hx, -hy);
+    vertices_[2].Set( hx,  hy);
+    vertices_[3].Set(-hx,  hy);
+    normals_[0].Set(0.0f, -1.0f);
+    normals_[1].Set(1.0f, 0.0f);
+    normals_[2].Set(0.0f, 1.0f);
+    normals_[3].Set(-1.0f, 0.0f);
+    centroid_ = center;
     
     Transform xf;
     xf.p = center;
     xf.q.Set(angle);
     
     // Transform vertices and normals.
-    for (int32_t i = 0; i < m_count; ++i) {
-      m_vertices[i] = Mul(xf, m_vertices[i]);
-      m_normals[i] = Mul(xf.q, m_normals[i]);
+    for (int32_t i = 0; i < count_; ++i) {
+      vertices_[i] = Mul(xf, vertices_[i]);
+      normals_[i] = Mul(xf.q, normals_[i]);
     }
   }
   
@@ -186,32 +186,32 @@ namespace physics {
       return;
     }
     
-    m_count = m;
+    count_ = m;
     
     // Copy vertices.
     for (int32_t i = 0; i < m; ++i) {
-      m_vertices[i] = ps[hull[i]];
+      vertices_[i] = ps[hull[i]];
     }
     
     // Compute normals. Ensure the edges have non-zero length.
     for (int32_t i = 0; i < m; ++i) {
       int32_t i1 = i;
       int32_t i2 = i + 1 < m ? i + 1 : 0;
-      Vec2 edge = m_vertices[i2] - m_vertices[i1];
+      Vec2 edge = vertices_[i2] - vertices_[i1];
       IK_ASSERT(edge.LengthSquared() > FLT_EPSILON * FLT_EPSILON);
-      m_normals[i] = Cross(edge, 1.0f);
-      m_normals[i].Normalize();
+      normals_[i] = Cross(edge, 1.0f);
+      normals_[i].Normalize();
     }
     
     // Compute the polygon centroid.
-    m_centroid = ComputeCentroid(m_vertices, m);
+    centroid_ = ComputeCentroid(vertices_, m);
   }
   
   bool PolygonShape::TestPoint(const Transform& xf, const Vec2& p) const {
     Vec2 pLocal = MulT(xf.q, p - xf.p);
     
-    for (int32_t i = 0; i < m_count; ++i) {
-      float dot = Dot(m_normals[i], pLocal - m_vertices[i]);
+    for (int32_t i = 0; i < count_; ++i) {
+      float dot = Dot(normals_[i], pLocal - vertices_[i]);
       if (dot > 0.0f) {
         return false;
       }
@@ -233,12 +233,12 @@ namespace physics {
     
     int32_t index = -1;
     
-    for (int32_t i = 0; i < m_count; ++i) {
+    for (int32_t i = 0; i < count_; ++i) {
       // p = p1 + a * d
       // dot(normal, p - v) = 0
       // dot(normal, p1 - v) + a * dot(normal, d) = 0
-      float numerator = Dot(m_normals[i], m_vertices[i] - p1);
-      float denominator = Dot(m_normals[i], d);
+      float numerator = Dot(normals_[i], vertices_[i] - p1);
+      float denominator = Dot(normals_[i], d);
       
       if (denominator == 0.0f) {
         if (numerator < 0.0f) {
@@ -276,7 +276,7 @@ namespace physics {
     
     if (index >= 0) {
       output->fraction = lower;
-      output->normal = Mul(xf.q, m_normals[index]);
+      output->normal = Mul(xf.q, normals_[index]);
       return true;
     }
     
@@ -286,12 +286,12 @@ namespace physics {
   void PolygonShape::ComputeAABB(AABB* aabb, const Transform& xf, int32_t childIndex) const {
     NOT_USED(childIndex);
     
-    Vec2 lower = Mul(xf, m_vertices[0]);
+    Vec2 lower = Mul(xf, vertices_[0]);
     Vec2 upper = lower;
     
-    for (int32_t i = 1; i < m_count; ++i)
+    for (int32_t i = 1; i < count_; ++i)
     {
-      Vec2 v = Mul(xf, m_vertices[i]);
+      Vec2 v = Mul(xf, vertices_[i]);
       lower = Min(lower, v);
       upper = Max(upper, v);
     }
@@ -326,7 +326,7 @@ namespace physics {
     //
     // The rest of the derivation is handled by computer algebra.
     
-    IK_ASSERT(m_count >= 3);
+    IK_ASSERT(count_ >= 3);
     
     Vec2 center(0.0f, 0.0f);
     float area = 0.0f;
@@ -334,14 +334,14 @@ namespace physics {
     
     // Get a reference point for forming triangles.
     // Use the first vertex to reduce round-off errors.
-    Vec2 s = m_vertices[0];
+    Vec2 s = vertices_[0];
     
     const float k_inv3 = 1.0f / 3.0f;
     
-    for (int32_t i = 0; i < m_count; ++i) {
+    for (int32_t i = 0; i < count_; ++i) {
       // Triangle vertices.
-      Vec2 e1 = m_vertices[i] - s;
-      Vec2 e2 = i + 1 < m_count ? m_vertices[i+1] - s : m_vertices[0] - s;
+      Vec2 e1 = vertices_[i] - s;
+      Vec2 e2 = i + 1 < count_ ? vertices_[i+1] - s : vertices_[0] - s;
       
       float D = Cross(e1, e2);
       
@@ -376,18 +376,18 @@ namespace physics {
   }
   
   bool PolygonShape::Validate() const {
-    for (int32_t i = 0; i < m_count; ++i) {
+    for (int32_t i = 0; i < count_; ++i) {
       int32_t i1 = i;
-      int32_t i2 = i < m_count - 1 ? i1 + 1 : 0;
-      Vec2 p = m_vertices[i1];
-      Vec2 e = m_vertices[i2] - p;
+      int32_t i2 = i < count_ - 1 ? i1 + 1 : 0;
+      Vec2 p = vertices_[i1];
+      Vec2 e = vertices_[i2] - p;
       
-      for (int32_t j = 0; j < m_count; ++j) {
+      for (int32_t j = 0; j < count_; ++j) {
         if (j == i1 || j == i2) {
           continue;
         }
         
-        Vec2 v = m_vertices[j] - p;
+        Vec2 v = vertices_[j] - p;
         float c = Cross(e, v);
         if (c < 0.0f) {
           return false;
@@ -402,8 +402,8 @@ namespace physics {
   inline PolygonShape::PolygonShape() {
     type_ = Shape::Type::Polygon;
     radius_ = PolygonRadius;
-    m_count = 0;
-    m_centroid.SetZero();
+    count_ = 0;
+    centroid_.SetZero();
   }
   
 }
