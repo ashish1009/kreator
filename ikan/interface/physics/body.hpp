@@ -172,6 +172,7 @@ namespace physics {
     Transform m_xf;
     Sweep m_sweep;    // the swept motion for CCD
 
+    World* m_world;
     JointEdge* m_jointList;
     
     float m_I, m_invI;
@@ -180,33 +181,4 @@ namespace physics {
     int32_t m_islandIndex;
   };
   
-  inline Vec2 Body::GetLocalPoint(const Vec2& worldPoint) const {
-    return MulT(m_xf, worldPoint);
-  }
-  
-  inline Vec2 Body::GetWorldPoint(const Vec2& localPoint) const {
-    return Mul(m_xf, localPoint);
-  }
-  
-  inline Vec2 Body::GetLocalVector(const Vec2& worldVector) const {
-    return MulT(m_xf.q, worldVector);
-  }
-
-  inline float Body::GetAngle() const {
-    return m_sweep.a;
-  }
-
-  inline Vec2 Body::GetWorldVector(const Vec2& localVector) const {
-    return Mul(m_xf.q, localVector);
-  }
-
-  inline const Vec2& Body::GetPosition() const
-  {
-    return m_xf.p;
-  }
-  inline bool Body::IsEnabled() const
-  {
-    return (m_flags & enabledFlag) == enabledFlag;
-  }
-
 }

@@ -533,4 +533,42 @@ namespace physics {
     }
   }
   
+  int32_t DistanceProxy::GetVertexCount() const {
+    return count_;
+  }
+  
+  const Vec2& DistanceProxy::GetVertex(int32_t index) const {
+    IK_ASSERT(0 <= index && index < count_);
+    return vertices_[index];
+  }
+  
+  int32_t DistanceProxy::GetSupport(const Vec2& d) const {
+    int32_t bestIndex = 0;
+    float bestValue = Dot(vertices_[0], d);
+    for (int32_t i = 1; i < count_; ++i) {
+      float value = Dot(vertices_[i], d);
+      if (value > bestValue) {
+        bestIndex = i;
+        bestValue = value;
+      }
+    }
+    
+    return bestIndex;
+  }
+  
+  const Vec2& DistanceProxy::GetSupportVertex(const Vec2& d) const {
+    int32_t bestIndex = 0;
+    float bestValue = Dot(vertices_[0], d);
+    for (int32_t i = 1; i < count_; ++i) {
+      float value = Dot(vertices_[i], d);
+      if (value > bestValue) {
+        bestIndex = i;
+        bestValue = value;
+      }
+    }
+    
+    return vertices_[bestIndex];
+  }
+
+  
 }

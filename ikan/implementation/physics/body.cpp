@@ -70,5 +70,42 @@ namespace physics {
   float Body::GetInertia() const {
     return m_I + m_mass * Dot(m_sweep.localCenter, m_sweep.localCenter);
   }
+  
+  World* Body::GetWorld() {
+    return m_world;
+  }
+  
+  const World* Body::GetWorld() const {
+    return m_world;
+  }
+
+  Vec2 Body::GetLocalPoint(const Vec2& worldPoint) const {
+    return MulT(m_xf, worldPoint);
+  }
+  
+  Vec2 Body::GetWorldPoint(const Vec2& localPoint) const {
+    return Mul(m_xf, localPoint);
+  }
+  
+  Vec2 Body::GetLocalVector(const Vec2& worldVector) const {
+    return MulT(m_xf.q, worldVector);
+  }
+  
+  float Body::GetAngle() const {
+    return m_sweep.a;
+  }
+  
+  Vec2 Body::GetWorldVector(const Vec2& localVector) const {
+    return Mul(m_xf.q, localVector);
+  }
+  
+  const Vec2& Body::GetPosition() const
+  {
+    return m_xf.p;
+  }
+  bool Body::IsEnabled() const
+  {
+    return (m_flags & enabledFlag) == enabledFlag;
+  }
 
 }

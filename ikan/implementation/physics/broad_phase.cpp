@@ -101,33 +101,33 @@ namespace physics {
     return true;
   }
   
-  inline void* BroadPhase::GetUserData(int32_t proxyId) const {
+  void* BroadPhase::GetUserData(int32_t proxyId) const {
     return tree_.GetUserData(proxyId);
   }
   
-  inline bool BroadPhase::TestOverlap(int32_t proxyIdA, int32_t proxyIdB) const {
+  bool BroadPhase::TestOverlap(int32_t proxyIdA, int32_t proxyIdB) const {
     const AABB& aabbA = tree_.GetFatAABB(proxyIdA);
     const AABB& aabbB = tree_.GetFatAABB(proxyIdB);
     return physics::TestOverlap(aabbA, aabbB);
   }
   
-  inline const AABB& BroadPhase::GetFatAABB(int32_t proxyId) const {
+  const AABB& BroadPhase::GetFatAABB(int32_t proxyId) const {
     return tree_.GetFatAABB(proxyId);
   }
   
-  inline int32_t BroadPhase::GetProxyCount() const {
+  int32_t BroadPhase::GetProxyCount() const {
     return proxy_count_;
   }
   
-  inline int32_t BroadPhase::GetTreeHeight() const {
+  int32_t BroadPhase::GetTreeHeight() const {
     return tree_.GetHeight();
   }
   
-  inline int32_t BroadPhase::GetTreeBalance() const {
+  int32_t BroadPhase::GetTreeBalance() const {
     return tree_.GetMaxBalance();
   }
   
-  inline float BroadPhase::GetTreeQuality() const {
+  float BroadPhase::GetTreeQuality() const {
     return tree_.GetAreaRatio();
   }
   

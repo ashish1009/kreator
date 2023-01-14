@@ -258,92 +258,92 @@ namespace physics {
 //    Dump("    bodies[%d]->CreateFixture(&fd);\n", bodyIndex);
 //  }
 
-  inline Shape::Type Fixture::GetType() const {
+  Shape::Type Fixture::GetType() const {
     return m_shape->GetType();
   }
   
-  inline Shape* Fixture::GetShape() {
+  Shape* Fixture::GetShape() {
     return m_shape;
   }
   
-  inline const Shape* Fixture::GetShape() const {
+  const Shape* Fixture::GetShape() const {
     return m_shape;
   }
   
-  inline bool Fixture::IsSensor() const {
+  bool Fixture::IsSensor() const {
     return m_isSensor;
   }
   
-  inline const Filter& Fixture::GetFilterData() const {
+  const Filter& Fixture::GetFilterData() const {
     return m_filter;
   }
   
-  inline FixtureUserData& Fixture::GetUserData() {
+  FixtureUserData& Fixture::GetUserData() {
     return m_userData;
   }
   
-  inline Body* Fixture::GetBody() {
+  Body* Fixture::GetBody() {
     return m_body;
   }
   
-  inline const Body* Fixture::GetBody() const {
+  const Body* Fixture::GetBody() const {
     return m_body;
   }
   
-  inline Fixture* Fixture::GetNext() {
+  Fixture* Fixture::GetNext() {
     return m_next;
   }
   
-  inline const Fixture* Fixture::GetNext() const {
+  const Fixture* Fixture::GetNext() const {
     return m_next;
   }
   
-  inline void Fixture::SetDensity(float density) {
+  void Fixture::SetDensity(float density) {
     IK_ASSERT(physics::IsValid(density) && density >= 0.0f);
     m_density = density;
   }
   
-  inline float Fixture::GetDensity() const {
+  float Fixture::GetDensity() const {
     return m_density;
   }
   
-  inline float Fixture::GetFriction() const {
+  float Fixture::GetFriction() const {
     return m_friction;
   }
   
-  inline void Fixture::SetFriction(float friction) {
+  void Fixture::SetFriction(float friction) {
     m_friction = friction;
   }
   
-  inline float Fixture::GetRestitution() const {
+  float Fixture::GetRestitution() const {
     return m_restitution;
   }
   
-  inline void Fixture::SetRestitution(float restitution) {
+  void Fixture::SetRestitution(float restitution) {
     m_restitution = restitution;
   }
   
-  inline float Fixture::GetRestitutionThreshold() const {
+  float Fixture::GetRestitutionThreshold() const {
     return m_restitutionThreshold;
   }
   
-  inline void Fixture::SetRestitutionThreshold(float threshold) {
+  void Fixture::SetRestitutionThreshold(float threshold) {
     m_restitutionThreshold = threshold;
   }
   
-  inline bool Fixture::TestPoint(const Vec2& p) const {
+  bool Fixture::TestPoint(const Vec2& p) const {
     return m_shape->TestPoint(m_body->GetTransform(), p);
   }
   
-  inline bool Fixture::RayCast(RayCastOutput* output, const RayCastInput& input, int32_t childIndex) const {
+  bool Fixture::RayCast(RayCastOutput* output, const RayCastInput& input, int32_t childIndex) const {
     return m_shape->RayCast(output, input, m_body->GetTransform(), childIndex);
   }
   
-  inline void Fixture::GetMassData(MassData* massData) const {
+  void Fixture::GetMassData(MassData* massData) const {
     m_shape->ComputeMass(massData, m_density);
   }
   
-  inline const AABB& Fixture::GetAABB(int32_t childIndex) const {
+  const AABB& Fixture::GetAABB(int32_t childIndex) const {
     IK_ASSERT(0 <= childIndex && childIndex < m_proxyCount);
     return m_proxies[childIndex].aabb;
   }
