@@ -59,8 +59,8 @@ namespace physics {
   }
   
   void WheelJoint::InitVelocityConstraints(const SolverData& data) {
-    index_a_ = body_a_->island_index_;
-    index_b_ = body_b_->island_index_;
+    index_a_ = body_a_->is_land_index_;
+    index_b_ = body_b_->is_land_index_;
     local_center_a_ = body_a_->sweep_.localCenter;
     local_center_b_ = body_b_->sweep_.localCenter;
     inv_mass_a_ = body_a_->inv_mass_;

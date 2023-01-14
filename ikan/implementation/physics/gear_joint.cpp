@@ -103,10 +103,10 @@ namespace physics {
   }
   
   void GearJoint::InitVelocityConstraints(const SolverData& data) {
-    index_a_ = body_a_->island_index_;
-    index_b_ = body_b_->island_index_;
-    m_indexC = body_c_->island_index_;
-    m_indexD = body_d_->island_index_;
+    index_a_ = body_a_->is_land_index_;
+    index_b_ = body_b_->is_land_index_;
+    m_indexC = body_c_->is_land_index_;
+    m_indexD = body_d_->is_land_index_;
     lc_a_ = body_a_->sweep_.localCenter;
     lc_b_ = body_b_->sweep_.localCenter;
     lc_c_ = body_c_->sweep_.localCenter;

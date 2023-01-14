@@ -9,6 +9,7 @@
 
 #include "physics_math.hpp"
 #include "contact_manager.hpp"
+#include "block_allocator.hpp"
 
 namespace physics {
   
@@ -23,6 +24,9 @@ namespace physics {
     /// Construct a world object.
     /// - Parameter gravity: grapvitty of movement
     World(const Vec2& gravity);
+    
+    /// Is the world locked (in the middle of a time step).
+    bool IsLocked() const;
 
   private:
     friend class Body;
@@ -36,6 +40,14 @@ namespace physics {
     Body* body_list_;
     
     ContactManager contact_manager;
+    
+    BlockAllocator m_blockAllocator;
+    bool m_locked;
+    bool m_newContacts;
   };
   
+  inline bool World::IsLocked() const {
+    return m_locked;
+  }
+
 }

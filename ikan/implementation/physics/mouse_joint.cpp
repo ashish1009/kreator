@@ -52,7 +52,7 @@ namespace physics {
   }
   
   void MouseJoint::InitVelocityConstraints(const SolverData& data) {
-    index_b_ = body_b_->island_index_;
+    index_b_ = body_b_->is_land_index_;
     local_center_b_ = body_b_->sweep_.localCenter;
     inv_mass_b_ = body_b_->inv_mass_;
     inv_i_b_ = body_b_->inv_inertia_;
