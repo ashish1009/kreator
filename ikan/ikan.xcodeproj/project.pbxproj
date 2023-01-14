@@ -19,6 +19,8 @@
 		B217E2FD2963133700311AE6 /* entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B217E2FB2963133700311AE6 /* entity.cpp */; };
 		B217E2FE2963133700311AE6 /* entity.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B217E2FC2963133700311AE6 /* entity.hpp */; };
 		B222C30F2972A7B40060FA5D /* physics_common.h in Headers */ = {isa = PBXBuildFile; fileRef = B222C30E2972A7B40060FA5D /* physics_common.h */; };
+		B222C3172972A8F30060FA5D /* edge_shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B222C3152972A8F30060FA5D /* edge_shape.cpp */; };
+		B222C3182972A8F30060FA5D /* edge_shape.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B222C3162972A8F30060FA5D /* edge_shape.hpp */; };
 		B2250CCF29585E310067C43B /* prefix_header.pch in Headers */ = {isa = PBXBuildFile; fileRef = B2250CCE29585E310067C43B /* prefix_header.pch */; };
 		B2250CD4295860420067C43B /* core_entry_point.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CD3295860420067C43B /* core_entry_point.h */; };
 		B2250CDB295861BF0067C43B /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD9295861BF0067C43B /* core_application.cpp */; };
@@ -232,6 +234,8 @@
 		B217E2FB2963133700311AE6 /* entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entity.cpp; sourceTree = "<group>"; };
 		B217E2FC2963133700311AE6 /* entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = entity.hpp; sourceTree = "<group>"; };
 		B222C30E2972A7B40060FA5D /* physics_common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = physics_common.h; sourceTree = "<group>"; };
+		B222C3152972A8F30060FA5D /* edge_shape.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = edge_shape.cpp; sourceTree = "<group>"; };
+		B222C3162972A8F30060FA5D /* edge_shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = edge_shape.hpp; sourceTree = "<group>"; };
 		B2250CBD29584D060067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCE29585E310067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		B2250CD3295860420067C43B /* core_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_entry_point.h; sourceTree = "<group>"; };
@@ -731,6 +735,7 @@
 				B27CAACF29729D22009DB914 /* broad_phase.hpp */,
 				B27CAAD329729DC6009DB914 /* dynamic_tree.hpp */,
 				B22E79F62972A61900609CCA /* circle_shape.hpp */,
+				B222C3162972A8F30060FA5D /* edge_shape.hpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -751,6 +756,7 @@
 				B27CAACE29729D22009DB914 /* broad_phase.cpp */,
 				B27CAAD229729DC6009DB914 /* dynamic_tree.cpp */,
 				B22E79F52972A61900609CCA /* circle_shape.cpp */,
+				B222C3152972A8F30060FA5D /* edge_shape.cpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -954,6 +960,7 @@
 				B2F96B1F2971736900B28EE4 /* point.hpp in Headers */,
 				B2FC3E862958796F00447A1A /* ikan_headers.h in Headers */,
 				B2C7CAE52971ECD400E61B08 /* body.hpp in Headers */,
+				B222C3182972A8F30060FA5D /* edge_shape.hpp in Headers */,
 				B2C7CAD42971E77D00E61B08 /* world_callbacks.hpp in Headers */,
 				B216B25D295B2F7400C05392 /* texture.hpp in Headers */,
 				B2FC3EA92958880800447A1A /* event.hpp in Headers */,
@@ -1147,6 +1154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B222C3172972A8F30060FA5D /* edge_shape.cpp in Sources */,
 				B27CAAD029729D22009DB914 /* broad_phase.cpp in Sources */,
 				B2F96B22297173D500B28EE4 /* point.cpp in Sources */,
 				B2FC3EA2295887FF00447A1A /* mouse_event.cpp in Sources */,
