@@ -21,7 +21,7 @@ namespace physics {
   {
     WheelJointDef()
     {
-      type = e_wheelJoint;
+      type = wheelJoint;
       localAnchorA.SetZero();
       localAnchorB.SetZero();
       localAxisA.Set(1.0f, 0.0f);
