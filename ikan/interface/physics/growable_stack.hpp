@@ -32,7 +32,7 @@ namespace physics {
       if (count_ == capacity_) {
         T* old = stack_;
         capacity_ *= 2;
-        stack_ = (T*)Alloc(capacity_ * sizeof(T));
+        stack_ = (T*)AllocMem(capacity_ * sizeof(T));
         memcpy(stack_, old, count_ * sizeof(T));
         if (old != array_) {
           FreeMem(old);
