@@ -11,8 +11,8 @@
 
 namespace physics {
   
-  ContactRegister Contact::s_registers[(size_t)Shape::Type::TypeCount][(size_t)Shape::Type::TypeCount];
-  bool Contact::s_initialized = false;
+  ContactRegister Contact::registers_[(size_t)Shape::Type::TypeCount][(size_t)Shape::Type::TypeCount];
+  bool Contact::initialized_ = false;
   
   void Contact::InitializeRegisters() {
     AddType(CircleContact::Create, CircleContact::Destroy, Shape::Type::Circle, Shape::Type::Circle);
@@ -29,21 +29,21 @@ namespace physics {
     IK_ASSERT((0 <= (uint32_t)type1 and type1 < Shape::Type::TypeCount));
     IK_ASSERT((0 <= (uint32_t)type2 and type2 < Shape::Type::TypeCount));
 
-    s_registers[(size_t)type1][(size_t)type2].createFcn = createFcn;
-    s_registers[(size_t)type1][(size_t)type2].destroyFcn = destoryFcn;
-    s_registers[(size_t)type1][(size_t)type2].primary = true;
+    registers_[(size_t)type1][(size_t)type2].createFcn = createFcn;
+    registers_[(size_t)type1][(size_t)type2].destroyFcn = destoryFcn;
+    registers_[(size_t)type1][(size_t)type2].primary = true;
 
     if (type1 != type2) {
-      s_registers[(size_t)type2][(size_t)type1].createFcn = createFcn;
-      s_registers[(size_t)type2][(size_t)type1].destroyFcn = destoryFcn;
-      s_registers[(size_t)type2][(size_t)type1].primary = false;
+      registers_[(size_t)type2][(size_t)type1].createFcn = createFcn;
+      registers_[(size_t)type2][(size_t)type1].destroyFcn = destoryFcn;
+      registers_[(size_t)type2][(size_t)type1].primary = false;
     }
   }
 
   Contact* Contact::Create(Fixture* fixtureA, int32_t indexA, Fixture* fixtureB, int32_t indexB, BlockAllocator* allocator) {
-    if (s_initialized == false) {
+    if (initialized_ == false) {
       InitializeRegisters();
-      s_initialized = true;
+      initialized_ = true;
     }
 
     Shape::Type type1 = fixtureA->GetType();
@@ -52,9 +52,9 @@ namespace physics {
     IK_ASSERT(0 <= (uint32_t)type1 && type1 < Shape::Type::TypeCount);
     IK_ASSERT(0 <= (uint32_t)type2 && type2 < Shape::Type::TypeCount);
 
-    ContactCreateFcn* createFcn = s_registers[(size_t)type1][(size_t)type2].createFcn;
+    ContactCreateFcn* createFcn = registers_[(size_t)type1][(size_t)type2].createFcn;
     if (createFcn) {
-      if (s_registers[(size_t)type1][(size_t)type2].primary) {
+      if (registers_[(size_t)type1][(size_t)type2].primary) {
         return createFcn(fixtureA, indexA, fixtureB, indexB, allocator);
       } else {
         return createFcn(fixtureB, indexB, fixtureA, indexA, allocator);
@@ -66,12 +66,12 @@ namespace physics {
   }
 
   void Contact::Destroy(Contact* contact, BlockAllocator* allocator) {
-    IK_ASSERT(s_initialized == true);
+    IK_ASSERT(initialized_ == true);
 
-    Fixture* fixtureA = contact->m_fixtureA;
-    Fixture* fixtureB = contact->m_fixtureB;
+    Fixture* fixtureA = contact->fixture_a_;
+    Fixture* fixtureB = contact->fixture_b_;
 
-    if (contact->m_manifold.point_count > 0 &&
+    if (contact->manifold_.point_count > 0 &&
         fixtureA->IsSensor() == false &&
         fixtureB->IsSensor() == false) {
       fixtureA->GetBody()->SetAwake(true);
@@ -84,80 +84,80 @@ namespace physics {
     IK_ASSERT(0 <= (uint32_t)typeA && typeA < Shape::Type::TypeCount);
     IK_ASSERT(0 <= (uint32_t)typeB && typeB < Shape::Type::TypeCount);
 
-    ContactDestroyFcn* destroyFcn = s_registers[(size_t)typeA][(size_t)typeB].destroyFcn;
+    ContactDestroyFcn* destroyFcn = registers_[(size_t)typeA][(size_t)typeB].destroyFcn;
     destroyFcn(contact, allocator);
   }
 
   Contact::Contact(Fixture* fA, int32_t indexA, Fixture* fB, int32_t indexB) {
-    m_flags = EnabledFlag;
+    flags_ = EnabledFlag;
 
-    m_fixtureA = fA;
-    m_fixtureB = fB;
+    fixture_a_ = fA;
+    fixture_b_ = fB;
 
-    m_indexA = indexA;
-    m_indexB = indexB;
+    index_a_ = indexA;
+    index_b_ = indexB;
 
-    m_manifold.point_count = 0;
+    manifold_.point_count = 0;
 
-    m_prev = nullptr;
-    m_next = nullptr;
+    prev_ = nullptr;
+    next_ = nullptr;
 
-    m_nodeA.contact = nullptr;
-    m_nodeA.prev = nullptr;
-    m_nodeA.next = nullptr;
-    m_nodeA.other = nullptr;
+    node_a_.contact = nullptr;
+    node_a_.prev = nullptr;
+    node_a_.next = nullptr;
+    node_a_.other = nullptr;
 
-    m_nodeB.contact = nullptr;
-    m_nodeB.prev = nullptr;
-    m_nodeB.next = nullptr;
-    m_nodeB.other = nullptr;
+    node_b_.contact = nullptr;
+    node_b_.prev = nullptr;
+    node_b_.next = nullptr;
+    node_b_.other = nullptr;
 
-    m_toiCount = 0;
+    toi_count_ = 0;
 
-    m_friction = MixFriction(m_fixtureA->m_friction, m_fixtureB->m_friction);
-    m_restitution = MixRestitution(m_fixtureA->m_restitution, m_fixtureB->m_restitution);
-    m_restitutionThreshold = MixRestitutionThreshold(m_fixtureA->m_restitutionThreshold, m_fixtureB->m_restitutionThreshold);
+    friction_ = MixFriction(fixture_a_->m_friction, fixture_b_->m_friction);
+    restitution_ = MixRestitution(fixture_a_->m_restitution, fixture_b_->m_restitution);
+    restitution_threshold_ = MixRestitutionThreshold(fixture_a_->m_restitutionThreshold, fixture_b_->m_restitutionThreshold);
 
-    m_tangentSpeed = 0.0f;
+    tangent_speed_ = 0.0f;
   }
 
   // Update the contact manifold and touching status.
   // Note: do not assume the fixture AABBs are overlapping or are valid.
   void Contact::Update(ContactListener* listener) {
-    Manifold oldManifold = m_manifold;
+    Manifold oldManifold = manifold_;
 
     // Re-enable this contact.
-    m_flags |= EnabledFlag;
+    flags_ |= EnabledFlag;
 
     bool touching = false;
-    bool wasTouching = (m_flags & TouchingFlag) == TouchingFlag;
+    bool wasTouching = (flags_ & TouchingFlag) == TouchingFlag;
 
-    bool sensorA = m_fixtureA->IsSensor();
-    bool sensorB = m_fixtureB->IsSensor();
+    bool sensorA = fixture_a_->IsSensor();
+    bool sensorB = fixture_b_->IsSensor();
     bool sensor = sensorA || sensorB;
 
-    Body* bodyA = m_fixtureA->GetBody();
-    Body* bodyB = m_fixtureB->GetBody();
+    Body* bodyA = fixture_a_->GetBody();
+    Body* bodyB = fixture_b_->GetBody();
     const Transform& xfA = bodyA->GetTransform();
     const Transform& xfB = bodyB->GetTransform();
 
     // Is this contact a sensor?
     if (sensor) {
-      const Shape* shapeA = m_fixtureA->GetShape();
-      const Shape* shapeB = m_fixtureB->GetShape();
-      touching = TestOverlap(shapeA, m_indexA, shapeB, m_indexB, xfA, xfB);
+      const Shape* shapeA = fixture_a_->GetShape();
+      const Shape* shapeB = fixture_b_->GetShape();
+      touching = TestOverlap(shapeA, index_a_, shapeB, index_b_, xfA, xfB);
 
       // Sensors don't generate manifolds.
-      m_manifold.point_count = 0;
+      manifold_.point_count = 0;
     }
     else {
-      Evaluate(&m_manifold, xfA, xfB);
-      touching = m_manifold.point_count > 0;
+      Evaluate(&manifold_, xfA, xfB);
+      touching = manifold_.point_count > 0;
 
       // Match old contact ids to new contact ids and copy the
       // stored impulses to warm start the solver.
-      for (int32_t i = 0; i < m_manifold.point_count; ++i) {
-        ManifoldPoint* mp2 = m_manifold.points + i;
+      for (int32_t i = 0; i < manifold_.point_count; ++i) {
+        ManifoldPoint* mp2 = manifold_.points + i;
         mp2->normal_impulse = 0.0f;
         mp2->tangent_impulse = 0.0f;
         ContactID id2 = mp2->id;
@@ -180,10 +180,10 @@ namespace physics {
     }
 
     if (touching) {
-      m_flags |= TouchingFlag;
+      flags_ |= TouchingFlag;
     }
     else {
-      m_flags &= ~TouchingFlag;
+      flags_ &= ~TouchingFlag;
     }
 
     if (wasTouching == false && touching == true && listener) {
@@ -199,5 +199,119 @@ namespace physics {
     }
   }
 
+  inline Manifold* Contact::GetManifold() {
+    return &manifold_;
+  }
   
+  inline const Manifold* Contact::GetManifold() const {
+    return &manifold_;
+  }
+  
+  inline void Contact::GetWorldManifold(WorldManifold* worldManifold) const {
+    const Body* bodyA = fixture_a_->GetBody();
+    const Body* bodyB = fixture_b_->GetBody();
+    const Shape* shapeA = fixture_a_->GetShape();
+    const Shape* shapeB = fixture_b_->GetShape();
+    
+    worldManifold->Initialize(&manifold_, bodyA->GetTransform(), shapeA->radius_, bodyB->GetTransform(), shapeB->radius_);
+  }
+  
+  inline void Contact::SetEnabled(bool flag) {
+    if (flag) {
+      flags_ |= EnabledFlag;
+    }
+    else {
+      flags_ &= ~EnabledFlag;
+    }
+  }
+  
+  inline bool Contact::IsEnabled() const {
+    return (flags_ & EnabledFlag) == EnabledFlag;
+  }
+  
+  inline bool Contact::IsTouching() const {
+    return (flags_ & TouchingFlag) == TouchingFlag;
+  }
+  
+  inline Contact* Contact::GetNext() {
+    return next_;
+  }
+  
+  inline const Contact* Contact::GetNext() const {
+    return next_;
+  }
+  
+  inline Fixture* Contact::GetFixtureA() {
+    return fixture_a_;
+  }
+  
+  inline const Fixture* Contact::GetFixtureA() const {
+    return fixture_a_;
+  }
+  
+  inline Fixture* Contact::GetFixtureB() {
+    return fixture_b_;
+  }
+  
+  inline int32_t Contact::GetChildIndexA() const {
+    return index_a_;
+  }
+  
+  inline const Fixture* Contact::GetFixtureB() const {
+    return fixture_b_;
+  }
+  
+  inline int32_t Contact::GetChildIndexB() const {
+    return index_b_;
+  }
+  
+  inline void Contact::FlagForFiltering() {
+    flags_ |= FilterFlag;
+  }
+  
+  inline void Contact::SetFriction(float friction) {
+    friction_ = friction;
+  }
+  
+  inline float Contact::GetFriction() const {
+    return friction_;
+  }
+  
+  inline void Contact::ResetFriction() {
+    friction_ = MixFriction(fixture_a_->m_friction, fixture_b_->m_friction);
+  }
+  
+  inline void Contact::SetRestitution(float restitution) {
+    restitution_ = restitution;
+  }
+  
+  inline float Contact::GetRestitution() const {
+    return restitution_;
+  }
+  
+  inline void Contact::ResetRestitution() {
+    restitution_ = MixRestitution(fixture_a_->m_restitution, fixture_b_->m_restitution);
+  }
+  
+  inline void Contact::SetRestitutionThreshold(float threshold) {
+    restitution_threshold_ = threshold;
+  }
+  
+  inline float Contact::GetRestitutionThreshold() const {
+    return restitution_threshold_;
+  }
+  
+  inline void Contact::ResetRestitutionThreshold() {
+    restitution_threshold_ = MixRestitutionThreshold(fixture_a_->m_restitutionThreshold, fixture_b_->m_restitutionThreshold);
+  }
+  
+  inline void Contact::SetTangentSpeed(float speed) {
+    tangent_speed_ = speed;
+  }
+  
+  inline float Contact::GetTangentSpeed() const {
+    return tangent_speed_;
+  }
+  
+
 }

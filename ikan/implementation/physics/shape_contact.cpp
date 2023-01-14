@@ -25,14 +25,14 @@ namespace physics {
   
   CircleContact::CircleContact(Fixture* fixtureA, Fixture* fixtureB)
   : Contact(fixtureA, 0, fixtureB, 0) {
-    IK_ASSERT(m_fixtureA->GetType() == Shape::Type::Circle);
-    IK_ASSERT(m_fixtureB->GetType() == Shape::Type::Circle);
+    IK_ASSERT(fixture_a_->GetType() == Shape::Type::Circle);
+    IK_ASSERT(fixture_b_->GetType() == Shape::Type::Circle);
   }
   
   void CircleContact::Evaluate(Manifold* manifold, const Transform& xfA, const Transform& xfB) {
     CollideCircles(manifold,
-                   (CircleShape*)m_fixtureA->GetShape(), xfA,
-                   (CircleShape*)m_fixtureB->GetShape(), xfB);
+                   (CircleShape*)fixture_a_->GetShape(), xfA,
+                   (CircleShape*)fixture_b_->GetShape(), xfB);
   }
 
   Contact* PolygonAndCircleContact::Create(Fixture* fixtureA, int32_t, Fixture* fixtureB, int32_t, BlockAllocator* allocator) {
@@ -47,14 +47,14 @@ namespace physics {
   
   PolygonAndCircleContact::PolygonAndCircleContact(Fixture* fixtureA, Fixture* fixtureB)
   : Contact(fixtureA, 0, fixtureB, 0) {
-    IK_ASSERT(m_fixtureA->GetType() == Shape::Type::Polygon);
-    IK_ASSERT(m_fixtureB->GetType() == Shape::Type::Circle);
+    IK_ASSERT(fixture_a_->GetType() == Shape::Type::Polygon);
+    IK_ASSERT(fixture_b_->GetType() == Shape::Type::Circle);
   }
   
   void PolygonAndCircleContact::Evaluate(Manifold* manifold, const Transform& xfA, const Transform& xfB) {
     CollidePolygonAndCircle( manifold,
-                            (PolygonShape*)m_fixtureA->GetShape(), xfA,
-                            (CircleShape*)m_fixtureB->GetShape(), xfB);
+                            (PolygonShape*)fixture_a_->GetShape(), xfA,
+                            (CircleShape*)fixture_b_->GetShape(), xfB);
   }
 
   Contact* PolygonContact::Create(Fixture* fixtureA, int32_t, Fixture* fixtureB, int32_t, BlockAllocator* allocator) {
@@ -69,14 +69,14 @@ namespace physics {
   
   PolygonContact::PolygonContact(Fixture* fixtureA, Fixture* fixtureB)
   : Contact(fixtureA, 0, fixtureB, 0) {
-    IK_ASSERT(m_fixtureA->GetType() == Shape::Type::Polygon);
-    IK_ASSERT(m_fixtureB->GetType() == Shape::Type::Polygon);
+    IK_ASSERT(fixture_a_->GetType() == Shape::Type::Polygon);
+    IK_ASSERT(fixture_b_->GetType() == Shape::Type::Polygon);
   }
   
   void PolygonContact::Evaluate(Manifold* manifold, const Transform& xfA, const Transform& xfB) {
     CollidePolygons(  manifold,
-                      (PolygonShape*)m_fixtureA->GetShape(), xfA,
-                      (PolygonShape*)m_fixtureB->GetShape(), xfB);
+                      (PolygonShape*)fixture_a_->GetShape(), xfA,
+                      (PolygonShape*)fixture_b_->GetShape(), xfB);
   }
 
   
@@ -92,14 +92,14 @@ namespace physics {
   
   EdgeAndCircleContact::EdgeAndCircleContact(Fixture* fixtureA, Fixture* fixtureB)
   : Contact(fixtureA, 0, fixtureB, 0) {
-    IK_ASSERT(m_fixtureA->GetType() == Shape::Type::Edge);
-    IK_ASSERT(m_fixtureB->GetType() == Shape::Type::Circle);
+    IK_ASSERT(fixture_a_->GetType() == Shape::Type::Edge);
+    IK_ASSERT(fixture_b_->GetType() == Shape::Type::Circle);
   }
   
   void EdgeAndCircleContact::Evaluate(Manifold* manifold, const Transform& xfA, const Transform& xfB) {
     CollideEdgeAndCircle(  manifold,
-                           (EdgeShape*)m_fixtureA->GetShape(), xfA,
-                           (CircleShape*)m_fixtureB->GetShape(), xfB);
+                           (EdgeShape*)fixture_a_->GetShape(), xfA,
+                           (CircleShape*)fixture_b_->GetShape(), xfB);
   }
 
 
@@ -115,14 +115,14 @@ namespace physics {
   
   EdgeAndPolygonContact::EdgeAndPolygonContact(Fixture* fixtureA, Fixture* fixtureB)
   : Contact(fixtureA, 0, fixtureB, 0) {
-    IK_ASSERT(m_fixtureA->GetType() == Shape::Type::Edge);
-    IK_ASSERT(m_fixtureB->GetType() == Shape::Type::Polygon);
+    IK_ASSERT(fixture_a_->GetType() == Shape::Type::Edge);
+    IK_ASSERT(fixture_b_->GetType() == Shape::Type::Polygon);
   }
   
   void EdgeAndPolygonContact::Evaluate(Manifold* manifold, const Transform& xfA, const Transform& xfB) {
     CollideEdgeAndPolygon(  manifold,
-                            (EdgeShape*)m_fixtureA->GetShape(), xfA,
-                            (PolygonShape*)m_fixtureB->GetShape(), xfB);
+                            (EdgeShape*)fixture_a_->GetShape(), xfA,
+                            (PolygonShape*)fixture_b_->GetShape(), xfB);
   }
 
   Contact* ChainAndCircleContact::Create(Fixture* fixtureA, int32_t indexA, Fixture* fixtureB, int32_t indexB, BlockAllocator* allocator) {
@@ -137,16 +137,16 @@ namespace physics {
   
   ChainAndCircleContact::ChainAndCircleContact(Fixture* fixtureA, int32_t indexA, Fixture* fixtureB, int32_t indexB)
   : Contact(fixtureA, indexA, fixtureB, indexB) {
-    IK_ASSERT(m_fixtureA->GetType() == Shape::Type::Chain);
-    IK_ASSERT(m_fixtureB->GetType() == Shape::Type::Circle);
+    IK_ASSERT(fixture_a_->GetType() == Shape::Type::Chain);
+    IK_ASSERT(fixture_b_->GetType() == Shape::Type::Circle);
   }
   
   void ChainAndCircleContact::Evaluate(Manifold* manifold, const Transform& xfA, const Transform& xfB) {
-    ChainShape* chain = (ChainShape*)m_fixtureA->GetShape();
+    ChainShape* chain = (ChainShape*)fixture_a_->GetShape();
     EdgeShape edge;
-    chain->GetChildEdge(&edge, m_indexA);
+    chain->GetChildEdge(&edge, index_a_);
     CollideEdgeAndCircle(  manifold, &edge, xfA,
-                           (CircleShape*)m_fixtureB->GetShape(), xfB);
+                           (CircleShape*)fixture_b_->GetShape(), xfB);
   }
 
   Contact* ChainAndPolygonContact::Create(Fixture* fixtureA, int32_t indexA, Fixture* fixtureB, int32_t indexB, BlockAllocator* allocator) {
@@ -161,16 +161,16 @@ namespace physics {
   
   ChainAndPolygonContact::ChainAndPolygonContact(Fixture* fixtureA, int32_t indexA, Fixture* fixtureB, int32_t indexB)
   : Contact(fixtureA, indexA, fixtureB, indexB) {
-    IK_ASSERT(m_fixtureA->GetType() == Shape::Type::Chain);
-    IK_ASSERT(m_fixtureB->GetType() == Shape::Type::Polygon);
+    IK_ASSERT(fixture_a_->GetType() == Shape::Type::Chain);
+    IK_ASSERT(fixture_b_->GetType() == Shape::Type::Polygon);
   }
   
   void ChainAndPolygonContact::Evaluate(Manifold* manifold, const Transform& xfA, const Transform& xfB) {
-    ChainShape* chain = (ChainShape*)m_fixtureA->GetShape();
+    ChainShape* chain = (ChainShape*)fixture_a_->GetShape();
     EdgeShape edge;
-    chain->GetChildEdge(&edge, m_indexA);
+    chain->GetChildEdge(&edge, index_a_);
     CollideEdgeAndPolygon(  manifold, &edge, xfA,
-                            (PolygonShape*)m_fixtureB->GetShape(), xfB);
+                            (PolygonShape*)fixture_b_->GetShape(), xfB);
   }
 
 }

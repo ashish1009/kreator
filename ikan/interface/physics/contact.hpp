@@ -178,155 +178,45 @@ namespace physics {
     static void Destroy(Contact* contact, Shape::Type typeA, Shape::Type typeB, BlockAllocator* allocator);
     static void Destroy(Contact* contact, BlockAllocator* allocator);
 
-    Contact() : m_fixtureA(nullptr), m_fixtureB(nullptr) {}
+    Contact() : fixture_a_(nullptr), fixture_b_(nullptr) {}
     Contact(Fixture* fixtureA, int32_t indexA, Fixture* fixtureB, int32_t indexB);
     virtual ~Contact() {}
 
     void Update(ContactListener* listener);
 
-    static ContactRegister s_registers[(size_t)Shape::Type::TypeCount][(size_t)Shape::Type::TypeCount];
-    static bool s_initialized;
+    
+    // --------------------------
+    // Member variable
+    // --------------------------
+    static ContactRegister registers_[(size_t)Shape::Type::TypeCount][(size_t)Shape::Type::TypeCount];
+    static bool initialized_;
 
-    uint32_t m_flags;
+    uint32_t flags_;
 
     // World pool and list pointers.
-    Contact* m_prev;
-    Contact* m_next;
+    Contact* prev_;
+    Contact* next_;
 
     // Nodes for connecting bodies.
-    ContactEdge m_nodeA;
-    ContactEdge m_nodeB;
+    ContactEdge node_a_;
+    ContactEdge node_b_;
 
-    Fixture* m_fixtureA;
-    Fixture* m_fixtureB;
+    Fixture* fixture_a_;
+    Fixture* fixture_b_;
 
-    int32_t m_indexA;
-    int32_t m_indexB;
+    int32_t index_a_;
+    int32_t index_b_;
 
-    Manifold m_manifold;
+    Manifold manifold_;
 
-    int32_t m_toiCount;
-    float m_toi;
+    int32_t toi_count_;
+    float toi_;
 
-    float m_friction;
-    float m_restitution;
-    float m_restitutionThreshold;
+    float friction_;
+    float restitution_;
+    float restitution_threshold_;
 
-    float m_tangentSpeed;
+    float tangent_speed_;
   };
   
-  inline Manifold* Contact::GetManifold() {
-    return &m_manifold;
-  }
-  
-  inline const Manifold* Contact::GetManifold() const {
-    return &m_manifold;
-  }
-  
-  inline void Contact::GetWorldManifold(WorldManifold* worldManifold) const {
-    const Body* bodyA = m_fixtureA->GetBody();
-    const Body* bodyB = m_fixtureB->GetBody();
-    const Shape* shapeA = m_fixtureA->GetShape();
-    const Shape* shapeB = m_fixtureB->GetShape();
-    
-    worldManifold->Initialize(&m_manifold, bodyA->GetTransform(), shapeA->radius_, bodyB->GetTransform(), shapeB->radius_);
-  }
-  
-  inline void Contact::SetEnabled(bool flag) {
-    if (flag) {
-      m_flags |= EnabledFlag;
-    }
-    else {
-      m_flags &= ~EnabledFlag;
-    }
-  }
-  
-  inline bool Contact::IsEnabled() const {
-    return (m_flags & EnabledFlag) == EnabledFlag;
-  }
-  
-  inline bool Contact::IsTouching() const {
-    return (m_flags & TouchingFlag) == TouchingFlag;
-  }
-  
-  inline Contact* Contact::GetNext() {
-    return m_next;
-  }
-  
-  inline const Contact* Contact::GetNext() const {
-    return m_next;
-  }
-  
-  inline Fixture* Contact::GetFixtureA() {
-    return m_fixtureA;
-  }
-  
-  inline const Fixture* Contact::GetFixtureA() const {
-    return m_fixtureA;
-  }
-  
-  inline Fixture* Contact::GetFixtureB() {
-    return m_fixtureB;
-  }
-  
-  inline int32_t Contact::GetChildIndexA() const {
-    return m_indexA;
-  }
-  
-  inline const Fixture* Contact::GetFixtureB() const {
-    return m_fixtureB;
-  }
-  
-  inline int32_t Contact::GetChildIndexB() const {
-    return m_indexB;
-  }
-  
-  inline void Contact::FlagForFiltering() {
-    m_flags |= FilterFlag;
-  }
-  
-  inline void Contact::SetFriction(float friction) {
-    m_friction = friction;
-  }
-  
-  inline float Contact::GetFriction() const {
-    return m_friction;
-  }
-  
-  inline void Contact::ResetFriction() {
-    m_friction = MixFriction(m_fixtureA->m_friction, m_fixtureB->m_friction);
-  }
-  
-  inline void Contact::SetRestitution(float restitution) {
-    m_restitution = restitution;
-  }
-  
-  inline float Contact::GetRestitution() const {
-    return m_restitution;
-  }
-  
-  inline void Contact::ResetRestitution() {
-    m_restitution = MixRestitution(m_fixtureA->m_restitution, m_fixtureB->m_restitution);
-  }
-  
-  inline void Contact::SetRestitutionThreshold(float threshold) {
-    m_restitutionThreshold = threshold;
-  }
-  
-  inline float Contact::GetRestitutionThreshold() const {
-    return m_restitutionThreshold;
-  }
-  
-  inline void Contact::ResetRestitutionThreshold() {
-    m_restitutionThreshold = MixRestitutionThreshold(m_fixtureA->m_restitutionThreshold, m_fixtureB->m_restitutionThreshold);
-  }
-  
-  inline void Contact::SetTangentSpeed(float speed) {
-    m_tangentSpeed = speed;
-  }
-  
-  inline float Contact::GetTangentSpeed() const {
-    return m_tangentSpeed;
-  }
-
 }
