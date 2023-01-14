@@ -111,6 +111,20 @@ namespace physics {
     /// @return the same point expressed in world coordinates.
     Vec2 GetWorldPoint(const Vec2& localPoint) const;
 
+    /// Gets a local vector given a world vector.
+    /// @param worldVector a vector in world coordinates.
+    /// @return the corresponding local vector.
+    Vec2 GetLocalVector(const Vec2& worldVector) const;
+
+    /// Get the world coordinates of a vector given the local coordinates.
+    /// @param localVector a vector fixed in the body.
+    /// @return the same vector expressed in world coordinates.
+    Vec2 GetWorldVector(const Vec2& localVector) const;
+
+    /// Get the angle in radians.
+    /// @return the current world rotation angle in radians.
+    float GetAngle() const;
+
   private:
     friend class DistanceJoint;
     
@@ -128,6 +142,7 @@ namespace physics {
 
     friend class ContactManager;
     friend class MouseJoint;
+    friend class PrismaticJoint;
     
     BodyType type_;
     ContactEdge* contact_list_;
@@ -158,5 +173,18 @@ namespace physics {
   inline Vec2 Body::GetWorldPoint(const Vec2& localPoint) const {
     return Mul(m_xf, localPoint);
   }
+  
+  inline Vec2 Body::GetLocalVector(const Vec2& worldVector) const {
+    return MulT(m_xf.q, worldVector);
+  }
+
+  inline float Body::GetAngle() const {
+    return m_sweep.a;
+  }
+
+  inline Vec2 Body::GetWorldVector(const Vec2& localVector) const {
+    return Mul(m_xf.q, localVector);
+  }
+
   
 }

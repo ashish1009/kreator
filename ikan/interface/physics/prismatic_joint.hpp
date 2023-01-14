@@ -7,8 +7,179 @@
 
 #pragma once
 
+#include "joint.hpp"
+
 namespace physics {
   
+  /// Prismatic joint definition. This requires defining a line of
+  /// motion using an axis and an anchor point. The definition uses local
+  /// anchor points and a local axis so that the initial configuration
+  /// can violate the constraint slightly. The joint translation is zero
+  /// when the local anchor points coincide in world space. Using local
+  /// anchors and a local axis helps when saving and loading a game.
+  struct PrismaticJointDef : public JointDef {
+    PrismaticJointDef()
+    {
+      type = prismaticJoint;
+      localAnchorA.SetZero();
+      localAnchorB.SetZero();
+      localAxisA.Set(1.0f, 0.0f);
+      referenceAngle = 0.0f;
+      enableLimit = false;
+      lowerTranslation = 0.0f;
+      upperTranslation = 0.0f;
+      enableMotor = false;
+      maxMotorForce = 0.0f;
+      motorSpeed = 0.0f;
+    }
+    
+    /// Initialize the bodies, anchors, axis, and reference angle using the world
+    /// anchor and unit world axis.
+    void Initialize(Body* bodyA, Body* bodyB, const Vec2& anchor, const Vec2& axis);
+    
+    /// The local anchor point relative to bodyA's origin.
+    Vec2 localAnchorA;
+    
+    /// The local anchor point relative to bodyB's origin.
+    Vec2 localAnchorB;
+    
+    /// The local translation unit axis in bodyA.
+    Vec2 localAxisA;
+    
+    /// The constrained angle between the bodies: bodyB_angle - bodyA_angle.
+    float referenceAngle;
+    
+    /// Enable/disable the joint limit.
+    bool enableLimit;
+    
+    /// The lower translation limit, usually in meters.
+    float lowerTranslation;
+    
+    /// The upper translation limit, usually in meters.
+    float upperTranslation;
+    
+    /// Enable/disable the joint motor.
+    bool enableMotor;
+    
+    /// The maximum motor torque, usually in N-m.
+    float maxMotorForce;
+    
+    /// The desired motor speed in radians per second.
+    float motorSpeed;
+  };
   
+  /// A prismatic joint. This joint provides one degree of freedom: translation
+  /// along an axis fixed in bodyA. Relative rotation is prevented. You can
+  /// use a joint limit to restrict the range of motion and a joint motor to
+  /// drive the motion or to model joint friction.
+  class PrismaticJoint : public Joint {
+  public:
+    Vec2 GetAnchorA() const override;
+    Vec2 GetAnchorB() const override;
+    
+    Vec2 GetReactionForce(float inv_dt) const override;
+    float GetReactionTorque(float inv_dt) const override;
+    
+    /// The local anchor point relative to bodyA's origin.
+    const Vec2& GetLocalAnchorA() const { return m_localAnchorA; }
+    
+    /// The local anchor point relative to bodyB's origin.
+    const Vec2& GetLocalAnchorB() const  { return m_localAnchorB; }
+    
+    /// The local joint axis relative to bodyA.
+    const Vec2& GetLocalAxisA() const { return m_localXAxisA; }
+    
+    /// Get the reference angle.
+    float GetReferenceAngle() const { return m_referenceAngle; }
+    
+    /// Get the current joint translation, usually in meters.
+    float GetJointTranslation() const;
+    
+    /// Get the current joint translation speed, usually in meters per second.
+    float GetJointSpeed() const;
+    
+    /// Is the joint limit enabled?
+    bool IsLimitEnabled() const;
+    
+    /// Enable/disable the joint limit.
+    void EnableLimit(bool flag);
+    
+    /// Get the lower joint limit, usually in meters.
+    float GetLowerLimit() const;
+    
+    /// Get the upper joint limit, usually in meters.
+    float GetUpperLimit() const;
+    
+    /// Set the joint limits, usually in meters.
+    void SetLimits(float lower, float upper);
+    
+    /// Is the joint motor enabled?
+    bool IsMotorEnabled() const;
+    
+    /// Enable/disable the joint motor.
+    void EnableMotor(bool flag);
+    
+    /// Set the motor speed, usually in meters per second.
+    void SetMotorSpeed(float speed);
+    
+    /// Get the motor speed, usually in meters per second.
+    float GetMotorSpeed() const;
+    
+    /// Set the maximum motor force, usually in N.
+    void SetMaxMotorForce(float force);
+    float GetMaxMotorForce() const { return m_maxMotorForce; }
+    
+    /// Get the current motor force given the inverse time step, usually in N.
+    float GetMotorForce(float inv_dt) const;
+    
+    ///
+    void Draw(physics::Draw* draw) const override;
+    
+  protected:
+    friend class Joint;
+    friend class GearJoint;
+    PrismaticJoint(const PrismaticJointDef* def);
+    
+    void InitVelocityConstraints(const SolverData& data) override;
+    void SolveVelocityConstraints(const SolverData& data) override;
+    bool SolvePositionConstraints(const SolverData& data) override;
+    
+    Vec2 m_localAnchorA;
+    Vec2 m_localAnchorB;
+    Vec2 m_localXAxisA;
+    Vec2 m_localYAxisA;
+    float m_referenceAngle;
+    Vec2 m_impulse;
+    float m_motorImpulse;
+    float m_lowerImpulse;
+    float m_upperImpulse;
+    float m_lowerTranslation;
+    float m_upperTranslation;
+    float m_maxMotorForce;
+    float m_motorSpeed;
+    bool m_enableLimit;
+    bool m_enableMotor;
+    
+    // Solver temp
+    int32_t m_indexA;
+    int32_t m_indexB;
+    Vec2 m_localCenterA;
+    Vec2 m_localCenterB;
+    float m_invMassA;
+    float m_invMassB;
+    float m_invIA;
+    float m_invIB;
+    Vec2 m_axis, m_perp;
+    float m_s1, m_s2;
+    float m_a1, m_a2;
+    Mat22 m_K;
+    float m_translation;
+    float m_axialMass;
+  };
+  
+  inline float PrismaticJoint::GetMotorSpeed() const {
+    return m_motorSpeed;
+  }
+
   
 }
