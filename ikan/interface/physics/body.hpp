@@ -143,6 +143,7 @@ namespace physics {
     friend class ContactManager;
     friend class MouseJoint;
     friend class PrismaticJoint;
+    friend class RevoluteJoint;
     
     BodyType type_;
     ContactEdge* contact_list_;
