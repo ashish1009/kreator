@@ -145,6 +145,7 @@ namespace physics {
     friend class PrismaticJoint;
     friend class RevoluteJoint;
     friend class PulleyJoint;
+    friend class GearJoint;
     
     BodyType type_;
     ContactEdge* contact_list_;
