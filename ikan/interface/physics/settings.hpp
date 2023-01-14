@@ -10,7 +10,8 @@
 namespace physics {
   
 #define LengthUnitsPerMeter 1.0f
-  
+#define MaxPolygonVertices  8
+
   void* AllocDefault(int32_t size);
   void FreeDefault(void* mem);
 

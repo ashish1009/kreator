@@ -21,6 +21,8 @@
 		B222C30F2972A7B40060FA5D /* physics_common.h in Headers */ = {isa = PBXBuildFile; fileRef = B222C30E2972A7B40060FA5D /* physics_common.h */; };
 		B222C3172972A8F30060FA5D /* edge_shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B222C3152972A8F30060FA5D /* edge_shape.cpp */; };
 		B222C3182972A8F30060FA5D /* edge_shape.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B222C3162972A8F30060FA5D /* edge_shape.hpp */; };
+		B222C31B2972AA9C0060FA5D /* polygon_shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B222C3192972AA9C0060FA5D /* polygon_shape.cpp */; };
+		B222C31C2972AA9C0060FA5D /* polygon_shape.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B222C31A2972AA9C0060FA5D /* polygon_shape.hpp */; };
 		B2250CCF29585E310067C43B /* prefix_header.pch in Headers */ = {isa = PBXBuildFile; fileRef = B2250CCE29585E310067C43B /* prefix_header.pch */; };
 		B2250CD4295860420067C43B /* core_entry_point.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CD3295860420067C43B /* core_entry_point.h */; };
 		B2250CDB295861BF0067C43B /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD9295861BF0067C43B /* core_application.cpp */; };
@@ -236,6 +238,8 @@
 		B222C30E2972A7B40060FA5D /* physics_common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = physics_common.h; sourceTree = "<group>"; };
 		B222C3152972A8F30060FA5D /* edge_shape.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = edge_shape.cpp; sourceTree = "<group>"; };
 		B222C3162972A8F30060FA5D /* edge_shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = edge_shape.hpp; sourceTree = "<group>"; };
+		B222C3192972AA9C0060FA5D /* polygon_shape.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = polygon_shape.cpp; sourceTree = "<group>"; };
+		B222C31A2972AA9C0060FA5D /* polygon_shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = polygon_shape.hpp; sourceTree = "<group>"; };
 		B2250CBD29584D060067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCE29585E310067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		B2250CD3295860420067C43B /* core_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_entry_point.h; sourceTree = "<group>"; };
@@ -736,6 +740,7 @@
 				B27CAAD329729DC6009DB914 /* dynamic_tree.hpp */,
 				B22E79F62972A61900609CCA /* circle_shape.hpp */,
 				B222C3162972A8F30060FA5D /* edge_shape.hpp */,
+				B222C31A2972AA9C0060FA5D /* polygon_shape.hpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -757,6 +762,7 @@
 				B27CAAD229729DC6009DB914 /* dynamic_tree.cpp */,
 				B22E79F52972A61900609CCA /* circle_shape.cpp */,
 				B222C3152972A8F30060FA5D /* edge_shape.cpp */,
+				B222C3192972AA9C0060FA5D /* polygon_shape.cpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -1014,6 +1020,7 @@
 				B2FC3E9A295886FE00447A1A /* mouse_codes.h in Headers */,
 				B284DA1F29728FB8009FC6A1 /* shape.hpp in Headers */,
 				B24DD8232962FDA000525941 /* ray_sphere.hpp in Headers */,
+				B222C31C2972AA9C0060FA5D /* polygon_shape.hpp in Headers */,
 				B2FC3E96295884A400447A1A /* asset_manager.hpp in Headers */,
 				B2F526532959774B00A83C65 /* open_gl_shader_compiler.hpp in Headers */,
 				B2581117295AD76B00B0EDA7 /* camera.hpp in Headers */,
@@ -1226,6 +1233,7 @@
 				B24DD81A2962FD9800525941 /* ray_sphere.cpp in Sources */,
 				B24DD8192962FD9800525941 /* ray_renderer.cpp in Sources */,
 				B2FC3E912958840D00447A1A /* buffers.cpp in Sources */,
+				B222C31B2972AA9C0060FA5D /* polygon_shape.cpp in Sources */,
 				B24DD8162962FD9800525941 /* hit_payload.cpp in Sources */,
 				B2C7CAE02971EA9500E61B08 /* physics_math.cpp in Sources */,
 				B2F526562959775700A83C65 /* open_gl_shader_uniform.cpp in Sources */,
