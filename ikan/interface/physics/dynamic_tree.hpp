@@ -8,6 +8,7 @@
 #pragma once
 
 #include "collision.hpp"
+#include "growable_stack.hpp"
 
 namespace physics {
   
@@ -139,5 +140,131 @@ namespace physics {
     
     int32_t insertion_count_;
   };
+  
+  inline void* DynamicTree::GetUserData(int32_t proxyId) const {
+    IK_ASSERT(0 <= proxyId && proxyId < node_capacity_);
+    return nodes_[proxyId].userData;
+  }
+  
+  inline bool DynamicTree::WasMoved(int32_t proxyId) const {
+    IK_ASSERT(0 <= proxyId && proxyId < node_capacity_);
+    return nodes_[proxyId].moved;
+  }
+  
+  inline void DynamicTree::ClearMoved(int32_t proxyId) {
+    IK_ASSERT(0 <= proxyId && proxyId < node_capacity_);
+    nodes_[proxyId].moved = false;
+  }
+  
+  inline const AABB& DynamicTree::GetFatAABB(int32_t proxyId) const {
+    IK_ASSERT(0 <= proxyId && proxyId < node_capacity_);
+    return nodes_[proxyId].aabb;
+  }
+  
+  template <typename T>
+  inline void DynamicTree::Query(T* callback, const AABB& aabb) const {
+    GrowableStack<int32_t, 256> stack;
+    stack.Push(root_);
+    
+    while (stack.GetCount() > 0) {
+      int32_t nodeId = stack.Pop();
+      if (nodeId == NullNode) {
+        continue;
+      }
+      
+      const TreeNode* node = nodes_ + nodeId;
+      
+      if (TestOverlap(node->aabb, aabb)) {
+        if (node->IsLeaf()) {
+          bool proceed = callback->QueryCallback(nodeId);
+          if (proceed == false)
+          {
+            return;
+          }
+        }
+        else {
+          stack.Push(node->child1);
+          stack.Push(node->child2);
+        }
+      }
+    }
+  }
+  
+  template <typename T>
+  inline void DynamicTree::RayCast(T* callback, const RayCastInput& input) const {
+    Vec2 p1 = input.p1;
+    Vec2 p2 = input.p2;
+    Vec2 r = p2 - p1;
+    IK_ASSERT(r.LengthSquared() > 0.0f);
+    r.Normalize();
+    
+    // v is perpendicular to the segment.
+    Vec2 v = Cross(1.0f, r);
+    Vec2 abs_v = Abs(v);
+    
+    // Separating axis for segment (Gino, p80).
+    // |dot(v, p1 - c)| > dot(|v|, h)
+    
+    float maxFraction = input.maxFraction;
+    
+    // Build a bounding box for the segment.
+    AABB segmentAABB; {
+      Vec2 t = p1 + maxFraction * (p2 - p1);
+      segmentAABB.lowerBound = Min(p1, t);
+      segmentAABB.upperBound = Max(p1, t);
+    }
+    
+    GrowableStack<int32_t, 256> stack;
+    stack.Push(root_);
+    
+    while (stack.GetCount() > 0) {
+      int32_t nodeId = stack.Pop();
+      if (nodeId == NullNode) {
+        continue;
+      }
+      
+      const TreeNode* node = nodes_ + nodeId;
+      
+      if (TestOverlap(node->aabb, segmentAABB) == false) {
+        continue;
+      }
+      
+      // Separating axis for segment (Gino, p80).
+      // |dot(v, p1 - c)| > dot(|v|, h)
+      Vec2 c = node->aabb.GetCenter();
+      Vec2 h = node->aabb.GetExtents();
+      float separation = Abs(Dot(v, p1 - c)) - Dot(abs_v, h);
+      if (separation > 0.0f) {
+        continue;
+      }
+      
+      if (node->IsLeaf()) {
+        RayCastInput subInput;
+        subInput.p1 = input.p1;
+        subInput.p2 = input.p2;
+        subInput.maxFraction = maxFraction;
+        
+        float value = callback->RayCastCallback(subInput, nodeId);
+        
+        if (value == 0.0f) {
+          // The client has terminated the ray cast.
+          return;
+        }
+        
+        if (value > 0.0f) {
+          // Update segment bounding box.
+          maxFraction = value;
+          Vec2 t = p1 + maxFraction * (p2 - p1);
+          segmentAABB.lowerBound = Min(p1, t);
+          segmentAABB.upperBound = Max(p1, t);
+        }
+      }
+      else {
+        stack.Push(node->child1);
+        stack.Push(node->child2);
+      }
+    }
+  }
+
   
 }

@@ -86,7 +86,6 @@ namespace physics {
     void ShiftOrigin(const Vec2& newOrigin);
     
   private:
-    
     friend class DynamicTree;
     
     void BufferMove(int32_t proxyId);
@@ -109,4 +108,60 @@ namespace physics {
     int32_t query_proxyId_;
   };
   
+  template <typename T>
+  void BroadPhase::UpdatePairs(T* callback) {
+    // Reset pair buffer
+    pair_count_ = 0;
+    
+    // Perform tree queries for all moving proxies.
+    for (int32_t i = 0; i < move_count_; ++i) {
+      query_proxyId_ = move_buffer_[i];
+      if (query_proxyId_ == NullProxy) {
+        continue;
+      }
+      
+      // We have to query the tree with the fat AABB so that
+      // we don't fail to create a pair that may touch later.
+      const AABB& fatAABB = tree_.GetFatAABB(query_proxyId_);
+      
+      // Query tree, create pairs and add them pair buffer.
+      tree_.Query(this, fatAABB);
+    }
+    
+    // Send pairs to caller
+    for (int32_t i = 0; i < pair_count_; ++i) {
+      Pair* primaryPair = pair_buffer_ + i;
+      void* userDataA = tree_.GetUserData(primaryPair->proxy_IdA);
+      void* userDataB = tree_.GetUserData(primaryPair->proxy_IdB);
+      
+      callback->AddPair(userDataA, userDataB);
+    }
+    
+    // Clear move flags
+    for (int32_t i = 0; i < move_count_; ++i) {
+      int32_t proxyId = move_buffer_[i];
+      if (proxyId == NullProxy) {
+        continue;
+      }
+      
+      tree_.ClearMoved(proxyId);
+    }
+    
+    // Reset move buffer
+    move_count_ = 0;
+  }
+  
+  template <typename T>
+  inline void BroadPhase::Query(T* callback, const AABB& aabb) const {
+    tree_.Query(callback, aabb);
+  }
+  
+  template <typename T>
+  inline void BroadPhase::RayCast(T* callback, const RayCastInput& input) const {
+    tree_.RayCast(callback, input);
+  }
+  
+  inline void BroadPhase::ShiftOrigin(const Vec2& newOrigin) {
+    tree_.ShiftOrigin(newOrigin);
+  }
 }

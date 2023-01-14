@@ -100,6 +100,7 @@
 		B2B6CDD22958DF7700AE609E /* imgui_api.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2B6CDD02958DF7700AE609E /* imgui_api.hpp */; };
 		B2BA4BAA2972D2ED0078489C /* contact_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BA4BA82972D2ED0078489C /* contact_manager.cpp */; };
 		B2BA4BAB2972D2ED0078489C /* contact_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BA4BA92972D2ED0078489C /* contact_manager.hpp */; };
+		B2BA4BB42972DAB40078489C /* growable_stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BA4BB22972DAB40078489C /* growable_stack.hpp */; };
 		B2BCB84D295AE3410068FCA2 /* mac_os_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BCB84B295AE3410068FCA2 /* mac_os_input.cpp */; };
 		B2BCB84E295AE3410068FCA2 /* input.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BCB84C295AE3410068FCA2 /* input.hpp */; };
 		B2BD9E0E295CA7560076A2F9 /* open_gl_framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BD9E0C295CA7560076A2F9 /* open_gl_framebuffer.cpp */; };
@@ -332,6 +333,7 @@
 		B2B6CDD02958DF7700AE609E /* imgui_api.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imgui_api.hpp; sourceTree = "<group>"; };
 		B2BA4BA82972D2ED0078489C /* contact_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = contact_manager.cpp; sourceTree = "<group>"; };
 		B2BA4BA92972D2ED0078489C /* contact_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = contact_manager.hpp; sourceTree = "<group>"; };
+		B2BA4BB22972DAB40078489C /* growable_stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = growable_stack.hpp; sourceTree = "<group>"; };
 		B2BCB84B295AE3410068FCA2 /* mac_os_input.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mac_os_input.cpp; sourceTree = "<group>"; };
 		B2BCB84C295AE3410068FCA2 /* input.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = input.hpp; sourceTree = "<group>"; };
 		B2BD9E0C295CA7560076A2F9 /* open_gl_framebuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_framebuffer.cpp; sourceTree = "<group>"; };
@@ -777,6 +779,7 @@
 				B222C3222972AFFF0060FA5D /* contact.hpp */,
 				B222C3262972B8C70060FA5D /* shape_contact.hpp */,
 				B2BA4BA92972D2ED0078489C /* contact_manager.hpp */,
+				B2BA4BB22972DAB40078489C /* growable_stack.hpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -1002,6 +1005,7 @@
 				B2584ED0295B7B3E00234714 /* maths.hpp in Headers */,
 				B258111B295ADC2C00B0EDA7 /* editor_camera.hpp in Headers */,
 				B2BA4BAB2972D2ED0078489C /* contact_manager.hpp in Headers */,
+				B2BA4BB42972DAB40078489C /* growable_stack.hpp in Headers */,
 				B2FC3EAC2958880800447A1A /* key_event.hpp in Headers */,
 				B2FC40292958BBC500447A1A /* open_gl_renderer_context.hpp in Headers */,
 				B27CAAC029729108009DB914 /* block_allocator.hpp in Headers */,
