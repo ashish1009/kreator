@@ -9,6 +9,8 @@
 
 namespace physics {
   
+#define LengthUnitsPerMeter 1.0f
+  
   void* AllocDefault(int32_t size);
   void FreeDefault(void* mem);
 
@@ -31,4 +33,15 @@ namespace physics {
     /// For legacy compatibility
     uintptr_t pointer;
   };
+  
+  /// You can define this to inject whatever data you want in b2Fixture
+  struct FixtureUserData {
+    FixtureUserData() {
+      pointer = 0;
+    }
+    
+    /// For legacy compatibility
+    uintptr_t pointer;
+  };
+
 }
