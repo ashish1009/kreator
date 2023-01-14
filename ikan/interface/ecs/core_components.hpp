@@ -149,6 +149,8 @@ namespace ecs {
   struct RigidBodyComponent {
     physics::BodyType type = physics::BodyType::StaticBody;
     bool fixed_rotation = false;
+    // Storage
+    void* runtime_body = nullptr;
 
     void RenderGui();
     RigidBodyComponent() = default;
