@@ -199,15 +199,15 @@ namespace physics {
     }
   }
 
-  inline Manifold* Contact::GetManifold() {
+  Manifold* Contact::GetManifold() {
     return &manifold_;
   }
   
-  inline const Manifold* Contact::GetManifold() const {
+  const Manifold* Contact::GetManifold() const {
     return &manifold_;
   }
   
-  inline void Contact::GetWorldManifold(WorldManifold* worldManifold) const {
+  void Contact::GetWorldManifold(WorldManifold* worldManifold) const {
     const Body* bodyA = fixture_a_->GetBody();
     const Body* bodyB = fixture_b_->GetBody();
     const Shape* shapeA = fixture_a_->GetShape();
@@ -216,7 +216,7 @@ namespace physics {
     worldManifold->Initialize(&manifold_, bodyA->GetTransform(), shapeA->radius_, bodyB->GetTransform(), shapeB->radius_);
   }
   
-  inline void Contact::SetEnabled(bool flag) {
+  void Contact::SetEnabled(bool flag) {
     if (flag) {
       flags_ |= EnabledFlag;
     }
@@ -225,93 +225,92 @@ namespace physics {
     }
   }
   
-  inline bool Contact::IsEnabled() const {
+  bool Contact::IsEnabled() const {
     return (flags_ & EnabledFlag) == EnabledFlag;
   }
   
-  inline bool Contact::IsTouching() const {
+  bool Contact::IsTouching() const {
     return (flags_ & TouchingFlag) == TouchingFlag;
   }
   
-  inline Contact* Contact::GetNext() {
+  Contact* Contact::GetNext() {
     return next_;
   }
   
-  inline const Contact* Contact::GetNext() const {
+  const Contact* Contact::GetNext() const {
     return next_;
   }
   
-  inline Fixture* Contact::GetFixtureA() {
+  Fixture* Contact::GetFixtureA() {
     return fixture_a_;
   }
   
-  inline const Fixture* Contact::GetFixtureA() const {
+  const Fixture* Contact::GetFixtureA() const {
     return fixture_a_;
   }
   
-  inline Fixture* Contact::GetFixtureB() {
+  Fixture* Contact::GetFixtureB() {
     return fixture_b_;
   }
   
-  inline int32_t Contact::GetChildIndexA() const {
+  int32_t Contact::GetChildIndexA() const {
     return index_a_;
   }
   
-  inline const Fixture* Contact::GetFixtureB() const {
+  const Fixture* Contact::GetFixtureB() const {
     return fixture_b_;
   }
   
-  inline int32_t Contact::GetChildIndexB() const {
+  int32_t Contact::GetChildIndexB() const {
     return index_b_;
   }
   
-  inline void Contact::FlagForFiltering() {
+  void Contact::FlagForFiltering() {
     flags_ |= FilterFlag;
   }
   
-  inline void Contact::SetFriction(float friction) {
+  void Contact::SetFriction(float friction) {
     friction_ = friction;
   }
   
-  inline float Contact::GetFriction() const {
+  float Contact::GetFriction() const {
     return friction_;
   }
   
-  inline void Contact::ResetFriction() {
+  void Contact::ResetFriction() {
     friction_ = MixFriction(fixture_a_->m_friction, fixture_b_->m_friction);
   }
   
-  inline void Contact::SetRestitution(float restitution) {
+  void Contact::SetRestitution(float restitution) {
     restitution_ = restitution;
   }
   
-  inline float Contact::GetRestitution() const {
+  float Contact::GetRestitution() const {
     return restitution_;
   }
   
-  inline void Contact::ResetRestitution() {
+  void Contact::ResetRestitution() {
     restitution_ = MixRestitution(fixture_a_->m_restitution, fixture_b_->m_restitution);
   }
   
-  inline void Contact::SetRestitutionThreshold(float threshold) {
+  void Contact::SetRestitutionThreshold(float threshold) {
     restitution_threshold_ = threshold;
   }
   
-  inline float Contact::GetRestitutionThreshold() const {
+  float Contact::GetRestitutionThreshold() const {
     return restitution_threshold_;
   }
   
-  inline void Contact::ResetRestitutionThreshold() {
+  void Contact::ResetRestitutionThreshold() {
     restitution_threshold_ = MixRestitutionThreshold(fixture_a_->m_restitutionThreshold, fixture_b_->m_restitutionThreshold);
   }
   
-  inline void Contact::SetTangentSpeed(float speed) {
+  void Contact::SetTangentSpeed(float speed) {
     tangent_speed_ = speed;
   }
   
-  inline float Contact::GetTangentSpeed() const {
+  float Contact::GetTangentSpeed() const {
     return tangent_speed_;
   }
   
-
 }
