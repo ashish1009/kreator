@@ -55,4 +55,28 @@ namespace physics {
     bool useRadii;
   };
   
+  /// Output for b2Distance.
+  struct DistanceOutput {
+    Vec2 pointA;    ///< closest point on shapeA
+    Vec2 pointB;    ///< closest point on shapeB
+    float distance;
+    int32_t iterations;  ///< number of GJK iterations used
+  };
+  
+  /// Used to warm start b2Distance.
+  /// Set count to zero on first call.
+  struct SimplexCache {
+    float metric;    ///< length or area
+    uint16_t count;
+    uint8_t indexA[3];  ///< vertices on shape A
+    uint8_t indexB[3];  ///< vertices on shape B
+  };
+
+  /// Compute the closest points between two shapes. Supports any combination of:
+  /// b2CircleShape, b2PolygonShape, b2EdgeShape. The simplex cache is input/output.
+  /// On the first call set b2SimplexCache.count to zero.
+  void Distance(DistanceOutput* output,
+                SimplexCache* cache,
+                const DistanceInput* input);
+
 }

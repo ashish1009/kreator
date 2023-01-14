@@ -563,4 +563,7 @@ namespace physics {
     a -= d;
   }
   
+  /// Useful constant
+  extern const Vec2 Vec2_zero;
+  
 }

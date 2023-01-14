@@ -9,6 +9,8 @@
 
 namespace physics {
   
+  const Vec2 Vec2_zero(0.0f, 0.0f);
+  
   Vec3 Mat33::Solve33(const Vec3& b) const {
     float det = Dot(ex, Cross(ey, ez));
     if (det != 0.0f) {
