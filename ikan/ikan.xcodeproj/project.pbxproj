@@ -138,6 +138,8 @@
 		B2DAAB82296575B0003578D9 /* core_components.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2DAAB80296575AF003578D9 /* core_components.hpp */; };
 		B2E7600C2958D38100ADBE79 /* mac_os_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */; };
 		B2E7600D2958D38100ADBE79 /* mac_os_window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2E7600B2958D38100ADBE79 /* mac_os_window.hpp */; };
+		B2F481692972DE8A00B611DD /* distance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F481672972DE8A00B611DD /* distance.cpp */; };
+		B2F4816A2972DE8A00B611DD /* distance.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481682972DE8A00B611DD /* distance.hpp */; };
 		B2F4956A29630B8F003F9CB0 /* entt_scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F4956829630B8F003F9CB0 /* entt_scene.cpp */; };
 		B2F4956B29630B8F003F9CB0 /* entt_scene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F4956929630B8F003F9CB0 /* entt_scene.hpp */; };
 		B2F526522959774B00A83C65 /* open_gl_shader_compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F526502959774B00A83C65 /* open_gl_shader_compiler.cpp */; };
@@ -372,6 +374,8 @@
 		B2DAAB80296575AF003578D9 /* core_components.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_components.hpp; sourceTree = "<group>"; };
 		B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mac_os_window.cpp; sourceTree = "<group>"; };
 		B2E7600B2958D38100ADBE79 /* mac_os_window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mac_os_window.hpp; sourceTree = "<group>"; };
+		B2F481672972DE8A00B611DD /* distance.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = distance.cpp; sourceTree = "<group>"; };
+		B2F481682972DE8A00B611DD /* distance.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = distance.hpp; sourceTree = "<group>"; };
 		B2F4956829630B8F003F9CB0 /* entt_scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entt_scene.cpp; sourceTree = "<group>"; };
 		B2F4956929630B8F003F9CB0 /* entt_scene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = entt_scene.hpp; sourceTree = "<group>"; };
 		B2F526502959774B00A83C65 /* open_gl_shader_compiler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_shader_compiler.cpp; sourceTree = "<group>"; };
@@ -780,6 +784,7 @@
 				B222C3262972B8C70060FA5D /* shape_contact.hpp */,
 				B2BA4BA92972D2ED0078489C /* contact_manager.hpp */,
 				B2BA4BB22972DAB40078489C /* growable_stack.hpp */,
+				B2F481682972DE8A00B611DD /* distance.hpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -807,6 +812,7 @@
 				B222C3212972AFFF0060FA5D /* contact.cpp */,
 				B222C3252972B8C70060FA5D /* shape_contact.cpp */,
 				B2BA4BA82972D2ED0078489C /* contact_manager.cpp */,
+				B2F481672972DE8A00B611DD /* distance.cpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -1072,6 +1078,7 @@
 				B222C31C2972AA9C0060FA5D /* polygon_shape.hpp in Headers */,
 				B2FC3E96295884A400447A1A /* asset_manager.hpp in Headers */,
 				B2F526532959774B00A83C65 /* open_gl_shader_compiler.hpp in Headers */,
+				B2F4816A2972DE8A00B611DD /* distance.hpp in Headers */,
 				B2581117295AD76B00B0EDA7 /* camera.hpp in Headers */,
 				B216B266295B516A00C05392 /* batch_2d_renderer.hpp in Headers */,
 				B2FC3EB0295888DA00447A1A /* layer.hpp in Headers */,
@@ -1252,6 +1259,7 @@
 				B2C0D7FF2959E02B003F168B /* renderer_stats.cpp in Sources */,
 				B2FC3EA3295887FF00447A1A /* event.cpp in Sources */,
 				B2C0D8112959FB92003F168B /* renderer_buffer.cpp in Sources */,
+				B2F481692972DE8A00B611DD /* distance.cpp in Sources */,
 				B222C3232972AFFF0060FA5D /* contact.cpp in Sources */,
 				B2F96B402971D13A00B28EE4 /* world.cpp in Sources */,
 				B22E79F72972A61900609CCA /* circle_shape.cpp in Sources */,
