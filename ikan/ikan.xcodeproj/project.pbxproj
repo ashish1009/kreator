@@ -25,6 +25,8 @@
 		B222C31C2972AA9C0060FA5D /* polygon_shape.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B222C31A2972AA9C0060FA5D /* polygon_shape.hpp */; };
 		B222C31F2972ACAD0060FA5D /* chain_shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B222C31D2972ACAD0060FA5D /* chain_shape.cpp */; };
 		B222C3202972ACAD0060FA5D /* chain_shape.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B222C31E2972ACAD0060FA5D /* chain_shape.hpp */; };
+		B222C3232972AFFF0060FA5D /* contact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B222C3212972AFFF0060FA5D /* contact.cpp */; };
+		B222C3242972AFFF0060FA5D /* contact.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B222C3222972AFFF0060FA5D /* contact.hpp */; };
 		B2250CCF29585E310067C43B /* prefix_header.pch in Headers */ = {isa = PBXBuildFile; fileRef = B2250CCE29585E310067C43B /* prefix_header.pch */; };
 		B2250CD4295860420067C43B /* core_entry_point.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CD3295860420067C43B /* core_entry_point.h */; };
 		B2250CDB295861BF0067C43B /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD9295861BF0067C43B /* core_application.cpp */; };
@@ -244,6 +246,8 @@
 		B222C31A2972AA9C0060FA5D /* polygon_shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = polygon_shape.hpp; sourceTree = "<group>"; };
 		B222C31D2972ACAD0060FA5D /* chain_shape.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chain_shape.cpp; sourceTree = "<group>"; };
 		B222C31E2972ACAD0060FA5D /* chain_shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chain_shape.hpp; sourceTree = "<group>"; };
+		B222C3212972AFFF0060FA5D /* contact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = contact.cpp; sourceTree = "<group>"; };
+		B222C3222972AFFF0060FA5D /* contact.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = contact.hpp; sourceTree = "<group>"; };
 		B2250CBD29584D060067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCE29585E310067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		B2250CD3295860420067C43B /* core_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_entry_point.h; sourceTree = "<group>"; };
@@ -746,6 +750,7 @@
 				B222C3162972A8F30060FA5D /* edge_shape.hpp */,
 				B222C31A2972AA9C0060FA5D /* polygon_shape.hpp */,
 				B222C31E2972ACAD0060FA5D /* chain_shape.hpp */,
+				B222C3222972AFFF0060FA5D /* contact.hpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -769,6 +774,7 @@
 				B222C3152972A8F30060FA5D /* edge_shape.cpp */,
 				B222C3192972AA9C0060FA5D /* polygon_shape.cpp */,
 				B222C31D2972ACAD0060FA5D /* chain_shape.cpp */,
+				B222C3212972AFFF0060FA5D /* contact.cpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -1026,6 +1032,7 @@
 				B20303DA2965ADCE00563A34 /* content_browser_panel.hpp in Headers */,
 				B2FC3E9A295886FE00447A1A /* mouse_codes.h in Headers */,
 				B284DA1F29728FB8009FC6A1 /* shape.hpp in Headers */,
+				B222C3242972AFFF0060FA5D /* contact.hpp in Headers */,
 				B24DD8232962FDA000525941 /* ray_sphere.hpp in Headers */,
 				B222C31C2972AA9C0060FA5D /* polygon_shape.hpp in Headers */,
 				B2FC3E96295884A400447A1A /* asset_manager.hpp in Headers */,
@@ -1208,6 +1215,7 @@
 				B2C0D7FF2959E02B003F168B /* renderer_stats.cpp in Sources */,
 				B2FC3EA3295887FF00447A1A /* event.cpp in Sources */,
 				B2C0D8112959FB92003F168B /* renderer_buffer.cpp in Sources */,
+				B222C3232972AFFF0060FA5D /* contact.cpp in Sources */,
 				B2F96B402971D13A00B28EE4 /* world.cpp in Sources */,
 				B22E79F72972A61900609CCA /* circle_shape.cpp in Sources */,
 				B227F37329597F2B0055D871 /* open_gl_renderer_id_manager.cpp in Sources */,

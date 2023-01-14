@@ -12,6 +12,8 @@
 
 namespace physics {
   
+  struct ContactEdge;
+  
   /// The body type.  static: zero mass, zero velocity, may be manually moved
   /// kinematic: zero mass, non-zero velocity set by user, moved by solver
   /// dynamic: positive mass, non-zero velocity determined by forces, moved by solver
@@ -66,6 +68,12 @@ namespace physics {
     /// Get the body transform for the body's origin.
     /// @return the world transform of the body's origin.
     const Transform& GetTransform() const;
+    
+    /// Get the list of all contacts attached to this body.
+    /// @warning this list changes during the time step and you may
+    /// miss some collisions if you don't use b2ContactListener.
+    ContactEdge* GetContactList();
+    const ContactEdge* GetContactList() const;
   };
   
 }
