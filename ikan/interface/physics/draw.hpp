@@ -84,7 +84,5 @@ namespace physics {
   protected:
     uint32_t draw_flags;
   };
-  
 
-  
 }

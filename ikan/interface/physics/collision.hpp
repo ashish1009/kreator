@@ -72,7 +72,7 @@ namespace physics {
     Vec2 lowerBound;  ///< the lower vertex
     Vec2 upperBound;  ///< the upper vertex
   };
-
+  
   inline bool TestOverlap(const AABB& a, const AABB& b) {
     Vec2 d1, d2;
     d1 = b.lowerBound - a.upperBound;
@@ -86,5 +86,6 @@ namespace physics {
     
     return true;
   }
+
   
 }

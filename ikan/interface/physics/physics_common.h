@@ -1,13 +1,14 @@
 //
-//  collision.cpp
+//  common.h
 //  ikan
 //
 //  Created by Ashish . on 14/01/23.
 //
 
-#include "collision.hpp"
+#pragma once
 
 namespace physics {
   
+#define NOT_USED(x) ((void)(x))
   
 }
