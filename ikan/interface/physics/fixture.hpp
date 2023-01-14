@@ -50,7 +50,7 @@ namespace physics {
       shape = nullptr;
       friction = 0.2f;
       restitution = 0.0f;
-      restitution_yhreshold = 1.0f * LengthUnitsPerMeter;
+      restitution_threshold = 1.0f * LengthUnitsPerMeter;
       density = 0.0f;
       is_sensor = false;
     }
@@ -69,7 +69,7 @@ namespace physics {
     
     /// Restitution velocity threshold, usually in m/s. Collisions above this
     /// speed have restitution applied (will bounce).
-    float restitution_yhreshold;
+    float restitution_threshold;
     
     /// The density, usually in kg/m^2.
     float density;

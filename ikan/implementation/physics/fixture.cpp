@@ -30,7 +30,7 @@ namespace physics {
     user_data_ = def->userData;
     friction_ = def->friction;
     restitution_ = def->restitution;
-    restitution_threshold_ = def->restitution_yhreshold;
+    restitution_threshold_ = def->restitution_threshold;
     
     body_ = body;
     next_ = nullptr;

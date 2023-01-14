@@ -15,6 +15,9 @@
 #include "renderer/utils/aabb_renderer.hpp"
 #include "renderer/graphics/texture.hpp"
 
+#include "physics/polygon_shape.hpp"
+#include "physics/fixture.hpp"
+
 namespace ecs {
   
   EnttScene::EnttScene(const std::string& file_path)
@@ -231,26 +234,25 @@ namespace ecs {
       body_def.angle = transform.Rotation().z;
       
       physics::Body* body = physics_world_->CreateBody(&body_def);
-//      body->SetFixedRotation(rb2d.FixedRotation);
-//
-//      rb2d.RuntimeBody = body;
-//
-//      if (entity.HasComponent<BoxColloider2DComponent>())
-//      {
-//        auto& bc2d = entity.GetComponent<BoxColloider2DComponent>();
-//
-//        b2PolygonShape polygonShape;
-//        polygonShape.SetAsBox(bc2d.Size.x * transform.Scale.x, bc2d.Size.y * transform.Scale.y);
-//
-//        b2FixtureDef fixtureDef;
-//        fixtureDef.shape = & polygonShape;
-//        fixtureDef.density = bc2d.Density;
-//        fixtureDef.friction = bc2d.Friction;
-//        fixtureDef.restitution = bc2d.Restitution;
-//        fixtureDef.restitutionThreshold = bc2d.RestitutionThreshold;
-//
-//        body->CreateFixture(&fixtureDef);
-//      }
+      body->SetFixedRotation(rb2d.fixed_rotation);
+
+      rb2d.runtime_body = body;
+
+      if (entity.HasComponent<BoxColloiderComponent>()) {
+        auto& bc2d = entity.GetComponent<BoxColloiderComponent>();
+
+        physics::PolygonShape polygon_shape;
+        polygon_shape.SetAsBox(bc2d.size.x * transform.Scale().x, bc2d.size.y * transform.Scale().y);
+
+        physics::FixtureDef fixture_def;
+        fixture_def.shape = & polygon_shape;
+        fixture_def.density = bc2d.density;
+        fixture_def.friction = bc2d.friction;
+        fixture_def.restitution = bc2d.restitution;
+        fixture_def.restitution_threshold = bc2d.restitution_threshold;
+
+        body->CreateFixture(&fixture_def);
+      }
     }
 
     
