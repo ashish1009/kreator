@@ -127,6 +127,7 @@ namespace physics {
     };
 
     friend class ContactManager;
+    friend class MouseJoint;
     
     BodyType type_;
     ContactEdge* contact_list_;
