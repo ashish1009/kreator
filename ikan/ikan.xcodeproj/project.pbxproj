@@ -605,9 +605,9 @@
 			children = (
 				B2584ECD295B7B3E00234714 /* maths.cpp */,
 				B27CF128295EC6E000837A36 /* uuid.cpp */,
-				B25F61852969A8440042FE09 /* aabb.cpp */,
 				B2F96B20297173D500B28EE4 /* point.cpp */,
 				B2F96B24297174B500B28EE4 /* bounding_circle.cpp */,
+				B25F61852969A8440042FE09 /* aabb.cpp */,
 			);
 			path = math;
 			sourceTree = "<group>";
@@ -617,9 +617,9 @@
 			children = (
 				B2584ECE295B7B3E00234714 /* maths.hpp */,
 				B27CF129295EC6E000837A36 /* uuid.hpp */,
-				B25F61862969A8440042FE09 /* aabb.hpp */,
 				B2F96B1E2971736900B28EE4 /* point.hpp */,
 				B2F96B25297174B500B28EE4 /* bounding_circle.hpp */,
+				B25F61862969A8440042FE09 /* aabb.hpp */,
 			);
 			path = math;
 			sourceTree = "<group>";
