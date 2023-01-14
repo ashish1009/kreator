@@ -11,6 +11,11 @@
 
 namespace physics {
   
+  struct Pair {
+    int32_t proxy_IdA;
+    int32_t proxy_IdB;
+  };
+  
   /// The broad-phase is used for computing pairs and performing volume queries and ray casts.
   /// This broad-phase does not persist pairs. Instead, this reports potentially new pairs.
   /// It is up to the client to consume the new pairs and to track subsequent overlap.
@@ -89,19 +94,107 @@ namespace physics {
     
     bool QueryCallback(int32_t proxyId);
     
-    DynamicTree m_tree;
+    DynamicTree tree_;
     
-    int32_t m_proxyCount;
+    int32_t proxy_count_;
     
-    int32_t* m_moveBuffer;
-    int32_t m_moveCapacity;
-    int32_t m_moveCount;
+    int32_t* move_buffer_;
+    int32_t move_capacity_;
+    int32_t move_count_;
     
-    Pair* m_pairBuffer;
-    int32_t m_pairCapacity;
-    int32_t m_pairCount;
+    Pair* pair_buffer_;
+    int32_t pair_capacity_;
+    int32_t pair_count_;
     
-    int32_t m_queryProxyId;
+    int32_t query_proxyId_;
   };
+  
+  inline void* BroadPhase::GetUserData(int32_t proxyId) const {
+    return tree_.GetUserData(proxyId);
+  }
+  
+  inline bool BroadPhase::TestOverlap(int32_t proxyIdA, int32_t proxyIdB) const {
+    const AABB& aabbA = tree_.GetFatAABB(proxyIdA);
+    const AABB& aabbB = tree_.GetFatAABB(proxyIdB);
+    return physics::TestOverlap(aabbA, aabbB);
+  }
+  
+  inline const AABB& BroadPhase::GetFatAABB(int32_t proxyId) const {
+    return tree_.GetFatAABB(proxyId);
+  }
+  
+  inline int32_t BroadPhase::GetProxyCount() const {
+    return proxy_count_;
+  }
+  
+  inline int32_t BroadPhase::GetTreeHeight() const {
+    return tree_.GetHeight();
+  }
+  
+  inline int32_t BroadPhase::GetTreeBalance() const {
+    return tree_.GetMaxBalance();
+  }
+  
+  inline float BroadPhase::GetTreeQuality() const {
+    return tree_.GetAreaRatio();
+  }
+  
+  template <typename T>
+  void BroadPhase::UpdatePairs(T* callback) {
+    // Reset pair buffer
+    pair_count_ = 0;
+    
+    // Perform tree queries for all moving proxies.
+    for (int32_t i = 0; i < move_count_; ++i) {
+      query_proxyId_ = move_buffer_[i];
+      if (query_proxyId_ == NullProxy) {
+        continue;
+      }
+      
+      // We have to query the tree with the fat AABB so that
+      // we don't fail to create a pair that may touch later.
+      const AABB& fatAABB = tree_.GetFatAABB(query_proxyId_);
+      
+      // Query tree, create pairs and add them pair buffer.
+      tree_.Query(this, fatAABB);
+    }
+    
+    // Send pairs to caller
+    for (int32_t i = 0; i < pair_count_; ++i) {
+      Pair* primaryPair = pair_buffer_ + i;
+      void* userDataA = tree_.GetUserData(primaryPair->proxy_IdA);
+      void* userDataB = tree_.GetUserData(primaryPair->proxy_IdB);
+      
+      callback->AddPair(userDataA, userDataB);
+    }
+    
+    // Clear move flags
+    for (int32_t i = 0; i < move_count_; ++i) {
+      int32_t proxyId = move_buffer_[i];
+      if (proxyId == NullProxy) {
+        continue;
+      }
+      
+      tree_.ClearMoved(proxyId);
+    }
+    
+    // Reset move buffer
+    move_count_ = 0;
+  }
+  
+  template <typename T>
+  inline void BroadPhase::Query(T* callback, const AABB& aabb) const {
+    tree_.Query(callback, aabb);
+  }
+  
+  template <typename T>
+  inline void BroadPhase::RayCast(T* callback, const RayCastInput& input) const {
+    tree_.RayCast(callback, input);
+  }
+  
+  inline void BroadPhase::ShiftOrigin(const Vec2& newOrigin) {
+    tree_.ShiftOrigin(newOrigin);
+  }
+
   
 }
