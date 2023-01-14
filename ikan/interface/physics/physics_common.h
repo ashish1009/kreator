@@ -15,6 +15,5 @@ namespace physics {
 #define LinearSlop      (0.005f * LengthUnitsPerMeter)
 #define PolygonRadius    (2.0f * LinearSlop)
 #define AabbExtension    (0.1f * LengthUnitsPerMeter)
-#define AabbMultiplier    4.0f
-
+#define AabbMultiplier    4.0f  
 }

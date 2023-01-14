@@ -11,6 +11,21 @@
 
 namespace physics {
   
+  /// Color for debug drawing. Each value has the range [0,1].
+  struct Color {
+    Color() {}
+    Color(float rIn, float gIn, float bIn, float aIn = 1.0f) {
+      r = rIn; g = gIn; b = bIn; a = aIn;
+    }
+    
+    void Set(float rIn, float gIn, float bIn, float aIn = 1.0f) {
+      r = rIn; g = gIn; b = bIn; a = aIn;
+    }
+    
+    float r, g, b, a;
+  };
+  
+
   /// Implement and register this class with a World to provide debug drawing of physics entities in your game.
   class Draw {
   public:
@@ -41,32 +56,32 @@ namespace physics {
     ///   - vertices: vertice of polygon
     ///   - vertex_count: vertex cont
     ///   - color: color
-    virtual void DrawPolygon(const Vec2* vertices, int32_t vertex_count, const glm::vec4& color) = 0;
+    virtual void DrawPolygon(const Vec2* vertices, int32_t vertex_count, const Color& color) = 0;
     /// This function Draws a solid closed polygon provided in CCW order.
     /// - Parameters:
     ///   - vertices: vertice of polygon
     ///   - vertex_count: vertex cont
     ///   - color: color
-    virtual void DrawSolidPolygon(const Vec2* vertices, int32_t vertexCount, const glm::vec4& color) = 0;
+    virtual void DrawSolidPolygon(const Vec2* vertices, int32_t vertexCount, const Color& color) = 0;
     /// This function Draws a circle.
     /// - Parameters:
     ///   - center: center of circle
     ///   - radius: readuis of circle
     ///   - color: color
-    virtual void DrawCircle(const Vec2& center, float radius, const glm::vec4& color) = 0;
+    virtual void DrawCircle(const Vec2& center, float radius, const Color& color) = 0;
     /// This function Draws a solid circle.
     /// - Parameters:
     ///   - center: center of circle
     ///   - radius: readuis of circle
     ///   - axis: axis
     ///   - color: color
-    virtual void DrawSolidCircle(const Vec2& center, float radius, const Vec2& axis, const glm::vec4& color) = 0;
+    virtual void DrawSolidCircle(const Vec2& center, float radius, const Vec2& axis, const Color& color) = 0;
     /// This function Draws a line segment.
     /// - Parameters:
     ///   - p1: point 1
     ///   - p2: point 2
     ///   - color: color    `
-    virtual void DrawSegment(const Vec2& p1, const Vec2& p2, const glm::vec4& color) = 0;
+    virtual void DrawSegment(const Vec2& p1, const Vec2& p2, const Color& color) = 0;
     /// This function Draws a transform. Choose your own length scale.
     /// - Parameter a: transform.
     /// - Parameter xf: xf
@@ -76,7 +91,7 @@ namespace physics {
     ///   - p: position
     ///   - size: size
     ///   - color: color
-    virtual void DrawPoint(const Vec2& p, float size, const glm::vec4& color) = 0;
+    virtual void DrawPoint(const Vec2& p, float size, const Color& color) = 0;
 
     /// This function returns the drawing flags.
     uint32_t GetFlags() const;

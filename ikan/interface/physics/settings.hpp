@@ -45,4 +45,14 @@ namespace physics {
     uintptr_t pointer;
   };
 
+  /// You can define this to inject whatever data you want in b2Joint
+  struct JointUserData {
+    JointUserData() {
+      pointer = 0;
+    }
+    
+    /// For legacy compatibility
+    uintptr_t pointer;
+  };
+
 }

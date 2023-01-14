@@ -13,6 +13,7 @@
 namespace physics {
   
   struct ContactEdge;
+  struct JointEdge;
   class World;
 
   /// The body type.  static: zero mass, zero velocity, may be manually moved
@@ -92,11 +93,69 @@ namespace physics {
     // It may lie, depending on the collideConnected flag.
     bool ShouldCollide(const Body* other) const;
     
+    /// Get the total mass of the body.
+    /// @return the mass, usually in kilograms (kg).
+    float GetMass() const;
+    
+    /// Get the rotational inertia of the body about the local origin.
+    /// @return the rotational inertia, usually in kg-m^2.
+    float GetInertia() const;
+    
+    /// Gets a local point relative to the body's origin given a world point.
+    /// @param worldPoint a point in world coordinates.
+    /// @return the corresponding local point relative to the body's origin.
+    Vec2 GetLocalPoint(const Vec2& worldPoint) const;
+
+    /// Get the world coordinates of a point given the local coordinates.
+    /// @param localPoint a point on the body measured relative the the body's origin.
+    /// @return the same point expressed in world coordinates.
+    Vec2 GetWorldPoint(const Vec2& localPoint) const;
+
   private:
+    friend class DistanceJoint;
+    
+    // m_flags
+    enum
+    {
+      islandFlag    = 0x0001,
+      awakeFlag      = 0x0002,
+      autoSleepFlag    = 0x0004,
+      bulletFlag    = 0x0008,
+      fixedRotationFlag  = 0x0010,
+      enabledFlag    = 0x0020,
+      toiFlag      = 0x0040
+    };
+
     friend class ContactManager;
     
     BodyType type_;
     ContactEdge* contact_list_;
+    uint16_t m_flags;
+
+    float m_sleepTime;
+
+    Vec2 m_linearVelocity;
+    float m_angularVelocity;
+    Vec2 m_force;
+    float m_torque;
+
+    Transform m_xf;
+    Sweep m_sweep;    // the swept motion for CCD
+
+    JointEdge* m_jointList;
+    
+    float m_I, m_invI;
+    float m_mass, m_invMass;
+    
+    int32_t m_islandIndex;
   };
+  
+  inline Vec2 Body::GetLocalPoint(const Vec2& worldPoint) const {
+    return MulT(m_xf, worldPoint);
+  }
+  
+  inline Vec2 Body::GetWorldPoint(const Vec2& localPoint) const {
+    return Mul(m_xf, localPoint);
+  }
   
 }

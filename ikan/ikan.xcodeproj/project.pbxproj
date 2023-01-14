@@ -140,6 +140,30 @@
 		B2E7600D2958D38100ADBE79 /* mac_os_window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2E7600B2958D38100ADBE79 /* mac_os_window.hpp */; };
 		B2F481692972DE8A00B611DD /* distance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F481672972DE8A00B611DD /* distance.cpp */; };
 		B2F4816A2972DE8A00B611DD /* distance.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481682972DE8A00B611DD /* distance.hpp */; };
+		B2F481722972E65700B611DD /* joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F481702972E65700B611DD /* joint.cpp */; };
+		B2F481732972E65700B611DD /* joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481712972E65700B611DD /* joint.hpp */; };
+		B2F481762972E7DF00B611DD /* time_setup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F481742972E7DF00B611DD /* time_setup.cpp */; };
+		B2F481772972E7DF00B611DD /* time_setup.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481752972E7DF00B611DD /* time_setup.hpp */; };
+		B2F4817A2972EA6000B611DD /* distance_joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F481782972EA6000B611DD /* distance_joint.cpp */; };
+		B2F4817B2972EA6000B611DD /* distance_joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481792972EA6000B611DD /* distance_joint.hpp */; };
+		B2F481942972EAD500B611DD /* pully_joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481842972EAD500B611DD /* pully_joint.hpp */; };
+		B2F481952972EAD500B611DD /* prismatic_joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F481852972EAD500B611DD /* prismatic_joint.cpp */; };
+		B2F481962972EAD500B611DD /* mouse_joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F481862972EAD500B611DD /* mouse_joint.cpp */; };
+		B2F481972972EAD500B611DD /* wheel_joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481872972EAD500B611DD /* wheel_joint.hpp */; };
+		B2F481982972EAD500B611DD /* mouse_joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481882972EAD500B611DD /* mouse_joint.hpp */; };
+		B2F481992972EAD500B611DD /* gear_joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F481892972EAD500B611DD /* gear_joint.cpp */; };
+		B2F4819A2972EAD500B611DD /* gear_joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F4818A2972EAD500B611DD /* gear_joint.hpp */; };
+		B2F4819B2972EAD500B611DD /* wheel_joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F4818B2972EAD500B611DD /* wheel_joint.cpp */; };
+		B2F4819C2972EAD500B611DD /* pully_joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F4818C2972EAD500B611DD /* pully_joint.cpp */; };
+		B2F4819D2972EAD500B611DD /* weld_joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F4818D2972EAD500B611DD /* weld_joint.hpp */; };
+		B2F4819E2972EAD500B611DD /* friction_joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F4818E2972EAD500B611DD /* friction_joint.cpp */; };
+		B2F4819F2972EAD500B611DD /* friction_joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F4818F2972EAD500B611DD /* friction_joint.hpp */; };
+		B2F481A02972EAD500B611DD /* revolute_joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F481902972EAD500B611DD /* revolute_joint.cpp */; };
+		B2F481A12972EAD500B611DD /* revolute_joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481912972EAD500B611DD /* revolute_joint.hpp */; };
+		B2F481A22972EAD500B611DD /* weld_joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F481922972EAD500B611DD /* weld_joint.cpp */; };
+		B2F481A32972EAD500B611DD /* prismatic_joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481932972EAD500B611DD /* prismatic_joint.hpp */; };
+		B2F481A62972EBB400B611DD /* motor_joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F481A42972EBB400B611DD /* motor_joint.cpp */; };
+		B2F481A72972EBB400B611DD /* motor_joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481A52972EBB400B611DD /* motor_joint.hpp */; };
 		B2F4956A29630B8F003F9CB0 /* entt_scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F4956829630B8F003F9CB0 /* entt_scene.cpp */; };
 		B2F4956B29630B8F003F9CB0 /* entt_scene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F4956929630B8F003F9CB0 /* entt_scene.hpp */; };
 		B2F526522959774B00A83C65 /* open_gl_shader_compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F526502959774B00A83C65 /* open_gl_shader_compiler.cpp */; };
@@ -376,6 +400,30 @@
 		B2E7600B2958D38100ADBE79 /* mac_os_window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mac_os_window.hpp; sourceTree = "<group>"; };
 		B2F481672972DE8A00B611DD /* distance.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = distance.cpp; sourceTree = "<group>"; };
 		B2F481682972DE8A00B611DD /* distance.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = distance.hpp; sourceTree = "<group>"; };
+		B2F481702972E65700B611DD /* joint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = joint.cpp; sourceTree = "<group>"; };
+		B2F481712972E65700B611DD /* joint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = joint.hpp; sourceTree = "<group>"; };
+		B2F481742972E7DF00B611DD /* time_setup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = time_setup.cpp; sourceTree = "<group>"; };
+		B2F481752972E7DF00B611DD /* time_setup.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = time_setup.hpp; sourceTree = "<group>"; };
+		B2F481782972EA6000B611DD /* distance_joint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = distance_joint.cpp; sourceTree = "<group>"; };
+		B2F481792972EA6000B611DD /* distance_joint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = distance_joint.hpp; sourceTree = "<group>"; };
+		B2F481842972EAD500B611DD /* pully_joint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pully_joint.hpp; sourceTree = "<group>"; };
+		B2F481852972EAD500B611DD /* prismatic_joint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prismatic_joint.cpp; sourceTree = "<group>"; };
+		B2F481862972EAD500B611DD /* mouse_joint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mouse_joint.cpp; sourceTree = "<group>"; };
+		B2F481872972EAD500B611DD /* wheel_joint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = wheel_joint.hpp; sourceTree = "<group>"; };
+		B2F481882972EAD500B611DD /* mouse_joint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mouse_joint.hpp; sourceTree = "<group>"; };
+		B2F481892972EAD500B611DD /* gear_joint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gear_joint.cpp; sourceTree = "<group>"; };
+		B2F4818A2972EAD500B611DD /* gear_joint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gear_joint.hpp; sourceTree = "<group>"; };
+		B2F4818B2972EAD500B611DD /* wheel_joint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wheel_joint.cpp; sourceTree = "<group>"; };
+		B2F4818C2972EAD500B611DD /* pully_joint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pully_joint.cpp; sourceTree = "<group>"; };
+		B2F4818D2972EAD500B611DD /* weld_joint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = weld_joint.hpp; sourceTree = "<group>"; };
+		B2F4818E2972EAD500B611DD /* friction_joint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = friction_joint.cpp; sourceTree = "<group>"; };
+		B2F4818F2972EAD500B611DD /* friction_joint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = friction_joint.hpp; sourceTree = "<group>"; };
+		B2F481902972EAD500B611DD /* revolute_joint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = revolute_joint.cpp; sourceTree = "<group>"; };
+		B2F481912972EAD500B611DD /* revolute_joint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = revolute_joint.hpp; sourceTree = "<group>"; };
+		B2F481922972EAD500B611DD /* weld_joint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = weld_joint.cpp; sourceTree = "<group>"; };
+		B2F481932972EAD500B611DD /* prismatic_joint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = prismatic_joint.hpp; sourceTree = "<group>"; };
+		B2F481A42972EBB400B611DD /* motor_joint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = motor_joint.cpp; sourceTree = "<group>"; };
+		B2F481A52972EBB400B611DD /* motor_joint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = motor_joint.hpp; sourceTree = "<group>"; };
 		B2F4956829630B8F003F9CB0 /* entt_scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entt_scene.cpp; sourceTree = "<group>"; };
 		B2F4956929630B8F003F9CB0 /* entt_scene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = entt_scene.hpp; sourceTree = "<group>"; };
 		B2F526502959774B00A83C65 /* open_gl_shader_compiler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_shader_compiler.cpp; sourceTree = "<group>"; };
@@ -785,6 +833,18 @@
 				B2BA4BA92972D2ED0078489C /* contact_manager.hpp */,
 				B2BA4BB22972DAB40078489C /* growable_stack.hpp */,
 				B2F481682972DE8A00B611DD /* distance.hpp */,
+				B2F481712972E65700B611DD /* joint.hpp */,
+				B2F481752972E7DF00B611DD /* time_setup.hpp */,
+				B2F481792972EA6000B611DD /* distance_joint.hpp */,
+				B2F481882972EAD500B611DD /* mouse_joint.hpp */,
+				B2F481932972EAD500B611DD /* prismatic_joint.hpp */,
+				B2F481912972EAD500B611DD /* revolute_joint.hpp */,
+				B2F481842972EAD500B611DD /* pully_joint.hpp */,
+				B2F4818A2972EAD500B611DD /* gear_joint.hpp */,
+				B2F481872972EAD500B611DD /* wheel_joint.hpp */,
+				B2F4818D2972EAD500B611DD /* weld_joint.hpp */,
+				B2F4818F2972EAD500B611DD /* friction_joint.hpp */,
+				B2F481A52972EBB400B611DD /* motor_joint.hpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -813,6 +873,18 @@
 				B222C3252972B8C70060FA5D /* shape_contact.cpp */,
 				B2BA4BA82972D2ED0078489C /* contact_manager.cpp */,
 				B2F481672972DE8A00B611DD /* distance.cpp */,
+				B2F481702972E65700B611DD /* joint.cpp */,
+				B2F481742972E7DF00B611DD /* time_setup.cpp */,
+				B2F481782972EA6000B611DD /* distance_joint.cpp */,
+				B2F481862972EAD500B611DD /* mouse_joint.cpp */,
+				B2F481852972EAD500B611DD /* prismatic_joint.cpp */,
+				B2F481902972EAD500B611DD /* revolute_joint.cpp */,
+				B2F4818C2972EAD500B611DD /* pully_joint.cpp */,
+				B2F481892972EAD500B611DD /* gear_joint.cpp */,
+				B2F4818B2972EAD500B611DD /* wheel_joint.cpp */,
+				B2F481922972EAD500B611DD /* weld_joint.cpp */,
+				B2F4818E2972EAD500B611DD /* friction_joint.cpp */,
+				B2F481A42972EBB400B611DD /* motor_joint.cpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -1006,8 +1078,10 @@
 				B251B3FA295E15D300508210 /* viewport.hpp in Headers */,
 				B2F4956B29630B8F003F9CB0 /* entt_scene.hpp in Headers */,
 				B2FC3EB42958892200447A1A /* layer_stack.hpp in Headers */,
+				B2F481942972EAD500B611DD /* pully_joint.hpp in Headers */,
 				B2BD9E0F295CA7560076A2F9 /* open_gl_framebuffer.hpp in Headers */,
 				B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */,
+				B2F4819F2972EAD500B611DD /* friction_joint.hpp in Headers */,
 				B2584ED0295B7B3E00234714 /* maths.hpp in Headers */,
 				B258111B295ADC2C00B0EDA7 /* editor_camera.hpp in Headers */,
 				B2BA4BAB2972D2ED0078489C /* contact_manager.hpp in Headers */,
@@ -1015,6 +1089,7 @@
 				B2FC3EAC2958880800447A1A /* key_event.hpp in Headers */,
 				B2FC40292958BBC500447A1A /* open_gl_renderer_context.hpp in Headers */,
 				B27CAAC029729108009DB914 /* block_allocator.hpp in Headers */,
+				B2F481A32972EAD500B611DD /* prismatic_joint.hpp in Headers */,
 				B2F96B1F2971736900B28EE4 /* point.hpp in Headers */,
 				B2FC3E862958796F00447A1A /* ikan_headers.h in Headers */,
 				B2C7CAE52971ECD400E61B08 /* body.hpp in Headers */,
@@ -1025,7 +1100,9 @@
 				B2FC3EA92958880800447A1A /* event.hpp in Headers */,
 				B2C7CADD2971E89100E61B08 /* draw.hpp in Headers */,
 				B2FC3EAB2958880800447A1A /* application_event.hpp in Headers */,
+				B2F481A12972EAD500B611DD /* revolute_joint.hpp in Headers */,
 				B2FC401E2958B6AC00447A1A /* glfw_window.hpp in Headers */,
+				B2F481A72972EBB400B611DD /* motor_joint.hpp in Headers */,
 				B2F52668295979FE00A83C65 /* string_utils.hpp in Headers */,
 				B20303D329659A9A00563A34 /* log_utils.hpp in Headers */,
 				B2250CE729586A660067C43B /* asserts.h in Headers */,
@@ -1038,18 +1115,23 @@
 				B284DA1629728F61009FC6A1 /* fixture.hpp in Headers */,
 				B2250CCF29585E310067C43B /* prefix_header.pch in Headers */,
 				B2DAAB82296575B0003578D9 /* core_components.hpp in Headers */,
+				B2F481772972E7DF00B611DD /* time_setup.hpp in Headers */,
 				B24DD8382963045400525941 /* stb_image.h in Headers */,
 				B2250D02295873A70067C43B /* ikan_common.h in Headers */,
 				B2BCB84E295AE3410068FCA2 /* input.hpp in Headers */,
+				B2F4817B2972EA6000B611DD /* distance_joint.hpp in Headers */,
 				B2C7CAE12971EA9500E61B08 /* physics_math.hpp in Headers */,
+				B2F481972972EAD500B611DD /* wheel_joint.hpp in Headers */,
 				B24C4A782968638B00675599 /* scene_camera.hpp in Headers */,
 				B2BD9E16295CA7610076A2F9 /* framebuffer.hpp in Headers */,
 				B2C0D81A295A01DF003F168B /* pipeline.hpp in Headers */,
 				B2F5265B2959776A00A83C65 /* shader.hpp in Headers */,
 				B2F96B412971D13A00B28EE4 /* world.hpp in Headers */,
 				B2C0D816295A01D5003F168B /* open_gl_pipeline.hpp in Headers */,
+				B2F481732972E65700B611DD /* joint.hpp in Headers */,
 				B25F5DDF2966D3450030DE03 /* scene_panel_manager.hpp in Headers */,
 				B2250D042958751E0067C43B /* core_logger.h in Headers */,
+				B2F481982972EAD500B611DD /* mouse_joint.hpp in Headers */,
 				B2B6CDD22958DF7700AE609E /* imgui_api.hpp in Headers */,
 				B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */,
 				B2F96B27297174B500B28EE4 /* bounding_circle.hpp in Headers */,
@@ -1059,6 +1141,7 @@
 				B2D4EC932971EFFD00B4A8BE /* settings.hpp in Headers */,
 				B2FC405F2958BD0900447A1A /* open_gl_renderer_api.hpp in Headers */,
 				B24DD8282962FDA000525941 /* ray.hpp in Headers */,
+				B2F4819D2972EAD500B611DD /* weld_joint.hpp in Headers */,
 				B2C78409296AF2E5003F343E /* scene_serialiser.hpp in Headers */,
 				B222C3282972B8C70060FA5D /* shape_contact.hpp in Headers */,
 				B222C30F2972A7B40060FA5D /* physics_common.h in Headers */,
@@ -1093,6 +1176,7 @@
 				B2250CEA29586A770067C43B /* core_asserts.h in Headers */,
 				B2FC3E8E2958839600447A1A /* time_step.hpp in Headers */,
 				B2B6CDB72958D8AD00AE609E /* imgui_layer.hpp in Headers */,
+				B2F4819A2972EAD500B611DD /* gear_joint.hpp in Headers */,
 				B2E7600D2958D38100ADBE79 /* mac_os_window.hpp in Headers */,
 				B2250CD4295860420067C43B /* core_entry_point.h in Headers */,
 				B2250D00295873330067C43B /* logger.hpp in Headers */,
@@ -1219,6 +1303,7 @@
 			files = (
 				B222C3172972A8F30060FA5D /* edge_shape.cpp in Sources */,
 				B27CAAD029729D22009DB914 /* broad_phase.cpp in Sources */,
+				B2F481A62972EBB400B611DD /* motor_joint.cpp in Sources */,
 				B2F96B22297173D500B28EE4 /* point.cpp in Sources */,
 				B2FC3EA2295887FF00447A1A /* mouse_event.cpp in Sources */,
 				B2FC401D2958B6AC00447A1A /* glfw_window.cpp in Sources */,
@@ -1241,11 +1326,13 @@
 				B222C31F2972ACAD0060FA5D /* chain_shape.cpp in Sources */,
 				B222C32C2972BAF30060FA5D /* colloid_circle.cpp in Sources */,
 				B222C3322972C2800060FA5D /* colloid_edge.cpp in Sources */,
+				B2F481722972E65700B611DD /* joint.cpp in Sources */,
 				B2C0D8092959E161003F168B /* property_grid.cpp in Sources */,
 				B216B265295B516A00C05392 /* batch_2d_renderer.cpp in Sources */,
 				B2C78066296AE470003F343E /* aabb_renderer.cpp in Sources */,
 				B2BD9E15295CA7610076A2F9 /* framebuffer.cpp in Sources */,
 				B2F96B26297174B500B28EE4 /* bounding_circle.cpp in Sources */,
+				B2F4817A2972EA6000B611DD /* distance_joint.cpp in Sources */,
 				B2BD9E0E295CA7560076A2F9 /* open_gl_framebuffer.cpp in Sources */,
 				B27CF12A295EC6E000837A36 /* uuid.cpp in Sources */,
 				B2581116295AD76B00B0EDA7 /* camera.cpp in Sources */,
@@ -1254,14 +1341,17 @@
 				B2C7CAE42971ECD400E61B08 /* body.cpp in Sources */,
 				B2FC40162958B09000447A1A /* renderer.cpp in Sources */,
 				B2584ED3295B7FE200234714 /* text_renderer.cpp in Sources */,
+				B2F481A02972EAD500B611DD /* revolute_joint.cpp in Sources */,
 				B216B255295B2F6B00C05392 /* open_gl_texture.cpp in Sources */,
 				B2C78408296AF2E5003F343E /* scene_serialiser.cpp in Sources */,
 				B2C0D7FF2959E02B003F168B /* renderer_stats.cpp in Sources */,
 				B2FC3EA3295887FF00447A1A /* event.cpp in Sources */,
 				B2C0D8112959FB92003F168B /* renderer_buffer.cpp in Sources */,
+				B2F481962972EAD500B611DD /* mouse_joint.cpp in Sources */,
 				B2F481692972DE8A00B611DD /* distance.cpp in Sources */,
 				B222C3232972AFFF0060FA5D /* contact.cpp in Sources */,
 				B2F96B402971D13A00B28EE4 /* world.cpp in Sources */,
+				B2F4819C2972EAD500B611DD /* pully_joint.cpp in Sources */,
 				B22E79F72972A61900609CCA /* circle_shape.cpp in Sources */,
 				B227F37329597F2B0055D871 /* open_gl_renderer_id_manager.cpp in Sources */,
 				B2F4956A29630B8F003F9CB0 /* entt_scene.cpp in Sources */,
@@ -1269,6 +1359,8 @@
 				B2FC3EB32958892200447A1A /* layer_stack.cpp in Sources */,
 				B2DAAB81296575B0003578D9 /* core_components.cpp in Sources */,
 				B2C0D815295A01D5003F168B /* open_gl_pipeline.cpp in Sources */,
+				B2F481A22972EAD500B611DD /* weld_joint.cpp in Sources */,
+				B2F481952972EAD500B611DD /* prismatic_joint.cpp in Sources */,
 				B2FC3EA1295887FF00447A1A /* application_event.cpp in Sources */,
 				B2250CDB295861BF0067C43B /* core_application.cpp in Sources */,
 				B222C32F2972C0570060FA5D /* colloid_polygon.cpp in Sources */,
@@ -1279,6 +1371,7 @@
 				B2D4EC922971EFFD00B4A8BE /* settings.cpp in Sources */,
 				B25F61872969A8440042FE09 /* aabb.cpp in Sources */,
 				B222C3272972B8C70060FA5D /* shape_contact.cpp in Sources */,
+				B2F4819B2972EAD500B611DD /* wheel_joint.cpp in Sources */,
 				B2C7CADC2971E89100E61B08 /* draw.cpp in Sources */,
 				B2F52667295979FE00A83C65 /* string_utils.cpp in Sources */,
 				B2C0D819295A01DF003F168B /* pipeline.cpp in Sources */,
@@ -1298,10 +1391,13 @@
 				B2FC3E912958840D00447A1A /* buffers.cpp in Sources */,
 				B222C31B2972AA9C0060FA5D /* polygon_shape.cpp in Sources */,
 				B24DD8162962FD9800525941 /* hit_payload.cpp in Sources */,
+				B2F481992972EAD500B611DD /* gear_joint.cpp in Sources */,
+				B2F4819E2972EAD500B611DD /* friction_joint.cpp in Sources */,
 				B2BA4BAA2972D2ED0078489C /* contact_manager.cpp in Sources */,
 				B2C7CAE02971EA9500E61B08 /* physics_math.cpp in Sources */,
 				B2F526562959775700A83C65 /* open_gl_shader_uniform.cpp in Sources */,
 				B2250CFF295873330067C43B /* logger.cpp in Sources */,
+				B2F481762972E7DF00B611DD /* time_setup.cpp in Sources */,
 				B27CAABF29729108009DB914 /* block_allocator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
