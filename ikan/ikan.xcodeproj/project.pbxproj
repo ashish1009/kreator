@@ -27,6 +27,9 @@
 		B222C3202972ACAD0060FA5D /* chain_shape.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B222C31E2972ACAD0060FA5D /* chain_shape.hpp */; };
 		B222C3232972AFFF0060FA5D /* contact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B222C3212972AFFF0060FA5D /* contact.cpp */; };
 		B222C3242972AFFF0060FA5D /* contact.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B222C3222972AFFF0060FA5D /* contact.hpp */; };
+		B222C3272972B8C70060FA5D /* shape_contact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B222C3252972B8C70060FA5D /* shape_contact.cpp */; };
+		B222C3282972B8C70060FA5D /* shape_contact.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B222C3262972B8C70060FA5D /* shape_contact.hpp */; };
+		B222C32C2972BAF30060FA5D /* colloid_circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B222C32A2972BAF30060FA5D /* colloid_circle.cpp */; };
 		B2250CCF29585E310067C43B /* prefix_header.pch in Headers */ = {isa = PBXBuildFile; fileRef = B2250CCE29585E310067C43B /* prefix_header.pch */; };
 		B2250CD4295860420067C43B /* core_entry_point.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CD3295860420067C43B /* core_entry_point.h */; };
 		B2250CDB295861BF0067C43B /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD9295861BF0067C43B /* core_application.cpp */; };
@@ -248,6 +251,9 @@
 		B222C31E2972ACAD0060FA5D /* chain_shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chain_shape.hpp; sourceTree = "<group>"; };
 		B222C3212972AFFF0060FA5D /* contact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = contact.cpp; sourceTree = "<group>"; };
 		B222C3222972AFFF0060FA5D /* contact.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = contact.hpp; sourceTree = "<group>"; };
+		B222C3252972B8C70060FA5D /* shape_contact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shape_contact.cpp; sourceTree = "<group>"; };
+		B222C3262972B8C70060FA5D /* shape_contact.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shape_contact.hpp; sourceTree = "<group>"; };
+		B222C32A2972BAF30060FA5D /* colloid_circle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = colloid_circle.cpp; sourceTree = "<group>"; };
 		B2250CBD29584D060067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCE29585E310067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		B2250CD3295860420067C43B /* core_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_entry_point.h; sourceTree = "<group>"; };
@@ -436,6 +442,14 @@
 			);
 			name = stb_image;
 			path = ../../../ikan_ws/ikan/vendor/stb_image;
+			sourceTree = "<group>";
+		};
+		B222C3292972BAD60060FA5D /* collision */ = {
+			isa = PBXGroup;
+			children = (
+				B222C32A2972BAF30060FA5D /* colloid_circle.cpp */,
+			);
+			path = collision;
 			sourceTree = "<group>";
 		};
 		B2250CB429584D060067C43B = {
@@ -751,6 +765,7 @@
 				B222C31A2972AA9C0060FA5D /* polygon_shape.hpp */,
 				B222C31E2972ACAD0060FA5D /* chain_shape.hpp */,
 				B222C3222972AFFF0060FA5D /* contact.hpp */,
+				B222C3262972B8C70060FA5D /* shape_contact.hpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -758,6 +773,7 @@
 		B2F96B1D2971730F00B28EE4 /* physics */ = {
 			isa = PBXGroup;
 			children = (
+				B222C3292972BAD60060FA5D /* collision */,
 				B2F96B3E2971D13A00B28EE4 /* world.cpp */,
 				B2C7CAD12971E77D00E61B08 /* world_callbacks.cpp */,
 				B2C7CADE2971EA9500E61B08 /* physics_math.cpp */,
@@ -775,6 +791,7 @@
 				B222C3192972AA9C0060FA5D /* polygon_shape.cpp */,
 				B222C31D2972ACAD0060FA5D /* chain_shape.cpp */,
 				B222C3212972AFFF0060FA5D /* contact.cpp */,
+				B222C3252972B8C70060FA5D /* shape_contact.cpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -1020,6 +1037,7 @@
 				B2FC405F2958BD0900447A1A /* open_gl_renderer_api.hpp in Headers */,
 				B24DD8282962FDA000525941 /* ray.hpp in Headers */,
 				B2C78409296AF2E5003F343E /* scene_serialiser.hpp in Headers */,
+				B222C3282972B8C70060FA5D /* shape_contact.hpp in Headers */,
 				B222C30F2972A7B40060FA5D /* physics_common.h in Headers */,
 				B2C0D80E2959FB69003F168B /* open_gl_renderer_buffer.hpp in Headers */,
 				B2C0D8002959E02B003F168B /* renderer_stats.hpp in Headers */,
@@ -1197,6 +1215,7 @@
 				B216B25C295B2F7400C05392 /* texture.cpp in Sources */,
 				B251B3F8295E15CA00508210 /* viewport.cpp in Sources */,
 				B222C31F2972ACAD0060FA5D /* chain_shape.cpp in Sources */,
+				B222C32C2972BAF30060FA5D /* colloid_circle.cpp in Sources */,
 				B2C0D8092959E161003F168B /* property_grid.cpp in Sources */,
 				B216B265295B516A00C05392 /* batch_2d_renderer.cpp in Sources */,
 				B2C78066296AE470003F343E /* aabb_renderer.cpp in Sources */,
@@ -1232,6 +1251,7 @@
 				B2F526632959777F00A83C65 /* shader_uniform.cpp in Sources */,
 				B2D4EC922971EFFD00B4A8BE /* settings.cpp in Sources */,
 				B25F61872969A8440042FE09 /* aabb.cpp in Sources */,
+				B222C3272972B8C70060FA5D /* shape_contact.cpp in Sources */,
 				B2C7CADC2971E89100E61B08 /* draw.cpp in Sources */,
 				B2F52667295979FE00A83C65 /* string_utils.cpp in Sources */,
 				B2C0D819295A01DF003F168B /* pipeline.cpp in Sources */,

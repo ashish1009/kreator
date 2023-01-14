@@ -11,6 +11,10 @@
 
 namespace physics {
   
+  class Shape;
+  class CircleShape;
+  class EdgeShape;
+  class PolygonShape;
   
   /// The features that intersect to form the contact point
   /// This must be 4 bytes or less.
@@ -155,6 +159,12 @@ namespace physics {
     Vec2 lowerBound;  ///< the lower vertex
     Vec2 upperBound;  ///< the upper vertex
   };
+  
+  /// Compute the collision manifold between two circles.
+  void CollideCircles(Manifold* manifold,
+                      const CircleShape* circleA, const Transform& xfA,
+                      const CircleShape* circleB, const Transform& xfB);
+
   
   inline bool TestOverlap(const AABB& a, const AABB& b) {
     Vec2 d1, d2;
