@@ -8,7 +8,7 @@
 #pragma once
 
 #include "physics_math.hpp"
-#include "setting.hpp"
+#include "settings.hpp"
 
 namespace physics {
   
@@ -60,7 +60,7 @@ namespace physics {
     float gravity_scale = 1.0f;
   };
   
-  /// A rigid body. These are created via b2World::CreateBody.
+  /// A rigid body. These are created via World::CreateBody.
   class Body {
     
   };

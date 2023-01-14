@@ -11,7 +11,7 @@
 
 namespace physics {
   
-  /// Implement and register this class with a b2World to provide debug drawing of physics entities in your game.
+  /// Implement and register this class with a World to provide debug drawing of physics entities in your game.
   class Draw {
   public:
     enum {

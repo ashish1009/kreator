@@ -23,6 +23,9 @@
 #include <fstream>
 #include <dispatch/dispatch.h>
 #include <cxxabi.h>
+#include <limits.h>
+#include <string.h>
+#include <stddef.h>
 
 // Engine Files
 #include "ikan_common.h"

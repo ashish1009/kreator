@@ -23,6 +23,9 @@
 #include <dispatch/dispatch.h>
 #include <fstream>
 #include <cxxabi.h>
+#include <limits.h>
+#include <string.h>
+#include <stddef.h>
 
 // Library Files
 // glm math library
