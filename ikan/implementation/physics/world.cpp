@@ -12,4 +12,8 @@ namespace physics {
   World::World(const Vec2& gravity) {
   }
   
+  World::~World() {
+    
+  }
+  
 }
