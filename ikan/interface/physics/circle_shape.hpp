@@ -38,7 +38,7 @@ namespace physics {
     void ComputeMass(MassData* massData, float density) const override;
     
     /// Position
-    Vec2 p;
+    Vec2 position_;
   };
   
 }

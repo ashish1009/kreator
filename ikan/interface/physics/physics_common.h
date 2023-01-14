@@ -18,4 +18,5 @@ namespace physics {
 #define AabbExtension    (0.1f * LengthUnitsPerMeter)
 #define AabbMultiplier    4.0f  
 #define MaxAngularCorrection    (8.0f / 180.0f * PI)
+  
 }

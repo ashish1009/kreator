@@ -21,10 +21,8 @@ namespace physics {
   /// 1. you might not know where the center of mass will be.
   /// 2. if you add/remove shapes from a body and recompute the mass,
   ///    the joints will be broken.
-  struct RevoluteJointDef : public JointDef
-  {
-    RevoluteJointDef()
-    {
+  struct RevoluteJointDef : public JointDef {
+    RevoluteJointDef() {
       type = revoluteJoint;
       localAnchorA.Set(0.0f, 0.0f);
       localAnchorB.Set(0.0f, 0.0f);
@@ -76,20 +74,19 @@ namespace physics {
   /// a joint limit that specifies a lower and upper angle. You can use a motor
   /// to drive the relative rotation about the shared point. A maximum motor torque
   /// is provided so that infinite forces are not generated.
-  class RevoluteJoint : public Joint
-  {
+  class RevoluteJoint : public Joint {
   public:
     Vec2 GetAnchorA() const override;
     Vec2 GetAnchorB() const override;
     
     /// The local anchor point relative to bodyA's origin.
-    const Vec2& GetLocalAnchorA() const { return m_localAnchorA; }
+    const Vec2& GetLocalAnchorA() const { return local_anchor_a_; }
     
     /// The local anchor point relative to bodyB's origin.
-    const Vec2& GetLocalAnchorB() const  { return m_localAnchorB; }
+    const Vec2& GetLocalAnchorB() const  { return local_anchor_b_; }
     
     /// Get the reference angle.
-    float GetReferenceAngle() const { return m_referenceAngle; }
+    float GetReferenceAngle() const { return reference_angle_; }
     
     /// Get the current joint angle in radians.
     float GetJointAngle() const;
@@ -126,7 +123,7 @@ namespace physics {
     
     /// Set the maximum motor torque, usually in N-m.
     void SetMaxMotorTorque(float torque);
-    float GetMaxMotorTorque() const { return m_maxMotorTorque; }
+    float GetMaxMotorTorque() const { return max_motor_torque_; }
     
     /// Get the reaction force given the inverse time step.
     /// Unit is N.
@@ -155,40 +152,34 @@ namespace physics {
     bool SolvePositionConstraints(const SolverData& data) override;
     
     // Solver shared
-    Vec2 m_localAnchorA;
-    Vec2 m_localAnchorB;
-    Vec2 m_impulse;
-    float m_motorImpulse;
-    float m_lowerImpulse;
-    float m_upperImpulse;
-    bool m_enableMotor;
-    float m_maxMotorTorque;
-    float m_motorSpeed;
-    bool m_enableLimit;
-    float m_referenceAngle;
+    Vec2 local_anchor_a_;
+    Vec2 local_anchor_b_;
+    Vec2 impulse_;
+    float motor_impulse_;
+    float lower_impulse_;
+    float upper_impulse_;
+    bool enable_motor_;
+    float max_motor_torque_;
+    float motor_speed_;
+    bool enable_limit_;
+    float reference_angle_;
     float m_lowerAngle;
-    float m_upperAngle;
+    float u_pperAngle;
     
     // Solver temp
-    int32_t m_indexA;
-    int32_t m_indexB;
-    Vec2 m_rA;
-    Vec2 m_rB;
-    Vec2 m_localCenterA;
-    Vec2 m_localCenterB;
-    float m_invMassA;
-    float m_invMassB;
-    float m_invIA;
-    float m_invIB;
-    Mat22 m_K;
-    float m_angle;
-    float m_axialMass;
+    int32_t index_a_;
+    int32_t index_b_;
+    Vec2 ra_;
+    Vec2 rb_;
+    Vec2 local_center_a_;
+    Vec2 local_center_b_;
+    float inv_mass_a_;
+    float inv_mass_b_;
+    float inv_i_a_;
+    float inv_i_b_;
+    Mat22 k_;
+    float angle_;
+    float axial_mass_;
   };
-  
-  inline float RevoluteJoint::GetMotorSpeed() const
-  {
-    return m_motorSpeed;
-  }
-
   
 }

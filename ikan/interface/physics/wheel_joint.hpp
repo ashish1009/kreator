@@ -17,10 +17,8 @@ namespace physics {
   /// can violate the constraint slightly. The joint translation is zero
   /// when the local anchor points coincide in world space. Using local
   /// anchors and a local axis helps when saving and loading a game.
-  struct WheelJointDef : public JointDef
-  {
-    WheelJointDef()
-    {
+  struct WheelJointDef : public JointDef {
+    WheelJointDef() {
       type = wheelJoint;
       localAnchorA.SetZero();
       localAnchorB.SetZero();
@@ -77,8 +75,7 @@ namespace physics {
   /// along an axis fixed in bodyA and rotation in the plane. In other words, it is a point to
   /// line constraint with a rotational motor and a linear spring/damper. The spring/damper is
   /// initialized upon creation. This joint is designed for vehicle suspensions.
-  class WheelJoint : public Joint
-  {
+  class WheelJoint : public Joint {
   public:
     Vec2 GetAnchorA() const override;
     Vec2 GetAnchorB() const override;
@@ -87,13 +84,13 @@ namespace physics {
     float GetReactionTorque(float inv_dt) const override;
     
     /// The local anchor point relative to bodyA's origin.
-    const Vec2& GetLocalAnchorA() const { return m_localAnchorA; }
+    const Vec2& GetLocalAnchorA() const { return local_anchor_a_; }
     
     /// The local anchor point relative to bodyB's origin.
-    const Vec2& GetLocalAnchorB() const  { return m_localAnchorB; }
+    const Vec2& GetLocalAnchorB() const  { return local_anchor_b_; }
     
     /// The local joint axis relative to bodyA.
-    const Vec2& GetLocalAxisA() const { return m_localXAxisA; }
+    const Vec2& GetLocalAxisA() const { return local_x_axis_a_; }
     
     /// Get the current joint translation, usually in meters.
     float GetJointTranslation() const;
@@ -161,63 +158,52 @@ namespace physics {
     void SolveVelocityConstraints(const SolverData& data) override;
     bool SolvePositionConstraints(const SolverData& data) override;
     
-    Vec2 m_localAnchorA;
-    Vec2 m_localAnchorB;
-    Vec2 m_localXAxisA;
-    Vec2 m_localYAxisA;
+    Vec2 local_anchor_a_;
+    Vec2 local_anchor_b_;
+    Vec2 local_x_axis_a_;
+    Vec2 local_y_axis_a_;
     
-    float m_impulse;
-    float m_motorImpulse;
-    float m_springImpulse;
+    float impulse_;
+    float motor_impulse_;
+    float spring_impusle_;
     
-    float m_lowerImpulse;
-    float m_upperImpulse;
-    float m_translation;
-    float m_lowerTranslation;
-    float m_upperTranslation;
+    float lower_impulse_;
+    float upper_impulse_;
+    float translation_;
+    float lower_translation_;
+    float upper_translation_;
     
-    float m_maxMotorTorque;
-    float m_motorSpeed;
+    float max_motor_torque_;
+    float motor_speed_;
     
-    bool m_enableLimit;
-    bool m_enableMotor;
+    bool enable_limit_;
+    bool enable_motor_;
     
-    float m_stiffness;
-    float m_damping;
+    float stiffness_;
+    float damping_;
     
     // Solver temp
-    int32_t m_indexA;
-    int32_t m_indexB;
-    Vec2 m_localCenterA;
-    Vec2 m_localCenterB;
-    float m_invMassA;
-    float m_invMassB;
-    float m_invIA;
-    float m_invIB;
+    int32_t index_a_;
+    int32_t index_b_;
+    Vec2 local_center_a_;
+    Vec2 local_center_b_;
+    float inv_mass_a_;
+    float inv_mass_b_;
+    float inv_i_a_;
+    float inv_i_b_;
     
-    Vec2 m_ax, m_ay;
-    float m_sAx, m_sBx;
-    float m_sAy, m_sBy;
+    Vec2 a_x_, a_y_;
+    float m_sAx, s_b_x_;
+    float s_a_y_, s_b_y_;
     
-    float m_mass;
-    float m_motorMass;
-    float m_axialMass;
-    float m_springMass;
+    float mass_;
+    float motor_mass_;
+    float axis_mass_;
+    float spring_mass_;
     
-    float m_bias;
-    float m_gamma;
+    float bias_;
+    float gamma_;
     
   };
-  
-  inline float WheelJoint::GetMotorSpeed() const
-  {
-    return m_motorSpeed;
-  }
-  
-  inline float WheelJoint::GetMaxMotorTorque() const
-  {
-    return m_maxMotorTorque;
-  }
-
-  
+    
 }

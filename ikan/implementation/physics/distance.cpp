@@ -20,7 +20,7 @@ namespace physics {
     switch (shape->GetType()) {
       case Shape::Type::Circle: {
         const CircleShape* circle = static_cast<const CircleShape*>(shape);
-        vertices_ = &circle->p;
+        vertices_ = &circle->position_;
         count_ = 1;
         radius_ = circle->radius_;
       }

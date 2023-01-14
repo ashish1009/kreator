@@ -15,10 +15,8 @@ namespace physics {
   
   /// Pulley joint definition. This requires two ground anchors,
   /// two dynamic body anchor points, and a pulley ratio.
-  struct PulleyJointDef : public JointDef
-  {
-    PulleyJointDef()
-    {
+  struct PulleyJointDef : public JointDef {
+    PulleyJointDef() {
       type = pulleyJoint;
       groundAnchorA.Set(-1.0f, 1.0f);
       groundAnchorB.Set(1.0f, 1.0f);
@@ -66,8 +64,7 @@ namespace physics {
   /// work better when combined with prismatic joints. You should also cover the
   /// the anchor points with static shapes to prevent one side from going to
   /// zero length.
-  class PulleyJoint : public Joint
-  {
+  class PulleyJoint : public Joint {
   public:
     Vec2 GetAnchorA() const override;
     Vec2 GetAnchorB() const override;
@@ -108,32 +105,32 @@ namespace physics {
     void SolveVelocityConstraints(const SolverData& data) override;
     bool SolvePositionConstraints(const SolverData& data) override;
     
-    Vec2 m_groundAnchorA;
-    Vec2 m_groundAnchorB;
-    float m_lengthA;
-    float m_lengthB;
+    Vec2 ground_anchor_a_;
+    Vec2 ground_anchor_b_;
+    float length_A;
+    float length_B;
     
     // Solver shared
-    Vec2 m_localAnchorA;
-    Vec2 m_localAnchorB;
-    float m_constant;
-    float m_ratio;
-    float m_impulse;
+    Vec2 local_anchor_a_;
+    Vec2 local_anchor_b_;
+    float constant_;
+    float ra_tio;
+    float impulse_;
     
     // Solver temp
-    int32_t m_indexA;
-    int32_t m_indexB;
-    Vec2 m_uA;
-    Vec2 m_uB;
-    Vec2 m_rA;
-    Vec2 m_rB;
-    Vec2 m_localCenterA;
-    Vec2 m_localCenterB;
-    float m_invMassA;
-    float m_invMassB;
-    float m_invIA;
-    float m_invIB;
-    float m_mass;
+    int32_t index_a_;
+    int32_t index_b_;
+    Vec2 u_A;
+    Vec2 u_B;
+    Vec2 ra_;
+    Vec2 rb_;
+    Vec2 local_center_a_;
+    Vec2 local_center_b_;
+    float inv_mass_a_;
+    float inv_mass_b_;
+    float inv_i_a_;
+    float inv_i_b_;
+    float mass_;
   };
 
   

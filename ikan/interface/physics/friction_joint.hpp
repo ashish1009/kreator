@@ -52,10 +52,10 @@ namespace physics {
     float GetReactionTorque(float inv_dt) const override;
     
     /// The local anchor point relative to bodyA's origin.
-    const Vec2& GetLocalAnchorA() const { return m_localAnchorA; }
+    const Vec2& GetLocalAnchorA() const { return local_anchor_a_; }
     
     /// The local anchor point relative to bodyB's origin.
-    const Vec2& GetLocalAnchorB() const  { return m_localAnchorB; }
+    const Vec2& GetLocalAnchorB() const  { return local_anchor_b_; }
     
     /// Set the maximum friction force in N.
     void SetMaxForce(float force);
@@ -80,28 +80,28 @@ namespace physics {
     void SolveVelocityConstraints(const SolverData& data) override;
     bool SolvePositionConstraints(const SolverData& data) override;
     
-    Vec2 m_localAnchorA;
-    Vec2 m_localAnchorB;
+    Vec2 local_anchor_a_;
+    Vec2 local_anchor_b_;
     
     // Solver shared
-    Vec2 m_linearImpulse;
-    float m_angularImpulse;
-    float m_maxForce;
-    float m_maxTorque;
+    Vec2 linear_impulse_;
+    float angular_impulse_;
+    float max_force_;
+    float max_torque_;
     
     // Solver temp
-    int32_t m_indexA;
-    int32_t m_indexB;
-    Vec2 m_rA;
-    Vec2 m_rB;
-    Vec2 m_localCenterA;
-    Vec2 m_localCenterB;
-    float m_invMassA;
-    float m_invMassB;
-    float m_invIA;
-    float m_invIB;
-    Mat22 m_linearMass;
-    float m_angularMass;
+    int32_t index_a_;
+    int32_t index_b_;
+    Vec2 ra_;
+    Vec2 rb_;
+    Vec2 local_center_a_;
+    Vec2 local_center_b_;
+    float inv_mass_a_;
+    float inv_mass_b_;
+    float inv_i_a_;
+    float inv_i_b_;
+    Mat22 linear_mass_;
+    float angular_mass_;
   };
 
   

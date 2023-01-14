@@ -73,27 +73,27 @@ namespace physics {
     float GetReactionTorque(float inv_dt) const override;
     
     /// The local anchor point relative to bodyA's origin.
-    const Vec2& GetLocalAnchorA() const { return m_localAnchorA; }
+    const Vec2& GetLocalAnchorA() const { return local_anchor_a_; }
     
     /// The local anchor point relative to bodyB's origin.
-    const Vec2& GetLocalAnchorB() const  { return m_localAnchorB; }
+    const Vec2& GetLocalAnchorB() const  { return local_anchor_b_; }
     
     /// Get the rest length
-    float GetLength() const { return m_length; }
+    float GetLength() const { return length_; }
     
     /// Set the rest length
     /// @returns clamped rest length
     float SetLength(float length);
     
     /// Get the minimum length
-    float GetMinLength() const { return m_minLength; }
+    float GetMinLength() const { return min_length_; }
     
     /// Set the minimum length
     /// @returns the clamped minimum length
     float SetMinLength(float minLength);
     
     /// Get the maximum length
-    float GetMaxLength() const { return m_maxLength; }
+    float GetMaxLength() const { return max_length_; }
     
     /// Set the maximum length
     /// @returns the clamped maximum length
@@ -103,12 +103,12 @@ namespace physics {
     float GetCurrentLength() const;
     
     /// Set/get the linear stiffness in N/m
-    void SetStiffness(float stiffness) { m_stiffness = stiffness; }
-    float GetStiffness() const { return m_stiffness; }
+    void SetStiffness(float stiffness) { stiffness_ = stiffness; }
+    float GetStiffness() const { return stiffness_; }
     
     /// Set/get linear damping in N*s/m
-    void SetDamping(float damping) { m_damping = damping; }
-    float GetDamping() const { return m_damping; }
+    void SetDamping(float damping) { damping_ = damping; }
+    float GetDamping() const { return damping_; }
     
     void Draw(physics::Draw* draw) const override;
     
@@ -121,36 +121,36 @@ namespace physics {
     void SolveVelocityConstraints(const SolverData& data) override;
     bool SolvePositionConstraints(const SolverData& data) override;
     
-    float m_stiffness;
-    float m_damping;
-    float m_bias;
-    float m_length;
-    float m_minLength;
-    float m_maxLength;
+    float stiffness_;
+    float damping_;
+    float bias_;
+    float length_;
+    float min_length_;
+    float max_length_;
     
     // Solver shared
-    Vec2 m_localAnchorA;
-    Vec2 m_localAnchorB;
-    float m_gamma;
-    float m_impulse;
-    float m_lowerImpulse;
-    float m_upperImpulse;
+    Vec2 local_anchor_a_;
+    Vec2 local_anchor_b_;
+    float gamma_;
+    float impulse_;
+    float lower_impulse_;
+    float upper_impulse_;
     
     // Solver temp
-    int32_t m_indexA;
-    int32_t m_indexB;
-    Vec2 m_u;
-    Vec2 m_rA;
-    Vec2 m_rB;
-    Vec2 m_localCenterA;
-    Vec2 m_localCenterB;
-    float m_currentLength;
-    float m_invMassA;
-    float m_invMassB;
-    float m_invIA;
-    float m_invIB;
-    float m_softMass;
-    float m_mass;
+    int32_t index_a_;
+    int32_t index_b_;
+    Vec2 u_;
+    Vec2 ra_;
+    Vec2 rb_;
+    Vec2 local_center_a_;
+    Vec2 local_center_b_;
+    float current_length_;
+    float inv_mass_a_;
+    float inv_mass_b_;
+    float inv_i_a_;
+    float inv_i_b_;
+    float soft_mass_;
+    float mass_;
   };
 
   

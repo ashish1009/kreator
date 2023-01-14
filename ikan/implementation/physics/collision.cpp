@@ -100,9 +100,9 @@ namespace physics {
     return count;
   }
   
-  bool TestOverlap(  const Shape* shapeA, int32_t indexA,
-                     const Shape* shapeB, int32_t indexB,
-                     const Transform& xfA, const Transform& xfB) {
+  bool TestOverlap(const Shape* shapeA, int32_t indexA,
+                   const Shape* shapeB, int32_t indexB,
+                   const Transform& xfA, const Transform& xfB) {
     DistanceInput input;
     input.proxyA.Set(shapeA, indexA);
     input.proxyB.Set(shapeB, indexB);

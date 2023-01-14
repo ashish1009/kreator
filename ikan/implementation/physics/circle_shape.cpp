@@ -35,7 +35,7 @@ namespace physics {
                               const Transform& transform, int32_t childIndex) const {
     NOT_USED(childIndex);
     
-    Vec2 position = transform.p + Mul(transform.q, p);
+    Vec2 position = transform.p + Mul(transform.q, position_);
     Vec2 s = input.p1 - position;
     float b = Dot(s, s) - radius_ * radius_;
     
@@ -68,23 +68,23 @@ namespace physics {
   void CircleShape::ComputeAABB(AABB* aabb, const Transform& transform, int32_t childIndex) const {
     NOT_USED(childIndex);
     
-    Vec2 p = transform.p + Mul(transform.q, this->p);
+    Vec2 p = transform.p + Mul(transform.q, this->position_);
     aabb->lowerBound.Set(p.x - radius_, p.y - radius_);
     aabb->upperBound.Set(p.x + radius_, p.y + radius_);
   }
   
   void CircleShape::ComputeMass(MassData* massData, float density) const {
     massData->mass = density * PI * radius_ * radius_;
-    massData->center = p;
+    massData->center = position_;
     
     // inertia about the local origin
-    massData->I = massData->mass * (0.5f * radius_ * radius_ + Dot(p, p));
+    massData->inertia = massData->mass * (0.5f * radius_ * radius_ + Dot(position_, position_));
   }
 
   inline CircleShape::CircleShape() {
     type_ = Shape::Type::Circle;
     radius_ = 0.0f;
-    p.SetZero();
+    position_.SetZero();
   }
   
 

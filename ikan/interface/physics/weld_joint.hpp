@@ -14,10 +14,8 @@ namespace physics {
   /// Weld joint definition. You need to specify local anchor points
   /// where they are attached and the relative body angle. The position
   /// of the anchor points is important for computing the reaction torque.
-  struct WeldJointDef : public JointDef
-  {
-    WeldJointDef()
-    {
+  struct WeldJointDef : public JointDef {
+    WeldJointDef() {
       type = weldJoint;
       localAnchorA.Set(0.0f, 0.0f);
       localAnchorB.Set(0.0f, 0.0f);
@@ -51,8 +49,7 @@ namespace physics {
   
   /// A weld joint essentially glues two bodies together. A weld joint may
   /// distort somewhat because the island constraint solver is approximate.
-  class WeldJoint : public Joint
-  {
+  class WeldJoint : public Joint {
   public:
     Vec2 GetAnchorA() const override;
     Vec2 GetAnchorB() const override;
@@ -61,21 +58,21 @@ namespace physics {
     float GetReactionTorque(float inv_dt) const override;
     
     /// The local anchor point relative to bodyA's origin.
-    const Vec2& GetLocalAnchorA() const { return m_localAnchorA; }
+    const Vec2& GetLocalAnchorA() const { return local_anchor_a_; }
     
     /// The local anchor point relative to bodyB's origin.
-    const Vec2& GetLocalAnchorB() const  { return m_localAnchorB; }
+    const Vec2& GetLocalAnchorB() const  { return local_anchor_b_; }
     
     /// Get the reference angle.
-    float GetReferenceAngle() const { return m_referenceAngle; }
+    float GetReferenceAngle() const { return reference_angle_; }
     
     /// Set/get stiffness in N*m
-    void SetStiffness(float hz) { m_stiffness = hz; }
-    float GetStiffness() const { return m_stiffness; }
+    void SetStiffness(float hz) { stiffness_ = hz; }
+    float GetStiffness() const { return stiffness_; }
     
     /// Set/get damping in N*m*s
-    void SetDamping(float damping) { m_damping = damping; }
-    float GetDamping() const { return m_damping; }
+    void SetDamping(float damping) { damping_ = damping; }
+    float GetDamping() const { return damping_; }
         
   protected:
     
@@ -87,29 +84,29 @@ namespace physics {
     void SolveVelocityConstraints(const SolverData& data) override;
     bool SolvePositionConstraints(const SolverData& data) override;
     
-    float m_stiffness;
-    float m_damping;
-    float m_bias;
+    float stiffness_;
+    float damping_;
+    float bias_;
     
     // Solver shared
-    Vec2 m_localAnchorA;
-    Vec2 m_localAnchorB;
-    float m_referenceAngle;
-    float m_gamma;
-    Vec3 m_impulse;
+    Vec2 local_anchor_a_;
+    Vec2 local_anchor_b_;
+    float reference_angle_;
+    float gamma_;
+    Vec3 impulse_;
     
     // Solver temp
-    int32_t m_indexA;
-    int32_t m_indexB;
-    Vec2 m_rA;
-    Vec2 m_rB;
-    Vec2 m_localCenterA;
-    Vec2 m_localCenterB;
-    float m_invMassA;
-    float m_invMassB;
-    float m_invIA;
-    float m_invIB;
-    Mat33 m_mass;
+    int32_t index_a_;
+    int32_t index_b_;
+    Vec2 ra_;
+    Vec2 rb_;
+    Vec2 local_center_a_;
+    Vec2 local_center_b_;
+    float inv_mass_a_;
+    float inv_mass_b_;
+    float inv_i_a_;
+    float inv_i_b_;
+    Mat33 mass_;
   };
 
   

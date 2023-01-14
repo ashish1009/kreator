@@ -144,7 +144,7 @@ namespace physics {
     
     massData->mass = 0.0f;
     massData->center.SetZero();
-    massData->I = 0.0f;
+    massData->inertia = 0.0f;
   }
 
   inline ChainShape::ChainShape() {

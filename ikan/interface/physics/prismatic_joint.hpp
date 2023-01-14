@@ -81,16 +81,16 @@ namespace physics {
     float GetReactionTorque(float inv_dt) const override;
     
     /// The local anchor point relative to bodyA's origin.
-    const Vec2& GetLocalAnchorA() const { return m_localAnchorA; }
+    const Vec2& GetLocalAnchorA() const { return local_anchor_a_; }
     
     /// The local anchor point relative to bodyB's origin.
-    const Vec2& GetLocalAnchorB() const  { return m_localAnchorB; }
+    const Vec2& GetLocalAnchorB() const  { return local_anchor_b_; }
     
     /// The local joint axis relative to bodyA.
-    const Vec2& GetLocalAxisA() const { return m_localXAxisA; }
+    const Vec2& GetLocalAxisA() const { return local_x_axis_a_; }
     
     /// Get the reference angle.
-    float GetReferenceAngle() const { return m_referenceAngle; }
+    float GetReferenceAngle() const { return reference_angle_; }
     
     /// Get the current joint translation, usually in meters.
     float GetJointTranslation() const;
@@ -127,7 +127,7 @@ namespace physics {
     
     /// Set the maximum motor force, usually in N.
     void SetMaxMotorForce(float force);
-    float GetMaxMotorForce() const { return m_maxMotorForce; }
+    float GetMaxMotorForce() const { return max_motor_force_; }
     
     /// Get the current motor force given the inverse time step, usually in N.
     float GetMotorForce(float inv_dt) const;
@@ -144,42 +144,37 @@ namespace physics {
     void SolveVelocityConstraints(const SolverData& data) override;
     bool SolvePositionConstraints(const SolverData& data) override;
     
-    Vec2 m_localAnchorA;
-    Vec2 m_localAnchorB;
-    Vec2 m_localXAxisA;
-    Vec2 m_localYAxisA;
-    float m_referenceAngle;
-    Vec2 m_impulse;
-    float m_motorImpulse;
-    float m_lowerImpulse;
-    float m_upperImpulse;
-    float m_lowerTranslation;
-    float m_upperTranslation;
-    float m_maxMotorForce;
-    float m_motorSpeed;
-    bool m_enableLimit;
-    bool m_enableMotor;
+    Vec2 local_anchor_a_;
+    Vec2 local_anchor_b_;
+    Vec2 local_x_axis_a_;
+    Vec2 local_y_axis_a_;
+    float reference_angle_;
+    Vec2 impulse_;
+    float motor_impulse_;
+    float lower_impulse_;
+    float upper_impulse_;
+    float lower_translation_;
+    float upper_translation_;
+    float max_motor_force_;
+    float motor_speed_;
+    bool enable_limit_;
+    bool enable_motor_;
     
     // Solver temp
-    int32_t m_indexA;
-    int32_t m_indexB;
-    Vec2 m_localCenterA;
-    Vec2 m_localCenterB;
-    float m_invMassA;
-    float m_invMassB;
-    float m_invIA;
-    float m_invIB;
-    Vec2 m_axis, m_perp;
-    float m_s1, m_s2;
-    float m_a1, m_a2;
-    Mat22 m_K;
-    float m_translation;
-    float m_axialMass;
+    int32_t index_a_;
+    int32_t index_b_;
+    Vec2 local_center_a_;
+    Vec2 local_center_b_;
+    float inv_mass_a_;
+    float inv_mass_b_;
+    float inv_i_a_;
+    float inv_i_b_;
+    Vec2 axis_, perp_;
+    float s1_, s2_;
+    float a1_, a2_;
+    Mat22 k_;
+    float translation_;
+    float axial_mass_;
   };
-  
-  inline float PrismaticJoint::GetMotorSpeed() const {
-    return m_motorSpeed;
-  }
-
   
 }

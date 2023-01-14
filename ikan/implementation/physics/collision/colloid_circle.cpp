@@ -16,8 +16,8 @@ namespace physics {
                       const CircleShape* circleB, const Transform& xfB) {
     manifold->point_count = 0;
     
-    Vec2 pA = Mul(xfA, circleA->p);
-    Vec2 pB = Mul(xfB, circleB->p);
+    Vec2 pA = Mul(xfA, circleA->position_);
+    Vec2 pB = Mul(xfB, circleB->position_);
     
     Vec2 d = pB - pA;
     float distSqr = Dot(d, d);
@@ -28,11 +28,11 @@ namespace physics {
     }
     
     manifold->type = Manifold::Type::Circles ;
-    manifold->local_point = circleA->p;
+    manifold->local_point = circleA->position_;
     manifold->local_normal.SetZero();
     manifold->point_count = 1;
     
-    manifold->points[0].local_point = circleB->p;
+    manifold->points[0].local_point = circleB->position_;
     manifold->points[0].id.key = 0;
   }
  
@@ -42,7 +42,7 @@ namespace physics {
     manifold->point_count = 0;
     
     // Compute circle position in the frame of the polygon.
-    Vec2 c = Mul(xfB, circleB->p);
+    Vec2 c = Mul(xfB, circleB->position_);
     Vec2 cLocal = MulT(xfA, c);
     
     // Find the min separating edge.
@@ -80,7 +80,7 @@ namespace physics {
       manifold->type = Manifold::Type::FaceA;
       manifold->local_normal = normals[normalIndex];
       manifold->local_point = 0.5f * (v1 + v2);
-      manifold->points[0].local_point = circleB->p;
+      manifold->points[0].local_point = circleB->position_;
       manifold->points[0].id.key = 0;
       return;
     }
@@ -100,7 +100,7 @@ namespace physics {
       manifold->local_normal = cLocal - v1;
       manifold->local_normal.Normalize();
       manifold->local_point = v1;
-      manifold->points[0].local_point = circleB->p;
+      manifold->points[0].local_point = circleB->position_;
       manifold->points[0].id.key = 0;
     }
     else if (u2 <= 0.0f)
@@ -115,7 +115,7 @@ namespace physics {
       manifold->local_normal = cLocal - v2;
       manifold->local_normal.Normalize();
       manifold->local_point = v2;
-      manifold->points[0].local_point = circleB->p;
+      manifold->points[0].local_point = circleB->position_;
       manifold->points[0].id.key = 0;
     }
     else
@@ -131,7 +131,7 @@ namespace physics {
       manifold->type = Manifold::Type::FaceA;
       manifold->local_normal = normals[vertIndex1];
       manifold->local_point = faceCenter;
-      manifold->points[0].local_point = circleB->p;
+      manifold->points[0].local_point = circleB->position_;
       manifold->points[0].id.key = 0;
     }
   }

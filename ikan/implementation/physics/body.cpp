@@ -25,24 +25,24 @@ namespace physics {
     }
     
     if (flag) {
-      m_flags |= awakeFlag;
-      m_sleepTime = 0.0f;
+      flags_ |= awakeFlag;
+      sleep_time_ = 0.0f;
     } else {
-      m_flags &= ~awakeFlag;
-      m_sleepTime = 0.0f;
-      m_linearVelocity.SetZero();
-      m_angularVelocity = 0.0f;
-      m_force.SetZero();
-      m_torque = 0.0f;
+      flags_ &= ~awakeFlag;
+      sleep_time_ = 0.0f;
+      linear_velocity_.SetZero();
+      angular_velocity_ = 0.0f;
+      force_.SetZero();
+      torque_ = 0.0f;
     }
   }
   
   bool Body::IsAwake() const {
-    return (m_flags & awakeFlag) == awakeFlag;
+    return (flags_ & awakeFlag) == awakeFlag;
   }
   
   const Transform& Body::GetTransform() const {
-    return m_xf;
+    return xf_;
   }
 
   bool Body::ShouldCollide(const Body* other) const {
@@ -52,9 +52,9 @@ namespace physics {
     }
     
     // Does a joint prevent collision?
-    for (JointEdge* jn = m_jointList; jn; jn = jn->next) {
+    for (JointEdge* jn = joint_list_; jn; jn = jn->next) {
       if (jn->other == other) {
-        if (jn->joint->m_collideConnected == false) {
+        if (jn->joint->collide_connected_ == false) {
           return false;
         }
       }
@@ -64,48 +64,48 @@ namespace physics {
   }
 
   float Body::GetMass() const {
-    return m_mass;
+    return mass_;
   }
   
   float Body::GetInertia() const {
-    return m_I + m_mass * Dot(m_sweep.localCenter, m_sweep.localCenter);
+    return inertia_ + mass_ * Dot(sweep_.localCenter, sweep_.localCenter);
   }
   
   World* Body::GetWorld() {
-    return m_world;
+    return world_;
   }
   
   const World* Body::GetWorld() const {
-    return m_world;
+    return world_;
   }
 
   Vec2 Body::GetLocalPoint(const Vec2& worldPoint) const {
-    return MulT(m_xf, worldPoint);
+    return MulT(xf_, worldPoint);
   }
   
   Vec2 Body::GetWorldPoint(const Vec2& localPoint) const {
-    return Mul(m_xf, localPoint);
+    return Mul(xf_, localPoint);
   }
   
   Vec2 Body::GetLocalVector(const Vec2& worldVector) const {
-    return MulT(m_xf.q, worldVector);
+    return MulT(xf_.q, worldVector);
   }
   
   float Body::GetAngle() const {
-    return m_sweep.a;
+    return sweep_.a;
   }
   
   Vec2 Body::GetWorldVector(const Vec2& localVector) const {
-    return Mul(m_xf.q, localVector);
+    return Mul(xf_.q, localVector);
   }
   
   const Vec2& Body::GetPosition() const
   {
-    return m_xf.p;
+    return xf_.p;
   }
   bool Body::IsEnabled() const
   {
-    return (m_flags & enabledFlag) == enabledFlag;
+    return (flags_ & enabledFlag) == enabledFlag;
   }
 
 }

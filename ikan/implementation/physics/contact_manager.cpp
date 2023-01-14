@@ -122,8 +122,8 @@ namespace physics {
         continue;
       }
       
-      int32_t proxyIdA = fixtureA->m_proxies[indexA].proxyId;
-      int32_t proxyIdB = fixtureB->m_proxies[indexB].proxyId;
+      int32_t proxyIdA = fixtureA->proxies_[indexA].proxy_id;
+      int32_t proxyIdB = fixtureB->proxies_[indexB].proxy_id;
       bool overlap = broad_phase_.TestOverlap(proxyIdA, proxyIdB);
       
       // Here we destroy contacts that cease to overlap in the broad-phase.
@@ -151,8 +151,8 @@ namespace physics {
     Fixture* fixtureA = proxyA->fixture;
     Fixture* fixtureB = proxyB->fixture;
 
-    int32_t indexA = proxyA->childIndex;
-    int32_t indexB = proxyB->childIndex;
+    int32_t indexA = proxyA->child_index;
+    int32_t indexB = proxyB->child_index;
 
     Body* bodyA = fixtureA->GetBody();
     Body* bodyB = fixtureB->GetBody();

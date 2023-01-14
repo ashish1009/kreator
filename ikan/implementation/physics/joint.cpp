@@ -138,7 +138,7 @@ namespace physics {
   
   void Joint::Destroy(Joint* joint, BlockAllocator* allocator) {
     joint->~Joint();
-    switch (joint->m_type) {
+    switch (joint->type_) {
       case distanceJoint:
         allocator->Free(joint, sizeof(DistanceJoint));
         break;
@@ -188,34 +188,34 @@ namespace physics {
   Joint::Joint(const JointDef* def) {
     IK_ASSERT(def->bodyA != def->bodyB);
     
-    m_type = def->type;
-    m_prev = nullptr;
-    m_next = nullptr;
-    m_bodyA = def->bodyA;
-    m_bodyB = def->bodyB;
-    m_index = 0;
-    m_collideConnected = def->collideConnected;
-    m_islandFlag = false;
-    m_userData = def->userData;
+    type_ = def->type;
+    prev_ = nullptr;
+    next_ = nullptr;
+    body_a_ = def->bodyA;
+    body_b_ = def->bodyB;
+    index_ = 0;
+    collide_connected_ = def->collideConnected;
+    is_land_flag_ = false;
+    user_data_ = def->userData;
     
-    m_edgeA.joint = nullptr;
-    m_edgeA.other = nullptr;
-    m_edgeA.prev = nullptr;
-    m_edgeA.next = nullptr;
+    edge_a_.joint = nullptr;
+    edge_a_.other = nullptr;
+    edge_a_.prev = nullptr;
+    edge_a_.next = nullptr;
     
-    m_edgeB.joint = nullptr;
-    m_edgeB.other = nullptr;
-    m_edgeB.prev = nullptr;
-    m_edgeB.next = nullptr;
+    edge_b_.joint = nullptr;
+    edge_b_.other = nullptr;
+    edge_b_.prev = nullptr;
+    edge_b_.next = nullptr;
   }
   
   bool Joint::IsEnabled() const {
-    return m_bodyA->IsEnabled() && m_bodyB->IsEnabled();
+    return body_a_->IsEnabled() && body_b_->IsEnabled();
   }
   
   void Joint::Draw(physics::Draw* draw) const {
-    const Transform& xf1 = m_bodyA->GetTransform();
-    const Transform& xf2 = m_bodyB->GetTransform();
+    const Transform& xf1 = body_a_->GetTransform();
+    const Transform& xf2 = body_b_->GetTransform();
     Vec2 x1 = xf1.p;
     Vec2 x2 = xf2.p;
     Vec2 p1 = GetAnchorA();
@@ -223,7 +223,7 @@ namespace physics {
     
     Color color(0.5f, 0.8f, 0.8f);
     
-    switch (m_type) {
+    switch (type_) {
       case distanceJoint:
         draw->DrawSegment(p1, p2, color);
         break;
@@ -255,6 +255,34 @@ namespace physics {
         draw->DrawSegment(p1, p2, color);
         draw->DrawSegment(x2, p2, color);
     }
+  }
+  
+  JointType Joint::GetType() const {
+    return type_;
+  }
+  
+  Body* Joint::GetBodyA() {
+    return body_a_;
+  }
+  
+  Body* Joint::GetBodyB() {
+    return body_b_;
+  }
+  
+  Joint* Joint::GetNext() {
+    return next_;
+  }
+  
+  const Joint* Joint::GetNext() const {
+    return next_;
+  }
+  
+  JointUserData& Joint::GetUserData() {
+    return user_data_;
+  }
+  
+  bool Joint::GetCollideConnected() const {
+    return collide_connected_;
   }
 
 }

@@ -69,12 +69,12 @@ namespace physics {
     float GetMaxForce() const;
     
     /// Set/get the linear stiffness in N/m
-    void SetStiffness(float stiffness) { m_stiffness = stiffness; }
-    float GetStiffness() const { return m_stiffness; }
+    void SetStiffness(float stiffness) { stiffness_ = stiffness; }
+    float GetStiffness() const { return stiffness_; }
     
     /// Set/get linear damping in N*s/m
-    void SetDamping(float damping) { m_damping = damping; }
-    float GetDamping() const { return m_damping; }
+    void SetDamping(float damping) { damping_ = damping; }
+    float GetDamping() const { return damping_; }
     
     /// Implement Joint::ShiftOrigin
     void ShiftOrigin(const Vec2& newOrigin) override;
@@ -88,26 +88,26 @@ namespace physics {
     void SolveVelocityConstraints(const SolverData& data) override;
     bool SolvePositionConstraints(const SolverData& data) override;
     
-    Vec2 m_localAnchorB;
-    Vec2 m_targetA;
-    float m_stiffness;
-    float m_damping;
-    float m_beta;
+    Vec2 local_anchor_b_;
+    Vec2 target_a_;
+    float stiffness_;
+    float damping_;
+    float beta_;
     
     // Solver shared
-    Vec2 m_impulse;
-    float m_maxForce;
-    float m_gamma;
+    Vec2 impulse_;
+    float max_force_;
+    float gamma_;
     
     // Solver temp
-    int32_t m_indexA;
-    int32_t m_indexB;
-    Vec2 m_rB;
-    Vec2 m_localCenterB;
-    float m_invMassB;
-    float m_invIB;
-    Mat22 m_mass;
-    Vec2 m_C;
+    int32_t index_a_;
+    int32_t index_b_;
+    Vec2 rb_;
+    Vec2 local_center_b_;
+    float inv_mass_b_;
+    float inv_i_b_;
+    Mat22 mass_;
+    Vec2 c_;
   };
     
 }

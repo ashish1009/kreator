@@ -125,7 +125,7 @@ namespace physics {
     
     massData->mass = 0.0f;
     massData->center = 0.5f * (vertex_1_ + vertex_2_);
-    massData->I = 0.0f;
+    massData->inertia = 0.0f;
   }
 
   inline EdgeShape::EdgeShape() {

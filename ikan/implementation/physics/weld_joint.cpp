@@ -15,8 +15,7 @@
 
 namespace physics {
   
-  void WeldJointDef::Initialize(Body* bA, Body* bB, const Vec2& anchor)
-  {
+  void WeldJointDef::Initialize(Body* bA, Body* bB, const Vec2& anchor) {
     bodyA = bA;
     bodyB = bB;
     localAnchorA = bodyA->GetLocalPoint(anchor);
@@ -25,40 +24,38 @@ namespace physics {
   }
   
   WeldJoint::WeldJoint(const WeldJointDef* def)
-  : Joint(def)
-  {
-    m_localAnchorA = def->localAnchorA;
-    m_localAnchorB = def->localAnchorB;
-    m_referenceAngle = def->referenceAngle;
-    m_stiffness = def->stiffness;
-    m_damping = def->damping;
+  : Joint(def) {
+    local_anchor_a_ = def->localAnchorA;
+    local_anchor_b_ = def->localAnchorB;
+    reference_angle_ = def->referenceAngle;
+    stiffness_ = def->stiffness;
+    damping_ = def->damping;
     
-    m_impulse.SetZero();
+    impulse_.SetZero();
   }
   
-  void WeldJoint::InitVelocityConstraints(const SolverData& data)
-  {
-    m_indexA = m_bodyA->m_islandIndex;
-    m_indexB = m_bodyB->m_islandIndex;
-    m_localCenterA = m_bodyA->m_sweep.localCenter;
-    m_localCenterB = m_bodyB->m_sweep.localCenter;
-    m_invMassA = m_bodyA->m_invMass;
-    m_invMassB = m_bodyB->m_invMass;
-    m_invIA = m_bodyA->m_invI;
-    m_invIB = m_bodyB->m_invI;
+  void WeldJoint::InitVelocityConstraints(const SolverData& data) {
+    index_a_ = body_a_->island_index_;
+    index_b_ = body_b_->island_index_;
+    local_center_a_ = body_a_->sweep_.localCenter;
+    local_center_b_ = body_b_->sweep_.localCenter;
+    inv_mass_a_ = body_a_->inv_mass_;
+    inv_mass_b_ = body_b_->inv_mass_;
+    inv_i_a_ = body_a_->inv_inertia_;
+    inv_i_b_ = body_b_->inv_inertia_;
     
-    float aA = data.positions[m_indexA].a;
-    Vec2 vA = data.velocities[m_indexA].v;
-    float wA = data.velocities[m_indexA].w;
+    float aA = data.positions[index_a_].a;
+    Vec2 vA = data.velocities[index_a_].v;
+    float wA = data.velocities[index_a_].w;
     
-    float aB = data.positions[m_indexB].a;
-    Vec2 vB = data.velocities[m_indexB].v;
-    float wB = data.velocities[m_indexB].w;
+    float aB = data.positions[index_b_].a;
+    Vec2 vB = data.velocities[index_b_].v;
+    float wB = data.velocities[index_b_].w;
     
     Rot qA(aA), qB(aB);
     
-    m_rA = Mul(qA, m_localAnchorA - m_localCenterA);
-    m_rB = Mul(qB, m_localAnchorB - m_localCenterB);
+    ra_ = Mul(qA, local_anchor_a_ - local_center_a_);
+    rb_ = Mul(qB, local_anchor_b_ - local_center_b_);
     
     // J = [-I -r1_skew I r2_skew]
     //     [ 0       -1 0       1]
@@ -69,152 +66,143 @@ namespace physics {
     //     [  -r1y*iA*r1x-r2y*iB*r2x, mA+r1x^2*iA+mB+r2x^2*iB,           r1x*iA+r2x*iB]
     //     [          -r1y*iA-r2y*iB,           r1x*iA+r2x*iB,                   iA+iB]
     
-    float mA = m_invMassA, mB = m_invMassB;
-    float iA = m_invIA, iB = m_invIB;
+    float mA = inv_mass_a_, mB = inv_mass_b_;
+    float iA = inv_i_a_, iB = inv_i_b_;
     
     Mat33 K;
-    K.ex.x = mA + mB + m_rA.y * m_rA.y * iA + m_rB.y * m_rB.y * iB;
-    K.ey.x = -m_rA.y * m_rA.x * iA - m_rB.y * m_rB.x * iB;
-    K.ez.x = -m_rA.y * iA - m_rB.y * iB;
+    K.ex.x = mA + mB + ra_.y * ra_.y * iA + rb_.y * rb_.y * iB;
+    K.ey.x = -ra_.y * ra_.x * iA - rb_.y * rb_.x * iB;
+    K.ez.x = -ra_.y * iA - rb_.y * iB;
     K.ex.y = K.ey.x;
-    K.ey.y = mA + mB + m_rA.x * m_rA.x * iA + m_rB.x * m_rB.x * iB;
-    K.ez.y = m_rA.x * iA + m_rB.x * iB;
+    K.ey.y = mA + mB + ra_.x * ra_.x * iA + rb_.x * rb_.x * iB;
+    K.ez.y = ra_.x * iA + rb_.x * iB;
     K.ex.z = K.ez.x;
     K.ey.z = K.ez.y;
     K.ez.z = iA + iB;
     
-    if (m_stiffness > 0.0f)
-    {
-      K.GetInverse22(&m_mass);
+    if (stiffness_ > 0.0f) {
+      K.GetInverse22(&mass_);
       
       float invM = iA + iB;
       
-      float C = aB - aA - m_referenceAngle;
+      float C = aB - aA - reference_angle_;
       
       // Damping coefficient
-      float d = m_damping;
+      float d = damping_;
       
       // Spring stiffness
-      float k = m_stiffness;
+      float k = stiffness_;
       
       // magic formulas
       float h = data.step.dt;
-      m_gamma = h * (d + h * k);
-      m_gamma = m_gamma != 0.0f ? 1.0f / m_gamma : 0.0f;
-      m_bias = C * h * k * m_gamma;
+      gamma_ = h * (d + h * k);
+      gamma_ = gamma_ != 0.0f ? 1.0f / gamma_ : 0.0f;
+      bias_ = C * h * k * gamma_;
       
-      invM += m_gamma;
-      m_mass.ez.z = invM != 0.0f ? 1.0f / invM : 0.0f;
+      invM += gamma_;
+      mass_.ez.z = invM != 0.0f ? 1.0f / invM : 0.0f;
     }
-    else if (K.ez.z == 0.0f)
-    {
-      K.GetInverse22(&m_mass);
-      m_gamma = 0.0f;
-      m_bias = 0.0f;
+    else if (K.ez.z == 0.0f) {
+      K.GetInverse22(&mass_);
+      gamma_ = 0.0f;
+      bias_ = 0.0f;
     }
-    else
-    {
-      K.GetSymInverse33(&m_mass);
-      m_gamma = 0.0f;
-      m_bias = 0.0f;
+    else {
+      K.GetSymInverse33(&mass_);
+      gamma_ = 0.0f;
+      bias_ = 0.0f;
     }
     
-    if (data.step.warmStarting)
-    {
+    if (data.step.warmStarting) {
       // Scale impulses to support a variable time step.
-      m_impulse *= data.step.dtRatio;
+      impulse_ *= data.step.dtRatio;
       
-      Vec2 P(m_impulse.x, m_impulse.y);
+      Vec2 P(impulse_.x, impulse_.y);
       
       vA -= mA * P;
-      wA -= iA * (Cross(m_rA, P) + m_impulse.z);
+      wA -= iA * (Cross(ra_, P) + impulse_.z);
       
       vB += mB * P;
-      wB += iB * (Cross(m_rB, P) + m_impulse.z);
+      wB += iB * (Cross(rb_, P) + impulse_.z);
     }
-    else
-    {
-      m_impulse.SetZero();
+    else {
+      impulse_.SetZero();
     }
     
-    data.velocities[m_indexA].v = vA;
-    data.velocities[m_indexA].w = wA;
-    data.velocities[m_indexB].v = vB;
-    data.velocities[m_indexB].w = wB;
+    data.velocities[index_a_].v = vA;
+    data.velocities[index_a_].w = wA;
+    data.velocities[index_b_].v = vB;
+    data.velocities[index_b_].w = wB;
   }
   
-  void WeldJoint::SolveVelocityConstraints(const SolverData& data)
-  {
-    Vec2 vA = data.velocities[m_indexA].v;
-    float wA = data.velocities[m_indexA].w;
-    Vec2 vB = data.velocities[m_indexB].v;
-    float wB = data.velocities[m_indexB].w;
+  void WeldJoint::SolveVelocityConstraints(const SolverData& data) {
+    Vec2 vA = data.velocities[index_a_].v;
+    float wA = data.velocities[index_a_].w;
+    Vec2 vB = data.velocities[index_b_].v;
+    float wB = data.velocities[index_b_].w;
     
-    float mA = m_invMassA, mB = m_invMassB;
-    float iA = m_invIA, iB = m_invIB;
+    float mA = inv_mass_a_, mB = inv_mass_b_;
+    float iA = inv_i_a_, iB = inv_i_b_;
     
-    if (m_stiffness > 0.0f)
-    {
+    if (stiffness_ > 0.0f) {
       float Cdot2 = wB - wA;
       
-      float impulse2 = -m_mass.ez.z * (Cdot2 + m_bias + m_gamma * m_impulse.z);
-      m_impulse.z += impulse2;
+      float impulse2 = -mass_.ez.z * (Cdot2 + bias_ + gamma_ * impulse_.z);
+      impulse_.z += impulse2;
       
       wA -= iA * impulse2;
       wB += iB * impulse2;
       
-      Vec2 Cdot1 = vB + Cross(wB, m_rB) - vA - Cross(wA, m_rA);
+      Vec2 Cdot1 = vB + Cross(wB, rb_) - vA - Cross(wA, ra_);
       
-      Vec2 impulse1 = -Mul22(m_mass, Cdot1);
-      m_impulse.x += impulse1.x;
-      m_impulse.y += impulse1.y;
+      Vec2 impulse1 = -Mul22(mass_, Cdot1);
+      impulse_.x += impulse1.x;
+      impulse_.y += impulse1.y;
       
       Vec2 P = impulse1;
       
       vA -= mA * P;
-      wA -= iA * Cross(m_rA, P);
+      wA -= iA * Cross(ra_, P);
       
       vB += mB * P;
-      wB += iB * Cross(m_rB, P);
+      wB += iB * Cross(rb_, P);
     }
-    else
-    {
-      Vec2 Cdot1 = vB + Cross(wB, m_rB) - vA - Cross(wA, m_rA);
+    else {
+      Vec2 Cdot1 = vB + Cross(wB, rb_) - vA - Cross(wA, ra_);
       float Cdot2 = wB - wA;
       Vec3 Cdot(Cdot1.x, Cdot1.y, Cdot2);
       
-      Vec3 impulse = -Mul(m_mass, Cdot);
-      m_impulse += impulse;
+      Vec3 impulse = -Mul(mass_, Cdot);
+      impulse_ += impulse;
       
       Vec2 P(impulse.x, impulse.y);
       
       vA -= mA * P;
-      wA -= iA * (Cross(m_rA, P) + impulse.z);
+      wA -= iA * (Cross(ra_, P) + impulse.z);
       
       vB += mB * P;
-      wB += iB * (Cross(m_rB, P) + impulse.z);
+      wB += iB * (Cross(rb_, P) + impulse.z);
     }
     
-    data.velocities[m_indexA].v = vA;
-    data.velocities[m_indexA].w = wA;
-    data.velocities[m_indexB].v = vB;
-    data.velocities[m_indexB].w = wB;
+    data.velocities[index_a_].v = vA;
+    data.velocities[index_a_].w = wA;
+    data.velocities[index_b_].v = vB;
+    data.velocities[index_b_].w = wB;
   }
   
-  bool WeldJoint::SolvePositionConstraints(const SolverData& data)
-  {
-    Vec2 cA = data.positions[m_indexA].c;
-    float aA = data.positions[m_indexA].a;
-    Vec2 cB = data.positions[m_indexB].c;
-    float aB = data.positions[m_indexB].a;
+  bool WeldJoint::SolvePositionConstraints(const SolverData& data) {
+    Vec2 cA = data.positions[index_a_].c;
+    float aA = data.positions[index_a_].a;
+    Vec2 cB = data.positions[index_b_].c;
+    float aB = data.positions[index_b_].a;
     
     Rot qA(aA), qB(aB);
     
-    float mA = m_invMassA, mB = m_invMassB;
-    float iA = m_invIA, iB = m_invIB;
+    float mA = inv_mass_a_, mB = inv_mass_b_;
+    float iA = inv_i_a_, iB = inv_i_b_;
     
-    Vec2 rA = Mul(qA, m_localAnchorA - m_localCenterA);
-    Vec2 rB = Mul(qB, m_localAnchorB - m_localCenterB);
+    Vec2 rA = Mul(qA, local_anchor_a_ - local_center_a_);
+    Vec2 rB = Mul(qB, local_anchor_b_ - local_center_b_);
     
     float positionError, angularError;
     
@@ -229,8 +217,7 @@ namespace physics {
     K.ey.z = K.ez.y;
     K.ez.z = iA + iB;
     
-    if (m_stiffness > 0.0f)
-    {
+    if (stiffness_ > 0.0f) {
       Vec2 C1 =  cB + rB - cA - rA;
       
       positionError = C1.Length();
@@ -244,10 +231,9 @@ namespace physics {
       cB += mB * P;
       aB += iB * Cross(rB, P);
     }
-    else
-    {
+    else {
       Vec2 C1 =  cB + rB - cA - rA;
-      float C2 = aB - aA - m_referenceAngle;
+      float C2 = aB - aA - reference_angle_;
       
       positionError = C1.Length();
       angularError = Abs(C2);
@@ -255,12 +241,10 @@ namespace physics {
       Vec3 C(C1.x, C1.y, C2);
       
       Vec3 impulse;
-      if (K.ez.z > 0.0f)
-      {
+      if (K.ez.z > 0.0f) {
         impulse = -K.Solve33(C);
       }
-      else
-      {
+      else {
         Vec2 impulse2 = -K.Solve22(C1);
         impulse.Set(impulse2.x, impulse2.y, 0.0f);
       }
@@ -274,33 +258,29 @@ namespace physics {
       aB += iB * (Cross(rB, P) + impulse.z);
     }
     
-    data.positions[m_indexA].c = cA;
-    data.positions[m_indexA].a = aA;
-    data.positions[m_indexB].c = cB;
-    data.positions[m_indexB].a = aB;
+    data.positions[index_a_].c = cA;
+    data.positions[index_a_].a = aA;
+    data.positions[index_b_].c = cB;
+    data.positions[index_b_].a = aB;
     
     return positionError <= LinearSlop && angularError <= AngularSlop;
   }
   
-  Vec2 WeldJoint::GetAnchorA() const
-  {
-    return m_bodyA->GetWorldPoint(m_localAnchorA);
+  Vec2 WeldJoint::GetAnchorA() const {
+    return body_a_->GetWorldPoint(local_anchor_a_);
   }
   
-  Vec2 WeldJoint::GetAnchorB() const
-  {
-    return m_bodyB->GetWorldPoint(m_localAnchorB);
+  Vec2 WeldJoint::GetAnchorB() const {
+    return body_b_->GetWorldPoint(local_anchor_b_);
   }
   
-  Vec2 WeldJoint::GetReactionForce(float inv_dt) const
-  {
-    Vec2 P(m_impulse.x, m_impulse.y);
+  Vec2 WeldJoint::GetReactionForce(float inv_dt) const {
+    Vec2 P(impulse_.x, impulse_.y);
     return inv_dt * P;
   }
   
-  float WeldJoint::GetReactionTorque(float inv_dt) const
-  {
-    return inv_dt * m_impulse.z;
+  float WeldJoint::GetReactionTorque(float inv_dt) const {
+    return inv_dt * impulse_.z;
   }
 
   

@@ -80,7 +80,7 @@ namespace physics {
     /// - Parameters:
     ///   - p1: point 1
     ///   - p2: point 2
-    ///   - color: color    `
+    ///   - color: color 
     virtual void DrawSegment(const Vec2& p1, const Vec2& p2, const Color& color) = 0;
     /// This function Draws a transform. Choose your own length scale.
     /// - Parameter a: transform.

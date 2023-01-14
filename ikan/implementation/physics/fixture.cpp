@@ -18,76 +18,76 @@
 namespace physics {
   
   Fixture::Fixture() {
-    m_body = nullptr;
-    m_next = nullptr;
-    m_proxies = nullptr;
-    m_proxyCount = 0;
-    m_shape = nullptr;
-    m_density = 0.0f;
+    body_ = nullptr;
+    next_ = nullptr;
+    proxies_ = nullptr;
+    proxy_count_ = 0;
+    shape_ = nullptr;
+    density_ = 0.0f;
   }
   
   void Fixture::Create(BlockAllocator* allocator, Body* body, const FixtureDef* def) {
-    m_userData = def->userData;
-    m_friction = def->friction;
-    m_restitution = def->restitution;
-    m_restitutionThreshold = def->restitutionThreshold;
+    user_data_ = def->userData;
+    friction_ = def->friction;
+    restitution_ = def->restitution;
+    restitution_threshold_ = def->restitution_yhreshold;
     
-    m_body = body;
-    m_next = nullptr;
+    body_ = body;
+    next_ = nullptr;
     
-    m_filter = def->filter;
+    filter_ = def->filter;
     
-    m_isSensor = def->isSensor;
+    is_sensor_ = def->is_sensor;
     
-    m_shape = def->shape->Clone(allocator);
+    shape_ = def->shape->Clone(allocator);
     
     // Reserve proxy space
-    int32_t childCount = m_shape->GetChildCount();
-    m_proxies = (FixtureProxy*)allocator->Allocate(childCount * sizeof(FixtureProxy));
+    int32_t childCount = shape_->GetChildCount();
+    proxies_ = (FixtureProxy*)allocator->Allocate(childCount * sizeof(FixtureProxy));
     for (int32_t i = 0; i < childCount; ++i)
     {
-      m_proxies[i].fixture = nullptr;
-      m_proxies[i].proxyId = BroadPhase::NullProxy;
+      proxies_[i].fixture = nullptr;
+      proxies_[i].proxy_id = BroadPhase::NullProxy;
     }
-    m_proxyCount = 0;
+    proxy_count_ = 0;
     
-    m_density = def->density;
+    density_ = def->density;
   }
   
   void Fixture::Destroy(BlockAllocator* allocator) {
     // The proxies must be destroyed before calling this.
-    IK_ASSERT(m_proxyCount == 0);
+    IK_ASSERT(proxy_count_ == 0);
     
     // Free the proxy array.
-    int32_t childCount = m_shape->GetChildCount();
-    allocator->Free(m_proxies, childCount * sizeof(FixtureProxy));
-    m_proxies = nullptr;
+    int32_t childCount = shape_->GetChildCount();
+    allocator->Free(proxies_, childCount * sizeof(FixtureProxy));
+    proxies_ = nullptr;
     
     // Free the child shape.
-    switch (m_shape->type_) {
+    switch (shape_->type_) {
       case Shape::Type::Circle: {
-        CircleShape* s = (CircleShape*)m_shape;
+        CircleShape* s = (CircleShape*)shape_;
         s->~CircleShape();
         allocator->Free(s, sizeof(CircleShape));
       }
       break;
         
       case Shape::Type::Edge: {
-        EdgeShape* s = (EdgeShape*)m_shape;
+        EdgeShape* s = (EdgeShape*)shape_;
         s->~EdgeShape();
         allocator->Free(s, sizeof(EdgeShape));
       }
       break;
 
       case Shape::Type::Polygon: {
-        PolygonShape* s = (PolygonShape*)m_shape;
+        PolygonShape* s = (PolygonShape*)shape_;
         s->~PolygonShape();
         allocator->Free(s, sizeof(PolygonShape));
       }
       break;
 
       case Shape::Type::Chain: {
-        ChainShape* s = (ChainShape*)m_shape;
+        ChainShape* s = (ChainShape*)shape_;
         s->~ChainShape();
         allocator->Free(s, sizeof(ChainShape));
       }
@@ -97,69 +97,69 @@ namespace physics {
         IK_ASSERT(false); break;
     }
     
-    m_shape = nullptr;
+    shape_ = nullptr;
   }
   
   void Fixture::CreateProxies(BroadPhase* broadPhase, const Transform& xf) {
-    IK_ASSERT(m_proxyCount == 0);
+    IK_ASSERT(proxy_count_ == 0);
 
     // Create proxies in the broad-phase.
-    m_proxyCount = m_shape->GetChildCount();
+    proxy_count_ = shape_->GetChildCount();
 
-    for (int32_t i = 0; i < m_proxyCount; ++i) {
-      FixtureProxy* proxy = m_proxies + i;
-      m_shape->ComputeAABB(&proxy->aabb, xf, i);
-      proxy->proxyId = broadPhase->CreateProxy(proxy->aabb, proxy);
+    for (int32_t i = 0; i < proxy_count_; ++i) {
+      FixtureProxy* proxy = proxies_ + i;
+      shape_->ComputeAABB(&proxy->aabb, xf, i);
+      proxy->proxy_id = broadPhase->CreateProxy(proxy->aabb, proxy);
       proxy->fixture = this;
-      proxy->childIndex = i;
+      proxy->child_index = i;
     }
   }
 
   void Fixture::DestroyProxies(BroadPhase* broadPhase) {
     // Destroy proxies in the broad-phase.
-    for (int32_t i = 0; i < m_proxyCount; ++i) {
-      FixtureProxy* proxy = m_proxies + i;
-      broadPhase->DestroyProxy(proxy->proxyId);
-      proxy->proxyId = BroadPhase::NullProxy;
+    for (int32_t i = 0; i < proxy_count_; ++i) {
+      FixtureProxy* proxy = proxies_ + i;
+      broadPhase->DestroyProxy(proxy->proxy_id);
+      proxy->proxy_id = BroadPhase::NullProxy;
     }
 
-    m_proxyCount = 0;
+    proxy_count_ = 0;
   }
 
   void Fixture::Synchronize(BroadPhase* broadPhase, const Transform& transform1, const Transform& transform2) {
-    if (m_proxyCount == 0) {
+    if (proxy_count_ == 0) {
       return;
     }
 
-    for (int32_t i = 0; i < m_proxyCount; ++i) {
-      FixtureProxy* proxy = m_proxies + i;
+    for (int32_t i = 0; i < proxy_count_; ++i) {
+      FixtureProxy* proxy = proxies_ + i;
 
       // Compute an AABB that covers the swept shape (may miss some rotation effect).
       AABB aabb1, aab;
-      m_shape->ComputeAABB(&aabb1, transform1, proxy->childIndex);
-      m_shape->ComputeAABB(&aab, transform2, proxy->childIndex);
+      shape_->ComputeAABB(&aabb1, transform1, proxy->child_index);
+      shape_->ComputeAABB(&aab, transform2, proxy->child_index);
 
       proxy->aabb.Combine(aabb1, aab);
 
       Vec2 displacement = aab.GetCenter() - aabb1.GetCenter();
 
-      broadPhase->MoveProxy(proxy->proxyId, proxy->aabb, displacement);
+      broadPhase->MoveProxy(proxy->proxy_id, proxy->aabb, displacement);
     }
   }
 
   void Fixture::SetFilterData(const Filter& filter) {
-    m_filter = filter;
+    filter_ = filter;
 
     Refilter();
   }
 
   void Fixture::Refilter() {
-    if (m_body == nullptr) {
+    if (body_ == nullptr) {
       return;
     }
 
     // Flag associated contacts for filtering.
-    ContactEdge* edge = m_body->GetContactList();
+    ContactEdge* edge = body_->GetContactList();
     while (edge) {
       Contact* contact = edge->contact;
       Fixture* fixtureA = contact->GetFixtureA();
@@ -171,7 +171,7 @@ namespace physics {
       edge = edge->next;
     }
 
-    World* world = m_body->GetWorld();
+    World* world = body_->GetWorld();
 
     if (world == nullptr) {
       return;
@@ -179,173 +179,106 @@ namespace physics {
 
     // Touch each proxy so that new pairs may be created
     BroadPhase* broadPhase = &world->contact_manager.broad_phase_;
-    for (int32_t i = 0; i < m_proxyCount; ++i) {
-      broadPhase->TouchProxy(m_proxies[i].proxyId);
+    for (int32_t i = 0; i < proxy_count_; ++i) {
+      broadPhase->TouchProxy(proxies_[i].proxy_id);
     }
   }
 
-//  void Fixture::SetSensor(bool sensor) {
-//    if (sensor != m_isSensor) {
-//      m_body->SetAwake(true);
-//      m_isSensor = sensor;
-//    }
-//  }
-//
-//  void Fixture::Dump(int32_t bodyIndex) {
-//    Dump("    FixtureDef fd;\n");
-//    Dump("    fd.friction = %.9g;\n", m_friction);
-//    Dump("    fd.restitution = %.9g;\n", m_restitution);
-//    Dump("    fd.restitutionThreshold = %.9g;\n", m_restitutionThreshold);
-//    Dump("    fd.density = %.9g;\n", m_density);
-//    Dump("    fd.isSensor = bool(%d);\n", m_isSensor);
-//    Dump("    fd.filter.categoryBits = uint16(%d);\n", m_filter.categoryBits);
-//    Dump("    fd.filter.maskBits = uint16(%d);\n", m_filter.maskBits);
-//    Dump("    fd.filter.groupIndex = int16(%d);\n", m_filter.groupIndex);
-//
-//    switch (m_shape->m_type) {
-//      case Shape::e_circle: {
-//        CircleShape* s = (CircleShape*)m_shape;
-//        Dump("    CircleShape shape;\n");
-//        Dump("    shape.m_radius = %.9g;\n", s->m_radius);
-//        Dump("    shape.m_p.Set(%.9g, %.9g);\n", s->m_p.x, s->m_p.y);
-//      }
-//        break;
-//
-//      case Shape::e_edge: {
-//        EdgeShape* s = (EdgeShape*)m_shape;
-//        Dump("    EdgeShape shape;\n");
-//        Dump("    shape.m_radius = %.9g;\n", s->m_radius);
-//        Dump("    shape.m_vertex0.Set(%.9g, %.9g);\n", s->m_vertex0.x, s->m_vertex0.y);
-//        Dump("    shape.m_vertex1.Set(%.9g, %.9g);\n", s->m_vertex1.x, s->m_vertex1.y);
-//        Dump("    shape.m_vertex2.Set(%.9g, %.9g);\n", s->m_vertex2.x, s->m_vertex2.y);
-//        Dump("    shape.m_vertex3.Set(%.9g, %.9g);\n", s->m_vertex3.x, s->m_vertex3.y);
-//        Dump("    shape.m_oneSided = bool(%d);\n", s->m_oneSided);
-//      }
-//        break;
-//
-//      case Shape::e_polygon: {
-//        PolygonShape* s = (PolygonShape*)m_shape;
-//        Dump("    PolygonShape shape;\n");
-//        Dump("    Vec2 vs[%d];\n", _maxPolygonVertices);
-//        for (int32_t i = 0; i < s->m_count; ++i) {
-//          Dump("    vs[%d].Set(%.9g, %.9g);\n", i, s->m_vertices[i].x, s->m_vertices[i].y);
-//        }
-//        Dump("    shape.Set(vs, %d);\n", s->m_count);
-//      }
-//        break;
-//
-//      case Shape::e_chain: {
-//        ChainShape* s = (ChainShape*)m_shape;
-//        Dump("    ChainShape shape;\n");
-//        Dump("    Vec2 vs[%d];\n", s->m_count);
-//        for (int32_t i = 0; i < s->m_count; ++i)
-//        {
-//          Dump("    vs[%d].Set(%.9g, %.9g);\n", i, s->m_vertices[i].x, s->m_vertices[i].y);
-//        }
-//        Dump("    shape.CreateChain(vs, %d);\n", s->m_count);
-//        Dump("    shape.m_prevVertex.Set(%.9g, %.9g);\n", s->m_prevVertex.x, s->m_prevVertex.y);
-//        Dump("    shape.m_nextVertex.Set(%.9g, %.9g);\n", s->m_nextVertex.x, s->m_nextVertex.y);
-//      }
-//        break;
-//
-//      default:
-//        return;
-//    }
-//
-//    Dump("\n");
-//    Dump("    fd.shape = &shape;\n");
-//    Dump("\n");
-//    Dump("    bodies[%d]->CreateFixture(&fd);\n", bodyIndex);
-//  }
-
+  void Fixture::SetSensor(bool sensor) {
+    if (sensor != is_sensor_) {
+      body_->SetAwake(true);
+      is_sensor_ = sensor;
+    }
+  }
+  
   Shape::Type Fixture::GetType() const {
-    return m_shape->GetType();
+    return shape_->GetType();
   }
   
   Shape* Fixture::GetShape() {
-    return m_shape;
+    return shape_;
   }
   
   const Shape* Fixture::GetShape() const {
-    return m_shape;
+    return shape_;
   }
   
   bool Fixture::IsSensor() const {
-    return m_isSensor;
+    return is_sensor_;
   }
   
   const Filter& Fixture::GetFilterData() const {
-    return m_filter;
+    return filter_;
   }
   
   FixtureUserData& Fixture::GetUserData() {
-    return m_userData;
+    return user_data_;
   }
   
   Body* Fixture::GetBody() {
-    return m_body;
+    return body_;
   }
   
   const Body* Fixture::GetBody() const {
-    return m_body;
+    return body_;
   }
   
   Fixture* Fixture::GetNext() {
-    return m_next;
+    return next_;
   }
   
   const Fixture* Fixture::GetNext() const {
-    return m_next;
+    return next_;
   }
   
   void Fixture::SetDensity(float density) {
     IK_ASSERT(physics::IsValid(density) && density >= 0.0f);
-    m_density = density;
+    density_ = density;
   }
   
   float Fixture::GetDensity() const {
-    return m_density;
+    return density_;
   }
   
   float Fixture::GetFriction() const {
-    return m_friction;
+    return friction_;
   }
   
   void Fixture::SetFriction(float friction) {
-    m_friction = friction;
+    friction_ = friction;
   }
   
   float Fixture::GetRestitution() const {
-    return m_restitution;
+    return restitution_;
   }
   
   void Fixture::SetRestitution(float restitution) {
-    m_restitution = restitution;
+    restitution_ = restitution;
   }
   
   float Fixture::GetRestitutionThreshold() const {
-    return m_restitutionThreshold;
+    return restitution_threshold_;
   }
   
   void Fixture::SetRestitutionThreshold(float threshold) {
-    m_restitutionThreshold = threshold;
+    restitution_threshold_ = threshold;
   }
   
   bool Fixture::TestPoint(const Vec2& p) const {
-    return m_shape->TestPoint(m_body->GetTransform(), p);
+    return shape_->TestPoint(body_->GetTransform(), p);
   }
   
   bool Fixture::RayCast(RayCastOutput* output, const RayCastInput& input, int32_t childIndex) const {
-    return m_shape->RayCast(output, input, m_body->GetTransform(), childIndex);
+    return shape_->RayCast(output, input, body_->GetTransform(), childIndex);
   }
   
   void Fixture::GetMassData(MassData* massData) const {
-    m_shape->ComputeMass(massData, m_density);
+    shape_->ComputeMass(massData, density_);
   }
   
   const AABB& Fixture::GetAABB(int32_t childIndex) const {
-    IK_ASSERT(0 <= childIndex && childIndex < m_proxyCount);
-    return m_proxies[childIndex].aabb;
+    IK_ASSERT(0 <= childIndex && childIndex < proxy_count_);
+    return proxies_[childIndex].aabb;
   }
 
 }

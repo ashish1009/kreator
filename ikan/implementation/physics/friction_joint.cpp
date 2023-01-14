@@ -15,8 +15,7 @@
 
 namespace physics {
  
-  void FrictionJointDef::Initialize(Body* bA, Body* bB, const Vec2& anchor)
-  {
+  void FrictionJointDef::Initialize(Body* bA, Body* bB, const Vec2& anchor) {
     bodyA = bA;
     bodyB = bB;
     localAnchorA = bodyA->GetLocalPoint(anchor);
@@ -24,42 +23,40 @@ namespace physics {
   }
   
   FrictionJoint::FrictionJoint(const FrictionJointDef* def)
-  : Joint(def)
-  {
-    m_localAnchorA = def->localAnchorA;
-    m_localAnchorB = def->localAnchorB;
+  : Joint(def) {
+    local_anchor_a_ = def->localAnchorA;
+    local_anchor_b_ = def->localAnchorB;
     
-    m_linearImpulse.SetZero();
-    m_angularImpulse = 0.0f;
+    linear_impulse_.SetZero();
+    angular_impulse_ = 0.0f;
     
-    m_maxForce = def->maxForce;
-    m_maxTorque = def->maxTorque;
+    max_force_ = def->maxForce;
+    max_torque_ = def->maxTorque;
   }
   
-  void FrictionJoint::InitVelocityConstraints(const SolverData& data)
-  {
-    m_indexA = m_bodyA->m_islandIndex;
-    m_indexB = m_bodyB->m_islandIndex;
-    m_localCenterA = m_bodyA->m_sweep.localCenter;
-    m_localCenterB = m_bodyB->m_sweep.localCenter;
-    m_invMassA = m_bodyA->m_invMass;
-    m_invMassB = m_bodyB->m_invMass;
-    m_invIA = m_bodyA->m_invI;
-    m_invIB = m_bodyB->m_invI;
+  void FrictionJoint::InitVelocityConstraints(const SolverData& data) {
+    index_a_ = body_a_->island_index_;
+    index_b_ = body_b_->island_index_;
+    local_center_a_ = body_a_->sweep_.localCenter;
+    local_center_b_ = body_b_->sweep_.localCenter;
+    inv_mass_a_ = body_a_->inv_mass_;
+    inv_mass_b_ = body_b_->inv_mass_;
+    inv_i_a_ = body_a_->inv_inertia_;
+    inv_i_b_ = body_b_->inv_inertia_;
     
-    float aA = data.positions[m_indexA].a;
-    Vec2 vA = data.velocities[m_indexA].v;
-    float wA = data.velocities[m_indexA].w;
+    float aA = data.positions[index_a_].a;
+    Vec2 vA = data.velocities[index_a_].v;
+    float wA = data.velocities[index_a_].w;
     
-    float aB = data.positions[m_indexB].a;
-    Vec2 vB = data.velocities[m_indexB].v;
-    float wB = data.velocities[m_indexB].w;
+    float aB = data.positions[index_b_].a;
+    Vec2 vB = data.velocities[index_b_].v;
+    float wB = data.velocities[index_b_].w;
     
     Rot qA(aA), qB(aB);
     
     // Compute the effective mass matrix.
-    m_rA = Mul(qA, m_localAnchorA - m_localCenterA);
-    m_rB = Mul(qB, m_localAnchorB - m_localCenterB);
+    ra_ = Mul(qA, local_anchor_a_ - local_center_a_);
+    rb_ = Mul(qB, local_anchor_b_ - local_center_b_);
     
     // J = [-I -r1_skew I r2_skew]
     //     [ 0       -1 0       1]
@@ -70,68 +67,64 @@ namespace physics {
     //     [  -r1y*iA*r1x-r2y*iB*r2x, mA+r1x^2*iA+mB+r2x^2*iB,           r1x*iA+r2x*iB]
     //     [          -r1y*iA-r2y*iB,           r1x*iA+r2x*iB,                   iA+iB]
     
-    float mA = m_invMassA, mB = m_invMassB;
-    float iA = m_invIA, iB = m_invIB;
+    float mA = inv_mass_a_, mB = inv_mass_b_;
+    float iA = inv_i_a_, iB = inv_i_b_;
     
     Mat22 K;
-    K.ex.x = mA + mB + iA * m_rA.y * m_rA.y + iB * m_rB.y * m_rB.y;
-    K.ex.y = -iA * m_rA.x * m_rA.y - iB * m_rB.x * m_rB.y;
+    K.ex.x = mA + mB + iA * ra_.y * ra_.y + iB * rb_.y * rb_.y;
+    K.ex.y = -iA * ra_.x * ra_.y - iB * rb_.x * rb_.y;
     K.ey.x = K.ex.y;
-    K.ey.y = mA + mB + iA * m_rA.x * m_rA.x + iB * m_rB.x * m_rB.x;
+    K.ey.y = mA + mB + iA * ra_.x * ra_.x + iB * rb_.x * rb_.x;
     
-    m_linearMass = K.GetInverse();
+    linear_mass_ = K.GetInverse();
     
-    m_angularMass = iA + iB;
-    if (m_angularMass > 0.0f)
-    {
-      m_angularMass = 1.0f / m_angularMass;
+    angular_mass_ = iA + iB;
+    if (angular_mass_ > 0.0f) {
+      angular_mass_ = 1.0f / angular_mass_;
     }
     
-    if (data.step.warmStarting)
-    {
+    if (data.step.warmStarting) {
       // Scale impulses to support a variable time step.
-      m_linearImpulse *= data.step.dtRatio;
-      m_angularImpulse *= data.step.dtRatio;
+      linear_impulse_ *= data.step.dtRatio;
+      angular_impulse_ *= data.step.dtRatio;
       
-      Vec2 P(m_linearImpulse.x, m_linearImpulse.y);
+      Vec2 P(linear_impulse_.x, linear_impulse_.y);
       vA -= mA * P;
-      wA -= iA * (Cross(m_rA, P) + m_angularImpulse);
+      wA -= iA * (Cross(ra_, P) + angular_impulse_);
       vB += mB * P;
-      wB += iB * (Cross(m_rB, P) + m_angularImpulse);
+      wB += iB * (Cross(rb_, P) + angular_impulse_);
     }
-    else
-    {
-      m_linearImpulse.SetZero();
-      m_angularImpulse = 0.0f;
+    else {
+      linear_impulse_.SetZero();
+      angular_impulse_ = 0.0f;
     }
     
-    data.velocities[m_indexA].v = vA;
-    data.velocities[m_indexA].w = wA;
-    data.velocities[m_indexB].v = vB;
-    data.velocities[m_indexB].w = wB;
+    data.velocities[index_a_].v = vA;
+    data.velocities[index_a_].w = wA;
+    data.velocities[index_b_].v = vB;
+    data.velocities[index_b_].w = wB;
   }
   
-  void FrictionJoint::SolveVelocityConstraints(const SolverData& data)
-  {
-    Vec2 vA = data.velocities[m_indexA].v;
-    float wA = data.velocities[m_indexA].w;
-    Vec2 vB = data.velocities[m_indexB].v;
-    float wB = data.velocities[m_indexB].w;
+  void FrictionJoint::SolveVelocityConstraints(const SolverData& data) {
+    Vec2 vA = data.velocities[index_a_].v;
+    float wA = data.velocities[index_a_].w;
+    Vec2 vB = data.velocities[index_b_].v;
+    float wB = data.velocities[index_b_].w;
     
-    float mA = m_invMassA, mB = m_invMassB;
-    float iA = m_invIA, iB = m_invIB;
+    float mA = inv_mass_a_, mB = inv_mass_b_;
+    float iA = inv_i_a_, iB = inv_i_b_;
     
     float h = data.step.dt;
     
     // Solve angular friction
     {
       float Cdot = wB - wA;
-      float impulse = -m_angularMass * Cdot;
+      float impulse = -angular_mass_ * Cdot;
       
-      float oldImpulse = m_angularImpulse;
-      float maxImpulse = h * m_maxTorque;
-      m_angularImpulse = Clamp(m_angularImpulse + impulse, -maxImpulse, maxImpulse);
-      impulse = m_angularImpulse - oldImpulse;
+      float oldImpulse = angular_impulse_;
+      float maxImpulse = h * max_torque_;
+      angular_impulse_ = Clamp(angular_impulse_ + impulse, -maxImpulse, maxImpulse);
+      impulse = angular_impulse_ - oldImpulse;
       
       wA -= iA * impulse;
       wB += iB * impulse;
@@ -139,82 +132,72 @@ namespace physics {
     
     // Solve linear friction
     {
-      Vec2 Cdot = vB + Cross(wB, m_rB) - vA - Cross(wA, m_rA);
+      Vec2 Cdot = vB + Cross(wB, rb_) - vA - Cross(wA, ra_);
       
-      Vec2 impulse = -Mul(m_linearMass, Cdot);
-      Vec2 oldImpulse = m_linearImpulse;
-      m_linearImpulse += impulse;
+      Vec2 impulse = -Mul(linear_mass_, Cdot);
+      Vec2 oldImpulse = linear_impulse_;
+      linear_impulse_ += impulse;
       
-      float maxImpulse = h * m_maxForce;
+      float maxImpulse = h * max_force_;
       
-      if (m_linearImpulse.LengthSquared() > maxImpulse * maxImpulse)
-      {
-        m_linearImpulse.Normalize();
-        m_linearImpulse *= maxImpulse;
+      if (linear_impulse_.LengthSquared() > maxImpulse * maxImpulse) {
+        linear_impulse_.Normalize();
+        linear_impulse_ *= maxImpulse;
       }
       
-      impulse = m_linearImpulse - oldImpulse;
+      impulse = linear_impulse_ - oldImpulse;
       
       vA -= mA * impulse;
-      wA -= iA * Cross(m_rA, impulse);
+      wA -= iA * Cross(ra_, impulse);
       
       vB += mB * impulse;
-      wB += iB * Cross(m_rB, impulse);
+      wB += iB * Cross(rb_, impulse);
     }
     
-    data.velocities[m_indexA].v = vA;
-    data.velocities[m_indexA].w = wA;
-    data.velocities[m_indexB].v = vB;
-    data.velocities[m_indexB].w = wB;
+    data.velocities[index_a_].v = vA;
+    data.velocities[index_a_].w = wA;
+    data.velocities[index_b_].v = vB;
+    data.velocities[index_b_].w = wB;
   }
   
-  bool FrictionJoint::SolvePositionConstraints(const SolverData& data)
-  {
+  bool FrictionJoint::SolvePositionConstraints(const SolverData& data) {
     NOT_USED(data);
     
     return true;
   }
   
-  Vec2 FrictionJoint::GetAnchorA() const
-  {
-    return m_bodyA->GetWorldPoint(m_localAnchorA);
+  Vec2 FrictionJoint::GetAnchorA() const {
+    return body_a_->GetWorldPoint(local_anchor_a_);
   }
   
-  Vec2 FrictionJoint::GetAnchorB() const
-  {
-    return m_bodyB->GetWorldPoint(m_localAnchorB);
+  Vec2 FrictionJoint::GetAnchorB() const {
+    return body_b_->GetWorldPoint(local_anchor_b_);
   }
   
-  Vec2 FrictionJoint::GetReactionForce(float inv_dt) const
-  {
-    return inv_dt * m_linearImpulse;
+  Vec2 FrictionJoint::GetReactionForce(float inv_dt) const {
+    return inv_dt * linear_impulse_;
   }
   
-  float FrictionJoint::GetReactionTorque(float inv_dt) const
-  {
-    return inv_dt * m_angularImpulse;
+  float FrictionJoint::GetReactionTorque(float inv_dt) const {
+    return inv_dt * angular_impulse_;
   }
   
-  void FrictionJoint::SetMaxForce(float force)
-  {
+  void FrictionJoint::SetMaxForce(float force) {
     IK_ASSERT(IsValid(force) && force >= 0.0f);
-    m_maxForce = force;
+    max_force_ = force;
   }
   
-  float FrictionJoint::GetMaxForce() const
-  {
-    return m_maxForce;
+  float FrictionJoint::GetMaxForce() const {
+    return max_force_;
   }
   
-  void FrictionJoint::SetMaxTorque(float torque)
-  {
+  void FrictionJoint::SetMaxTorque(float torque) {
     IK_ASSERT(IsValid(torque) && torque >= 0.0f);
-    m_maxTorque = torque;
+    max_torque_ = torque;
   }
   
-  float FrictionJoint::GetMaxTorque() const
-  {
-    return m_maxTorque;
+  float FrictionJoint::GetMaxTorque() const {
+    return max_torque_;
   }
 
   

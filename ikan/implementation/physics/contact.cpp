@@ -114,9 +114,9 @@ namespace physics {
 
     toi_count_ = 0;
 
-    friction_ = MixFriction(fixture_a_->m_friction, fixture_b_->m_friction);
-    restitution_ = MixRestitution(fixture_a_->m_restitution, fixture_b_->m_restitution);
-    restitution_threshold_ = MixRestitutionThreshold(fixture_a_->m_restitutionThreshold, fixture_b_->m_restitutionThreshold);
+    friction_ = MixFriction(fixture_a_->friction_, fixture_b_->friction_);
+    restitution_ = MixRestitution(fixture_a_->restitution_, fixture_b_->restitution_);
+    restitution_threshold_ = MixRestitutionThreshold(fixture_a_->restitution_threshold_, fixture_b_->restitution_threshold_);
 
     tangent_speed_ = 0.0f;
   }
@@ -278,7 +278,7 @@ namespace physics {
   }
   
   void Contact::ResetFriction() {
-    friction_ = MixFriction(fixture_a_->m_friction, fixture_b_->m_friction);
+    friction_ = MixFriction(fixture_a_->friction_, fixture_b_->friction_);
   }
   
   void Contact::SetRestitution(float restitution) {
@@ -290,7 +290,7 @@ namespace physics {
   }
   
   void Contact::ResetRestitution() {
-    restitution_ = MixRestitution(fixture_a_->m_restitution, fixture_b_->m_restitution);
+    restitution_ = MixRestitution(fixture_a_->restitution_, fixture_b_->restitution_);
   }
   
   void Contact::SetRestitutionThreshold(float threshold) {
@@ -302,7 +302,7 @@ namespace physics {
   }
   
   void Contact::ResetRestitutionThreshold() {
-    restitution_threshold_ = MixRestitutionThreshold(fixture_a_->m_restitutionThreshold, fixture_b_->m_restitutionThreshold);
+    restitution_threshold_ = MixRestitutionThreshold(fixture_a_->restitution_threshold_, fixture_b_->restitution_threshold_);
   }
   
   void Contact::SetTangentSpeed(float speed) {

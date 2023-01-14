@@ -369,10 +369,10 @@ namespace physics {
     massData->center = center + s;
     
     // Inertia tensor relative to the local origin (point s).
-    massData->I = density * I;
+    massData->inertia = density * I;
     
     // Shift to center of mass then to original body origin.
-    massData->I += massData->mass * (Dot(massData->center, massData->center) - Dot(center, center));
+    massData->inertia += massData->mass * (Dot(massData->center, massData->center) - Dot(center, center));
   }
   
   bool PolygonShape::Validate() const {

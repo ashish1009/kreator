@@ -291,7 +291,6 @@ namespace physics {
   // -------------------------------------------------------
   // Operators
   // -------------------------------------------------------
-  
   /// Perform the dot product on two vectors.
   inline float Dot(const Vec2& a, const Vec2& b) {
     return a.x * b.x + a.y * b.y;

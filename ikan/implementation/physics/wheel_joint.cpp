@@ -15,8 +15,7 @@
 
 namespace physics {
  
-  void WheelJointDef::Initialize(Body* bA, Body* bB, const Vec2& anchor, const Vec2& axis)
-  {
+  void WheelJointDef::Initialize(Body* bA, Body* bB, const Vec2& anchor, const Vec2& axis) {
     bodyA = bA;
     bodyB = bB;
     localAnchorA = bodyA->GetLocalPoint(anchor);
@@ -25,208 +24,195 @@ namespace physics {
   }
   
   WheelJoint::WheelJoint(const WheelJointDef* def)
-  : Joint(def)
-  {
-    m_localAnchorA = def->localAnchorA;
-    m_localAnchorB = def->localAnchorB;
-    m_localXAxisA = def->localAxisA;
-    m_localYAxisA = Cross(1.0f, m_localXAxisA);
+  : Joint(def) {
+    local_anchor_a_ = def->localAnchorA;
+    local_anchor_b_ = def->localAnchorB;
+    local_x_axis_a_ = def->localAxisA;
+    local_y_axis_a_ = Cross(1.0f, local_x_axis_a_);
     
-    m_mass = 0.0f;
-    m_impulse = 0.0f;
-    m_motorMass = 0.0f;
-    m_motorImpulse = 0.0f;
-    m_springMass = 0.0f;
-    m_springImpulse = 0.0f;
+    mass_ = 0.0f;
+    impulse_ = 0.0f;
+    motor_mass_ = 0.0f;
+    motor_impulse_ = 0.0f;
+    spring_mass_ = 0.0f;
+    spring_impusle_ = 0.0f;
     
-    m_axialMass = 0.0f;
-    m_lowerImpulse = 0.0f;
-    m_upperImpulse = 0.0f;
-    m_lowerTranslation = def->lowerTranslation;
-    m_upperTranslation = def->upperTranslation;
-    m_enableLimit = def->enableLimit;
+    axis_mass_ = 0.0f;
+    lower_impulse_ = 0.0f;
+    upper_impulse_ = 0.0f;
+    lower_translation_ = def->lowerTranslation;
+    upper_translation_ = def->upperTranslation;
+    enable_limit_ = def->enableLimit;
     
-    m_maxMotorTorque = def->maxMotorTorque;
-    m_motorSpeed = def->motorSpeed;
-    m_enableMotor = def->enableMotor;
+    max_motor_torque_ = def->maxMotorTorque;
+    motor_speed_ = def->motorSpeed;
+    enable_motor_ = def->enableMotor;
     
-    m_bias = 0.0f;
-    m_gamma = 0.0f;
+    bias_ = 0.0f;
+    gamma_ = 0.0f;
     
-    m_ax.SetZero();
-    m_ay.SetZero();
+    a_x_.SetZero();
+    a_y_.SetZero();
     
-    m_stiffness = def->stiffness;
-    m_damping = def->damping;
+    stiffness_ = def->stiffness;
+    damping_ = def->damping;
   }
   
-  void WheelJoint::InitVelocityConstraints(const SolverData& data)
-  {
-    m_indexA = m_bodyA->m_islandIndex;
-    m_indexB = m_bodyB->m_islandIndex;
-    m_localCenterA = m_bodyA->m_sweep.localCenter;
-    m_localCenterB = m_bodyB->m_sweep.localCenter;
-    m_invMassA = m_bodyA->m_invMass;
-    m_invMassB = m_bodyB->m_invMass;
-    m_invIA = m_bodyA->m_invI;
-    m_invIB = m_bodyB->m_invI;
+  void WheelJoint::InitVelocityConstraints(const SolverData& data) {
+    index_a_ = body_a_->island_index_;
+    index_b_ = body_b_->island_index_;
+    local_center_a_ = body_a_->sweep_.localCenter;
+    local_center_b_ = body_b_->sweep_.localCenter;
+    inv_mass_a_ = body_a_->inv_mass_;
+    inv_mass_b_ = body_b_->inv_mass_;
+    inv_i_a_ = body_a_->inv_inertia_;
+    inv_i_b_ = body_b_->inv_inertia_;
     
-    float mA = m_invMassA, mB = m_invMassB;
-    float iA = m_invIA, iB = m_invIB;
+    float mA = inv_mass_a_, mB = inv_mass_b_;
+    float iA = inv_i_a_, iB = inv_i_b_;
     
-    Vec2 cA = data.positions[m_indexA].c;
-    float aA = data.positions[m_indexA].a;
-    Vec2 vA = data.velocities[m_indexA].v;
-    float wA = data.velocities[m_indexA].w;
+    Vec2 cA = data.positions[index_a_].c;
+    float aA = data.positions[index_a_].a;
+    Vec2 vA = data.velocities[index_a_].v;
+    float wA = data.velocities[index_a_].w;
     
-    Vec2 cB = data.positions[m_indexB].c;
-    float aB = data.positions[m_indexB].a;
-    Vec2 vB = data.velocities[m_indexB].v;
-    float wB = data.velocities[m_indexB].w;
+    Vec2 cB = data.positions[index_b_].c;
+    float aB = data.positions[index_b_].a;
+    Vec2 vB = data.velocities[index_b_].v;
+    float wB = data.velocities[index_b_].w;
     
     Rot qA(aA), qB(aB);
     
     // Compute the effective masses.
-    Vec2 rA = Mul(qA, m_localAnchorA - m_localCenterA);
-    Vec2 rB = Mul(qB, m_localAnchorB - m_localCenterB);
+    Vec2 rA = Mul(qA, local_anchor_a_ - local_center_a_);
+    Vec2 rB = Mul(qB, local_anchor_b_ - local_center_b_);
     Vec2 d = cB + rB - cA - rA;
     
     // Point to line constraint
     {
-      m_ay = Mul(qA, m_localYAxisA);
-      m_sAy = Cross(d + rA, m_ay);
-      m_sBy = Cross(rB, m_ay);
+      a_y_ = Mul(qA, local_y_axis_a_);
+      s_a_y_ = Cross(d + rA, a_y_);
+      s_b_y_ = Cross(rB, a_y_);
       
-      m_mass = mA + mB + iA * m_sAy * m_sAy + iB * m_sBy * m_sBy;
+      mass_ = mA + mB + iA * s_a_y_ * s_a_y_ + iB * s_b_y_ * s_b_y_;
       
-      if (m_mass > 0.0f)
+      if (mass_ > 0.0f)
       {
-        m_mass = 1.0f / m_mass;
+        mass_ = 1.0f / mass_;
       }
     }
     
     // Spring constraint
-    m_ax = Mul(qA, m_localXAxisA);
-    m_sAx = Cross(d + rA, m_ax);
-    m_sBx = Cross(rB, m_ax);
+    a_x_ = Mul(qA, local_x_axis_a_);
+    m_sAx = Cross(d + rA, a_x_);
+    s_b_x_ = Cross(rB, a_x_);
     
-    const float invMass = mA + mB + iA * m_sAx * m_sAx + iB * m_sBx * m_sBx;
-    if (invMass > 0.0f)
-    {
-      m_axialMass = 1.0f / invMass;
+    const float invMass = mA + mB + iA * m_sAx * m_sAx + iB * s_b_x_ * s_b_x_;
+    if (invMass > 0.0f) {
+      axis_mass_ = 1.0f / invMass;
     }
-    else
-    {
-      m_axialMass = 0.0f;
+    else {
+      axis_mass_ = 0.0f;
     }
     
-    m_springMass = 0.0f;
-    m_bias = 0.0f;
-    m_gamma = 0.0f;
+    spring_mass_ = 0.0f;
+    bias_ = 0.0f;
+    gamma_ = 0.0f;
     
-    if (m_stiffness > 0.0f && invMass > 0.0f)
-    {
-      m_springMass = 1.0f / invMass;
+    if (stiffness_ > 0.0f && invMass > 0.0f) {
+      spring_mass_ = 1.0f / invMass;
       
-      float C = Dot(d, m_ax);
+      float C = Dot(d, a_x_);
       
       // magic formulas
       float h = data.step.dt;
-      m_gamma = h * (m_damping + h * m_stiffness);
-      if (m_gamma > 0.0f)
+      gamma_ = h * (damping_ + h * stiffness_);
+      if (gamma_ > 0.0f)
       {
-        m_gamma = 1.0f / m_gamma;
+        gamma_ = 1.0f / gamma_;
       }
       
-      m_bias = C * h * m_stiffness * m_gamma;
+      bias_ = C * h * stiffness_ * gamma_;
       
-      m_springMass = invMass + m_gamma;
-      if (m_springMass > 0.0f)
+      spring_mass_ = invMass + gamma_;
+      if (spring_mass_ > 0.0f)
       {
-        m_springMass = 1.0f / m_springMass;
+        spring_mass_ = 1.0f / spring_mass_;
       }
     }
-    else
-    {
-      m_springImpulse = 0.0f;
+    else {
+      spring_impusle_ = 0.0f;
     }
     
-    if (m_enableLimit)
-    {
-      m_translation = Dot(m_ax, d);
+    if (enable_limit_) {
+      translation_ = Dot(a_x_, d);
     }
-    else
-    {
-      m_lowerImpulse = 0.0f;
-      m_upperImpulse = 0.0f;
+    else {
+      lower_impulse_ = 0.0f;
+      upper_impulse_ = 0.0f;
     }
     
-    if (m_enableMotor)
-    {
-      m_motorMass = iA + iB;
-      if (m_motorMass > 0.0f)
+    if (enable_motor_) {
+      motor_mass_ = iA + iB;
+      if (motor_mass_ > 0.0f)
       {
-        m_motorMass = 1.0f / m_motorMass;
+        motor_mass_ = 1.0f / motor_mass_;
       }
     }
-    else
-    {
-      m_motorMass = 0.0f;
-      m_motorImpulse = 0.0f;
+    else {
+      motor_mass_ = 0.0f;
+      motor_impulse_ = 0.0f;
     }
     
-    if (data.step.warmStarting)
-    {
+    if (data.step.warmStarting) {
       // Account for variable time step.
-      m_impulse *= data.step.dtRatio;
-      m_springImpulse *= data.step.dtRatio;
-      m_motorImpulse *= data.step.dtRatio;
+      impulse_ *= data.step.dtRatio;
+      spring_impusle_ *= data.step.dtRatio;
+      motor_impulse_ *= data.step.dtRatio;
       
-      float axialImpulse = m_springImpulse + m_lowerImpulse - m_upperImpulse;
-      Vec2 P = m_impulse * m_ay + axialImpulse * m_ax;
-      float LA = m_impulse * m_sAy + axialImpulse * m_sAx + m_motorImpulse;
-      float LB = m_impulse * m_sBy + axialImpulse * m_sBx + m_motorImpulse;
+      float axialImpulse = spring_impusle_ + lower_impulse_ - upper_impulse_;
+      Vec2 P = impulse_ * a_y_ + axialImpulse * a_x_;
+      float LA = impulse_ * s_a_y_ + axialImpulse * m_sAx + motor_impulse_;
+      float LB = impulse_ * s_b_y_ + axialImpulse * s_b_x_ + motor_impulse_;
       
-      vA -= m_invMassA * P;
-      wA -= m_invIA * LA;
+      vA -= inv_mass_a_ * P;
+      wA -= inv_i_a_ * LA;
       
-      vB += m_invMassB * P;
-      wB += m_invIB * LB;
+      vB += inv_mass_b_ * P;
+      wB += inv_i_b_ * LB;
     }
-    else
-    {
-      m_impulse = 0.0f;
-      m_springImpulse = 0.0f;
-      m_motorImpulse = 0.0f;
-      m_lowerImpulse = 0.0f;
-      m_upperImpulse = 0.0f;
+    else {
+      impulse_ = 0.0f;
+      spring_impusle_ = 0.0f;
+      motor_impulse_ = 0.0f;
+      lower_impulse_ = 0.0f;
+      upper_impulse_ = 0.0f;
     }
     
-    data.velocities[m_indexA].v = vA;
-    data.velocities[m_indexA].w = wA;
-    data.velocities[m_indexB].v = vB;
-    data.velocities[m_indexB].w = wB;
+    data.velocities[index_a_].v = vA;
+    data.velocities[index_a_].w = wA;
+    data.velocities[index_b_].v = vB;
+    data.velocities[index_b_].w = wB;
   }
   
-  void WheelJoint::SolveVelocityConstraints(const SolverData& data)
-  {
-    float mA = m_invMassA, mB = m_invMassB;
-    float iA = m_invIA, iB = m_invIB;
+  void WheelJoint::SolveVelocityConstraints(const SolverData& data) {
+    float mA = inv_mass_a_, mB = inv_mass_b_;
+    float iA = inv_i_a_, iB = inv_i_b_;
     
-    Vec2 vA = data.velocities[m_indexA].v;
-    float wA = data.velocities[m_indexA].w;
-    Vec2 vB = data.velocities[m_indexB].v;
-    float wB = data.velocities[m_indexB].w;
+    Vec2 vA = data.velocities[index_a_].v;
+    float wA = data.velocities[index_a_].w;
+    Vec2 vB = data.velocities[index_b_].v;
+    float wB = data.velocities[index_b_].w;
     
     // Solve spring constraint
     {
-      float Cdot = Dot(m_ax, vB - vA) + m_sBx * wB - m_sAx * wA;
-      float impulse = -m_springMass * (Cdot + m_bias + m_gamma * m_springImpulse);
-      m_springImpulse += impulse;
+      float Cdot = Dot(a_x_, vB - vA) + s_b_x_ * wB - m_sAx * wA;
+      float impulse = -spring_mass_ * (Cdot + bias_ + gamma_ * spring_impusle_);
+      spring_impusle_ += impulse;
       
-      Vec2 P = impulse * m_ax;
+      Vec2 P = impulse * a_x_;
       float LA = impulse * m_sAx;
-      float LB = impulse * m_sBx;
+      float LB = impulse * s_b_x_;
       
       vA -= mA * P;
       wA -= iA * LA;
@@ -236,33 +222,32 @@ namespace physics {
     }
     
     // Solve rotational motor constraint
-    {
-      float Cdot = wB - wA - m_motorSpeed;
-      float impulse = -m_motorMass * Cdot;
+   {
+      float Cdot = wB - wA - motor_speed_;
+      float impulse = -motor_mass_ * Cdot;
       
-      float oldImpulse = m_motorImpulse;
-      float maxImpulse = data.step.dt * m_maxMotorTorque;
-      m_motorImpulse = Clamp(m_motorImpulse + impulse, -maxImpulse, maxImpulse);
-      impulse = m_motorImpulse - oldImpulse;
+      float oldImpulse = motor_impulse_;
+      float maxImpulse = data.step.dt * max_motor_torque_;
+      motor_impulse_ = Clamp(motor_impulse_ + impulse, -maxImpulse, maxImpulse);
+      impulse = motor_impulse_ - oldImpulse;
       
       wA -= iA * impulse;
       wB += iB * impulse;
     }
     
-    if (m_enableLimit)
-    {
+    if (enable_limit_) {
       // Lower limit
       {
-        float C = m_translation - m_lowerTranslation;
-        float Cdot = Dot(m_ax, vB - vA) + m_sBx * wB - m_sAx * wA;
-        float impulse = -m_axialMass * (Cdot + Max(C, 0.0f) * data.step.inv_dt);
-        float oldImpulse = m_lowerImpulse;
-        m_lowerImpulse = Max(m_lowerImpulse + impulse, 0.0f);
-        impulse = m_lowerImpulse - oldImpulse;
+        float C = translation_ - lower_translation_;
+        float Cdot = Dot(a_x_, vB - vA) + s_b_x_ * wB - m_sAx * wA;
+        float impulse = -axis_mass_ * (Cdot + Max(C, 0.0f) * data.step.inv_dt);
+        float oldImpulse = lower_impulse_;
+        lower_impulse_ = Max(lower_impulse_ + impulse, 0.0f);
+        impulse = lower_impulse_ - oldImpulse;
         
-        Vec2 P = impulse * m_ax;
+        Vec2 P = impulse * a_x_;
         float LA = impulse * m_sAx;
-        float LB = impulse * m_sBx;
+        float LB = impulse * s_b_x_;
         
         vA -= mA * P;
         wA -= iA * LA;
@@ -274,16 +259,16 @@ namespace physics {
       // Note: signs are flipped to keep C positive when the constraint is satisfied.
       // This also keeps the impulse positive when the limit is active.
       {
-        float C = m_upperTranslation - m_translation;
-        float Cdot = Dot(m_ax, vA - vB) + m_sAx * wA - m_sBx * wB;
-        float impulse = -m_axialMass * (Cdot + Max(C, 0.0f) * data.step.inv_dt);
-        float oldImpulse = m_upperImpulse;
-        m_upperImpulse = Max(m_upperImpulse + impulse, 0.0f);
-        impulse = m_upperImpulse - oldImpulse;
+        float C = upper_translation_ - translation_;
+        float Cdot = Dot(a_x_, vA - vB) + m_sAx * wA - s_b_x_ * wB;
+        float impulse = -axis_mass_ * (Cdot + Max(C, 0.0f) * data.step.inv_dt);
+        float oldImpulse = upper_impulse_;
+        upper_impulse_ = Max(upper_impulse_ + impulse, 0.0f);
+        impulse = upper_impulse_ - oldImpulse;
         
-        Vec2 P = impulse * m_ax;
+        Vec2 P = impulse * a_x_;
         float LA = impulse * m_sAx;
-        float LB = impulse * m_sBx;
+        float LB = impulse * s_b_x_;
         
         vA += mA * P;
         wA += iA * LA;
@@ -294,13 +279,13 @@ namespace physics {
     
     // Solve point to line constraint
     {
-      float Cdot = Dot(m_ay, vB - vA) + m_sBy * wB - m_sAy * wA;
-      float impulse = -m_mass * Cdot;
-      m_impulse += impulse;
+      float Cdot = Dot(a_y_, vB - vA) + s_b_y_ * wB - s_a_y_ * wA;
+      float impulse = -mass_ * Cdot;
+      impulse_ += impulse;
       
-      Vec2 P = impulse * m_ay;
-      float LA = impulse * m_sAy;
-      float LB = impulse * m_sBy;
+      Vec2 P = impulse * a_y_;
+      float LA = impulse * s_a_y_;
+      float LB = impulse * s_b_y_;
       
       vA -= mA * P;
       wA -= iA * LA;
@@ -309,52 +294,50 @@ namespace physics {
       wB += iB * LB;
     }
     
-    data.velocities[m_indexA].v = vA;
-    data.velocities[m_indexA].w = wA;
-    data.velocities[m_indexB].v = vB;
-    data.velocities[m_indexB].w = wB;
+    data.velocities[index_a_].v = vA;
+    data.velocities[index_a_].w = wA;
+    data.velocities[index_b_].v = vB;
+    data.velocities[index_b_].w = wB;
   }
   
-  bool WheelJoint::SolvePositionConstraints(const SolverData& data)
-  {
-    Vec2 cA = data.positions[m_indexA].c;
-    float aA = data.positions[m_indexA].a;
-    Vec2 cB = data.positions[m_indexB].c;
-    float aB = data.positions[m_indexB].a;
+  bool WheelJoint::SolvePositionConstraints(const SolverData& data) {
+    Vec2 cA = data.positions[index_a_].c;
+    float aA = data.positions[index_a_].a;
+    Vec2 cB = data.positions[index_b_].c;
+    float aB = data.positions[index_b_].a;
     
     float linearError = 0.0f;
     
-    if (m_enableLimit)
-    {
+    if (enable_limit_) {
       Rot qA(aA), qB(aB);
       
-      Vec2 rA = Mul(qA, m_localAnchorA - m_localCenterA);
-      Vec2 rB = Mul(qB, m_localAnchorB - m_localCenterB);
+      Vec2 rA = Mul(qA, local_anchor_a_ - local_center_a_);
+      Vec2 rB = Mul(qB, local_anchor_b_ - local_center_b_);
       Vec2 d = (cB - cA) + rB - rA;
       
-      Vec2 ax = Mul(qA, m_localXAxisA);
-      float sAx = Cross(d + rA, m_ax);
-      float sBx = Cross(rB, m_ax);
+      Vec2 ax = Mul(qA, local_x_axis_a_);
+      float sAx = Cross(d + rA, a_x_);
+      float sBx = Cross(rB, a_x_);
       
       float C = 0.0f;
       float translation = Dot(ax, d);
-      if (Abs(m_upperTranslation - m_lowerTranslation) < 2.0f * LinearSlop)
+      if (Abs(upper_translation_ - lower_translation_) < 2.0f * LinearSlop)
       {
         C = translation;
       }
-      else if (translation <= m_lowerTranslation)
+      else if (translation <= lower_translation_)
       {
-        C = Min(translation - m_lowerTranslation, 0.0f);
+        C = Min(translation - lower_translation_, 0.0f);
       }
-      else if (translation >= m_upperTranslation)
+      else if (translation >= upper_translation_)
       {
-        C = Max(translation - m_upperTranslation, 0.0f);
+        C = Max(translation - upper_translation_, 0.0f);
       }
       
       if (C != 0.0f)
       {
         
-        float invMass = m_invMassA + m_invMassB + m_invIA * sAx * sAx + m_invIB * sBx * sBx;
+        float invMass = inv_mass_a_ + inv_mass_b_ + inv_i_a_ * sAx * sAx + inv_i_b_ * sBx * sBx;
         float impulse = 0.0f;
         if (invMass != 0.0f)
         {
@@ -365,10 +348,10 @@ namespace physics {
         float LA = impulse * sAx;
         float LB = impulse * sBx;
         
-        cA -= m_invMassA * P;
-        aA -= m_invIA * LA;
-        cB += m_invMassB * P;
-        aB += m_invIB * LB;
+        cA -= inv_mass_a_ * P;
+        aA -= inv_i_a_ * LA;
+        cB += inv_mass_b_ * P;
+        aB += inv_i_b_ * LB;
         
         linearError = Abs(C);
       }
@@ -378,18 +361,18 @@ namespace physics {
     {
       Rot qA(aA), qB(aB);
       
-      Vec2 rA = Mul(qA, m_localAnchorA - m_localCenterA);
-      Vec2 rB = Mul(qB, m_localAnchorB - m_localCenterB);
+      Vec2 rA = Mul(qA, local_anchor_a_ - local_center_a_);
+      Vec2 rB = Mul(qB, local_anchor_b_ - local_center_b_);
       Vec2 d = (cB - cA) + rB - rA;
       
-      Vec2 ay = Mul(qA, m_localYAxisA);
+      Vec2 ay = Mul(qA, local_y_axis_a_);
       
       float sAy = Cross(d + rA, ay);
       float sBy = Cross(rB, ay);
       
       float C = Dot(d, ay);
       
-      float invMass = m_invMassA + m_invMassB + m_invIA * m_sAy * m_sAy + m_invIB * m_sBy * m_sBy;
+      float invMass = inv_mass_a_ + inv_mass_b_ + inv_i_a_ * s_a_y_ * s_a_y_ + inv_i_b_ * s_b_y_ * s_b_y_;
       
       float impulse = 0.0f;
       if (invMass != 0.0f)
@@ -401,201 +384,173 @@ namespace physics {
       float LA = impulse * sAy;
       float LB = impulse * sBy;
       
-      cA -= m_invMassA * P;
-      aA -= m_invIA * LA;
-      cB += m_invMassB * P;
-      aB += m_invIB * LB;
+      cA -= inv_mass_a_ * P;
+      aA -= inv_i_a_ * LA;
+      cB += inv_mass_b_ * P;
+      aB += inv_i_b_ * LB;
       
       linearError = Max(linearError, Abs(C));
     }
     
-    data.positions[m_indexA].c = cA;
-    data.positions[m_indexA].a = aA;
-    data.positions[m_indexB].c = cB;
-    data.positions[m_indexB].a = aB;
+    data.positions[index_a_].c = cA;
+    data.positions[index_a_].a = aA;
+    data.positions[index_b_].c = cB;
+    data.positions[index_b_].a = aB;
     
     return linearError <= LinearSlop;
   }
   
-  Vec2 WheelJoint::GetAnchorA() const
-  {
-    return m_bodyA->GetWorldPoint(m_localAnchorA);
+  Vec2 WheelJoint::GetAnchorA() const {
+    return body_a_->GetWorldPoint(local_anchor_a_);
   }
   
-  Vec2 WheelJoint::GetAnchorB() const
-  {
-    return m_bodyB->GetWorldPoint(m_localAnchorB);
+  Vec2 WheelJoint::GetAnchorB() const {
+    return body_b_->GetWorldPoint(local_anchor_b_);
   }
   
-  Vec2 WheelJoint::GetReactionForce(float inv_dt) const
-  {
-    return inv_dt * (m_impulse * m_ay + (m_springImpulse + m_lowerImpulse - m_upperImpulse) * m_ax);
+  Vec2 WheelJoint::GetReactionForce(float inv_dt) const {
+    return inv_dt * (impulse_ * a_y_ + (spring_impusle_ + lower_impulse_ - upper_impulse_) * a_x_);
   }
   
-  float WheelJoint::GetReactionTorque(float inv_dt) const
-  {
-    return inv_dt * m_motorImpulse;
+  float WheelJoint::GetReactionTorque(float inv_dt) const {
+    return inv_dt * motor_impulse_;
   }
   
-  float WheelJoint::GetJointTranslation() const
-  {
-    Body* bA = m_bodyA;
-    Body* bB = m_bodyB;
+  float WheelJoint::GetJointTranslation() const {
+    Body* bA = body_a_;
+    Body* bB = body_b_;
     
-    Vec2 pA = bA->GetWorldPoint(m_localAnchorA);
-    Vec2 pB = bB->GetWorldPoint(m_localAnchorB);
+    Vec2 pA = bA->GetWorldPoint(local_anchor_a_);
+    Vec2 pB = bB->GetWorldPoint(local_anchor_b_);
     Vec2 d = pB - pA;
-    Vec2 axis = bA->GetWorldVector(m_localXAxisA);
+    Vec2 axis = bA->GetWorldVector(local_x_axis_a_);
     
     float translation = Dot(d, axis);
     return translation;
   }
   
-  float WheelJoint::GetJointLinearSpeed() const
-  {
-    Body* bA = m_bodyA;
-    Body* bB = m_bodyB;
+  float WheelJoint::GetJointLinearSpeed() const {
+    Body* bA = body_a_;
+    Body* bB = body_b_;
     
-    Vec2 rA = Mul(bA->m_xf.q, m_localAnchorA - bA->m_sweep.localCenter);
-    Vec2 rB = Mul(bB->m_xf.q, m_localAnchorB - bB->m_sweep.localCenter);
-    Vec2 p1 = bA->m_sweep.c + rA;
-    Vec2 p2 = bB->m_sweep.c + rB;
+    Vec2 rA = Mul(bA->xf_.q, local_anchor_a_ - bA->sweep_.localCenter);
+    Vec2 rB = Mul(bB->xf_.q, local_anchor_b_ - bB->sweep_.localCenter);
+    Vec2 p1 = bA->sweep_.c + rA;
+    Vec2 p2 = bB->sweep_.c + rB;
     Vec2 d = p2 - p1;
-    Vec2 axis = Mul(bA->m_xf.q, m_localXAxisA);
+    Vec2 axis = Mul(bA->xf_.q, local_x_axis_a_);
     
-    Vec2 vA = bA->m_linearVelocity;
-    Vec2 vB = bB->m_linearVelocity;
-    float wA = bA->m_angularVelocity;
-    float wB = bB->m_angularVelocity;
+    Vec2 vA = bA->linear_velocity_;
+    Vec2 vB = bB->linear_velocity_;
+    float wA = bA->angular_velocity_;
+    float wB = bB->angular_velocity_;
     
     float speed = Dot(d, Cross(wA, axis)) + Dot(axis, vB + Cross(wB, rB) - vA - Cross(wA, rA));
     return speed;
   }
   
-  float WheelJoint::GetJointAngle() const
-  {
-    Body* bA = m_bodyA;
-    Body* bB = m_bodyB;
-    return bB->m_sweep.a - bA->m_sweep.a;
+  float WheelJoint::GetJointAngle() const {
+    Body* bA = body_a_;
+    Body* bB = body_b_;
+    return bB->sweep_.a - bA->sweep_.a;
   }
   
-  float WheelJoint::GetJointAngularSpeed() const
-  {
-    float wA = m_bodyA->m_angularVelocity;
-    float wB = m_bodyB->m_angularVelocity;
+  float WheelJoint::GetJointAngularSpeed() const {
+    float wA = body_a_->angular_velocity_;
+    float wB = body_b_->angular_velocity_;
     return wB - wA;
   }
   
-  bool WheelJoint::IsLimitEnabled() const
-  {
-    return m_enableLimit;
+  bool WheelJoint::IsLimitEnabled() const {
+    return enable_limit_;
   }
   
-  void WheelJoint::EnableLimit(bool flag)
-  {
-    if (flag != m_enableLimit)
-    {
-      m_bodyA->SetAwake(true);
-      m_bodyB->SetAwake(true);
-      m_enableLimit = flag;
-      m_lowerImpulse = 0.0f;
-      m_upperImpulse = 0.0f;
+  void WheelJoint::EnableLimit(bool flag) {
+    if (flag != enable_limit_) {
+      body_a_->SetAwake(true);
+      body_b_->SetAwake(true);
+      enable_limit_ = flag;
+      lower_impulse_ = 0.0f;
+      upper_impulse_ = 0.0f;
     }
   }
   
-  float WheelJoint::GetLowerLimit() const
-  {
-    return m_lowerTranslation;
+  float WheelJoint::GetLowerLimit() const {
+    return lower_translation_;
   }
   
-  float WheelJoint::GetUpperLimit() const
-  {
-    return m_upperTranslation;
+  float WheelJoint::GetUpperLimit() const {
+    return upper_translation_;
   }
   
-  void WheelJoint::SetLimits(float lower, float upper)
-  {
+  void WheelJoint::SetLimits(float lower, float upper) {
     IK_ASSERT(lower <= upper);
-    if (lower != m_lowerTranslation || upper != m_upperTranslation)
-    {
-      m_bodyA->SetAwake(true);
-      m_bodyB->SetAwake(true);
-      m_lowerTranslation = lower;
-      m_upperTranslation = upper;
-      m_lowerImpulse = 0.0f;
-      m_upperImpulse = 0.0f;
+    if (lower != lower_translation_ || upper != upper_translation_) {
+      body_a_->SetAwake(true);
+      body_b_->SetAwake(true);
+      lower_translation_ = lower;
+      upper_translation_ = upper;
+      lower_impulse_ = 0.0f;
+      upper_impulse_ = 0.0f;
     }
   }
   
-  bool WheelJoint::IsMotorEnabled() const
-  {
-    return m_enableMotor;
+  bool WheelJoint::IsMotorEnabled() const {
+    return enable_motor_;
   }
   
-  void WheelJoint::EnableMotor(bool flag)
-  {
-    if (flag != m_enableMotor)
-    {
-      m_bodyA->SetAwake(true);
-      m_bodyB->SetAwake(true);
-      m_enableMotor = flag;
+  void WheelJoint::EnableMotor(bool flag) {
+    if (flag != enable_motor_) {
+      body_a_->SetAwake(true);
+      body_b_->SetAwake(true);
+      enable_motor_ = flag;
     }
   }
   
-  void WheelJoint::SetMotorSpeed(float speed)
-  {
-    if (speed != m_motorSpeed)
-    {
-      m_bodyA->SetAwake(true);
-      m_bodyB->SetAwake(true);
-      m_motorSpeed = speed;
+  void WheelJoint::SetMotorSpeed(float speed) {
+    if (speed != motor_speed_) {
+      body_a_->SetAwake(true);
+      body_b_->SetAwake(true);
+      motor_speed_ = speed;
     }
   }
   
-  void WheelJoint::SetMaxMotorTorque(float torque)
-  {
-    if (torque != m_maxMotorTorque)
-    {
-      m_bodyA->SetAwake(true);
-      m_bodyB->SetAwake(true);
-      m_maxMotorTorque = torque;
+  void WheelJoint::SetMaxMotorTorque(float torque) {
+    if (torque != max_motor_torque_) {
+      body_a_->SetAwake(true);
+      body_b_->SetAwake(true);
+      max_motor_torque_ = torque;
     }
   }
   
-  float WheelJoint::GetMotorTorque(float inv_dt) const
-  {
-    return inv_dt * m_motorImpulse;
+  float WheelJoint::GetMotorTorque(float inv_dt) const {
+    return inv_dt * motor_impulse_;
   }
   
-  void WheelJoint::SetStiffness(float stiffness)
-  {
-    m_stiffness = stiffness;
+  void WheelJoint::SetStiffness(float stiffness) {
+    stiffness_ = stiffness;
   }
   
-  float WheelJoint::GetStiffness() const
-  {
-    return m_stiffness;
+  float WheelJoint::GetStiffness() const {
+    return stiffness_;
   }
   
-  void WheelJoint::SetDamping(float damping)
-  {
-    m_damping = damping;
+  void WheelJoint::SetDamping(float damping) {
+    damping_ = damping;
   }
   
-  float WheelJoint::GetDamping() const
-  {
-    return m_damping;
+  float WheelJoint::GetDamping() const {
+    return damping_;
   }
   
   ///
-  void WheelJoint::Draw(physics::Draw* draw) const
-  {
-    const Transform& xfA = m_bodyA->GetTransform();
-    const Transform& xfB = m_bodyB->GetTransform();
-    Vec2 pA = Mul(xfA, m_localAnchorA);
-    Vec2 pB = Mul(xfB, m_localAnchorB);
+  void WheelJoint::Draw(physics::Draw* draw) const {
+    const Transform& xfA = body_a_->GetTransform();
+    const Transform& xfB = body_b_->GetTransform();
+    Vec2 pA = Mul(xfA, local_anchor_a_);
+    Vec2 pB = Mul(xfB, local_anchor_b_);
     
-    Vec2 axis = Mul(xfA.q, m_localXAxisA);
+    Vec2 axis = Mul(xfA.q, local_x_axis_a_);
     
     Color c1(0.7f, 0.7f, 0.7f);
     Color c2(0.3f, 0.9f, 0.3f);
@@ -605,17 +560,15 @@ namespace physics {
     
     draw->DrawSegment(pA, pB, c5);
     
-    if (m_enableLimit)
-    {
-      Vec2 lower = pA + m_lowerTranslation * axis;
-      Vec2 upper = pA + m_upperTranslation * axis;
-      Vec2 perp = Mul(xfA.q, m_localYAxisA);
+    if (enable_limit_) {
+      Vec2 lower = pA + lower_translation_ * axis;
+      Vec2 upper = pA + upper_translation_ * axis;
+      Vec2 perp = Mul(xfA.q, local_y_axis_a_);
       draw->DrawSegment(lower, upper, c1);
       draw->DrawSegment(lower - 0.5f * perp, lower + 0.5f * perp, c2);
       draw->DrawSegment(upper - 0.5f * perp, upper + 0.5f * perp, c3);
     }
-    else
-    {
+    else {
       draw->DrawSegment(pA - 1.0f * axis, pA + 1.0f * axis, c1);
     }
     
@@ -623,5 +576,13 @@ namespace physics {
     draw->DrawPoint(pB, 5.0f, c4);
   }
 
+  float WheelJoint::GetMotorSpeed() const {
+    return motor_speed_;
+  }
   
+  float WheelJoint::GetMaxMotorTorque() const {
+    return max_motor_torque_;
+  }
+  
+
 }

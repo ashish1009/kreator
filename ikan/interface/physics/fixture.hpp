@@ -27,13 +27,11 @@ namespace physics {
     /// The collision category bits. Normally you would just set one bit.
     uint16_t category_bits;
     
-    /// The collision mask bits. This states the categories that this
-    /// shape would accept for collision.
+    /// The collision mask bits. This states the categories that this shape would accept for collision.
     uint16_t mask_bits;
     
-    /// Collision groups allow a certain group of objects to never collide (negative)
-    /// or always collide (positive). Zero means no collision group. Non-zero group
-    /// filtering always wins against the mask bits.
+    /// Collision groups allow a certain group of objects to never collide (negative) or always collide
+    /// (positive). Zero means no collision group. Non-zero group filtering always wins against the mask bits.
     int16_t group_index;
   };
   
@@ -41,25 +39,23 @@ namespace physics {
   struct FixtureProxy {
     AABB aabb;
     Fixture* fixture;
-    int32_t childIndex;
-    int32_t proxyId;
+    int32_t child_index;
+    int32_t proxy_id;
   };
   
-  /// A fixture definition is used to create a fixture. This class defines an
-  /// abstract fixture definition. You can reuse fixture definitions safely.
+  /// A fixture definition is used to create a fixture. This class defines a abstract fixture definition. You can reuse fixture definitions safely.
   struct FixtureDef {
     /// The constructor sets the default fixture definition values.
     FixtureDef() {
       shape = nullptr;
       friction = 0.2f;
       restitution = 0.0f;
-      restitutionThreshold = 1.0f * LengthUnitsPerMeter;
+      restitution_yhreshold = 1.0f * LengthUnitsPerMeter;
       density = 0.0f;
-      isSensor = false;
+      is_sensor = false;
     }
     
-    /// The shape, this must be set. The shape will be cloned, so you
-    /// can create the shape on the stack.
+    /// The shape, this must be set. The shape will be cloned, so you can create the shape on the stack.
     const Shape* shape;
     
     /// Use this to store application specific fixture data.
@@ -73,14 +69,14 @@ namespace physics {
     
     /// Restitution velocity threshold, usually in m/s. Collisions above this
     /// speed have restitution applied (will bounce).
-    float restitutionThreshold;
+    float restitution_yhreshold;
     
     /// The density, usually in kg/m^2.
     float density;
     
     /// A sensor shape collects contact information but never generates a collision
     /// response.
-    bool isSensor;
+    bool is_sensor;
     
     /// Contact filtering data.
     Filter filter;
@@ -209,25 +205,25 @@ namespace physics {
     
     void Synchronize(BroadPhase* broadPhase, const Transform& xf1, const Transform& xf2);
     
-    float m_density;
+    float density_;
     
-    Fixture* m_next;
-    Body* m_body;
+    Fixture* next_;
+    Body* body_;
     
-    Shape* m_shape;
+    Shape* shape_;
     
-    float m_friction;
-    float m_restitution;
-    float m_restitutionThreshold;
+    float friction_;
+    float restitution_;
+    float restitution_threshold_;
     
-    FixtureProxy* m_proxies;
-    int32_t m_proxyCount;
+    FixtureProxy* proxies_;
+    int32_t proxy_count_;
     
-    Filter m_filter;
+    Filter filter_;
     
-    bool m_isSensor;
+    bool is_sensor_;
     
-    FixtureUserData m_userData;
+    FixtureUserData user_data_;
   };
   
 

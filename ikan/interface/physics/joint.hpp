@@ -149,49 +149,20 @@ namespace physics {
     // This returns true if the position errors are within tolerance.
     virtual bool SolvePositionConstraints(const SolverData& data) = 0;
     
-    JointType m_type;
-    Joint* m_prev;
-    Joint* m_next;
-    JointEdge m_edgeA;
-    JointEdge m_edgeB;
-    Body* m_bodyA;
-    Body* m_bodyB;
+    JointType type_;
+    Joint* prev_;
+    Joint* next_;
+    JointEdge edge_a_;
+    JointEdge edge_b_;
+    Body* body_a_;
+    Body* body_b_;
     
-    int32_t m_index;
+    int32_t index_;
     
-    bool m_islandFlag;
-    bool m_collideConnected;
+    bool is_land_flag_;
+    bool collide_connected_;
     
-    JointUserData m_userData;
+    JointUserData user_data_;
   };
-  
-  inline JointType Joint::GetType() const {
-    return m_type;
-  }
-  
-  inline Body* Joint::GetBodyA() {
-    return m_bodyA;
-  }
-  
-  inline Body* Joint::GetBodyB() {
-    return m_bodyB;
-  }
-  
-  inline Joint* Joint::GetNext() {
-    return m_next;
-  }
-  
-  inline const Joint* Joint::GetNext() const {
-    return m_next;
-  }
-  
-  inline JointUserData& Joint::GetUserData() {
-    return m_userData;
-  }
-  
-  inline bool Joint::GetCollideConnected() const {
-    return m_collideConnected;
-  }
-
   
 }

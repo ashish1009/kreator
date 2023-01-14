@@ -160,25 +160,25 @@ namespace physics {
     
     BodyType type_;
     ContactEdge* contact_list_;
-    uint16_t m_flags;
+    uint16_t flags_;
 
-    float m_sleepTime;
+    float sleep_time_;
 
-    Vec2 m_linearVelocity;
-    float m_angularVelocity;
-    Vec2 m_force;
-    float m_torque;
+    Vec2 linear_velocity_;
+    float angular_velocity_;
+    Vec2 force_;
+    float torque_;
 
-    Transform m_xf;
-    Sweep m_sweep;    // the swept motion for CCD
+    Transform xf_;
+    Sweep sweep_;    // the swept motion for CCD
 
-    World* m_world;
-    JointEdge* m_jointList;
+    World* world_;
+    JointEdge* joint_list_;
     
-    float m_I, m_invI;
-    float m_mass, m_invMass;
+    float inertia_, inv_inertia_;
+    float mass_, inv_mass_;
     
-    int32_t m_islandIndex;
+    int32_t island_index_;
   };
   
 }

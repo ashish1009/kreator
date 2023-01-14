@@ -14,10 +14,8 @@ namespace physics {
   /// Gear joint definition. This definition requires two existing
   /// revolute or prismatic joints (any combination will work).
   /// @warning bodyB on the input joints must both be dynamic
-  struct GearJointDef : public JointDef
-  {
-    GearJointDef()
-    {
+  struct GearJointDef : public JointDef {
+    GearJointDef() {
       type = gearJoint;
       joint1 = nullptr;
       joint2 = nullptr;
@@ -44,8 +42,7 @@ namespace physics {
   /// of length or units of 1/length.
   /// @warning You have to manually destroy the gear joint if joint1 or joint2
   /// is destroyed.
-  class GearJoint : public Joint
-  {
+  class GearJoint : public Joint {
   public:
     Vec2 GetAnchorA() const override;
     Vec2 GetAnchorB() const override;
@@ -54,10 +51,10 @@ namespace physics {
     float GetReactionTorque(float inv_dt) const override;
     
     /// Get the first joint.
-    Joint* GetJoint1() { return m_joint1; }
+    Joint* GetJoint1() { return joint_1_; }
     
     /// Get the second joint.
-    Joint* GetJoint2() { return m_joint2; }
+    Joint* GetJoint2() { return joint_2_; }
     
     /// Set/Get the gear ratio.
     void SetRatio(float ratio);
@@ -72,42 +69,42 @@ namespace physics {
     void SolveVelocityConstraints(const SolverData& data) override;
     bool SolvePositionConstraints(const SolverData& data) override;
     
-    Joint* m_joint1;
-    Joint* m_joint2;
+    Joint* joint_1_;
+    Joint* joint_2_;
     
-    JointType m_typeA;
-    JointType m_typeB;
+    JointType type_a_;
+    JointType type_b_;
     
     // Body A is connected to body C
     // Body B is connected to body D
-    Body* m_bodyC;
-    Body* m_bodyD;
+    Body* body_c_;
+    Body* body_d_;
     
     // Solver shared
-    Vec2 m_localAnchorA;
-    Vec2 m_localAnchorB;
-    Vec2 m_localAnchorC;
-    Vec2 m_localAnchorD;
+    Vec2 local_anchor_a_;
+    Vec2 local_anchor_b_;
+    Vec2 local_anchor_c_;
+    Vec2 local_anchor_d_;
     
-    Vec2 m_localAxisC;
-    Vec2 m_localAxisD;
+    Vec2 local_axis_c_;
+    Vec2 local_axis_d_;
     
-    float m_referenceAngleA;
-    float m_referenceAngleB;
+    float reference_angle_A;
+    float reference_angle_B;
     
-    float m_constant;
-    float m_ratio;
+    float constant_;
+    float ra_tio;
     
-    float m_impulse;
+    float impulse_;
     
     // Solver temp
-    int32_t m_indexA, m_indexB, m_indexC, m_indexD;
-    Vec2 m_lcA, m_lcB, m_lcC, m_lcD;
-    float m_mA, m_mB, m_mC, m_mD;
-    float m_iA, m_iB, m_iC, m_iD;
-    Vec2 m_JvAC, m_JvBD;
-    float m_JwA, m_JwB, m_JwC, m_JwD;
-    float m_mass;
+    int32_t index_a_, index_b_, m_indexC, m_indexD;
+    Vec2 lc_a_, lc_b_, lc_c_, lc_d_;
+    float m_a_, m_b_, m_c_, m_d_;
+    float m_iA, i_b_, i_c_, i_d_;
+    Vec2 jv_ac_, jv_bd_;
+    float jw_a_, jw_b_, jw_c_, jw_d_;
+    float mass_;
   };
 
   

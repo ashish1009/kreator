@@ -22,7 +22,7 @@ namespace physics {
     Vec2 center;
     
     /// The rotational inertia of the shape about the local origin.
-    float I;
+    float inertia;
   };
   
   /// A shape is used for collision detection. You can create a shape however you like.

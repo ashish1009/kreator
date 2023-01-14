@@ -21,7 +21,7 @@ namespace physics {
     manifold->point_count = 0;
     
     // Compute circle in frame of edge
-    Vec2 Q = MulT(xfA, Mul(xfB, circleB->p));
+    Vec2 Q = MulT(xfA, Mul(xfB, circleB->position_));
     
     Vec2 A = edgeA->vertex_1_, B = edgeA->vertex_2_;
     Vec2 e = B - A;
@@ -75,7 +75,7 @@ namespace physics {
       manifold->local_point = P;
       manifold->points[0].id.key = 0;
       manifold->points[0].id.cf = cf;
-      manifold->points[0].local_point = circleB-> p;
+      manifold->points[0].local_point = circleB-> position_;
       return;
     }
     
@@ -109,7 +109,7 @@ namespace physics {
       manifold->local_point = P;
       manifold->points[0].id.key = 0;
       manifold->points[0].id.cf = cf;
-      manifold->points[0].local_point = circleB-> p;
+      manifold->points[0].local_point = circleB-> position_;
       return;
     }
     
@@ -136,7 +136,7 @@ namespace physics {
     manifold->local_point = A;
     manifold->points[0].id.key = 0;
     manifold->points[0].id.cf = cf;
-    manifold->points[0].local_point = circleB-> p;
+    manifold->points[0].local_point = circleB-> position_;
   }
   
   // This structure is used to keep track of the best separating axis.
