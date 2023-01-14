@@ -74,6 +74,12 @@ namespace physics {
     /// miss some collisions if you don't use b2ContactListener.
     ContactEdge* GetContactList();
     const ContactEdge* GetContactList() const;
+    
+    
+    /// Set the sleep state of the body. A sleeping body has very
+    /// low CPU cost.
+    /// @param flag set to true to wake the body, false to put it to sleep.
+    void SetAwake(bool flag);
   };
   
 }
