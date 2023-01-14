@@ -219,28 +219,63 @@ namespace ecs {
   
   void EnttScene::RuntimeStart() {
     physics_world_ = new physics::World({0, 9.8});
-    
-    // Get Transform
     auto view = registry_.view<RigidBodyComponent>();
     for (auto e : view) {
       Entity entity = { e, this };
-      
       auto& transform = entity.GetComponent<TransformComponent>();
       auto& rb2d = entity.GetComponent<RigidBodyComponent>();
       
-      physics::Body* body = (physics::Body*)rb2d.runtime_body;
-      if (body != nullptr) {
-        const auto& position = body->GetPosition();
-        
-        transform.UpdateScale_Z(body->GetAngle());
-        transform.UpdateTranslation_Y(position.y);
-        
-        // If Entity hav Nativ Script then no need to update the x position,
-        // as it will be taken care in script
-        if (!entity.HasComponent<NativeScriptComponent>())
-          transform.UpdateTranslation_X(position.x);
-      }
+      physics::BodyDef body_def;
+      body_def.type = rb2d.type;
+      body_def.position.Set(transform.Translation().x, transform.Translation().y);
+      body_def.angle = transform.Rotation().z;
+      
+      physics::Body* body = physics_world_->CreateBody(&body_def);
+//      body->SetFixedRotation(rb2d.FixedRotation);
+//
+//      rb2d.RuntimeBody = body;
+//
+//      if (entity.HasComponent<BoxColloider2DComponent>())
+//      {
+//        auto& bc2d = entity.GetComponent<BoxColloider2DComponent>();
+//
+//        b2PolygonShape polygonShape;
+//        polygonShape.SetAsBox(bc2d.Size.x * transform.Scale.x, bc2d.Size.y * transform.Scale.y);
+//
+//        b2FixtureDef fixtureDef;
+//        fixtureDef.shape = & polygonShape;
+//        fixtureDef.density = bc2d.Density;
+//        fixtureDef.friction = bc2d.Friction;
+//        fixtureDef.restitution = bc2d.Restitution;
+//        fixtureDef.restitutionThreshold = bc2d.RestitutionThreshold;
+//
+//        body->CreateFixture(&fixtureDef);
+//      }
     }
+
+    
+    
+//    // Get Transform
+//    auto view = registry_.view<RigidBodyComponent>();
+//    for (auto e : view) {
+//      Entity entity = { e, this };
+//
+//      auto& transform = entity.GetComponent<TransformComponent>();
+//      auto& rb2d = entity.GetComponent<RigidBodyComponent>();
+//
+//      physics::Body* body = (physics::Body*)rb2d.runtime_body;
+//      if (body != nullptr) {
+//        const auto& position = body->GetPosition();
+//
+//        transform.UpdateScale_Z(body->GetAngle());
+//        transform.UpdateTranslation_Y(position.y);
+//
+//        // If Entity hav Nativ Script then no need to update the x position,
+//        // as it will be taken care in script
+//        if (!entity.HasComponent<NativeScriptComponent>())
+//          transform.UpdateTranslation_X(position.x);
+//      }
+//    }
 
   }
   

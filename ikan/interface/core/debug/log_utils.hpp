@@ -29,7 +29,10 @@ namespace ikan {
     HitPayload, Ray, Sphere, RayMaterial,
     
     // Imgui
-    Imgui
+    Imgui,
+    
+    // Physics
+    PhysicsWorld
   };
   
   static inline std::string GetModuleName(const std::string_view module_tag) {
@@ -80,6 +83,8 @@ namespace ikan {
       case LogModule::RayMaterial: return "RayMaterial";
         
       case LogModule::Imgui: return "ImGui";
+        
+      case LogModule::PhysicsWorld: return "Physics World";
 
       default: assert(false);
     }

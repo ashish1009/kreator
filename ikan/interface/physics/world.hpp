@@ -212,7 +212,7 @@ namespace physics {
     void DrawShape(Fixture* shape, const Transform& xf, const Color& color);
     
     BlockAllocator m_blockAllocator;
-//    StackAllocator m_stackAllocator;
+    StackAllocator m_stackAllocator;
     
     ContactManager contact_manager;
     
