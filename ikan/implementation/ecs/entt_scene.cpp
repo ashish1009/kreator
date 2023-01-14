@@ -99,6 +99,37 @@ namespace ecs {
   }
   
   void EnttScene::UpdateRuntime(Timestep ts) {
+    // Physics
+    {
+      const int32_t velocity_iteration = 6;
+      const int32_t position_iteration = 2;
+      
+      physics_world_->Step(ts, velocity_iteration, position_iteration);
+
+//      // Get Transform
+//      auto view = registry_.view<RigidBodyComponent>();
+//      for (auto e : view) {
+//        Entity entity = { e, this };
+//
+//        auto& transform = entity.GetComponent<TransformComponent>();
+//        auto& rb2d = entity.GetComponent<RigidBodyComponent>();
+//
+//        physics::Body* body = (physics::Body*)rb2d.runtime_body;
+//        if (body != nullptr) {
+//          const auto& position = body->GetPosition();
+//
+//          transform.UpdateScale_Z(body->GetAngle());
+//          transform.UpdateTranslation_Y(position.y);
+//
+//          // If Entity hav Nativ Script then no need to update the x position,
+//          // as it will be taken care in script
+//          if (!entity.HasComponent<NativeScriptComponent>())
+//            transform.UpdateTranslation_X(position.x);
+//        }
+//      }
+
+    }
+    
     if (primary_camera_data_.scene_camera) {
       Render2DEntities(primary_camera_data_.scene_camera->GetProjection() * glm::inverse(primary_camera_data_.transform_matrix));
     }
@@ -235,50 +266,25 @@ namespace ecs {
       
       physics::Body* body = physics_world_->CreateBody(&body_def);
       body->SetFixedRotation(rb2d.fixed_rotation);
-
+      
       rb2d.runtime_body = body;
-
+      
       if (entity.HasComponent<BoxColloiderComponent>()) {
         auto& bc2d = entity.GetComponent<BoxColloiderComponent>();
-
+        
         physics::PolygonShape polygon_shape;
         polygon_shape.SetAsBox(bc2d.size.x * transform.Scale().x, bc2d.size.y * transform.Scale().y);
-
+        
         physics::FixtureDef fixture_def;
         fixture_def.shape = & polygon_shape;
         fixture_def.density = bc2d.density;
         fixture_def.friction = bc2d.friction;
         fixture_def.restitution = bc2d.restitution;
         fixture_def.restitution_threshold = bc2d.restitution_threshold;
-
+        
         body->CreateFixture(&fixture_def);
       }
     }
-
-    
-    
-//    // Get Transform
-//    auto view = registry_.view<RigidBodyComponent>();
-//    for (auto e : view) {
-//      Entity entity = { e, this };
-//
-//      auto& transform = entity.GetComponent<TransformComponent>();
-//      auto& rb2d = entity.GetComponent<RigidBodyComponent>();
-//
-//      physics::Body* body = (physics::Body*)rb2d.runtime_body;
-//      if (body != nullptr) {
-//        const auto& position = body->GetPosition();
-//
-//        transform.UpdateScale_Z(body->GetAngle());
-//        transform.UpdateTranslation_Y(position.y);
-//
-//        // If Entity hav Nativ Script then no need to update the x position,
-//        // as it will be taken care in script
-//        if (!entity.HasComponent<NativeScriptComponent>())
-//          transform.UpdateTranslation_X(position.x);
-//      }
-//    }
-
   }
   
   void EnttScene::EditScene() {

@@ -8,6 +8,7 @@
 #include "world.hpp"
 #include "body.hpp"
 #include "fixture.hpp"
+#include "timer.hpp"
 
 namespace physics {
   
@@ -62,5 +63,10 @@ namespace physics {
     
     return b;
   }
+  
+  void World::Step(float dt, int32_t velocity_iterations, int32_t position_tterations) {
+    Timer step_timer;
+  }
+
   
 }

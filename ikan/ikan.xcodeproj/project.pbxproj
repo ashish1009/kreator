@@ -48,6 +48,8 @@
 		B22E79F82972A61900609CCA /* circle_shape.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B22E79F62972A61900609CCA /* circle_shape.hpp */; };
 		B2414EAF29732C610035D4BD /* stack_allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2414EAD29732C610035D4BD /* stack_allocator.cpp */; };
 		B2414EB029732C610035D4BD /* stack_allocator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2414EAE29732C610035D4BD /* stack_allocator.hpp */; };
+		B2414EB729733A9E0035D4BD /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2414EB529733A9E0035D4BD /* timer.cpp */; };
+		B2414EB829733A9E0035D4BD /* timer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2414EB629733A9E0035D4BD /* timer.hpp */; };
 		B24C4A6C2967FDA000675599 /* libimguizmo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B24C4A392967FD3600675599 /* libimguizmo.a */; };
 		B24C4A772968638B00675599 /* scene_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24C4A752968638B00675599 /* scene_camera.cpp */; };
 		B24C4A782968638B00675599 /* scene_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24C4A762968638B00675599 /* scene_camera.hpp */; };
@@ -307,6 +309,8 @@
 		B22E79F62972A61900609CCA /* circle_shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = circle_shape.hpp; sourceTree = "<group>"; };
 		B2414EAD29732C610035D4BD /* stack_allocator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stack_allocator.cpp; sourceTree = "<group>"; };
 		B2414EAE29732C610035D4BD /* stack_allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = stack_allocator.hpp; sourceTree = "<group>"; };
+		B2414EB529733A9E0035D4BD /* timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = timer.cpp; sourceTree = "<group>"; };
+		B2414EB629733A9E0035D4BD /* timer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = timer.hpp; sourceTree = "<group>"; };
 		B24C4A312967FD3600675599 /* imguizmo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imguizmo.xcodeproj; path = imguizmo/imguizmo.xcodeproj; sourceTree = "<group>"; };
 		B24C4A752968638B00675599 /* scene_camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_camera.cpp; sourceTree = "<group>"; };
 		B24C4A762968638B00675599 /* scene_camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_camera.hpp; sourceTree = "<group>"; };
@@ -850,6 +854,7 @@
 				B2C7CAD22971E77D00E61B08 /* world_callbacks.hpp */,
 				B2F96B3F2971D13A00B28EE4 /* world.hpp */,
 				B2414EAE29732C610035D4BD /* stack_allocator.hpp */,
+				B2414EB629733A9E0035D4BD /* timer.hpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -891,6 +896,7 @@
 				B2C7CAD12971E77D00E61B08 /* world_callbacks.cpp */,
 				B2F96B3E2971D13A00B28EE4 /* world.cpp */,
 				B2414EAD29732C610035D4BD /* stack_allocator.cpp */,
+				B2414EB529733A9E0035D4BD /* timer.cpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -1125,6 +1131,7 @@
 				B2F481772972E7DF00B611DD /* time_setup.hpp in Headers */,
 				B24DD8382963045400525941 /* stb_image.h in Headers */,
 				B2250D02295873A70067C43B /* ikan_common.h in Headers */,
+				B2414EB829733A9E0035D4BD /* timer.hpp in Headers */,
 				B2BCB84E295AE3410068FCA2 /* input.hpp in Headers */,
 				B2F4817B2972EA6000B611DD /* distance_joint.hpp in Headers */,
 				B2C7CAE12971EA9500E61B08 /* physics_math.hpp in Headers */,
@@ -1339,6 +1346,7 @@
 				B216B265295B516A00C05392 /* batch_2d_renderer.cpp in Sources */,
 				B2C78066296AE470003F343E /* aabb_renderer.cpp in Sources */,
 				B2BD9E15295CA7610076A2F9 /* framebuffer.cpp in Sources */,
+				B2414EB729733A9E0035D4BD /* timer.cpp in Sources */,
 				B2F96B26297174B500B28EE4 /* bounding_circle.cpp in Sources */,
 				B2F4817A2972EA6000B611DD /* distance_joint.cpp in Sources */,
 				B2BD9E0E295CA7560076A2F9 /* open_gl_framebuffer.cpp in Sources */,
