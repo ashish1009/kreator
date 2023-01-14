@@ -15,7 +15,7 @@ namespace physics {
   class CircleShape;
   class EdgeShape;
   class PolygonShape;
-  
+
   /// The features that intersect to form the contact point
   /// This must be 4 bytes or less.
   struct ContactFeature {
@@ -34,6 +34,12 @@ namespace physics {
   union ContactID {
     ContactFeature cf;
     uint32_t key;          ///< Used to quickly compare contact ids.
+  };
+  
+  /// Used for computing contact manifolds.
+  struct ClipVertex {
+    Vec2 v;
+    ContactID id;
   };
   
   /// A manifold point is a contact point belonging to a contact
@@ -164,6 +170,35 @@ namespace physics {
   void CollideCircles(Manifold* manifold,
                       const CircleShape* circleA, const Transform& xfA,
                       const CircleShape* circleB, const Transform& xfB);
+
+  /// Compute the collision manifold between a polygon and a circle.
+  void CollidePolygonAndCircle(Manifold* manifold,
+                               const PolygonShape* polygonA, const Transform& xfA,
+                               const CircleShape* circleB, const Transform& xfB);
+  
+  /// Compute the collision manifold between two polygons.
+  void CollidePolygons(Manifold* manifold,
+                       const PolygonShape* polygonA, const Transform& xfA,
+                       const PolygonShape* polygonB, const Transform& xfB);
+  
+  /// Compute the collision manifold between an edge and a circle.
+  void CollideEdgeAndCircle(Manifold* manifold,
+                            const EdgeShape* polygonA, const Transform& xfA,
+                            const CircleShape* circleB, const Transform& xfB);
+  
+  /// Compute the collision manifold between an edge and a polygon.
+  void CollideEdgeAndPolygon(Manifold* manifold,
+                             const EdgeShape* edgeA, const Transform& xfA,
+                             const PolygonShape* circleB, const Transform& xfB);
+  
+  /// Clipping for contact manifolds.
+  int32_t ClipSegmentToLine(ClipVertex vOut[2], const ClipVertex vIn[2],
+                            const Vec2& normal, float offset, int32_t vertexIndexA);
+  
+  /// Determine if two generic shapes overlap.
+  bool TestOverlap(const Shape* shapeA, int32_t indexA,
+                   const Shape* shapeB, int32_t indexB,
+                   const Transform& xfA, const Transform& xfB);
 
   
   inline bool TestOverlap(const AABB& a, const AABB& b) {

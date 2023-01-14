@@ -32,5 +32,27 @@ namespace physics {
                    (CircleShape*)m_fixtureA->GetShape(), xfA,
                    (CircleShape*)m_fixtureB->GetShape(), xfB);
   }
+
+  Contact* PolygonAndCircleContact::Create(Fixture* fixtureA, int32_t, Fixture* fixtureB, int32_t, BlockAllocator* allocator) {
+    void* mem = allocator->Allocate(sizeof(PolygonAndCircleContact));
+    return new (mem) PolygonAndCircleContact(fixtureA, fixtureB);
+  }
   
+  void PolygonAndCircleContact::Destroy(Contact* contact, BlockAllocator* allocator) {
+    ((PolygonAndCircleContact*)contact)->~PolygonAndCircleContact();
+    allocator->Free(contact, sizeof(PolygonAndCircleContact));
+  }
+  
+  PolygonAndCircleContact::PolygonAndCircleContact(Fixture* fixtureA, Fixture* fixtureB)
+  : Contact(fixtureA, 0, fixtureB, 0) {
+    IK_ASSERT(m_fixtureA->GetType() == Shape::Type::Polygon);
+    IK_ASSERT(m_fixtureB->GetType() == Shape::Type::Circle);
+  }
+  
+  void PolygonAndCircleContact::Evaluate(Manifold* manifold, const Transform& xfA, const Transform& xfB) {
+    CollidePolygonAndCircle( manifold,
+                            (PolygonShape*)m_fixtureA->GetShape(), xfA,
+                            (CircleShape*)m_fixtureB->GetShape(), xfB);
+  }
+
 }

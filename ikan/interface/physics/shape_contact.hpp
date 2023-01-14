@@ -24,5 +24,17 @@ namespace physics {
     
     void Evaluate(Manifold* manifold, const Transform& xfA, const Transform& xfB) override;
   };
+  
+  class PolygonAndCircleContact : public Contact {
+  public:
+    static Contact* Create(Fixture* fixtureA, int32_t indexA, Fixture* fixtureB, int32_t indexB, BlockAllocator* allocator);
+    static void Destroy(Contact* contact, BlockAllocator* allocator);
+    
+    PolygonAndCircleContact(Fixture* fixtureA, Fixture* fixtureB);
+    ~PolygonAndCircleContact() {}
+    
+    void Evaluate(Manifold* manifold, const Transform& xfA, const Transform& xfB) override;
+  };
+
 
 }
