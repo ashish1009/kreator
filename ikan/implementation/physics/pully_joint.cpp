@@ -107,9 +107,9 @@ namespace physics {
       mass_ = 1.0f / mass_;
     }
     
-    if (data.step.warmStarting) {
+    if (data.step.warm_starting) {
       // Scale impulses to support variable time steps.
-      impulse_ *= data.step.dtRatio;
+      impulse_ *= data.step.dt_ratio;
       
       // Warm starting.
       Vec2 PA = -(impulse_) * u_A;

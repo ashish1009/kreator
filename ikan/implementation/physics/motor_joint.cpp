@@ -93,10 +93,10 @@ namespace physics {
     linear_error_ = cB + rb_ - cA - ra_;
     angular_error_ = aB - aA - angular_offset_;
     
-    if (data.step.warmStarting) {
+    if (data.step.warm_starting) {
       // Scale impulses to support a variable time step.
-      linear_impulse_ *= data.step.dtRatio;
-      angular_impulse_ *= data.step.dtRatio;
+      linear_impulse_ *= data.step.dt_ratio;
+      angular_impulse_ *= data.step.dt_ratio;
       
       Vec2 P(linear_impulse_.x, linear_impulse_.y);
       vA -= mA * P;

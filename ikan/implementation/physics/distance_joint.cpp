@@ -111,11 +111,11 @@ namespace physics {
       soft_mass_ = mass_;
     }
     
-    if (data.step.warmStarting) {
+    if (data.step.warm_starting) {
       // Scale the impulse to support a variable time step.
-      impulse_ *= data.step.dtRatio;
-      lower_impulse_ *= data.step.dtRatio;
-      upper_impulse_ *= data.step.dtRatio;
+      impulse_ *= data.step.dt_ratio;
+      lower_impulse_ *= data.step.dt_ratio;
+      upper_impulse_ *= data.step.dt_ratio;
       
       Vec2 P = (impulse_ + lower_impulse_ - upper_impulse_) * u_;
       vA -= inv_mass_a_ * P;

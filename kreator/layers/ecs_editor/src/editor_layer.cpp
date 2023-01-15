@@ -135,6 +135,7 @@ namespace editor {
     
     // TODO: Temo
     NewScene();
+    OpenScene(AM::ClientAsset("scenes/p.ikanScene"));
   }
   
   void EditorLayer::Detach() {

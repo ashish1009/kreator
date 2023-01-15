@@ -113,9 +113,9 @@ namespace physics {
       bias_ = 0.0f;
     }
     
-    if (data.step.warmStarting) {
+    if (data.step.warm_starting) {
       // Scale impulses to support a variable time step.
-      impulse_ *= data.step.dtRatio;
+      impulse_ *= data.step.dt_ratio;
       
       Vec2 P(impulse_.x, impulse_.y);
       

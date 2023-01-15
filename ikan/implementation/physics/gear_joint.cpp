@@ -175,7 +175,7 @@ namespace physics {
     // Compute effective mass.
     mass_ = mass_ > 0.0f ? 1.0f / mass_ : 0.0f;
     
-    if (data.step.warmStarting) {
+    if (data.step.warm_starting) {
       vA += (m_a_ * impulse_) * jv_ac_;
       wA += m_iA * impulse_ * jw_a_;
       vB += (m_b_ * impulse_) * jv_bd_;

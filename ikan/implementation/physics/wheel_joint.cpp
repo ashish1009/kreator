@@ -164,11 +164,11 @@ namespace physics {
       motor_impulse_ = 0.0f;
     }
     
-    if (data.step.warmStarting) {
+    if (data.step.warm_starting) {
       // Account for variable time step.
-      impulse_ *= data.step.dtRatio;
-      spring_impusle_ *= data.step.dtRatio;
-      motor_impulse_ *= data.step.dtRatio;
+      impulse_ *= data.step.dt_ratio;
+      spring_impusle_ *= data.step.dt_ratio;
+      motor_impulse_ *= data.step.dt_ratio;
       
       float axialImpulse = spring_impusle_ + lower_impulse_ - upper_impulse_;
       Vec2 P = impulse_ * a_y_ + axialImpulse * a_x_;

@@ -83,10 +83,10 @@ namespace physics {
       angular_mass_ = 1.0f / angular_mass_;
     }
     
-    if (data.step.warmStarting) {
+    if (data.step.warm_starting) {
       // Scale impulses to support a variable time step.
-      linear_impulse_ *= data.step.dtRatio;
-      angular_impulse_ *= data.step.dtRatio;
+      linear_impulse_ *= data.step.dt_ratio;
+      angular_impulse_ *= data.step.dt_ratio;
       
       Vec2 P(linear_impulse_.x, linear_impulse_.y);
       vA -= mA * P;

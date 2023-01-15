@@ -27,10 +27,10 @@ namespace physics {
   struct TimeStep {
     float dt;      // time step
     float inv_dt;    // inverse time step (0 if dt == 0).
-    float dtRatio;  // dt * inv_dt0
-    int32_t velocityIterations;
-    int32_t positionIterations;
-    bool warmStarting;
+    float dt_ratio;  // dt * inv_dt0
+    int32_t velocity_iterations;
+    int32_t position_iterations;
+    bool warm_starting;
   };
   
   /// This is an internal structure.

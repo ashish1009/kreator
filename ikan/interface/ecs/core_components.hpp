@@ -167,9 +167,30 @@ namespace ecs {
     float restitution = 0.0f;
     float restitution_threshold = 0.5f;
 
+    // Storage for runtime
+    void* runtime_fixture = nullptr;
+
     void RenderGui();
     BoxColloiderComponent() = default;
     DEFINE_COPY_MOVE_CONSTRUCTORS(BoxColloiderComponent);
+  };
+  
+  struct CircleColloiderComponent {
+    glm::vec2 offset = { 0.0f, 0.0f };
+    float radius = 0.5f;
+    
+    // TODO: Move to physics material
+    float density  = 1.0f;
+    float friction = 0.5f;
+    float restitution = 0.0f;
+    float restitution_threshold = 0.5f;
+
+    // Storage for runtime
+    void* runtime_fixture = nullptr;
+
+    void RenderGui();
+    CircleColloiderComponent() = default;
+    DEFINE_COPY_MOVE_CONSTRUCTORS(CircleColloiderComponent);
   };
 
 }

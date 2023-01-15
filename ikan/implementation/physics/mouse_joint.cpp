@@ -99,8 +99,8 @@ namespace physics {
     // Cheat with some damping
     wB *= 0.98f;
     
-    if (data.step.warmStarting) {
-      impulse_ *= data.step.dtRatio;
+    if (data.step.warm_starting) {
+      impulse_ *= data.step.dt_ratio;
       vB += inv_mass_b_ * impulse_;
       wB += inv_i_b_ * Cross(rb_, impulse_);
     }
