@@ -190,7 +190,8 @@ namespace ecs {
       DrawComponent<NativeScriptComponent>("Native Script", selected_entity_, [this](auto& nsc) { nsc.RenderGui(); });
       DrawComponent<NativeBodyTypeComponent>("Native Body Type", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
       DrawComponent<RigidBodyComponent>("Rigid Body", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
-      DrawComponent<BoxColloiderComponent>("Box Collider", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
+      DrawComponent<BoxColloiderComponent>("Box Collider", selected_entity_, [this](auto& bcc) { bcc.RenderGui(); });
+      DrawComponent<CircleColloiderComponent>("Circle Collider", selected_entity_, [this](auto& ccc) { ccc.RenderGui(); });
     }
     
     ImGui::PopID();
@@ -303,6 +304,7 @@ namespace ecs {
     
     AddComponentMenu<RigidBodyComponent>("Rigid Body");
     AddComponentMenu<BoxColloiderComponent>("Box Collider");
+    AddComponentMenu<CircleColloiderComponent>("Circle Collider");
   }
   
   ScenePanelManager::Setting& ScenePanelManager::GetSetting() { return setting_; }

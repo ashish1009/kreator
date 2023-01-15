@@ -16,6 +16,7 @@
 #include "renderer/graphics/texture.hpp"
 
 #include "physics/polygon_shape.hpp"
+#include "physics/circle_shape.hpp"
 #include "physics/fixture.hpp"
 
 namespace ecs {
@@ -104,7 +105,7 @@ namespace ecs {
       const int32_t velocity_iteration = 6;
       const int32_t position_iteration = 2;
       
-      physics_world_->Step(ts, velocity_iteration, position_iteration);
+//      physics_world_->Step(ts, velocity_iteration, position_iteration);
 
 //      // Get Transform
 //      auto view = registry_.view<RigidBodyComponent>();
@@ -284,6 +285,25 @@ namespace ecs {
         
         body->CreateFixture(&fixture_def);
       }
+
+      if (entity.HasComponent<CircleColloiderComponent>()) {
+        auto& cc2d = entity.GetComponent<CircleColloiderComponent>();
+        
+        physics::CircleShape circle_shape;
+
+        circle_shape.position_.Set(cc2d.offset.x, cc2d.offset.y);
+        circle_shape.radius_ = transform.Scale().x * cc2d.radius;
+        
+        physics::FixtureDef fixture_def;
+        fixture_def.shape = & circle_shape;
+        fixture_def.density = cc2d.density;
+        fixture_def.friction = cc2d.friction;
+        fixture_def.restitution = cc2d.restitution;
+        fixture_def.restitution_threshold = cc2d.restitution_threshold;
+        
+        body->CreateFixture(&fixture_def);
+      }
+
     }
   }
   

@@ -276,6 +276,23 @@ namespace ecs {
         
         out << YAML::EndMap; // BoxColloiderComponent
       }
+      // ------------------------------------------------------------------------
+      if (entity.HasComponent<CircleColloiderComponent>()) {
+        out << YAML::Key << "CircleColloiderComponent";
+        out << YAML::BeginMap; // CircleColloiderComponent
+        
+        auto& ccc = entity.GetComponent<CircleColloiderComponent>();
+        
+        out << YAML::Key << "Offset" << YAML::Value << ccc.offset;
+        out << YAML::Key << "Radius" << YAML::Value << ccc.radius;
+        
+        out << YAML::Key << "Density" << YAML::Value << ccc.density;
+        out << YAML::Key << "Friction" << YAML::Value << ccc.friction;
+        out << YAML::Key << "Restitution" << YAML::Value << ccc.restitution;
+        out << YAML::Key << "Restitution Threshold" << YAML::Value << ccc.restitution_threshold;
+        
+        out << YAML::EndMap; // CircleColloiderComponent
+      }
 
       out << YAML::EndMap; // Entity
     } // for (const auto& [uuid, entity] : scene_->entity_id_map_)
@@ -449,7 +466,7 @@ namespace ecs {
         if (native_body_component) {
           auto type = native_body_component["Type"].as<uint8_t>();
           deserialized_entity.AddComponent<NativeBodyTypeComponent>((NativeBodyTypeComponent::Type)type);
-          IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Native Body Type Component");
           IK_CORE_INFO(LogModule::SceneSerializer, "      Type | {0}", type);
         } // if (native_body_component)
 
@@ -462,32 +479,54 @@ namespace ecs {
           rc.type = (physics::BodyType)type;
           rc.fixed_rotation = rigid_body_component["Fixed Rotation"].as<bool>();
 
-          IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Rigid Body Component");
           IK_CORE_INFO(LogModule::SceneSerializer, "      Type           | {0}", type);
           IK_CORE_INFO(LogModule::SceneSerializer, "      Fixed Rotation | {0}", rc.fixed_rotation);
         } // if (rigid_body_component)
 
         // --------------------------------------------------------------------
-        auto bol_colloider_component = entity["BoxColloiderComponent"];
-        if (bol_colloider_component) {
+        auto box_colloider_component = entity["BoxColloiderComponent"];
+        if (box_colloider_component) {
           auto& bcc = deserialized_entity.AddComponent<BoxColloiderComponent>();
 
-          bcc.offset = bol_colloider_component["Offset"].as<glm::vec2>();
-          bcc.size = bol_colloider_component["Size"].as<glm::vec2>();
+          bcc.offset = box_colloider_component["Offset"].as<glm::vec2>();
+          bcc.size = box_colloider_component["Size"].as<glm::vec2>();
 
-          bcc.density = bol_colloider_component["Density"].as<float>();
-          bcc.friction = bol_colloider_component["Friction"].as<float>();
-          bcc.restitution = bol_colloider_component["Restitution"].as<float>();
-          bcc.restitution_threshold = bol_colloider_component["Restitution Threshold"].as<float>();
+          bcc.density = box_colloider_component["Density"].as<float>();
+          bcc.friction = box_colloider_component["Friction"].as<float>();
+          bcc.restitution = box_colloider_component["Restitution"].as<float>();
+          bcc.restitution_threshold = box_colloider_component["Restitution Threshold"].as<float>();
 
-          IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Box Collider Component");
           IK_CORE_INFO(LogModule::SceneSerializer, "      Offset                | {0} | {0}", bcc.offset.x, bcc.offset.y);
           IK_CORE_INFO(LogModule::SceneSerializer, "      Size                  | {0} | {0}", bcc.size.x, bcc.size.y);
           IK_CORE_INFO(LogModule::SceneSerializer, "      Density               | {0}", bcc.density);
           IK_CORE_INFO(LogModule::SceneSerializer, "      Friction              | {0}", bcc.friction);
           IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution           | {0}", bcc.restitution);
           IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution Threshold | {0}", bcc.restitution_threshold);
-        } // if (bol_colloider_component)
+        } // if (box_colloider_component)
+
+        // --------------------------------------------------------------------
+        auto circle_colloider_component = entity["CircleColloiderComponent"];
+        if (circle_colloider_component) {
+          auto& bcc = deserialized_entity.AddComponent<CircleColloiderComponent>();
+          
+          bcc.offset = circle_colloider_component["Offset"].as<glm::vec2>();
+          bcc.radius = circle_colloider_component["Radius"].as<float>();
+          
+          bcc.density = circle_colloider_component["Density"].as<float>();
+          bcc.friction = circle_colloider_component["Friction"].as<float>();
+          bcc.restitution = circle_colloider_component["Restitution"].as<float>();
+          bcc.restitution_threshold = circle_colloider_component["Restitution Threshold"].as<float>();
+          
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Offset                | {0} | {0}", bcc.offset.x, bcc.offset.y);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Radius                | {0}", bcc.radius);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Density               | {0}", bcc.density);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Friction              | {0}", bcc.friction);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution           | {0}", bcc.restitution);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution Threshold | {0}", bcc.restitution_threshold);
+        } // if (circle_colloider_component)
 
       } // for (auto entity : entities)
     } // if (entities)
