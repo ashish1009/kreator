@@ -529,4 +529,54 @@ namespace ecs {
     ImGui::Separator();
   }
   
+  // -------------------------------------------------------------------------
+  // Circle Colloider Component
+  // -------------------------------------------------------------------------
+  CircleColloiderComponent::CircleColloiderComponent(const CircleColloiderComponent& other) {
+    offset = other.offset;
+    radius = other.radius;
+    density = other.density;
+    friction = other.friction;
+    restitution = other.restitution;
+    restitution_threshold = other.restitution_threshold;
+  }
+  CircleColloiderComponent& CircleColloiderComponent::operator=(const CircleColloiderComponent& other) {
+    offset = other.offset;
+    radius = other.radius;
+    density = other.density;
+    friction = other.friction;
+    restitution = other.restitution;
+    restitution_threshold = other.restitution_threshold;
+    return *this;
+  }
+  CircleColloiderComponent::CircleColloiderComponent(CircleColloiderComponent&& other) {
+    offset = other.offset;
+    radius = other.radius;
+    density = other.density;
+    friction = other.friction;
+    restitution = other.restitution;
+    restitution_threshold = other.restitution_threshold;
+  }
+  CircleColloiderComponent& CircleColloiderComponent::operator=(CircleColloiderComponent&& other) {
+    offset = other.offset;
+    radius = other.radius;
+    density = other.density;
+    friction = other.friction;
+    restitution = other.restitution;
+    restitution_threshold = other.restitution_threshold;
+    return *this;
+  }
+  void CircleColloiderComponent::RenderGui() {
+    PropertyGrid::Float2("Offset", offset);
+    PropertyGrid::Float1("Radius", radius);
+    ImGui::Separator();
+    
+    PropertyGrid::Float1("Density", density);
+    PropertyGrid::Float1("Friction", friction);
+    PropertyGrid::Float1("Restitution", restitution);
+    PropertyGrid::Float1("Restitution Threshold", restitution_threshold);
+    
+    ImGui::Separator();
+  }
+  
 }
