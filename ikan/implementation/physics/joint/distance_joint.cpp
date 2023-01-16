@@ -317,7 +317,7 @@ namespace physics {
     Vec2 pB = Mul(xfB, local_anchor_b_);
     
     Vec2 axis = pB - pA;
-    float length = axis.Normalize();
+//    float length = axis.Normalize();
     
     Color c1(0.7f, 0.7f, 0.7f);
     Color c2(0.3f, 0.9f, 0.3f);

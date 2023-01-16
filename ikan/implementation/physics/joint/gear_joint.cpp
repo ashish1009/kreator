@@ -5,12 +5,13 @@
 //  Created by Ashish . on 14/01/23.
 //
 
-#include "gear_joint.hpp"
 #include "body.hpp"
 #include "draw.hpp"
 #include "time_setup.hpp"
-#include "revolute_joint.hpp"
-#include "prismatic_joint.hpp"
+
+#include "physics/joint/gear_joint.hpp"
+#include "physics/joint/revolute_joint.hpp"
+#include "physics/joint/prismatic_joint.hpp"
 
 namespace physics {
   

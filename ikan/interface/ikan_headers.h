@@ -84,7 +84,7 @@
 
 // Physics
 #include <physics/physics_common.h>
-#include <physics/settings.hpp>
+#include <physics/utils/settings.hpp>
 
 // ECS
 #include <ecs/viewport.hpp>

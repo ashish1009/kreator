@@ -5,7 +5,7 @@
 //  Created by Ashish . on 14/01/23.
 //
 
-#include "settings.hpp"
+#include "physics/utils/settings.hpp"
 
 namespace physics {
   

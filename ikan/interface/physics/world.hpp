@@ -7,13 +7,13 @@
 
 #pragma once
 
-#include "physics_math.hpp"
-#include "contact_manager.hpp"
-#include "block_allocator.hpp"
 
-#include "stack_allocator.hpp"
-#include "time_setup.hpp"
-#include "world_callbacks.hpp"
+#include "physics/world_callbacks.hpp"
+#include "physics/contact/contact_manager.hpp"
+#include "physics/utils/physics_math.hpp"
+#include "physics/utils/time_setup.hpp"
+#include "physics/utils/block_allocator.hpp"
+#include "physics/utils/stack_allocator.hpp"
 
 namespace physics {
   

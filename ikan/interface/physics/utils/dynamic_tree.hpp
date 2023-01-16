@@ -7,8 +7,8 @@
 
 #pragma once
 
-#include "collision.hpp"
-#include "growable_stack.hpp"
+#include "physics/collision/collision.hpp"
+#include "physics/utils/growable_stack.hpp"
 
 namespace physics {
   

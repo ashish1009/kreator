@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "collision.hpp"
+#include "physics/collision/collision.hpp"
 
 namespace physics {
   

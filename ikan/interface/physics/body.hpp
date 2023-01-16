@@ -7,9 +7,9 @@
 
 #pragma once
 
-#include "physics_math.hpp"
-#include "settings.hpp"
-#include "shape.hpp"
+#include "physics/utils/physics_math.hpp"
+#include "physics/utils/settings.hpp"
+#include "physics/shape/shape.hpp"
 
 namespace physics {
   

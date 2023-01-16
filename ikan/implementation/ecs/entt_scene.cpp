@@ -15,8 +15,8 @@
 #include "renderer/utils/aabb_renderer.hpp"
 #include "renderer/graphics/texture.hpp"
 
-#include "physics/polygon_shape.hpp"
-#include "physics/circle_shape.hpp"
+#include "physics/shape/polygon_shape.hpp"
+#include "physics/shape/circle_shape.hpp"
 #include "physics/fixture.hpp"
 
 namespace ecs {
@@ -102,8 +102,8 @@ namespace ecs {
   void EnttScene::UpdateRuntime(Timestep ts) {
     // Physics
     {
-      const int32_t velocity_iteration = 6;
-      const int32_t position_iteration = 2;
+//      const int32_t velocity_iteration = 6;
+//      const int32_t position_iteration = 2;
       
 //      physics_world_->Step(ts, velocity_iteration, position_iteration);
 

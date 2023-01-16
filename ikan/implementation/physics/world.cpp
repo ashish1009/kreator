@@ -45,9 +45,6 @@ namespace physics {
   
   Body* World::CreateBody(const BodyDef* def) {
     IK_ASSERT(IsLocked() == false);
-    if (IsLocked()) {
-      return nullptr;
-    }
     
     void* mem = m_blockAllocator.Allocate(sizeof(Body));
     Body* b = new (mem) Body(def, this);
@@ -64,8 +61,45 @@ namespace physics {
     return b;
   }
   
-  void World::Step(float dt, int32_t velocity_iterations, int32_t position_tterations) {
+  void World::Step(float dt, int32_t velocity_iterations, int32_t position_iterations) {
     Timer step_timer;
+    
+    // If new fixtures were added, we need to find the new contacts.
+    if (m_newContacts) {
+      contact_manager.FindNewContacts();
+      m_newContacts = false;
+    }
+
+    m_locked = true;
+
+    TimeStep step;
+    step.dt = dt;
+    step.velocity_iterations  = velocity_iterations;
+    step.position_iterations = position_iterations;
+    if (dt > 0.0f) {
+      step.inv_dt = 1.0f / dt;
+    } else {
+      step.inv_dt = 0.0f;
+    }
+
+    step.dt_ratio = m_inv_dt0 * dt;    
+    step.warm_starting = m_warmStarting;
+
+    // Update contacts. This is where some contacts are destroyed.
+    {
+      Timer timer;
+      contact_manager.Collide();
+      m_profile.collide = timer.GetMilliseconds();
+    }
+//    
+//    // Integrate velocities, solve velocity constraints, and integrate positions.
+//    if (m_stepComplete && step.dt > 0.0f) {
+//      Timer timer;
+//      Solve(step);
+//      m_profile.solve = timer.GetMilliseconds();
+//    }
+
+
   }
 
   

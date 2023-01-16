@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "dynamic_tree.hpp"
+#include "physics/utils/dynamic_tree.hpp"
 
 namespace physics {
   
