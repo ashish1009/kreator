@@ -44,8 +44,7 @@ namespace physics {
     // Reserve proxy space
     int32_t childCount = shape_->GetChildCount();
     proxies_ = (FixtureProxy*)allocator->Allocate(childCount * sizeof(FixtureProxy));
-    for (int32_t i = 0; i < childCount; ++i)
-    {
+    for (int32_t i = 0; i < childCount; ++i) {
       proxies_[i].fixture = nullptr;
       proxies_[i].proxy_id = BroadPhase::NullProxy;
     }
@@ -178,7 +177,7 @@ namespace physics {
     }
 
     // Touch each proxy so that new pairs may be created
-    BroadPhase* broadPhase = &world->contact_manager.broad_phase_;
+    BroadPhase* broadPhase = &world->contact_manager_.broad_phase_;
     for (int32_t i = 0; i < proxy_count_; ++i) {
       broadPhase->TouchProxy(proxies_[i].proxy_id);
     }

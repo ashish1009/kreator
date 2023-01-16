@@ -88,7 +88,7 @@ namespace physics {
     float radius_;
   };
   
-  Shape::Type Shape::GetType() const {
+  inline Shape::Type Shape::GetType() const {
     return type_;
   }
   

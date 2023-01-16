@@ -119,12 +119,12 @@ namespace physics {
     while (ce) {
       ContactEdge* ce0 = ce;
       ce = ce->next;
-      world_->contact_manager.Destroy(ce0->contact);
+      world_->contact_manager_.Destroy(ce0->contact);
     }
     contact_list_ = nullptr;
     
     // Touch the proxies so that new contacts will be created (when appropriate)
-    BroadPhase* broad_phase = &world_->contact_manager.broad_phase_;
+    BroadPhase* broad_phase = &world_->contact_manager_.broad_phase_;
     for (Fixture* f = fixture_list_; f; f = f->next_) {
        int32_t proxy_count = f->proxy_count_;
       for (int32_t i = 0; i < proxy_count; ++i) {
@@ -139,14 +139,14 @@ namespace physics {
       return nullptr;
     }
     
-    BlockAllocator* allocator = &world_->m_blockAllocator;
+    BlockAllocator* allocator = &world_->block_allocator_;
     
     void* memory = allocator->Allocate(sizeof(Fixture));
     Fixture* fixture = new (memory) Fixture;
     fixture->Create(allocator, this, def);
     
     if (flags_ & e_enabledFlag) {
-      BroadPhase* broadPhase = &world_->contact_manager.broad_phase_;
+      BroadPhase* broadPhase = &world_->contact_manager_.broad_phase_;
       fixture->CreateProxies(broadPhase, xf_);
     }
     
@@ -163,7 +163,7 @@ namespace physics {
     
     // Let the world know we have a new fixture. This will cause new contacts
     // to be created at the beginning of the next time step.
-    world_->m_newContacts = true;
+    world_->new_contacts_ = true;
     
     return fixture;
   }
@@ -218,14 +218,14 @@ namespace physics {
       {
         // This destroys the contact and removes it from
         // this body's contact list.
-        world_->contact_manager.Destroy(c);
+        world_->contact_manager_.Destroy(c);
       }
     }
     
-    BlockAllocator* allocator = &world_->m_blockAllocator;
+    BlockAllocator* allocator = &world_->block_allocator_;
     
     if (flags_ & e_enabledFlag) {
-      BroadPhase* broadPhase = &world_->contact_manager.broad_phase_;
+      BroadPhase* broadPhase = &world_->contact_manager_.broad_phase_;
       fixture->DestroyProxies(broadPhase);
     }
     
@@ -257,6 +257,7 @@ namespace physics {
       return;
     }
     
+    // If not dynamic then assert
     IK_ASSERT(type_ == BodyType::DynamicBody);
     
     // Accumulate mass over all fixtures.
@@ -369,17 +370,17 @@ namespace physics {
     sweep_.c0 = sweep_.c;
     sweep_.a0 = angle;
     
-    BroadPhase* broadPhase = &world_->contact_manager.broad_phase_;
+    BroadPhase* broadPhase = &world_->contact_manager_.broad_phase_;
     for (Fixture* f = fixture_list_; f; f = f->next_) {
       f->Synchronize(broadPhase, xf_, xf_);
     }
     
     // Check for new contacts the next step
-    world_->m_newContacts = true;
+    world_->new_contacts_ = true;
   }
   
   void Body::SynchronizeFixtures() {
-    BroadPhase* broadPhase = &world_->contact_manager.broad_phase_;
+    BroadPhase* broadPhase = &world_->contact_manager_.broad_phase_;
     
     if (flags_ & Body::e_awakeFlag) {
       Transform xf1;
@@ -408,19 +409,19 @@ namespace physics {
       flags_ |= e_enabledFlag;
       
       // Create all proxies.
-      BroadPhase* broadPhase = &world_->contact_manager.broad_phase_;
+      BroadPhase* broadPhase = &world_->contact_manager_.broad_phase_;
       for (Fixture* f = fixture_list_; f; f = f->next_) {
         f->CreateProxies(broadPhase, xf_);
       }
       
       // Contacts are created at the beginning of the next
-      world_->m_newContacts = true;
+      world_->new_contacts_ = true;
     }
     else {
       flags_ &= ~e_enabledFlag;
       
       // Destroy all proxies.
-      BroadPhase* broadPhase = &world_->contact_manager.broad_phase_;
+      BroadPhase* broadPhase = &world_->contact_manager_.broad_phase_;
       for (Fixture* f = fixture_list_; f; f = f->next_) {
         f->DestroyProxies(broadPhase);
       }
@@ -430,7 +431,7 @@ namespace physics {
       while (ce) {
         ContactEdge* ce0 = ce;
         ce = ce->next;
-        world_->contact_manager.Destroy(ce0->contact);
+        world_->contact_manager_.Destroy(ce0->contact);
       }
       contact_list_ = nullptr;
     }

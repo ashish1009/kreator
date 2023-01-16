@@ -467,7 +467,7 @@ namespace ecs {
   }
   void RigidBodyComponent::RenderGui() {
     physics::BodyType new_body_type = physics::BodyType(PropertyGrid::ComboDrop("Rigid Body Type",
-                                                                                { "Static" , "Dynamic", "Kinamatic" },
+                                                                                { "Static" , "Kinamatic", "Dynamic" },
                                                                                 (uint32_t)type,
                                                                                 ImGui::GetWindowContentRegionMax().x / 2));
     

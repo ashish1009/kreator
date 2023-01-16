@@ -13,21 +13,21 @@
 namespace physics {
   
   World::World(const Vec2& gravity) :
-  m_gravity(gravity),
-  m_destructionListener(nullptr), m_debugDraw(nullptr), m_bodyList(nullptr), m_jointList(nullptr),
-  m_bodyCount(0), m_jointCount(0),
-  m_warmStarting(true), m_continuousPhysics(true), m_subStepping(false),
-  m_stepComplete(true), m_allowSleep(true),
+  gravity_(gravity),
+  destruction_listener_(nullptr), debug_draw_(nullptr), body_list_(nullptr), joint_list_(nullptr),
+  body_count_(0), joint_count_(0),
+  warm_starting_(true), continuous_physics_(true), sub_stepping_(false),
+  step_complete_(true), allow_sleep_(true),
     
-  m_newContacts(false), m_locked(false), m_clearForces(true),
-  m_inv_dt0(0.0f) {
-    contact_manager.allocator_ = &m_blockAllocator;
-    memset(&m_profile, 0, sizeof(Profile));
+  new_contacts_(false), locked_(false), clear_forces_(true),
+  inv_dt_0_(0.0f) {
+    contact_manager_.allocator_ = &block_allocator_;
+    memset(&profile_, 0, sizeof(Profile));
   }
   
   World::~World() {
     // Some shapes allocate using b2Alloc.
-    Body* b = m_bodyList;
+    Body* b = body_list_;
     while (b) {
       Body* bNext = b->next_;
       
@@ -35,7 +35,7 @@ namespace physics {
       while (f) {
         Fixture* fNext = f->next_;
         f->proxy_count_ = 0;
-        f->Destroy(&m_blockAllocator);
+        f->Destroy(&block_allocator_);
         f = fNext;
       }
       
@@ -46,17 +46,17 @@ namespace physics {
   Body* World::CreateBody(const BodyDef* def) {
     IK_ASSERT(IsLocked() == false);
     
-    void* mem = m_blockAllocator.Allocate(sizeof(Body));
+    void* mem = block_allocator_.Allocate(sizeof(Body));
     Body* b = new (mem) Body(def, this);
     
     // Add to world doubly linked list.
     b->prev_ = nullptr;
-    b->next_ = m_bodyList;
-    if (m_bodyList) {
-      m_bodyList->prev_ = b;
+    b->next_ = body_list_;
+    if (body_list_) {
+      body_list_->prev_ = b;
     }
-    m_bodyList = b;
-    ++m_bodyCount;
+    body_list_ = b;
+    ++body_count_;
     
     return b;
   }
@@ -65,12 +65,12 @@ namespace physics {
     Timer step_timer;
     
     // If new fixtures were added, we need to find the new contacts.
-    if (m_newContacts) {
-      contact_manager.FindNewContacts();
-      m_newContacts = false;
+    if (new_contacts_) {
+      contact_manager_.FindNewContacts();
+      new_contacts_ = false;
     }
 
-    m_locked = true;
+    locked_ = true;
 
     TimeStep step;
     step.dt = dt;
@@ -82,25 +82,30 @@ namespace physics {
       step.inv_dt = 0.0f;
     }
 
-    step.dt_ratio = m_inv_dt0 * dt;    
-    step.warm_starting = m_warmStarting;
+    step.dt_ratio = inv_dt_0_ * dt;    
+    step.warm_starting = warm_starting_;
 
     // Update contacts. This is where some contacts are destroyed.
     {
       Timer timer;
-      contact_manager.Collide();
-      m_profile.collide = timer.GetMilliseconds();
+      contact_manager_.Collide();
+      profile_.collide = timer.GetMilliseconds();
     }
-//    
-//    // Integrate velocities, solve velocity constraints, and integrate positions.
-//    if (m_stepComplete && step.dt > 0.0f) {
-//      Timer timer;
-//      Solve(step);
-//      m_profile.solve = timer.GetMilliseconds();
-//    }
-
-
+    
+    // Integrate velocities, solve velocity constraints, and integrate positions.
+    if (step_complete_ && step.dt > 0.0f) {
+      Timer timer;
+      Solve(step);
+      profile_.solve = timer.GetMilliseconds();
+    }
   }
-
+  
+  // Find islands, integrate and solve constraints, solve position constraints
+  void World::Solve(const TimeStep& step) {
+  }
+  
+  bool World::IsLocked() const {
+    return locked_;
+  }
   
 }

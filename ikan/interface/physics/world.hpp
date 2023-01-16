@@ -133,19 +133,19 @@ namespace physics {
     
     /// Enable/disable sleep.
     void SetAllowSleeping(bool flag);
-    bool GetAllowSleeping() const { return m_allowSleep; }
+    bool GetAllowSleeping() const { return allow_sleep_; }
     
     /// Enable/disable warm starting. For testing.
-    void SetWarmStarting(bool flag) { m_warmStarting = flag; }
-    bool GetWarmStarting() const { return m_warmStarting; }
+    void SetWarmStarting(bool flag) { warm_starting_ = flag; }
+    bool GetWarmStarting() const { return warm_starting_; }
     
     /// Enable/disable continuous physics. For testing.
-    void SetContinuousPhysics(bool flag) { m_continuousPhysics = flag; }
-    bool GetContinuousPhysics() const { return m_continuousPhysics; }
+    void SetContinuousPhysics(bool flag) { continuous_physics_ = flag; }
+    bool GetContinuousPhysics() const { return continuous_physics_; }
     
     /// Enable/disable single stepped continuous physics. For testing.
-    void SetSubStepping(bool flag) { m_subStepping = flag; }
-    bool GetSubStepping() const { return m_subStepping; }
+    void SetSubStepping(bool flag) { sub_stepping_ = flag; }
+    bool GetSubStepping() const { return sub_stepping_; }
     
     /// Get the number of broad-phase proxies.
     int32_t GetProxyCount() const;
@@ -211,43 +211,43 @@ namespace physics {
     
     void DrawShape(Fixture* shape, const Transform& xf, const Color& color);
     
-    BlockAllocator m_blockAllocator;
-    StackAllocator m_stackAllocator;
     
-    ContactManager contact_manager;
+    // -----------------------------
+    // Member variables
+    // -----------------------------
+    BlockAllocator block_allocator_;
+    StackAllocator stack_allocator_;
     
-    Body* m_bodyList;
-    Joint* m_jointList;
+    ContactManager contact_manager_;
     
-    int32_t m_bodyCount;
-    int32_t m_jointCount;
+    Body* body_list_;
+    Joint* joint_list_;
     
-    Vec2 m_gravity;
-    bool m_allowSleep;
+    int32_t body_count_;
+    int32_t joint_count_;
     
-    DestructionListener* m_destructionListener;
-    Draw* m_debugDraw;
+    Vec2 gravity_;
+    bool allow_sleep_;
+    
+    DestructionListener* destruction_listener_;
+    Draw* debug_draw_;
     
     // This is used to compute the time step ratio to
     // support a variable time step.
-    float m_inv_dt0;
+    float inv_dt_0_;
     
-    bool m_newContacts;
-    bool m_locked;
-    bool m_clearForces;
+    bool new_contacts_;
+    bool locked_;
+    bool clear_forces_;
     
     // These are for debugging the solver.
-    bool m_warmStarting;
-    bool m_continuousPhysics;
-    bool m_subStepping;
+    bool warm_starting_;
+    bool continuous_physics_;
+    bool sub_stepping_;
     
-    bool m_stepComplete;
+    bool step_complete_;
     
-    Profile m_profile;
+    Profile profile_;
   };
-  
-  inline bool World::IsLocked() const {
-    return m_locked;
-  }
 
 }
