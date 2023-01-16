@@ -83,11 +83,12 @@ namespace physics {
     // Variables
     // ---------------------
     Type type_;
-    /// Radius of a shape. For polygonal shapes this must be _polygonRadius. There is no support for /// making rounded polygons.
+    /// Radius of a shape. For polygonal shapes this must be _polygonRadius. There is no support for
+    /// making rounded polygons.
     float radius_;
   };
   
-  inline Shape::Type Shape::GetType() const {
+  Shape::Type Shape::GetType() const {
     return type_;
   }
   

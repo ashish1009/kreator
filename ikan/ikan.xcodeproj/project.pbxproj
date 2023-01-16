@@ -94,7 +94,6 @@
 		B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B27CF129295EC6E000837A36 /* uuid.hpp */; };
 		B284DA1529728F61009FC6A1 /* fixture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B284DA1329728F61009FC6A1 /* fixture.cpp */; };
 		B284DA1629728F61009FC6A1 /* fixture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B284DA1429728F61009FC6A1 /* fixture.hpp */; };
-		B284DA1E29728FB8009FC6A1 /* shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B284DA1C29728FB8009FC6A1 /* shape.cpp */; };
 		B284DA1F29728FB8009FC6A1 /* shape.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B284DA1D29728FB8009FC6A1 /* shape.hpp */; };
 		B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */; };
 		B2B6CDB72958D8AD00AE609E /* imgui_layer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */; };
@@ -146,7 +145,6 @@
 		B2F4816A2972DE8A00B611DD /* distance.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481682972DE8A00B611DD /* distance.hpp */; };
 		B2F481722972E65700B611DD /* joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F481702972E65700B611DD /* joint.cpp */; };
 		B2F481732972E65700B611DD /* joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481712972E65700B611DD /* joint.hpp */; };
-		B2F481762972E7DF00B611DD /* time_setup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F481742972E7DF00B611DD /* time_setup.cpp */; };
 		B2F481772972E7DF00B611DD /* time_setup.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481752972E7DF00B611DD /* time_setup.hpp */; };
 		B2F4817A2972EA6000B611DD /* distance_joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F481782972EA6000B611DD /* distance_joint.cpp */; };
 		B2F4817B2972EA6000B611DD /* distance_joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F481792972EA6000B611DD /* distance_joint.hpp */; };
@@ -357,7 +355,6 @@
 		B27CF129295EC6E000837A36 /* uuid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = uuid.hpp; sourceTree = "<group>"; };
 		B284DA1329728F61009FC6A1 /* fixture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fixture.cpp; sourceTree = "<group>"; };
 		B284DA1429728F61009FC6A1 /* fixture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fixture.hpp; sourceTree = "<group>"; };
-		B284DA1C29728FB8009FC6A1 /* shape.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shape.cpp; sourceTree = "<group>"; };
 		B284DA1D29728FB8009FC6A1 /* shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shape.hpp; sourceTree = "<group>"; };
 		B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imgui.xcodeproj; path = imgui/imgui.xcodeproj; sourceTree = "<group>"; };
 		B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_layer.cpp; sourceTree = "<group>"; };
@@ -410,7 +407,6 @@
 		B2F481682972DE8A00B611DD /* distance.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = distance.hpp; sourceTree = "<group>"; };
 		B2F481702972E65700B611DD /* joint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = joint.cpp; sourceTree = "<group>"; };
 		B2F481712972E65700B611DD /* joint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = joint.hpp; sourceTree = "<group>"; };
-		B2F481742972E7DF00B611DD /* time_setup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = time_setup.cpp; sourceTree = "<group>"; };
 		B2F481752972E7DF00B611DD /* time_setup.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = time_setup.hpp; sourceTree = "<group>"; };
 		B2F481782972EA6000B611DD /* distance_joint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = distance_joint.cpp; sourceTree = "<group>"; };
 		B2F481792972EA6000B611DD /* distance_joint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = distance_joint.hpp; sourceTree = "<group>"; };
@@ -764,7 +760,6 @@
 				B2C7CADA2971E89100E61B08 /* draw.cpp */,
 				B2D4EC902971EFFD00B4A8BE /* settings.cpp */,
 				B2C7CADE2971EA9500E61B08 /* physics_math.cpp */,
-				B2F481742972E7DF00B611DD /* time_setup.cpp */,
 				B2414EAD29732C610035D4BD /* stack_allocator.cpp */,
 				B27CAABD29729108009DB914 /* block_allocator.cpp */,
 				B27CAAD229729DC6009DB914 /* dynamic_tree.cpp */,
@@ -825,7 +820,6 @@
 				B22E79F52972A61900609CCA /* circle_shape.cpp */,
 				B222C3152972A8F30060FA5D /* edge_shape.cpp */,
 				B222C3192972AA9C0060FA5D /* polygon_shape.cpp */,
-				B284DA1C29728FB8009FC6A1 /* shape.cpp */,
 			);
 			path = shape;
 			sourceTree = "<group>";
@@ -1395,7 +1389,6 @@
 				B2FC3EA2295887FF00447A1A /* mouse_event.cpp in Sources */,
 				B2FC401D2958B6AC00447A1A /* glfw_window.cpp in Sources */,
 				B2FC40282958BBC500447A1A /* open_gl_renderer_context.cpp in Sources */,
-				B284DA1E29728FB8009FC6A1 /* shape.cpp in Sources */,
 				B2FC3E8D2958839600447A1A /* time_step.cpp in Sources */,
 				B2FC3E892958826C00447A1A /* profiler.cpp in Sources */,
 				B24DD8392963045400525941 /* stb_image.cpp in Sources */,
@@ -1485,7 +1478,6 @@
 				B2C7CAE02971EA9500E61B08 /* physics_math.cpp in Sources */,
 				B2F526562959775700A83C65 /* open_gl_shader_uniform.cpp in Sources */,
 				B2250CFF295873330067C43B /* logger.cpp in Sources */,
-				B2F481762972E7DF00B611DD /* time_setup.cpp in Sources */,
 				B27CAABF29729108009DB914 /* block_allocator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
