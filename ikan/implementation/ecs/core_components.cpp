@@ -103,15 +103,15 @@ namespace ecs {
   const glm::vec3& TransformComponent::Scale() const { return scale; }
   
   void TransformComponent::UpdateTranslation_X(float value) { UpdateTranslation({value, translation.y, translation.z} ); }
-  void TransformComponent::UpdateRotation_X(float value) { UpdateTranslation({translation.x, value, translation.z} ); }
-  void TransformComponent::UpdateScale_X(float value) { UpdateTranslation({translation.x, translation.y, value} ); }
+  void TransformComponent::UpdateRotation_X(float value) { UpdateRotation({value, rotation.y, rotation.z} ); }
+  void TransformComponent::UpdateScale_X(float value) { UpdateScale({value, scale.y, scale.z} ); }
   
-  void TransformComponent::UpdateTranslation_Y(float value) { UpdateRotation({value, rotation.y, rotation.z} ); }
+  void TransformComponent::UpdateTranslation_Y(float value) { UpdateTranslation({translation.x, value, translation.z} ); }
   void TransformComponent::UpdateRotation_Y(float value) { UpdateRotation({rotation.x, value, rotation.z} ); }
-  void TransformComponent::UpdateScale_Y(float value) { UpdateRotation({rotation.x, rotation.y, value} ); }
+  void TransformComponent::UpdateScale_Y(float value) { UpdateScale({scale.x, value, scale.z} ); }
   
-  void TransformComponent::UpdateTranslation_Z(float value) { UpdateScale({value, scale.y, scale.z} ); }
-  void TransformComponent::UpdateRotation_Z(float value) { UpdateScale({scale.x, value, scale.z} ); }
+  void TransformComponent::UpdateTranslation_Z(float value) { UpdateTranslation({translation.x, translation.y, value} ); }
+  void TransformComponent::UpdateRotation_Z(float value) { UpdateRotation({rotation.x, rotation.y, value} ); }
   void TransformComponent::UpdateScale_Z(float value) { UpdateScale({scale.x, scale.y, value} ); }
 
   void TransformComponent::UpdateTranslation(const glm::vec3& value) {
