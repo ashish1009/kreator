@@ -18,14 +18,12 @@ namespace ikan {
     /// This is the default Constructor for creating AABB
     AABB();
     /// This Constructor create AABB with min and max bounds
-    ///  - Parameters:
-    ///   - min: Min bound of aabb vector of 3 floats
-    ///   - max: Max bound of aabb vector of 3 floats
+    ///  - Parameter - Min bound of aabb vector of 3 floats:
+    ///  - Parameter - Max bound of aabb vector of 3 floats:
     AABB(const glm::vec3& min, const glm::vec3& max);
     
     /// Tihs function generates the AABB bounding box using transform matrix of the entity
-    ///  - Parameters:
-    ///   - transform: Tranform matrix for updating the base AABB bouding box
+    ///  - Parameter - Tranform matrix for updating the base AABB bouding box:
     ///  - Important: Return value should not be discarded
     [[nodiscard]] static AABB GetWorldAABBPos(const glm::mat4& transform);
     
