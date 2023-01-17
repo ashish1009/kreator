@@ -102,32 +102,27 @@ namespace ecs {
   void EnttScene::UpdateRuntime(Timestep ts) {
     // Physics
     {
-//      const int32_t velocity_iteration = 6;
-//      const int32_t position_iteration = 2;
+      const int32_t velocity_iteration = 6;
+      const int32_t position_iteration = 2;
       
-//      physics_world_->Step(ts, velocity_iteration, position_iteration);
+      physics_world_->Step(ts, velocity_iteration, position_iteration);
 
-//      // Get Transform
-//      auto view = registry_.view<RigidBodyComponent>();
-//      for (auto e : view) {
-//        Entity entity = { e, this };
-//
-//        auto& transform = entity.GetComponent<TransformComponent>();
-//        auto& rb2d = entity.GetComponent<RigidBodyComponent>();
-//
-//        physics::Body* body = (physics::Body*)rb2d.runtime_body;
-//        if (body != nullptr) {
-//          const auto& position = body->GetPosition();
-//
-//          transform.UpdateScale_Z(body->GetAngle());
-//          transform.UpdateTranslation_Y(position.y);
-//
-//          // If Entity hav Nativ Script then no need to update the x position,
-//          // as it will be taken care in script
-//          if (!entity.HasComponent<NativeScriptComponent>())
-//            transform.UpdateTranslation_X(position.x);
-//        }
-//      }
+      // Get Transform
+      auto view = registry_.view<RigidBodyComponent>();
+      for (auto e : view) {
+        Entity entity = { e, this };
+
+        auto& transform = entity.GetComponent<TransformComponent>();
+        auto& rb2d = entity.GetComponent<RigidBodyComponent>();
+
+        physics::Body* body = (physics::Body*)rb2d.runtime_body;
+        if (body != nullptr) {
+          const auto& position = body->GetPosition();
+
+          transform.UpdateRotation_Z(body->GetAngle());
+          transform.UpdateTranslation({position.x, position.y, 0.0f});
+        }
+      }
 
     }
     
@@ -253,7 +248,7 @@ namespace ecs {
   }
   
   void EnttScene::RuntimeStart() {
-    physics_world_ = new physics::World({0, 9.8});
+    physics_world_ = new physics::World({0, -9.8});
     auto view = registry_.view<RigidBodyComponent>();
     for (auto e : view) {
       Entity entity = { e, this };

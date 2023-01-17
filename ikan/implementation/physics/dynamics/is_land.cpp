@@ -150,7 +150,7 @@ namespace physics {
     contact_count_ = 0;
     join_count_ = 0;
     
-    allocator = allocator;
+    allocator_ = allocator;
     listner_ = listener;
     
     bodies_ = (Body**)allocator->Allocate(bodyCapacity * sizeof(Body*));

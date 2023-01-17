@@ -111,9 +111,8 @@ namespace physics {
       
       Chunk* chunk = chunks_ + chunk_count_;
       chunk->blocks = (Block*)AllocMem(ChunkSize);
-#if defined(IK_DEBUG_FEATURE)
       memset(chunk->blocks, 0xcd, ChunkSize);
-#endif
+
       int32_t block_size = blockSizes[index];
       chunk->block_size = block_size;
       int32_t block_count = ChunkSize / block_size;
@@ -147,7 +146,6 @@ namespace physics {
     int32_t index = sizeMap.values[size];
     IK_ASSERT(0 <= index && index < BlockSizeCount);
     
-#if defined(IK_DEBUG_FEATURE)
     // Verify the memory address and size is valid.
     int32_t block_size = blockSizes[index];
     bool found = false;
@@ -168,7 +166,6 @@ namespace physics {
     IK_ASSERT(found);
     
     memset(p, 0xfd, block_size);
-#endif
     
     Block* block = (Block*)p;
     block->next = free_lists_[index];

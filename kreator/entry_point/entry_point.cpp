@@ -7,7 +7,7 @@
 
 // Including Core entiry point
 
-#define Vulkan 1
+#define Vulkan 0
 #if Vulkan
 #include "vulkan_entry_point.h"
 #else

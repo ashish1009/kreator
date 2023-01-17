@@ -270,6 +270,30 @@ namespace physics {
         }
       }
     }
+    
+    stack_allocator_.Free(stack);
+    
+    {
+      Timer timer;
+      // Synchronize fixtures, check for out of range bodies.
+      for (Body* b = body_list_; b; b = b->GetNext()) {
+        // If a body was not in an island then it did not move.
+        if ((b->flags_ & Body::e_islandFlag) == 0) {
+          continue;
+        }
+        
+        if (b->GetType() == BodyType::StaticBody) {
+          continue;
+        }
+        
+        // Update fixtures (for broad-phase).
+        b->SynchronizeFixtures();
+      }
+      
+      // Look for new contacts.
+      contact_manager_.FindNewContacts();
+      profile_.broadphase = timer.GetMilliseconds();
+    }
   }
 
   // Find TOI contacts and solve them.

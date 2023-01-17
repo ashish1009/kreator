@@ -46,7 +46,7 @@ namespace physics {
   
   void StackAllocator::Free(void* p) {
     IK_ASSERT(entry_count_ > 0);
-    StackEntry* entry = entries_ + entry_count_ - 1;
+    StackEntry* entry = entries_ + (entry_count_ - 1);
     IK_ASSERT(p == entry->data);
     if (entry->used_malloc) {
       FreeMem(p);
