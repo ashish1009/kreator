@@ -58,6 +58,17 @@ namespace ecs {
     virtual void Destroy() {}
     virtual void Update(Timestep ts) {}
     
+  protected:
+    Entity entity_;
+    EnttScene* scene_;
+    friend class EnttScene;
+  };
+  
+  class NativeMovementController : public ScriptableEntity {
+  public:
+    void Update(Timestep ts) override;
+    void RenderGui() override;
+    
     /// This function detects the collistion of entity_ aabb with aabb
     /// - Parameter aabb: AABB of bouding box
     bool CollisionDetected(const AABB& aabb);
@@ -65,17 +76,6 @@ namespace ecs {
     /// - Parameter cirlce: circle of bouding box
     bool CollisionDetected(const BoundingCircle& cirlce);
 
-  protected:
-    Entity entity_;
-    EnttScene* scene_;
-    friend class EnttScene;
-  };
-  
-  class MovementController : public ScriptableEntity {
-  public:
-    void Update(Timestep ts) override;
-    void RenderGui() override;
-    
   private:
     float speed_ = 10.0f;
   };

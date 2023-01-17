@@ -15,8 +15,7 @@ namespace ecs {
   // Script Manager
   // --------------------------------------------------------------------------
   std::vector<std::string> ScriptManager::scripts_ = {
-    "Select Script",
-    "ecs::MovementController",
+    "Select Script"
   };
 
   void ScriptManager::UpdateScript(NativeScriptComponent* sc,
@@ -24,8 +23,6 @@ namespace ecs {
                                    ScriptLoaderFn loader_function) {
     if (script_name == "ecs::ScriptableEntity")
       sc->Bind<ecs::ScriptableEntity>();
-    if (script_name == "ecs::MovementController")
-      sc->Bind<ecs::MovementController>();
     else {
       IK_ASSERT(loader_function, "Invalid Script name");
       bool script_loaded = loader_function(sc, script_name);
@@ -33,10 +30,10 @@ namespace ecs {
     }
   }
   
-  // --------------------------------------------------------------------------
-  // Scriptable Entity Base class
-  // --------------------------------------------------------------------------
-  bool ScriptableEntity::CollisionDetected(const AABB& aabb) {
+  // ------------------------------------------------------------------------
+  // Movement controller
+  // ------------------------------------------------------------------------
+  bool NativeMovementController::CollisionDetected(const AABB& aabb) {
     bool collision_detected = false;
     // Collistion deteection
     scene_->GetRegistry().view<NativeBodyTypeComponent>().each([&](entt::entity entity, auto& rc)
@@ -87,7 +84,7 @@ namespace ecs {
     return collision_detected;
   }
 
-  bool ScriptableEntity::CollisionDetected(const BoundingCircle& circle) {
+  bool NativeMovementController::CollisionDetected(const BoundingCircle& circle) {
     bool collision_detected = false;
     // Collistion deteection
     scene_->GetRegistry().view<NativeBodyTypeComponent>().each([&](entt::entity entity, auto& rc)
@@ -139,10 +136,7 @@ namespace ecs {
     return collision_detected;
   }
 
-  // ------------------------------------------------------------------------
-  // Movement controller
-  // ------------------------------------------------------------------------
-  void MovementController::Update(Timestep ts) {
+  void NativeMovementController::Update(Timestep ts) {
     // Dummy copy of entity Position
     auto translation = GetComponent<TransformComponent>().Translation();
     
@@ -172,7 +166,7 @@ namespace ecs {
     }
   }
   
-  void MovementController::RenderGui() {
+  void NativeMovementController::RenderGui() {
     ImGui::Text("Speed : %f", speed_);
   }
   

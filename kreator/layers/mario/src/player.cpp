@@ -119,6 +119,60 @@ namespace mario {
       tc.UpdateTranslation(translation);
   }
   
+  // ------------------------------------------------------------------------
+  // Movement controller
+  // ------------------------------------------------------------------------
+  bool PlayerController::CollisionDetected(const AABB& aabb) {
+    bool collision_detected = false;
+    // Collistion deteection
+    scene_->GetRegistry().view<NativeBodyTypeComponent>().each([&](entt::entity entity, auto& rc)
+                                                               {
+      // TODO: If no ther entity is there then no free fall.
+      if (entity_ == entity)
+        return;
+      
+      if (scene_->GetRegistry().has<QuadComponent>(entity)) {
+        auto& other_tc = scene_->GetRegistry().get<TransformComponent>(entity);
+        AABB world_aabb = AABB::GetWorldAABBPos(other_tc.GetTransform());
+        
+        if (
+            world_aabb.min.x <= aabb.max.x &&
+            world_aabb.max.x >= aabb.min.x &&
+            world_aabb.min.y <= aabb.max.y &&
+            world_aabb.max.y >= aabb.min.y &&
+            world_aabb.min.z <= aabb.max.z &&
+            world_aabb.max.z >= aabb.min.z) {
+              collision_detected = true;
+              return;
+            }
+      } else if (scene_->GetRegistry().has<CircleComponent>(entity)) {
+        auto& other_tc = scene_->GetRegistry().get<TransformComponent>(entity);
+        BoundingCircle other_circle = BoundingCircle::GetWorldSpherePos(other_tc.Translation(), other_tc.Rotation(), other_tc.Scale());
+        
+        // get box closest point to sphere center by clamping
+        const float x = glm::max(aabb.min.x, glm::min(other_circle.position.x, aabb.max.x));
+        const float y = glm::max(aabb.min.y, glm::min(other_circle.position.y, aabb.max.y));
+        const float z = glm::max(aabb.min.z, glm::min(other_circle.position.z, aabb.max.z));
+        
+        // this is the same as isPointInsideSphere
+        const float distance = glm::sqrt(
+                                         (x - other_circle.position.x) * (x - other_circle.position.x) +
+                                         (y - other_circle.position.y) * (y - other_circle.position.y) +
+                                         (z - other_circle.position.z) * (z - other_circle.position.z)
+                                         );
+        if (distance <= other_circle.radius.x and
+            distance <= other_circle.radius.y and
+            distance <= other_circle.radius.z) {
+          collision_detected = true;
+          return;
+        }
+        
+      }
+      
+    });
+    return collision_detected;
+  }
+  
   bool PlayerController::IsState(State state_bit) {
     return state_bits_ & state_bit;
   }

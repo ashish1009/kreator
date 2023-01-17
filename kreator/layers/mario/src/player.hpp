@@ -27,8 +27,11 @@ namespace mario {
   class PlayerController : public ScriptableEntity {
   public:
     /// Default destructor of playr controller
-    PlayerController() = default;
-    
+
+    /// This function detects the collistion of entity_ aabb with aabb
+    /// - Parameter aabb: AABB of bouding box
+    bool CollisionDetected(const AABB& aabb);
+
     /// This function update the player each frame based on the state of player
     /// - Parameter ts: time step
     void Update(Timestep ts) override;
