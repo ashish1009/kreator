@@ -7,14 +7,15 @@
 
 #pragma once
 
-// This file includes the UUID class to generate unique number
-
 namespace ikan {
   
-  /// "UUID" (universally unique identifier) or GUID is (usually) a 128-bit integer used to "uniquely"
-  /// identify information. In Kreator Engine, even though we use the term GUID and UUID, at the
-  /// moment we're simply using a randomly generated 64-bit integer, as the possibility of a clash is low
-  /// enough for now.
+  /// This class generates a "UUID" (universally unique identifier) or GUID is (usually) a 64-bit integer
+  /// used to "uniquely" identify information. In Kreator Engine, even though we use the term GUID
+  /// and UUID, at the moment we're simply using a randomly generated 64-bit integer, as the possibility
+  /// of a clash is low enough for now.
+  ///  - Important:
+  ///   - Default Constructor generates the random 64bit number
+  ///   - Constructor with uint64_t stores already the random generated 64 bit number
   class UUID {
   public:
     UUID();

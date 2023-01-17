@@ -47,6 +47,7 @@
 		B24DD8292962FDA000525941 /* ray_scene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24DD8222962FDA000525941 /* ray_scene.hpp */; };
 		B24DD8382963045400525941 /* stb_image.h in Headers */ = {isa = PBXBuildFile; fileRef = B24DD8362963045400525941 /* stb_image.h */; };
 		B24DD8392963045400525941 /* stb_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24DD8372963045400525941 /* stb_image.cpp */; };
+		B24E79952976CFB000EACF95 /* maths.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2584ECE295B7B3E00234714 /* maths.hpp */; };
 		B251B3F8295E15CA00508210 /* viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B251B3F7295E15CA00508210 /* viewport.cpp */; };
 		B251B3FA295E15D300508210 /* viewport.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B251B3F9295E15D300508210 /* viewport.hpp */; };
 		B2581116295AD76B00B0EDA7 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2581114295AD76B00B0EDA7 /* camera.cpp */; };
@@ -54,7 +55,6 @@
 		B258111A295ADC2C00B0EDA7 /* editor_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */; };
 		B258111B295ADC2C00B0EDA7 /* editor_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2581119295ADC2C00B0EDA7 /* editor_camera.hpp */; };
 		B2584ECF295B7B3E00234714 /* maths.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2584ECD295B7B3E00234714 /* maths.cpp */; };
-		B2584ED0295B7B3E00234714 /* maths.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2584ECE295B7B3E00234714 /* maths.hpp */; };
 		B2584ED3295B7FE200234714 /* text_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2584ED1295B7FE200234714 /* text_renderer.cpp */; };
 		B2584ED4295B7FE200234714 /* text_renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2584ED2295B7FE200234714 /* text_renderer.hpp */; };
 		B25F5DDE2966D3450030DE03 /* scene_panel_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25F5DDC2966D3450030DE03 /* scene_panel_manager.cpp */; };
@@ -246,7 +246,7 @@
 		B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = editor_camera.cpp; sourceTree = "<group>"; wrapsLines = 0; };
 		B2581119295ADC2C00B0EDA7 /* editor_camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = editor_camera.hpp; sourceTree = "<group>"; };
 		B2584ECD295B7B3E00234714 /* maths.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = maths.cpp; sourceTree = "<group>"; };
-		B2584ECE295B7B3E00234714 /* maths.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = maths.hpp; sourceTree = "<group>"; };
+		B2584ECE295B7B3E00234714 /* maths.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = maths.hpp; sourceTree = "<group>"; wrapsLines = 0; };
 		B2584ED1295B7FE200234714 /* text_renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = text_renderer.cpp; sourceTree = "<group>"; };
 		B2584ED2295B7FE200234714 /* text_renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = text_renderer.hpp; sourceTree = "<group>"; };
 		B2584ED5295B812600234714 /* text_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = text_shader.glsl; sourceTree = "<group>"; };
@@ -857,7 +857,6 @@
 				B2FC3EB42958892200447A1A /* layer_stack.hpp in Headers */,
 				B2BD9E0F295CA7560076A2F9 /* open_gl_framebuffer.hpp in Headers */,
 				B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */,
-				B2584ED0295B7B3E00234714 /* maths.hpp in Headers */,
 				B258111B295ADC2C00B0EDA7 /* editor_camera.hpp in Headers */,
 				B2FC3EAC2958880800447A1A /* key_event.hpp in Headers */,
 				B2FC40292958BBC500447A1A /* open_gl_renderer_context.hpp in Headers */,
@@ -888,6 +887,7 @@
 				B25F5DDF2966D3450030DE03 /* scene_panel_manager.hpp in Headers */,
 				B2250D042958751E0067C43B /* core_logger.h in Headers */,
 				B2B6CDD22958DF7700AE609E /* imgui_api.hpp in Headers */,
+				B24E79952976CFB000EACF95 /* maths.hpp in Headers */,
 				B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */,
 				B216B256295B2F6B00C05392 /* open_gl_texture.hpp in Headers */,
 				B2C78067296AE470003F343E /* aabb_renderer.hpp in Headers */,

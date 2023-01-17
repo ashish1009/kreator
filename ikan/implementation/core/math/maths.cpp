@@ -9,10 +9,10 @@
 
 namespace ikan::Math {
   
-  bool DecomposeTransform(const glm::mat4& transform,
-                          glm::vec3& translation,
-                          glm::vec3& rotation,
-                          glm::vec3& scale) {
+  void DecomposeTransform(const glm::mat4& transform,
+                          glm::vec3& out_translation,
+                          glm::vec3& out_rotation,
+                          glm::vec3& out_scale) {
     // From glm::decompose in matrix_decompose.inl
     
     using namespace glm;
@@ -22,7 +22,7 @@ namespace ikan::Math {
     
     // Normalize the matrix.
     if (epsilonEqual(LocalMatrix[3][3], static_cast<float>(0), epsilon<T>()))
-      return false;
+      return;
     
     // First, isolate perspective.  This is the messiest.
     if ( epsilonNotEqual(LocalMatrix[0][3], static_cast<T>(0), epsilon<T>()) or
@@ -34,7 +34,7 @@ namespace ikan::Math {
     }
     
     // Next take care of translation (easy).
-    translation = vec3(LocalMatrix[3]);
+    out_translation = vec3(LocalMatrix[3]);
     LocalMatrix[3] = vec4(0, 0, 0, LocalMatrix[3].w);
     
     vec3 Row[3];
@@ -45,23 +45,21 @@ namespace ikan::Math {
         Row[i][j] = LocalMatrix[i][j];
     
     // Compute X scale factor and normalize first row.
-    scale.x = length(Row[0]);
+    out_scale.x = length(Row[0]);
     Row[0] = detail::scale(Row[0], static_cast<T>(1));
-    scale.y = length(Row[1]);
+    out_scale.y = length(Row[1]);
     Row[1] = detail::scale(Row[1], static_cast<T>(1));
-    scale.z = length(Row[2]);
+    out_scale.z = length(Row[2]);
     Row[2] = detail::scale(Row[2], static_cast<T>(1));
     
-    rotation.y = asin(-Row[0][2]);
-    if (cos(rotation.y) != 0) {
-      rotation.x = atan2(Row[1][2], Row[2][2]);
-      rotation.z = atan2(Row[0][1], Row[0][0]);
+    out_rotation.y = asin(-Row[0][2]);
+    if (cos(out_rotation.y) != 0) {
+      out_rotation.x = atan2(Row[1][2], Row[2][2]);
+      out_rotation.z = atan2(Row[0][1], Row[0][0]);
     } else {
-      rotation.x = atan2(-Row[2][0], Row[1][1]);
-      rotation.z = 0;
+      out_rotation.x = atan2(-Row[2][0], Row[1][1]);
+      out_rotation.z = 0;
     }
-    
-    return true;
   }
   
   glm::mat4 GetTransformMatrix(const glm::vec3& position,

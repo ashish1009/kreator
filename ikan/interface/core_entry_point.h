@@ -8,15 +8,16 @@
 #pragma once
 
 /// This Function should be defined in client side for creating client application derived from base ikan::Application
-/// - Returns shared pointer of created application
+/// - Returns: Shared pointer of created application
 extern std::unique_ptr<ikan::Application> CreateApplication();
 
 /// This is the Entiry point defined at the core engine. This function
-/// - Initializes the Engine (Spd Logger)
-/// - Creates the application
-/// - Run the Game loop
-/// - Destroy the application
-/// - Warning: If this file is included at the client side then there should not be any other entry point. else crearte New entry point
+///   - Initializes the Engine (Spd Logger)
+///   - Creates the application
+///   - Run the Game loop
+///   - Destroy the application
+/// - Important: If this file is included at the client side then there should not be any other entry point
+///              else crearte New entry point
 int main() {
   // Initialize the ikan Logger
   auto core_level   = ikan::Logger::Level::Trace;
