@@ -7,12 +7,17 @@
 
 #pragma once
 
-// This file includes the Entry point for the ikan engine. Include this file
-// in client to load core entry point or create a new entrypoint.
-
+/// This Function should be defined in client side for creating client application derived from base ikan::Application
+/// - Returns shared pointer of created application
 extern std::unique_ptr<ikan::Application> CreateApplication();
 
-int main(int argc, const char * argv[]) {
+/// This is the Entiry point defined at the core engine. This function
+/// - Initializes the Engine (Spd Logger)
+/// - Creates the application
+/// - Run the Game loop
+/// - Destroy the application
+/// - Warning: If this file is included at the client side then there should not be any other entry point. else crearte New entry point
+int main() {
   // Initialize the ikan Logger
   auto core_level   = ikan::Logger::Level::Trace;
   auto client_level = ikan::Logger::Level::Trace;

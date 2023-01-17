@@ -10,6 +10,7 @@
 		B20303D329659A9A00563A34 /* log_utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B20303D129659A9A00563A34 /* log_utils.hpp */; };
 		B20303D92965ADCE00563A34 /* content_browser_panel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B20303D72965ADCE00563A34 /* content_browser_panel.cpp */; };
 		B20303DA2965ADCE00563A34 /* content_browser_panel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B20303D82965ADCE00563A34 /* content_browser_panel.hpp */; };
+		B20855C42976C4B500BD2861 /* libphysics_2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B20855C32976C4B500BD2861 /* libphysics_2d.a */; };
 		B216B255295B2F6B00C05392 /* open_gl_texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B216B253295B2F6B00C05392 /* open_gl_texture.cpp */; };
 		B216B256295B2F6B00C05392 /* open_gl_texture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B216B254295B2F6B00C05392 /* open_gl_texture.hpp */; };
 		B216B25C295B2F7400C05392 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B216B25A295B2F7400C05392 /* texture.cpp */; };
@@ -64,7 +65,6 @@
 		B25F61882969A8440042FE09 /* aabb.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B25F61862969A8440042FE09 /* aabb.hpp */; };
 		B27CF12A295EC6E000837A36 /* uuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF128295EC6E000837A36 /* uuid.cpp */; };
 		B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B27CF129295EC6E000837A36 /* uuid.hpp */; };
-		B2A345402976AB140015641F /* libphysics_2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A3453F2976AAB40015641F /* libphysics_2d.a */; };
 		B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */; };
 		B2B6CDB72958D8AD00AE609E /* imgui_layer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */; };
 		B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB82958D8B800AE609E /* imgui_build.cpp */; };
@@ -110,10 +110,6 @@
 		B2F526642959777F00A83C65 /* shader_uniform.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F526622959777F00A83C65 /* shader_uniform.hpp */; };
 		B2F52667295979FE00A83C65 /* string_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F52665295979FE00A83C65 /* string_utils.cpp */; };
 		B2F52668295979FE00A83C65 /* string_utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F52666295979FE00A83C65 /* string_utils.hpp */; };
-		B2F96B1F2971736900B28EE4 /* point.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F96B1E2971736900B28EE4 /* point.hpp */; };
-		B2F96B22297173D500B28EE4 /* point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F96B20297173D500B28EE4 /* point.cpp */; };
-		B2F96B26297174B500B28EE4 /* bounding_circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F96B24297174B500B28EE4 /* bounding_circle.cpp */; };
-		B2F96B27297174B500B28EE4 /* bounding_circle.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F96B25297174B500B28EE4 /* bounding_circle.hpp */; };
 		B2FC3E862958796F00447A1A /* ikan_headers.h in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3E852958796F00447A1A /* ikan_headers.h */; };
 		B2FC3E892958826C00447A1A /* profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FC3E872958826C00447A1A /* profiler.cpp */; };
 		B2FC3E8A2958826C00447A1A /* profiler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2FC3E882958826C00447A1A /* profiler.hpp */; };
@@ -160,7 +156,7 @@
 			remoteGlobalIDString = B24C4A232967FD3600675599;
 			remoteInfo = imguizmo;
 		};
-		B2A3453E2976AAB40015641F /* PBXContainerItemProxy */ = {
+		B24E79922976C63C00EACF95 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B2A342F32976A1010015641F /* physics_2d.xcodeproj */;
 			proxyType = 2;
@@ -201,6 +197,7 @@
 		B20303D129659A9A00563A34 /* log_utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = log_utils.hpp; sourceTree = "<group>"; };
 		B20303D72965ADCE00563A34 /* content_browser_panel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = content_browser_panel.cpp; sourceTree = "<group>"; };
 		B20303D82965ADCE00563A34 /* content_browser_panel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = content_browser_panel.hpp; sourceTree = "<group>"; };
+		B20855C32976C4B500BD2861 /* libphysics_2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libphysics_2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B216B253295B2F6B00C05392 /* open_gl_texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_texture.cpp; sourceTree = "<group>"; };
 		B216B254295B2F6B00C05392 /* open_gl_texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_texture.hpp; sourceTree = "<group>"; };
 		B216B25A295B2F7400C05392 /* texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
@@ -262,7 +259,7 @@
 		B25F61862969A8440042FE09 /* aabb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = aabb.hpp; sourceTree = "<group>"; };
 		B27CF128295EC6E000837A36 /* uuid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = uuid.cpp; sourceTree = "<group>"; };
 		B27CF129295EC6E000837A36 /* uuid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = uuid.hpp; sourceTree = "<group>"; };
-		B2A342F32976A1010015641F /* physics_2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = physics_2d.xcodeproj; path = vendors/physics_2d/physics_2d.xcodeproj; sourceTree = "<group>"; };
+		B2A342F32976A1010015641F /* physics_2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = physics_2d.xcodeproj; path = physics_2d/physics_2d.xcodeproj; sourceTree = "<group>"; };
 		B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imgui.xcodeproj; path = imgui/imgui.xcodeproj; sourceTree = "<group>"; };
 		B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_layer.cpp; sourceTree = "<group>"; };
 		B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imgui_layer.hpp; sourceTree = "<group>"; };
@@ -309,10 +306,6 @@
 		B2F526622959777F00A83C65 /* shader_uniform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader_uniform.hpp; sourceTree = "<group>"; };
 		B2F52665295979FE00A83C65 /* string_utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = string_utils.cpp; sourceTree = "<group>"; };
 		B2F52666295979FE00A83C65 /* string_utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = string_utils.hpp; sourceTree = "<group>"; };
-		B2F96B1E2971736900B28EE4 /* point.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = point.hpp; sourceTree = "<group>"; };
-		B2F96B20297173D500B28EE4 /* point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = point.cpp; sourceTree = "<group>"; };
-		B2F96B24297174B500B28EE4 /* bounding_circle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bounding_circle.cpp; sourceTree = "<group>"; };
-		B2F96B25297174B500B28EE4 /* bounding_circle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = bounding_circle.hpp; sourceTree = "<group>"; };
 		B2FC3E852958796F00447A1A /* ikan_headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_headers.h; sourceTree = "<group>"; };
 		B2FC3E872958826C00447A1A /* profiler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = profiler.cpp; sourceTree = "<group>"; };
 		B2FC3E882958826C00447A1A /* profiler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = profiler.hpp; sourceTree = "<group>"; };
@@ -356,7 +349,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2A345402976AB140015641F /* libphysics_2d.a in Frameworks */,
+				B20855C42976C4B500BD2861 /* libphysics_2d.a in Frameworks */,
 				B2C78147296AF195003F343E /* libyaml.a in Frameworks */,
 				B24C4A6C2967FDA000675599 /* libimguizmo.a in Frameworks */,
 				B2B6CDBA2958DAA300AE609E /* libimgui.a in Frameworks */,
@@ -385,7 +378,6 @@
 				B2F52648295976EF00A83C65 /* core_assets */,
 				B2250CD129585FB70067C43B /* interface */,
 				B2250CD229585FC60067C43B /* implementation */,
-				B2A342F32976A1010015641F /* physics_2d.xcodeproj */,
 				B2FC3EB529588BF300447A1A /* vendors */,
 				B2250CBE29584D060067C43B /* Products */,
 				B2FC400A29588C8200447A1A /* Frameworks */,
@@ -539,6 +531,14 @@
 			path = ray_tracing;
 			sourceTree = "<group>";
 		};
+		B24E798B2976C63C00EACF95 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B24E79932976C63C00EACF95 /* libphysics_2d.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B251B3EE295E155A00508210 /* ecs */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,8 +574,6 @@
 			children = (
 				B2584ECD295B7B3E00234714 /* maths.cpp */,
 				B27CF128295EC6E000837A36 /* uuid.cpp */,
-				B2F96B20297173D500B28EE4 /* point.cpp */,
-				B2F96B24297174B500B28EE4 /* bounding_circle.cpp */,
 				B25F61852969A8440042FE09 /* aabb.cpp */,
 			);
 			path = math;
@@ -586,19 +584,9 @@
 			children = (
 				B2584ECE295B7B3E00234714 /* maths.hpp */,
 				B27CF129295EC6E000837A36 /* uuid.hpp */,
-				B2F96B1E2971736900B28EE4 /* point.hpp */,
-				B2F96B25297174B500B28EE4 /* bounding_circle.hpp */,
 				B25F61862969A8440042FE09 /* aabb.hpp */,
 			);
 			path = math;
-			sourceTree = "<group>";
-		};
-		B2A3453B2976AAB40015641F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B2A3453F2976AAB40015641F /* libphysics_2d.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		B2B6CDAB2958D7D400AE609E /* Products */ = {
@@ -703,6 +691,7 @@
 			isa = PBXGroup;
 			children = (
 				B216B25E295B4E6A00C05392 /* stb_image */,
+				B2A342F32976A1010015641F /* physics_2d.xcodeproj */,
 				B2C78084296AF12C003F343E /* yaml.xcodeproj */,
 				B24C4A312967FD3600675599 /* imguizmo.xcodeproj */,
 				B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */,
@@ -723,6 +712,7 @@
 		B2FC400A29588C8200447A1A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B20855C32976C4B500BD2861 /* libphysics_2d.a */,
 				B2584ED6295B824400234714 /* libfreetype.a */,
 			);
 			name = Frameworks;
@@ -871,7 +861,6 @@
 				B258111B295ADC2C00B0EDA7 /* editor_camera.hpp in Headers */,
 				B2FC3EAC2958880800447A1A /* key_event.hpp in Headers */,
 				B2FC40292958BBC500447A1A /* open_gl_renderer_context.hpp in Headers */,
-				B2F96B1F2971736900B28EE4 /* point.hpp in Headers */,
 				B2FC3E862958796F00447A1A /* ikan_headers.h in Headers */,
 				B216B25D295B2F7400C05392 /* texture.hpp in Headers */,
 				B2FC3EA92958880800447A1A /* event.hpp in Headers */,
@@ -900,7 +889,6 @@
 				B2250D042958751E0067C43B /* core_logger.h in Headers */,
 				B2B6CDD22958DF7700AE609E /* imgui_api.hpp in Headers */,
 				B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */,
-				B2F96B27297174B500B28EE4 /* bounding_circle.hpp in Headers */,
 				B216B256295B2F6B00C05392 /* open_gl_texture.hpp in Headers */,
 				B2C78067296AE470003F343E /* aabb_renderer.hpp in Headers */,
 				B2FC405F2958BD0900447A1A /* open_gl_renderer_api.hpp in Headers */,
@@ -1001,7 +989,7 @@
 					ProjectRef = B24C4A312967FD3600675599 /* imguizmo.xcodeproj */;
 				},
 				{
-					ProductGroup = B2A3453B2976AAB40015641F /* Products */;
+					ProductGroup = B24E798B2976C63C00EACF95 /* Products */;
 					ProjectRef = B2A342F32976A1010015641F /* physics_2d.xcodeproj */;
 				},
 				{
@@ -1024,11 +1012,11 @@
 			remoteRef = B24C4A382967FD3600675599 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B2A3453F2976AAB40015641F /* libphysics_2d.a */ = {
+		B24E79932976C63C00EACF95 /* libphysics_2d.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libphysics_2d.a;
-			remoteRef = B2A3453E2976AAB40015641F /* PBXContainerItemProxy */;
+			remoteRef = B24E79922976C63C00EACF95 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		B2B6CDB12958D7D400AE609E /* libimgui.a */ = {
@@ -1066,7 +1054,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2F96B22297173D500B28EE4 /* point.cpp in Sources */,
 				B2FC3EA2295887FF00447A1A /* mouse_event.cpp in Sources */,
 				B2FC401D2958B6AC00447A1A /* glfw_window.cpp in Sources */,
 				B2FC40282958BBC500447A1A /* open_gl_renderer_context.cpp in Sources */,
@@ -1087,7 +1074,6 @@
 				B216B265295B516A00C05392 /* batch_2d_renderer.cpp in Sources */,
 				B2C78066296AE470003F343E /* aabb_renderer.cpp in Sources */,
 				B2BD9E15295CA7610076A2F9 /* framebuffer.cpp in Sources */,
-				B2F96B26297174B500B28EE4 /* bounding_circle.cpp in Sources */,
 				B2BD9E0E295CA7560076A2F9 /* open_gl_framebuffer.cpp in Sources */,
 				B27CF12A295EC6E000837A36 /* uuid.cpp in Sources */,
 				B2581116295AD76B00B0EDA7 /* camera.cpp in Sources */,

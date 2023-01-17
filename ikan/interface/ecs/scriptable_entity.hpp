@@ -9,7 +9,6 @@
 
 #include "ecs/entity.hpp"
 #include "core/math/aabb.hpp"
-#include "core/math/bounding_circle.hpp"
 
 namespace ecs {
   

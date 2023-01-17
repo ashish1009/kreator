@@ -11,7 +11,6 @@
 #include "ecs/scene_camera.hpp"
 #include "ecs/scriptable_entity.hpp"
 #include "core/math/aabb.hpp"
-#include "core/math/bounding_circle.hpp"
 
 #include "box2d/b2_body.h"
 
