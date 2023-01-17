@@ -22,7 +22,7 @@ namespace ikan {
     /// This function returns the key code of event
     KeyCode GetKeyCode() const;
     
-    EVENT_CLASS_CATEGORY(kEventCategoryKeyboard | kEventCategoryInput);
+    EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput);
     
   protected:
     KeyEvent(KeyCode code);
@@ -49,7 +49,7 @@ namespace ikan {
     /// This function prints the event detail
     void Print() const override;
     
-    EVENT_CLASS_TYPE(kKeyPressed);
+    EVENT_CLASS_TYPE(KeyPressed);
     
   private:
     int32_t repeated_count = 0;
@@ -68,7 +68,7 @@ namespace ikan {
     /// This function prints the event detail
     void Print() const override;
 
-    EVENT_CLASS_TYPE(kKeyReleased);
+    EVENT_CLASS_TYPE(KeyReleased);
   };
   
   /// Key typed Event class
@@ -84,7 +84,7 @@ namespace ikan {
     /// This function prints the event detail
     void Print() const override;
 
-    EVENT_CLASS_TYPE(kKeyTyped);
+    EVENT_CLASS_TYPE(KeyTyped);
   };
   
 } // namepsace ikan

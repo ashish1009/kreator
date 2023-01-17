@@ -68,9 +68,9 @@ namespace ikan {
     if (block_events_) {
       ImGuiIO& io = ImGui::GetIO();
       
-      event.handled_ |= event.IsInCategory(Event::kEventCategoryMouse) &
+      event.handled_ |= event.IsInCategory(Event::EventCategoryMouse) &
       io.WantCaptureMouse;
-      event.handled_ |= event.IsInCategory(Event::kEventCategoryKeyboard) &
+      event.handled_ |= event.IsInCategory(Event::EventCategoryKeyboard) &
       io.WantCaptureKeyboard;
     }
   }

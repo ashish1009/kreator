@@ -32,8 +32,8 @@ namespace ikan {
     /// This function prints the event detail
     void Print() const override;
 
-    EVENT_CLASS_TYPE(kWindowResize);
-    EVENT_CLASS_CATEGORY(kEventCategoryApplication);
+    EVENT_CLASS_TYPE(WindowResize);
+    EVENT_CLASS_CATEGORY(EventCategoryApplication);
 
   private:
     uint32_t width_, height_;
@@ -48,8 +48,8 @@ namespace ikan {
     /// This function prints the event detail
     void Print() const override;
       
-    EVENT_CLASS_TYPE(kWindowClose);
-    EVENT_CLASS_CATEGORY(kEventCategoryApplication);
+    EVENT_CLASS_TYPE(WindowClose);
+    EVENT_CLASS_CATEGORY(EventCategoryApplication);
   };
   
 } // namespace ikan

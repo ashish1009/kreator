@@ -34,8 +34,8 @@ namespace ikan {
     /// This function prints the event detail
     void Print() const override;
     
-    EVENT_CLASS_TYPE(kMouseMoved);
-    EVENT_CLASS_CATEGORY(kEventCategoryMouse | kEventCategoryInput)
+    EVENT_CLASS_TYPE(MouseMoved);
+    EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
     
   private:
     float mouse_x_, mouse_y_;
@@ -61,8 +61,8 @@ namespace ikan {
     /// This function prints the event detail
     void Print() const override;
     
-    EVENT_CLASS_TYPE(kMouseScrolled);
-    EVENT_CLASS_CATEGORY(kEventCategoryMouse | kEventCategoryInput)
+    EVENT_CLASS_TYPE(MouseScrolled);
+    EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
     
   private:
     float x_offset_, y_offset_;
@@ -77,9 +77,9 @@ namespace ikan {
     /// This function returns the Mouse button pressed
     MouseButton GetMouseButton() const;
     
-    EVENT_CLASS_CATEGORY(kEventCategoryMouse |
-                         kEventCategoryInput |
-                         kEventCategoryMouseButton)
+    EVENT_CLASS_CATEGORY(EventCategoryMouse |
+                         EventCategoryInput |
+                         EventCategoryMouseButton)
     
   protected:
     MouseButtonEvent(MouseButton button);
@@ -100,7 +100,7 @@ namespace ikan {
     /// This function prints the event detail
     void Print() const override;
     
-    EVENT_CLASS_TYPE(kMouseButtonPressed);
+    EVENT_CLASS_TYPE(MouseButtonPressed);
   };
   
   /// Mouse button released
@@ -116,7 +116,7 @@ namespace ikan {
     /// This function prints the event detail
     void Print() const override;
     
-    EVENT_CLASS_TYPE(kMouseButtonReleased);
+    EVENT_CLASS_TYPE(MouseButtonReleased);
   };
   
 } // namespace ikan

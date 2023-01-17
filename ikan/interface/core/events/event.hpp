@@ -7,9 +7,6 @@
 
 #pragma once
 
-// This file includes the base class of all events. This Class is interface for
-// any even triggering in the Window
-
 namespace ikan {
   
 #define EVENT_CLASS_TYPE(type) \
@@ -31,30 +28,29 @@ return category; \
 // API to bind class member function to std function pointer
 #define IK_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
   
-  /// This is the base class of all type of events. This class type is regustered in window event
-  /// callback so any event type should be deriived from this base class. Event can be dispatchjed
-  /// using even Dispatcher
+  /// This is the base class of all type of events.
+  /// - Event is registered in window event callback so any event type should be deriived from this base class.
+  /// - Event can be dispatchjed using even Dispatcher
   class Event {
   public:
     /// Type of Event supported by iKan
     enum class Type : uint8_t {
-      kNoEventType,
-      kWindowClose, kWindowResize, kWindowFocused, kWindowHovered,
-      kKeyPressed, kKeyReleased, kKeyTyped,
-      kMouseButtonPressed, kMouseButtonReleased, kMouseMoved, kMouseScrolled
+      NoEventType,
+      WindowClose, WindowResize, WindowFocused, WindowHovered,
+      KeyPressed, KeyReleased, KeyTyped,
+      MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
     };
     
-    /// Event Categorisation
+    /// Catergosy bits of Events
     enum Category : uint8_t {
-      kNoEventCategory = 0,
-      kEventCategoryApplication    = BIT(0),
-      kEventCategoryInput          = BIT(1),
-      kEventCategoryKeyboard       = BIT(2),
-      kEventCategoryMouse          = BIT(3),
-      kEventCategoryMouseButton    = BIT(4)
+      NoEventCategory = 0,
+      EventCategoryApplication    = BIT(0),
+      EventCategoryInput          = BIT(1),
+      EventCategoryKeyboard       = BIT(2),
+      EventCategoryMouse          = BIT(3),
+      EventCategoryMouseButton    = BIT(4)
     };
     
-    /// Default Event abstract destrutor
     virtual ~Event() = default;
     
     /// This function returns the type of triggered Event. e.g. WindowClosed...
@@ -70,6 +66,8 @@ return category; \
     bool IsInCategory(Category category) const;
     
   public:
+    Event() = default;
+    
     bool handled_ = false;
   };
   
