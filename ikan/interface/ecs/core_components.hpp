@@ -148,7 +148,7 @@ namespace ecs {
   
   struct RigidBodyComponent {
     b2BodyType type = b2BodyType::b2_staticBody;
-    bool fixed_rotation = true;
+    bool fixed_rotation = false;
     // Storage
     void* runtime_body = nullptr;
 

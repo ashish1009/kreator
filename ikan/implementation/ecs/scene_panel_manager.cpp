@@ -290,6 +290,7 @@ namespace ecs {
     
     AddComponentMenu<NativeScriptComponent>("Native Script");
     
+#if NativeBodyType
     // Native Body Type Component
     {
       NativeBodyTypeComponent::Type type = NativeBodyTypeComponent::Type::AABB;
@@ -301,10 +302,16 @@ namespace ecs {
       }, type);
     }
     ImGui::Separator();
+#endif
     
     AddComponentMenu<RigidBodyComponent>("Rigid Body");
-    AddComponentMenu<BoxColloiderComponent>("Box Collider");
-    AddComponentMenu<CircleColloiderComponent>("Circle Collider");
+    ImGui::Separator();
+    AddComponentMenu<BoxColloiderComponent>("Box Collider", [this]() {
+      return selected_entity_.HasComponent<BoxColloiderComponent>() or selected_entity_.HasComponent<CircleColloiderComponent>();
+    });
+    AddComponentMenu<CircleColloiderComponent>("Circle Collider", [this]() {
+      return selected_entity_.HasComponent<BoxColloiderComponent>() or selected_entity_.HasComponent<CircleColloiderComponent>();
+    });
   }
   
   ScenePanelManager::Setting& ScenePanelManager::GetSetting() { return setting_; }

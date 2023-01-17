@@ -64,7 +64,7 @@
 		B25F61882969A8440042FE09 /* aabb.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B25F61862969A8440042FE09 /* aabb.hpp */; };
 		B27CF12A295EC6E000837A36 /* uuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF128295EC6E000837A36 /* uuid.cpp */; };
 		B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B27CF129295EC6E000837A36 /* uuid.hpp */; };
-		B2A3453A2976A19B0015641F /* libphysics_2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A342F82976A1010015641F /* libphysics_2d.a */; };
+		B2A345402976AB140015641F /* libphysics_2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A3453F2976AAB40015641F /* libphysics_2d.a */; };
 		B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */; };
 		B2B6CDB72958D8AD00AE609E /* imgui_layer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */; };
 		B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB82958D8B800AE609E /* imgui_build.cpp */; };
@@ -160,7 +160,7 @@
 			remoteGlobalIDString = B24C4A232967FD3600675599;
 			remoteInfo = imguizmo;
 		};
-		B2A342F72976A1010015641F /* PBXContainerItemProxy */ = {
+		B2A3453E2976AAB40015641F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B2A342F32976A1010015641F /* physics_2d.xcodeproj */;
 			proxyType = 2;
@@ -262,7 +262,7 @@
 		B25F61862969A8440042FE09 /* aabb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = aabb.hpp; sourceTree = "<group>"; };
 		B27CF128295EC6E000837A36 /* uuid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = uuid.cpp; sourceTree = "<group>"; };
 		B27CF129295EC6E000837A36 /* uuid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = uuid.hpp; sourceTree = "<group>"; };
-		B2A342F32976A1010015641F /* physics_2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = physics_2d.xcodeproj; path = physics_2d/physics_2d.xcodeproj; sourceTree = "<group>"; };
+		B2A342F32976A1010015641F /* physics_2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = physics_2d.xcodeproj; path = vendors/physics_2d/physics_2d.xcodeproj; sourceTree = "<group>"; };
 		B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imgui.xcodeproj; path = imgui/imgui.xcodeproj; sourceTree = "<group>"; };
 		B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_layer.cpp; sourceTree = "<group>"; };
 		B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imgui_layer.hpp; sourceTree = "<group>"; };
@@ -356,7 +356,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2A3453A2976A19B0015641F /* libphysics_2d.a in Frameworks */,
+				B2A345402976AB140015641F /* libphysics_2d.a in Frameworks */,
 				B2C78147296AF195003F343E /* libyaml.a in Frameworks */,
 				B24C4A6C2967FDA000675599 /* libimguizmo.a in Frameworks */,
 				B2B6CDBA2958DAA300AE609E /* libimgui.a in Frameworks */,
@@ -385,6 +385,7 @@
 				B2F52648295976EF00A83C65 /* core_assets */,
 				B2250CD129585FB70067C43B /* interface */,
 				B2250CD229585FC60067C43B /* implementation */,
+				B2A342F32976A1010015641F /* physics_2d.xcodeproj */,
 				B2FC3EB529588BF300447A1A /* vendors */,
 				B2250CBE29584D060067C43B /* Products */,
 				B2FC400A29588C8200447A1A /* Frameworks */,
@@ -592,10 +593,10 @@
 			path = math;
 			sourceTree = "<group>";
 		};
-		B2A342F42976A1010015641F /* Products */ = {
+		B2A3453B2976AAB40015641F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B2A342F82976A1010015641F /* libphysics_2d.a */,
+				B2A3453F2976AAB40015641F /* libphysics_2d.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -701,7 +702,6 @@
 		B2FC3EB529588BF300447A1A /* vendors */ = {
 			isa = PBXGroup;
 			children = (
-				B2A342F32976A1010015641F /* physics_2d.xcodeproj */,
 				B216B25E295B4E6A00C05392 /* stb_image */,
 				B2C78084296AF12C003F343E /* yaml.xcodeproj */,
 				B24C4A312967FD3600675599 /* imguizmo.xcodeproj */,
@@ -1001,7 +1001,7 @@
 					ProjectRef = B24C4A312967FD3600675599 /* imguizmo.xcodeproj */;
 				},
 				{
-					ProductGroup = B2A342F42976A1010015641F /* Products */;
+					ProductGroup = B2A3453B2976AAB40015641F /* Products */;
 					ProjectRef = B2A342F32976A1010015641F /* physics_2d.xcodeproj */;
 				},
 				{
@@ -1024,11 +1024,11 @@
 			remoteRef = B24C4A382967FD3600675599 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B2A342F82976A1010015641F /* libphysics_2d.a */ = {
+		B2A3453F2976AAB40015641F /* libphysics_2d.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libphysics_2d.a;
-			remoteRef = B2A342F72976A1010015641F /* PBXContainerItemProxy */;
+			remoteRef = B2A3453E2976AAB40015641F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		B2B6CDB12958D7D400AE609E /* libimgui.a */ = {
