@@ -9,6 +9,7 @@
 
 namespace ikan {
   
+  /// This enum stores the moule names of ikan Logs (Holds only ikan engine log module names)
   enum class LogModule {
     None,
     

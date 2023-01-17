@@ -15,12 +15,13 @@
 
 namespace ikan {
   
-  /// This Class is responsible to get the execution time of a scope. Intantiate the Profiler with function
-  /// name in any scope. It will print the executrion time of the function. or just call the Macro defiled PROFILE().
+  /// This Class is responsible to get the execution time of a scope.
+  /// - Intantiate the Profiler with function name in any scope. It will print the executrion time of the function or
+  /// - Just call the Macro defiled PROFILE().
   class Profiler {
   public:
     /// This Constructor instantiate the function name that need to be profiled
-    /// - Parameter function_name: Function name to be profiled
+    /// - Parameter - Function name to be profiled:
     Profiler(const char* function_name);
     
     /// Profiler destructor

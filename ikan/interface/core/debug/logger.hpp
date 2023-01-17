@@ -7,57 +7,58 @@
 
 #pragma once
 
-// This file includes the wrapepr class for logging. This wrapper class is using
-// submodule spd-log from "https://github.com/gabime/spdlog"
-
 #include <spdlog/spdlog.h>
 #include "log_utils.hpp"
 
 namespace ikan {
   
-  /// This class is the wrapper for creating instance of spd logger for both core and client. This is
-  /// also responsible for initializing the spd logger
+  /// This class is the wrapper the wrapepr class for logging. This wrapper class is using submodule
+  /// spd-log from "https://github.com/gabime/spdlog"
   class Logger {
   public:
-    /// ikan Log Level enum class
+    /// This enum hold the Log level of ikan engine
     enum class Level : uint8_t {
       Trace, Debug, Info, Warning, Error, Critical
     };
+    /// This enum hold the Project module of log
     enum class Type : uint8_t {
       Core, Client
     };
-    struct TagDetails
-    {
+    /// This stores the Log Module details
+    ///  - Flag to enable the Module log
+    ///  - Filter of log level for this module
+    struct TagDetails {
       bool enabled = true;
       Level level_filter = Level::Trace;
     };
     
     /// This function initializes the spd logger. Create instance for both core and client. Sets the core
     /// and client log levels as 'core_level' and 'client_level'. Create a file at path 'log_file_path' to
-    /// save the logs in a file. Also set the format for the logger Current format is [%T:%e:%f] [%-8l] [%-4n] : %v
-    /// where :
+    /// save the logs in a file. Also set the format for the logger
+    /// - Current format is [%T:%e:%f] [%-8l] [%-4n] : %v
+    /// - where :
     ///   - %T : Time stamp as hh:mm:ss
     ///   - %e : Time stamp in milliseconds
     ///   - %f : Time stamp in microseconds
     ///   - %l : Log lebel string (-8 measn width reserved for the same)
     ///   - %n : Logger Type (core or client) (-4 is width reserved for the same)
-    /// - Parameters:
-    ///   - core_level: Core log Level
-    ///   - client_level: Client Log Level
-    ///   - log_file_path: Path relative to executable binary, where our log file to be saved.
-    ///                      NOTE: Add '\' in the end.
-    ///   - log_file_name: Log file name. NOTE: Without any extention.
+    ///
+    /// - Parameter - Core log Level:
+    /// - Parameter - Client Log Level:
+    /// - Parameter - Path relative to executable binary, where our log file to be saved :
+    /// - Parameter - Log file name:
+    /// - Important: Add '\' in the end of 'log_file_path' and ''log_file_name' should be wiothout extension
     static void Init(Level core_level,
                      Level client_level,
                      const std::string& log_file_path,
                      const std::string& log_file_name);
     
-    /// This function converts spd log level type to string for printing
-    /// - Parameter level: spd log level
+    /// This function converts spd log level type to string for debug printing
+    /// - Parameter - spd log level enum:
     static const char* GetLogLevelStringFromSpdLevel(spdlog::level::level_enum level);
     
     /// This function converts ikan log level to the spd log level
-    /// - Parameter level: ikan log level
+    /// - Parameter - ikan log level enum:
     static spdlog::level::level_enum GetSpdLevelFromKreatorLevel(Logger::Level level);
     
     /// This function returns the shared pointer of Core log instance
@@ -66,29 +67,27 @@ namespace ikan {
     /// This function returns the shared pointer of Client log instance
     static std::shared_ptr<spdlog::logger>& GetClientLogger();
     
-    /// Deisable module log
-    /// - Parameter tag: tag name
+    /// This functoin Disables the module log
+    /// - Parameter - tag name to be disabled:
     static void DisableModule(LogModule tag);
-    /// Enable module log
-    /// - Parameter tag: tag name
+    /// This functoin Enables module log
+    /// - Parameter - tag name to be enabled:
     static void EnableModule(LogModule tag);
 
     template<typename... Args>
     /// This function stores the log with tag of module
-    /// - Parameters:
-    ///   - type: type of log project
-    ///   - level: level of log
-    ///   - tag: tag of module
-    ///   - args: Log string with argument
+    /// - Parameter -  type of log project:
+    /// - Parameter -  level of log:
+    /// - Parameter -  tag of module:
+    /// - Parameter -  Log string with argument:
     static void PrintMessage(Type type, Level level, LogModule tag, Args&&... args);
     
     template<typename... Args>
     /// This function stores the log with tag of module
-    /// - Parameters:
-    ///   - type: type of log project
-    ///   - level: level of log
-    ///   - tag: tag of module
-    ///   - args: Log string with argument
+    /// - Parameter -  type of log project:
+    /// - Parameter -  level of log:
+    /// - Parameter -  tag of module:
+    /// - Parameter -  Log string with argument:
     static void PrintMessage(Type type, Level level, std::string_view tag, Args&&... args);
 
     ~Logger() noexcept = default;
@@ -99,22 +98,21 @@ namespace ikan {
     inline static std::map<std::string, TagDetails> enabled_tags_;
     
     /// this functun return the tag stored in logger
-    /// - Parameter tag: tag
+    /// - Parameter - tag of log module:
     static bool HasTag(const std::string& tag);
     /// This function return the enabled tags
     static std::map<std::string, TagDetails>& GetEnabledTags();
     
     /// Get the detail of a module tag
-    /// - Parameter tag: tag name
+    /// - Parameter - tag of log module:
     static const TagDetails& GetDetail(const std::string& tag);
     
     template<typename... Args>
     /// This function stores the log with tag of module
-    /// - Parameters:
-    ///   - type: type of log project
-    ///   - level: level of log
-    ///   - tag: tag of module
-    ///   - args: Log string with argument
+    /// - Parameter - type of log project:
+    /// - Parameter - level of log:
+    /// - Parameter - tag of module:
+    /// - Parameter - Log string with argument:
     static void PrintMessageImpl(Type type, Level level, std::string tag, Args&&... args);
 
   };
