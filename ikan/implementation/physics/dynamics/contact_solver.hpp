@@ -68,14 +68,14 @@ namespace physics {
     bool SolvePositionConstraints();
     bool SolveTOIPositionConstraints(int32_t toiIndexA, int32_t toiIndexB);
     
-    TimeStep m_step;
-    Position* m_positions;
-    Velocity* m_velocities;
-    StackAllocator* m_allocator;
-    ContactPositionConstraint* m_positionConstraints;
-    ContactVelocityConstraint* m_velocityConstraints;
-    Contact** m_contacts;
-    int m_count;
+    TimeStep step_;
+    Position* position_;
+    Velocity* velocities_;
+    StackAllocator* allocator_;
+    ContactPositionConstraint* positio_constraints_;
+    ContactVelocityConstraint* velocity_constraints_;
+    Contact** contacts_;
+    int count_;
   };
   
 }

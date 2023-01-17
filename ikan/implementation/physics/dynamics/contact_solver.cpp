@@ -35,18 +35,18 @@ namespace physics {
   };
   
   ContactSolver::ContactSolver(ContactSolverDef* def) {
-    m_step = def->step;
-    m_allocator = def->allocator;
-    m_count = def->count;
-    m_positionConstraints = (ContactPositionConstraint*)m_allocator->Allocate(m_count * sizeof(ContactPositionConstraint));
-    m_velocityConstraints = (ContactVelocityConstraint*)m_allocator->Allocate(m_count * sizeof(ContactVelocityConstraint));
-    m_positions = def->positions;
-    m_velocities = def->velocities;
-    m_contacts = def->contacts;
+    step_ = def->step;
+    allocator_ = def->allocator;
+    count_ = def->count;
+    positio_constraints_ = (ContactPositionConstraint*)allocator_->Allocate(count_ * sizeof(ContactPositionConstraint));
+    velocity_constraints_ = (ContactVelocityConstraint*)allocator_->Allocate(count_ * sizeof(ContactVelocityConstraint));
+    position_ = def->positions;
+    velocities_ = def->velocities;
+    contacts_ = def->contacts;
     
     // Initialize position independent portions of the constraints.
-    for (int32_t i = 0; i < m_count; ++i) {
-      Contact* contact = m_contacts[i];
+    for (int32_t i = 0; i < count_; ++i) {
+      Contact* contact = contacts_[i];
       
       Fixture* fixtureA = contact->fixture_a_;
       Fixture* fixtureB = contact->fixture_b_;
@@ -61,7 +61,7 @@ namespace physics {
       int32_t pointCount = manifold->point_count;
       IK_ASSERT(pointCount > 0);
       
-      ContactVelocityConstraint* vc = m_velocityConstraints + i;
+      ContactVelocityConstraint* vc = velocity_constraints_ + i;
       vc->friction = contact->friction_;
       vc->restitution = contact->restitution_;
       vc->threshold = contact->restitution_threshold_;
@@ -77,7 +77,7 @@ namespace physics {
       vc->K.SetZero();
       vc->normalMass.SetZero();
       
-      ContactPositionConstraint* pc = m_positionConstraints + i;
+      ContactPositionConstraint* pc = positio_constraints_ + i;
       pc->indexA = bodyA->is_land_index_;
       pc->indexB = bodyB->is_land_index_;
       pc->invMassA = bodyA->inv_mass_;
@@ -97,9 +97,9 @@ namespace physics {
         ManifoldPoint* cp = manifold->points + j;
         VelocityConstraintPoint* vcp = vc->points + j;
         
-        if (m_step.warm_starting) {
-          vcp->normalImpulse = m_step.dt_ratio * cp->normal_impulse;
-          vcp->tangentImpulse = m_step.dt_ratio * cp->tangent_impulse;
+        if (step_.warm_starting) {
+          vcp->normalImpulse = step_.dt_ratio * cp->normal_impulse;
+          vcp->tangentImpulse = step_.dt_ratio * cp->tangent_impulse;
         }
         else {
           vcp->normalImpulse = 0.0f;
@@ -118,19 +118,19 @@ namespace physics {
   }
   
   ContactSolver::~ContactSolver() {
-    m_allocator->Free(m_velocityConstraints);
-    m_allocator->Free(m_positionConstraints);
+    allocator_->Free(velocity_constraints_);
+    allocator_->Free(positio_constraints_);
   }
   
   // Initialize position dependent portions of the velocity constraints.
   void ContactSolver::InitializeVelocityConstraints() {
-    for (int32_t i = 0; i < m_count; ++i) {
-      ContactVelocityConstraint* vc = m_velocityConstraints + i;
-      ContactPositionConstraint* pc = m_positionConstraints + i;
+    for (int32_t i = 0; i < count_; ++i) {
+      ContactVelocityConstraint* vc = velocity_constraints_ + i;
+      ContactPositionConstraint* pc = positio_constraints_ + i;
       
       float radiusA = pc->radiusA;
       float radiusB = pc->radiusB;
-      Manifold* manifold = m_contacts[vc->contactIndex]->GetManifold();
+      Manifold* manifold = contacts_[vc->contactIndex]->GetManifold();
       
       int32_t indexA = vc->indexA;
       int32_t indexB = vc->indexB;
@@ -142,15 +142,15 @@ namespace physics {
       Vec2 localCenterA = pc->localCenterA;
       Vec2 localCenterB = pc->localCenterB;
       
-      Vec2 cA = m_positions[indexA].c;
-      float aA = m_positions[indexA].a;
-      Vec2 vA = m_velocities[indexA].v;
-      float wA = m_velocities[indexA].w;
+      Vec2 cA = position_[indexA].c;
+      float aA = position_[indexA].a;
+      Vec2 vA = velocities_[indexA].v;
+      float wA = velocities_[indexA].w;
       
-      Vec2 cB = m_positions[indexB].c;
-      float aB = m_positions[indexB].a;
-      Vec2 vB = m_velocities[indexB].v;
-      float wB = m_velocities[indexB].w;
+      Vec2 cB = position_[indexB].c;
+      float aB = position_[indexB].a;
+      Vec2 vB = velocities_[indexB].v;
+      float wB = velocities_[indexB].w;
       
       IK_ASSERT(manifold->point_count > 0);
       
@@ -229,8 +229,8 @@ namespace physics {
   
   void ContactSolver::WarmStart() {
     // Warm start.
-    for (int32_t i = 0; i < m_count; ++i) {
-      ContactVelocityConstraint* vc = m_velocityConstraints + i;
+    for (int32_t i = 0; i < count_; ++i) {
+      ContactVelocityConstraint* vc = velocity_constraints_ + i;
       
       int32_t indexA = vc->indexA;
       int32_t indexB = vc->indexB;
@@ -240,10 +240,10 @@ namespace physics {
       float iB = vc->invIB;
       int32_t pointCount = vc->pointCount;
       
-      Vec2 vA = m_velocities[indexA].v;
-      float wA = m_velocities[indexA].w;
-      Vec2 vB = m_velocities[indexB].v;
-      float wB = m_velocities[indexB].w;
+      Vec2 vA = velocities_[indexA].v;
+      float wA = velocities_[indexA].w;
+      Vec2 vB = velocities_[indexB].v;
+      float wB = velocities_[indexB].w;
       
       Vec2 normal = vc->normal;
       Vec2 tangent = Cross(normal, 1.0f);
@@ -257,16 +257,16 @@ namespace physics {
         vB += mB * P;
       }
       
-      m_velocities[indexA].v = vA;
-      m_velocities[indexA].w = wA;
-      m_velocities[indexB].v = vB;
-      m_velocities[indexB].w = wB;
+      velocities_[indexA].v = vA;
+      velocities_[indexA].w = wA;
+      velocities_[indexB].v = vB;
+      velocities_[indexB].w = wB;
     }
   }
   
   void ContactSolver::SolveVelocityConstraints() {
-    for (int32_t i = 0; i < m_count; ++i) {
-      ContactVelocityConstraint* vc = m_velocityConstraints + i;
+    for (int32_t i = 0; i < count_; ++i) {
+      ContactVelocityConstraint* vc = velocity_constraints_ + i;
       
       int32_t indexA = vc->indexA;
       int32_t indexB = vc->indexB;
@@ -276,10 +276,10 @@ namespace physics {
       float iB = vc->invIB;
       int32_t pointCount = vc->pointCount;
       
-      Vec2 vA = m_velocities[indexA].v;
-      float wA = m_velocities[indexA].w;
-      Vec2 vB = m_velocities[indexB].v;
-      float wB = m_velocities[indexB].w;
+      Vec2 vA = velocities_[indexA].v;
+      float wA = velocities_[indexA].w;
+      Vec2 vB = velocities_[indexB].v;
+      float wB = velocities_[indexB].w;
       
       Vec2 normal = vc->normal;
       Vec2 tangent = Cross(normal, 1.0f);
@@ -558,17 +558,17 @@ namespace physics {
         }
       }
       
-      m_velocities[indexA].v = vA;
-      m_velocities[indexA].w = wA;
-      m_velocities[indexB].v = vB;
-      m_velocities[indexB].w = wB;
+      velocities_[indexA].v = vA;
+      velocities_[indexA].w = wA;
+      velocities_[indexB].v = vB;
+      velocities_[indexB].w = wB;
     }
   }
   
   void ContactSolver::StoreImpulses() {
-    for (int32_t i = 0; i < m_count; ++i) {
-      ContactVelocityConstraint* vc = m_velocityConstraints + i;
-      Manifold* manifold = m_contacts[vc->contactIndex]->GetManifold();
+    for (int32_t i = 0; i < count_; ++i) {
+      ContactVelocityConstraint* vc = velocity_constraints_ + i;
+      Manifold* manifold = contacts_[vc->contactIndex]->GetManifold();
       
       for (int32_t j = 0; j < vc->pointCount; ++j) {
         manifold->points[j].normal_impulse = vc->points[j].normalImpulse;
@@ -626,8 +626,8 @@ namespace physics {
   bool ContactSolver::SolvePositionConstraints() {
     float minSeparation = 0.0f;
     
-    for (int32_t i = 0; i < m_count; ++i) {
-      ContactPositionConstraint* pc = m_positionConstraints + i;
+    for (int32_t i = 0; i < count_; ++i) {
+      ContactPositionConstraint* pc = positio_constraints_ + i;
       
       int32_t indexA = pc->indexA;
       int32_t indexB = pc->indexB;
@@ -639,11 +639,11 @@ namespace physics {
       float iB = pc->invIB;
       int32_t pointCount = pc->pointCount;
       
-      Vec2 cA = m_positions[indexA].c;
-      float aA = m_positions[indexA].a;
+      Vec2 cA = position_[indexA].c;
+      float aA = position_[indexA].a;
       
-      Vec2 cB = m_positions[indexB].c;
-      float aB = m_positions[indexB].a;
+      Vec2 cB = position_[indexB].c;
+      float aB = position_[indexB].a;
       
       // Solve normal constraints
       for (int32_t j = 0; j < pointCount; ++j) {
@@ -686,11 +686,11 @@ namespace physics {
         aB += iB * Cross(rB, P);
       }
       
-      m_positions[indexA].c = cA;
-      m_positions[indexA].a = aA;
+      position_[indexA].c = cA;
+      position_[indexA].a = aA;
       
-      m_positions[indexB].c = cB;
-      m_positions[indexB].a = aB;
+      position_[indexB].c = cB;
+      position_[indexB].a = aB;
     }
     
     // We can't expect minSpeparation >= -_linearSlop because we don't
@@ -702,8 +702,8 @@ namespace physics {
   bool ContactSolver::SolveTOIPositionConstraints(int32_t toiIndexA, int32_t toiIndexB) {
     float minSeparation = 0.0f;
     
-    for (int32_t i = 0; i < m_count; ++i) {
-      ContactPositionConstraint* pc = m_positionConstraints + i;
+    for (int32_t i = 0; i < count_; ++i) {
+      ContactPositionConstraint* pc = positio_constraints_ + i;
       
       int32_t indexA = pc->indexA;
       int32_t indexB = pc->indexB;
@@ -725,11 +725,11 @@ namespace physics {
         iB = pc->invIB;
       }
       
-      Vec2 cA = m_positions[indexA].c;
-      float aA = m_positions[indexA].a;
+      Vec2 cA = position_[indexA].c;
+      float aA = position_[indexA].a;
       
-      Vec2 cB = m_positions[indexB].c;
-      float aB = m_positions[indexB].a;
+      Vec2 cB = position_[indexB].c;
+      float aB = position_[indexB].a;
       
       // Solve normal constraints
       for (int32_t j = 0; j < pointCount; ++j) {
@@ -772,11 +772,11 @@ namespace physics {
         aB += iB * Cross(rB, P);
       }
       
-      m_positions[indexA].c = cA;
-      m_positions[indexA].a = aA;
+      position_[indexA].c = cA;
+      position_[indexA].a = aA;
       
-      m_positions[indexB].c = cB;
-      m_positions[indexB].a = aB;
+      position_[indexB].c = cB;
+      position_[indexB].a = aB;
     }
     
     // We can't expect minSpeparation >= -_linearSlop because we don't
