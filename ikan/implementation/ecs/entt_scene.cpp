@@ -99,9 +99,9 @@ namespace ecs {
     }
   }
   
-  void EnttScene::UpdateRuntime(Timestep ts) {
-    // Physics
-    {
+  void EnttScene::UpdateRuntime(Timestep ts) {    
+    if (state_ == State::Play) { // TODO: Temp check till we use scene camera in editor mode
+      // Physics
       const int32_t velocity_iteration = 6;
       const int32_t position_iteration = 2;
       
@@ -110,7 +110,7 @@ namespace ecs {
       // Get Transform
       auto view = registry_.view<RigidBodyComponent>();
       for (auto e : view) {
-        Entity entity = { e, this };
+        Entity& entity = entity_id_map_.at(e);//{ e, this };
 
         auto& transform = entity.GetComponent<TransformComponent>();
         auto& rb2d = entity.GetComponent<RigidBodyComponent>();

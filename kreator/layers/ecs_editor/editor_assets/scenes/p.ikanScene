@@ -52,8 +52,8 @@ Entities:
     TagComponent:
       Tag: Circle
     TransformComponent:
-      Translation: [-2, 0, 0]
-      Rotation: [0, 0, 0]
+      Translation: [-0.734962583, -1.89340091, 0]
+      Rotation: [0, 0, -2.56073475]
       Scale: [1, 1, 1]
     CircleComponent:
       Texture_Use: false
@@ -69,7 +69,7 @@ Entities:
       Offset: [0, 0]
       Radius: 0.5
       Density: 1
-      Friction: 0.5
+      Friction: 1
       Restitution: 0
       Restitution Threshold: 0.5
   - Entity: 10843353273956059391
@@ -91,8 +91,8 @@ Entities:
     TagComponent:
       Tag: Quad
     TransformComponent:
-      Translation: [2, 0, 0]
-      Rotation: [0, 0, 0]
+      Translation: [2.39615273, -2.28083587, 0]
+      Rotation: [0, 0, -0.126797512]
       Scale: [1, 1, 1]
     QuadComponent:
       Texture_Use: false
@@ -106,7 +106,7 @@ Entities:
       Offset: [0, 0]
       Size: [0.5, 0.5]
       Density: 1
-      Friction: 0.5
+      Friction: 1
       Restitution: 0
       Restitution Threshold: 0.5
   - Entity: 2669056853597257259
@@ -114,7 +114,7 @@ Entities:
       Tag: Base
     TransformComponent:
       Translation: [0, -3, 0]
-      Rotation: [0, 0, 0]
+      Rotation: [0, 0, -0.126536369]
       Scale: [12, 1, 1]
     QuadComponent:
       Texture_Use: false
@@ -128,6 +128,6 @@ Entities:
       Offset: [0, 0]
       Size: [0.5, 0.5]
       Density: 1
-      Friction: 0.5
+      Friction: 1
       Restitution: 0
       Restitution Threshold: 0.5
