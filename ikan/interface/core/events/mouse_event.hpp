@@ -7,8 +7,6 @@
 
 #pragma once
 
-// This file includes classes to handle the mouse events.
-
 #include "core/events/event.hpp"
 #include "core/mouse_codes.h"
 
@@ -21,9 +19,8 @@ namespace ikan {
     virtual ~MouseMovedEvent() = default;
     
     /// Mouse moved event
-    /// - Parameters:
-    ///   - x: X position of Mouse
-    ///   - y: Y position of Mouse
+    /// - Parameter - X position of Mouse:
+    /// - Parameter - Y position of Mouse:
     MouseMovedEvent(float x, float y);
     
     /// This function returns the X position of mouse
@@ -48,9 +45,8 @@ namespace ikan {
     virtual ~MouseScrolledEvent() = default;
     
     /// Mosue Scroll Event
-    /// - Parameters:
-    ///   - xOffset: x Offset of Scrolling
-    ///   - yOffset: y Offset of Scrolling
+    /// - Parameter - x Offset of Scrolling:
+    /// - Parameter - y Offset of Scrolling:
     MouseScrolledEvent(float x_offset, float y_offset);
     
     /// This function returns x Offset of Scrolling
@@ -94,7 +90,7 @@ namespace ikan {
     virtual ~MouseButtonPressedEvent() = default;
     
     /// Mouse button pressed Event
-    /// - Parameter button: Mouse button pressed
+    /// - Parameter - Mouse button pressed:
     MouseButtonPressedEvent(MouseButton button);
     
     /// This function prints the event detail
@@ -110,7 +106,7 @@ namespace ikan {
     virtual ~MouseButtonReleasedEvent() = default;
     
     /// Mouse button release ebent
-    /// - Parameter button: Mouse button released
+    /// - Parameter - Mouse button released:
     MouseButtonReleasedEvent(MouseButton button);
     
     /// This function prints the event detail
@@ -119,4 +115,4 @@ namespace ikan {
     EVENT_CLASS_TYPE(MouseButtonReleased);
   };
   
-} // namespace ikan
+} 

@@ -7,8 +7,6 @@
 
 #pragma once
 
-// This file includes classes to handle the window events.
-
 #include "core/events/event.hpp"
 
 namespace ikan {
@@ -20,9 +18,8 @@ namespace ikan {
     virtual ~WindowResizeEvent() = default;
     
     /// Constructs the event that set the new size of window
-    /// - Parameters:
-    ///   - width: width of new window
-    ///   - height: height of new window
+    /// - Parameter - Width of new window:
+    /// - Parameter - Height of new window:
     WindowResizeEvent(uint32_t width, uint32_t height);
     /// This function returns the width of window
     uint32_t GetWidth() const;
@@ -52,4 +49,4 @@ namespace ikan {
     EVENT_CLASS_CATEGORY(EventCategoryApplication);
   };
   
-} // namespace ikan
+} 

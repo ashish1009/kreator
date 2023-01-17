@@ -63,6 +63,7 @@ return category; \
     virtual void Print() const = 0;
     
     /// This function checks if Event is aa same category as argument 'category'
+    /// - Parameter - Event category type:
     bool IsInCategory(Category category) const;
     
   public:
@@ -76,24 +77,18 @@ return category; \
   class EventDispatcher {
   public:
     /// Constructor that store the event reference in the dispatcher
-    /// - Parameter event: Event
+    ///  - Parameter - Event reference triggered from window callback:
     EventDispatcher(Event& event);
     
-    template<typename T, typename F>
-    /// This function Dispatches the event. Once an event callback triggered, it check the triggered
-    /// event's type( with base calss 'Even') with the explicit event type 'T'. If same then executes  the
-    /// Function F (Function pointer passed to Dispatcher)
-    /// NOTE : Template -   <T> - Type of Dispatched event
-    ///               - <F> - Function type. This is dynmically executed.
-    ///                         It stores the type of function passed as pointer
-    /// - Parameter func: Function pointer that need to dispatch on event occurance
-    /// ------------------------------------------------------------------
-    /// Event Should be Dispached using this function only. All Event handler takes only base
-    /// Instance of Event. This Dispatcher Dispatch the function binded to a specific Event. So
+    /// This function Dispatches the event dynamically
+    ///  - Once an event callback triggered, it check the triggered event's type( with base calss 'Even')
+    ///    with the explicit event type 'T'. If same then executes  the Function F (Function pointer passed to Dispatcher)
+    ///  - Important: Event Should be Dispached using this function only. All Event handler takes only base
+    /// Instance of Event. This Dispatcher Dispatches the function binded to a specific Event. So
     /// checked all the triggered events at same time and return the calling on Function Binded as
     /// Funciton pointer <F>
-    /// ------------------------------------------------------------------
-    bool Dispatch(const F& func) {
+    ///  - Parameter - Function pointer to be triggered when even dispatches:
+    template<typename T, typename F> bool Dispatch(const F& func) {
       if (event_.GetEventType() == T::GetStaticType()) {
         event_.handled_ |= func(static_cast<T&>(event_));
         return true;
@@ -108,4 +103,4 @@ return category; \
   // Using Typedefs
   using EventCallbackFn = std::function<void(Event&)>;
   
-} // namespace ikan
+}
