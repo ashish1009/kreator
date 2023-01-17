@@ -24,38 +24,6 @@ namespace mario {
   using namespace ikan;
   using namespace ecs;
   
-  class PlayerController : public ScriptableEntity {
-  public:
-    /// Default destructor of playr controller
-
-    /// This function detects the collistion of entity_ aabb with aabb
-    /// - Parameter aabb: AABB of bouding box
-    bool CollisionDetected(const AABB& aabb);
-
-    /// This function update the player each frame based on the state of player
-    /// - Parameter ts: time step
-    void Update(Timestep ts) override;
-    /// This function Renders Gui for debugging
-    void RenderGui() override;
-    
-  private:
-    /// This function trigger for player's freefall
-    /// - Parameter ts: time step
-    void Freefall(Timestep ts);
-    /// This function checks is the the state in argumet is present in player or not
-    /// - Parameter state_bit: state bit
-    bool IsState(State state_bit);
-
-#if MARIO_DEBUG
-    std::string GetStateString();
-#endif
-    
-    // -----------------
-    // Member variables
-    // -----------------
-    State state_bits_ = FreeFalling;
-  };
-
   class Player {
   public:
     /// Constructor of mario Player

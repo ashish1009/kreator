@@ -137,15 +137,6 @@ namespace ecs {
     DEFINE_COPY_MOVE_CONSTRUCTORS(NativeScriptComponent);
   };
   
-  struct NativeBodyTypeComponent {
-    enum class Type : uint8_t { AABB, Circle, Point };
-    Type type;
-    
-    void RenderGui();
-    NativeBodyTypeComponent(Type type);
-    DEFINE_COPY_MOVE_CONSTRUCTORS(NativeBodyTypeComponent);
-  };
-  
   struct RigidBodyComponent {
     b2BodyType type = b2BodyType::b2_staticBody;
     bool fixed_rotation = false;

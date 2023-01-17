@@ -64,20 +64,4 @@ namespace ecs {
     friend class EnttScene;
   };
   
-  class NativeMovementController : public ScriptableEntity {
-  public:
-    void Update(Timestep ts) override;
-    void RenderGui() override;
-    
-    /// This function detects the collistion of entity_ aabb with aabb
-    /// - Parameter aabb: AABB of bouding box
-    bool CollisionDetected(const AABB& aabb);
-    /// This function detects the collistion of entity_ circle with aabb
-    /// - Parameter cirlce: circle of bouding box
-    bool CollisionDetected(const BoundingCircle& cirlce);
-
-  private:
-    float speed_ = 10.0f;
-  };
-
 }

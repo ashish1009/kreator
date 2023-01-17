@@ -418,35 +418,6 @@ namespace ecs {
   // -------------------------------------------------------------------------
   // Rigid Body Component
   // -------------------------------------------------------------------------
-  NativeBodyTypeComponent::NativeBodyTypeComponent(NativeBodyTypeComponent::Type type) : type(type) { }
-  NativeBodyTypeComponent::NativeBodyTypeComponent(const NativeBodyTypeComponent& other) {
-    type = other.type;
-  }
-  NativeBodyTypeComponent& NativeBodyTypeComponent::operator=(const NativeBodyTypeComponent& other) {
-    type = other.type;
-    return *this;
-  }
-  NativeBodyTypeComponent::NativeBodyTypeComponent(NativeBodyTypeComponent&& other) {
-    type = other.type;
-  }
-  NativeBodyTypeComponent& NativeBodyTypeComponent::operator=(NativeBodyTypeComponent&& other) {
-    type = other.type;
-    return *this;
-  }
-  void NativeBodyTypeComponent::RenderGui() {
-    Type new_proj_type = Type(PropertyGrid::ComboDrop("Body Type",
-                                                      { "AABB" , "Circle" },
-                                                      (uint32_t)type,
-                                                      ImGui::GetWindowContentRegionMax().x / 2));
-    
-    // Render the property based on the projection type of camera
-    if (new_proj_type != type)
-      type = new_proj_type;
-  }
-  
-  // -------------------------------------------------------------------------
-  // Rigid Body Component
-  // -------------------------------------------------------------------------
   RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent& other) {
     type = other.type;
     fixed_rotation = other.fixed_rotation;

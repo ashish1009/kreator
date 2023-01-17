@@ -235,18 +235,6 @@ namespace ecs {
       }
 
       // ------------------------------------------------------------------------
-      if (entity.HasComponent<NativeBodyTypeComponent>()) {
-        out << YAML::Key << "NativeBodyTypeComponent";
-        out << YAML::BeginMap; // NativeBodyTypeComponent
-        
-        auto& rc = entity.GetComponent<NativeBodyTypeComponent>();
-        
-        uint32_t type = (uint32_t)rc.type;
-        out << YAML::Key << "Type" << YAML::Value << type;
-        out << YAML::EndMap; // NativeBodyTypeComponent
-      }
-
-      // ------------------------------------------------------------------------
       if (entity.HasComponent<RigidBodyComponent>()) {
         out << YAML::Key << "RigidBodyComponent";
         out << YAML::BeginMap; // RigidBodyComponent
@@ -460,15 +448,6 @@ namespace ecs {
             IK_CORE_INFO(LogModule::SceneSerializer, "      Script | {0}", script_name);
           }
         } // if (script_component)
-
-        // --------------------------------------------------------------------
-        auto native_body_component = entity["NativeBodyTypeComponent"];
-        if (native_body_component) {
-          auto type = native_body_component["Type"].as<uint8_t>();
-          deserialized_entity.AddComponent<NativeBodyTypeComponent>((NativeBodyTypeComponent::Type)type);
-          IK_CORE_INFO(LogModule::SceneSerializer, "    Native Body Type Component");
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Type | {0}", type);
-        } // if (native_body_component)
 
         // --------------------------------------------------------------------
         auto rigid_body_component = entity["RigidBodyComponent"];
