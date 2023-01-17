@@ -110,6 +110,23 @@ namespace physics {
       profile_.solveTOI = timer.GetMilliseconds();
     }
 
+    if (step.dt > 0.0f) {
+      inv_dt_0_ = step.inv_dt;
+    }
+    
+    if (clear_forces_) {
+      ClearForces();
+    }
+    
+    locked_ = false;
+    profile_.step = step_timer.GetMilliseconds();
+  }
+  
+  void World::ClearForces() {
+    for (Body* body = body_list_; body; body = body->GetNext()) {
+      body->force_.SetZero();
+      body->torque_ = 0.0f;
+    }
   }
   
   // Find islands, integrate and solve constraints, solve position constraints
