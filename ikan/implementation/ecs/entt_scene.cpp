@@ -15,9 +15,9 @@
 #include "renderer/utils/aabb_renderer.hpp"
 #include "renderer/graphics/texture.hpp"
 
-#include "physics/shape/polygon_shape.hpp"
-#include "physics/shape/circle_shape.hpp"
-#include "physics/fixture.hpp"
+#include "box2d/b2_polygon_shape.h"
+#include "box2d/b2_circle_shape.h"
+#include "box2d/b2_fixture.h"
 
 namespace ecs {
   
@@ -115,7 +115,7 @@ namespace ecs {
         auto& transform = entity.GetComponent<TransformComponent>();
         auto& rb2d = entity.GetComponent<RigidBodyComponent>();
 
-        physics::Body* body = (physics::Body*)rb2d.runtime_body;
+        b2Body* body = (b2Body*)rb2d.runtime_body;
         if (body != nullptr) {
           const auto& position = body->GetPosition();
 
@@ -248,19 +248,19 @@ namespace ecs {
   }
   
   void EnttScene::RuntimeStart() {
-    physics_world_ = new physics::World({0, -9.8});
+    physics_world_ = new b2World({0, -9.8});
     auto view = registry_.view<RigidBodyComponent>();
     for (auto e : view) {
       Entity entity = { e, this };
       auto& transform = entity.GetComponent<TransformComponent>();
       auto& rb2d = entity.GetComponent<RigidBodyComponent>();
       
-      physics::BodyDef body_def;
+      b2BodyDef body_def;
       body_def.type = rb2d.type;
       body_def.position.Set(transform.Translation().x, transform.Translation().y);
       body_def.angle = transform.Rotation().z;
       
-      physics::Body* body = physics_world_->CreateBody(&body_def);
+      b2Body* body = physics_world_->CreateBody(&body_def);
       body->SetFixedRotation(rb2d.fixed_rotation);
       
       rb2d.runtime_body = body;
@@ -268,15 +268,15 @@ namespace ecs {
       if (entity.HasComponent<BoxColloiderComponent>()) {
         auto& bc2d = entity.GetComponent<BoxColloiderComponent>();
         
-        physics::PolygonShape polygon_shape;
+        b2PolygonShape polygon_shape;
         polygon_shape.SetAsBox(bc2d.size.x * transform.Scale().x, bc2d.size.y * transform.Scale().y);
         
-        physics::FixtureDef fixture_def;
+        b2FixtureDef fixture_def;
         fixture_def.shape = & polygon_shape;
         fixture_def.density = bc2d.density;
         fixture_def.friction = bc2d.friction;
         fixture_def.restitution = bc2d.restitution;
-        fixture_def.restitution_threshold = bc2d.restitution_threshold;
+        fixture_def.restitutionThreshold = bc2d.restitution_threshold;
         
         body->CreateFixture(&fixture_def);
       }
@@ -284,17 +284,17 @@ namespace ecs {
       if (entity.HasComponent<CircleColloiderComponent>()) {
         auto& cc2d = entity.GetComponent<CircleColloiderComponent>();
         
-        physics::CircleShape circle_shape;
+        b2CircleShape circle_shape;
 
-        circle_shape.position_.Set(cc2d.offset.x, cc2d.offset.y);
-        circle_shape.radius_ = transform.Scale().x * cc2d.radius;
+        circle_shape.m_p.Set(cc2d.offset.x, cc2d.offset.y);
+        circle_shape.m_radius = transform.Scale().x * cc2d.radius;
         
-        physics::FixtureDef fixture_def;
+        b2FixtureDef fixture_def;
         fixture_def.shape = & circle_shape;
         fixture_def.density = cc2d.density;
         fixture_def.friction = cc2d.friction;
         fixture_def.restitution = cc2d.restitution;
-        fixture_def.restitution_threshold = cc2d.restitution_threshold;
+        fixture_def.restitutionThreshold = cc2d.restitution_threshold;
         
         body->CreateFixture(&fixture_def);
       }

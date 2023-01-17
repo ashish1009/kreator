@@ -53,7 +53,3 @@
 
 // Imgui files
 #include <imgui.h>
-
-// Physics
-#include "physics/physics_common.h"
-#include "physics/utils/settings.hpp"

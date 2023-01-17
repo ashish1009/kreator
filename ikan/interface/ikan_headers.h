@@ -82,10 +82,6 @@
 #include <editor/editor_camera.hpp>
 #include <editor/content_browser_panel.hpp>
 
-// Physics
-#include <physics/physics_common.h>
-#include <physics/utils/settings.hpp>
-
 // ECS
 #include <ecs/viewport.hpp>
 #include <ecs/entity.hpp>

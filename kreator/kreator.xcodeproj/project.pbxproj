@@ -492,6 +492,7 @@
 					"${PROJECT_DIR}/../ikan/vendors/entt/include",
 					/usr/local/macOS/include,
 					"${PROJECT_DIR}/../ikan/vendors/imguizmo/imguizmo",
+					"${PROJECT_DIR}/../ikan/vendors/physics_2d/box_2d/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../ikan/vendors/freetype/lib",
@@ -531,6 +532,7 @@
 					"${PROJECT_DIR}/../ikan/vendors/entt/include",
 					/usr/local/macOS/include,
 					"${PROJECT_DIR}/../ikan/vendors/imguizmo/imguizmo",
+					"${PROJECT_DIR}/../ikan/vendors/physics_2d/box_2d/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../ikan/vendors/freetype/lib",

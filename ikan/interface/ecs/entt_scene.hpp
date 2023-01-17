@@ -13,7 +13,7 @@
 #include "editor/editor_camera.hpp"
 #include "ecs/scene_camera.hpp"
 
-#include "physics/world.hpp"
+#include "box2d/b2_world.h"
 
 namespace ecs {
   
@@ -192,7 +192,7 @@ namespace ecs {
     bool use_editor_camera_ = true;
     
     // Physics Data
-    physics::World* physics_world_ = nullptr;
+    b2World* physics_world_ = nullptr;
     
     friend class Entity;
     friend class ScenePanelManager;

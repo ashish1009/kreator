@@ -13,7 +13,7 @@
 #include "core/math/aabb.hpp"
 #include "core/math/bounding_circle.hpp"
 
-#include "physics/body.hpp"
+#include "box2d/b2_body.h"
 
 namespace ecs {
   
@@ -147,7 +147,7 @@ namespace ecs {
   };
   
   struct RigidBodyComponent {
-    physics::BodyType type = physics::BodyType::StaticBody;
+    b2BodyType type = b2BodyType::b2_staticBody;
     bool fixed_rotation = true;
     // Storage
     void* runtime_body = nullptr;

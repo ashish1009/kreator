@@ -16,3 +16,6 @@
 [submodule "ikan/vendors/yaml/yaml"]
 	path = ikan/vendors/yaml/yaml
 	url = https://github.com/ashish1009/yaml-cpp
+[submodule "ikan/vendors/physics_2d/box_2d"]
+	path = ikan/vendors/physics_2d/box_2d
+	url = https://github.com/erincatto/box2d
