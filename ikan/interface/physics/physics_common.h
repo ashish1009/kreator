@@ -35,4 +35,7 @@ namespace physics {
   /// A body cannot sleep if its angular velocity is above this tolerance.
 #define AngularSleepTolerance  (2.0f / 180.0f * PI)
 
+#define MaxTOIContacts      32
+#define MaxSubSteps      8
+
 }
