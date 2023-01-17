@@ -399,7 +399,7 @@ namespace physics {
   }
 
   
-  inline PolygonShape::PolygonShape() {
+  PolygonShape::PolygonShape() {
     type_ = Shape::Type::Polygon;
     radius_ = PolygonRadius;
     count_ = 0;

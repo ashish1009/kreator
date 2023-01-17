@@ -81,7 +81,7 @@ namespace physics {
     massData->inertia = massData->mass * (0.5f * radius_ * radius_ + Dot(position_, position_));
   }
 
-  inline CircleShape::CircleShape() {
+  CircleShape::CircleShape() {
     type_ = Shape::Type::Circle;
     radius_ = 0.0f;
     position_.SetZero();

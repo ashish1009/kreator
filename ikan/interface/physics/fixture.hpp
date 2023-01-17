@@ -191,6 +191,7 @@ namespace physics {
     friend class ChainAndCircleContact;
     friend class ChainAndPolygonContact;
     friend class ContactFilter;
+    friend class ContactSolver;
     
     Fixture();
     

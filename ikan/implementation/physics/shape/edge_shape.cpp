@@ -128,7 +128,7 @@ namespace physics {
     massData->inertia = 0.0f;
   }
 
-  inline EdgeShape::EdgeShape() {
+  EdgeShape::EdgeShape() {
     type_ = Shape::Type::Edge;
     radius_ = PolygonRadius;
     vertex_0_.x = 0.0f;
