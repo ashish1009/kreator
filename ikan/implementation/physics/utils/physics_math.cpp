@@ -20,8 +20,26 @@ namespace physics {
     Vec3 Cross(const Vec3& a, const Vec3& b) {
       return Vec3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
     }
+    Vec2 Mul(const Rot& q, const Vec2& v) {
+      return Vec2(q.c * v.x - q.s * v.y, q.s * v.x + q.c * v.y);
+    }
+
+    Vec2 operator + (const Vec2& a, const Vec2& b) {
+      return Vec2(a.x + b.x, a.y + b.y);
+    }
+    
+    Vec2 operator - (const Vec2& a, const Vec2& b) {
+      return Vec2(a.x - b.x, a.y - b.y);
+    }
+    
+    Vec2 operator * (float s, const Vec2& a) {
+      return Vec2(s * a.x, s * a.y);
+    }
+
 
   }
+  
+  using namespace math;
   
   Vec2::Vec2(float x_input, float y_input) : x(x_input), y(y_input) {}
   
@@ -63,12 +81,12 @@ namespace physics {
   }
   
   float Vec2::operator () (int32_t i) const {
-    PHYSICS_ASSERT(i < 2 and i >= 0, "Invalid Index");
+    PHYSICS_ASSERT(i < 2 and i >= 0);
     return (&x)[i];
   }
 
   float& Vec2::operator () (int32_t i) {
-    PHYSICS_ASSERT(i < 2 and i >= 0, "Invalid Index");
+    PHYSICS_ASSERT(i < 2 and i >= 0);
     return (&x)[i];
   }
 
@@ -146,12 +164,12 @@ namespace physics {
   }
   
   float Vec3::operator () (int32_t i) const {
-    PHYSICS_ASSERT(i < 3 and i >= 0, "Invalid Index");
+    PHYSICS_ASSERT(i < 3 and i >= 0);
     return (&x)[i];
   }
   
   float& Vec3::operator () (int32_t i) {
-    PHYSICS_ASSERT(i < 3 and i >= 0, "Invalid Index");
+    PHYSICS_ASSERT(i < 3 and i >= 0);
     return (&x)[i];
   }
   
@@ -367,6 +385,30 @@ namespace physics {
     PHYSICS_LOG("  Transform Data");
     p.Log();
     q.Log();
+  }
+  
+  void Sweep::GetTransform(Transform2D* xf, float beta) const {
+    xf->p = (1.0f - beta) * c0 + beta * c;
+    float angle = (1.0f - beta) * a0 + beta * a;
+    xf->q.Set(angle);
+    
+    // Shift to origin
+    xf->p -= Mul(xf->q, local_center);
+  }
+  
+  void Sweep::Advance(float alpha) {
+    PHYSICS_ASSERT(alpha0 < 1.0f);
+    float beta = (alpha - alpha0) / (1.0f - alpha0);
+    c0 += beta * (c - c0);
+    a0 += beta * (a - a0);
+    alpha0 = alpha;
+  }
+
+  void Sweep::Normalize() {
+    float twoPi = 2.0f * PI;
+    float d =  twoPi * floorf(a0 / twoPi);
+    a0 -= d;
+    a -= d;
   }
 
 }
