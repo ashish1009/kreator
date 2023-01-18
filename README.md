@@ -102,12 +102,12 @@ Add the following library search paths
 ![](/kreator/layers/ecs_editor/output/ecs_5.png)
 
 ----------------
-- Ray Tracing
+- Ray Tracing : Under Development
 
 ![](/kreator/layers/ray_tracing/output/ray_tracing.png)
   
 ----------------
-- Mario
+- Mario : Under Development
 
 With Tile
 <table>
@@ -138,7 +138,7 @@ Without Tile
  </table>
  
 ----------------
-- Chess
+- Chess : Under Development
 
 ![](/kreator/layers/chess/output/chess_7.png)
 
