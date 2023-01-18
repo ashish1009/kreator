@@ -344,5 +344,29 @@ namespace physics {
     return Vec2(-s, c);
   }
 
+  void Rot::Log() const {
+    PHYSICS_LOG("  Rotation Data");
+    PHYSICS_LOG("    Radian : {0}", GetAngle());
+    PHYSICS_LOG("    Sin    : {0}", s);
+    PHYSICS_LOG("    Cos    : {0}", c);
+  }
+  
+  Transform2D::Transform2D(const Vec2& position, const Rot& rotation) : p(position), q(rotation) {}
+  
+  void Transform2D::SetIdentity() {
+    p.SetZero();
+    q.SetIdentity();
+  }
+  
+  void Transform2D::Set(const Vec2& position, float angle) {
+    p = position;
+    q.Set(angle);
+  }
+  
+  void Transform2D::Log() const {
+    PHYSICS_LOG("  Transform Data");
+    p.Log();
+    q.Log();
+  }
 
 }

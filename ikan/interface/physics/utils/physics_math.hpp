@@ -273,10 +273,40 @@ namespace physics {
     Vec2 GetXAxis() const;
     /// This function returns the y-axis using right thumb rule
     Vec2 GetYAxis() const;
+    
+    /// This function debug print the data
+    void Log() const;
 
     // Member variables
     /// Sine and cosine
     float s, c;
+  };
+  
+  /// This structure stores a transform contains translation and rotation for 2D Space. It is used to represent
+  /// the position and orientation of rigid frames.
+  struct Transform2D {
+    Transform2D() = default;
+    
+    /// Constructs the Transform using a position vector and a rotation.
+    /// - Parameters:
+    ///   - position: 2D Position Vector
+    ///   - rotation: rotation at Z Axis in radians
+    Transform2D(const Vec2& position, const Rot& rotation);
+    
+    /// Set this to the identity transform.
+    void SetIdentity();
+    /// Set this based on the position and angle.
+    /// - Parameters:
+    ///   - position: 2D Position Vector
+    ///   - angle: rotation at Z Axis in radians
+    void Set(const Vec2& position, float angle);
+    
+    /// This function debug print the data
+    void Log() const;
+    
+    // Variables
+    Vec2 p;
+    Rot q;
   };
   
   namespace math {
