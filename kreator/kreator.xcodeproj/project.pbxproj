@@ -16,6 +16,7 @@
 		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
 		B25F617C2969A4A90042FE09 /* background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25F617A2969A40F0042FE09 /* background.cpp */; };
 		B25F618B2969A9CF0042FE09 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25F61892969A9CF0042FE09 /* player.cpp */; };
+		B26F1A252977C93900957B15 /* physics_sandbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B26F1A232977C93900957B15 /* physics_sandbox.cpp */; };
 		B275570A29601F650020D552 /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B275570829601F650020D552 /* renderer_layer.cpp */; };
 		B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DDC295C83030076A2F9 /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -67,6 +68,8 @@
 		B25F617A2969A40F0042FE09 /* background.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = background.cpp; sourceTree = "<group>"; };
 		B25F61892969A9CF0042FE09 /* player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
 		B25F618A2969A9CF0042FE09 /* player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
+		B26F1A232977C93900957B15 /* physics_sandbox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = physics_sandbox.cpp; sourceTree = "<group>"; };
+		B26F1A242977C93900957B15 /* physics_sandbox.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = physics_sandbox.hpp; sourceTree = "<group>"; };
 		B275570829601F650020D552 /* renderer_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
 		B275570929601F650020D552 /* renderer_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
 		B2BD9DCB295C7D3C0076A2F9 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.dylib; sourceTree = "<group>"; };
@@ -167,6 +170,7 @@
 		B24DD82A2962FF5000525941 /* layers */ = {
 			isa = PBXGroup;
 			children = (
+				B26F1A222977C92200957B15 /* physics */,
 				B24DD82C2962FFDC00525941 /* chess */,
 				B24DD82B2962FFD700525941 /* mario */,
 				B251B3E9295E13EE00508210 /* ray_tracing */,
@@ -235,6 +239,15 @@
 				B275570929601F650020D552 /* renderer_layer.hpp */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		B26F1A222977C92200957B15 /* physics */ = {
+			isa = PBXGroup;
+			children = (
+				B26F1A232977C93900957B15 /* physics_sandbox.cpp */,
+				B26F1A242977C93900957B15 /* physics_sandbox.hpp */,
+			);
+			path = physics;
 			sourceTree = "<group>";
 		};
 		B2BD9DCA295C7D3C0076A2F9 /* lib */ = {
@@ -340,6 +353,7 @@
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
 				B25F618B2969A9CF0042FE09 /* player.cpp in Sources */,
 				B24DD82F2962FFEE00525941 /* chess_main.cpp in Sources */,
+				B26F1A252977C93900957B15 /* physics_sandbox.cpp in Sources */,
 				B2FC40212958B82D00447A1A /* sandbox_layer.cpp in Sources */,
 				B275570A29601F650020D552 /* renderer_layer.cpp in Sources */,
 				B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */,
