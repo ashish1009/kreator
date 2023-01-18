@@ -323,5 +323,26 @@ namespace physics {
     PHYSICS_LOG("    | {0} {1} {2} |", ex.y, ey.y, ez.y);
     PHYSICS_LOG("    | {0} {1} {2} |", ex.z, ey.z, ez.z);
   }
+  
+  Rot::Rot(float angle) : s(sinf(angle)), c(cosf(angle)) {}
+  
+  void Rot::Set(float angle) {
+    s = sinf(angle);
+    c = cosf(angle);
+  }
+  void Rot::SetIdentity() {
+    s = 0.0f;
+    c = 1.0f;
+  }
+  float Rot::GetAngle() const {
+    return atan2f(s, c);
+  }
+  Vec2 Rot::GetXAxis() const {
+    return Vec2(c, s);
+  }
+  Vec2 Rot::GetYAxis() const {
+    return Vec2(-s, c);
+  }
+
 
 }

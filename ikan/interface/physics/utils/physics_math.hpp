@@ -253,6 +253,32 @@ namespace physics {
     Vec3 ex, ey, ez;
   };
   
+  /// This structure stores the rotation information for single axis
+  struct Rot {
+    Rot() = default;
+    
+    /// Constructs the rotation from an angle in radians
+    /// - Parameter angle: Angle in radians
+    explicit Rot(float angle);
+    
+    /// This function sets the angle value;
+    /// - Parameter angle: Angle in radians
+    void Set(float angle);
+    /// This function sets the angle to the identity rotation
+    void SetIdentity();
+
+    /// This function returns the angle in radians
+    float GetAngle() const;
+    /// This function returns the x-axis using right thumb rule
+    Vec2 GetXAxis() const;
+    /// This function returns the y-axis using right thumb rule
+    Vec2 GetYAxis() const;
+
+    // Member variables
+    /// Sine and cosine
+    float s, c;
+  };
+  
   namespace math {
     
     /// This function is used to ensure that a floating point number is not a NaN or infinity.
