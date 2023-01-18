@@ -33,7 +33,7 @@ namespace ikan {
     Imgui,
     
     // Physics
-    PhysicsWorld
+    Physics
   };
   
   static inline std::string GetModuleName(const std::string_view module_tag) {
@@ -85,7 +85,7 @@ namespace ikan {
         
       case LogModule::Imgui: return "ImGui";
         
-      case LogModule::PhysicsWorld: return "Physics World";
+      case LogModule::Physics: return "Physics";
 
       default: assert(false);
     }

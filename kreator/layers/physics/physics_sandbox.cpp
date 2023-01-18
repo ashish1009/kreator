@@ -7,6 +7,8 @@
 
 #include "physics_sandbox.hpp"
 
+#include <physics/physics_headers.h>
+
 namespace physics {
   
   PhysicsLayer::PhysicsLayer() : Layer("Kreator") {
@@ -19,6 +21,11 @@ namespace physics {
   
   void PhysicsLayer::Attach() {
     IK_INFO("Physics", "Attaching Physics Layer instance");
+    
+    Vec2 vec {1, 3};
+    
+    auto a = vec(1);
+    IK_CRITICAL("", "{0}", a);
 
   }
   
