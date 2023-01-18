@@ -10,13 +10,15 @@
 #include "layers/ray_tracing/src/renderer_layer.hpp"
 #include "layers/mario/src/mario_main.hpp"
 #include "layers/chess/src/chess_main.hpp"
+#include "layers/physics/physics_sandbox.hpp"
 
 enum class SupportedApplicationType : uint8_t {
   Sandbox,
   Editor,
   RayTracing,
   Chess,
-  Mario
+  Mario,
+  Physics
   /* Add More with time */
 };
 
@@ -43,6 +45,9 @@ public:
       case SupportedApplicationType::Chess :
         PushLayer(std::make_shared<chess::ChessLayer>());
         break;
+      case SupportedApplicationType::Physics :
+        PushLayer(std::make_shared<physics::PhysicsLayer>());
+        break;
     };
   }
   ~KreatorApp() {
@@ -53,7 +58,7 @@ public:
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Set up the type of applicaiton we want to create
-  SupportedApplicationType application_type = SupportedApplicationType::Mario;
+  SupportedApplicationType application_type = SupportedApplicationType::Physics;
   
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;
@@ -103,6 +108,11 @@ std::unique_ptr<ikan::Application> CreateApplication() {
       application_spec.window_specification.title = "Chess";
       application_spec.client_asset_path = "../../../kreator/layers/chess/assets/";
       application_spec.save_ini_file_path = "../../../kreator/layers/chess/chess.ini";
+    case SupportedApplicationType::Physics :
+      application_spec.name = "Physics";
+      application_spec.window_specification.title = "Physics";
+      application_spec.client_asset_path = "../../../kreator/layers/physics/assets/";
+      application_spec.save_ini_file_path = "../../../kreator/layers/physics/physics.ini";
       break;
 
   };
