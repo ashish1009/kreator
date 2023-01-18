@@ -31,6 +31,8 @@
 		B2250D042958751E0067C43B /* core_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250D032958751E0067C43B /* core_logger.h */; };
 		B227F37329597F2B0055D871 /* open_gl_renderer_id_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B227F37129597F2B0055D871 /* open_gl_renderer_id_manager.cpp */; };
 		B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B227F37229597F2B0055D871 /* open_gl_renderer_id_manager.hpp */; };
+		B23214722977FFC600845848 /* physics_headers.h in Headers */ = {isa = PBXBuildFile; fileRef = B23214712977FFC600845848 /* physics_headers.h */; };
+		B232147A297803E400845848 /* physics_common.h in Headers */ = {isa = PBXBuildFile; fileRef = B2321479297803E400845848 /* physics_common.h */; };
 		B24C4A6C2967FDA000675599 /* libimguizmo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B24C4A392967FD3600675599 /* libimguizmo.a */; };
 		B24C4A772968638B00675599 /* scene_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24C4A752968638B00675599 /* scene_camera.cpp */; };
 		B24C4A782968638B00675599 /* scene_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24C4A762968638B00675599 /* scene_camera.hpp */; };
@@ -63,6 +65,8 @@
 		B25F617729699FC80042FE09 /* scriptable_entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25F617529699FC80042FE09 /* scriptable_entity.cpp */; };
 		B25F61872969A8440042FE09 /* aabb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25F61852969A8440042FE09 /* aabb.cpp */; };
 		B25F61882969A8440042FE09 /* aabb.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B25F61862969A8440042FE09 /* aabb.hpp */; };
+		B26F1A322977E8C100957B15 /* physics_math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B26F1A302977E8C100957B15 /* physics_math.cpp */; };
+		B26F1A332977E8C100957B15 /* physics_math.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B26F1A312977E8C100957B15 /* physics_math.hpp */; };
 		B27CF12A295EC6E000837A36 /* uuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF128295EC6E000837A36 /* uuid.cpp */; };
 		B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B27CF129295EC6E000837A36 /* uuid.hpp */; };
 		B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */; };
@@ -223,6 +227,8 @@
 		B227F37129597F2B0055D871 /* open_gl_renderer_id_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_renderer_id_manager.cpp; sourceTree = "<group>"; };
 		B227F37229597F2B0055D871 /* open_gl_renderer_id_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_renderer_id_manager.hpp; sourceTree = "<group>"; };
 		B227F38B2959DBF40055D871 /* single_texture_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = single_texture_shader.glsl; sourceTree = "<group>"; };
+		B23214712977FFC600845848 /* physics_headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = physics_headers.h; sourceTree = "<group>"; };
+		B2321479297803E400845848 /* physics_common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = physics_common.h; sourceTree = "<group>"; };
 		B24C4A312967FD3600675599 /* imguizmo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imguizmo.xcodeproj; path = imguizmo/imguizmo.xcodeproj; sourceTree = "<group>"; };
 		B24C4A752968638B00675599 /* scene_camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_camera.cpp; sourceTree = "<group>"; };
 		B24C4A762968638B00675599 /* scene_camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_camera.hpp; sourceTree = "<group>"; };
@@ -257,6 +263,8 @@
 		B25F617529699FC80042FE09 /* scriptable_entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scriptable_entity.cpp; sourceTree = "<group>"; };
 		B25F61852969A8440042FE09 /* aabb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aabb.cpp; sourceTree = "<group>"; };
 		B25F61862969A8440042FE09 /* aabb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = aabb.hpp; sourceTree = "<group>"; };
+		B26F1A302977E8C100957B15 /* physics_math.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = physics_math.cpp; sourceTree = "<group>"; };
+		B26F1A312977E8C100957B15 /* physics_math.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = physics_math.hpp; sourceTree = "<group>"; };
 		B27CF128295EC6E000837A36 /* uuid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = uuid.cpp; sourceTree = "<group>"; };
 		B27CF129295EC6E000837A36 /* uuid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = uuid.hpp; sourceTree = "<group>"; };
 		B2A342F32976A1010015641F /* physics_2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = physics_2d.xcodeproj; path = physics_2d/physics_2d.xcodeproj; sourceTree = "<group>"; };
@@ -400,6 +408,7 @@
 				B2FC3E852958796F00447A1A /* ikan_headers.h */,
 				B2250CD82958616B0067C43B /* core */,
 				B2FC400E2958B00B00447A1A /* renderer */,
+				B26F1A262977D9B900957B15 /* physics */,
 				B251B3EE295E155A00508210 /* ecs */,
 				B2C0D8062959E151003F168B /* editor */,
 				B24DD81B2962FDA000525941 /* ray_tracing */,
@@ -413,6 +422,7 @@
 			children = (
 				B2250CE42958639D0067C43B /* core */,
 				B2FC400F2958B01900447A1A /* renderer */,
+				B26F1A2D2977D9C800957B15 /* physics */,
 				B251B3F2295E156A00508210 /* ecs */,
 				B2C0D8042959E13C003F168B /* editor */,
 				B24DD80B2962FD9800525941 /* ray_tracing */,
@@ -587,6 +597,40 @@
 				B25F61862969A8440042FE09 /* aabb.hpp */,
 			);
 			path = math;
+			sourceTree = "<group>";
+		};
+		B26F1A262977D9B900957B15 /* physics */ = {
+			isa = PBXGroup;
+			children = (
+				B2321479297803E400845848 /* physics_common.h */,
+				B23214712977FFC600845848 /* physics_headers.h */,
+				B26F1A2E2977D9D400957B15 /* utils */,
+			);
+			path = physics;
+			sourceTree = "<group>";
+		};
+		B26F1A2D2977D9C800957B15 /* physics */ = {
+			isa = PBXGroup;
+			children = (
+				B26F1A2F2977D9D900957B15 /* utils */,
+			);
+			path = physics;
+			sourceTree = "<group>";
+		};
+		B26F1A2E2977D9D400957B15 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				B26F1A312977E8C100957B15 /* physics_math.hpp */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		B26F1A2F2977D9D900957B15 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				B26F1A302977E8C100957B15 /* physics_math.cpp */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 		B2B6CDAB2958D7D400AE609E /* Products */ = {
@@ -852,6 +896,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B25F617029699D610042FE09 /* scriptable_entity.hpp in Headers */,
+				B26F1A332977E8C100957B15 /* physics_math.hpp in Headers */,
 				B251B3FA295E15D300508210 /* viewport.hpp in Headers */,
 				B2F4956B29630B8F003F9CB0 /* entt_scene.hpp in Headers */,
 				B2FC3EB42958892200447A1A /* layer_stack.hpp in Headers */,
@@ -875,6 +920,7 @@
 				B24DD8242962FDA000525941 /* ray_material.hpp in Headers */,
 				B2FC40172958B09000447A1A /* renderer.hpp in Headers */,
 				B2250CCF29585E310067C43B /* prefix_header.pch in Headers */,
+				B232147A297803E400845848 /* physics_common.h in Headers */,
 				B2DAAB82296575B0003578D9 /* core_components.hpp in Headers */,
 				B24DD8382963045400525941 /* stb_image.h in Headers */,
 				B2250D02295873A70067C43B /* ikan_common.h in Headers */,
@@ -893,6 +939,7 @@
 				B2C78067296AE470003F343E /* aabb_renderer.hpp in Headers */,
 				B2FC405F2958BD0900447A1A /* open_gl_renderer_api.hpp in Headers */,
 				B24DD8282962FDA000525941 /* ray.hpp in Headers */,
+				B23214722977FFC600845848 /* physics_headers.h in Headers */,
 				B2C78409296AF2E5003F343E /* scene_serialiser.hpp in Headers */,
 				B2C0D80E2959FB69003F168B /* open_gl_renderer_buffer.hpp in Headers */,
 				B2C0D8002959E02B003F168B /* renderer_stats.hpp in Headers */,
@@ -1065,6 +1112,7 @@
 				B25F5DDE2966D3450030DE03 /* scene_panel_manager.cpp in Sources */,
 				B2FC40242958BAC400447A1A /* renderer_context.cpp in Sources */,
 				B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */,
+				B26F1A322977E8C100957B15 /* physics_math.cpp in Sources */,
 				B2FC40622958BD6100447A1A /* renderer_api.cpp in Sources */,
 				B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */,
 				B2584ECF295B7B3E00234714 /* maths.cpp in Sources */,
