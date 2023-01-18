@@ -19,8 +19,9 @@ namespace ikan {
     virtual ~MouseMovedEvent() = default;
     
     /// Mouse moved event
-    /// - Parameter - X position of Mouse:
-    /// - Parameter - Y position of Mouse:
+    /// - Parameters:
+    ///  - x_offset: x position of Mouse:
+    ///  - y_offset: y position of Mouse:
     MouseMovedEvent(float x, float y);
     
     /// This function returns the X position of mouse
@@ -45,8 +46,9 @@ namespace ikan {
     virtual ~MouseScrolledEvent() = default;
     
     /// Mosue Scroll Event
-    /// - Parameter - x Offset of Scrolling:
-    /// - Parameter - y Offset of Scrolling:
+    /// - Parameters:
+    ///  - x_offset: x Offset of Scrolling:
+    ///  - y_offset: y Offset of Scrolling:
     MouseScrolledEvent(float x_offset, float y_offset);
     
     /// This function returns x Offset of Scrolling
@@ -90,7 +92,7 @@ namespace ikan {
     virtual ~MouseButtonPressedEvent() = default;
     
     /// Mouse button pressed Event
-    /// - Parameter - Mouse button pressed:
+    /// - Parameter button: Mouse button pressed:
     MouseButtonPressedEvent(MouseButton button);
     
     /// This function prints the event detail
@@ -106,7 +108,7 @@ namespace ikan {
     virtual ~MouseButtonReleasedEvent() = default;
     
     /// Mouse button release ebent
-    /// - Parameter - Mouse button released:
+    /// - Parameter button: Mouse button released:
     MouseButtonReleasedEvent(MouseButton button);
     
     /// This function prints the event detail

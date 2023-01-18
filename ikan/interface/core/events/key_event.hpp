@@ -37,8 +37,8 @@ namespace ikan {
     virtual ~KeyPressedEvent() = default;
     
     /// This this Key pressed event constructor, updates the key code and repeated value
-    /// - Parameter - Key code of event:
-    /// - Parameter - repeat count:
+    /// - Parameter key_code: Key code of event:
+    /// - Parameter repeated_count: repeat count:
     KeyPressedEvent(KeyCode key_code, int32_t repeated_count);
     
     /// This function returns the count of key repeated
@@ -60,8 +60,8 @@ namespace ikan {
     virtual ~KeyReleasedEvent() = default;
     
     /// Key Release Event
-    /// - Parameter - Key code that released:
-    KeyReleasedEvent(KeyCode keycode);
+    /// - Parameter key_code: Key code that released:
+    KeyReleasedEvent(KeyCode key_code);
     
     /// This function prints the event detail
     void Print() const override;
@@ -76,8 +76,8 @@ namespace ikan {
     virtual ~KeyTypedEvent() = default;
     
     /// Key Type event
-    /// - Parameter - Key code pressed:
-    KeyTypedEvent(KeyCode keycode);
+    /// - key_code keycode: Key code pressed:
+    KeyTypedEvent(KeyCode key_code);
 
     /// This function prints the event detail
     void Print() const override;

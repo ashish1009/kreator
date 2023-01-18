@@ -43,10 +43,11 @@ namespace ikan {
     ///   - %l : Log lebel string (-8 measn width reserved for the same)
     ///   - %n : Logger Type (core or client) (-4 is width reserved for the same)
     ///
-    /// - Parameter - Core log Level:
-    /// - Parameter - Client Log Level:
-    /// - Parameter - Path relative to executable binary, where our log file to be saved :
-    /// - Parameter - Log file name:
+    /// - Parameters:
+    ///   - core_level: Core log Level:
+    ///   - client_level: Client Log Level:
+    ///   - log_file_path: Path relative to executable binary, where our log file to be saved :
+    ///   - log_file_name: Log file name:
     /// - Important: Add '\' in the end of 'log_file_path' and ''log_file_name' should be wiothout extension
     static void Init(Level core_level,
                      Level client_level,
@@ -68,10 +69,10 @@ namespace ikan {
     static std::shared_ptr<spdlog::logger>& GetClientLogger();
     
     /// This functoin Disables the module log
-    /// - Parameter - tag name to be disabled:
+    /// - Parameter tag: tag name to be disabled:
     static void DisableModule(LogModule tag);
     /// This functoin Enables module log
-    /// - Parameter - tag name to be enabled:
+    /// - Parameter tag: tag name to be enabled:
     static void EnableModule(LogModule tag);
 
     template<typename... Args>

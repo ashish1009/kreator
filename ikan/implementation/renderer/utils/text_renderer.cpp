@@ -84,7 +84,7 @@ namespace ikan {
     text_data_->pipeline->AddVertexBuffer(text_data_->vertex_buffer);
     
     // Settingup shader
-    text_data_->shader = Renderer::GetShader(AssetManager::CoreAsset("shaders/text_shader.glsl"));
+    text_data_->shader = Renderer::GetShader(DirectoryManager::CoreAsset("shaders/text_shader.glsl"));
     
     // Base Texture coordinate for Char rendering
     text_data_->base_texture_coords[0] = { 0.0f, 0.0f };

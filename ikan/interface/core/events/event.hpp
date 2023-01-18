@@ -77,7 +77,7 @@ return category; \
   class EventDispatcher {
   public:
     /// Constructor that store the event reference in the dispatcher
-    ///  - Parameter - Event reference triggered from window callback:
+    ///  - Parameter event: Event reference triggered from window callback:
     EventDispatcher(Event& event);
     
     /// This function Dispatches the event dynamically
@@ -87,7 +87,7 @@ return category; \
     /// Instance of Event. This Dispatcher Dispatches the function binded to a specific Event. So
     /// checked all the triggered events at same time and return the calling on Function Binded as
     /// Funciton pointer <F>
-    ///  - Parameter - Function pointer to be triggered when even dispatches:
+    ///  - Parameter func: Function pointer to be triggered when even dispatches:
     template<typename T, typename F> bool Dispatch(const F& func) {
       if (event_.GetEventType() == T::GetStaticType()) {
         event_.handled_ |= func(static_cast<T&>(event_));

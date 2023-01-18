@@ -38,7 +38,7 @@ namespace ikan {
     IK_CORE_INFO(LogModule::Application, "Creating Core Application Instance ...");
     specification_.Log();
     
-    AssetManager::SetClientAssetPath(specification_.client_asset_path);
+    DirectoryManager::SetClientAssetPath(specification_.client_asset_path);
     
     // Create Memroy for Renderer Data
     // NOTE: Creating the Renderer Data Memory in very begining as this will
