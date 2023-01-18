@@ -37,16 +37,16 @@ namespace ikan {
     virtual void Detach() = 0;
     
     /// This function renders the GUI Window for this layer. To be called each frame from application.
-    /// NOTE Core ikan::Application is taking care to call the RenderGui API for all Layers
+    /// - Important: Core ikan::Application is taking care to call the RenderGui API for all Layers
     virtual void RenderGui() = 0;
-    /// This function updates the layer data. To be called each frame from application. NOTE Core
-    /// ikan::Application is taking care to call the Update(ts) API for all Layers
+    /// This function updates the layer data. To be called each frame from application.
     /// - Parameter ts: Time step between 2 Frames
+    /// - Important: Core ikan::Application is taking care to call the Update(ts) API for all Layers
     virtual void Update(Timestep ts) = 0;
     /// This function handles all the events triggered for the layer. To be whenever an event is
-    /// triggered in the window NOTE Core ikan::Application is taking care to call the
-    /// EventHandler(event) API for all Layers
+    /// triggered in the window
     /// - Parameter event: Event (Base class) intance. Dispatch event from Dispatcher
+    /// - Important: Core ikan::Application is taking care to call the EventHandler(event) API for all Layers
     virtual void EventHandler(Event& event) = 0;
     
     /// This function returns the name of layer

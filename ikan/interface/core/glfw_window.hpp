@@ -49,8 +49,8 @@ namespace ikan {
     /// This funtion shut down the current window and destroy the GLFW Context
     virtual void Shutdown() = 0;
     /// This function updates the event callback function and register it to the window instance
-    /// NOTE: EventCallbackFn to be called every time any even triggered to window
     /// - Parameter event_callback_fn: function pointer to be registered in the window
+    /// - Important: EventCallbackFn to be called every time any even triggered to window
     virtual void SetEventFunction(const EventCallbackFn& event_callback_fn) = 0;
     /// This function maximise the window to its full length based on the current monitor. Call when
     /// Window need to be maximised
@@ -96,10 +96,10 @@ namespace ikan {
     /// This function create instance of to create a window based on the Operating system supported
     /// by the sytem / Engine. This is resposible to create the GLFW Window instance for the OS and
     /// Create the Renderer Context for the suppoorted Renderer API.
-    /// NOTE: Set the renderer API befiore creating the Widnow, as it is needed to creaste the Contexrt
     /// - Parameters:
     ///   - os: Current operating system
     ///   - specificaiton: window specification
+    /// - Important: Set the renderer API befiore creating the Widnow, as it is needed to creaste the Contexrt
     [[nodiscard]] static std::unique_ptr<Window> Create(OperatingSystem os,
                                                         const Specification& spec);
   };

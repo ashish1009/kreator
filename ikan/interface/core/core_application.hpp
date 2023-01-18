@@ -23,7 +23,7 @@ namespace ikan {
   ///   - Render the GUI window
   ///   - Handle all the events of the windows Idly events should be handled at Window class only
   ///     but functionlity depends on the application (passed as function pointer)
-  /// NOTE: Client application should be derived from this Base appliction if they are including the
+  /// - Important: Client application should be derived from this Base appliction if they are including the
   /// ikan Entry point. As ikan Entry point is working on application of type "ikan::Applciation"
   class Application {
   public:
@@ -66,13 +66,14 @@ namespace ikan {
     // functionality will be completely based on overriden methods
     // ------------------------------------------------------------------------
     
-    /// This function is responsible for :
-    ///   - Updating the Application.
-    ///   - Updating each Layer frame.
-    ///   - Updating the window and Swap the buffers
-    ///   - Render the GUI by calling 'RenderGui()'
-    /// This API performs all the above actions for each API. In Core ikan::entry_point this funciton is
-    /// called by default
+    /// This function runs the game loop of the application:
+    /// - This function is responsible for:
+    ///   - Updating the Application.:
+    ///   - Updating each Layer frame.:
+    ///   - Updating the window and Swap the buffers:
+    ///   - Render the GUI by calling 'RenderGui()':
+    /// - Important: This API performs all the above actions for each API. In Core ikan::entry_point
+    /// this funciton is called by default
     virtual void Run();
     /// This Function responsible for closing the current applciation (ikan::Applciation) adn ends the
     /// game loop
