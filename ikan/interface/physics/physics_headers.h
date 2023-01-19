@@ -14,6 +14,9 @@
 #pragma clang diagnostic ignored "-Wdocumentation"
 #pragma clang diagnostic ignored "-Wformat-security"
 
+#include "physics/physics_common.h"
+#include "physics/utils/settings.hpp"
 #include "physics/utils/physics_math.hpp"
 #include "physics/utils/block_allocator.hpp"
 #include "physics/utils/stack_allocator.hpp"
+#include "physics/utils/growable_stack.hpp"
