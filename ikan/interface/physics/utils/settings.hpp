@@ -18,13 +18,13 @@ namespace physics {
     /// This function allocate the memory of size
     /// - Parameter size: size of memory allocation
     /// - Important: Change Implementation for User Defined Allocation
-    static void* Alloc(int32_t size) {
+    inline void* Alloc(int32_t size) {
       return AllocImpl(size);
     }
     /// This function delete the allocated memory
     /// - Parameter mem: memory pointer to be deleted
     /// - Important: Change Implementation for User Defined Free
-    static void Free(void* mem) {
+    inline void Free(void* mem) {
       FreeImpl(mem);
     }
     

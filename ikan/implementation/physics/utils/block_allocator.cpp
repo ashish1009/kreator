@@ -91,12 +91,12 @@ namespace physics {
       PHYSICS_ASSERT(block_count * block_size <= ChunkSize);
 
       for (int32_t i = 0; i < block_count - 1; ++i) {
-        Block* block = (Block*)((int8_t*)chunk->blocks + block_size * i);
-        Block* next = (Block*)((int8_t*)chunk->blocks + block_size * (i + 1));
+        Block* block = (Block*)((std::byte*)chunk->blocks + block_size * i);
+        Block* next = (Block*)((std::byte*)chunk->blocks + block_size * (i + 1));
         block->next = next;
       }
       
-      Block* last = (Block*)((int8_t*)chunk->blocks + block_size * (block_count - 1));
+      Block* last = (Block*)((std::byte*)chunk->blocks + block_size * (block_count - 1));
       last->next = nullptr;
 
       free_lists_[index] = chunk->blocks->next;
@@ -128,9 +128,9 @@ namespace physics {
     for (int32_t i = 0; i < chunk_count_; ++i) {
       Chunk* chunk = chunks_ + i;
       if (chunk->block_size != block_size) {
-        PHYSICS_ASSERT((int8_t*)p + block_size <= (int8_t*)chunk->blocks or (int8_t*)chunk->blocks + ChunkSize <= (int8_t*)p);
+        PHYSICS_ASSERT((std::byte*)p + block_size <= (std::byte*)chunk->blocks or (std::byte*)chunk->blocks + ChunkSize <= (std::byte*)p);
       } else {
-        if ((int8_t*)chunk->blocks <= (int8_t*)p and (int8_t*)p + block_size <= (int8_t*)chunk->blocks + ChunkSize) {
+        if ((std::byte*)chunk->blocks <= (std::byte*)p and (std::byte*)p + block_size <= (std::byte*)chunk->blocks + ChunkSize) {
           found = true;
         }
       }
