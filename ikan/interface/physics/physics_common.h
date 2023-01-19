@@ -21,10 +21,10 @@
 // --------------------
 // Assert
 // --------------------
-#define PHYSICS_ASSERT(x, ...) IK_CORE_ASSERT(x, __VA_ARGS__);
+#define PHYSICS_ASSERT(x) IK_CORE_ASSERT(x);
 
 // -----------------------------------------------
 // Constants
 // -----------------------------------------------
 #define  Epsilon    FLT_EPSILON
-
+#define  PI         3.14159265359f

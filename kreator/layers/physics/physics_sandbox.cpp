@@ -28,6 +28,14 @@ namespace physics {
     Mat33 m(a, b, c);
     m.Log();
     
+    auto rr = glm::radians(45.0f);
+    Rot r(rr);
+    r.Log();
+    
+    BlockAllocator block;
+    block.Allocate(200);
+    block.Allocate(600);
+    
   }
   
   void PhysicsLayer::Detach() {

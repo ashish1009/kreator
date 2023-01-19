@@ -253,6 +253,86 @@ namespace physics {
     Vec3 ex, ey, ez;
   };
   
+  /// This structure stores the rotation information for single axis
+  struct Rot {
+    Rot() = default;
+    
+    /// Constructs the rotation from an angle in radians
+    /// - Parameter angle: Angle in radians
+    explicit Rot(float angle);
+    
+    /// This function sets the angle value;
+    /// - Parameter angle: Angle in radians
+    void Set(float angle);
+    /// This function sets the angle to the identity rotation
+    void SetIdentity();
+
+    /// This function returns the angle in radians
+    float GetAngle() const;
+    /// This function returns the x-axis using right thumb rule
+    Vec2 GetXAxis() const;
+    /// This function returns the y-axis using right thumb rule
+    Vec2 GetYAxis() const;
+    
+    /// This function debug print the data
+    void Log() const;
+
+    // Member variables
+    /// Sine and cosine
+    float s, c;
+  };
+  
+  /// This structure stores a transform contains translation and rotation for 2D Space. It is used to represent
+  /// the position and orientation of rigid frames.
+  struct Transform2D {
+    Transform2D() = default;
+    
+    /// Constructs the Transform using a position vector and a rotation.
+    /// - Parameters:
+    ///   - position: 2D Position Vector
+    ///   - rotation: rotation at Z Axis in radians
+    Transform2D(const Vec2& position, const Rot& rotation);
+    
+    /// Set this to the identity transform.
+    void SetIdentity();
+    /// Set this based on the position and angle.
+    /// - Parameters:
+    ///   - position: 2D Position Vector
+    ///   - angle: rotation at Z Axis in radians
+    void Set(const Vec2& position, float angle);
+    
+    /// This function debug print the data
+    void Log() const;
+    
+    // Variables
+    Vec2 p;
+    Rot q;
+  };
+  
+  /// This strucrture describes the motion of a body/shape for time of impact computation. Shapes are
+  /// defined with respect to the body origin, which may no coincide with the center of mass. However,
+  /// to support dynamics we must interpolate the center of mass position.
+  /// - Important: https://fgiesen.wordpress.com/2012/08/15/linear-interpolation-past-present-and-future/
+  struct Sweep {
+    /// This functuion interpolates transform at a specific time.
+    /// - Parameters:
+    ///   - transform: The output transform 2D  data
+    ///   - beta: is a factor in [0,1], where 0 indicates alpha0.
+    void GetTransform(Transform2D* transform, float beta) const;
+    /// This functuion advances the sweep forward, yielding a new initial state.
+    /// - Parameter alpha: the new initial time.
+    void Advance(float alpha);
+    
+    /// Normalize the angles.
+    void Normalize();
+    
+    // Variables
+    Vec2 local_center;  /// local center of mass position
+    Vec2 c0, c;         /// center world positions
+    float a0, a;        /// world angles
+    float alpha0;       /// Fraction of the current time step in the range [0,1] c0 and a0 are the positions at alpha0.
+  };
+  
   namespace math {
     
     /// This function is used to ensure that a floating point number is not a NaN or infinity.
@@ -270,6 +350,22 @@ namespace physics {
     ///   - b: Vector 3 float b
     Vec3 Cross(const Vec3& a, const Vec3& b);
     
+    /// This function rotates a vector by rotation defined in q
+    /// - Parameters:
+    ///   - q: Rotation Data
+    ///   - v: Vector of 2 float to be rotated
+    Vec2 Mul(const Rot& q, const Vec2& v);
+    
+    /// This function adds two vectors (2 Floats) component-wise.
+    Vec2 operator + (const Vec2& a, const Vec2& b);
+    /// This function subtracts two vectors (2 Floats) component-wise.
+    Vec2 operator - (const Vec2& a, const Vec2& b);
+    /// This function performs multiply the Vector 2 with a scalar value
+    /// - Parameters:
+    ///   - s: Scalar value
+    ///   - a: Vector 2
+    Vec2 operator* (float s, const Vec2& a);
+
   }
 
 }

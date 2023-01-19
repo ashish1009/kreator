@@ -33,6 +33,10 @@
 		B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B227F37229597F2B0055D871 /* open_gl_renderer_id_manager.hpp */; };
 		B23214722977FFC600845848 /* physics_headers.h in Headers */ = {isa = PBXBuildFile; fileRef = B23214712977FFC600845848 /* physics_headers.h */; };
 		B232147A297803E400845848 /* physics_common.h in Headers */ = {isa = PBXBuildFile; fileRef = B2321479297803E400845848 /* physics_common.h */; };
+		B232148529783AF200845848 /* block_allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B232148329783AF200845848 /* block_allocator.cpp */; };
+		B232148629783AF200845848 /* block_allocator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B232148429783AF200845848 /* block_allocator.hpp */; };
+		B232149529784E2B00845848 /* settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B232149329784E2B00845848 /* settings.cpp */; };
+		B232149629784E2B00845848 /* settings.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B232149429784E2B00845848 /* settings.hpp */; };
 		B24C4A6C2967FDA000675599 /* libimguizmo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B24C4A392967FD3600675599 /* libimguizmo.a */; };
 		B24C4A772968638B00675599 /* scene_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24C4A752968638B00675599 /* scene_camera.cpp */; };
 		B24C4A782968638B00675599 /* scene_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24C4A762968638B00675599 /* scene_camera.hpp */; };
@@ -229,6 +233,10 @@
 		B227F38B2959DBF40055D871 /* single_texture_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = single_texture_shader.glsl; sourceTree = "<group>"; };
 		B23214712977FFC600845848 /* physics_headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = physics_headers.h; sourceTree = "<group>"; };
 		B2321479297803E400845848 /* physics_common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = physics_common.h; sourceTree = "<group>"; };
+		B232148329783AF200845848 /* block_allocator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = block_allocator.cpp; sourceTree = "<group>"; };
+		B232148429783AF200845848 /* block_allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = block_allocator.hpp; sourceTree = "<group>"; };
+		B232149329784E2B00845848 /* settings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = settings.cpp; sourceTree = "<group>"; };
+		B232149429784E2B00845848 /* settings.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = settings.hpp; sourceTree = "<group>"; };
 		B24C4A312967FD3600675599 /* imguizmo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imguizmo.xcodeproj; path = imguizmo/imguizmo.xcodeproj; sourceTree = "<group>"; };
 		B24C4A752968638B00675599 /* scene_camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_camera.cpp; sourceTree = "<group>"; };
 		B24C4A762968638B00675599 /* scene_camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_camera.hpp; sourceTree = "<group>"; };
@@ -621,6 +629,8 @@
 			isa = PBXGroup;
 			children = (
 				B26F1A312977E8C100957B15 /* physics_math.hpp */,
+				B232148429783AF200845848 /* block_allocator.hpp */,
+				B232149429784E2B00845848 /* settings.hpp */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -629,6 +639,8 @@
 			isa = PBXGroup;
 			children = (
 				B26F1A302977E8C100957B15 /* physics_math.cpp */,
+				B232148329783AF200845848 /* block_allocator.cpp */,
+				B232149329784E2B00845848 /* settings.cpp */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -899,6 +911,7 @@
 				B26F1A332977E8C100957B15 /* physics_math.hpp in Headers */,
 				B251B3FA295E15D300508210 /* viewport.hpp in Headers */,
 				B2F4956B29630B8F003F9CB0 /* entt_scene.hpp in Headers */,
+				B232148629783AF200845848 /* block_allocator.hpp in Headers */,
 				B2FC3EB42958892200447A1A /* layer_stack.hpp in Headers */,
 				B2BD9E0F295CA7560076A2F9 /* open_gl_framebuffer.hpp in Headers */,
 				B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */,
@@ -925,6 +938,7 @@
 				B24DD8382963045400525941 /* stb_image.h in Headers */,
 				B2250D02295873A70067C43B /* ikan_common.h in Headers */,
 				B2BCB84E295AE3410068FCA2 /* input.hpp in Headers */,
+				B232149629784E2B00845848 /* settings.hpp in Headers */,
 				B24C4A782968638B00675599 /* scene_camera.hpp in Headers */,
 				B2BD9E16295CA7610076A2F9 /* framebuffer.hpp in Headers */,
 				B2C0D81A295A01DF003F168B /* pipeline.hpp in Headers */,
@@ -1109,6 +1123,7 @@
 				B24DD8392963045400525941 /* stb_image.cpp in Sources */,
 				B217E2FD2963133700311AE6 /* entity.cpp in Sources */,
 				B25F617729699FC80042FE09 /* scriptable_entity.cpp in Sources */,
+				B232148529783AF200845848 /* block_allocator.cpp in Sources */,
 				B25F5DDE2966D3450030DE03 /* scene_panel_manager.cpp in Sources */,
 				B2FC40242958BAC400447A1A /* renderer_context.cpp in Sources */,
 				B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */,
@@ -1146,6 +1161,7 @@
 				B2F526632959777F00A83C65 /* shader_uniform.cpp in Sources */,
 				B25F61872969A8440042FE09 /* aabb.cpp in Sources */,
 				B2F52667295979FE00A83C65 /* string_utils.cpp in Sources */,
+				B232149529784E2B00845848 /* settings.cpp in Sources */,
 				B2C0D819295A01DF003F168B /* pipeline.cpp in Sources */,
 				B2BCB84D295AE3410068FCA2 /* mac_os_input.cpp in Sources */,
 				B24DD8172962FD9800525941 /* ray.cpp in Sources */,
