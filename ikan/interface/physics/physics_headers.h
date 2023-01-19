@@ -16,3 +16,4 @@
 
 #include "physics/utils/physics_math.hpp"
 #include "physics/utils/block_allocator.hpp"
+#include "physics/utils/stack_allocator.hpp"
