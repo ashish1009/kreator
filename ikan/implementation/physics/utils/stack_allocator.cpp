@@ -30,7 +30,7 @@ namespace physics {
     }
 
     allocation_ += size;
-    max_allocation_ = std::max(max_allocation_, allocation_);
+    max_allocation_ = math::Max(max_allocation_, allocation_);
     ++entry_count_;
     
     return entry->data;

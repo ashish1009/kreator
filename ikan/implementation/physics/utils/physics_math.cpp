@@ -36,6 +36,20 @@ namespace physics {
       return Vec2(s * a.x, s * a.y);
     }
 
+    Vec2 Min(const Vec2& a, const Vec2& b) {
+      return Vec2(Min(a.x, b.x), Min(a.y, b.y));
+    }
+    Vec2 Max(const Vec2& a, const Vec2& b) {
+      return Vec2(Max(a.x, b.x), Max(a.y, b.y));
+    }
+    
+    Vec2 Abs(const Vec2& a) {
+      return Vec2(Abs(a.x), Abs(a.y));
+    }
+    
+    Mat22 Abs(const Mat22& A) {
+      return Mat22(Abs(A.ex), Abs(A.ey));
+    }
 
   }
   

@@ -365,6 +365,49 @@ namespace physics {
     ///   - s: Scalar value
     ///   - a: Vector 2
     Vec2 operator* (float s, const Vec2& a);
+    
+    /// This functiom returns the absolute value of a
+    /// - Parameter a: value
+    template <typename T> T Abs(T a) { return a > T(0) ? a : -a; }
+    
+    /// This functiom returns the absolute value of vector
+    /// - Parameter a: value
+    Vec2 Abs(const Vec2& a);
+    /// This functiom returns the absolute value of Mat 2x2
+    /// - Parameter a: value
+    Mat22 Abs(const Mat22& A);
+    
+    /// This function return the min value from a and b
+    /// - Parameters:
+    ///   - a: value a
+    ///   - b: value b
+    template <typename T> T Min(T a, T b) { return a < b ? a : b; }
+    /// This function return the max value from a and b
+    /// - Parameters:
+    ///   - a: value a
+    ///   - b: value b
+    template <typename T> T Max(T a, T b) { return a > b ? a : b; }
+
+    /// This function return the min value from 2 vectors
+    /// - Parameters:
+    ///   - a: vactor a
+    ///   - b: vactor b
+    Vec2 Min(const Vec2& a, const Vec2& b);
+    /// This function return the max value from 2 vectors
+    /// - Parameters:
+    ///   - a: vactor a
+    ///   - b: vactor b
+    Vec2 Max(const Vec2& a, const Vec2& b);
+    
+    /// This function swapts the data using 3rd variable of type T
+    /// - Parameters:
+    ///   - a: first variable
+    ///   - b: second variable
+    template<typename T> void Swap(T& a, T& b) {
+      T tmp = a;
+      a = b;
+      b = tmp;
+    }
 
   }
 
