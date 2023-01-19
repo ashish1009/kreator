@@ -16,15 +16,22 @@ namespace ikan {
   
 }
 
+// ----------------------------------
+// Multi thread Dispatcher queue
+// ----------------------------------
 static dispatch_queue_t loop_dispactch_queue_ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 
-/// This MACRO Shifts the LSB bit of number 1 at position x
-#define BIT(x) (1 << x)
-/// This MACRO convert x in string
-#define ToString(x) #x
-/// This MACRO Cast uint32_t into void pointer
-#define INT2VOIDP(i) (void*)(uintptr_t)(i)
+// ----------------------------------
+// Common Macros
+// ----------------------------------
+#define BIT(x)          (1 << x)                /// This MACRO Shifts the LSB bit of number 1 at position x
+#define ToString(x)     #x                      /// This MACRO convert x in string
+#define INT2VOIDP(i)    (void*)(uintptr_t)(i)   /// This MACRO Cast uint32_t into void pointer
 
+
+// -------------------------------------------
+// Copy and Move Constructors and Operators
+// -------------------------------------------
 /// This MACRO Deletes the Constructors (Default, Copy and Move ) and Operator = (Copy and Move) for any class to make pure static class
 #define MAKE_PURE_STATIC(x) \
 x() = delete; \
