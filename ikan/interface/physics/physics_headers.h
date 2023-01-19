@@ -15,3 +15,4 @@
 #pragma clang diagnostic ignored "-Wformat-security"
 
 #include "physics/utils/physics_math.hpp"
+#include "physics/utils/block_allocator.hpp"

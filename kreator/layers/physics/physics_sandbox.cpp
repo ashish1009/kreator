@@ -32,6 +32,10 @@ namespace physics {
     Rot r(rr);
     r.Log();
     
+    BlockAllocator block;
+    block.Allocate(200);
+    block.Allocate(600);
+    
   }
   
   void PhysicsLayer::Detach() {
