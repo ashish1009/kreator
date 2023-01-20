@@ -11,7 +11,7 @@ namespace physics {
   
   const int32_t BlockSizeCount = 16;
   
-  /// This Structure stores the next pointer to the block of allocated memory using physics::BlockAllocator
+  /// This structure stores the next pointer to the block of allocated memory using physics::BlockAllocator
   struct Block {
     Block* next;
   };

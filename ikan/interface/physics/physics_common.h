@@ -28,3 +28,13 @@
 // -----------------------------------------------
 #define  Epsilon    FLT_EPSILON
 #define  PI         3.14159265359f
+
+/// This is used to fatten AABBs in the dynamic tree. This allows proxies
+/// to move by a small amount without triggering a tree adjustment.
+/// This is in meters.
+#define AabbExtension    (0.1f * LengthUnitsPerMeter)
+
+/// This is used to fatten AABBs in the dynamic tree. This is used to predict
+/// the future position based on the current displacement.
+/// This is a dimensionless multiplier.
+#define AabbMultiplier    4.0f

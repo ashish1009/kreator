@@ -102,6 +102,13 @@
 		B2C78147296AF195003F343E /* libyaml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C78089296AF12C003F343E /* libyaml.a */; };
 		B2C78408296AF2E5003F343E /* scene_serialiser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2C78406296AF2E5003F343E /* scene_serialiser.cpp */; };
 		B2C78409296AF2E5003F343E /* scene_serialiser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2C78407296AF2E5003F343E /* scene_serialiser.hpp */; };
+		B2CA55172979296F00189EFD /* stack_allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2CA55152979296F00189EFD /* stack_allocator.cpp */; };
+		B2CA55182979296F00189EFD /* stack_allocator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2CA55162979296F00189EFD /* stack_allocator.hpp */; };
+		B2CA55342979379900189EFD /* growable_stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2CA55322979379900189EFD /* growable_stack.hpp */; };
+		B2CA554D29793C0D00189EFD /* dynamic_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2CA554B29793C0D00189EFD /* dynamic_tree.cpp */; };
+		B2CA554E29793C0D00189EFD /* dynamic_tree.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2CA554C29793C0D00189EFD /* dynamic_tree.hpp */; };
+		B2CA555F29793E0D00189EFD /* collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2CA555D29793E0D00189EFD /* collision.cpp */; };
+		B2CA556029793E0D00189EFD /* collision.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2CA555E29793E0D00189EFD /* collision.hpp */; };
 		B2DAAB81296575B0003578D9 /* core_components.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2DAAB7F296575AF003578D9 /* core_components.cpp */; };
 		B2DAAB82296575B0003578D9 /* core_components.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2DAAB80296575AF003578D9 /* core_components.hpp */; };
 		B2E7600C2958D38100ADBE79 /* mac_os_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */; };
@@ -306,6 +313,13 @@
 		B2C78084296AF12C003F343E /* yaml.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = yaml.xcodeproj; path = yaml/yaml.xcodeproj; sourceTree = "<group>"; };
 		B2C78406296AF2E5003F343E /* scene_serialiser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_serialiser.cpp; sourceTree = "<group>"; };
 		B2C78407296AF2E5003F343E /* scene_serialiser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_serialiser.hpp; sourceTree = "<group>"; };
+		B2CA55152979296F00189EFD /* stack_allocator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stack_allocator.cpp; sourceTree = "<group>"; };
+		B2CA55162979296F00189EFD /* stack_allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = stack_allocator.hpp; sourceTree = "<group>"; };
+		B2CA55322979379900189EFD /* growable_stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = growable_stack.hpp; sourceTree = "<group>"; };
+		B2CA554B29793C0D00189EFD /* dynamic_tree.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dynamic_tree.cpp; sourceTree = "<group>"; };
+		B2CA554C29793C0D00189EFD /* dynamic_tree.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dynamic_tree.hpp; sourceTree = "<group>"; };
+		B2CA555D29793E0D00189EFD /* collision.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = collision.cpp; sourceTree = "<group>"; };
+		B2CA555E29793E0D00189EFD /* collision.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = collision.hpp; sourceTree = "<group>"; };
 		B2DAAB7F296575AF003578D9 /* core_components.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = core_components.cpp; sourceTree = "<group>"; };
 		B2DAAB80296575AF003578D9 /* core_components.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_components.hpp; sourceTree = "<group>"; };
 		B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mac_os_window.cpp; sourceTree = "<group>"; };
@@ -610,9 +624,10 @@
 		B26F1A262977D9B900957B15 /* physics */ = {
 			isa = PBXGroup;
 			children = (
-				B2321479297803E400845848 /* physics_common.h */,
 				B23214712977FFC600845848 /* physics_headers.h */,
+				B2321479297803E400845848 /* physics_common.h */,
 				B26F1A2E2977D9D400957B15 /* utils */,
+				B2CA555529793DED00189EFD /* collision */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -621,6 +636,7 @@
 			isa = PBXGroup;
 			children = (
 				B26F1A2F2977D9D900957B15 /* utils */,
+				B2CA555C29793DFA00189EFD /* collision */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -628,9 +644,12 @@
 		B26F1A2E2977D9D400957B15 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				B232149429784E2B00845848 /* settings.hpp */,
 				B26F1A312977E8C100957B15 /* physics_math.hpp */,
 				B232148429783AF200845848 /* block_allocator.hpp */,
-				B232149429784E2B00845848 /* settings.hpp */,
+				B2CA55162979296F00189EFD /* stack_allocator.hpp */,
+				B2CA55322979379900189EFD /* growable_stack.hpp */,
+				B2CA554C29793C0D00189EFD /* dynamic_tree.hpp */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -638,9 +657,11 @@
 		B26F1A2F2977D9D900957B15 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				B232149329784E2B00845848 /* settings.cpp */,
 				B26F1A302977E8C100957B15 /* physics_math.cpp */,
 				B232148329783AF200845848 /* block_allocator.cpp */,
-				B232149329784E2B00845848 /* settings.cpp */,
+				B2CA55152979296F00189EFD /* stack_allocator.cpp */,
+				B2CA554B29793C0D00189EFD /* dynamic_tree.cpp */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -698,6 +719,22 @@
 				B2C78089296AF12C003F343E /* libyaml.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B2CA555529793DED00189EFD /* collision */ = {
+			isa = PBXGroup;
+			children = (
+				B2CA555E29793E0D00189EFD /* collision.hpp */,
+			);
+			path = collision;
+			sourceTree = "<group>";
+		};
+		B2CA555C29793DFA00189EFD /* collision */ = {
+			isa = PBXGroup;
+			children = (
+				B2CA555D29793E0D00189EFD /* collision.cpp */,
+			);
+			path = collision;
 			sourceTree = "<group>";
 		};
 		B2F52648295976EF00A83C65 /* core_assets */ = {
@@ -910,6 +947,7 @@
 				B25F617029699D610042FE09 /* scriptable_entity.hpp in Headers */,
 				B26F1A332977E8C100957B15 /* physics_math.hpp in Headers */,
 				B251B3FA295E15D300508210 /* viewport.hpp in Headers */,
+				B2CA556029793E0D00189EFD /* collision.hpp in Headers */,
 				B2F4956B29630B8F003F9CB0 /* entt_scene.hpp in Headers */,
 				B232148629783AF200845848 /* block_allocator.hpp in Headers */,
 				B2FC3EB42958892200447A1A /* layer_stack.hpp in Headers */,
@@ -950,6 +988,7 @@
 				B24E79952976CFB000EACF95 /* maths.hpp in Headers */,
 				B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */,
 				B216B256295B2F6B00C05392 /* open_gl_texture.hpp in Headers */,
+				B2CA55182979296F00189EFD /* stack_allocator.hpp in Headers */,
 				B2C78067296AE470003F343E /* aabb_renderer.hpp in Headers */,
 				B2FC405F2958BD0900447A1A /* open_gl_renderer_api.hpp in Headers */,
 				B24DD8282962FDA000525941 /* ray.hpp in Headers */,
@@ -962,7 +1001,9 @@
 				B2F526642959777F00A83C65 /* shader_uniform.hpp in Headers */,
 				B2FC40252958BAC400447A1A /* renderer_context.hpp in Headers */,
 				B2C0D8122959FB92003F168B /* renderer_buffer.hpp in Headers */,
+				B2CA55342979379900189EFD /* growable_stack.hpp in Headers */,
 				B25F61882969A8440042FE09 /* aabb.hpp in Headers */,
+				B2CA554E29793C0D00189EFD /* dynamic_tree.hpp in Headers */,
 				B20303DA2965ADCE00563A34 /* content_browser_panel.hpp in Headers */,
 				B2FC3E9A295886FE00447A1A /* mouse_codes.h in Headers */,
 				B24DD8232962FDA000525941 /* ray_sphere.hpp in Headers */,
@@ -1140,6 +1181,7 @@
 				B2BD9E0E295CA7560076A2F9 /* open_gl_framebuffer.cpp in Sources */,
 				B27CF12A295EC6E000837A36 /* uuid.cpp in Sources */,
 				B2581116295AD76B00B0EDA7 /* camera.cpp in Sources */,
+				B2CA554D29793C0D00189EFD /* dynamic_tree.cpp in Sources */,
 				B2FC3E95295884A400447A1A /* asset_manager.cpp in Sources */,
 				B2B6CDD12958DF7700AE609E /* imgui_api.cpp in Sources */,
 				B2FC40162958B09000447A1A /* renderer.cpp in Sources */,
@@ -1164,6 +1206,7 @@
 				B232149529784E2B00845848 /* settings.cpp in Sources */,
 				B2C0D819295A01DF003F168B /* pipeline.cpp in Sources */,
 				B2BCB84D295AE3410068FCA2 /* mac_os_input.cpp in Sources */,
+				B2CA55172979296F00189EFD /* stack_allocator.cpp in Sources */,
 				B24DD8172962FD9800525941 /* ray.cpp in Sources */,
 				B258111A295ADC2C00B0EDA7 /* editor_camera.cpp in Sources */,
 				B24C4A772968638B00675599 /* scene_camera.cpp in Sources */,
@@ -1178,6 +1221,7 @@
 				B2FC3E912958840D00447A1A /* buffers.cpp in Sources */,
 				B24DD8162962FD9800525941 /* hit_payload.cpp in Sources */,
 				B2F526562959775700A83C65 /* open_gl_shader_uniform.cpp in Sources */,
+				B2CA555F29793E0D00189EFD /* collision.cpp in Sources */,
 				B2250CFF295873330067C43B /* logger.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

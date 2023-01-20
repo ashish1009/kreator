@@ -10,14 +10,14 @@
 namespace physics {
   
   namespace utils {
-    
-    void* Alloc(int32_t size) {
+
+    void* AllocImpl(int32_t size) {
       return malloc(size);
     }
-    void Free(void* mem) {
+    void FreeImpl(void* mem) {
       free(mem);
     }
-    
+
   }
   
 }
