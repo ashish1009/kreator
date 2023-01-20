@@ -50,6 +50,14 @@ namespace physics {
     Mat22 Abs(const Mat22& A) {
       return Mat22(Abs(A.ex), Abs(A.ey));
     }
+    
+    bool operator == (const Vec2& a, const Vec2& b) {
+      return a.x == b.x && a.y == b.y;
+    }
+    
+    bool operator != (const Vec2& a, const Vec2& b) {
+      return a.x != b.x || a.y != b.y;
+    }
 
   }
   

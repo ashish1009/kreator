@@ -408,6 +408,17 @@ namespace physics {
       a = b;
       b = tmp;
     }
+    
+    /// This function compare the two vectors
+    /// - Parameters:
+    ///   - a: vector a
+    ///   - b: vector b
+    bool operator == (const Vec2& a, const Vec2& b);
+    /// This function compare the two vectors
+    /// - Parameters:
+    ///   - a: vector a
+    ///   - b: vector b
+    bool operator != (const Vec2& a, const Vec2& b);
 
   }
 

@@ -9,6 +9,9 @@
 
 namespace physics {
   
+  /// You can use this to change the length scale used by your game. For example for inches you could use 39.4.
+#define LengthUnitsPerMeter     1.0f
+  
   namespace utils {
     
     // Default allocation and free API
