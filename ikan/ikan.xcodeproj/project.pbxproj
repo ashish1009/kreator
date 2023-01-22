@@ -40,6 +40,7 @@
 		B24523BC297D634800BCC114 /* physics_timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24523BA297D634800BCC114 /* physics_timer.cpp */; };
 		B24523BD297D634800BCC114 /* physics_timer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24523BB297D634800BCC114 /* physics_timer.hpp */; };
 		B24523CD297D64C700BCC114 /* physics_time_step.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24523CB297D64C700BCC114 /* physics_time_step.hpp */; };
+		B24523D9297D658200BCC114 /* shape.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24523D7297D658200BCC114 /* shape.hpp */; };
 		B24C4A6C2967FDA000675599 /* libimguizmo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B24C4A392967FD3600675599 /* libimguizmo.a */; };
 		B24C4A772968638B00675599 /* scene_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24C4A752968638B00675599 /* scene_camera.cpp */; };
 		B24C4A782968638B00675599 /* scene_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B24C4A762968638B00675599 /* scene_camera.hpp */; };
@@ -250,6 +251,7 @@
 		B24523BA297D634800BCC114 /* physics_timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = physics_timer.cpp; sourceTree = "<group>"; };
 		B24523BB297D634800BCC114 /* physics_timer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = physics_timer.hpp; sourceTree = "<group>"; };
 		B24523CB297D64C700BCC114 /* physics_time_step.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = physics_time_step.hpp; sourceTree = "<group>"; };
+		B24523D7297D658200BCC114 /* shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shape.hpp; sourceTree = "<group>"; };
 		B24C4A312967FD3600675599 /* imguizmo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imguizmo.xcodeproj; path = imguizmo/imguizmo.xcodeproj; sourceTree = "<group>"; };
 		B24C4A752968638B00675599 /* scene_camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_camera.cpp; sourceTree = "<group>"; };
 		B24C4A762968638B00675599 /* scene_camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_camera.hpp; sourceTree = "<group>"; };
@@ -536,6 +538,21 @@
 			path = debug;
 			sourceTree = "<group>";
 		};
+		B24523D4297D654900BCC114 /* shape */ = {
+			isa = PBXGroup;
+			children = (
+				B24523D7297D658200BCC114 /* shape.hpp */,
+			);
+			path = shape;
+			sourceTree = "<group>";
+		};
+		B24523D5297D655400BCC114 /* shape */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = shape;
+			sourceTree = "<group>";
+		};
 		B24C4A322967FD3600675599 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -633,6 +650,7 @@
 				B23214712977FFC600845848 /* physics_headers.h */,
 				B2321479297803E400845848 /* physics_common.h */,
 				B26F1A2E2977D9D400957B15 /* utils */,
+				B24523D4297D654900BCC114 /* shape */,
 				B2CA555529793DED00189EFD /* collision */,
 			);
 			path = physics;
@@ -642,6 +660,7 @@
 			isa = PBXGroup;
 			children = (
 				B26F1A2F2977D9D900957B15 /* utils */,
+				B24523D5297D655400BCC114 /* shape */,
 				B2CA555C29793DFA00189EFD /* collision */,
 			);
 			path = physics;
@@ -1005,6 +1024,7 @@
 				B24DD8282962FDA000525941 /* ray.hpp in Headers */,
 				B23214722977FFC600845848 /* physics_headers.h in Headers */,
 				B2C78409296AF2E5003F343E /* scene_serialiser.hpp in Headers */,
+				B24523D9297D658200BCC114 /* shape.hpp in Headers */,
 				B2C0D80E2959FB69003F168B /* open_gl_renderer_buffer.hpp in Headers */,
 				B2C0D8002959E02B003F168B /* renderer_stats.hpp in Headers */,
 				B2584ED4295B7FE200234714 /* text_renderer.hpp in Headers */,

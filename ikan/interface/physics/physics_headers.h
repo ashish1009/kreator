@@ -20,3 +20,5 @@
 #include "physics/utils/block_allocator.hpp"
 #include "physics/utils/stack_allocator.hpp"
 #include "physics/utils/growable_stack.hpp"
+
+#include "physics/shape/shape.hpp"
