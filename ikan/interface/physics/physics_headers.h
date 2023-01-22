@@ -22,3 +22,5 @@
 #include "physics/utils/growable_stack.hpp"
 
 #include "physics/shape/shape.hpp"
+
+#include "physics/world.hpp"
