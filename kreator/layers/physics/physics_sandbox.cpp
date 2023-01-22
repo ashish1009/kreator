@@ -11,6 +11,16 @@
 
 namespace physics {
   
+  const glm::vec3 p1 = {0, 0, 0};
+  const glm::vec3 p2 = {0, -5, 0};
+  const glm::vec3 cp1 = {0, 0, 40};
+  
+  const glm::vec3 r1 = {0, 0, 0};
+  const glm::vec3 r2 = {0, 0, 0};
+  
+  const glm::vec3 s1 = {1, 1, 1};
+  const glm::vec3 s2 = {10, 1, 1};
+  
   PhysicsLayer::PhysicsLayer() : Layer("Kreator") {
     IK_INFO("Physics", "Creating Physics Layer instance ... ");
   }
@@ -21,6 +31,8 @@ namespace physics {
   
   void PhysicsLayer::Attach() {
     IK_INFO("Physics", "Attaching Physics Layer instance");
+    
+    camera_ = std::make_shared<ecs::SceneCamera>(ecs::SceneCamera::ProjectionType::Perspective);
     
     physics_world_ = new physics::World({0, -9.8f});
   }
@@ -33,6 +45,13 @@ namespace physics {
   }
   
   void PhysicsLayer::Update(Timestep ts) {
+    
+    Renderer::Clear({0.2, 0.2, 0.2, 1.0});
+    
+    BatchRenderer::BeginBatch(camera_->GetProjection() * glm::inverse(Math::GetTransformMatrix(cp1, {0, 0, 0}, {1, 1, 1})));
+    BatchRenderer::DrawQuad(Math::GetTransformMatrix(p1, r1, s1), {1, 0, 0, 1});
+    BatchRenderer::DrawQuad(Math::GetTransformMatrix(p2, r2, s2), {1, 0, 1, 1});
+    BatchRenderer::EndBatch();
 
   }
   

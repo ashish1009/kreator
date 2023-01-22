@@ -37,6 +37,7 @@ namespace physics {
     
   private:
     physics::World* physics_world_;
+    std::shared_ptr<ecs::SceneCamera> camera_;
   };
   
 }
