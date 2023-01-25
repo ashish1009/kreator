@@ -17,7 +17,14 @@ namespace physics {
 #define MaxPolygonVertices      8
 
   namespace utils {
+    // User data
     
+    /// You can define this to inject whatever data you want in b2Body
+    struct BodyUserData {
+      /// For legacy compatibility
+      uintptr_t pointer;
+    };
+
     // Default allocation and free API
     void* AllocImpl(int32_t size);
     void FreeImpl(void* mem);

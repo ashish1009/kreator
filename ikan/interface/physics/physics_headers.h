@@ -24,3 +24,4 @@
 #include "physics/shape/shape.hpp"
 
 #include "physics/world.hpp"
+#include "physics/body.hpp"
