@@ -32,7 +32,7 @@ namespace physics {
   void PhysicsLayer::Attach() {
     IK_INFO("Physics", "Attaching Physics Layer instance");
     
-    camera_ = std::make_shared<ecs::SceneCamera>(ecs::SceneCamera::ProjectionType::Perspective);
+    camera_ = std::make_shared<SceneCamera>(SceneCamera::ProjectionType::Perspective);
     
     physics_world_ = new physics::World({0, -9.8f});
   }

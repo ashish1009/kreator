@@ -10,8 +10,8 @@
 // This file includes the scene class to store data of active scene
 
 #include <entt.hpp>
-#include "editor/editor_camera.hpp"
-#include "ecs/scene_camera.hpp"
+#include "camera/editor_camera.hpp"
+#include "camera/scene_camera.hpp"
 
 #include "box2d/b2_world.h"
 

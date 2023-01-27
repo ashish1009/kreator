@@ -77,9 +77,12 @@
 #include <renderer/graphics/texture.hpp>
 #include <renderer/graphics/framebuffer.hpp>
 
+// Camera
+#include <camera/editor_camera.hpp>
+#include <camera/scene_camera.hpp>
+
 // Editor
 #include <editor/property_grid.hpp>
-#include <editor/editor_camera.hpp>
 #include <editor/content_browser_panel.hpp>
 
 // ECS

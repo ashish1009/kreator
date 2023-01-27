@@ -9,7 +9,7 @@
 
 #include "ray_scene.hpp"
 #include "renderer/graphics/texture.hpp"
-#include "editor/editor_camera.hpp"
+#include "camera/editor_camera.hpp"
 
 namespace ray_tracing {
     

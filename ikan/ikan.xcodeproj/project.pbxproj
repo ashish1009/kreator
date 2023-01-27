@@ -465,6 +465,7 @@
 				B26F1A262977D9B900957B15 /* physics */,
 				B251B3EE295E155A00508210 /* ecs */,
 				B2C0D8062959E151003F168B /* editor */,
+				B2A27BF7298146A10034F4DF /* camera */,
 				B24DD81B2962FDA000525941 /* ray_tracing */,
 				B2B6CDB32958D89D00AE609E /* imgui */,
 			);
@@ -479,6 +480,7 @@
 				B26F1A2D2977D9C800957B15 /* physics */,
 				B251B3F2295E156A00508210 /* ecs */,
 				B2C0D8042959E13C003F168B /* editor */,
+				B2A27BF0298146940034F4DF /* camera */,
 				B24DD80B2962FD9800525941 /* ray_tracing */,
 				B2B6CDB22958D88C00AE609E /* imgui */,
 				B2FC40182958B63E00447A1A /* platform */,
@@ -633,7 +635,6 @@
 				B2F4956929630B8F003F9CB0 /* entt_scene.hpp */,
 				B217E2FC2963133700311AE6 /* entity.hpp */,
 				B2DAAB80296575AF003578D9 /* core_components.hpp */,
-				B24C4A762968638B00675599 /* scene_camera.hpp */,
 				B25F616F29699D610042FE09 /* scriptable_entity.hpp */,
 				B2C78407296AF2E5003F343E /* scene_serialiser.hpp */,
 				B25F5DDD2966D3450030DE03 /* scene_panel_manager.hpp */,
@@ -648,7 +649,6 @@
 				B2F4956829630B8F003F9CB0 /* entt_scene.cpp */,
 				B217E2FB2963133700311AE6 /* entity.cpp */,
 				B2DAAB7F296575AF003578D9 /* core_components.cpp */,
-				B24C4A752968638B00675599 /* scene_camera.cpp */,
 				B25F617529699FC80042FE09 /* scriptable_entity.cpp */,
 				B2C78406296AF2E5003F343E /* scene_serialiser.cpp */,
 				B25F5DDC2966D3450030DE03 /* scene_panel_manager.cpp */,
@@ -730,6 +730,24 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
+		B2A27BF0298146940034F4DF /* camera */ = {
+			isa = PBXGroup;
+			children = (
+				B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */,
+				B24C4A752968638B00675599 /* scene_camera.cpp */,
+			);
+			path = camera;
+			sourceTree = "<group>";
+		};
+		B2A27BF7298146A10034F4DF /* camera */ = {
+			isa = PBXGroup;
+			children = (
+				B24C4A762968638B00675599 /* scene_camera.hpp */,
+				B2581119295ADC2C00B0EDA7 /* editor_camera.hpp */,
+			);
+			path = camera;
+			sourceTree = "<group>";
+		};
 		B2B6CDAB2958D7D400AE609E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -761,7 +779,6 @@
 			isa = PBXGroup;
 			children = (
 				B2C0D8072959E161003F168B /* property_grid.cpp */,
-				B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */,
 				B20303D72965ADCE00563A34 /* content_browser_panel.cpp */,
 			);
 			path = editor;
@@ -771,7 +788,6 @@
 			isa = PBXGroup;
 			children = (
 				B2C0D8082959E161003F168B /* property_grid.hpp */,
-				B2581119295ADC2C00B0EDA7 /* editor_camera.hpp */,
 				B20303D82965ADCE00563A34 /* content_browser_panel.hpp */,
 			);
 			path = editor;
