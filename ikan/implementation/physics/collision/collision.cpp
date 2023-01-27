@@ -106,7 +106,5 @@ namespace physics {
     output->normal = normal;
     return true;
   }
-  
-
 
 }
