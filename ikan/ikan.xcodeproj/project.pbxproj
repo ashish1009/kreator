@@ -710,7 +710,6 @@
 				B232148429783AF200845848 /* block_allocator.hpp */,
 				B2CA55162979296F00189EFD /* stack_allocator.hpp */,
 				B2CA55322979379900189EFD /* growable_stack.hpp */,
-				B2CA554C29793C0D00189EFD /* dynamic_tree.hpp */,
 				B24523BB297D634800BCC114 /* physics_timer.hpp */,
 				B24523CB297D64C700BCC114 /* physics_time_step.hpp */,
 			);
@@ -724,7 +723,6 @@
 				B26F1A302977E8C100957B15 /* physics_math.cpp */,
 				B232148329783AF200845848 /* block_allocator.cpp */,
 				B2CA55152979296F00189EFD /* stack_allocator.cpp */,
-				B2CA554B29793C0D00189EFD /* dynamic_tree.cpp */,
 				B24523BA297D634800BCC114 /* physics_timer.cpp */,
 			);
 			path = utils;
@@ -805,6 +803,7 @@
 			isa = PBXGroup;
 			children = (
 				B2CA555E29793E0D00189EFD /* collision.hpp */,
+				B2CA554C29793C0D00189EFD /* dynamic_tree.hpp */,
 			);
 			path = collision;
 			sourceTree = "<group>";
@@ -812,6 +811,7 @@
 		B2CA555C29793DFA00189EFD /* collision */ = {
 			isa = PBXGroup;
 			children = (
+				B2CA554B29793C0D00189EFD /* dynamic_tree.cpp */,
 				B2CA555D29793E0D00189EFD /* collision.cpp */,
 			);
 			path = collision;
