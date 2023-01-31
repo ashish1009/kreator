@@ -21,7 +21,11 @@ namespace physics {
     
     /// You can define this to inject whatever data you want in b2Body
     struct BodyUserData {
-      /// For legacy compatibility
+      uintptr_t pointer;
+    };
+    
+    /// You can define this to inject whatever data you want in b2Fixture
+    struct FixtureUserData {
       uintptr_t pointer;
     };
 

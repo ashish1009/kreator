@@ -125,6 +125,8 @@
 		B2CA554E29793C0D00189EFD /* dynamic_tree.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2CA554C29793C0D00189EFD /* dynamic_tree.hpp */; };
 		B2CA555F29793E0D00189EFD /* collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2CA555D29793E0D00189EFD /* collision.cpp */; };
 		B2CA556029793E0D00189EFD /* collision.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2CA555E29793E0D00189EFD /* collision.hpp */; };
+		B2D840D229893AC300618B6B /* fixture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2D840D029893AC300618B6B /* fixture.cpp */; };
+		B2D840D329893AC300618B6B /* fixture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2D840D129893AC300618B6B /* fixture.hpp */; };
 		B2DAAB81296575B0003578D9 /* core_components.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2DAAB7F296575AF003578D9 /* core_components.cpp */; };
 		B2DAAB82296575B0003578D9 /* core_components.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2DAAB80296575AF003578D9 /* core_components.hpp */; };
 		B2E7600C2958D38100ADBE79 /* mac_os_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */; };
@@ -352,6 +354,8 @@
 		B2CA554C29793C0D00189EFD /* dynamic_tree.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dynamic_tree.hpp; sourceTree = "<group>"; };
 		B2CA555D29793E0D00189EFD /* collision.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = collision.cpp; sourceTree = "<group>"; };
 		B2CA555E29793E0D00189EFD /* collision.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = collision.hpp; sourceTree = "<group>"; };
+		B2D840D029893AC300618B6B /* fixture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fixture.cpp; sourceTree = "<group>"; };
+		B2D840D129893AC300618B6B /* fixture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fixture.hpp; sourceTree = "<group>"; };
 		B2DAAB7F296575AF003578D9 /* core_components.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = core_components.cpp; sourceTree = "<group>"; };
 		B2DAAB80296575AF003578D9 /* core_components.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_components.hpp; sourceTree = "<group>"; };
 		B2E7600A2958D38100ADBE79 /* mac_os_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mac_os_window.cpp; sourceTree = "<group>"; };
@@ -686,6 +690,7 @@
 				B2CA555529793DED00189EFD /* collision */,
 				B24BC813297D73540015F67B /* world.hpp */,
 				B2C6DECC297EBDE900144D0D /* body.hpp */,
+				B2D840D129893AC300618B6B /* fixture.hpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -698,6 +703,7 @@
 				B2CA555C29793DFA00189EFD /* collision */,
 				B24BC80B297D73480015F67B /* world.cpp */,
 				B2C6DECB297EBDE900144D0D /* body.cpp */,
+				B2D840D029893AC300618B6B /* fixture.cpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -1042,6 +1048,7 @@
 				B216B25D295B2F7400C05392 /* texture.hpp in Headers */,
 				B2FC3EA92958880800447A1A /* event.hpp in Headers */,
 				B2FC3EAB2958880800447A1A /* application_event.hpp in Headers */,
+				B2D840D329893AC300618B6B /* fixture.hpp in Headers */,
 				B2FC401E2958B6AC00447A1A /* glfw_window.hpp in Headers */,
 				B2F52668295979FE00A83C65 /* string_utils.hpp in Headers */,
 				B20303D329659A9A00563A34 /* log_utils.hpp in Headers */,
@@ -1249,6 +1256,7 @@
 				B2FC401D2958B6AC00447A1A /* glfw_window.cpp in Sources */,
 				B2FC40282958BBC500447A1A /* open_gl_renderer_context.cpp in Sources */,
 				B24523E8297D678600BCC114 /* polygon_shape.cpp in Sources */,
+				B2D840D229893AC300618B6B /* fixture.cpp in Sources */,
 				B2FC3E8D2958839600447A1A /* time_step.cpp in Sources */,
 				B2FC3E892958826C00447A1A /* profiler.cpp in Sources */,
 				B24DD8392963045400525941 /* stb_image.cpp in Sources */,
