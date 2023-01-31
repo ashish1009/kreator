@@ -46,6 +46,21 @@ namespace physics {
       
       Body* body = physics_world_->CreateBody(&body_def);
       body->SetFixedRotation(false);
+
+      // Polygon shape
+      {
+        PolygonShape polygon_shape;
+        
+        glm::vec2 size = {0.5, 0.5};
+        polygon_shape.SetAsBox(size.x * s1.x, size.y * s1.y);
+
+        physics::FixtureDef fixture_def;
+        fixture_def.shape = &polygon_shape;
+        fixture_def.density = 1.0f;
+        fixture_def.friction = 0.5f;
+        fixture_def.restitution = 0.0f;
+        fixture_def.restitution_threshold = 0.5f;
+      }
     }
     
     // Base
@@ -57,6 +72,21 @@ namespace physics {
   
       Body* body = physics_world_->CreateBody(&body_def);
       body->SetFixedRotation(false);
+      
+      // Polygon shape
+      {
+        PolygonShape polygon_shape;
+
+        glm::vec2 size = {0.5, 0.5};
+        polygon_shape.SetAsBox(size.x * s2.x, size.y * s2.y);
+
+        physics::FixtureDef fixture_def;
+        fixture_def.shape = &polygon_shape;
+        fixture_def.density = 1.0f;
+        fixture_def.friction = 0.5f;
+        fixture_def.restitution = 0.0f;
+        fixture_def.restitution_threshold = 0.5f;
+      }
     }
     
   }

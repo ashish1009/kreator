@@ -21,12 +21,21 @@
 /// This is used to fatten AABBs in the dynamic tree. This allows proxies
 /// to move by a small amount without triggering a tree adjustment.
 /// This is in meters.
-#define AabbExtension    (0.1f * LengthUnitsPerMeter)
+#define AabbExtension     (0.1f * LengthUnitsPerMeter)
 
 /// This is used to fatten AABBs in the dynamic tree. This is used to predict
 /// the future position based on the current displacement.
 /// This is a dimensionless multiplier.
 #define AabbMultiplier    4.0f
+
+/// A small length used as a collision and constraint tolerance. Usually it is
+/// chosen to be numerically significant, but visually insignificant. In meters.
+#define LinearSlop        (0.005f * LengthUnitsPerMeter)
+
+/// The radius of the polygon/edge shape skin. This should not be modified. Making
+/// this smaller means polygons will have an insufficient buffer for continuous collision.
+/// Making it larger may create artifacts for vertex collision.
+#define PolygonRadius     (2.0f * LinearSlop)
 
 // --------------------
 // IK Assert Wrapper
