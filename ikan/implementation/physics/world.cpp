@@ -6,6 +6,7 @@
 //
 
 #include "world.hpp"
+#include "body.hpp"
 
 namespace physics {
   
@@ -17,5 +18,15 @@ namespace physics {
   World::~World() {
     
   }
+  
+  Body* World::CreateBody(const BodyDef* def) {
+    Body* b = nullptr;
+    return b;
+  }
+  
+  void World::DestroyBody(Body* body) {
+    
+  }
+
   
 }

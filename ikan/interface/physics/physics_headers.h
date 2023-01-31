@@ -23,5 +23,7 @@
 
 #include "physics/shape/shape.hpp"
 
+#include "physics/collision/dynamic_tree.hpp"
+
 #include "physics/world.hpp"
 #include "physics/body.hpp"

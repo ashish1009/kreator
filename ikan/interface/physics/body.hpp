@@ -9,6 +9,8 @@
 
 namespace physics {
   
+  class World;
+  
   /// The body type.  static: zero mass, zero velocity, may be manually moved
   /// kinematic: zero mass, non-zero velocity set by user, moved by solver
   /// dynamic: positive mass, non-zero velocity determined by forces, moved by solver
@@ -22,21 +24,21 @@ namespace physics {
     /// The world position of the body. Avoid creating bodies at the origin since this can lead to many overlapping shapes.
     Vec2 position{0.0f, 0.0f};
     /// The world angle of the body in radians.
-    float angle;
+    float angle = 0.0f;
     /// The linear velocity of the body's origin in world co-ordinates.
     Vec2 linear_velocity;
     /// The angular velocity of the body.
-    float angular_velocity;
+    float angular_velocity = 0.0f;
     /// Linear damping is use to reduce the linear velocity. The damping parameter
     /// can be larger than 1.0f but the damping effect becomes sensitive to the
     /// time step when the damping parameter is large.
     /// Units are 1/time
-    float linear_damping;
+    float linear_damping = 0.0f;
     /// Angular damping is use to reduce the angular velocity. The damping parameter
     /// can be larger than 1.0f but the damping effect becomes sensitive to the
     /// time step when the damping parameter is large.
     /// Units are 1/time
-    float angular_damping;
+    float angular_damping = 0.1f;
     /// Set this flag to false if this body should never fall asleep. Note that
     /// this increases CPU usage.
     bool allow_sleep = true;
@@ -55,6 +57,16 @@ namespace physics {
     utils::BodyUserData user_data;
     /// Scale the gravity applied to this body.
     float gravity_scale = 1.0f;
+  };
+  
+  /// A rigid body. These are created via b2World::CreateBody.
+  class Body {
+  public:
+  private:
+    friend class World;
+
+    Body(const BodyDef* bd, World* world);
+    ~Body();
   };
   
 }
