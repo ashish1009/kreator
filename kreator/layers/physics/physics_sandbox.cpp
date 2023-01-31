@@ -44,7 +44,8 @@ namespace physics {
       body_def.position.Set(p1.x, p1.y);
       body_def.angle = r1.z;
       
-      [[maybe_unused]] Body* body = physics_world_->CreateBody(&body_def);
+      Body* body = physics_world_->CreateBody(&body_def);
+      body->SetFixedRotation(false);
     }
     
     // Base
@@ -54,7 +55,8 @@ namespace physics {
       body_def.position.Set(p2.x, p2.y);
       body_def.angle = r2.z;
   
-      [[maybe_unused]] Body* body = physics_world_->CreateBody(&body_def);
+      Body* body = physics_world_->CreateBody(&body_def);
+      body->SetFixedRotation(false);
     }
     
   }

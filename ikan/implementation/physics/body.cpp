@@ -98,6 +98,28 @@ namespace physics {
     // Update center of mass velocity.
     linear_velocity_ += Cross(angular_velocity_, sweep_.c - old_center);
   }
+  
+  void Body::ResetMassData() {
+    IK_ASSERT(false);
+  }
+  
+  void Body::SetFixedRotation(bool flag) {
+    bool status = (flags_ & fixed_rotation_flag) == fixed_rotation_flag;
+    if (status == flag) {
+      return;
+    }
+    
+    if (flag) {
+      flags_ |= fixed_rotation_flag;
+    }
+    else {
+      flags_ &= ~fixed_rotation_flag;
+    }
+    
+    angular_velocity_ = 0.0f;
+    
+    ResetMassData();
+  }
     
   // -------------------------------------------
   // Body Def

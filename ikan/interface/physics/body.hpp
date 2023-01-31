@@ -69,17 +69,20 @@ namespace physics {
   /// A rigid body. These are created via b2World::CreateBody.
   class Body {
   public:
+    /// This funciton sets this body to have fixed rotation. This causes the mass to be reset.
+    void SetFixedRotation(bool flag);
+    /// This funciton returns does this body have fixed rotation?
+    bool IsFixedRotation() const;
+
     /// This function returns the mass data of the body.
     /// - Returns a struct containing the mass, inertia and center of the body.
     void GetMassData(MassData* data) const;
-    
     /// This function sets the mass properties to override the mass properties of the fixtures.
     /// - Note  This changes the center of mass position.
     /// - Note  Creating or destroying fixtures can also alter the mass.
     /// - Note This function has no effect if the body isn't dynamic.
     /// - Parameter data the mass properties.
     void SetMassData(const MassData* data);
-    
     /// This resets the mass properties to the sum of the mass properties of the fixtures. This normally
     /// does not need to be called unless you called SetMassData to override the mass and you later
     /// want to reset the mass.
