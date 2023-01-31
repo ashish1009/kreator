@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "shape/shape.hpp"
+
 namespace physics {
   
   class World;
@@ -67,15 +69,56 @@ namespace physics {
   /// A rigid body. These are created via b2World::CreateBody.
   class Body {
   public:
+    /// This function returns the mass data of the body.
+    /// - Returns a struct containing the mass, inertia and center of the body.
+    void GetMassData(MassData* data) const;
+    
+    /// This function sets the mass properties to override the mass properties of the fixtures.
+    /// - Note  This changes the center of mass position.
+    /// - Note  Creating or destroying fixtures can also alter the mass.
+    /// - Note This function has no effect if the body isn't dynamic.
+    /// - Parameter data the mass properties.
+    void SetMassData(const MassData* data);
+    
+    /// This resets the mass properties to the sum of the mass properties of the fixtures. This normally
+    /// does not need to be called unless you called SetMassData to override the mass and you later
+    /// want to reset the mass.
+    void ResetMassData();
+
   private:
     friend class World;
+
+    // m_flags
+    enum {
+      island_flag         = 0x0001,
+      awake_flag          = 0x0002,
+      autoSleep_flag      = 0x0004,
+      bullet_flag         = 0x0008,
+      fixed_rotation_flag = 0x0010,
+      enabled_flag        = 0x0020,
+      toi_flag            = 0x0040
+    };
 
     Body(const BodyDef* bd, World* world);
     ~Body();
     
   private:
+    BodyType type_;
+
+    uint16_t flags_;
+
+    World* world_ = nullptr;
     Body* prev_ = nullptr;
     Body* next_ = nullptr;
+    
+    float mass_ = 0.0f, inverse_mass_ = 0.0f;
+    float inertia_ = 0.0f, inverse_inertia_ = 0.0f; // Rotational inertia about the center of mass.
+    
+    Transform2D xf_;   // the body origin transform
+    Sweep sweep_;      // the swept motion for CCD
+    
+    Vec2 linear_velocity_;
+    float angular_velocity_;
   };
   
 }

@@ -333,6 +333,9 @@ namespace physics {
     float alpha0;       /// Fraction of the current time step in the range [0,1] c0 and a0 are the positions at alpha0.
   };
   
+  /// Useful constant
+  extern const Vec2 Vec2_zero;
+  
   namespace math {
     
     /// This function is used to ensure that a floating point number is not a NaN or infinity.
@@ -349,13 +352,29 @@ namespace physics {
     ///   - a: Vector 3 float a
     ///   - b: Vector 3 float b
     Vec3 Cross(const Vec3& a, const Vec3& b);
-    
+    /// This function performs the dot product on two vectors.
+    /// - Parameters:
+    ///   - a: Vector 2 flaot a
+    ///   - b: Vector 2 float b
+    float Dot(const Vec2& a, const Vec2& b);
+    /// This funcion performs the cross product on two vectors. In 2D this produces a scalar.
+    ///   - a: Vector 2 flaot a
+    ///   - b: Vector 2 float b
+    float Cross(const Vec2& a, const Vec2& b);
+    /// This funciton performs the cross product on a scalar and a vector. In 2D this produces a vector.
+    Vec2 Cross(float s, const Vec2& a);
+
     /// This function rotates a vector by rotation defined in q
     /// - Parameters:
     ///   - q: Rotation Data
     ///   - v: Vector of 2 float to be rotated
     Vec2 Mul(const Rot& q, const Vec2& v);
-    
+    /// This funciton return the rotated vector
+    /// - Parameters:
+    ///   - T: trabnsform
+    ///   - v: vector
+    Vec2 Mul(const Transform2D& T, const Vec2& v);
+
     /// This function adds two vectors (2 Floats) component-wise.
     Vec2 operator + (const Vec2& a, const Vec2& b);
     /// This function subtracts two vectors (2 Floats) component-wise.

@@ -20,8 +20,24 @@ namespace physics {
     Vec3 Cross(const Vec3& a, const Vec3& b) {
       return Vec3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
     }
+    float Dot(const Vec2& a, const Vec2& b) {
+      return a.x * b.x + a.y * b.y;
+    }
+    float Cross(const Vec2& a, const Vec2& b) {
+      return a.x * b.y - a.y * b.x;
+    }
+    Vec2 Cross(float s, const Vec2& a) {
+      return Vec2(-s * a.y, s * a.x);
+    }
+
     Vec2 Mul(const Rot& q, const Vec2& v) {
       return Vec2(q.c * v.x - q.s * v.y, q.s * v.x + q.c * v.y);
+    }
+    Vec2 Mul(const Transform2D& T, const Vec2& v) {
+      float x = (T.q.c * v.x - T.q.s * v.y) + T.p.x;
+      float y = (T.q.s * v.x + T.q.c * v.y) + T.p.y;
+      
+      return Vec2(x, y);
     }
 
     Vec2 operator + (const Vec2& a, const Vec2& b) {
@@ -62,6 +78,8 @@ namespace physics {
   }
   
   using namespace math;
+  
+  const Vec2 Vec2_zero(0.0f, 0.0f);
   
   Vec2::Vec2(float x_input, float y_input) : x(x_input), y(y_input) {}
   
