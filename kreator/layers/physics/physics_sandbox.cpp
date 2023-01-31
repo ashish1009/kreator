@@ -37,25 +37,25 @@ namespace physics {
     
     physics_world_ = new physics::World({0, -9.8f});
     
-//    // Block
-//    {
-//      physics::BodyDef body_def;
-//      body_def.type = BodyType::DynamicBody;
-//      body_def.position.Set(p1.x, p1.y);
-//      body_def.angle = r1.z;
-//      
-//      Body* body = physics_world_->CreateBody(&body_def);
-//    }
-//    
-//    // Base
-//    {
-//      physics::BodyDef body_def;
-//      body_def.type = BodyType::StaticBody;
-//      body_def.position.Set(p2.x, p2.y);
-//      body_def.angle = r2.z;
-//  
-//      Body* body = physics_world_->CreateBody(&body_def);
-//    }
+    // Block
+    {
+      physics::BodyDef body_def;
+      body_def.type = BodyType::DynamicBody;
+      body_def.position.Set(p1.x, p1.y);
+      body_def.angle = r1.z;
+      
+      Body* body = physics_world_->CreateBody(&body_def);
+    }
+    
+    // Base
+    {
+      physics::BodyDef body_def;
+      body_def.type = BodyType::StaticBody;
+      body_def.position.Set(p2.x, p2.y);
+      body_def.angle = r2.z;
+  
+      Body* body = physics_world_->CreateBody(&body_def);
+    }
     
   }
   

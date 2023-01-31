@@ -20,13 +20,24 @@ namespace physics {
   }
   
   Body* World::CreateBody(const BodyDef* def) {
-    Body* b = nullptr;
+    PHYSICS_ASSERT(!IsLocked());
+    
+    void* mem = block_allocator_.Allocate(sizeof(Body));
+    Body* b = new (mem)Body(def, this);
+    
+    // Add to world doubly linked list.
+    b->prev_ = nullptr;
+    b->next_ = body_list_;
+    if (body_list_) {
+      body_list_->prev_ = b;
+    }
+    body_list_ = b;
+    ++body_count_;
+
+    PHYSICS_INFO("Added a body in physics world. Total Bodies | {0}", body_count_);
     return b;
   }
   
-  void World::DestroyBody(Body* body) {
-    
-  }
-
+  bool World::IsLocked() const { return locked_; }
   
 }

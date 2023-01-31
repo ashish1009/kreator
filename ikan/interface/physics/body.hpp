@@ -72,6 +72,10 @@ namespace physics {
 
     Body(const BodyDef* bd, World* world);
     ~Body();
+    
+  private:
+    Body* prev_ = nullptr;
+    Body* next_ = nullptr;
   };
   
 }
