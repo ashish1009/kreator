@@ -45,7 +45,7 @@ namespace physics {
     /// Is this body initially awake or sleeping?
     bool awake = true;
     /// Should this body be prevented from rotating? Useful for characters.
-    bool fixed_otation = false;
+    bool fixed_rotation = false;
     /// Is this a fast moving body that should be prevented from tunneling through
     /// other moving bodies? Note that all bodies are prevented from tunneling through
     /// kinematic and static bodies. This setting is only considered on dynamic bodies.
@@ -57,6 +57,11 @@ namespace physics {
     utils::BodyUserData user_data;
     /// Scale the gravity applied to this body.
     float gravity_scale = 1.0f;
+    
+    /// This funcion logs the Body Def data
+    void Log() const;
+    
+    static std::string GetBodyTypeString(BodyType type);
   };
   
   /// A rigid body. These are created via b2World::CreateBody.

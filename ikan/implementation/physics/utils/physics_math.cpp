@@ -137,9 +137,9 @@ namespace physics {
   }
   
   void Vec2::Log() const {
-    PHYSICS_LOG("  Value of Vector 2 :");
-    PHYSICS_LOG("    x : {0}", x);
-    PHYSICS_LOG("    y : {0}", y);
+    PHYSICS_TRACE("  Value of Vector 2 :");
+    PHYSICS_TRACE("    x : {0}", x);
+    PHYSICS_TRACE("    y : {0}", y);
   }
   
   Vec3::Vec3(float x_input, float y_input, float z_input)
@@ -216,10 +216,10 @@ namespace physics {
   }
   
   void Vec3::Log() const {
-    PHYSICS_LOG("  Value of Vector 3 :");
-    PHYSICS_LOG("    x : {0}", x);
-    PHYSICS_LOG("    y : {0}", y);
-    PHYSICS_LOG("    z : {0}", z);
+    PHYSICS_TRACE("  Value of Vector 3 :");
+    PHYSICS_TRACE("    x : {0}", x);
+    PHYSICS_TRACE("    y : {0}", y);
+    PHYSICS_TRACE("    z : {0}", z);
   }
 
   Mat22::Mat22(const Vec2& c1, const Vec2& c2) : ex(c1), ey(c2) {}
@@ -271,9 +271,9 @@ namespace physics {
   }
   
   void Mat22::Log() const {
-    PHYSICS_LOG("  Value of Matrix 2x2 :");
-    PHYSICS_LOG("    | {0} {1} |", ex.x, ey.x);
-    PHYSICS_LOG("    | {0} {1} |", ex.y, ey.y);
+    PHYSICS_TRACE("  Value of Matrix 2x2 :");
+    PHYSICS_TRACE("    | {0} {1} |", ex.x, ey.x);
+    PHYSICS_TRACE("    | {0} {1} |", ex.y, ey.y);
   }
 
   Mat33::Mat33(const Vec3& c1, const Vec3& c2, const Vec3& c3) : ex(c1), ey(c2), ez(c3) {}
@@ -358,10 +358,10 @@ namespace physics {
   }
 
   void Mat33::Log() const {
-    PHYSICS_LOG("  Value of Matrix 3x3 :");
-    PHYSICS_LOG("    | {0} {1} {2} |", ex.x, ey.x, ez.x);
-    PHYSICS_LOG("    | {0} {1} {2} |", ex.y, ey.y, ez.y);
-    PHYSICS_LOG("    | {0} {1} {2} |", ex.z, ey.z, ez.z);
+    PHYSICS_TRACE("  Value of Matrix 3x3 :");
+    PHYSICS_TRACE("    | {0} {1} {2} |", ex.x, ey.x, ez.x);
+    PHYSICS_TRACE("    | {0} {1} {2} |", ex.y, ey.y, ez.y);
+    PHYSICS_TRACE("    | {0} {1} {2} |", ex.z, ey.z, ez.z);
   }
   
   Rot::Rot(float angle) : s(sinf(angle)), c(cosf(angle)) {}
@@ -385,10 +385,10 @@ namespace physics {
   }
 
   void Rot::Log() const {
-    PHYSICS_LOG("  Rotation Data");
-    PHYSICS_LOG("    Radian : {0}", GetAngle());
-    PHYSICS_LOG("    Sin    : {0}", s);
-    PHYSICS_LOG("    Cos    : {0}", c);
+    PHYSICS_TRACE("  Rotation Data");
+    PHYSICS_TRACE("    Radian : {0}", GetAngle());
+    PHYSICS_TRACE("    Sin    : {0}", s);
+    PHYSICS_TRACE("    Cos    : {0}", c);
   }
   
   Transform2D::Transform2D(const Vec2& position, const Rot& rotation) : p(position), q(rotation) {}
@@ -404,7 +404,7 @@ namespace physics {
   }
   
   void Transform2D::Log() const {
-    PHYSICS_LOG("  Transform Data");
+    PHYSICS_TRACE("  Transform Data");
     p.Log();
     q.Log();
   }
