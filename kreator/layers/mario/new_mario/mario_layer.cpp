@@ -187,10 +187,7 @@ namespace ikan_game {
     viewport_.height = viewport_panel_size.y;
     
     size_t textureID = viewport_.framebuffer->GetColorAttachmentIds().at(0);
-    ImGui::Image((void*)textureID,
-                 viewport_panel_size,
-                 ImVec2{ 0, 1 },
-                 ImVec2{ 1, 0 });
+    ImGui::Image((void*)textureID, viewport_panel_size, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
         
     viewport_.UpdateBound();
     

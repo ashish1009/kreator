@@ -12,6 +12,8 @@
 
 namespace ikan {
   
+  static GLint viewport_[4];
+  
   namespace frame_buffer_utils {
     
 #ifdef IK_DEBUG_FEATURE
@@ -303,15 +305,19 @@ namespace ikan {
   }
   
   void OpenGLFrameBuffer::Bind() const {
+    glGetIntegerv(GL_VIEWPORT, viewport_);
     glBindFramebuffer(GL_FRAMEBUFFER, renderer_id_);
     Renderer::SetViewport(specification_.width, specification_.height);
   }
   
   void OpenGLFrameBuffer::Unbind() const {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glViewport(viewport_[0], viewport_[1], (GLsizei)viewport_[2], (GLsizei)viewport_[3]);
   }
   
   void OpenGLFrameBuffer::Resize(uint32_t width, uint32_t height) {
+    glGetIntegerv(GL_VIEWPORT, viewport_);
+
     specification_.width  = width;
     specification_.height = height;
     
@@ -319,6 +325,7 @@ namespace ikan {
     Invalidate();
     
     Renderer::SetViewport(specification_.width, specification_.height);
+    glViewport(viewport_[0], viewport_[1], (GLsizei)viewport_[2], (GLsizei)viewport_[3]);
   }
   
   const FrameBuffer::Specification& OpenGLFrameBuffer::GetSpecification() const {
