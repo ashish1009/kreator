@@ -11,7 +11,12 @@ namespace ikan_game {
   
 #define is_playing settings_.play
   
+  // Game Controller
   static const std::string game_name_ = "Mario";
+  
+  // Imgui Font
+  static const std::string current_font_path_ = "fonts/mario.ttf";
+  static const std::string current_bold_font_path_ = "fonts/mario.ttf";
   
   RendererLayer::RendererLayer() : Layer(game_name_) {
     IK_INFO(game_name_, "Creating {0} Layer instance ... ", game_name_.c_str());
@@ -23,6 +28,17 @@ namespace ikan_game {
     
   void RendererLayer::Attach() {
     IK_INFO(game_name_, "Attaching {0} Layer instance", game_name_.c_str());
+    
+    // Decorate the Imgui Change the font of imgui
+    ImguiAPI::ChangeFont(
+                         // Regular Font information
+                         { AM::ClientAsset(current_font_path_), 14.0f /* Size of font */ },
+                         // Bold Font information
+                         { AM::ClientAsset(current_bold_font_path_), 14.0f /* Size of font */ }
+                         );
+    
+    ImguiAPI::SetLightGreyThemeColors();
+
     active_scene_ = std::make_shared<EnttScene>();
   }
   
