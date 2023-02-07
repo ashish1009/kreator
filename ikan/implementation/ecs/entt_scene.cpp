@@ -21,6 +21,16 @@
 
 namespace ikan {
   
+  template<typename Component>
+  /// Copy the entity components
+  /// - Parameters:
+  ///   - dst: Destination entity
+  ///   - src: Source entity
+  static void CopyComponentIfExist(Entity& dst, Entity& src) {
+    if (src.HasComponent<Component>())
+      dst.AddOrReplaceComponent<Component>(src.GetComponent<Component>());
+  }
+  
   EnttScene::EnttScene(const std::string& file_path)
   : file_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)) {
     IK_CORE_INFO(LogModule::EnttScene, "Creating Scene ...");
@@ -41,22 +51,10 @@ namespace ikan {
   }
   
   Entity EnttScene::CreateEntity(const std::string& name, UUID uuid) {
-    Entity entity {registry_.create(), this};
-    
-    // Assert if this entity id is already present in scene entity map
-    IK_ASSERT((entity_id_map_.find(entity) == entity_id_map_.end()),
-              "Entity Already Added");
-    
-    // Add the Mendatory components
-    entity.AddComponent<IDComponent>(uuid);
+    Entity entity = CreateNewEmptyEntity(name, uuid);
+
     entity.AddComponent<TagComponent>(name);
     entity.AddComponent<TransformComponent>();
-
-    // Store the entity in the entity uuid map. We Copy the Entity
-    entity_id_map_[entity] = std::move(entity);
-    
-    // Updating the Max entity ID
-    max_entity_id_ = entity;
 
     // Debug Logs
     IK_CORE_TRACE(LogModule::EnttScene, "Stored Entity in Scene");
@@ -80,6 +78,35 @@ namespace ikan {
     registry_.destroy(entity);
   }
   
+  void EnttScene::DuplicateEntity(Entity entity) {
+    Entity new_entity = CreateNewEmptyEntity("", UUID());
+    
+    // Copy Components
+    CopyComponentIfExist<TagComponent>(new_entity, entity);
+    CopyComponentIfExist<TransformComponent>(new_entity, entity);
+    CopyComponentIfExist<CameraComponent>(new_entity, entity);
+    CopyComponentIfExist<QuadComponent>(new_entity, entity);
+    CopyComponentIfExist<CircleComponent>(new_entity, entity);
+  }
+  
+  Entity EnttScene::CreateNewEmptyEntity(const std::string &name, UUID uuid) {
+    Entity entity {registry_.create(), this};
+    
+    // Assert if this entity id is already present in scene entity map
+    IK_ASSERT((entity_id_map_.find(entity) == entity_id_map_.end()), "Entity Already Added");
+    
+    // Add the Mendatory components
+    entity.AddComponent<IDComponent>(uuid);
+    
+    // Store the entity in the entity uuid map. We Copy the Entity
+    entity_id_map_[entity] = std::move(entity);
+    
+    // Updating the Max entity ID
+    max_entity_id_ = entity;
+    
+    return entity;
+  }
+
   void EnttScene::Update(Timestep ts) {
     // Update the primary scene camera for run time rendering
     UpdatePrimaryCameraData();

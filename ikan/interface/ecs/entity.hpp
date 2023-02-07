@@ -32,7 +32,7 @@ namespace ikan {
     // Template APIs
     // ----------------------
     /// This function adds component in Current Entity
-    /// - parameter args: Arguments needed to construct the component NOTE : T is type of component
+    /// - Parameter args: Arguments needed to construct the component NOTE : T is type of component
     template<typename T, typename... Args> T& AddComponent(Args&&... args) {
       IK_ASSERT(!HasComponent<T>(), "Entity already has component!");
       return scene_->registry_.emplace<T>(entity_handle_, std::forward<Args>(args)...);
@@ -42,6 +42,14 @@ namespace ikan {
     template<typename T> [[nodiscard("Return value discarded")]] T& GetComponent() const {
       IK_ASSERT(HasComponent<T>(), "Entity does not have component!");
       return scene_->registry_.get<T>(entity_handle_);
+    }
+    
+    /// This function adds component in Current Entity (replace if already present)
+    /// - Parameter args: Arguments needed to construct the component
+    /// - Note : T is type of component
+    template<typename T, typename... Args> T& AddOrReplaceComponent(Args&&... args) {
+      T& component = scene_->registry_.emplace_or_replace<T>(entity_handle_, std::forward<Args>(args)...);
+      return component;
     }
     
     /// This function checks if Entity have a component return true if present NOTE : T is type of component

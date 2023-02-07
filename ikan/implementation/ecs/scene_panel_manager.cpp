@@ -203,9 +203,7 @@ namespace ikan {
                                 ImGuiTreeNodeFlags_Selected : 0)
     | ImGuiTreeNodeFlags_SpanAvailWidth;
     const std::string& tag = entity.GetComponent<TagComponent>().tag;
-    bool opened = ImGui::TreeNodeEx((void*)(tag.c_str()),
-                                    flags,
-                                    tag.c_str());
+    bool opened = ImGui::TreeNodeEx((void*)(tag.c_str()), flags, tag.c_str());
 
     // TODO: Add Hovered message Feature later
     
@@ -215,6 +213,11 @@ namespace ikan {
 
     // Right click of mouse option
     if (ImGui::BeginPopupContextItem()) {
+      // Duplicate Entity
+      if (ImGui::MenuItem("Duplicate Entity")) {
+        scene_context_->DuplicateEntity(selected_entity_);
+      }
+
       // Delete Entity
       if (ImGui::MenuItem("Delete Entity")) {
         delete_entity_ = true;

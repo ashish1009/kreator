@@ -1,0 +1,72 @@
+Scene: Untitled
+Setting_editor_camera: true
+Setting_scene_controller: true
+Setting_scene_data: true
+Use_editor_camera: false
+Entities:
+  - Entity: 9395803658284991403
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [1.20000005, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: false
+      Texture_Path: ""
+      Texture_TilingFactor: 1
+      Color: [0.369940162, 0.711627901, 0.244932413, 1]
+  - Entity: 17231437844081268395
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [-0.800000012, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: false
+      Texture_Path: ""
+      Texture_TilingFactor: 1
+      Color: [0.85581398, 0.195045993, 0.195045993, 1]
+  - Entity: 13139206929702754113
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [0.200000003, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: false
+      Texture_Path: ""
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 6007582178234533221
+    TagComponent:
+      Tag: Primary Camera
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: false
+      ProjectionType: 1
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 10
+      Near: -1
+      Far: 1
+  - Entity: 15253219191240632203
+    TagComponent:
+      Tag: Editor Camera
+    TransformComponent:
+      Translation: [0, 0, 2]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 0
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 10
+      Near: 0.00999999978
+      Far: 10000

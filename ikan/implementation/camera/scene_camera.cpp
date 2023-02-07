@@ -99,7 +99,17 @@ namespace ikan {
   }
 
 
-  SceneCamera& SceneCamera::operator=(const SceneCamera &) {
+  SceneCamera& SceneCamera::operator=(const SceneCamera &other) {
+    near_plane_ = other.near_plane_;
+    far_plane_ = other.far_plane_;
+    aspect_ratio_ = other.aspect_ratio_;
+    
+    projection_matrix_ = other.projection_matrix_;
+    
+    projection_type_ = other.projection_type_;
+    perspective_fov_ = other.perspective_fov_;
+    orthographic_size_ = other.orthographic_size_;
+
     return *this;
   }
   

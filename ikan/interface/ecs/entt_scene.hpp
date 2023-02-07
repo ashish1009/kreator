@@ -63,6 +63,9 @@ namespace ikan {
     /// This function destory the entity from scene registry
     /// - Parameter entity: entity to be destroyed
     void DestroyEntity(Entity entity);
+    /// This function duplicate the entity and copy all the components
+    /// - Parameter entity: entity to be destroyed
+    void DuplicateEntity(Entity entity);
     
     /// This function update the scene
     /// - Parameter ts: time step
@@ -156,6 +159,11 @@ namespace ikan {
     
     /// This function starts the runtime physics
     void RuntimeStart();
+
+    /// - Parameters:
+    ///   - name: name of entity
+    ///   - uuid: Unique ID of entity
+    Entity CreateNewEmptyEntity(const std::string& name, UUID uuid);
 
     // ------------------
     // Member variabls
