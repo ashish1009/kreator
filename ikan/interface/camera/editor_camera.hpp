@@ -9,7 +9,7 @@
 
 // This class includes the Editor camera class
 
-#include "renderer/utils/camera.hpp"
+#include "camera/camera.hpp"
 #include "core/utils/time_step.hpp"
 #include "core/events/mouse_event.hpp"
 

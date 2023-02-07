@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "renderer/utils/camera.hpp"
+#include "camera/camera.hpp"
 
 // This file includes the Scene camera class
 
