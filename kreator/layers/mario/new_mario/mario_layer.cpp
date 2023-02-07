@@ -18,6 +18,9 @@ namespace ikan_game {
   static const std::string current_font_path_ = "fonts/mario.ttf";
   static const std::string current_bold_font_path_ = "fonts/mario.ttf";
   
+  // Default Scene Path
+  static const std::string scene_path_ = "";
+  
   RendererLayer::RendererLayer() : Layer(game_name_) {
     IK_INFO(game_name_, "Creating {0} Layer instance ... ", game_name_.c_str());
   }
@@ -45,6 +48,7 @@ namespace ikan_game {
     ImguiAPI::SetLightGreyThemeColors();
 
     active_scene_ = std::make_shared<EnttScene>();
+    spm_.SetSceneContext(active_scene_.get());
   }
   
   void RendererLayer::Detach() {
@@ -82,10 +86,14 @@ namespace ikan_game {
       Renderer::RenderStatsGui(nullptr, true);
       
       viewport_.RenderGui();
+      
       GamePlayButton();
       ScenePlayPauseButton();
+      
       cbp_.RenderGui();
-
+      spm_.RenderGui();
+      
+      SaveScene();
       RenderViewport();
       
       ImguiAPI::EndDcocking();
@@ -177,5 +185,30 @@ namespace ikan_game {
     ImGui::PopID();
     ImGui::End();
   }
-  
+
+  const void RendererLayer::SaveScene() {
+    ImGui::Begin("Save File");
+    ImGui::PushID("Save File");
+    
+    const auto& relative_path = (std::filesystem::relative(cbp_.GetCurrentDir(), cbp_.GetRootDir())).string();
+    PropertyGrid::ReadOnlyTextBox("Scene Directory", relative_path, "File will be saved at the Current directory in the active scene", 150.0f);
+    
+    static std::string file_name = "";
+    bool modified = PropertyGrid::TextBox(file_name, "Scene Name", 2, 150.0f);
+    
+    if (modified) {
+      std::string file_path = cbp_.GetCurrentDir().string() + "/" + file_name + ".ikanScene";
+      
+      IK_INFO(game_name_, "Saving Scene at {0}", file_path.c_str());
+      if (!file_path.empty()) {
+        active_scene_->SetFilePath(file_path);
+        SceneSerializer serializer(active_scene_.get());
+        serializer.Serialize(file_path);
+      }
+    }
+    
+    ImGui::PopID();
+    ImGui::End();
+  }
+
 }

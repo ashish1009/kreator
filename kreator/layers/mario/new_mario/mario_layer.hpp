@@ -54,10 +54,13 @@ namespace ikan_game {
     void RenderViewport();
     /// This function renders the scene data
     void RenderScene(Timestep ts);
-    
+    /// This function Renders an Imgui widget that helps in saving scene
+    const void SaveScene();
+
     Setting settings_;
     Viewport viewport_;
     ContentBrowserPanel cbp_ = ContentBrowserPanel("../../../kreator/layers/mario/assets/");
+    ScenePanelManager spm_;
     std::shared_ptr<EnttScene> active_scene_;
   };
   
