@@ -37,7 +37,7 @@ public:
         break;
       case SupportedApplicationType::Mario :
         if (new_mario)
-          PushLayer(std::make_shared<mario::RendererLayer>());
+          PushLayer(std::make_shared<ikan_game::RendererLayer>());
         else
           PushLayer(std::make_shared<mario::MarioLayer>());
         break;

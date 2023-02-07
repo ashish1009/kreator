@@ -7,7 +7,7 @@
 
 #pragma once
 
-namespace mario {
+namespace ikan_game {
   
   using namespace ikan;
   
@@ -46,10 +46,14 @@ namespace mario {
     /// This function handles the Window resize event
     /// - Parameter e window resize event
     bool WindowResized(WindowResizeEvent& event);
-    /// This function renders the play buttorn for mario game
-    void MarioPlayButton();
+    /// This function renders the play buttorn for  game
+    void GamePlayButton();
     /// This function renders the play/pause buttorn for active scene
     void ScenePlayPauseButton();
+    /// This function render the viewport captured in framebuffer
+    void RenderViewport();
+    /// This function renders the scene data
+    void RenderScene(Timestep ts);
     
     Viewport viewport_;
     Setting settings_;
