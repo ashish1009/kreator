@@ -188,6 +188,7 @@ namespace ikan_game {
     // Button action
     if (PropertyGrid::ImageButton("Game Play", play_texture->GetRendererID(), { size, size })) {
       is_playing = true;
+      Application::Get().MaximizeWindow();
     }
     PropertyGrid::HoveredMsg("Play Button for Game");
     ImGui::End();
@@ -322,24 +323,15 @@ namespace ikan_game {
       if (viewport_.guizmo_type == ImGuizmo::OPERATION::ROTATE)
         snap_value = 45.0f;
       
-      float snap_values[3] = {
-        snap_value,
-        snap_value,
-        snap_value
-      };
+      float snap_values[3] = { snap_value, snap_value, snap_value };
       
       if (!active_scene_->UseEditorCamera()) {
         // Camera
         const glm::mat4& camera_projection = active_scene_->GetPrimaryCameraData().scene_camera->GetProjection();
         const glm::mat4& camera_view = glm::inverse(active_scene_->GetPrimaryCameraData().transform_comp->GetTransform());
         
-        ImGuizmo::Manipulate(glm::value_ptr(camera_view),
-                             glm::value_ptr(camera_projection),
-                             (ImGuizmo::OPERATION)viewport_.guizmo_type,
-                             ImGuizmo::LOCAL,
-                             glm::value_ptr(transform),
-                             nullptr,
-                             snap ? snap_values : nullptr);
+        ImGuizmo::Manipulate(glm::value_ptr(camera_view), glm::value_ptr(camera_projection), (ImGuizmo::OPERATION)viewport_.guizmo_type,
+                             ImGuizmo::LOCAL, glm::value_ptr(transform), nullptr, snap ? snap_values : nullptr);
         
       } else {
         // Camera
@@ -348,13 +340,8 @@ namespace ikan_game {
         const glm::mat4& camera_projection = editor_camera->GetProjection();
         const glm::mat4& camera_view = editor_camera->GetView();
         
-        ImGuizmo::Manipulate(glm::value_ptr(camera_view),
-                             glm::value_ptr(camera_projection),
-                             (ImGuizmo::OPERATION)viewport_.guizmo_type,
-                             ImGuizmo::LOCAL,
-                             glm::value_ptr(transform),
-                             nullptr,
-                             snap ? snap_values : nullptr);
+        ImGuizmo::Manipulate(glm::value_ptr(camera_view), glm::value_ptr(camera_projection), (ImGuizmo::OPERATION)viewport_.guizmo_type,
+                             ImGuizmo::LOCAL, glm::value_ptr(transform), nullptr, snap ? snap_values : nullptr);
       }
       
       if (ImGuizmo::IsUsing()) {

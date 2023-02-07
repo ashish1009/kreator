@@ -127,6 +127,7 @@ namespace ikan {
     imgui_layer_->End();
   }
   
+  void Application::MaximizeWindow() const { window_->Maximize(); }
   void Application::Close() { is_running_ = false; }
   void Application::PushLayer(const std::shared_ptr<Layer>& layer) { layer_stack_.PushLayer(layer); }
   void Application::PopLayer(const std::shared_ptr<Layer>& layer) { layer_stack_.PopLayer(layer); }

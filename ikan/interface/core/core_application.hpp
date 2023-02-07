@@ -94,6 +94,8 @@ namespace ikan {
     /// the layer (destroy it)
     /// - Parameter layer: Layer Reference pointer to be removed
     void PopLayer(const std::shared_ptr<Layer>& layer);
+    /// This function maximise the window
+    void MaximizeWindow() const;
 
     // -----------------
     // Getters
@@ -120,9 +122,7 @@ namespace ikan {
     /// This function dispatched in event dispatcher and trigger when window close event evoked
     /// - Parameter windowEvent: Window close event instacnce
     bool WindowClose([[maybe_unused]] WindowCloseEvent& window_close_event);
-    
-    /// This function begin the Imgui Renderer and render IMGUI for all the layers and finally ends
-    /// the imgui rendering
+    /// This function begin the Imgui Renderer and render IMGUI for all the layers and finally ends the imgui rendering
     void RenderGui();
 
     // -----------------
