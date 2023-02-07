@@ -19,6 +19,8 @@ enum class SupportedApplicationType : uint8_t {
   /* Add More with time */
 };
 
+bool new_mario = true;
+
 class KreatorApp : public ikan::Application {
 public:
   KreatorApp(const ikan::Application::Specification& application_spec,
@@ -34,7 +36,10 @@ public:
         PushLayer(std::make_shared<ray_tracing::RendererLayer>());
         break;
       case SupportedApplicationType::Mario :
-        PushLayer(std::make_shared<mario::RendererLayer>());
+        if (new_mario)
+          PushLayer(std::make_shared<mario::RendererLayer>());
+        else
+          PushLayer(std::make_shared<mario::MarioLayer>());
         break;
       case SupportedApplicationType::Chess :
         PushLayer(std::make_shared<chess::ChessLayer>());
@@ -86,7 +91,10 @@ std::unique_ptr<ikan::Application> CreateApplication() {
       application_spec.name = "Mario";
       application_spec.window_specification.title = "iKan Mario";
       application_spec.client_asset_path = "../../../kreator/layers/mario/assets/";
-      application_spec.save_ini_file_path = "../../../kreator/layers/mario/mario.ini";
+      if (new_mario)
+        application_spec.save_ini_file_path = "../../../kreator/layers/mario/new_mario.ini";
+      else
+        application_spec.save_ini_file_path = "../../../kreator/layers/mario/mario.ini";
       break;
     case SupportedApplicationType::Chess :
       application_spec.name = "Chess";

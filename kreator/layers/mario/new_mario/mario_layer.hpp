@@ -10,9 +10,13 @@
 namespace mario {
   
   using namespace ikan;
-    
+  
   class RendererLayer : public Layer {
   public:
+    struct Setting {
+      bool play = false;
+    };
+    
     /// Layer Default Constructor to store the name of layer
     RendererLayer();
     /// Default Destructor
@@ -34,6 +38,10 @@ namespace mario {
     /// in the window. NOTE Core Application is taking care to call the EventHandler(event) API for all Layers
     /// - Parameter event: Event (Base class) intance. Dispatch event from Event Dispatcher
     void EventHandler(Event& event) override;
+    
+  private:
+    Viewport viewport_;
+    Setting settings_;
   };
   
 }
