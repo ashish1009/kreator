@@ -19,7 +19,7 @@ namespace ikan_game {
   static const std::string current_bold_font_path_ = "fonts/mario.ttf";
   
   // Default Scene Path
-  static const std::string scene_path_ = "";
+  static const std::string scene_path_ = "scenes/Mario_Scene.ikanScene";
   
   RendererLayer::RendererLayer() : Layer(game_name_) {
     IK_INFO(game_name_, "Creating {0} Layer instance ... ", game_name_.c_str());
@@ -47,8 +47,9 @@ namespace ikan_game {
     
     ImguiAPI::SetLightGreyThemeColors();
 
-    active_scene_ = std::make_shared<EnttScene>();
-    spm_.SetSceneContext(active_scene_.get());
+    if (!OpenScene(AM::ClientAsset(scene_path_))) {
+      NewScene(AM::ClientAsset("scenes/New_scene"));
+    }
   }
   
   void RendererLayer::Detach() {
@@ -209,6 +210,33 @@ namespace ikan_game {
     
     ImGui::PopID();
     ImGui::End();
+  }
+  
+  void RendererLayer::CloseScene() {
+    if (!active_scene_)
+      return;
+
+    IK_INFO(game_name_, "Closing Scene {0}", active_scene_->GetName().c_str());
+    active_scene_.reset();
+    active_scene_ = nullptr;
+  }
+  
+  const void RendererLayer::NewScene(const std::string& scene_path) {
+    // Close the current scene
+    CloseScene();
+    
+    // Create New Scene
+    IK_INFO(game_name_, "Creating New Scene {0}", scene_path.c_str());
+    active_scene_ = std::make_shared<EnttScene>(scene_path);
+    spm_.SetSceneContext(active_scene_.get());
+  }
+
+  const bool RendererLayer::OpenScene(const std::string& scene_path) {
+    IK_INFO(game_name_, "Opening saved scene from {0}", scene_path.c_str());
+    
+    NewScene(scene_path);
+    SceneSerializer serializer(active_scene_.get());
+    return serializer.Deserialize(scene_path);
   }
 
 }

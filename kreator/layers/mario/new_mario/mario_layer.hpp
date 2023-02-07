@@ -54,8 +54,18 @@ namespace ikan_game {
     void RenderViewport();
     /// This function renders the scene data
     void RenderScene(Timestep ts);
+
+    // Scene Manager
+    /// This function creates a new scene instance
+    /// - Parameter scene_path: path of new scene
+    const void NewScene(const std::string& scene_path = "Unsaved Scene");
+    /// This function opens already saved scene from path
+    /// - Parameter scene_file_path: scene file path
+    const bool OpenScene(const std::string& scene_file_path);
     /// This function Renders an Imgui widget that helps in saving scene
     const void SaveScene();
+    /// This function closes the current scene
+    void CloseScene();
 
     Setting settings_;
     Viewport viewport_;

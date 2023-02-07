@@ -293,11 +293,11 @@ namespace ikan {
 
   }
   
-  void SceneSerializer::Deserialize(const std::string& file_path) {
+  bool SceneSerializer::Deserialize(const std::string& file_path) {
     YAML::Node data = YAML::LoadFile(file_path);
     
     if (!data["Scene"])
-      return;
+      return false;
         
     std::string scene_name = data["Scene"].as<std::string>();
     IK_CORE_INFO(LogModule::SceneSerializer, "Deserialising scene");
@@ -509,6 +509,8 @@ namespace ikan {
 
       } // for (auto entity : entities)
     } // if (entities)
+    
+    return true;
   }
   
 }

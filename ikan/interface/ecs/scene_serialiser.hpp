@@ -26,7 +26,7 @@ namespace ikan {
     void Serialize(const std::string& file_path);
     /// This functions serializes(Opens) the scene frol path 'file_path'
     /// - Parameter file_path: path which need to be loaded
-    void Deserialize(const std::string& file_path);
+    bool Deserialize(const std::string& file_path);
     
     DELETE_COPY_MOVE_CONSTRUCTORS(SceneSerializer);
     
