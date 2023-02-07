@@ -46,7 +46,10 @@ namespace ikan_game {
     /// This function handles the Window resize event
     /// - Parameter e window resize event
     bool WindowResized(WindowResizeEvent& event);
-    
+    /// This function handles the mouse button event
+    /// - Parameter e: mouse button pressed event
+    bool MouseButtonPressed(MouseButtonPressedEvent& e);
+
     /// This function renders the play buttorn for  game
     void GamePlayButton();
     /// This function renders the play/pause buttorn for active scene
@@ -69,6 +72,9 @@ namespace ikan_game {
     /// This function closes the current scene
     void CloseScene();
 
+    /// This funciton Render the imguizmo
+    void OnImguizmoUpdate();
+    
     // ------------------
     // Member variables
     // ------------------

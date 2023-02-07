@@ -73,6 +73,8 @@ namespace ikan_game {
 
       viewport_.framebuffer->Bind();
       RenderScene(ts);
+
+      viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
       viewport_.framebuffer->Unbind();
     }
   }
@@ -83,6 +85,7 @@ namespace ikan_game {
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::KeyPressed));
     dispatcher.Dispatch<WindowResizeEvent>(IK_BIND_EVENT_FN(RendererLayer::WindowResized));
+    dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::MouseButtonPressed));
   }
   
   void RendererLayer::RenderGui() {
@@ -113,8 +116,36 @@ namespace ikan_game {
   }
   
   bool RendererLayer::KeyPressed(KeyPressedEvent& event) {
-    if (event.GetKeyCode() == KeyCode::Escape) {
-      is_playing = false;
+    if (event.GetRepeatCount() > 0)
+      return false;
+
+    // Set control key
+    bool ctrl = Input::IsKeyPressed(KeyCode::LeftControl) or Input::IsKeyPressed(KeyCode::RightControl);
+
+    switch (event.GetKeyCode()) {
+        // Guizmo
+      case KeyCode::Q:
+        if (ctrl)
+          viewport_.guizmo_type = -1;
+        break;
+      case KeyCode::W:
+        if (ctrl)
+          viewport_.guizmo_type = ImGuizmo::OPERATION::TRANSLATE;
+        break;
+      case KeyCode::E:
+        if (ctrl)
+          viewport_.guizmo_type = ImGuizmo::OPERATION::ROTATE;
+        break;
+      case KeyCode::R:
+        if (ctrl)
+          viewport_.guizmo_type = ImGuizmo::OPERATION::SCALE;
+        
+        // Game Play controller
+      case KeyCode::Escape:
+        is_playing = false;
+
+      default:
+        break;
     }
     return false;
   }
@@ -126,6 +157,21 @@ namespace ikan_game {
     active_scene_->SetViewport(viewport_width, viewport_height);
     return false;
   }
+  
+  bool RendererLayer::MouseButtonPressed(MouseButtonPressedEvent& e) {
+    if (e.GetMouseButton() == MouseButton::ButtonLeft) {
+      if (viewport_.mouse_pos_x >= 0 and
+          viewport_.mouse_pos_y >= 0 and
+          viewport_.mouse_pos_x <= viewport_.width and
+          viewport_.mouse_pos_y <= viewport_.height and
+          viewport_.hovered_entity_) {
+        spm_.SetSelectedEntity(viewport_.hovered_entity_);
+      }
+    }
+    
+    return false;
+  }
+
   
   void RendererLayer::RenderScene(Timestep ts) {
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
@@ -189,7 +235,8 @@ namespace ikan_game {
     
     size_t textureID = viewport_.framebuffer->GetColorAttachmentIds().at(0);
     ImGui::Image((void*)textureID, viewport_panel_size, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-        
+
+    OnImguizmoUpdate();
     viewport_.UpdateBound();
     
     ImGui::PopStyleVar();
@@ -253,4 +300,72 @@ namespace ikan_game {
     return result;
   }
   
+  void RendererLayer::OnImguizmoUpdate() {
+    Entity* selected_entity = spm_.GetSelectedEntity();
+    if (selected_entity and viewport_.guizmo_type != -1) {
+      ImGuizmo::SetOrthographic(false);
+      ImGuizmo::SetDrawlist();
+      
+      float window_width = (float)ImGui::GetWindowWidth();
+      float window_height = (float)ImGui::GetWindowHeight();
+      ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, window_width, window_height);
+      
+      // Entity transform
+      auto& tc = selected_entity->GetComponent<TransformComponent>();
+      glm::mat4 transform = tc.GetTransform();
+      
+      // Snapping
+      bool snap = Input::IsKeyPressed(KeyCode::LeftControl);
+      float snap_value = 0.5f; // Snap to 0.5m for translation/scale
+      
+      // Snap to 45 degrees for rotation
+      if (viewport_.guizmo_type == ImGuizmo::OPERATION::ROTATE)
+        snap_value = 45.0f;
+      
+      float snap_values[3] = {
+        snap_value,
+        snap_value,
+        snap_value
+      };
+      
+      if (!active_scene_->UseEditorCamera()) {
+        // Camera
+        const glm::mat4& camera_projection = active_scene_->GetPrimaryCameraData().scene_camera->GetProjection();
+        const glm::mat4& camera_view = glm::inverse(active_scene_->GetPrimaryCameraData().transform_comp->GetTransform());
+        
+        ImGuizmo::Manipulate(glm::value_ptr(camera_view),
+                             glm::value_ptr(camera_projection),
+                             (ImGuizmo::OPERATION)viewport_.guizmo_type,
+                             ImGuizmo::LOCAL,
+                             glm::value_ptr(transform),
+                             nullptr,
+                             snap ? snap_values : nullptr);
+        
+      } else {
+        // Camera
+        EditorCamera* editor_camera = active_scene_->GetEditorCamera();
+        
+        const glm::mat4& camera_projection = editor_camera->GetProjection();
+        const glm::mat4& camera_view = editor_camera->GetView();
+        
+        ImGuizmo::Manipulate(glm::value_ptr(camera_view),
+                             glm::value_ptr(camera_projection),
+                             (ImGuizmo::OPERATION)viewport_.guizmo_type,
+                             ImGuizmo::LOCAL,
+                             glm::value_ptr(transform),
+                             nullptr,
+                             snap ? snap_values : nullptr);
+      }
+      
+      if (ImGuizmo::IsUsing()) {
+        glm::vec3 translation, rotation, scale;
+        Math::DecomposeTransform(transform, translation, rotation, scale);
+        
+        glm::vec3 deltaRotation = rotation - tc.Rotation();
+        tc.UpdateTranslation(translation);
+        tc.UpdateRotation(tc.Rotation() + deltaRotation);
+        tc.UpdateScale(scale);
+      }
+    }
+  }
 }

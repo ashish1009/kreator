@@ -111,11 +111,11 @@ namespace ikan {
     if (hovered_entity_) {
       std::string entityName = hovered_entity_->GetComponent<TagComponent>().tag;
       ImGui::SetColumnWidth(4, 50);
-      ImGui::Text("ID : %d", (uint32_t)(*hovered_entity_));
+      ImGui::Text("%d", (uint32_t)(*hovered_entity_));
       ImGui::NextColumn();
       
       ImGui::SetColumnWidth(5, 100);
-      ImGui::Text("Name : %s ", entityName.c_str());
+      ImGui::Text("%s ", entityName.c_str());
       ImGui::NextColumn();
     }
     else {
