@@ -90,21 +90,22 @@ namespace ikan_game {
     }
     else {
       ImguiAPI::StartDcocking();
-      
       active_scene_->RenderGui();
 
-      Renderer::Framerate(nullptr);
-      Renderer::RenderStatsGui(nullptr, true);
-      
-      viewport_.RenderGui();
+      if (active_scene_->IsEditing()) {
+        Renderer::Framerate(nullptr);
+        Renderer::RenderStatsGui(nullptr, true);
+        viewport_.RenderGui();
+        
+        cbp_.RenderGui();
+        spm_.RenderGui();
+
+        SaveScene();
+      }
       
       GamePlayButton();
       ScenePlayPauseButton();
       
-      cbp_.RenderGui();
-      spm_.RenderGui();
-      
-      SaveScene();
       RenderViewport();
       
       ImguiAPI::EndDcocking();
