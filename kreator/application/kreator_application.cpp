@@ -8,6 +8,7 @@
 #include "layers/ecs_editor/src/editor_layer.hpp"
 #include "layers/ray_tracing/src/renderer_layer.hpp"
 #include "layers/mario/src/mario_main.hpp"
+#include "layers/mario/new_mario/mario_layer.hpp"
 #include "layers/chess/src/chess_main.hpp"
 
 enum class SupportedApplicationType : uint8_t {
@@ -33,7 +34,7 @@ public:
         PushLayer(std::make_shared<ray_tracing::RendererLayer>());
         break;
       case SupportedApplicationType::Mario :
-        PushLayer(std::make_shared<mario::MarioLayer>());
+        PushLayer(std::make_shared<mario::RendererLayer>());
         break;
       case SupportedApplicationType::Chess :
         PushLayer(std::make_shared<chess::ChessLayer>());
@@ -48,7 +49,7 @@ public:
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Set up the type of applicaiton we want to create
-  SupportedApplicationType application_type = SupportedApplicationType::Editor;
+  SupportedApplicationType application_type = SupportedApplicationType::Mario;
   
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;
@@ -83,7 +84,7 @@ std::unique_ptr<ikan::Application> CreateApplication() {
       break;
     case SupportedApplicationType::Mario :
       application_spec.name = "Mario";
-      application_spec.window_specification.title = "Mario";
+      application_spec.window_specification.title = "iKan Mario";
       application_spec.client_asset_path = "../../../kreator/layers/mario/assets/";
       application_spec.save_ini_file_path = "../../../kreator/layers/mario/mario.ini";
       break;

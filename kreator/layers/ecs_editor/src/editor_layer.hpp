@@ -13,6 +13,23 @@ namespace editor {
   
   class EditorLayer : public Layer {
   public:
+    struct Setting {
+      bool cbp = true;
+      bool spm = true;
+      
+      bool frame_rate = true;
+      bool viewport = true;
+      bool stats = true;
+      
+      bool save_scene = true;
+      
+      /// This function changes the flag of setting for menu
+      /// - Parameters:
+      ///   - tag: tag of menu
+      ///   - flag: flag
+      static void UpdateSetting(std::string tag, bool& flag);
+    };
+    
     /// Layer Default Constructor to store the name of layer
     EditorLayer();
     /// Default Destructor
@@ -36,8 +53,54 @@ namespace editor {
     void EventHandler(Event& event) override;
     
   private:
-    SceneCamera camera_;
-    b2World* physics_world_;
+    // --------------------
+    // Member functions
+    // --------------------
+    /// This function render the menue bar
+    void ShowMenu();
+    /// This function handles the mouse button event
+    /// - Parameter e: mouse button pressed event
+    bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
+    /// This function handles the key button press event
+    /// - Parameter e key button pressed event
+    bool OnKeyPressed(KeyPressedEvent& event);
+    /// This funciton Render the imguizmo
+    void OnImguizmoUpdate();
+    
+    // Scene Manager
+    /// This function creates a new scene instance
+    /// - Parameter scene_path: path of new scene
+    const void NewScene(const std::string& scene_path = "Unsaved Scene");
+    /// This function opens already saved scene from path
+    /// - Parameter scene_file_path: scene file path
+    const void OpenScene(const std::string& scene_file_path);
+    /// This function Renders an Imgui widget that helps in saving scene
+    const void SaveScene();
+    /// This function closes the current scene
+    void CloseScene();
+    
+    // --------------------
+    // Member variables
+    // --------------------
+    Viewport viewport_;
+    ContentBrowserPanel cbp_ = ContentBrowserPanel("../../../kreator/layers/ecs_editor/editor_assets/scenes");
+    ScenePanelManager spm_;
+    std::shared_ptr<EnttScene> active_scene_;
+    
+    Setting setting_;
+    
+    // Font
+    bool change_font_ = true;
+    std::string current_font_name_ = "OpensansRegular";
+    std::string current_font_path_ = "fonts/Opensans/Regular.ttf";
+    std::string current_bold_font_name_ = "OpensansBold";
+    std::string current_bold_font_path_ = "fonts/Opensans/Bold.ttf";
+    
+    // Theme
+    enum class Theme {
+      Light, Dark, Grey, LightGrey
+    };
+    Theme current_theme_ = Theme::LightGrey;
   };
   
 }
