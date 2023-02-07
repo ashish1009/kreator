@@ -34,6 +34,9 @@ namespace editor {
     /// in the window. NOTE Core Application is taking care to call the EventHandler(event) API for all Layers
     /// - Parameter event: Event (Base class) intance. Dispatch event from Event Dispatcher
     void EventHandler(Event& event) override;
+    
+  private:
+    SceneCamera camera_;
   };
   
 }
