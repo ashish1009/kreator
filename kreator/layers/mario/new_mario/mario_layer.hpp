@@ -46,15 +46,17 @@ namespace ikan_game {
     /// This function handles the Window resize event
     /// - Parameter e window resize event
     bool WindowResized(WindowResizeEvent& event);
+    
     /// This function renders the play buttorn for  game
     void GamePlayButton();
     /// This function renders the play/pause buttorn for active scene
     void ScenePlayPauseButton();
+    
     /// This function render the viewport captured in framebuffer
     void RenderViewport();
     /// This function renders the scene data
     void RenderScene(Timestep ts);
-
+    
     // Scene Manager
     /// This function creates a new scene instance
     /// - Parameter scene_path: path of new scene
@@ -67,6 +69,12 @@ namespace ikan_game {
     /// This function closes the current scene
     void CloseScene();
 
+    // ------------------
+    // Member variables
+    // ------------------
+    uint32_t viewport_width = Application::Get().GetWindow().GetWidth();
+    uint32_t viewport_height = Application::Get().GetWindow().GetWidth();
+    
     Setting settings_;
     Viewport viewport_;
     ContentBrowserPanel cbp_ = ContentBrowserPanel("../../../kreator/layers/mario/assets/");

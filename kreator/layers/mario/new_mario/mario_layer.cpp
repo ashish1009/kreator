@@ -57,10 +57,20 @@ namespace ikan_game {
   }
     
   void RendererLayer::Update(Timestep ts) {
-    if (is_playing) {
+    viewport_.UpdateMousePos();
+
+    if (is_playing) {      
       RenderScene(ts);
     }
     else {
+      if (viewport_.IsFramebufferResized()) {
+        viewport_width = viewport_.width;
+        viewport_height = viewport_.height;
+        
+        viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
+        active_scene_->SetViewport(viewport_width, viewport_height);
+      }
+
       viewport_.framebuffer->Bind();
       RenderScene(ts);
       viewport_.framebuffer->Unbind();
@@ -109,14 +119,16 @@ namespace ikan_game {
   }
   
   bool RendererLayer::WindowResized(WindowResizeEvent& event) {
-    active_scene_->SetViewport(event.GetWidth(), event.GetHeight());
+    viewport_width = event.GetWidth();
+    viewport_height = event.GetHeight();
+    
+    active_scene_->SetViewport(viewport_width, viewport_height);
     return false;
   }
   
   void RendererLayer::RenderScene(Timestep ts) {
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
     active_scene_->Update(ts);
-
   }
   
   void RendererLayer::GamePlayButton() {
@@ -127,7 +139,7 @@ namespace ikan_game {
     ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 0.5f));
     
     // Button action
-    if (PropertyGrid::ImageButton("Play/Pause", play_texture->GetRendererID(), { size, size })) {
+    if (PropertyGrid::ImageButton("Game Play", play_texture->GetRendererID(), { size, size })) {
       is_playing = true;
     }
     PropertyGrid::HoveredMsg("Play Button for Game");
@@ -150,7 +162,7 @@ namespace ikan_game {
     ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 0.5f));
     
     // Button action
-    if (PropertyGrid::ImageButton("Play/Pause", tex_id, { size, size })) {
+    if (PropertyGrid::ImageButton("Scene Play/Pause", tex_id, { size, size })) {
       if (active_scene_->IsEditing())
         active_scene_->PlayScene();
       else
@@ -228,7 +240,7 @@ namespace ikan_game {
     // Create New Scene
     IK_INFO(game_name_, "Creating New Scene {0}", scene_path.c_str());
     active_scene_ = std::make_shared<EnttScene>(scene_path);
-    spm_.SetSceneContext(active_scene_.get());
+    spm_.SetSceneContext(active_scene_.get());    
   }
 
   const bool RendererLayer::OpenScene(const std::string& scene_path) {
@@ -236,7 +248,11 @@ namespace ikan_game {
     
     NewScene(scene_path);
     SceneSerializer serializer(active_scene_.get());
-    return serializer.Deserialize(scene_path);
+    
+    bool result = serializer.Deserialize(scene_path);
+    active_scene_->SetViewport(viewport_width, viewport_height);
+    
+    return result;
   }
-
+  
 }

@@ -387,7 +387,8 @@ namespace ikan {
   EditorCamera* EnttScene::GetEditorCamera() { return &editor_camera_; }
   entt::registry& EnttScene::GetRegistry() { return registry_; }
   bool EnttScene::IsEditing() const { return state_ == EnttScene::State::Edit; }
-  const std::string EnttScene::GetName() const { return name_; }
+  const std::string& EnttScene::GetName() const { return name_; }
+  const std::string& EnttScene::GetFilePath() const { return file_path_; }
   const CameraData& EnttScene::GetPrimaryCameraData() const { return primary_camera_data_; }
   bool EnttScene::UseEditorCamera() const { return use_editor_camera_; }
 }
