@@ -293,11 +293,12 @@ namespace ikan {
   // -------------------------------------------------------------------------
   CameraComponent::CameraComponent(const CameraComponent& other)
   : is_primary(other.is_primary), is_fixed_aspect_ratio(other.is_fixed_aspect_ratio) {
-    camera = std::make_shared<SceneCamera>();
-    *(camera.get()) = *(other.camera.get());
+    camera = other.camera;
   }
   CameraComponent::CameraComponent(CameraComponent&& other)
-  : camera(std::move(other.camera)) {}
+  : camera(std::move(other.camera)) {
+    
+  }
   CameraComponent& CameraComponent::operator=(const CameraComponent& other) {
     camera = other.camera;
     return *this;

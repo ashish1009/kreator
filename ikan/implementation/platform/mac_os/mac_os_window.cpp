@@ -29,8 +29,7 @@ namespace ikan {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-    // This removes titlebar on all platforms and all of the native window
-    // effects on non-Windows platforms
+    // This removes titlebar on all platforms and all of the native window effects on non-Windows platforms
     glfwWindowHint(GLFW_DECORATED, mac_window_data_.specification.decorated);
 
     // Create window based on the flag full screen

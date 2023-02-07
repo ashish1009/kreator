@@ -83,7 +83,7 @@ namespace ikan_game {
     
     Setting settings_;
     Viewport viewport_;
-    ContentBrowserPanel cbp_ = ContentBrowserPanel("../../../kreator/layers/mario/assets/");
+    ContentBrowserPanel cbp_ = ContentBrowserPanel("../../../kreator/layers/mario/assets/scenes/");
     ScenePanelManager spm_;
     std::shared_ptr<EnttScene> active_scene_;
   };

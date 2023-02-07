@@ -70,6 +70,23 @@
 		B25F618A2969A9CF0042FE09 /* player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
 		B275570829601F650020D552 /* renderer_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
 		B275570929601F650020D552 /* renderer_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
+		B295CFA32992AF4400174D0F /* bridge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bridge.png; sourceTree = "<group>"; };
+		B295CFA42992AF4400174D0F /* castel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = castel.png; sourceTree = "<group>"; };
+		B295CFA52992AF4400174D0F /* pipe_y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pipe_y.png; sourceTree = "<group>"; };
+		B295CFA62992AF4400174D0F /* pipe_|.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pipe_|.png"; sourceTree = "<group>"; };
+		B295CFA72992AF4400174D0F /* bonus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bonus.png; sourceTree = "<group>"; };
+		B295CFA82992AF4400174D0F /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		B295CFA92992AF4400174D0F /* block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block.png; sourceTree = "<group>"; };
+		B295CFAA2992AF4400174D0F /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
+		B295CFAB2992AF4400174D0F /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.png; sourceTree = "<group>"; };
+		B295CFAC2992AF4400174D0F /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
+		B295CFAD2992AF4400174D0F /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground.png; sourceTree = "<group>"; };
+		B295CFAE2992AF4400174D0F /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		B295CFAF2992AF4400174D0F /* brick_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick_block.png; sourceTree = "<group>"; };
+		B295CFB02992AF4400174D0F /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
+		B295CFB12992AF4400174D0F /* tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles.png; sourceTree = "<group>"; };
+		B295CFB32992AF4400174D0F /* Mario_Scene.ikanScene */ = {isa = PBXFileReference; lastKnownFileType = text; path = Mario_Scene.ikanScene; sourceTree = "<group>"; };
+		B295CFB62992AF4400174D0F /* mario.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = mario.ttf; sourceTree = "<group>"; };
 		B2A7FA67299257350039C996 /* mario_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario_layer.cpp; sourceTree = "<group>"; };
 		B2A7FA68299257350039C996 /* mario_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario_layer.hpp; sourceTree = "<group>"; };
 		B2BD9DCB295C7D3C0076A2F9 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.dylib; sourceTree = "<group>"; };
@@ -180,6 +197,7 @@
 		B24DD82B2962FFD700525941 /* mario */ = {
 			isa = PBXGroup;
 			children = (
+				B295CFA02992AF4400174D0F /* assets */,
 				B2A7FA66299257150039C996 /* new_mario */,
 				B24DD8352963020E00525941 /* src */,
 			);
@@ -237,6 +255,62 @@
 				B275570929601F650020D552 /* renderer_layer.hpp */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		B295CFA02992AF4400174D0F /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				B295CFA12992AF4400174D0F /* textures */,
+				B295CFB22992AF4400174D0F /* scenes */,
+				B295CFB52992AF4400174D0F /* fonts */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		B295CFA12992AF4400174D0F /* textures */ = {
+			isa = PBXGroup;
+			children = (
+				B295CFA22992AF4400174D0F /* background */,
+				B295CFB12992AF4400174D0F /* tiles.png */,
+			);
+			path = textures;
+			sourceTree = "<group>";
+		};
+		B295CFA22992AF4400174D0F /* background */ = {
+			isa = PBXGroup;
+			children = (
+				B295CFA32992AF4400174D0F /* bridge.png */,
+				B295CFA42992AF4400174D0F /* castel.png */,
+				B295CFA52992AF4400174D0F /* pipe_y.png */,
+				B295CFA62992AF4400174D0F /* pipe_|.png */,
+				B295CFA72992AF4400174D0F /* bonus.png */,
+				B295CFA82992AF4400174D0F /* background.png */,
+				B295CFA92992AF4400174D0F /* block.png */,
+				B295CFAA2992AF4400174D0F /* grass.png */,
+				B295CFAB2992AF4400174D0F /* cloud.png */,
+				B295CFAC2992AF4400174D0F /* tree.png */,
+				B295CFAD2992AF4400174D0F /* ground.png */,
+				B295CFAE2992AF4400174D0F /* star.png */,
+				B295CFAF2992AF4400174D0F /* brick_block.png */,
+				B295CFB02992AF4400174D0F /* brick.png */,
+			);
+			path = background;
+			sourceTree = "<group>";
+		};
+		B295CFB22992AF4400174D0F /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B295CFB32992AF4400174D0F /* Mario_Scene.ikanScene */,
+			);
+			path = scenes;
+			sourceTree = "<group>";
+		};
+		B295CFB52992AF4400174D0F /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B295CFB62992AF4400174D0F /* mario.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		B2A7FA66299257150039C996 /* new_mario */ = {
