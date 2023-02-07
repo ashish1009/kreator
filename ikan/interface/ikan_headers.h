@@ -104,5 +104,3 @@
 #include <ray_tracing/ray_renderer.hpp>
 #include <ray_tracing/hit_payload.hpp>
 #include <ray_tracing/ray_sphere.hpp>
-
-#include <physics/physics_headers.h>
