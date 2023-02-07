@@ -28,7 +28,7 @@ namespace mario {
     void Detach() override;
     
     /// This function renders the GUI Window for this layer. To be called each frame from application.
-    /// NOTE Core Application is taking care to call the RenderGui API for all Layers
+    /// - Note: Core Application is taking care to call the RenderGui API for all Layers
     void RenderGui() override;
     /// This function updates the layer data. To be called each frame from application. NOTE Core
     /// Application is taking care to call the Update(ts) API for all Layers
@@ -40,8 +40,20 @@ namespace mario {
     void EventHandler(Event& event) override;
     
   private:
+    /// This function handles the key button press event
+    /// - Parameter e key button pressed event
+    bool KeyPressed(KeyPressedEvent& event);
+    /// This function handles the Window resize event
+    /// - Parameter e window resize event
+    bool WindowResized(WindowResizeEvent& event);
+    /// This function renders the play buttorn for mario game
+    void MarioPlayButton();
+    /// This function renders the play/pause buttorn for active scene
+    void ScenePlayPauseButton();
+    
     Viewport viewport_;
     Setting settings_;
+    std::shared_ptr<EnttScene> active_scene_;
   };
   
 }

@@ -219,9 +219,7 @@ namespace ikan {
    
     // Render Scene Information
     ImGui::Text(" Scene | %s ", name_.c_str());
-    std::string hovered_msg =
-    "Num Entities   : " + std::to_string(num_entities_) + "\n"
-    "Max Entity ID  : " + std::to_string(max_entity_id_);
+    std::string hovered_msg = "Num Entities   : " + std::to_string(num_entities_) + "\n" "Max Entity ID  : " + std::to_string(max_entity_id_);
     PropertyGrid::HoveredMsg(hovered_msg.c_str());
     
     ImGui::End();
