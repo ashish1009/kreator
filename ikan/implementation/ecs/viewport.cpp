@@ -12,7 +12,7 @@
 #include "ecs/core_components.hpp"
 #include <ImGuizmo.h>
 
-namespace ecs {
+namespace ikan {
   
   Viewport::Viewport(const glm::vec4& fb_color) {
     FrameBuffer::Specification fb_spec;

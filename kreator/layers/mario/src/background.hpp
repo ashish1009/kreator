@@ -11,7 +11,6 @@
 namespace mario {
   
   using namespace ikan;
-  using namespace ecs;
   
   struct BackgroudData {
     // Sprite texture for background tiles

@@ -12,9 +12,8 @@
 #include "ecs/core_components.hpp"
 #include "ecs/entity.hpp"
 
-namespace ecs {
+namespace ikan {
   
-  using namespace ikan;
   
   class EnttScene;
   

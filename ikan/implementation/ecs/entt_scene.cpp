@@ -19,7 +19,7 @@
 #include "box2d/b2_circle_shape.h"
 #include "box2d/b2_fixture.h"
 
-namespace ecs {
+namespace ikan {
   
   EnttScene::EnttScene(const std::string& file_path)
   : file_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)) {

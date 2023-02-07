@@ -13,7 +13,6 @@
 namespace chess {
   
   using namespace ikan;
-  using namespace ecs;
   
   class ChessLayer : public Layer {
   public:

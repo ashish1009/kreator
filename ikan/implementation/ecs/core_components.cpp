@@ -9,7 +9,7 @@
 #include "editor/property_grid.hpp"
 #include "ecs/scriptable_entity.hpp"
 
-namespace ecs {
+namespace ikan {
   
   // -------------------------------------------------------------------------
   // ID Component

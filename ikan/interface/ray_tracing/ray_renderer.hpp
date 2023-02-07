@@ -11,7 +11,7 @@
 #include "renderer/graphics/texture.hpp"
 #include "camera/editor_camera.hpp"
 
-namespace ray_tracing {
+namespace ikan {
     
   class RayRenderer {
   public:

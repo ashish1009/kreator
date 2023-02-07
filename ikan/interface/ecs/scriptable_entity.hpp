@@ -10,10 +10,8 @@
 #include "ecs/entity.hpp"
 #include "core/math/aabb.hpp"
 
-namespace ecs {
-  
-  using namespace ikan;
-  
+namespace ikan {
+    
   class NativeScriptComponent;
 
   // Using Typedefs

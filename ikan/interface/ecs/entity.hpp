@@ -11,10 +11,8 @@
 
 #include "ecs/entt_scene.hpp"
 
-namespace ecs {
-  
-  using namespace ikan;
-  
+namespace ikan {
+    
   /// enTT Wrapper class to get, add .. APIs
   class Entity {
   public:

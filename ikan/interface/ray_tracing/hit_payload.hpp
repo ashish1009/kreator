@@ -9,7 +9,7 @@
 
 #include "ray.hpp"
 
-namespace ray_tracing {
+namespace ikan {
 
   struct HitPayload {
     float hit_distance;

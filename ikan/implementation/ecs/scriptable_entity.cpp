@@ -9,7 +9,7 @@
 #include "ecs/core_components.hpp"
 #include "core/input.hpp"
 
-namespace ecs {
+namespace ikan {
   
   // --------------------------------------------------------------------------
   // Script Manager
@@ -21,8 +21,8 @@ namespace ecs {
   void ScriptManager::UpdateScript(NativeScriptComponent* sc,
                                    const std::string& script_name,
                                    ScriptLoaderFn loader_function) {
-    if (script_name == "ecs::ScriptableEntity")
-      sc->Bind<ecs::ScriptableEntity>();
+    if (script_name == "ikan::ScriptableEntity")
+      sc->Bind<ikan::ScriptableEntity>();
     else {
       IK_ASSERT(loader_function, "Invalid Script name");
       bool script_loaded = loader_function(sc, script_name);

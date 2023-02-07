@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace ray_tracing {
-  
-  using namespace ikan;
-  
+namespace ikan {
+    
   /// Basic Ray class to store the data for each ray
   struct Ray {
     glm::vec3 origin;

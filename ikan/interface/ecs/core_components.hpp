@@ -14,10 +14,8 @@
 
 #include "box2d/b2_body.h"
 
-namespace ecs {
-  
-  using namespace ikan;
-  
+namespace ikan {
+    
   struct IDComponent {
     UUID id = 0;
     IDComponent(const UUID& id);

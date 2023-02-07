@@ -15,10 +15,8 @@
 
 #include "box2d/b2_world.h"
 
-namespace ecs {
+namespace ikan {
   
-  using namespace ikan;
-
   // Forward declaration
   class Entity;
   // TODO: For debug only

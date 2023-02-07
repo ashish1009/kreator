@@ -10,7 +10,7 @@
 #include "ray.hpp"
 #include "hit_payload.hpp"
 
-namespace ray_tracing {
+namespace ikan {
   
   struct RayMaterial {
     enum class Type : uint8_t {

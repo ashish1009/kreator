@@ -81,7 +81,7 @@ namespace YAML {
 } // namespace YAML
 
 
-namespace ecs {
+namespace ikan {
   
   // yml << operator for glm vec 3
   static YAML::Emitter& operator<<(YAML::Emitter& out, const glm::vec3& v) {

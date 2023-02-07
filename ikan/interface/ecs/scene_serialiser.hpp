@@ -11,10 +11,8 @@
 
 #include "ecs/entt_scene.hpp"
 
-namespace ecs {
-  
-  using namespace ikan;
-  
+namespace ikan {
+    
   class SceneSerializer {
   public:
     /// This is Constructor creates instance of Scene serialize and store the scene as pointer

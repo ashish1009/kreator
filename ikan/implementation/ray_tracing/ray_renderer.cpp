@@ -7,7 +7,7 @@
 
 #include "ray_renderer.hpp"
 
-namespace ray_tracing {
+namespace ikan {
 
   static uint32_t ConevrtToRgba(const glm::vec4& pixel) {
     uint8_t r = uint8_t(pixel.r * 255.0f);

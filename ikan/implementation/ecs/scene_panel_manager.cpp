@@ -9,7 +9,7 @@
 #include "ecs/entity.hpp"
 #include "editor/property_grid.hpp"
 
-namespace ecs {
+namespace ikan {
   
   /// This function renders the components in property pannel. Takes the function pointer in argument
   /// - Parameters:

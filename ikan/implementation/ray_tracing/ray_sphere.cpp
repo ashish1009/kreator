@@ -7,7 +7,7 @@
 
 #include "ray_sphere.hpp"
 
-namespace ray_tracing {
+namespace ikan {
   
   RaySphere::RaySphere(const RaySphere& other)
   : position(other.position), radius(other.radius) {

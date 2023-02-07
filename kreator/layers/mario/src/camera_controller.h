@@ -9,7 +9,7 @@
 
 namespace mario {
   
-  using namespace ecs;
+  using namespace ikan;
   
   class CameraController : public ScriptableEntity {
   public:

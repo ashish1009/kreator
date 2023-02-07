@@ -22,7 +22,7 @@ namespace mario {
   
   using namespace player_data;
   using namespace ikan;
-  using namespace ecs;
+  using namespace ikan;
   
   class Player {
   public:

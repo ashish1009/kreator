@@ -12,7 +12,7 @@
 namespace chess {
   
   using namespace ikan;
-  using namespace ecs;
+
   struct StartPosition {
     static constexpr Position Pawn_black_row = 1;
     static constexpr Position Pawn_white_row = 6;
