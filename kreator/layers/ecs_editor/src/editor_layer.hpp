@@ -37,6 +37,7 @@ namespace editor {
     
   private:
     SceneCamera camera_;
+    b2World* physics_world_;
   };
   
 }

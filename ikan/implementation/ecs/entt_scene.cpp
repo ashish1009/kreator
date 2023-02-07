@@ -106,8 +106,6 @@ namespace ikan {
       const int32_t position_iteration = 2;
       
       physics_world_->Step(ts, velocity_iteration, position_iteration);
-
-      physics_world_->DebugDraw();
       
       // Get Transform
       auto view = registry_.view<RigidBodyComponent>();
