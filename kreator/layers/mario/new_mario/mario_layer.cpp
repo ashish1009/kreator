@@ -29,6 +29,11 @@ namespace ikan_game {
   void RendererLayer::Attach() {
     IK_INFO(game_name_, "Attaching {0} Layer instance", game_name_.c_str());
     
+    cbp_.AddFavouritPaths({
+      AM::ProjectPath("kreator/layers/mario/assets"),
+      AM::ProjectPath("kreator/layers/mario/assets/scenes"),
+    });
+
     // Decorate the Imgui Change the font of imgui
     ImguiAPI::ChangeFont(
                          // Regular Font information
@@ -79,7 +84,8 @@ namespace ikan_game {
       viewport_.RenderGui();
       GamePlayButton();
       ScenePlayPauseButton();
-      
+      cbp_.RenderGui();
+
       RenderViewport();
       
       ImguiAPI::EndDcocking();

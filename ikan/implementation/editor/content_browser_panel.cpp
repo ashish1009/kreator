@@ -34,8 +34,7 @@ namespace ikan {
   }
 
   void ContentBrowserPanel::RenderGui(bool* is_open) {
-    if (!is_open) return;
-    if (*is_open == false) return;
+    if (is_open and *is_open == false) return;
     
     ImGui::Begin("Content Browser", is_open);
     ImGui::PushID("Content Browser");

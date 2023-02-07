@@ -55,8 +55,9 @@ namespace ikan_game {
     /// This function renders the scene data
     void RenderScene(Timestep ts);
     
-    Viewport viewport_;
     Setting settings_;
+    Viewport viewport_;
+    ContentBrowserPanel cbp_ = ContentBrowserPanel("../../../kreator/layers/mario/assets/");
     std::shared_ptr<EnttScene> active_scene_;
   };
   
