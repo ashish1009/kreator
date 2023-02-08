@@ -16,9 +16,7 @@ namespace ikan {
   ///   - name: name of the entity
   ///   - entity: entity reference pointer
   ///   - ui_function: ui function to be called
-  template<typename T, typename UIFunction> static void DrawComponent(const std::string& name,
-                                                                      const Entity& entity,
-                                                                      UIFunction ui_function) {
+  template<typename T, typename UIFunction> static void DrawComponent(const std::string& name, const Entity& entity, UIFunction ui_function) {
     // Flag for rendering the title of entity
     const ImGuiTreeNodeFlags tree_node_flags = ImGuiTreeNodeFlags_DefaultOpen |
     ImGuiTreeNodeFlags_Framed |
@@ -32,9 +30,7 @@ namespace ikan {
       ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2{ 4, 4 });
       
       // Render the title named as entity name
-      bool open = ImGui::TreeNodeEx((void*)typeid(T).hash_code(),
-                                    tree_node_flags,
-                                    name.c_str());
+      bool open = ImGui::TreeNodeEx((void*)typeid(T).hash_code(), tree_node_flags, name.c_str());
       ImGui::PopStyleVar(); // ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2{ 4, 4 });
       
       // Get the avilable width and height for button position
@@ -50,10 +46,7 @@ namespace ikan {
       
       // Render the button (X) for removing the component
       static std::shared_ptr<Texture> close_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/gear.png"));
-      if (PropertyGrid::ImageButton("Close",
-                                    close_texture->GetRendererID(),
-                                    { content_height, content_height } // Size
-                                    )) {
+      if (PropertyGrid::ImageButton("Close", close_texture->GetRendererID(), { content_height, content_height } )) {
         ImGui::OpenPopup("ComponentSettings");
       }
       

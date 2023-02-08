@@ -289,6 +289,10 @@ namespace ikan {
     ImGui::End();
   }
   
+  float EditorCamera::GetZoom() const {
+    return distance_;
+  }
+  
   glm::vec3 EditorCamera::CalculatePosition() const {
     return focal_point_ - GetForwardDirection() * distance_;
   }

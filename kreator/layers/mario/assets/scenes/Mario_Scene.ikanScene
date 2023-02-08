@@ -4,21 +4,18 @@ Setting_scene_controller: true
 Setting_scene_data: true
 Use_editor_camera: false
 Entities:
-  - Entity: 15253219191240632203
+  - Entity: 17591820361689180136
     TagComponent:
-      Tag: Editor Camera
+      Tag: Quad
     TransformComponent:
-      Translation: [0, 0, 2]
+      Translation: [0, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
-    CameraComponent:
-      FixedAspectRatio: false
-      Primary: false
-      ProjectionType: 0
-      PerspectiveFOV: 0.785398185
-      OrthographicSize: 10
-      Near: 0.00999999978
-      Far: 10000
+    QuadComponent:
+      Texture_Use: false
+      Texture_Path: ""
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
   - Entity: 6007582178234533221
     TagComponent:
       Tag: Primary Camera
@@ -28,21 +25,24 @@ Entities:
       Scale: [1, 1, 1]
     CameraComponent:
       FixedAspectRatio: false
-      Primary: true
+      Primary: false
       ProjectionType: 1
       PerspectiveFOV: 0.785398185
-      OrthographicSize: 2
+      OrthographicSize: 20
       Near: -1
       Far: 1
-  - Entity: 17231437844081268395
+  - Entity: 15253219191240632203
     TagComponent:
-      Tag: Quad
+      Tag: Editor Camera
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [0, 0, 1]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/background/block.png
-      Texture_TilingFactor: 1
-      Color: [1, 0.999989986, 0.999989986, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 0
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 10
+      Near: 0.00999999978
+      Far: 10000

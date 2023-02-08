@@ -75,10 +75,7 @@ namespace ikan {
   void SceneCamera::RecalculateProjection() {
     // Update the projection matrix based on the projection type of camera
     if (projection_type_ == ProjectionType::Perspective) {
-      projection_matrix_ = glm::perspective(perspective_fov_,
-                                            aspect_ratio_,
-                                            near_plane_,
-                                            far_plane_);
+      projection_matrix_ = glm::perspective(perspective_fov_, aspect_ratio_, near_plane_, far_plane_);
     }
     else if (projection_type_ == ProjectionType::Orthographic) {
       float ortho_left = -orthographic_size_ * aspect_ratio_ * 0.5f;
@@ -86,12 +83,7 @@ namespace ikan {
       float ortho_bottom = -orthographic_size_ * 0.5f;
       float ortho_top = orthographic_size_ * 0.5f;
       
-      projection_matrix_ = glm::ortho(ortho_left,
-                                      ortho_right,
-                                      ortho_bottom,
-                                      ortho_top,
-                                      near_plane_,
-                                      far_plane_);
+      projection_matrix_ = glm::ortho(ortho_left, ortho_right, ortho_bottom, ortho_top, near_plane_, far_plane_);
     }
     else {
       IK_ASSERT(false, "Invalid Projection Type");
@@ -127,6 +119,16 @@ namespace ikan {
     
     // Recalculate the projection matrix
     RecalculateProjection();
+  }
+  
+  float SceneCamera::GetZoom() const {
+    if (projection_type_ == ProjectionType::Orthographic) {
+      return orthographic_size_;
+    }
+    else if (projection_type_ == ProjectionType::Perspective) {
+      return perspective_fov_;
+    }
+    IK_CORE_ASSERT(false, "Invalid Type");
   }
 
   void SceneCamera::SetOrthographic(float size, float near_clip, float far_clip) {
@@ -236,11 +238,14 @@ namespace ikan {
     
     if (projection_type_ == SceneCamera::ProjectionType::Perspective) {
       float fov = glm::degrees(perspective_fov_);
-      if (PropertyGrid::Float1("Vertical FOV", fov, nullptr, 1.0f, 45.0f))
+      if (PropertyGrid::Float1("Vertical FOV", fov, nullptr, 1.0f, 45.0f)) {
         SetPerspectiveFOV(glm::radians(fov));
+      }
+      PropertyGrid::HoveredMsg(std::to_string(perspective_fov_).c_str());
     } else if (projection_type_ == SceneCamera::ProjectionType::Orthographic) {
-      if (PropertyGrid::Float1("Size", orthographic_size_, nullptr, 1.0f, 10.0f))
+      if (PropertyGrid::Float1("Size", orthographic_size_, nullptr, 1.0f, 10.0f)) {
         RecalculateProjection();
+      }
     } else {
       IK_ASSERT(false, "Invalid Projection Type");
     }

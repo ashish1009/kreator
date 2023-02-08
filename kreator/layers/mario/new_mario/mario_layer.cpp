@@ -172,6 +172,18 @@ namespace ikan_game {
 
   
   void RendererLayer::RenderScene(Timestep ts) {
+    const auto& cd = active_scene_->GetPrimaryCameraData();
+    float zoom = 0;
+    if (cd.scene_camera) {
+      if (cd.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
+        zoom = cd.scene_camera->GetZoom();
+      }
+      else if (cd.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Perspective) {
+        zoom = cd.scene_camera->GetZoom() * cd.position.z;
+      }
+    }
+    IK_INFO("", "{0}", zoom);
+    
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
     active_scene_->Update(ts);
   }

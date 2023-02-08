@@ -37,6 +37,9 @@ namespace ikan {
     
     DELETE_COPY_MOVE_CONSTRUCTORS(EditorCamera);
     
+    /// This function returns the zoom value of camera
+    float GetZoom() const override;
+    
     /// This function updates the Parameter of Editor Camera each frame
     /// - Parameter ts: time step of each frame
     bool Update([[maybe_unused]] Timestep ts);

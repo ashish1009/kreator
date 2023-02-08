@@ -31,10 +31,12 @@ namespace ikan {
     
     /// This function updates the Near plane of camera
     /// - Parameter near: New near plane
-    virtual void SetNear(float near);
+    void SetNear(float near) override;
     /// This function updates the Far plane of camera
     /// - Parameter far: new fat plane
-    virtual void SetFar(float far);
+    void SetFar(float far) override;
+    /// This function returns the zoom value of camera
+    float GetZoom() const override;
 
     /// This function renders Imgui pannel for Scene should cal this function between Imgui::Begin and Imgui::End
     void RenderGui();

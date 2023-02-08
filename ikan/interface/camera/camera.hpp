@@ -32,6 +32,9 @@ namespace ikan {
     /// - Parameter far: new fat plane
     virtual void SetFar(float far);
     
+    /// This function returns the zoom value of camera
+    virtual float GetZoom() const = 0;
+    
     // --------------------
     // Getters
     // --------------------

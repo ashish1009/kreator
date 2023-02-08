@@ -592,6 +592,7 @@
 		B2A27BF0298146940034F4DF /* camera */ = {
 			isa = PBXGroup;
 			children = (
+				B2581114295AD76B00B0EDA7 /* camera.cpp */,
 				B2581118295ADC2C00B0EDA7 /* editor_camera.cpp */,
 				B24C4A752968638B00675599 /* scene_camera.cpp */,
 			);
@@ -800,7 +801,6 @@
 				B2FC40602958BD6100447A1A /* renderer_api.cpp */,
 				B2F526612959777F00A83C65 /* shader_uniform.cpp */,
 				B2C0D7FD2959E02B003F168B /* renderer_stats.cpp */,
-				B2581114295AD76B00B0EDA7 /* camera.cpp */,
 				B216B263295B516A00C05392 /* batch_2d_renderer.cpp */,
 				B2584ED1295B7FE200234714 /* text_renderer.cpp */,
 				B2C78064296AE470003F343E /* aabb_renderer.cpp */,
