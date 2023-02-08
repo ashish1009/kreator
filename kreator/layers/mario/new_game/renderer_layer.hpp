@@ -24,6 +24,24 @@ namespace ikan_game {
   public:
     struct Setting {
       bool play = false;
+      
+      bool cbp = true;
+      bool spm = true;
+      
+      bool frame_rate = true;
+      bool viewport = true;
+      bool stats = true;
+      
+      bool save_scene = true;
+      
+      /// This function changes the flag of setting for menu
+      /// - Parameters:
+      ///   - tag: tag of menu
+      ///   - flag: flag
+      static void UpdateSetting(std::string tag, bool& flag) {
+        if (ImGui::MenuItem(tag.c_str(), nullptr, flag))
+          flag = (flag) ? false : true;
+      }
     };
     
     /// Layer Default Constructor to store the name of layer
@@ -104,6 +122,12 @@ namespace ikan_game {
     ContentBrowserPanel cbp_ = ContentBrowserPanel("../../../kreator/layers/mario/assets/scenes/");
     ScenePanelManager spm_;
     std::shared_ptr<EnttScene> active_scene_;
+    
+    // Theme
+    enum class Theme {
+      Light, Dark, Grey, LightGrey
+    };
+    Theme current_theme_ = Theme::LightGrey;
   };
   
 }

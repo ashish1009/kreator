@@ -40,9 +40,9 @@ namespace ikan_game {
     ImguiAPI::SetLightGreyThemeColors();
 
     // TODO: Openging File in start. Later will not do this
-//    if (!OpenScene(AM::ClientAsset("scenes/Mario_Scene.ikanScene"))) {
-//      NewScene(AM::ClientAsset("scenes/New_scene"));
-//    }
+    if (!OpenScene(AM::ClientAsset("scenes/Mario_Scene.ikanScene"))) {
+      NewScene(AM::ClientAsset("scenes/New_scene"));
+    }
   }
   
   void RendererLayer::Detach() {
@@ -100,13 +100,13 @@ namespace ikan_game {
         active_scene_->RenderGui();
         
         if (active_scene_->IsEditing()) {
-          Renderer::Framerate(nullptr);
-          Renderer::RenderStatsGui(nullptr, true);
-          viewport_.RenderGui();
-          
-          cbp_.RenderGui();
+          Renderer::Framerate(&settings_.frame_rate);
+          Renderer::RenderStatsGui(&settings_.stats, true);
+          viewport_.RenderGui(&settings_.viewport);
+          cbp_.RenderGui(&settings_.cbp);
+
           spm_.RenderGui();
-          
+
           SaveScene();
         }
         ScenePlayPauseButton();
@@ -269,7 +269,10 @@ namespace ikan_game {
   }
 
   const void RendererLayer::SaveScene() {
-    ImGui::Begin("Save File");
+    if (!settings_ .save_scene)
+      return;
+
+    ImGui::Begin("Save File", &settings_.save_scene);
     ImGui::PushID("Save File");
     
     const auto& relative_path = (std::filesystem::relative(cbp_.GetCurrentDir(), cbp_.GetRootDir())).string();
@@ -404,101 +407,70 @@ namespace ikan_game {
         }
         ImGui::EndMenu(); // ImGui::BeginMenu("File")
       } // if (ImGui::BeginMenu("File"))
+      
       // -------------------------------------------------------------
-      //  File Menu
+      //  Property Menu
       // -------------------------------------------------------------
       if (ImGui::BeginMenu("Properties")) {
         if (ImGui::BeginMenu("Theme")) {
-//          if (ImGui::MenuItem("Light", nullptr)) {
-//            viewport_.framebuffer->UpdateSpecificationColor({0.82f, 0.82f, 0.82f, 1.0f});
-//            ImguiAPI::SetLightThemeColors();
-//            current_theme_ = Theme::Light;
-//          }
-//          if (ImGui::MenuItem("Dark", nullptr)) {
-//            viewport_.framebuffer->UpdateSpecificationColor({0.08f, 0.08f, 0.08f, 1.0f});
-//            ImguiAPI::SetDarkThemeColors();
-//            current_theme_ = Theme::Dark;
-//          }
-//          if (ImGui::MenuItem("Grey", nullptr)) {
-//            viewport_.framebuffer->UpdateSpecificationColor({0.18f, 0.18f, 0.18f, 1.0f});
-//            ImguiAPI::SetGreyThemeColors();
-//            current_theme_ = Theme::Grey;
-//          }
-//          if (ImGui::MenuItem("Light Grey", nullptr)) {
-//            viewport_.framebuffer->UpdateSpecificationColor({0.25f, 0.25f, 0.25f, 1.0f});
-//            ImguiAPI::SetLightGreyThemeColors();
-//            current_theme_ = Theme::LightGrey;
-//          }
-//          ImGui::EndMenu(); // ImGui::BeginMenu("Theme")
-//        } // if (ImGui::BeginMenu("Theme"))
-//        if (ImGui::BeginMenu("Fonts")) {
-//          for (const auto& [folder_name, font_data] : available_fonts_map_) {
-//            if (ImGui::BeginMenu((folder_name + "Regular").c_str())) {
-//              for (const auto& font_name : font_data.font_names) {
-//                if (ImGui::MenuItem(font_name.c_str(),
-//                                    nullptr,
-//                                    false,
-//                                    current_font_name_ != folder_name + font_name)) {
-//                  current_font_name_ = folder_name + font_name;
-//                  current_font_path_ = font_data.base_path + folder_name + "/" + font_name + ".ttf";
-//                  change_font_ = true;
-//                }
-//              }
-//              ImGui::EndMenu(); // Fonts  Regular
-//            } // regular if
-//            if (ImGui::BeginMenu((folder_name + "Bold").c_str())) {
-//              for (const auto& font_name : font_data.bold_font_names) {
-//                if (ImGui::MenuItem(font_name.c_str(),
-//                                    nullptr,
-//                                    false,
-//                                    current_bold_font_name_ != folder_name + font_name)) {
-//                  current_bold_font_name_ = folder_name + font_name;
-//                  current_bold_font_path_ = font_data.base_path + folder_name + "/" + font_name + ".ttf";
-//                  change_font_ = true;
-//                }
-//              }
-//              ImGui::EndMenu(); // Fonts  name.c_str
-//            } // Bold if
-//            ImGui::Separator();
-//          } // For (font map)
-//          ImGui::EndMenu(); // ImGui::BeginMenu("Theme")
+          if (ImGui::MenuItem("Light", nullptr)) {
+            viewport_.framebuffer->UpdateSpecificationColor({0.82f, 0.82f, 0.82f, 1.0f});
+            ImguiAPI::SetLightThemeColors();
+            current_theme_ = Theme::Light;
+          }
+          if (ImGui::MenuItem("Dark", nullptr)) {
+            viewport_.framebuffer->UpdateSpecificationColor({0.08f, 0.08f, 0.08f, 1.0f});
+            ImguiAPI::SetDarkThemeColors();
+            current_theme_ = Theme::Dark;
+          }
+          if (ImGui::MenuItem("Grey", nullptr)) {
+            viewport_.framebuffer->UpdateSpecificationColor({0.18f, 0.18f, 0.18f, 1.0f});
+            ImguiAPI::SetGreyThemeColors();
+            current_theme_ = Theme::Grey;
+          }
+          if (ImGui::MenuItem("Light Grey", nullptr)) {
+            viewport_.framebuffer->UpdateSpecificationColor({0.25f, 0.25f, 0.25f, 1.0f});
+            ImguiAPI::SetLightGreyThemeColors();
+            current_theme_ = Theme::LightGrey;
+          }
+          ImGui::EndMenu(); // ImGui::BeginMenu("Theme")
         } // if (ImGui::BeginMenu("Theme"))
-        
         ImGui::EndMenu(); // ImGui::BeginMenu("Properties")
       } // if (ImGui::BeginMenu("Properties"))
       
       // -------------------------------------------------------------
-      //  File Menu
+      //  Setting Menu
       // -------------------------------------------------------------
       if (ImGui::BeginMenu("Setting", active_scene_ and active_scene_->IsEditing())) {
-//        if (ImGui::BeginMenu("Scene")) {
-//          Setting::UpdateSetting("Editor Camera", active_scene_->GetSetting().editor_camera);
-//          Setting::UpdateSetting("Scene Controller", active_scene_->GetSetting().scene_controller);
-//          ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene"))
-//        }
-//        if (ImGui::BeginMenu("Scene Panels")) {
-//          Setting::UpdateSetting("Entity Panel", spm_.GetSetting().scene_panel);
-//          Setting::UpdateSetting("Property Panel", spm_.GetSetting().property_panel);
-//          ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene Panel"))
-//        }
-//        ImGui::Separator();
-//        // -------------------------------------------------------------------
-//
-//        Setting::UpdateSetting("Save Scene Widget", setting_.save_scene);
-//        ImGui::Separator();
-//        // -------------------------------------------------------------------
-//
-//        Setting::UpdateSetting("Content Browser Panel", setting_.cbp);
-//        ImGui::Separator();
-//        // -------------------------------------------------------------------
-//
-//        Setting::UpdateSetting("Frame Rate", setting_.frame_rate);
-//        Setting::UpdateSetting("Viewpoer", setting_.viewport);
-//        Setting::UpdateSetting("Renderer Stats", setting_.stats);
-//
-//        ImGui::EndMenu(); // ImGui::BeginMenu("Setting")
+        if (ImGui::BeginMenu("Scene")) {
+          Setting::UpdateSetting("Editor Camera", active_scene_->GetSetting().editor_camera);
+          Setting::UpdateSetting("Scene Controller", active_scene_->GetSetting().scene_controller);
+          ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene"))
+        }
+        if (ImGui::BeginMenu("Scene Panels")) {
+          Setting::UpdateSetting("Entity Panel", spm_.GetSetting().scene_panel);
+          Setting::UpdateSetting("Property Panel", spm_.GetSetting().property_panel);
+          ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene Panel"))
+        }
+        ImGui::Separator();
+        // -------------------------------------------------------------------
+
+        Setting::UpdateSetting("Save Scene Widget", settings_.save_scene);
+        ImGui::Separator();
+        // -------------------------------------------------------------------
+
+        Setting::UpdateSetting("Content Browser Panel", settings_.cbp);
+        ImGui::Separator();
+        // -------------------------------------------------------------------
+
+        Setting::UpdateSetting("Frame Rate", settings_.frame_rate);
+        Setting::UpdateSetting("Viewport", settings_.viewport);
+        Setting::UpdateSetting("Renderer Stats", settings_.stats);
+
+        ImGui::EndMenu(); // ImGui::BeginMenu("Setting")
       }
       ImGui::EndMenuBar(); // ImGui::BeginMenuBar()
     } // if (ImGui::BeginMenuBar())
   }
+  
 }
