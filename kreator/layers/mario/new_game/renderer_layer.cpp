@@ -5,7 +5,7 @@
 //  Created by Ashish . on 07/02/23.
 //
 
-#include "mario_layer.hpp"
+#include "renderer_layer.hpp"
 
 namespace ikan_game {
   
@@ -81,6 +81,8 @@ namespace ikan_game {
 
       viewport_.framebuffer->Bind();
       RenderScene(ts);
+
+      RenderGrid();
 
       viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
       viewport_.framebuffer->Unbind();
@@ -182,8 +184,6 @@ namespace ikan_game {
   void RendererLayer::RenderScene(Timestep ts) {
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
     active_scene_->Update(ts);
-    
-    RenderGrid();
   }
   
   void RendererLayer::GamePlayButton() {
@@ -366,6 +366,7 @@ namespace ikan_game {
   
   void RendererLayer::RenderGrid() {
     const auto& cd = active_scene_->GetPrimaryCameraData();
-    cd.scene_camera->RenderGrids(max_lines, {0.6, 0.6, 0.6, 1.0}, cd.transform_matrix);
+    if (cd.scene_camera)
+      cd.scene_camera->RenderGrids(max_lines, {0.6, 0.6, 0.6, 1.0}, cd.transform_matrix);
   }
 }

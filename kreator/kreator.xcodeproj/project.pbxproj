@@ -17,7 +17,7 @@
 		B25F617C2969A4A90042FE09 /* background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25F617A2969A40F0042FE09 /* background.cpp */; };
 		B25F618B2969A9CF0042FE09 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25F61892969A9CF0042FE09 /* player.cpp */; };
 		B275570A29601F650020D552 /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B275570829601F650020D552 /* renderer_layer.cpp */; };
-		B2A7FA69299257350039C996 /* mario_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2A7FA67299257350039C996 /* mario_layer.cpp */; };
+		B2A7FA69299257350039C996 /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2A7FA67299257350039C996 /* renderer_layer.cpp */; };
 		B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DDC295C83030076A2F9 /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BD9DFC295C8A320076A2F9 /* editor_layer.cpp */; };
@@ -87,8 +87,8 @@
 		B295CFB12992AF4400174D0F /* tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles.png; sourceTree = "<group>"; };
 		B295CFB32992AF4400174D0F /* Mario_Scene.ikanScene */ = {isa = PBXFileReference; lastKnownFileType = text; path = Mario_Scene.ikanScene; sourceTree = "<group>"; };
 		B295CFB62992AF4400174D0F /* mario.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = mario.ttf; sourceTree = "<group>"; };
-		B2A7FA67299257350039C996 /* mario_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario_layer.cpp; sourceTree = "<group>"; };
-		B2A7FA68299257350039C996 /* mario_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario_layer.hpp; sourceTree = "<group>"; };
+		B2A7FA67299257350039C996 /* renderer_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
+		B2A7FA68299257350039C996 /* renderer_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
 		B2BD9DCB295C7D3C0076A2F9 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.dylib; sourceTree = "<group>"; };
 		B2BD9DCD295C7D3C0076A2F9 /* libpng16.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = libpng16.pc; sourceTree = "<group>"; };
 		B2BD9DCE295C7D3C0076A2F9 /* libpng.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = libpng.pc; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				B295CFA02992AF4400174D0F /* assets */,
-				B2A7FA66299257150039C996 /* new_mario */,
+				B2A7FA66299257150039C996 /* new_game */,
 				B24DD8352963020E00525941 /* src */,
 			);
 			path = mario;
@@ -313,13 +313,13 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
-		B2A7FA66299257150039C996 /* new_mario */ = {
+		B2A7FA66299257150039C996 /* new_game */ = {
 			isa = PBXGroup;
 			children = (
-				B2A7FA67299257350039C996 /* mario_layer.cpp */,
-				B2A7FA68299257350039C996 /* mario_layer.hpp */,
+				B2A7FA67299257350039C996 /* renderer_layer.cpp */,
+				B2A7FA68299257350039C996 /* renderer_layer.hpp */,
 			);
-			path = new_mario;
+			path = new_game;
 			sourceTree = "<group>";
 		};
 		B2BD9DCA295C7D3C0076A2F9 /* lib */ = {
@@ -424,7 +424,7 @@
 				B24DD8322963000100525941 /* mario_main.cpp in Sources */,
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
 				B25F618B2969A9CF0042FE09 /* player.cpp in Sources */,
-				B2A7FA69299257350039C996 /* mario_layer.cpp in Sources */,
+				B2A7FA69299257350039C996 /* renderer_layer.cpp in Sources */,
 				B24DD82F2962FFEE00525941 /* chess_main.cpp in Sources */,
 				B275570A29601F650020D552 /* renderer_layer.cpp in Sources */,
 				B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */,
