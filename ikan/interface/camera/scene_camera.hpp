@@ -42,6 +42,13 @@ namespace ikan {
     void RenderGui();
     /// This function renders Imgui pannel for Scene Camera
     void RenderGuiWithTitle();
+    
+    /// This function renders the grid
+    /// - Parameters:
+    ///   - max_lines: Max line to render in grids
+    ///   - line_color: Color of Grids
+    ///   - camera_transform: Camera transform from component
+    void RenderGrids(uint32_t max_lines, const glm::vec4& line_color, const glm::mat4& camera_transform);
 
     /// This function updates the new Orthographic Matrix (Only for Orthographic camera)
     /// - Parameters:

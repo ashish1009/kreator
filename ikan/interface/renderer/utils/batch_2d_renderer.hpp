@@ -42,6 +42,13 @@ namespace ikan {
     /// This funcition initialize the lines renderer data
     /// - Parameter max_lines: max circle to be renderered in single batch
     static void InitLineData(uint32_t max_lines = 100);
+    
+    /// This functin returns the max quads in batch
+    static uint32_t MaxQuads();
+    /// This functin returns the max circle in batch
+    static uint32_t MaxCircles();
+    /// This functin returns the max lines in batch
+    static uint32_t MaxLines();
 
     // ---------------------
     // Draw API

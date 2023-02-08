@@ -13,7 +13,7 @@
 #include "renderer/graphics/texture.hpp"
 
 namespace ikan {
-    
+  
   static constexpr glm::vec2 texture_coords_[] = {
     { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 1.0f, 1.0f }, { 0.0f, 1.0f }
   };
@@ -37,20 +37,20 @@ namespace ikan {
     /// Max element to be rendered in single batch
     uint32_t max_element = 0;
     uint32_t max_vertices = 0;
-
+    
     friend struct BatchRendererData;
     friend struct LineData;
     
   private:
     CommonData() = default;
   };
-
+  
   /// This structure holds the common batch renderer data for Quads and circle
   struct BatchRendererData : CommonData{
     // Constants
     static constexpr uint32_t VertexForSingleElement = 4;
     static constexpr uint32_t IndicesForSingleElement = 6;
-
+    
     /// This structure stores the environmant data
     struct Environment {
       glm::mat4 camera_view_projection_matrix;
@@ -72,11 +72,11 @@ namespace ikan {
     /// Texture Slot index sent to Shader to render a specific Texture from slots
     /// Slot 0 is reserved for white texture (No Image only color)
     uint32_t texture_slot_index = 1; // 0 = white texture
-
+    
     /// Basic vertex of quad
     /// Vertex of circle is taken as Quad only
     glm::vec4 vertex_base_position[4];
-        
+    
     void StartCommonBatch() {
       index_count = 0;
       texture_slot_index = 1;
@@ -86,10 +86,10 @@ namespace ikan {
     virtual ~BatchRendererData() {
       RendererStatistics::Get().index_buffer_size -= max_indices * sizeof(uint32_t);
     }
-
+    
     friend struct QuadData;
     friend struct CircleData;
-
+    
   private:
     BatchRendererData() = default;
   };
@@ -136,7 +136,7 @@ namespace ikan {
       
       int32_t object_id; // Pixel ID of Quad
     };
-        
+    
     /// Base pointer of Vertex Data. This is start of Batch data for single draw call
     Vertex* vertex_buffer_base_ptr = nullptr;
     /// Incrememntal Vetrtex Data Pointer to store all the batch data in Buffer
@@ -171,7 +171,7 @@ namespace ikan {
     };
     
     static constexpr uint32_t kVertexForSingleLine = 2;
-        
+    
     /// Count of Indices to be renderer in Single Batch
     uint32_t vertex_count = 0;
     
@@ -227,7 +227,7 @@ namespace ikan {
       IK_CORE_WARN(LogModule::Batch2DRenderer, "  ---------------------------------------------------------");
       delete quad_data_;
     }
-
+    
     if (circle_data_) {
       IK_CORE_WARN(LogModule::Batch2DRenderer, "Destroying the Batch Renderer Circle Data");
       IK_CORE_WARN(LogModule::Batch2DRenderer, "  ---------------------------------------------------------");
@@ -255,13 +255,13 @@ namespace ikan {
       IK_CORE_WARN(LogModule::Batch2DRenderer, "  ---------------------------------------------------------");
       delete line_data_;
     }
-
+    
   }
   
   void BatchRenderer::InitQuadData(uint32_t max_quads) {
     delete quad_data_;
     quad_data_ = nullptr;
-
+    
     if (max_quads == 0)
       return;
     
@@ -274,7 +274,7 @@ namespace ikan {
     
     // Create Pipeline instance
     quad_data_->pipeline = Pipeline::Create();
-
+    
     // Allocating the memory for vertex Buffer Pointer
     quad_data_->vertex_buffer_base_ptr = new QuadData::Vertex[quad_data_->max_vertices];
     
@@ -295,7 +295,7 @@ namespace ikan {
     
     // Create Index Buffer
     uint32_t* quad_indices = new uint32_t[quad_data_->max_indices];
-
+    
     uint32_t offset = 0;
     for (size_t i = 0; i < quad_data_->max_indices; i += BatchRendererData::IndicesForSingleElement) {
       quad_indices[i + 0] = offset + 0;
@@ -308,7 +308,7 @@ namespace ikan {
       
       offset += 4;
     }
-
+    
     // Create Index Buffer in GPU for storing Indices
     std::shared_ptr<IndexBuffer> ib = IndexBuffer::CreateWithCount(quad_indices, quad_data_->max_indices);
     quad_data_->pipeline->SetIndexBuffer(ib);
@@ -339,7 +339,7 @@ namespace ikan {
   void BatchRenderer::InitCircleData(uint32_t max_circles) {
     delete circle_data_;
     circle_data_ = nullptr;
-
+    
     if (max_circles == 0)
       return;
     
@@ -420,7 +420,7 @@ namespace ikan {
   void BatchRenderer::InitLineData(uint32_t max_lines) {
     delete line_data_;
     line_data_ = nullptr;
-
+    
     if (max_lines == 0)
       return;
     
@@ -495,7 +495,7 @@ namespace ikan {
   void BatchRenderer::EndBatch() {
     Flush();
   }
-
+  
   void BatchRenderer::Flush() {
     if (quad_data_ and quad_data_->index_count) {
       uint32_t data_size = (uint32_t)((uint8_t*)quad_data_->vertex_buffer_ptr -
@@ -547,6 +547,21 @@ namespace ikan {
     if (quad_data_) quad_data_->StartBatch();
     if (circle_data_) circle_data_->StartBatch();
     if (line_data_) line_data_->StartBatch();
+  }
+  
+  uint32_t BatchRenderer::MaxQuads() {
+    if (!quad_data_) return 0;
+    return quad_data_->max_element;
+  }
+
+  uint32_t BatchRenderer::MaxCircles() {
+    if (!circle_data_) return 0;
+    return circle_data_->max_element;
+  }
+
+  uint32_t BatchRenderer::MaxLines() {
+    if (!line_data_) return 0;
+    return line_data_->max_element;
   }
   
   void BatchRenderer::DrawQuad(const glm::mat4& transform,

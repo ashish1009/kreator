@@ -7,6 +7,7 @@
 
 #include "scene_camera.hpp"
 #include "editor/property_grid.hpp"
+#include "renderer/utils/batch_2d_renderer.hpp"
 
 namespace ikan {
 
@@ -260,6 +261,37 @@ namespace ikan {
     ImGui::Separator();
     ImGui::PopID();
     ImGui::End();
+  }
+  
+  void SceneCamera::RenderGrids(uint32_t max_lines, const glm::vec4& line_color, const glm::mat4& camera_transform) {
+    if (projection_type_ == ProjectionType::Orthographic) {
+      if (max_lines > BatchRenderer::MaxLines()) {
+        BatchRenderer::InitLineData(max_lines);
+      }
+      
+      float zoom = std::max(GetZoom(), 1.0f);
+      
+      float hor_line = zoom;
+      float ver_line = zoom * aspect_ratio_;
+      float hor_line_by_2 = hor_line / 2;
+      float ver_line_by_2 = ver_line / 2;
+      
+      if ((hor_line + ver_line) >= max_lines)
+        return;
+            
+      BatchRenderer::BeginBatch(projection_matrix_ * glm::inverse(camera_transform));
+      for (int32_t i = (int32_t)(-hor_line_by_2); i < (int32_t)hor_line_by_2; i++) {
+        BatchRenderer::DrawLine({-ver_line_by_2, 0 + 0.5 + i, 0}, {ver_line_by_2, 0 + 0.5 + i, 0}, line_color);
+      }
+      
+      for (int i = (int32_t)(-ver_line_by_2); i < (int32_t)ver_line_by_2; i++) {
+        BatchRenderer::DrawLine({0 + 0.5 + i, -hor_line_by_2, 0}, {0 + 0.5 + i, hor_line_by_2, 0}, line_color);
+      }
+      BatchRenderer::EndBatch();
+    }
+    else {
+      IK_CORE_ASSERT(false, "Didnt Implemented Yet for perspective Camera");
+    }
   }
 
 }
