@@ -97,6 +97,7 @@ namespace ikan_game {
     std::unique_ptr<GameData> game_data_;
     Setting settings_;
     Viewport viewport_;
+    // TODO: Temp using Game DIR .Later will change to project DIR
     ContentBrowserPanel cbp_ = ContentBrowserPanel("../../../kreator/layers/mario/assets/scenes/");
     ScenePanelManager spm_;
     std::shared_ptr<EnttScene> active_scene_;

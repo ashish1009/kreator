@@ -12,9 +12,6 @@ namespace ikan_game {
 
 #define is_playing settings_.play
   
-  // Default Scene Path
-  static const std::string scene_path_ = "scenes/Mario_Scene.ikanScene";
-    
   RendererLayer::RendererLayer() : Layer("ikan Game") {
     game_data_ = std::make_unique<mario::MarioData>();
     
@@ -42,9 +39,10 @@ namespace ikan_game {
     // TODO: Add File Menu
     ImguiAPI::SetLightGreyThemeColors();
 
-    if (!OpenScene(AM::ClientAsset(scene_path_))) {
-      NewScene(AM::ClientAsset("scenes/New_scene"));
-    }
+    // TODO: Openging File in start. Later will not do this
+//    if (!OpenScene(AM::ClientAsset("scenes/Mario_Scene.ikanScene"))) {
+//      NewScene(AM::ClientAsset("scenes/New_scene"));
+//    }
   }
   
   void RendererLayer::Detach() {
@@ -52,6 +50,9 @@ namespace ikan_game {
   }
     
   void RendererLayer::Update(Timestep ts) {
+    if (!active_scene_)
+      return;
+    
     viewport_.UpdateMousePos();
 
     if (is_playing) {      
@@ -77,7 +78,8 @@ namespace ikan_game {
   }
   
   void RendererLayer::EventHandler(Event& event) {
-    active_scene_->EventHandler(event);
+    if (active_scene_)
+      active_scene_->EventHandler(event);
 
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::KeyPressed));
@@ -90,24 +92,26 @@ namespace ikan_game {
     }
     else {
       ImguiAPI::StartDcocking();
-      active_scene_->RenderGui();
-
-      if (active_scene_->IsEditing()) {
-        Renderer::Framerate(nullptr);
-        Renderer::RenderStatsGui(nullptr, true);
-        viewport_.RenderGui();
-        
-        cbp_.RenderGui();
-        spm_.RenderGui();
-
-        SaveScene();
-      }
       
       GamePlayButton();
-      ScenePlayPauseButton();
-      
-      RenderViewport();
-      
+
+      if (active_scene_) {
+        active_scene_->RenderGui();
+        
+        if (active_scene_->IsEditing()) {
+          Renderer::Framerate(nullptr);
+          Renderer::RenderStatsGui(nullptr, true);
+          viewport_.RenderGui();
+          
+          cbp_.RenderGui();
+          spm_.RenderGui();
+          
+          SaveScene();
+        }
+        ScenePlayPauseButton();
+        RenderViewport();
+      }
+
       ImguiAPI::EndDcocking();
     }
   }
@@ -232,7 +236,18 @@ namespace ikan_game {
     size_t textureID = viewport_.framebuffer->GetColorAttachmentIds().at(0);
     ImGui::Image((void*)textureID, viewport_panel_size, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
-    OnImguizmoUpdate();
+    if (active_scene_->IsEditing()) {
+      PropertyGrid::DropConent([this](const std::string& path)
+                               {
+        if (StringUtils::GetExtensionFromFilePath(path) == "ikanScene")
+          OpenScene(path);
+        else
+          IK_WARN("Invalid file for Scene {0}", path.c_str());
+      });
+      
+      OnImguizmoUpdate();
+    }
+    
     viewport_.UpdateBound();
     
     ImGui::PopStyleVar();
