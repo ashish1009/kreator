@@ -467,37 +467,35 @@ namespace ikan {
     // ----------------------------------------------------------------------
     // Start batch for quads
     // ----------------------------------------------------------------------
-    if (!quad_data_)
-      return;
-    quad_data_->environment.camera_view_projection_matrix = camera_view_projection_matrix;
-    
-    quad_data_->shader->Bind();
-    quad_data_->shader->SetUniformMat4("u_ViewProjection", camera_view_projection_matrix);
-    
-    quad_data_->StartBatch();
-    quad_data_->shader->Unbind();
-    
+    if (quad_data_) {
+      quad_data_->environment.camera_view_projection_matrix = camera_view_projection_matrix;
+      
+      quad_data_->shader->Bind();
+      quad_data_->shader->SetUniformMat4("u_ViewProjection", camera_view_projection_matrix);
+      
+      quad_data_->StartBatch();
+      quad_data_->shader->Unbind();
+    }
     // ----------------------------------------------------------------------
     // Start batch for circles
     // ----------------------------------------------------------------------
-    if (!circle_data_)
-      return;
-    circle_data_->environment.camera_view_projection_matrix = camera_view_projection_matrix;
-    
-    circle_data_->shader->Bind();
-    circle_data_->shader->SetUniformMat4("u_ViewProjection", camera_view_projection_matrix);
-    circle_data_->StartBatch();
-    circle_data_->shader->Unbind();
-    
+    if (circle_data_) {
+      circle_data_->environment.camera_view_projection_matrix = camera_view_projection_matrix;
+      
+      circle_data_->shader->Bind();
+      circle_data_->shader->SetUniformMat4("u_ViewProjection", camera_view_projection_matrix);
+      circle_data_->StartBatch();
+      circle_data_->shader->Unbind();
+    }
     // ----------------------------------------------------------------------
     // Start batch for lines
     // ----------------------------------------------------------------------
-    if (!line_data_)
-      return;
-    line_data_->shader->Bind();
-    line_data_->shader->SetUniformMat4("u_ViewProjection", camera_view_projection_matrix);
-    line_data_->StartBatch();
-    line_data_->shader->Unbind();
+    if (line_data_) {
+      line_data_->shader->Bind();
+      line_data_->shader->SetUniformMat4("u_ViewProjection", camera_view_projection_matrix);
+      line_data_->StartBatch();
+      line_data_->shader->Unbind();
+    }
   }
   
   void BatchRenderer::EndBatch() {
