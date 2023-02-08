@@ -122,8 +122,20 @@ namespace ikan_game {
 
     // Set control key
     bool ctrl = Input::IsKeyPressed(KeyCode::LeftControl) or Input::IsKeyPressed(KeyCode::RightControl);
+    // Set command key
+    bool cmd = Input::IsKeyPressed(KeyCode::LeftSuper) or Input::IsKeyPressed(KeyCode::RightSuper);
 
     switch (event.GetKeyCode()) {
+        // File Manager
+      case KeyCode::N:
+        if (cmd)
+          NewScene();
+        break;
+      case KeyCode::X:
+        if (cmd)
+          CloseScene();
+        break;
+
         // Guizmo
       case KeyCode::Q:
         if (ctrl)
