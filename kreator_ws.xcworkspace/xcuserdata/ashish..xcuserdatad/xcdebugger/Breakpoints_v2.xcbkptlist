@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2F9C4435-0EC4-40B7-8672-7E7DED16C10D"
+            uuid = "75479E49-5C54-48C1-A17F-1E649C5D0C32"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/ecs/core_components.cpp"
+            filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
-            landmarkName = "CameraComponent::CameraComponent(other)"
+            startingLineNumber = "765"
+            endingLineNumber = "765"
+            landmarkName = "BatchRenderer::DrawLine(p0, p1, color)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

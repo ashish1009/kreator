@@ -23,6 +23,12 @@ namespace ikan_game {
   
   RendererLayer::RendererLayer() : Layer(game_name_) {
     IK_INFO(game_name_, "Creating {0} Layer instance ... ", game_name_.c_str());
+    
+    // Mario Init
+    {
+      // Reinitialize the Batch Renderer
+      BatchRenderer::Reinit(2000, 0, 2000);
+    }
   }
   
   RendererLayer::~RendererLayer() {
@@ -172,6 +178,9 @@ namespace ikan_game {
 
   
   void RendererLayer::RenderScene(Timestep ts) {
+    Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
+    active_scene_->Update(ts);
+    
     const auto& cd = active_scene_->GetPrimaryCameraData();
     float zoom = 0;
     if (cd.scene_camera) {
@@ -179,13 +188,31 @@ namespace ikan_game {
         zoom = cd.scene_camera->GetZoom();
       }
       else if (cd.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Perspective) {
-        zoom = cd.scene_camera->GetZoom() * cd.position.z;
+        IK_ASSERT(false);
       }
     }
-    IK_INFO("", "{0}", zoom);
     
-    Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
-    active_scene_->Update(ts);
+    if (!zoom) {
+      zoom = 1;
+    }
+
+    float num_hor_lines = zoom;
+    float hor_line_by_2 = num_hor_lines / 2;
+
+    float num_ver_lines = (zoom * cd.scene_camera->GetAspectRatio());
+    float ver_line_by_2 = num_ver_lines / 2;
+
+    BatchRenderer::BeginBatch(cd.scene_camera->GetProjection() * glm::inverse(cd.transform_matrix));
+    for (int i = 0; i < (int32_t)num_hor_lines; i++) {
+      BatchRenderer::DrawLine({-ver_line_by_2, 0 + 0.5 + i, 0}, {ver_line_by_2, 0 + 0.5 + i, 0}, {1, 1, 1, 1});
+      BatchRenderer::DrawLine({-ver_line_by_2, 0 - 0.5 - i, 0}, {ver_line_by_2, 0 - 0.5 - i, 0}, {1, 1, 1, 1});
+    }
+
+    for (int i = 0; i < (int32_t)num_ver_lines; i++) {
+      BatchRenderer::DrawLine({0 + 0.5 + i, -hor_line_by_2, 0}, {0 + 0.5 + i, hor_line_by_2, 0}, {1, 1, 1, 1});
+      BatchRenderer::DrawLine({0 - 0.5 - i, -hor_line_by_2, 0}, {0 - 0.5 - i, hor_line_by_2, 0}, {1, 1, 1, 1});
+    }
+    BatchRenderer::EndBatch();
   }
   
   void RendererLayer::GamePlayButton() {
