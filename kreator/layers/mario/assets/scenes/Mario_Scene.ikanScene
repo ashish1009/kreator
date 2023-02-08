@@ -4,18 +4,6 @@ Setting_scene_controller: true
 Setting_scene_data: true
 Use_editor_camera: false
 Entities:
-  - Entity: 17591820361689180136
-    TagComponent:
-      Tag: Quad
-    TransformComponent:
-      Translation: [0, 0, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: false
-      Texture_Path: ""
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
   - Entity: 6007582178234533221
     TagComponent:
       Tag: Primary Camera
@@ -28,6 +16,18 @@ Entities:
       Primary: true
       ProjectionType: 1
       PerspectiveFOV: 0.785398185
-      OrthographicSize: 4
+      OrthographicSize: 10
       Near: -1
       Far: 1
+  - Entity: 17591820361689180136
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: false
+      Texture_Path: ""
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]

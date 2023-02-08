@@ -206,9 +206,9 @@ namespace ikan {
   // --------------------------------------------------------------------------
   void BatchRenderer::Init(uint32_t max_quads, uint32_t max_cirlces, uint32_t max_lines) {
     IK_CORE_INFO(LogModule::Batch2DRenderer, "Initialising the Batch Renderer 2D ...");
-    InitQuadData();
-    InitCircleData();
-    InitLineData();
+    InitQuadData(max_quads);
+    InitCircleData(max_cirlces);
+    InitLineData(max_lines);
   }
   
   void BatchRenderer::Shutdown() {

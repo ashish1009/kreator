@@ -75,6 +75,10 @@ namespace ikan_game {
     /// This funciton Render the imguizmo
     void OnImguizmoUpdate();
     
+    /// This function Render grids for 2D Entities
+    /// - Note: Only render for Orthpgraphic primary camera
+    void RenderGrid();
+    
     // ------------------
     // Member variables
     // ------------------

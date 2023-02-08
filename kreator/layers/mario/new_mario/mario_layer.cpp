@@ -21,13 +21,15 @@ namespace ikan_game {
   // Default Scene Path
   static const std::string scene_path_ = "scenes/Mario_Scene.ikanScene";
   
+  static const int32_t max_lines = 100;
+  
   RendererLayer::RendererLayer() : Layer(game_name_) {
     IK_INFO(game_name_, "Creating {0} Layer instance ... ", game_name_.c_str());
     
     // Mario Init
     {
       // Reinitialize the Batch Renderer
-      BatchRenderer::Init(2000, 0, 2000);
+      BatchRenderer::Init(2000, 0, max_lines);
     }
   }
   
@@ -181,38 +183,7 @@ namespace ikan_game {
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
     active_scene_->Update(ts);
     
-    const auto& cd = active_scene_->GetPrimaryCameraData();
-    float zoom = 0;
-    if (cd.scene_camera) {
-      if (cd.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
-        zoom = cd.scene_camera->GetZoom();
-      }
-      else if (cd.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Perspective) {
-        IK_ASSERT(false);
-      }
-    }
-    
-    if (!zoom) {
-      zoom = 1;
-    }
-
-    float num_hor_lines = zoom;
-    float hor_line_by_2 = num_hor_lines / 2;
-
-    float num_ver_lines = (zoom * cd.scene_camera->GetAspectRatio());
-    float ver_line_by_2 = num_ver_lines / 2;
-
-    BatchRenderer::BeginBatch(cd.scene_camera->GetProjection() * glm::inverse(cd.transform_matrix));
-    for (int i = 0; i < (int32_t)num_hor_lines; i++) {
-      BatchRenderer::DrawLine({-ver_line_by_2, 0 + 0.5 + i, 0}, {ver_line_by_2, 0 + 0.5 + i, 0}, {1, 1, 1, 1});
-      BatchRenderer::DrawLine({-ver_line_by_2, 0 - 0.5 - i, 0}, {ver_line_by_2, 0 - 0.5 - i, 0}, {1, 1, 1, 1});
-    }
-
-    for (int i = 0; i < (int32_t)num_ver_lines; i++) {
-      BatchRenderer::DrawLine({0 + 0.5 + i, -hor_line_by_2, 0}, {0 + 0.5 + i, hor_line_by_2, 0}, {1, 1, 1, 1});
-      BatchRenderer::DrawLine({0 - 0.5 - i, -hor_line_by_2, 0}, {0 - 0.5 - i, hor_line_by_2, 0}, {1, 1, 1, 1});
-    }
-    BatchRenderer::EndBatch();
+    RenderGrid();
   }
   
   void RendererLayer::GamePlayButton() {
@@ -389,7 +360,42 @@ namespace ikan_game {
         tc.UpdateTranslation(translation);
         tc.UpdateRotation(tc.Rotation() + deltaRotation);
         tc.UpdateScale(scale);
+      } // if (ImGuizmo::IsUsing())
+    } // if (selected_entity and viewport_.guizmo_type != -1)
+  }
+  
+  void RendererLayer::RenderGrid() {
+    const auto& cd = active_scene_->GetPrimaryCameraData();
+    float zoom = 0;
+    if (cd.scene_camera) {
+      if (cd.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
+        zoom = cd.scene_camera->GetZoom();
+      }
+      else if (cd.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Perspective) {
+        IK_ASSERT(false);
       }
     }
+    
+    if (!zoom) {
+      zoom = 1;
+    }
+      
+    float hor_line_by_2 = zoom / 2;
+    float ver_line_by_2 = (zoom * cd.scene_camera->GetAspectRatio()) / 2;
+    
+    if (((hor_line_by_2 + ver_line_by_2) * 2) >= max_lines)
+      return;
+    
+    BatchRenderer::BeginBatch(cd.scene_camera->GetProjection() * glm::inverse(cd.transform_matrix));
+    for (int i = 0; i < (int32_t)hor_line_by_2; i++) {
+      BatchRenderer::DrawLine({-ver_line_by_2, 0 + 0.5 + i, 0}, {ver_line_by_2, 0 + 0.5 + i, 0}, {1, 1, 1, 1});
+      BatchRenderer::DrawLine({-ver_line_by_2, 0 - 0.5 - i, 0}, {ver_line_by_2, 0 - 0.5 - i, 0}, {1, 1, 1, 1});
+    }
+    
+    for (int i = 0; i < (int32_t)ver_line_by_2; i++) {
+      BatchRenderer::DrawLine({0 + 0.5 + i, -hor_line_by_2, 0}, {0 + 0.5 + i, hor_line_by_2, 0}, {1, 1, 1, 1});
+      BatchRenderer::DrawLine({0 - 0.5 - i, -hor_line_by_2, 0}, {0 - 0.5 - i, hor_line_by_2, 0}, {1, 1, 1, 1});
+    }
+    BatchRenderer::EndBatch();
   }
 }
