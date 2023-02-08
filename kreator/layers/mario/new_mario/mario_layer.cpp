@@ -27,7 +27,7 @@ namespace ikan_game {
     // Mario Init
     {
       // Reinitialize the Batch Renderer
-      BatchRenderer::Reinit(2000, 0, 2000);
+      BatchRenderer::Init(2000, 0, 2000);
     }
   }
   

@@ -77,7 +77,7 @@ namespace ikan {
     IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
     IK_CORE_INFO(LogModule::None, "                       Initializing All Renderer                          ");
     IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
-    BatchRenderer::Init();
+    BatchRenderer::Init(100, 100, 100);
     TextRenderer::Init();
     AABBRenderer::Init();
   }

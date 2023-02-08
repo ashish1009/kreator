@@ -204,28 +204,13 @@ namespace ikan {
   // --------------------------------------------------------------------------
   // Batch Renderer API
   // --------------------------------------------------------------------------
-  void BatchRenderer::Init() {
+  void BatchRenderer::Init(uint32_t max_quads, uint32_t max_cirlces, uint32_t max_lines) {
     IK_CORE_INFO(LogModule::Batch2DRenderer, "Initialising the Batch Renderer 2D ...");
     InitQuadData();
     InitCircleData();
     InitLineData();
   }
   
-  void BatchRenderer::Reinit(uint32_t max_quads, uint32_t max_cirlces, uint32_t max_lines) {
-    delete quad_data_;
-    quad_data_ = nullptr;
-    
-    delete circle_data_;
-    circle_data_ = nullptr;
-    
-    delete line_data_;
-    line_data_ = nullptr;
-    
-    InitQuadData(max_quads);
-    InitCircleData(max_cirlces);
-    InitLineData(max_lines);
-  }
-
   void BatchRenderer::Shutdown() {
     IK_CORE_WARN(LogModule::Batch2DRenderer, "Shutting Down the Batch Renderer 2D !!!");
     
@@ -274,6 +259,9 @@ namespace ikan {
   }
   
   void BatchRenderer::InitQuadData(uint32_t max_quads) {
+    delete quad_data_;
+    quad_data_ = nullptr;
+
     if (max_quads == 0)
       return;
     
@@ -349,6 +337,9 @@ namespace ikan {
   }
   
   void BatchRenderer::InitCircleData(uint32_t max_circles) {
+    delete circle_data_;
+    circle_data_ = nullptr;
+
     if (max_circles == 0)
       return;
     
@@ -427,6 +418,9 @@ namespace ikan {
   }
   
   void BatchRenderer::InitLineData(uint32_t max_lines) {
+    delete line_data_;
+    line_data_ = nullptr;
+
     if (max_lines == 0)
       return;
     

@@ -13,7 +13,7 @@ namespace chess {
     IK_INFO("Chess", "Creating Chess Layer instance ... ");
     
     // Reinitialize the Batch Renderer
-    BatchRenderer::Reinit(200, 0, 0);
+    BatchRenderer::Init(200, 0, 0);
     
 #if CHESS_DEBUG
     spm_.SetSceneContext(&chess_scene_);

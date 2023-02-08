@@ -21,19 +21,10 @@ namespace ikan {
   
   class BatchRenderer {
   public:
-    /// This function initialzes the Batch renderer. Create All buffers needed to store Data (Both
-    /// Renderer and CPU)
-    static void Init();
+    /// This function initialzes the Batch renderer. Create All buffers needed to store Data (Both Renderer and CPU)
+    static void Init(uint32_t max_quads, uint32_t max_cirlces, uint32_t max_lines);
     /// This functio dhutdown the batch renderer and destoy all the buffer reserved on initialize
     static void Shutdown();
-    
-    /// This function Re initialzes the Batch renderer. Create All buffers needed to store Data (Both
-    /// Renderer and CPU)
-    /// - Parameters:
-    ///   - max_quads: Number of quads
-    ///   - max_cirlces: Number of circles
-    ///   - max_lines: Number of lines
-    static void Reinit(uint32_t max_quads = 1, uint32_t max_cirlces = 1, uint32_t max_lines = 1);
     
     /// This function begins the Batch for 2D Rendere (to be called each frame)
     /// - Parameters:
@@ -42,6 +33,16 @@ namespace ikan {
     /// This function Ends the current batch by rendering all the vertex
     static void EndBatch();
     
+    /// This funcition initialize the quad renderer data
+    /// - Parameter max_quads: max quad to be renderered in single batch
+    static void InitQuadData(uint32_t max_quads = 50);
+    /// This funcition initialize the circle renderer data
+    /// - Parameter max_circles: max circle to be renderered in single batch
+    static void InitCircleData(uint32_t max_circles = 50);
+    /// This funcition initialize the lines renderer data
+    /// - Parameter max_lines: max circle to be renderered in single batch
+    static void InitLineData(uint32_t max_lines = 100);
+
     // ---------------------
     // Draw API
     // ---------------------
@@ -154,16 +155,6 @@ namespace ikan {
     
   private:
     // Member Methods
-    /// This funcition initialize the quad renderer data
-    /// - Parameter max_quads: max quad to be renderered in single batch
-    static void InitQuadData(uint32_t max_quads = 50);
-    /// This funcition initialize the circle renderer data
-    /// - Parameter max_circles: max circle to be renderered in single batch
-    static void InitCircleData(uint32_t max_circles = 50);
-    /// This funcition initialize the lines renderer data
-    /// - Parameter max_lines: max circle to be renderered in single batch
-    static void InitLineData(uint32_t max_lines = 100);
-    
     /// This function flsh a single batch
     static void Flush();
     /// This function moves to next batch in single frame

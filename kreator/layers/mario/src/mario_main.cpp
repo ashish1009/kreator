@@ -19,7 +19,7 @@ namespace mario {
     text_data_.Update(viewport_width_, viewport_height_);
 
     // Reinitialize the Batch Renderer
-    BatchRenderer::Reinit(2000, 0, 0);
+    BatchRenderer::Init(2000, 0, 0);
     
 #if MARIO_DEBUG
     use_sprite_ = true;
@@ -34,6 +34,7 @@ namespace mario {
   
   MarioLayer::~MarioLayer() {
     IK_WARN("Mario", "Destroying Mario Layer instance !!! ");
+    BatchRenderer::Shutdown();
   }
   
   void MarioLayer::CreateCamera(EnttScene* scene, Entity& camera_entity) {
