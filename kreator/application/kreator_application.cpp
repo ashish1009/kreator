@@ -8,7 +8,7 @@
 #include "layers/ecs_editor/src/editor_layer.hpp"
 #include "layers/ray_tracing/src/renderer_layer.hpp"
 #include "layers/mario/src/mario_main.hpp"
-#include "layers/mario/new_game/renderer_layer.hpp"
+#include "layers/ikan_game/src/renderer_layer.hpp"
 #include "layers/chess/src/chess_main.hpp"
 
 enum class SupportedApplicationType : uint8_t {

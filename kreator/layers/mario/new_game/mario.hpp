@@ -15,6 +15,10 @@ namespace mario {
     
   class MarioData : public ikan_game::GameData {
   public:
+    void Init() override {
+      BatchRenderer::Init(2000, 0, 0);
+    }
+    
     std::string GameName() override {
       return "Mario";
     }

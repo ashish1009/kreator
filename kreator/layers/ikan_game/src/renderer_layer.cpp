@@ -1,27 +1,19 @@
 //
-//  mario_layer.cpp
+//  renderer_layer.cpp
 //  kreator
 //
 //  Created by Ashish . on 07/02/23.
 //
 
 #include "renderer_layer.hpp"
-#include "mario/mario.hpp"
 
 namespace ikan_game {
 
 #define is_playing settings_.play
   
-  RendererLayer::RendererLayer() : Layer("ikan Game") {
-    game_data_ = std::make_unique<mario::MarioData>();
-    
+  RendererLayer::RendererLayer() : Layer("ikan Game"), game_data_(CreateGameData()) {
     IK_INFO(game_data_->GameName(), "Creating {0} Layer instance ... ", game_data_->GameName().c_str());
-    
-    // Mario Init
-    {
-      // Reinitialize the Batch Renderer
-      BatchRenderer::Init(2000, 0, 0);
-    }
+    game_data_->Init();
   }
   
   RendererLayer::~RendererLayer() {

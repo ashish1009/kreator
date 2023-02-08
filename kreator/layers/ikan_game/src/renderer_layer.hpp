@@ -1,5 +1,5 @@
 //
-//  mario_layer.hpp
+//  renderer_layer.hpp
 //  kreator
 //
 //  Created by Ashish . on 07/02/23.
@@ -14,11 +14,16 @@ namespace ikan_game {
   class GameData {
   public:
     virtual ~GameData() = default;
+    
+    virtual void Init() = 0;
     virtual std::string GameName() = 0;
     virtual ImguiFont RegularFontData() = 0;
     virtual ImguiFont BoldFontData() = 0;
     virtual std::vector<std::filesystem::path> FavDirecotries() = 0;
   };
+  
+  /// This function is the defination of game data. Implementaiton should be at client
+  std::unique_ptr<GameData> CreateGameData();
   
   class RendererLayer : public Layer {
   public:

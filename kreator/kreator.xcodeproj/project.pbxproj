@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B21E44122993FC6C00D6CDFD /* mario.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21E44102993FC6C00D6CDFD /* mario.cpp */; };
+		B21E4417299406F900D6CDFD /* create_game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21E4415299406F900D6CDFD /* create_game_data.cpp */; };
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
 		B2262960296C5DB600EBE59B /* piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B226295F296C5DB600EBE59B /* piece.cpp */; };
@@ -48,8 +48,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B21E44102993FC6C00D6CDFD /* mario.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario.cpp; sourceTree = "<group>"; };
 		B21E44112993FC6C00D6CDFD /* mario.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario.hpp; sourceTree = "<group>"; };
+		B21E4415299406F900D6CDFD /* create_game_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = create_game_data.cpp; sourceTree = "<group>"; };
 		B2250CAA29584CE00067C43B /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCC29584D1A0067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CD029585E890067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
@@ -125,13 +125,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B21E440F2993FC5A00D6CDFD /* mario */ = {
+		B21E44132994061F00D6CDFD /* ikan_game */ = {
 			isa = PBXGroup;
 			children = (
-				B21E44102993FC6C00D6CDFD /* mario.cpp */,
-				B21E44112993FC6C00D6CDFD /* mario.hpp */,
+				B21E44192994071E00D6CDFD /* src */,
+				B21E44182994070300D6CDFD /* client */,
 			);
-			path = mario;
+			path = ikan_game;
+			sourceTree = "<group>";
+		};
+		B21E44182994070300D6CDFD /* client */ = {
+			isa = PBXGroup;
+			children = (
+				B21E4415299406F900D6CDFD /* create_game_data.cpp */,
+			);
+			path = client;
+			sourceTree = "<group>";
+		};
+		B21E44192994071E00D6CDFD /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B2A7FA67299257350039C996 /* renderer_layer.cpp */,
+				B2A7FA68299257350039C996 /* renderer_layer.hpp */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		B2250CA129584CE00067C43B = {
@@ -198,6 +215,7 @@
 		B24DD82A2962FF5000525941 /* layers */ = {
 			isa = PBXGroup;
 			children = (
+				B21E44132994061F00D6CDFD /* ikan_game */,
 				B24DD82C2962FFDC00525941 /* chess */,
 				B24DD82B2962FFD700525941 /* mario */,
 				B251B3E9295E13EE00508210 /* ray_tracing */,
@@ -328,9 +346,7 @@
 		B2A7FA66299257150039C996 /* new_game */ = {
 			isa = PBXGroup;
 			children = (
-				B2A7FA67299257350039C996 /* renderer_layer.cpp */,
-				B2A7FA68299257350039C996 /* renderer_layer.hpp */,
-				B21E440F2993FC5A00D6CDFD /* mario */,
+				B21E44112993FC6C00D6CDFD /* mario.hpp */,
 			);
 			path = new_game;
 			sourceTree = "<group>";
@@ -433,7 +449,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B21E44122993FC6C00D6CDFD /* mario.cpp in Sources */,
 				B2262960296C5DB600EBE59B /* piece.cpp in Sources */,
 				B24DD8322963000100525941 /* mario_main.cpp in Sources */,
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
@@ -444,6 +459,7 @@
 				B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
 				B25F617C2969A4A90042FE09 /* background.cpp in Sources */,
+				B21E4417299406F900D6CDFD /* create_game_data.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
