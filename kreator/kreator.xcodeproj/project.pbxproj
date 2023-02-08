@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B21E44122993FC6C00D6CDFD /* mario.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21E44102993FC6C00D6CDFD /* mario.cpp */; };
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
 		B2262960296C5DB600EBE59B /* piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B226295F296C5DB600EBE59B /* piece.cpp */; };
@@ -47,6 +48,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B21E44102993FC6C00D6CDFD /* mario.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario.cpp; sourceTree = "<group>"; };
+		B21E44112993FC6C00D6CDFD /* mario.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario.hpp; sourceTree = "<group>"; };
 		B2250CAA29584CE00067C43B /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCC29584D1A0067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CD029585E890067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
@@ -122,6 +125,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B21E440F2993FC5A00D6CDFD /* mario */ = {
+			isa = PBXGroup;
+			children = (
+				B21E44102993FC6C00D6CDFD /* mario.cpp */,
+				B21E44112993FC6C00D6CDFD /* mario.hpp */,
+			);
+			path = mario;
+			sourceTree = "<group>";
+		};
 		B2250CA129584CE00067C43B = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +330,7 @@
 			children = (
 				B2A7FA67299257350039C996 /* renderer_layer.cpp */,
 				B2A7FA68299257350039C996 /* renderer_layer.hpp */,
+				B21E440F2993FC5A00D6CDFD /* mario */,
 			);
 			path = new_game;
 			sourceTree = "<group>";
@@ -420,6 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B21E44122993FC6C00D6CDFD /* mario.cpp in Sources */,
 				B2262960296C5DB600EBE59B /* piece.cpp in Sources */,
 				B24DD8322963000100525941 /* mario_main.cpp in Sources */,
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,

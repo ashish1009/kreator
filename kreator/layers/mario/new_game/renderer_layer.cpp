@@ -6,25 +6,19 @@
 //
 
 #include "renderer_layer.hpp"
+#include "mario/mario.hpp"
 
 namespace ikan_game {
-  
+
 #define is_playing settings_.play
-  
-  // Game Controller
-  static const std::string game_name_ = "Mario";
-  
-  // Imgui Font
-  static const std::string current_font_path_ = "fonts/mario.ttf";
-  static const std::string current_bold_font_path_ = "fonts/mario.ttf";
   
   // Default Scene Path
   static const std::string scene_path_ = "scenes/Mario_Scene.ikanScene";
-  
-  static const int32_t max_lines = 300;
-  
-  RendererLayer::RendererLayer() : Layer(game_name_) {
-    IK_INFO(game_name_, "Creating {0} Layer instance ... ", game_name_.c_str());
+    
+  RendererLayer::RendererLayer() : Layer("ikan Game") {
+    game_data_ = std::make_unique<mario::MarioData>();
+    
+    IK_INFO(game_data_->GameName(), "Creating {0} Layer instance ... ", game_data_->GameName().c_str());
     
     // Mario Init
     {
@@ -34,25 +28,18 @@ namespace ikan_game {
   }
   
   RendererLayer::~RendererLayer() {
-    IK_WARN(game_name_, "Destroying {0} Layer instance !!! ", game_name_.c_str());
+    IK_WARN(game_data_->GameName(), "Destroying {0} Layer instance !!! ", game_data_->GameName().c_str());
   }
     
   void RendererLayer::Attach() {
-    IK_INFO(game_name_, "Attaching {0} Layer instance", game_name_.c_str());
+    IK_INFO(game_data_->GameName(), "Attaching {0} Layer instance", game_data_->GameName().c_str());
     
-    cbp_.AddFavouritPaths({
-      AM::ProjectPath("kreator/layers/mario/assets"),
-      AM::ProjectPath("kreator/layers/mario/assets/scenes"),
-    });
+    cbp_.AddFavouritPaths(game_data_->FavDirecotries());
 
     // Decorate the Imgui Change the font of imgui
-    ImguiAPI::ChangeFont(
-                         // Regular Font information
-                         { AM::ClientAsset(current_font_path_), 14.0f /* Size of font */ },
-                         // Bold Font information
-                         { AM::ClientAsset(current_bold_font_path_), 14.0f /* Size of font */ }
-                         );
+    ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
     
+    // TODO: Add File Menu
     ImguiAPI::SetLightGreyThemeColors();
 
     if (!OpenScene(AM::ClientAsset(scene_path_))) {
@@ -61,7 +48,7 @@ namespace ikan_game {
   }
   
   void RendererLayer::Detach() {
-    IK_WARN(game_name_, "Detaching {0} Layer instance ", game_name_.c_str());
+    IK_WARN(game_data_->GameName(), "Detaching {0} Layer instance ", game_data_->GameName().c_str());
   }
     
   void RendererLayer::Update(Timestep ts) {
@@ -266,7 +253,7 @@ namespace ikan_game {
     if (modified) {
       std::string file_path = cbp_.GetCurrentDir().string() + "/" + file_name + ".ikanScene";
       
-      IK_INFO(game_name_, "Saving Scene at {0}", file_path.c_str());
+      IK_INFO(game_data_->GameName(), "Saving Scene at {0}", file_path.c_str());
       if (!file_path.empty()) {
         active_scene_->SetFilePath(file_path);
         SceneSerializer serializer(active_scene_.get());
@@ -282,7 +269,7 @@ namespace ikan_game {
     if (!active_scene_)
       return;
 
-    IK_INFO(game_name_, "Closing Scene {0}", active_scene_->GetName().c_str());
+    IK_INFO(game_data_->GameName(), "Closing Scene {0}", active_scene_->GetName().c_str());
     active_scene_.reset();
     active_scene_ = nullptr;
   }
@@ -292,13 +279,13 @@ namespace ikan_game {
     CloseScene();
     
     // Create New Scene
-    IK_INFO(game_name_, "Creating New Scene {0}", scene_path.c_str());
+    IK_INFO(game_data_->GameName(), "Creating New Scene {0}", scene_path.c_str());
     active_scene_ = std::make_shared<EnttScene>(scene_path);
     spm_.SetSceneContext(active_scene_.get());    
   }
 
   const bool RendererLayer::OpenScene(const std::string& scene_path) {
-    IK_INFO(game_name_, "Opening saved scene from {0}", scene_path.c_str());
+    IK_INFO(game_data_->GameName(), "Opening saved scene from {0}", scene_path.c_str());
     
     NewScene(scene_path);
     SceneSerializer serializer(active_scene_.get());
@@ -367,6 +354,6 @@ namespace ikan_game {
   void RendererLayer::RenderGrid() {
     const auto& cd = active_scene_->GetPrimaryCameraData();
     if (cd.scene_camera)
-      cd.scene_camera->RenderGrids(max_lines, {0.6, 0.6, 0.6, 1.0}, cd.transform_matrix);
+      cd.scene_camera->RenderGrids(300, {0.6, 0.6, 0.6, 1.0}, cd.transform_matrix);
   }
 }

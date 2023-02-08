@@ -11,6 +11,15 @@ namespace ikan_game {
   
   using namespace ikan;
   
+  class GameData {
+  public:
+    virtual ~GameData() = default;
+    virtual std::string GameName() = 0;
+    virtual ImguiFont RegularFontData() = 0;
+    virtual ImguiFont BoldFontData() = 0;
+    virtual std::vector<std::filesystem::path> FavDirecotries() = 0;
+  };
+  
   class RendererLayer : public Layer {
   public:
     struct Setting {
@@ -85,6 +94,7 @@ namespace ikan_game {
     uint32_t viewport_width = Application::Get().GetWindow().GetWidth();
     uint32_t viewport_height = Application::Get().GetWindow().GetWidth();
     
+    std::unique_ptr<GameData> game_data_;
     Setting settings_;
     Viewport viewport_;
     ContentBrowserPanel cbp_ = ContentBrowserPanel("../../../kreator/layers/mario/assets/scenes/");
