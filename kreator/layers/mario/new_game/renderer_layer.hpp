@@ -88,6 +88,9 @@ namespace ikan_game {
     /// - Note: Only render for Orthpgraphic primary camera
     void RenderGrid();
     
+    /// This function render the menue bar
+    void ShowMenu();
+
     // ------------------
     // Member variables
     // ------------------
