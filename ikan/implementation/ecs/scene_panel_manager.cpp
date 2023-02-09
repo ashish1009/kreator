@@ -82,7 +82,7 @@ namespace ikan {
   
   void ScenePanelManager::SetSceneContext(EnttScene *context) {
     scene_context_ = context;
-    selected_entity_ = {};
+    SetSelectedEntity({});
   }
   
   void ScenePanelManager::RenderGui() {
@@ -115,7 +115,7 @@ namespace ikan {
     
     // Reset the selected entity if mouse is clicked on empty space
     if (ImGui::IsMouseDown((int32_t)MouseButton::ButtonLeft) and ImGui::IsWindowHovered()) {
-      selected_entity_ = {};
+      SetSelectedEntity({});
     }
     
     // Menu popup on Right Click
@@ -133,7 +133,7 @@ namespace ikan {
       // Delete entity from scene
       scene_context_->DestroyEntity(selected_entity_);
       
-      selected_entity_ = {};
+      SetSelectedEntity({});
       delete_entity_ = false;
     }
     
@@ -202,7 +202,7 @@ namespace ikan {
     
     // Update the selected entity if item is clicked
     if (ImGui::IsItemClicked() or ImGui::IsItemClicked(1))
-      selected_entity_ = entity;
+      SetSelectedEntity(entity);
 
     // Right click of mouse option
     if (ImGui::BeginPopupContextItem()) {
@@ -229,6 +229,14 @@ namespace ikan {
       selected_entity_ = *entity;
     else if (selected_entity_)
       selected_entity_ = {};
+    
+    scene_context_->SetSelectedEntity(&selected_entity_);
+  }
+  
+  void ScenePanelManager::SetSelectedEntity(Entity entity) {
+    selected_entity_ = entity;
+    
+    scene_context_->SetSelectedEntity(&selected_entity_);
   }
   
   Entity* ScenePanelManager::GetSelectedEntity() {
@@ -245,23 +253,23 @@ namespace ikan {
     if (ImGui::BeginMenu("New Entity")) {
       // Show option of Empty Entity
       if (ImGui::MenuItem("Empty Entity")) {
-        selected_entity_ = scene_context_->CreateEntity("Empty Entity");
+        SetSelectedEntity(scene_context_->CreateEntity("Empty Entity"));
       }
       // Show option for adding camera
       ImGui::Separator();
 
       if (ImGui::BeginMenu("2D Entity")) {
         if (ImGui::MenuItem("Quad")) {
-          selected_entity_ = scene_context_->CreateEntity("Quad");
+          SetSelectedEntity(scene_context_->CreateEntity("Quad"));
           selected_entity_.AddComponent<QuadComponent>();
         }
         if (ImGui::MenuItem("Circle")) {
-          selected_entity_ = scene_context_->CreateEntity("Circle");
+          SetSelectedEntity(scene_context_->CreateEntity("Circle"));
           selected_entity_.AddComponent<CircleComponent>();
         }
         ImGui::Separator();
         if (ImGui::MenuItem("Camera")) {
-          selected_entity_ = scene_context_->CreateEntity("Camera");
+          SetSelectedEntity(scene_context_->CreateEntity("Camera"));
           selected_entity_.AddComponent<CameraComponent>();
         }
 

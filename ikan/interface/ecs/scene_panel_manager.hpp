@@ -61,6 +61,10 @@ namespace ikan {
     /// This function adds the component in the selected entity
     void AddComponent();
     
+    /// This Function update the selected entity of scene
+    /// - Parameter entity: new selected entity
+    void SetSelectedEntity(Entity entity);
+
     template <typename T, typename... Args>
     /// This function create menu for add component
     /// - Parameters:

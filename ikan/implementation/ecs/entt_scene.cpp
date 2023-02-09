@@ -411,6 +411,9 @@ namespace ikan {
     BatchRenderer::EndBatch();
   }
   
+  void EnttScene::SetSelectedEntity(Entity* entity) { selected_entity_ = entity; }
+  Entity* EnttScene::GetSelectedEntity() { return selected_entity_; }
+  
   void EnttScene::SetFilePath(const std::string& file_path) {
     file_path_ = file_path;
     name_ = StringUtils::GetNameFromFilePath(file_path_);
