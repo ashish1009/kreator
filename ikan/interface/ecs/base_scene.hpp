@@ -13,7 +13,7 @@ namespace ikan {
   
   // Forward declaration
   class Entity;
-  class Scence {
+  class Scene {
   public:
     /// This function create and Entity and store in scene registry
     /// - Parameters:

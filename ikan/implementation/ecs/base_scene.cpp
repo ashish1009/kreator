@@ -21,7 +21,7 @@ namespace ikan {
       dst.AddOrReplaceComponent<Component>(src.GetComponent<Component>());
   }
 
-  Entity Scence::CreateEntity(const std::string& name, UUID uuid) {
+  Entity Scene::CreateEntity(const std::string& name, UUID uuid) {
     Entity entity = CreateNewEmptyEntity(name, uuid);
     
     entity.AddComponent<TagComponent>(name);
@@ -37,7 +37,7 @@ namespace ikan {
     return entity;
   }
   
-  void Scence::DestroyEntity(Entity entity) {
+  void Scene::DestroyEntity(Entity entity) {
     IK_CORE_WARN(LogModule::EnttScene, "Removed Entity from Scene");
     IK_CORE_WARN(LogModule::EnttScene, "  Name | {0}", entity.GetComponent<TagComponent>().tag.c_str());
     IK_CORE_WARN(LogModule::EnttScene, "  ID   | {0}", entity.GetComponent<IDComponent>().id);
@@ -49,7 +49,7 @@ namespace ikan {
     registry_.destroy(entity);
   }
   
-  void Scence::DuplicateEntity(Entity entity) {
+  void Scene::DuplicateEntity(Entity entity) {
     Entity new_entity = CreateNewEmptyEntity("", UUID());
     
     // Copy Components
@@ -60,7 +60,7 @@ namespace ikan {
     CopyComponentIfExist<CircleComponent>(new_entity, entity);
   }
   
-  Entity Scence::CreateNewEmptyEntity(const std::string &name, UUID uuid) {
+  Entity Scene::CreateNewEmptyEntity(const std::string &name, UUID uuid) {
     Entity entity {registry_.create(), this};
     
     // Assert if this entity id is already present in scene entity map
@@ -78,14 +78,14 @@ namespace ikan {
     return entity;
   }
   
-  Entity* Scence::GetEnitityFromId(int32_t id) {
+  Entity* Scene::GetEnitityFromId(int32_t id) {
     if (entity_id_map_.find((entt::entity)id) != entity_id_map_.end())
       return &entity_id_map_.at((entt::entity)id);
     return nullptr;
   }
   
-  entt::registry& Scence::GetRegistry() { return registry_; }
-  uint32_t Scence::GetNumEntities() const { return num_entities_; }
-  uint32_t Scence::GetMaxEntityId() const { return max_entity_id_; }
+  entt::registry& Scene::GetRegistry() { return registry_; }
+  uint32_t Scene::GetNumEntities() const { return num_entities_; }
+  uint32_t Scene::GetMaxEntityId() const { return max_entity_id_; }
 
 }

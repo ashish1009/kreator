@@ -35,7 +35,7 @@ namespace ikan {
     DELETE_COPY_MOVE_CONSTRUCTORS(CameraData);
   };
 
-  class EnttScene : public Scence {
+  class EnttScene : public Scene {
   public:
     /// State of Scene
     enum State : uint8_t {
