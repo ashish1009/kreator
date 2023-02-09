@@ -27,14 +27,29 @@ namespace mario {
     
   bool MarioData::KeyPressEvent(KeyPressedEvent &e) {
     if (!is_playing_) {
+      bool shift = Input::IsKeyPressed(KeyCode::LeftShift) or Input::IsKeyPressed(KeyCode::RightShift);
+
       switch (e.GetKeyCode()) {
         case KeyCode::D: {
-          auto entity = scene_->GetSelectedEntity();
-          if (entity) {
-            scene_->DuplicateEntity(*entity);
+          if (shift) {
+            auto entity = panel_->GetSelectedEntity();
+            if (entity) {
+              scene_->DuplicateEntity(*entity);
+            }
           }
           break;
         }
+        case KeyCode::Backspace: {
+          if (shift) {
+            auto entity = panel_->GetSelectedEntity();
+            if (entity) {
+              scene_->DestroyEntity(*entity);
+              panel_->SetSelectedEntity(nullptr);
+            }
+          }
+          break;
+        }
+
         default:
           break;
       }
@@ -54,8 +69,9 @@ namespace mario {
     } // if (ImGui::BeginMenuBar())
   }
   
-  void MarioData::SetScene(const std::shared_ptr<EnttScene> scene) {
+  void MarioData::SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
     scene_ = scene;
+    panel_ = panel;
   }
   
   void MarioData::SetState(bool is_playing)  {

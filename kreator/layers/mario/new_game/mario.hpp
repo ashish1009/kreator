@@ -23,7 +23,7 @@ namespace mario {
     void RenderGui() override;
     
     void SetState(bool is_playing) override;
-    void SetScene(const std::shared_ptr<EnttScene> scene) override;
+    void SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) override;
     
     // Getters
     std::string GameName() override;
@@ -39,6 +39,7 @@ namespace mario {
     bool is_playing_ = false;
     const Viewport* const viewport_;
     std::shared_ptr<EnttScene> scene_;
+    ScenePanelManager* panel_;
   };
   
 }

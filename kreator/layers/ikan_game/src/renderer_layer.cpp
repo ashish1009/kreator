@@ -313,7 +313,7 @@ namespace ikan_game {
     active_scene_ = std::make_shared<EnttScene>(scene_path);
     spm_.SetSceneContext(active_scene_.get());
     
-    game_data_->SetScene(active_scene_);
+    game_data_->SetScene(active_scene_, &spm_);
   }
 
   const bool RendererLayer::OpenScene(const std::string& scene_path) {

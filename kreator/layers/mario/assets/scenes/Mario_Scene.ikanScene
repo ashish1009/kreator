@@ -4,6 +4,55 @@ Setting_scene_controller: true
 Setting_scene_data: true
 Use_editor_camera: false
 Entities:
+  - Entity: 13579906864916197874
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [-6, -2.00991631, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [-0.0480768681, 26.9759636]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 918476165372159355
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [-3.01652908, -2.00991631, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [-0.0480768681, 26.9759636]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 6007582178234533221
+    TagComponent:
+      Tag: Primary Camera
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 19
+      Near: -1
+      Far: 1
   - Entity: 2374320460551811855
     TagComponent:
       Tag: Quad
@@ -21,26 +70,11 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 6007582178234533221
-    TagComponent:
-      Tag: Primary Camera
-    TransformComponent:
-      Translation: [0, 0, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    CameraComponent:
-      FixedAspectRatio: false
-      Primary: true
-      ProjectionType: 1
-      PerspectiveFOV: 0.785398185
-      OrthographicSize: 3
-      Near: -1
-      Far: 1
-  - Entity: 918476165372159355
+  - Entity: 16877256587819334119
     TagComponent:
       Tag: Quad
     TransformComponent:
-      Translation: [-6, 0, 0]
+      Translation: [-6, 2.0099175, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
