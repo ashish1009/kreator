@@ -150,10 +150,12 @@ namespace ikan_game {
       case KeyCode::R:
         if (ctrl)
           viewport_.guizmo_type = ImGuizmo::OPERATION::SCALE;
-        
+        break;
+
         // Game Play controller
       case KeyCode::Escape:
         SetPlay(false);
+        break;
 
       default:
         break;

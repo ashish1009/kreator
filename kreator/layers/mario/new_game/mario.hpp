@@ -32,9 +32,9 @@ namespace mario {
     std::vector<std::filesystem::path> FavDirecotries() override;
     
   private:
-    /// This function handles the mouse button event
-    /// - Parameter e: mouse button pressed event
-    bool MouseButtonPressed(MouseButtonPressedEvent& e);
+    /// This function handles the Key button event
+    /// - Parameter e: Key pressed event
+    bool KeyPressEvent(KeyPressedEvent& e);
 
     bool is_playing_ = false;
     const Viewport* const viewport_;

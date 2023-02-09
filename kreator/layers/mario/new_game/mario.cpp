@@ -22,14 +22,23 @@ namespace mario {
   
   void MarioData::EventHandler(Event& event) {
     EventDispatcher dispatcher(event);
-    dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(MarioData::MouseButtonPressed));
+    dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(MarioData::KeyPressEvent));
   }
     
-  bool MarioData::MouseButtonPressed(MouseButtonPressedEvent &e) {
-    const auto& cd = scene_->GetPrimaryCameraData();
-    float zoom = cd.scene_camera->GetZoom();
-    float aspect_ratio = cd.scene_camera->GetAspectRatio();
-    IK_INFO("", "{0}, {1}", (viewport_->mouse_pos_x * zoom * aspect_ratio) / viewport_->width, (viewport_->mouse_pos_y * zoom) / viewport_->height);
+  bool MarioData::KeyPressEvent(KeyPressedEvent &e) {
+    if (!is_playing_) {
+      switch (e.GetKeyCode()) {
+        case KeyCode::D: {
+          auto entity = scene_->GetSelectedEntity();
+          if (entity) {
+            scene_->DuplicateEntity(*entity);
+          }
+          break;
+        }
+        default:
+          break;
+      }
+    }
     return false;
   }
   

@@ -190,9 +190,9 @@
             filePath = "kreator/layers/ikan_game/src/renderer_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "359"
-            endingLineNumber = "359"
-            landmarkName = "RendererLayer::KeyPressed(event)"
+            startingLineNumber = "361"
+            endingLineNumber = "361"
+            landmarkName = "RendererLayer::OnImguizmoUpdate()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -241,22 +241,6 @@
             startingLineNumber = "397"
             endingLineNumber = "397"
             landmarkName = "SceneSerializer::Deserialize(file_path)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "39D990B1-B980-4CFE-BDF3-D0D4AF32B5AE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kreator/layers/mario/new_game/mario.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "MarioData::MouseButtonPressed(e)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
