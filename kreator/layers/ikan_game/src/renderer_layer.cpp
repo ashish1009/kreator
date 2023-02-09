@@ -9,11 +9,6 @@
 
 namespace ikan_game {
 
-  bool first_clicked = true;
-
-  glm::vec2 initial_mouse_position_ = glm::vec2(0.0f);
-  glm::vec2 final_mouse_position_ = glm::vec2(0.0f);
-
 #define is_playing settings_.play
   
   RendererLayer::RendererLayer() : Layer("ikan Game"), game_data_(CreateGameData(&viewport_)) {
@@ -68,40 +63,7 @@ namespace ikan_game {
       viewport_.framebuffer->Bind();
       RenderScene(ts);
       RenderGrid();
-
-      {
-        const auto& cd = active_scene_->GetPrimaryCameraData();
-        float zoom = cd.scene_camera->GetZoom();
-        float aspect_ratio = cd.scene_camera->GetAspectRatio();
-        
-        if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft)) {
-          if (first_clicked) {
-            first_clicked = false;
-            initial_mouse_position_ = {
-              viewport_.mouse_pos_x - ((float)viewport_.width / 2),
-              viewport_.mouse_pos_y - ((float)viewport_.height / 2)
-            };
-            initial_mouse_position_ *= ((zoom * aspect_ratio) / viewport_.width);
-            IK_INFO("", " Clicked {0}, {1}", initial_mouse_position_.x, initial_mouse_position_.y);
-          }
-
-          final_mouse_position_ = {
-            viewport_.mouse_pos_x - ((float)viewport_.width / 2),
-            viewport_.mouse_pos_y - ((float)viewport_.height / 2)
-          };
-          final_mouse_position_ *= ((zoom * aspect_ratio) / viewport_.width);
-          IK_INFO("", "Relaased {0}, {1}", final_mouse_position_.x, final_mouse_position_.y);
-          
-          BatchRenderer::BeginBatch(active_scene_->GetPrimaryCameraData().scene_camera->GetProjection() *
-                                    glm::inverse(active_scene_->GetPrimaryCameraData().transform_matrix));
-          BatchRenderer::DrawRect({initial_mouse_position_.x, initial_mouse_position_.y, 0.1}, {final_mouse_position_.x, final_mouse_position_.y, 0.1}, {1, 1, 1, 1});
-          BatchRenderer::EndBatch();
-
-        }
-        if (Input::IsMouseButtonReleased(MouseButton::ButtonLeft)) {
-          first_clicked = true;
-        }
-      }
+      RenderSelectedRectangle();
 
       viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
       viewport_.framebuffer->Unbind();
@@ -521,6 +483,49 @@ namespace ikan_game {
   void RendererLayer::SetPlay(bool is_play) {
     is_playing = is_play;
     game_data_->SetState(is_play);
+  }
+  
+  void RendererLayer::RenderSelectedRectangle() {
+    if (!(viewport_.mouse_pos_x >= 0 and viewport_.mouse_pos_y >= 0 and
+        viewport_.mouse_pos_x <= viewport_.width and viewport_.mouse_pos_y <= viewport_.height))
+      return;
+
+    static bool first_clicked = true;
+    
+    static glm::vec2 initial_mouse_position_ = glm::vec2(0.0f);
+    static glm::vec2 final_mouse_position_ = glm::vec2(0.0f);
+        
+    if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft)) {
+      const auto& cd = active_scene_->GetPrimaryCameraData();
+      float zoom = cd.scene_camera->GetZoom();
+      float aspect_ratio = cd.scene_camera->GetAspectRatio();
+
+      if (first_clicked) {
+        first_clicked = false;
+        initial_mouse_position_ = {
+          viewport_.mouse_pos_x - ((float)viewport_.width / 2),
+          viewport_.mouse_pos_y - ((float)viewport_.height / 2)
+        };
+        initial_mouse_position_ *= ((zoom * aspect_ratio) / viewport_.width);
+      }
+      
+      final_mouse_position_ = {
+        viewport_.mouse_pos_x - ((float)viewport_.width / 2),
+        viewport_.mouse_pos_y - ((float)viewport_.height / 2)
+      };
+      final_mouse_position_ *= ((zoom * aspect_ratio) / viewport_.width);
+      
+      BatchRenderer::BeginBatch(active_scene_->GetPrimaryCameraData().scene_camera->GetProjection() *
+                                glm::inverse(active_scene_->GetPrimaryCameraData().transform_matrix));
+      BatchRenderer::DrawRect({initial_mouse_position_.x + cd.position.x, initial_mouse_position_.y + cd.position.y, 0.1},
+                              {final_mouse_position_.x + cd.position.x, final_mouse_position_.y + cd.position.y, 0.1},
+                              {1, 1, 1, 1});
+      BatchRenderer::EndBatch();
+      
+    }
+    if (Input::IsMouseButtonReleased(MouseButton::ButtonLeft)) {
+      first_clicked = true;
+    }
   }
 
 }

@@ -123,7 +123,9 @@ namespace ikan_game {
     /// This function set the game state
     /// - Parameter is_play: game state
     void SetPlay(bool is_play);
-
+    /// This function render the rectangle when clicg drag mouse
+    void RenderSelectedRectangle();
+    
     // ------------------
     // Member variables
     // ------------------
