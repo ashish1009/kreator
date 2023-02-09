@@ -153,7 +153,7 @@ namespace ikan_game {
         
         // Game Play controller
       case KeyCode::Escape:
-        is_playing = false;
+        SetPlay(false);
 
       default:
         break;
@@ -196,7 +196,7 @@ namespace ikan_game {
     
     // Button action
     if (PropertyGrid::ImageButton("Game Play", play_texture->GetRendererID(), { size, size })) {
-      is_playing = true;
+      SetPlay(true);
       Application::Get().MaximizeWindow();
     }
     PropertyGrid::HoveredMsg("Play Button for Game");
@@ -480,5 +480,10 @@ namespace ikan_game {
       ImGui::EndMenuBar(); // ImGui::BeginMenuBar()
     } // if (ImGui::BeginMenuBar())
   }
-  
+
+  void RendererLayer::SetPlay(bool is_play) {
+    is_playing = is_play;
+    game_data_->SetState(is_play);
+  }
+
 }

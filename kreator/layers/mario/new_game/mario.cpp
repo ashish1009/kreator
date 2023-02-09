@@ -49,6 +49,10 @@ namespace mario {
     scene_ = scene;
   }
   
+  void MarioData::SetState(bool is_playing)  {
+    is_playing_ = is_playing;
+  }
+  
   std::string MarioData::GameName() {
     return "Mario";
   }

@@ -22,6 +22,7 @@ namespace mario {
     void EventHandler(Event& event) override;
     void RenderGui() override;
     
+    void SetState(bool is_playing) override;
     void SetScene(const std::shared_ptr<EnttScene> scene) override;
     
     // Getters
@@ -35,6 +36,7 @@ namespace mario {
     /// - Parameter e: mouse button pressed event
     bool MouseButtonPressed(MouseButtonPressedEvent& e);
 
+    bool is_playing_ = false;
     const Viewport* const viewport_;
     std::shared_ptr<EnttScene> scene_;
   };

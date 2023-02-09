@@ -19,7 +19,7 @@ namespace ikan_game {
     virtual void Update(Timestep ts) = 0;
     virtual void EventHandler(Event& event) = 0;
     virtual void RenderGui() = 0;
-    
+    virtual void SetState(bool is_playing) = 0;
     virtual void SetScene(const std::shared_ptr<EnttScene> scene) = 0;
     
     virtual std::string GameName() = 0;
@@ -44,7 +44,7 @@ namespace ikan_game {
       bool stats = true;
       
       bool save_scene = true;
-      
+            
       /// This function changes the flag of setting for menu
       /// - Parameters:
       ///   - tag: tag of menu
@@ -119,6 +119,10 @@ namespace ikan_game {
     
     /// This function render the menue bar
     void ShowMenu();
+    
+    /// This function set the game state
+    /// - Parameter is_play: game state
+    void SetPlay(bool is_play);
 
     // ------------------
     // Member variables
