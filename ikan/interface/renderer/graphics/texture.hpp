@@ -39,7 +39,7 @@ namespace ikan {
     
     // Parameter constructor
     TextureComponent(const std::shared_ptr<Texture>& comp, bool use = true);
-    void LoadTexture(const std::shared_ptr<Texture> other_component);
+    void LoadTexture(const TextureComponent& other);
   };
 
   /// Interface class for Storing Renderer Texture data. Implementation is depending on the Supported Renerer API.

@@ -74,10 +74,10 @@ namespace ikan {
   // --------------------------------------------------------------------------
   // Texture Component
   // --------------------------------------------------------------------------
-  void TextureComponent::LoadTexture(const std::shared_ptr<Texture> texture) {
-    if (texture) {
-      component = Renderer::GetTexture(texture->GetfilePath());
-      sprite = SubTexture::CreateFromCoords(component, {0.0f, 0.0f});
+  void TextureComponent::LoadTexture(const TextureComponent& other) {
+    if (other.component) {
+      component = Renderer::GetTexture(other.component->GetfilePath());
+      sprite = SubTexture::CreateFromCoords(component, other.sprite->GetCoords(), other.sprite->GetSpriteSize(), other.sprite->GetCellSize());
     }
     else {
       component = nullptr;
@@ -95,13 +95,13 @@ namespace ikan {
   TextureComponent::TextureComponent(const TextureComponent& other)
   : use(other.use), use_sprite(other.use_sprite), tiling_factor(other.tiling_factor) {
     IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent");
-    LoadTexture(other.component);
+    LoadTexture(other);
   }
   
   TextureComponent::TextureComponent(TextureComponent&& other)
   : use(other.use), use_sprite(other.use_sprite), tiling_factor(other.tiling_factor) {
     IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent");
-    LoadTexture(other.component);
+    LoadTexture(other);
   }
   
   TextureComponent& TextureComponent::operator=(const TextureComponent& other) {
@@ -109,7 +109,7 @@ namespace ikan {
     use_sprite = other.use_sprite;
     tiling_factor = other.tiling_factor;
     
-    LoadTexture(other.component);
+    LoadTexture(other);
 
     IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent (=operator)");
     return *this;
@@ -120,7 +120,7 @@ namespace ikan {
     use_sprite = other.use_sprite;
     tiling_factor = other.tiling_factor;
     
-    LoadTexture(other.component);
+    LoadTexture(other);
 
     IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent (=operator)");
     return *this;
