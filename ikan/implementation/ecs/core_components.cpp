@@ -177,6 +177,23 @@ namespace ikan {
     PropertyGrid::RenderTextureComponent(texture_comp, color, [this]() {
       ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
     });
+    
+    if (texture_comp.sprite and texture_comp.use_sprite) {
+      size_t tex_id = texture_comp.sprite->GetSpriteImage()->GetRendererID();
+      float divide_factor = 2;
+
+      float tex_width = (float)texture_comp.sprite->GetSpriteImage()->GetWidth();
+      float tex_height = (float)texture_comp.sprite->GetSpriteImage()->GetHeight() ;
+      float width = std::min(ImGui::GetContentRegionAvailWidth(), tex_width);
+      float height = tex_height * (width / tex_width);
+      
+      ImGui::Image((void*)tex_id, ImVec2(width, height), ImVec2(0, 1), ImVec2(1, 0),
+                   ImVec4(1.0f,1.0f,1.0f,1.0f), ImVec4(1.0f,1.0f,1.0f,0.5f));
+      if (ImGui::IsItemHovered()) {
+        ImGui::BeginTooltip();
+        ImGui::EndTooltip();
+      }
+    }
   }
   
   // -------------------------------------------------------------------------
