@@ -14,7 +14,6 @@
 
 namespace ikan {
   
-  
   class EnttScene;
   
   /// This class is the wrapper to render scene pannel

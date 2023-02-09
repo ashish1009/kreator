@@ -21,16 +21,6 @@
 
 namespace ikan {
   
-  template<typename Component>
-  /// Copy the entity components
-  /// - Parameters:
-  ///   - dst: Destination entity
-  ///   - src: Source entity
-  static void CopyComponentIfExist(Entity& dst, Entity& src) {
-    if (src.HasComponent<Component>())
-      dst.AddOrReplaceComponent<Component>(src.GetComponent<Component>());
-  }
-  
   EnttScene::EnttScene(const std::string& file_path)
   : file_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)) {
     IK_CORE_INFO(LogModule::EnttScene, "Creating Scene ...");
@@ -50,63 +40,6 @@ namespace ikan {
     IK_CORE_WARN(LogModule::EnttScene, "  Name | {0}", name_);
   }
   
-  Entity EnttScene::CreateEntity(const std::string& name, UUID uuid) {
-    Entity entity = CreateNewEmptyEntity(name, uuid);
-
-    entity.AddComponent<TagComponent>(name);
-    entity.AddComponent<TransformComponent>();
-
-    // Debug Logs
-    IK_CORE_TRACE(LogModule::EnttScene, "Stored Entity in Scene");
-    IK_CORE_TRACE(LogModule::EnttScene, "  Name | {0}", entity.GetComponent<TagComponent>().tag.c_str());
-    IK_CORE_TRACE(LogModule::EnttScene, "  ID   | {0}", entity.GetComponent<IDComponent>().id);
-    IK_CORE_TRACE(LogModule::EnttScene, "  Number of entities Added in Scene | {0}", ++num_entities_);
-    IK_CORE_TRACE(LogModule::EnttScene, "  Max ID given to entity            | {0}", max_entity_id_);
-
-    return entity;
-  }
-  
-  void EnttScene::DestroyEntity(Entity entity) {
-    IK_CORE_WARN(LogModule::EnttScene, "Removed Entity from Scene");
-    IK_CORE_WARN(LogModule::EnttScene, "  Name | {0}", entity.GetComponent<TagComponent>().tag.c_str());
-    IK_CORE_WARN(LogModule::EnttScene, "  ID   | {0}", entity.GetComponent<IDComponent>().id);
-    IK_CORE_WARN(LogModule::EnttScene, "  Number of entities Added in Scene | {0}", --num_entities_);
-
-    // Delete the eneity from the map
-    entity_id_map_.erase(entity);
-
-    registry_.destroy(entity);
-  }
-  
-  void EnttScene::DuplicateEntity(Entity entity) {
-    Entity new_entity = CreateNewEmptyEntity("", UUID());
-    
-    // Copy Components
-    CopyComponentIfExist<TagComponent>(new_entity, entity);
-    CopyComponentIfExist<TransformComponent>(new_entity, entity);
-    CopyComponentIfExist<CameraComponent>(new_entity, entity);
-    CopyComponentIfExist<QuadComponent>(new_entity, entity);
-    CopyComponentIfExist<CircleComponent>(new_entity, entity);
-  }
-  
-  Entity EnttScene::CreateNewEmptyEntity(const std::string &name, UUID uuid) {
-    Entity entity {registry_.create(), this};
-    
-    // Assert if this entity id is already present in scene entity map
-    IK_ASSERT((entity_id_map_.find(entity) == entity_id_map_.end()), "Entity Already Added");
-    
-    // Add the Mendatory components
-    entity.AddComponent<IDComponent>(uuid);
-    
-    // Store the entity in the entity uuid map. We Copy the Entity
-    entity_id_map_[entity] = std::move(entity);
-    
-    // Updating the Max entity ID
-    max_entity_id_ = entity;
-    
-    return entity;
-  }
-
   void EnttScene::Update(Timestep ts) {
     // Update the primary scene camera for run time rendering
     UpdatePrimaryCameraData();
@@ -310,12 +243,6 @@ namespace ikan {
     physics_world_ = nullptr;
   }
   
-  Entity* EnttScene::GetEnitityFromId(int32_t id) {
-    if (entity_id_map_.find((entt::entity)id) != entity_id_map_.end())
-      return &entity_id_map_.at((entt::entity)id);
-    return nullptr;
-  }
-  
   void EnttScene::UpdatePrimaryCameraData() {
     auto camera_view = registry_.view<TransformComponent, CameraComponent>();
     for (auto& camera_entity : camera_view) {
@@ -419,10 +346,7 @@ namespace ikan {
     name_ = StringUtils::GetNameFromFilePath(file_path_);
   }
   EnttScene::Setting& EnttScene::GetSetting() { return setting_; }
-  uint32_t EnttScene::GetNumEntities() const { return num_entities_; }
-  uint32_t EnttScene::GetMaxEntityId() const { return max_entity_id_; }
   EditorCamera* EnttScene::GetEditorCamera() { return &editor_camera_; }
-  entt::registry& EnttScene::GetRegistry() { return registry_; }
   bool EnttScene::IsEditing() const { return state_ == EnttScene::State::Edit; }
   const std::string& EnttScene::GetName() const { return name_; }
   const std::string& EnttScene::GetFilePath() const { return file_path_; }
