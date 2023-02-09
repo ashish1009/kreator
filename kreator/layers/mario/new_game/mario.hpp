@@ -15,8 +15,11 @@ namespace mario {
     
   class MarioData : public ikan_game::GameData {
   public:
+    MarioData(const Viewport* const viewport);
+    
     void Init() override;
     void Update(Timestep ts) override;
+    void EventHandler(Event& event) override;
     void RenderGui() override;
     
     // Getters
@@ -24,6 +27,15 @@ namespace mario {
     ImguiFont RegularFontData() override;
     ImguiFont BoldFontData() override;
     std::vector<std::filesystem::path> FavDirecotries() override;
+    
+  private:
+    /// This function handles the mouse button event
+    /// - Parameter e: mouse button pressed event
+    bool MouseButtonPressed(MouseButtonPressedEvent& e);
+
+    uint32_t viewport_width = Application::Get().GetWindow().GetWidth();
+    uint32_t viewport_height = Application::Get().GetWindow().GetWidth();
+    const Viewport* const viewport_;
   };
   
 }

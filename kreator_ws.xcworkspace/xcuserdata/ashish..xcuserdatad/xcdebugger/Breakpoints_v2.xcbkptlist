@@ -190,8 +190,8 @@
             filePath = "kreator/layers/ikan_game/src/renderer_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
+            startingLineNumber = "357"
+            endingLineNumber = "357"
             landmarkName = "RendererLayer::OnImguizmoUpdate()"
             landmarkType = "7">
          </BreakpointContent>

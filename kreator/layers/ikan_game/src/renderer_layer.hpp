@@ -17,8 +17,9 @@ namespace ikan_game {
     
     virtual void Init() = 0;
     virtual void Update(Timestep ts) = 0;
+    virtual void EventHandler(Event& event) = 0;
     virtual void RenderGui() = 0;
-
+    
     virtual std::string GameName() = 0;
     virtual ImguiFont RegularFontData() = 0;
     virtual ImguiFont BoldFontData() = 0;
@@ -26,7 +27,7 @@ namespace ikan_game {
   };
   
   /// This function is the defination of game data. Implementaiton should be at client
-  std::unique_ptr<GameData> CreateGameData();
+  std::unique_ptr<GameData> CreateGameData(const Viewport* const viewport);
   
   class RendererLayer : public Layer {
   public:

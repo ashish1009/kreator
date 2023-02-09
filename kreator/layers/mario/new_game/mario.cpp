@@ -9,12 +9,25 @@
 
 namespace mario {
   
+  MarioData::MarioData(const Viewport* const viewport)
+  : viewport_(viewport) {
+  }
+  
   void MarioData::Init() {
     BatchRenderer::Init(2000, 0, 0);
   }
   
   void MarioData::Update(Timestep ts) {
+  }
+  
+  void MarioData::EventHandler(Event& event) {
+    EventDispatcher dispatcher(event);
+    dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(MarioData::MouseButtonPressed));
+  }
     
+  bool MarioData::MouseButtonPressed(MouseButtonPressedEvent &e) {
+    IK_INFO("", "{0}, {1}", viewport_->mouse_pos_x, viewport_->mouse_pos_y);
+    return false;
   }
   
   void MarioData::RenderGui() {

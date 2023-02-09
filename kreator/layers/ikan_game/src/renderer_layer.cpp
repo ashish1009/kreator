@@ -11,7 +11,7 @@ namespace ikan_game {
 
 #define is_playing settings_.play
   
-  RendererLayer::RendererLayer() : Layer("ikan Game"), game_data_(CreateGameData()) {
+  RendererLayer::RendererLayer() : Layer("ikan Game"), game_data_(CreateGameData(&viewport_)) {
     IK_INFO(game_data_->GameName(), "Creating {0} Layer instance ... ", game_data_->GameName().c_str());
     game_data_->Init();
   }
@@ -73,6 +73,8 @@ namespace ikan_game {
   void RendererLayer::EventHandler(Event& event) {
     if (active_scene_)
       active_scene_->EventHandler(event);
+    
+    game_data_->EventHandler(event);
 
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::KeyPressed));
