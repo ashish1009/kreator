@@ -37,6 +37,12 @@ namespace ikan {
     /// This function returns the Max Entity ID given to scene
     uint32_t GetMaxEntityId() const;
 
+    /// This function update the selected entity
+    /// - Parameter entity: entity
+    void SetSelectedEntity(Entity* entity);
+    /// This function return the selected entity
+    Entity* GetSelectedEntity();
+
   private:
     /// - Parameters:
     ///   - name: name of entity
@@ -47,6 +53,8 @@ namespace ikan {
     // Registry to store the entity handles
     entt::registry registry_;
     std::unordered_map<entt::entity, Entity> entity_id_map_;
+
+    Entity* selected_entity_;
 
     // Number of Entity stored in Scene and Max ID given to Entity
     uint32_t num_entities_ = 0, max_entity_id_ = -1;

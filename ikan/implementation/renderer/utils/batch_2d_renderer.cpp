@@ -591,13 +591,14 @@ namespace ikan {
 
   void BatchRenderer::DrawQuad(const glm::mat4& transform,
                                const std::shared_ptr<SubTexture>& sub_texture,
+                               const glm::vec4& tint_color,
                                int32_t object_id) {
     const glm::vec2* texture_coords = sub_texture->GetTexCoord();
     DrawTextureQuad(transform,
                     sub_texture->GetSpriteImage(),
                     texture_coords,
                     1.0f,
-                    glm::vec4(1.0f),
+                    tint_color,
                     object_id);
   }
 

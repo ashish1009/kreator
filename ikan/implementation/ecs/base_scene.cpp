@@ -84,6 +84,9 @@ namespace ikan {
     return nullptr;
   }
   
+  void Scene::SetSelectedEntity(Entity* entity) { selected_entity_ = entity; }
+  Entity* Scene::GetSelectedEntity() { return selected_entity_; }
+
   entt::registry& Scene::GetRegistry() { return registry_; }
   uint32_t Scene::GetNumEntities() const { return num_entities_; }
   uint32_t Scene::GetMaxEntityId() const { return max_entity_id_; }

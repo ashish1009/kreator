@@ -141,7 +141,6 @@ namespace ikan {
         
         body->CreateFixture(&fixture_def);
       }
-      
     }
   }
   
@@ -310,6 +309,7 @@ namespace ikan {
         if (quad_component.texture_comp.use_sprite) {
           BatchRenderer::DrawQuad(transform_component.GetTransform(),
                                   quad_component.texture_comp.sprite,
+                                  quad_component.color,
                                   (uint32_t)quad_entity);
         }
         else {
@@ -332,15 +332,13 @@ namespace ikan {
       const auto& [transform_component, sprite_component] = sprite_view.get<TransformComponent, SpriteComponent>(sprite_entity);
       BatchRenderer::DrawQuad(transform_component.GetTransform(),
                               sprite_component.sub_texture,
+                              glm::vec4(1.0f),
                               (uint32_t)sprite_entity);
     } // for (const auto& entity : mesh_view)
     
     BatchRenderer::EndBatch();
   }
-  
-  void EnttScene::SetSelectedEntity(Entity* entity) { selected_entity_ = entity; }
-  Entity* EnttScene::GetSelectedEntity() { return selected_entity_; }
-  
+    
   void EnttScene::SetFilePath(const std::string& file_path) {
     file_path_ = file_path;
     name_ = StringUtils::GetNameFromFilePath(file_path_);

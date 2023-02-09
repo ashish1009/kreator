@@ -80,7 +80,8 @@ namespace ikan {
     ///   - object_id: entity ID of Quad
     static void DrawQuad(const glm::mat4& transform,
                          const std::shared_ptr<SubTexture>& sub_texture,
-                         int32_t object_id);
+                         const glm::vec4& tint_color = glm::vec4(1.0f),
+                         int32_t object_id = -1);
 
     /// This function draws circle with color
     /// - Parameters:

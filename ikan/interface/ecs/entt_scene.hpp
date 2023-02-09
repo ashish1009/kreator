@@ -9,7 +9,6 @@
 
 // This file includes the scene class to store data of active scene
 
-#include <entt.hpp>
 #include "base_scene.hpp"
 #include "camera/editor_camera.hpp"
 #include "camera/scene_camera.hpp"
@@ -18,8 +17,6 @@
 
 namespace ikan {
   
-  // Forward declaration
-  class Entity;
   // TODO: For debug only
   struct TransformComponent;
   
@@ -99,12 +96,6 @@ namespace ikan {
     /// This function returns the flag to use editor camera
     bool UseEditorCamera() const;
     
-    /// This function update the selected entity
-    /// - Parameter entity: entity
-    void SetSelectedEntity(Entity* entity);
-    /// This function return the selected entity
-    Entity* GetSelectedEntity();
-    
     DELETE_COPY_MOVE_CONSTRUCTORS(EnttScene);
     
   private:
@@ -148,7 +139,6 @@ namespace ikan {
     // ------------------
     // Member variabls
     // ------------------
-    Entity* selected_entity_;
     // Utils Memebers
     std::string file_path_ = "Unknown Path", name_ = "Unsaved Scene";
 
