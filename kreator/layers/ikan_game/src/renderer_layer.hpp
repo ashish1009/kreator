@@ -20,6 +20,8 @@ namespace ikan_game {
     virtual void EventHandler(Event& event) = 0;
     virtual void RenderGui() = 0;
     
+    virtual void SetScene(const std::shared_ptr<EnttScene> scene) = 0;
+    
     virtual std::string GameName() = 0;
     virtual ImguiFont RegularFontData() = 0;
     virtual ImguiFont BoldFontData() = 0;

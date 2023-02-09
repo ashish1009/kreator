@@ -26,7 +26,10 @@ namespace mario {
   }
     
   bool MarioData::MouseButtonPressed(MouseButtonPressedEvent &e) {
-    IK_INFO("", "{0}, {1}", viewport_->mouse_pos_x, viewport_->mouse_pos_y);
+    const auto& cd = scene_->GetPrimaryCameraData();
+    float zoom = cd.scene_camera->GetZoom();
+    float aspect_ratio = cd.scene_camera->GetAspectRatio();
+    IK_INFO("", "{0}, {1}", (viewport_->mouse_pos_x * zoom * aspect_ratio) / viewport_->width, (viewport_->mouse_pos_y * zoom) / viewport_->height);
     return false;
   }
   
@@ -40,6 +43,10 @@ namespace mario {
       } // if (ImGui::BeginMenu("File"))
       ImGui::EndMenuBar(); // ImGui::BeginMenuBar()
     } // if (ImGui::BeginMenuBar())
+  }
+  
+  void MarioData::SetScene(const std::shared_ptr<EnttScene> scene) {
+    scene_ = scene;
   }
   
   std::string MarioData::GameName() {

@@ -48,7 +48,8 @@ namespace ikan {
     ///   - max_lines: Max line to render in grids
     ///   - line_color: Color of Grids
     ///   - camera_transform: Camera transform from component
-    void RenderGrids(uint32_t max_lines, const glm::vec4& line_color, const glm::mat4& camera_transform);
+    ///   - camera_pos: Camera position
+    void RenderGrids(uint32_t max_lines, const glm::vec4& line_color, const glm::mat4& camera_transform, const glm::vec3 camera_pos);
 
     /// This function updates the new Orthographic Matrix (Only for Orthographic camera)
     /// - Parameters:

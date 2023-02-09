@@ -22,6 +22,8 @@ namespace mario {
     void EventHandler(Event& event) override;
     void RenderGui() override;
     
+    void SetScene(const std::shared_ptr<EnttScene> scene) override;
+    
     // Getters
     std::string GameName() override;
     ImguiFont RegularFontData() override;
@@ -33,9 +35,8 @@ namespace mario {
     /// - Parameter e: mouse button pressed event
     bool MouseButtonPressed(MouseButtonPressedEvent& e);
 
-    uint32_t viewport_width = Application::Get().GetWindow().GetWidth();
-    uint32_t viewport_height = Application::Get().GetWindow().GetWidth();
     const Viewport* const viewport_;
+    std::shared_ptr<EnttScene> scene_;
   };
   
 }

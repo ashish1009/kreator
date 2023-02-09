@@ -309,7 +309,9 @@ namespace ikan_game {
     // Create New Scene
     IK_INFO(game_data_->GameName(), "Creating New Scene {0}", scene_path.c_str());
     active_scene_ = std::make_shared<EnttScene>(scene_path);
-    spm_.SetSceneContext(active_scene_.get());    
+    spm_.SetSceneContext(active_scene_.get());
+    
+    game_data_->SetScene(active_scene_);
   }
 
   const bool RendererLayer::OpenScene(const std::string& scene_path) {
@@ -391,7 +393,7 @@ namespace ikan_game {
   void RendererLayer::RenderGrid() {
     const auto& cd = active_scene_->GetPrimaryCameraData();
     if (cd.scene_camera)
-      cd.scene_camera->RenderGrids(300, {0.6, 0.6, 0.6, 1.0}, cd.transform_matrix);
+      cd.scene_camera->RenderGrids(300, {0.6, 0.6, 0.6, 1.0}, cd.transform_matrix, cd.position);
   }
   
   void RendererLayer::ShowMenu() {
