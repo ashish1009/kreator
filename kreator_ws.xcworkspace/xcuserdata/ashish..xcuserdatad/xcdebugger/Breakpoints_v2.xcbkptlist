@@ -126,8 +126,8 @@
             filePath = "ikan/implementation/renderer/graphics/texture.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "TextureComponent::operator=(other)"
             landmarkType = "7">
          </BreakpointContent>
@@ -142,8 +142,8 @@
             filePath = "ikan/implementation/renderer/graphics/texture.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "TextureComponent::TextureComponent(other)"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "ikan/implementation/renderer/graphics/texture.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "TextureComponent::TextureComponent(other)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "ikan/implementation/renderer/graphics/texture.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "TextureComponent::operator=(other)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,9 +190,41 @@
             filePath = "kreator/layers/ikan_game/src/renderer_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "RendererLayer::OnImguizmoUpdate()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B4E2D5D6-6989-4E0D-8838-BCA36A5183FC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/renderer/graphics/texture.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "TextureComponent::ChangeLinearTexture()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5777B54-17CE-4094-8CDE-C52E5ADBA4A7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/renderer/graphics/texture.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "TextureLibrary::GetTexture(path, linear)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

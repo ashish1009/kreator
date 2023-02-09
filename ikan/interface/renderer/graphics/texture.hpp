@@ -24,6 +24,7 @@ namespace ikan {
   struct TextureComponent {
     bool use = false;
     bool use_sprite = false;
+    bool linear_edge = true;
 
     std::shared_ptr<Texture> component = nullptr;
     std::shared_ptr<SubTexture> sprite = nullptr;
@@ -40,6 +41,7 @@ namespace ikan {
     // Parameter constructor
     TextureComponent(const std::shared_ptr<Texture>& comp, bool use = true);
     void LoadTexture(const TextureComponent& other);
+    void ChangeLinearTexture();
   };
 
   /// Interface class for Storing Renderer Texture data. Implementation is depending on the Supported Renerer API.
@@ -80,11 +82,8 @@ namespace ikan {
     /// This static functions creates the Texture from image file
     /// - Parameters:
     ///   - file_path: path of texture file
-    ///   - min_linear: min linear flag
-    ///   - mag_linear: max linear flag
-    [[nodiscard]] static std::shared_ptr<Texture> Create(const std::string& file_path,
-                                                         bool min_linear = true,
-                                                         bool mag_linear = true);
+    ///   - linear: min linear flag
+    [[nodiscard]] static std::shared_ptr<Texture> Create(const std::string& file_path, bool linear = true);
     /// This static functions creates Emptry Texture with user Defined Data of
     /// size height and Width
     /// - Parameters:
@@ -260,18 +259,18 @@ namespace ikan {
     /// This function returns the Ref type of ikan::Texture. It creates a new if not present in the map
     /// - Parameters:
     ///   - path: path of textre
-    ///   - min_linear: min linear flag
-    ///   - mag_linear: max linear flag
-    [[nodiscard]] static std::shared_ptr<Texture> GetTexture(const std::string& path,
-                                                             bool min_linear = true,
-                                                             bool mag_linear = true);
+    ///   - linear: min linear flag
+    [[nodiscard]] static std::shared_ptr<Texture> GetTexture(const std::string& path, bool linear = true);
     /// This function deletes all the Texture present int the map
     static void ResetTextures();
     
     // -----------
     // Variables
     // -----------
-    static std::unordered_map<std::string, std::shared_ptr<Texture>> texture_library_;
+    // Array of 2 to keep both linear and nearest min and mag flags
+    // 0 -> Linear Filter
+    // 1 -> Nearest Filter
+    static std::unordered_map<std::string, std::array<std::shared_ptr<Texture>, 2>> texture_library_;
     
     MAKE_PURE_STATIC(TextureLibrary)
     

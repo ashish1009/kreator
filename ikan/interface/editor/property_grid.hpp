@@ -225,6 +225,13 @@ namespace ikan {
       if (texture_comp.use) {
         ImGui::SameLine();
         // Check box to togle use of texture
+        if (ImGui::Checkbox("Linear Edge", &texture_comp.linear_edge)) {
+          texture_comp.ChangeLinearTexture();
+        }
+        PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+
+        ImGui::SameLine();
+        // Check box to togle use of texture
         ImGui::Checkbox("Sprite", &texture_comp.use_sprite);
         PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
       }

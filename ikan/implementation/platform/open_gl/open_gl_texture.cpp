@@ -60,8 +60,7 @@ namespace ikan {
   }
  
   OpenGLTexture::OpenGLTexture(const std::string& file_path,
-                               bool min_linear,
-                               bool mag_linear)
+                               bool linear)
   : file_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)),
   internal_format_(GL_RGBA8), data_format_(GL_RGBA) {
     if (renderer_id_)
@@ -103,8 +102,8 @@ namespace ikan {
       glBindTexture(GL_TEXTURE_2D, renderer_id_);
 
       // Setup min and Mag filter
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, (min_linear ? GL_LINEAR : GL_NEAREST));
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, (min_linear ? GL_LINEAR : GL_NEAREST));
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, (linear ? GL_LINEAR : GL_NEAREST));
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, (linear ? GL_LINEAR : GL_NEAREST));
       
       // Texuter Flags
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);

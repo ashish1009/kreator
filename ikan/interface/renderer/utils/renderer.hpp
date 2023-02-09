@@ -169,11 +169,8 @@ namespace ikan {
     /// and store in the library
     /// - Parameters:
     ///   - path: path of textre
-    ///   - min_linear: min linear flag
-    ///   - mag_linear: max linear flag
-    [[nodiscard]] static std::shared_ptr<Texture> GetTexture(const std::string& path,
-                                                             bool min_linear = true,
-                                                             bool mag_linear = true);
+    ///   - linear: min linear flag
+    [[nodiscard]] static std::shared_ptr<Texture> GetTexture(const std::string& path, bool linear = true);
 
     // ------------------
     // Draw Calls

@@ -22,9 +22,8 @@ namespace ikan {
     /// This constructor creates the texture using image file path
     /// - Parameters:
     ///   - file_path: Texture image file path (absolute)
-    ///   - min_linear: min linear filter
-    ///   - mag_linear: mag linear filter
-    OpenGLTexture(const std::string& file_path, bool min_linear, bool mag_linear);
+    ///   - linear: min linear filter
+    OpenGLTexture(const std::string& file_path, bool linear);
     /// This Constructor create the empty Open GL texture with user data
     /// - Parameters:
     ///   - width: widht of texture

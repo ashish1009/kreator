@@ -207,10 +207,8 @@ namespace ikan {
   std::shared_ptr<Shader> Renderer::GetShader(const std::string& path) {
     return ShaderLibrary::GetShader(path);
   }
-  std::shared_ptr<Texture> Renderer::GetTexture(const std::string& path,
-                                                bool min_linear,
-                                                bool mag_linear) {
-    return TextureLibrary::GetTexture(path, min_linear, mag_linear);
+  std::shared_ptr<Texture> Renderer::GetTexture(const std::string& path, bool linear) {
+    return TextureLibrary::GetTexture(path, linear);
   }
 
   // -------------------------------------------------------------------------

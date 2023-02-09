@@ -349,7 +349,6 @@ namespace ikan_game {
       if (!active_scene_->UseEditorCamera()) {
         // Camera
         const auto& cd = active_scene_->GetPrimaryCameraData();
-        const auto& cam = cd.scene_camera;
         const glm::mat4& camera_projection = cd.scene_camera->GetProjection();
 
         if (cd.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {

@@ -4,19 +4,19 @@ Setting_scene_controller: true
 Setting_scene_data: true
 Use_editor_camera: false
 Entities:
-  - Entity: 2374320460551811855
+  - Entity: 918476165372159355
     TagComponent:
       Tag: Quad
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [-5.98016596, 0, 0]
       Rotation: [0, 0, 0]
-      Scale: [2, 2, 1]
+      Scale: [1, 1, 1]
     QuadComponent:
       Texture_Use: true
       Sprite_Use: true
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 18]
-      Sprite_Size: [2, 2]
+      Coords: [-0.0480768681, 26.9759636]
+      Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
@@ -35,3 +35,19 @@ Entities:
       OrthographicSize: 18
       Near: -1
       Far: 1
+  - Entity: 2374320460551811855
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 18]
+      Sprite_Size: [2, 2]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
