@@ -380,11 +380,18 @@ namespace ikan {
     for (const auto& quad_entity : quad_view) {
       const auto& [transform_component, quad_component] = quad_view.get<TransformComponent, QuadComponent>(quad_entity);
       if (quad_component.texture_comp.use and quad_component.texture_comp.component) {
-        BatchRenderer::DrawQuad(transform_component.GetTransform(),
-                                quad_component.texture_comp.component,
-                                quad_component.color,
-                                quad_component.texture_comp.tiling_factor,
-                                (uint32_t)quad_entity);
+        if (quad_component.texture_comp.use_sprite) {
+          BatchRenderer::DrawQuad(transform_component.GetTransform(),
+                                  quad_component.texture_comp.sprite,
+                                  (uint32_t)quad_entity);
+        }
+        else {
+          BatchRenderer::DrawQuad(transform_component.GetTransform(),
+                                  quad_component.texture_comp.component,
+                                  quad_component.color,
+                                  quad_component.texture_comp.tiling_factor,
+                                  (uint32_t)quad_entity);
+        }
       } else {
         BatchRenderer::DrawQuad(transform_component.GetTransform(),
                                 quad_component.color,

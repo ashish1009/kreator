@@ -180,11 +180,17 @@ namespace ikan {
         
         auto& qc = entity.GetComponent<QuadComponent>();
         out << YAML::Key << "Texture_Use" << YAML::Value << qc.texture_comp.use;
+        out << YAML::Key << "Sprite_Use" << YAML::Value << qc.texture_comp.use_sprite;
 
-        if (qc.texture_comp.component)
+        if (qc.texture_comp.component) {
           out << YAML::Key << "Texture_Path" << YAML::Value << qc.texture_comp.component->GetfilePath();
-        else
+          out << YAML::Key << "Coords" << YAML::Value << qc.texture_comp.sprite->GetCoords();
+          out << YAML::Key << "Sprite_Size" << YAML::Value << qc.texture_comp.sprite->GetSpriteSize();
+          out << YAML::Key << "Cell_Size" << YAML::Value << qc.texture_comp.sprite->GetCellSize();
+        }
+        else {
           out << YAML::Key << "Texture_Path" << YAML::Value << "";
+        }
 
         out << YAML::Key << "Texture_TilingFactor" << YAML::Value << qc.texture_comp.tiling_factor;
 
@@ -382,10 +388,17 @@ namespace ikan {
           auto& qc = deserialized_entity.AddComponent<QuadComponent>();
 
           qc.texture_comp.use = quad_component["Texture_Use"].as<bool>();
+          qc.texture_comp.use_sprite = quad_component["Sprite_Use"].as<bool>();
           
           std::string texture_path = quad_component["Texture_Path"].as<std::string>();
-          if (texture_path != "")
+          if (texture_path != "") {
             qc.texture_comp.component = Renderer::GetTexture(texture_path);
+            
+            const glm::vec2& coords = quad_component["Coords"].as<glm::vec2>();
+            const glm::vec2& sprite_size = quad_component["Sprite_Size"].as<glm::vec2>();
+            const glm::vec2& cell_size = quad_component["Cell_Size"].as<glm::vec2>();
+            qc.texture_comp.sprite = SubTexture::CreateFromCoords(qc.texture_comp.component, coords, sprite_size, cell_size);
+          }
 
           qc.texture_comp.tiling_factor = quad_component["Texture_TilingFactor"].as<float>();
           qc.color = quad_component["Color"].as<glm::vec4>();

@@ -74,26 +74,43 @@ namespace ikan {
   // --------------------------------------------------------------------------
   // Texture Component
   // --------------------------------------------------------------------------
+  void TextureComponent::LoadTexture(const std::shared_ptr<Texture> texture) {
+    if (texture) {
+      component = Renderer::GetTexture(texture->GetfilePath());
+      sprite = SubTexture::CreateFromCoords(component, {0.0f, 0.0f});
+    }
+    else {
+      component = nullptr;
+      sprite = nullptr;
+    }
+  }
   TextureComponent::TextureComponent(const std::shared_ptr<Texture>& comp, bool use)
   : component(comp), use(use) {
     IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent");
+    if (component) {
+      sprite = SubTexture::CreateFromCoords(component, {0.0f, 0.0f});
+    }
   }
   
   TextureComponent::TextureComponent(const TextureComponent& other)
-  : component(other.component), use(other.use), use_sprite(other.use_sprite), tiling_factor(other.tiling_factor) {
+  : use(other.use), use_sprite(other.use_sprite), tiling_factor(other.tiling_factor) {
     IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent");
+    LoadTexture(other.component);
   }
   
   TextureComponent::TextureComponent(TextureComponent&& other)
-  : component(other.component), use(other.use), use_sprite(other.use_sprite), tiling_factor(other.tiling_factor) {
+  : use(other.use), use_sprite(other.use_sprite), tiling_factor(other.tiling_factor) {
     IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent");
+    LoadTexture(other.component);
   }
   
   TextureComponent& TextureComponent::operator=(const TextureComponent& other) {
     use = other.use;
     use_sprite = other.use_sprite;
-    component = other.component;
     tiling_factor = other.tiling_factor;
+    
+    LoadTexture(other.component);
+
     IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent (=operator)");
     return *this;
   }
@@ -101,8 +118,10 @@ namespace ikan {
   TextureComponent& TextureComponent::operator=(TextureComponent&& other) {
     use = other.use;
     use_sprite = other.use_sprite;
-    component = other.component;
     tiling_factor = other.tiling_factor;
+    
+    LoadTexture(other.component);
+
     IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent (=operator)");
     return *this;
   }

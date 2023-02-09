@@ -211,7 +211,9 @@ namespace ikan {
       PropertyGrid::DropConent([&texture_comp](const std::string& path)
                                {
         texture_comp.component.reset();
-        texture_comp.component = Renderer::GetTexture(path);
+        texture_comp.sprite.reset();
+        
+        texture_comp.LoadTexture(Renderer::GetTexture(path));
       });
       // TODO: Add hovered larger Image
       PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to "
