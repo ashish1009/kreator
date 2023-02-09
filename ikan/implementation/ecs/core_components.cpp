@@ -174,7 +174,7 @@ namespace ikan {
   }
   
   void QuadComponent::RenderGui() {
-    PropertyGrid::RenderTextureComponent(texture_comp, color, [this]() {
+    texture_comp.RenderGui(color, [this]() {
       ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
     });
     
@@ -342,7 +342,7 @@ namespace ikan {
   }
 
   void CircleComponent::RenderGui() {
-    PropertyGrid::RenderTextureComponent(texture_comp, color, [this]() {
+    texture_comp.RenderGui(color, [this]() {
       ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
     });
     

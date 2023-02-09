@@ -8,6 +8,7 @@
 #pragma once
 
 #include "renderer/utils/renderer.hpp"
+#include "editor/property_grid.hpp"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -20,30 +21,7 @@ namespace ikan {
   
   class Texture;
   class SubTexture;
-  /// This structure holds the texture component with use flag
-  struct TextureComponent {
-    bool use = false;
-    bool use_sprite = false;
-    bool linear_edge = true;
-
-    std::shared_ptr<Texture> component = nullptr;
-    std::shared_ptr<SubTexture> sprite = nullptr;
-
-    float tiling_factor = 1.0f;
-    
-    // default constructor and destructors
-    TextureComponent() = default;
-    ~TextureComponent() noexcept = default;
-    
-    // Copy and Move Constructor and operator =
-    DEFINE_COPY_MOVE_CONSTRUCTORS(TextureComponent)
-    
-    // Parameter constructor
-    TextureComponent(const std::shared_ptr<Texture>& comp, bool use = true);
-    void LoadTexture(const TextureComponent& other);
-    void ChangeLinearTexture();
-  };
-
+  
   /// Interface class for Storing Renderer Texture data. Implementation is depending on the Supported Renerer API.
   class Texture {
   public:
@@ -275,6 +253,95 @@ namespace ikan {
     MAKE_PURE_STATIC(TextureLibrary)
     
     friend class Renderer;
+  };
+  
+  /// This structure holds the texture component with use flag
+  struct TextureComponent {
+    bool use = false;
+    bool use_sprite = false;
+    bool linear_edge = true;
+    
+    std::shared_ptr<Texture> component = nullptr;
+    std::shared_ptr<SubTexture> sprite = nullptr;
+    
+    float tiling_factor = 1.0f;
+    
+    // default constructor and destructors
+    TextureComponent() = default;
+    ~TextureComponent() noexcept = default;
+    
+    // Copy and Move Constructor and operator =
+    DEFINE_COPY_MOVE_CONSTRUCTORS(TextureComponent)
+    
+    // Parameter constructor
+    /// This constructure creates the texture component
+    /// - Parameter comp: component of texture
+    TextureComponent(const std::shared_ptr<Texture>& comp, bool use = true);
+    /// This function loads the textrue and sprite again
+    /// - Parameter other: component
+    void LoadTexture(const TextureComponent& other);
+    /// This function changes the linear flag of texture
+    void ChangeLinearTexture();
+    
+    template<typename UIFunction>
+    /// This function renders the texture components
+    /// - Parameters:
+    ///   - color: color of the texture
+    ///   - ui_function: function to render below texture Use
+    void RenderGui(glm::vec4& color, UIFunction ui_function) {
+      ImGui::PushID("##PropertyGrid::TextureComponent");
+      ImGui::Columns(2);
+      ImGui::SetColumnWidth(0, 60);
+      
+      static std::shared_ptr<Texture> no_texture = Renderer::GetTexture(AM::CoreAsset("textures/default/no_texture.png"));
+      size_t tex_id = ((component) ? component->GetRendererID() : no_texture->GetRendererID());
+      
+      // Show the image of texture
+      ImGui::Image((void*)tex_id, ImVec2(40.0f, 40.0f), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f),
+                   ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
+      
+      // Drop the texture here and load new texture
+      PropertyGrid::DropConent([this](const std::string& path)
+                               {
+        component.reset();
+        sprite.reset();
+        
+        LoadTexture(Renderer::GetTexture(path));
+      });
+      // TODO: Add hovered larger Image
+      PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to "
+                               "upload the texture");
+      ImGui::NextColumn();
+      
+      // Check box to togle use of texture
+      ImGui::Checkbox("Use ", &use);
+      if (use) {
+        ImGui::SameLine();
+        // Check box to togle use of texture
+        if (ImGui::Checkbox("Linear Edge", &linear_edge)) {
+          ChangeLinearTexture();
+        }
+        PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+        
+        ImGui::SameLine();
+        // Check box to togle use of texture
+        ImGui::Checkbox("Sprite", &use_sprite);
+        PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+      }
+      
+      ui_function();
+      
+      if (use and !use_sprite) {
+        ImGui::SameLine();
+        ImGui::DragFloat("", &tiling_factor, 1.0f, 1.0f, 1000.0f);
+        PropertyGrid::HoveredMsg("Tiling Factor");
+      }
+      
+      ImGui::Columns(1);
+      ImGui::Separator();
+      ImGui::PopID();
+    }
+
   };
   
 }

@@ -7,6 +7,7 @@
 
 #include "texture.hpp"
 #include "platform/open_gl/open_gl_texture.hpp"
+#include "editor/property_grid.hpp"
 
 namespace ikan {
   
@@ -137,6 +138,62 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent (=operator)");
     return *this;
   }
+  
+//  template<typename UIFunction>
+//  void TextureComponent::RenderGui(glm::vec4& color, UIFunction ui_function) {
+//    ImGui::PushID("##PropertyGrid::TextureComponent");
+//    ImGui::Columns(2);
+//    ImGui::SetColumnWidth(0, 100);
+//    
+//    static std::shared_ptr<Texture> no_texture = Renderer::GetTexture(AM::CoreAsset("textures/default/no_texture.png"));
+//    size_t tex_id = ((component) ? component->GetRendererID() : no_texture->GetRendererID());
+//    
+//    // Show the image of texture
+//    ImGui::Image((void*)tex_id, ImVec2(40.0f, 40.0f), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f),
+//                 ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
+//    
+//    // Drop the texture here and load new texture
+//    PropertyGrid::DropConent([this](const std::string& path)
+//                             {
+//      component.reset();
+//      sprite.reset();
+//      
+//      LoadTexture(Renderer::GetTexture(path));
+//    });
+//    // TODO: Add hovered larger Image
+//    PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to "
+//                             "upload the texture");
+//    ImGui::NextColumn();
+//    
+//    // Check box to togle use of texture
+//    ImGui::Checkbox("Use ", &use);
+//    if (use) {
+//      ImGui::SameLine();
+//      // Check box to togle use of texture
+//      if (ImGui::Checkbox("Linear Edge", &linear_edge)) {
+//        ChangeLinearTexture();
+//      }
+//      PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+//      
+//      ImGui::SameLine();
+//      // Check box to togle use of texture
+//      ImGui::Checkbox("Sprite", &use_sprite);
+//      PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+//    }
+//    
+//    ui_function();
+//    
+//    if (use and !use_sprite) {
+//      ImGui::SameLine();
+//      ImGui::DragFloat("", &tiling_factor, 1.0f, 1.0f, 1000.0f);
+//      PropertyGrid::HoveredMsg("Tiling Factor");
+//    }
+//    
+//    ImGui::Columns(1);
+//    ImGui::Separator();
+//    ImGui::PopID();
+//  }
+
 
   // --------------------------------------------------------------------------
   // Texture Library

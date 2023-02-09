@@ -6,6 +6,7 @@
 //
 
 #include "property_grid.hpp"
+#include "renderer/graphics/texture.hpp"
 
 namespace ikan {
   
