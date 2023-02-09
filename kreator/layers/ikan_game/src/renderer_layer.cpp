@@ -348,12 +348,22 @@ namespace ikan_game {
       
       if (!active_scene_->UseEditorCamera()) {
         // Camera
-        const glm::mat4& camera_projection = active_scene_->GetPrimaryCameraData().scene_camera->GetProjection();
-        const glm::mat4& camera_view = glm::inverse(active_scene_->GetPrimaryCameraData().transform_comp->GetTransform());
-        
-        ImGuizmo::Manipulate(glm::value_ptr(camera_view), glm::value_ptr(camera_projection), (ImGuizmo::OPERATION)viewport_.guizmo_type,
-                             ImGuizmo::LOCAL, glm::value_ptr(transform), nullptr, snap ? snap_values : nullptr);
-        
+        const auto& cd = active_scene_->GetPrimaryCameraData();
+        const auto& cam = cd.scene_camera;
+        const glm::mat4& camera_projection = cd.scene_camera->GetProjection();
+
+        if (cd.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
+          const glm::mat4& camera_view = glm::inverse(Math::GetTransformMatrix({cd.position.x, cd.position.y, cd.position.z + 1.0f},
+                                                                               cd.transform_comp->Rotation(),
+                                                                               cd.transform_comp->Scale()));
+          ImGuizmo::Manipulate(glm::value_ptr(camera_view), glm::value_ptr(camera_projection), (ImGuizmo::OPERATION)viewport_.guizmo_type,
+                               ImGuizmo::LOCAL, glm::value_ptr(transform), nullptr, snap ? snap_values : nullptr);
+        }
+        else {
+        const glm::mat4& camera_view = glm::inverse(cd.transform_comp->GetTransform());
+          ImGuizmo::Manipulate(glm::value_ptr(camera_view), glm::value_ptr(camera_projection), (ImGuizmo::OPERATION)viewport_.guizmo_type,
+                               ImGuizmo::LOCAL, glm::value_ptr(transform), nullptr, snap ? snap_values : nullptr);
+        }
       } else {
         // Camera
         EditorCamera* editor_camera = active_scene_->GetEditorCamera();
