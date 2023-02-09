@@ -1342,7 +1342,7 @@ Entities:
       Primary: true
       ProjectionType: 1
       PerspectiveFOV: 0.785398185
-      OrthographicSize: 11
+      OrthographicSize: 8
       Near: -1
       Far: 1
   - Entity: 6851582563909386330
