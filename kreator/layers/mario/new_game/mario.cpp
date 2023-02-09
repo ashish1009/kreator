@@ -28,31 +28,40 @@ namespace mario {
   bool MarioData::KeyPressEvent(KeyPressedEvent &e) {
     if (!is_playing_) {
       bool shift = Input::IsKeyPressed(KeyCode::LeftShift) or Input::IsKeyPressed(KeyCode::RightShift);
-
-      switch (e.GetKeyCode()) {
-        case KeyCode::D: {
-          if (shift) {
-            auto entity = panel_->GetSelectedEntity();
-            if (entity) {
+      if (shift) {
+        if (Entity* entity = panel_->GetSelectedEntity(); entity) {
+          auto& tc = entity->GetComponent<TransformComponent>();
+          switch (e.GetKeyCode()) {
+            case KeyCode::D: {
               scene_->DuplicateEntity(*entity);
+              break;
             }
-          }
-          break;
-        }
-        case KeyCode::Backspace: {
-          if (shift) {
-            auto entity = panel_->GetSelectedEntity();
-            if (entity) {
+            case KeyCode::Backspace: {
               scene_->DestroyEntity(*entity);
               panel_->SetSelectedEntity(nullptr);
+              break;
             }
-          }
-          break;
-        }
-
-        default:
-          break;
-      }
+            case KeyCode::Left: {
+              tc.UpdateTranslation_X(tc.Translation().x - 1.0f);
+              break;
+            }
+            case KeyCode::Right: {
+              tc.UpdateTranslation_X(tc.Translation().x + 1.0f);
+              break;
+            }
+            case KeyCode::Up: {
+              tc.UpdateTranslation_Y(tc.Translation().y + 1.0f);
+              break;
+            }
+            case KeyCode::Down: {
+              tc.UpdateTranslation_Y(tc.Translation().y - 1.0f);
+              break;
+            }
+            default:
+              break;
+          } // switch (e.GetKeyCode())
+        } // if (entity)
+      } // if (shift)
     }
     return false;
   }

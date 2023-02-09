@@ -31,12 +31,7 @@ namespace ikan {
   struct TransformComponent {
     TransformComponent(const glm::vec3& translation = { 0.0f, 0.0f, 0.0f });
     void RenderGui();
-
-    glm::mat4 transform;
-    glm::vec3 translation{0.0f};
-    glm::vec3 rotation{0.0f};
-    glm::vec3 scale{1.0f};
-
+    
     const glm::mat4& GetTransform() const;
     const glm::vec3& Translation() const;
     const glm::vec3& Rotation() const;
@@ -60,6 +55,10 @@ namespace ikan {
     
     DEFINE_COPY_MOVE_CONSTRUCTORS(TransformComponent);
   private:
+    glm::mat4 transform;
+    glm::vec3 translation{0.0f};
+    glm::vec3 rotation{0.0f};
+    glm::vec3 scale{1.0f};
   };
   
   struct QuadComponent {

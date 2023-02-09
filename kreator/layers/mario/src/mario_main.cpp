@@ -39,7 +39,7 @@ namespace mario {
   
   void MarioLayer::CreateCamera(EnttScene* scene, Entity& camera_entity) {
     camera_entity = scene->CreateEntity("Camera");
-    camera_entity.GetComponent<TransformComponent>().translation.y = 2.0f;
+    camera_entity.GetComponent<TransformComponent>().UpdateTranslation_Y(2.0f);
     {
       auto& camera_comp = camera_entity.AddComponent<CameraComponent>();
       camera_comp.is_primary = true;
@@ -221,8 +221,8 @@ namespace mario {
         
     if (ImGui::Button("Reset")) {
       player_->Reset();
-      tile_camera_entity_.GetComponent<TransformComponent>().translation.x = 0.0f;
-      texture_camera_entity.GetComponent<TransformComponent>().translation.x = 0.0f;
+      tile_camera_entity_.GetComponent<TransformComponent>().UpdateTranslation_X(0.0f);
+      texture_camera_entity.GetComponent<TransformComponent>().UpdateTranslation_X(0.0f);
     }
     
     ImGui::PopID();

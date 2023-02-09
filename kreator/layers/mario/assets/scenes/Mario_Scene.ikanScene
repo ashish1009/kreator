@@ -4,11 +4,11 @@ Setting_scene_controller: true
 Setting_scene_data: true
 Use_editor_camera: false
 Entities:
-  - Entity: 13579906864916197874
+  - Entity: 16877256587819334119
     TagComponent:
       Tag: Quad
     TransformComponent:
-      Translation: [-6, -2.00991631, 0]
+      Translation: [-6, 2, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -21,20 +21,20 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 918476165372159355
+  - Entity: 2374320460551811855
     TagComponent:
       Tag: Quad
     TransformComponent:
-      Translation: [-3.01652908, -2.00991631, 0]
+      Translation: [0, 0, 0]
       Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
+      Scale: [2, 2, 1]
     QuadComponent:
       Texture_Use: true
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [-0.0480768681, 26.9759636]
-      Sprite_Size: [1, 1]
+      Coords: [0, 18]
+      Sprite_Size: [2, 2]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
@@ -53,28 +53,28 @@ Entities:
       OrthographicSize: 19
       Near: -1
       Far: 1
-  - Entity: 2374320460551811855
+  - Entity: 918476165372159355
     TagComponent:
       Tag: Quad
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [-2, -3, 0]
       Rotation: [0, 0, 0]
-      Scale: [2, 2, 1]
+      Scale: [1, 1, 1]
     QuadComponent:
       Texture_Use: true
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 18]
-      Sprite_Size: [2, 2]
+      Coords: [-0.0480768681, 26.9759636]
+      Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 16877256587819334119
+  - Entity: 13579906864916197874
     TagComponent:
       Tag: Quad
     TransformComponent:
-      Translation: [-6, 2.0099175, 0]
+      Translation: [-6, -2, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
