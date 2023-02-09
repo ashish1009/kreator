@@ -246,8 +246,8 @@ namespace ikan {
 
         if (ImGui::IsMouseClicked(0)) {
           glm::vec3 coords;
-          coords.x = (((region_x + region_fixed_x)) / (cell_size.x * size_ratio)) - 1;
-          coords.y = (((region_y + region_fixed_y)) / (cell_size.y * size_ratio)) - 1;
+          coords.x = (((region_x + region_fixed_x)) / (cell_size.x * size_ratio)) - sprite_size.x;
+          coords.y = (((region_y + region_fixed_y)) / (cell_size.y * size_ratio)) - sprite_size.y;
           
           texture_comp.sprite->GetSpriteImage().reset();
           texture_comp.sprite = SubTexture::CreateFromCoords(texture_comp.component, coords, sprite_size, cell_size);
