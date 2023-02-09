@@ -125,7 +125,7 @@ namespace ikan {
     // Getters
     // -----------------
     /// This function returns the texture reference of sprite
-    const std::shared_ptr<Texture> GetSpriteImage() const;
+    std::shared_ptr<Texture> GetSpriteImage();
     /// This function returns Texture coordinates of Subtexture
     const glm::vec2* GetTexCoord() const;
     /// This function returns Sprite size of Subtexture
