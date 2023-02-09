@@ -8,12 +8,13 @@ Entities:
     TagComponent:
       Tag: Quad
     TransformComponent:
-      Translation: [-5.98016596, 0, 0]
+      Translation: [-6, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
       Texture_Use: true
       Sprite_Use: true
+      Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
       Coords: [-0.0480768681, 26.9759636]
       Sprite_Size: [1, 1]
@@ -45,6 +46,7 @@ Entities:
     QuadComponent:
       Texture_Use: true
       Sprite_Use: true
+      Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
       Coords: [0, 18]
       Sprite_Size: [2, 2]

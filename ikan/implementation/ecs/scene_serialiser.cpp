@@ -181,6 +181,7 @@ namespace ikan {
         auto& qc = entity.GetComponent<QuadComponent>();
         out << YAML::Key << "Texture_Use" << YAML::Value << qc.texture_comp.use;
         out << YAML::Key << "Sprite_Use" << YAML::Value << qc.texture_comp.use_sprite;
+        out << YAML::Key << "Linear_Edge" << YAML::Value << qc.texture_comp.linear_edge;
 
         if (qc.texture_comp.component) {
           out << YAML::Key << "Texture_Path" << YAML::Value << qc.texture_comp.component->GetfilePath();
@@ -389,10 +390,11 @@ namespace ikan {
 
           qc.texture_comp.use = quad_component["Texture_Use"].as<bool>();
           qc.texture_comp.use_sprite = quad_component["Sprite_Use"].as<bool>();
+          qc.texture_comp.linear_edge = quad_component["Linear_Edge"].as<bool>();
           
           std::string texture_path = quad_component["Texture_Path"].as<std::string>();
           if (texture_path != "") {
-            qc.texture_comp.component = Renderer::GetTexture(texture_path);
+            qc.texture_comp.component = Renderer::GetTexture(texture_path, qc.texture_comp.linear_edge);
             
             const glm::vec2& coords = quad_component["Coords"].as<glm::vec2>();
             const glm::vec2& sprite_size = quad_component["Sprite_Size"].as<glm::vec2>();

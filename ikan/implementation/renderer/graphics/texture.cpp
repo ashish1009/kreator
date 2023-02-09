@@ -75,7 +75,7 @@ namespace ikan {
   // --------------------------------------------------------------------------
   void TextureComponent::LoadTexture(const TextureComponent& other) {
     if (other.component) {
-      component = Renderer::GetTexture(other.component->GetfilePath());
+      component = Renderer::GetTexture(other.component->GetfilePath(), other.linear_edge);
       sprite = SubTexture::CreateFromCoords(component, other.sprite->GetCoords(), other.sprite->GetSpriteSize(), other.sprite->GetCellSize());
     }
     else {
@@ -106,19 +106,20 @@ namespace ikan {
   }
   
   TextureComponent::TextureComponent(const TextureComponent& other)
-  : use(other.use), use_sprite(other.use_sprite), tiling_factor(other.tiling_factor) {
+  : use(other.use), linear_edge(other.linear_edge), use_sprite(other.use_sprite), tiling_factor(other.tiling_factor) {
     IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent");
     LoadTexture(other);
   }
   
   TextureComponent::TextureComponent(TextureComponent&& other)
-  : use(other.use), use_sprite(other.use_sprite), tiling_factor(other.tiling_factor) {
+  : use(other.use), linear_edge(other.linear_edge), use_sprite(other.use_sprite), tiling_factor(other.tiling_factor) {
     IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent");
     LoadTexture(other);
   }
   
   TextureComponent& TextureComponent::operator=(const TextureComponent& other) {
     use = other.use;
+    linear_edge = other.linear_edge;
     use_sprite = other.use_sprite;
     tiling_factor = other.tiling_factor;
     
@@ -130,6 +131,7 @@ namespace ikan {
   
   TextureComponent& TextureComponent::operator=(TextureComponent&& other) {
     use = other.use;
+    linear_edge = other.linear_edge;
     use_sprite = other.use_sprite;
     tiling_factor = other.tiling_factor;
     
@@ -138,62 +140,6 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent (=operator)");
     return *this;
   }
-  
-//  template<typename UIFunction>
-//  void TextureComponent::RenderGui(glm::vec4& color, UIFunction ui_function) {
-//    ImGui::PushID("##PropertyGrid::TextureComponent");
-//    ImGui::Columns(2);
-//    ImGui::SetColumnWidth(0, 100);
-//    
-//    static std::shared_ptr<Texture> no_texture = Renderer::GetTexture(AM::CoreAsset("textures/default/no_texture.png"));
-//    size_t tex_id = ((component) ? component->GetRendererID() : no_texture->GetRendererID());
-//    
-//    // Show the image of texture
-//    ImGui::Image((void*)tex_id, ImVec2(40.0f, 40.0f), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f),
-//                 ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
-//    
-//    // Drop the texture here and load new texture
-//    PropertyGrid::DropConent([this](const std::string& path)
-//                             {
-//      component.reset();
-//      sprite.reset();
-//      
-//      LoadTexture(Renderer::GetTexture(path));
-//    });
-//    // TODO: Add hovered larger Image
-//    PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to "
-//                             "upload the texture");
-//    ImGui::NextColumn();
-//    
-//    // Check box to togle use of texture
-//    ImGui::Checkbox("Use ", &use);
-//    if (use) {
-//      ImGui::SameLine();
-//      // Check box to togle use of texture
-//      if (ImGui::Checkbox("Linear Edge", &linear_edge)) {
-//        ChangeLinearTexture();
-//      }
-//      PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
-//      
-//      ImGui::SameLine();
-//      // Check box to togle use of texture
-//      ImGui::Checkbox("Sprite", &use_sprite);
-//      PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
-//    }
-//    
-//    ui_function();
-//    
-//    if (use and !use_sprite) {
-//      ImGui::SameLine();
-//      ImGui::DragFloat("", &tiling_factor, 1.0f, 1.0f, 1000.0f);
-//      PropertyGrid::HoveredMsg("Tiling Factor");
-//    }
-//    
-//    ImGui::Columns(1);
-//    ImGui::Separator();
-//    ImGui::PopID();
-//  }
-
 
   // --------------------------------------------------------------------------
   // Texture Library
