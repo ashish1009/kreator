@@ -58,6 +58,12 @@ namespace ikan {
     CopyComponentIfExist<CameraComponent>(new_entity, entity);
     CopyComponentIfExist<QuadComponent>(new_entity, entity);
     CopyComponentIfExist<CircleComponent>(new_entity, entity);
+    
+    // Disable highlight from selected Entity
+    if (*selected_entity_ == entity) {
+      if (new_entity.HasComponent<QuadComponent>())
+        new_entity.GetComponent<QuadComponent>().color.a += highlight_entity_alpha_diff_;
+    }
   }
   
   Entity Scene::CreateNewEmptyEntity(const std::string &name, UUID uuid) {

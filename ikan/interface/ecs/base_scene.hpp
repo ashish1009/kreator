@@ -11,6 +11,8 @@
 
 namespace ikan {
   
+  const float highlight_entity_alpha_diff_ = 0.2;
+
   // Forward declaration
   class Entity;
   class Scene {

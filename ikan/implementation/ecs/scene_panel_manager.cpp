@@ -228,7 +228,7 @@ namespace ikan {
     if (selected_entity_) {
       if (selected_entity_.HasComponent<QuadComponent>()) {
         auto& qc = selected_entity_.GetComponent<QuadComponent>();
-        qc.color.a += 0.2f;
+        qc.color.a += highlight_entity_alpha_diff_;
       }
     }
     
@@ -237,7 +237,7 @@ namespace ikan {
       
       if (selected_entity_.HasComponent<QuadComponent>()) {
         auto& qc = selected_entity_.GetComponent<QuadComponent>();
-        qc.color.a -= 0.2f;
+        qc.color.a -= highlight_entity_alpha_diff_;
       }
     }
     else if (selected_entity_) {
@@ -248,21 +248,7 @@ namespace ikan {
   }
   
   void ScenePanelManager::SetSelectedEntity(Entity entity) {
-    if (selected_entity_) {
-      if (selected_entity_.HasComponent<QuadComponent>()) {
-        auto& qc = selected_entity_.GetComponent<QuadComponent>();
-        qc.color.a += 0.2f;
-      }
-    }
-
-    selected_entity_ = entity;
-
-    if (selected_entity_.HasComponent<QuadComponent>()) {
-      auto& qc = selected_entity_.GetComponent<QuadComponent>();
-      qc.color.a -= 0.2f;
-    }
-
-    scene_context_->SetSelectedEntity(&selected_entity_);
+    SetSelectedEntity(&entity);
   }
   
   Entity* ScenePanelManager::GetSelectedEntity() {
