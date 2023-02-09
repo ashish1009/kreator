@@ -46,8 +46,7 @@ namespace ikan_game {
       return;
     
     viewport_.UpdateMousePos();
-
-    game_data_->Update(ts);
+    
     if (is_playing) {      
       RenderScene(ts);
     }
@@ -63,7 +62,6 @@ namespace ikan_game {
       viewport_.framebuffer->Bind();
       RenderScene(ts);
       RenderGrid();
-      RenderSelectedRectangle();
 
       viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
       viewport_.framebuffer->Unbind();
@@ -184,6 +182,8 @@ namespace ikan_game {
   void RendererLayer::RenderScene(Timestep ts) {
     Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
     active_scene_->Update(ts);
+    
+    game_data_->Update(ts);
   }
   
   void RendererLayer::GamePlayButton() {
@@ -483,49 +483,6 @@ namespace ikan_game {
   void RendererLayer::SetPlay(bool is_play) {
     is_playing = is_play;
     game_data_->SetState(is_play);
-  }
-  
-  void RendererLayer::RenderSelectedRectangle() {
-    if (!(viewport_.mouse_pos_x >= 0 and viewport_.mouse_pos_y >= 0 and
-        viewport_.mouse_pos_x <= viewport_.width and viewport_.mouse_pos_y <= viewport_.height))
-      return;
-
-    static bool first_clicked = true;
-    
-    static glm::vec2 initial_mouse_position_ = glm::vec2(0.0f);
-    static glm::vec2 final_mouse_position_ = glm::vec2(0.0f);
-        
-    if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft)) {
-      const auto& cd = active_scene_->GetPrimaryCameraData();
-      float zoom = cd.scene_camera->GetZoom();
-      float aspect_ratio = cd.scene_camera->GetAspectRatio();
-
-      if (first_clicked) {
-        first_clicked = false;
-        initial_mouse_position_ = {
-          viewport_.mouse_pos_x - ((float)viewport_.width / 2),
-          viewport_.mouse_pos_y - ((float)viewport_.height / 2)
-        };
-        initial_mouse_position_ *= ((zoom * aspect_ratio) / viewport_.width);
-      }
-      
-      final_mouse_position_ = {
-        viewport_.mouse_pos_x - ((float)viewport_.width / 2),
-        viewport_.mouse_pos_y - ((float)viewport_.height / 2)
-      };
-      final_mouse_position_ *= ((zoom * aspect_ratio) / viewport_.width);
-      
-      BatchRenderer::BeginBatch(active_scene_->GetPrimaryCameraData().scene_camera->GetProjection() *
-                                glm::inverse(active_scene_->GetPrimaryCameraData().transform_matrix));
-      BatchRenderer::DrawRect({initial_mouse_position_.x + cd.position.x, initial_mouse_position_.y + cd.position.y, 0.1},
-                              {final_mouse_position_.x + cd.position.x, final_mouse_position_.y + cd.position.y, 0.1},
-                              {1, 1, 1, 1});
-      BatchRenderer::EndBatch();
-      
-    }
-    if (Input::IsMouseButtonReleased(MouseButton::ButtonLeft)) {
-      first_clicked = true;
-    }
   }
 
 }

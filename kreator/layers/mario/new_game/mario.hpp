@@ -35,6 +35,8 @@ namespace mario {
     /// This function handles the Key button event
     /// - Parameter e: Key pressed event
     bool KeyPressEvent(KeyPressedEvent& e);
+    /// This function render the rectangle when clicg drag mouse
+    void RenderSelectedRectangle();
 
     bool is_playing_ = false;
     const Viewport* const viewport_;
