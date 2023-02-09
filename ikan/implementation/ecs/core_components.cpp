@@ -179,15 +179,24 @@ namespace ikan {
     });
     
     if (texture_comp.sprite and texture_comp.use_sprite) {
-      glm::vec2 coords = texture_comp.sprite->GetCoords();
       // Subtexture property
-      const glm::vec2& sprite_size = texture_comp.sprite->GetSpriteSize();
-      const glm::vec2& cell_size   = texture_comp.sprite->GetCellSize();
+      glm::vec2 coords = texture_comp.sprite->GetCoords();
+      glm::vec2 sprite_size = texture_comp.sprite->GetSpriteSize();
+      glm::vec2 cell_size   = texture_comp.sprite->GetCellSize();
 
-      if (PropertyGrid::Float2("Coords", coords)) {
+      if (PropertyGrid::Float2("Coords", coords, nullptr, 0.1f, 0.0f, 100.0f, 0.0f)) {
         texture_comp.sprite->GetSpriteImage().reset();
         texture_comp.sprite = SubTexture::CreateFromCoords(texture_comp.component, coords, sprite_size, cell_size);
       }
+      if (PropertyGrid::Float2("Sprite Size", sprite_size, nullptr, 1.0f, 1.0f, 100.0f, 8.0f)) {
+        texture_comp.sprite->GetSpriteImage().reset();
+        texture_comp.sprite = SubTexture::CreateFromCoords(texture_comp.component, coords, sprite_size, cell_size);
+      }
+      if (PropertyGrid::Float2("Cell Size", cell_size, nullptr, 8.0f, 16.0f, 100.0f, 1.0f)) {
+        texture_comp.sprite->GetSpriteImage().reset();
+        texture_comp.sprite = SubTexture::CreateFromCoords(texture_comp.component, coords, sprite_size, cell_size);
+      }
+      ImGui::Separator();
       
       size_t tex_id = texture_comp.sprite->GetSpriteImage()->GetRendererID();
 
