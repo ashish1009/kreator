@@ -16,6 +16,9 @@ namespace ikan_game {
     virtual ~GameData() = default;
     
     virtual void Init() = 0;
+    virtual void Update(Timestep ts) = 0;
+    virtual void RenderGui() = 0;
+
     virtual std::string GameName() = 0;
     virtual ImguiFont RegularFontData() = 0;
     virtual ImguiFont BoldFontData() = 0;

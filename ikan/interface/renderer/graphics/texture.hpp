@@ -22,6 +22,7 @@ namespace ikan {
   /// This structure holds the texture component with use flag
   struct TextureComponent {
     bool use = false;
+    bool use_sprite = false;
     std::shared_ptr<Texture> component = nullptr;
     float tiling_factor = 1.0f;
     

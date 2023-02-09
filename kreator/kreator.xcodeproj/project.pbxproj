@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B21E4417299406F900D6CDFD /* create_game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21E4415299406F900D6CDFD /* create_game_data.cpp */; };
+		B21E441B299408E500D6CDFD /* mario.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21E441A299408E500D6CDFD /* mario.cpp */; };
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
 		B2262960296C5DB600EBE59B /* piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B226295F296C5DB600EBE59B /* piece.cpp */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		B21E44112993FC6C00D6CDFD /* mario.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario.hpp; sourceTree = "<group>"; };
 		B21E4415299406F900D6CDFD /* create_game_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = create_game_data.cpp; sourceTree = "<group>"; };
+		B21E441A299408E500D6CDFD /* mario.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario.cpp; sourceTree = "<group>"; };
 		B2250CAA29584CE00067C43B /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCC29584D1A0067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CD029585E890067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				B21E44112993FC6C00D6CDFD /* mario.hpp */,
+				B21E441A299408E500D6CDFD /* mario.cpp */,
 			);
 			path = new_game;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				B25F618B2969A9CF0042FE09 /* player.cpp in Sources */,
 				B2A7FA69299257350039C996 /* renderer_layer.cpp in Sources */,
 				B24DD82F2962FFEE00525941 /* chess_main.cpp in Sources */,
+				B21E441B299408E500D6CDFD /* mario.cpp in Sources */,
 				B275570A29601F650020D552 /* renderer_layer.cpp in Sources */,
 				B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,

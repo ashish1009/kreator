@@ -47,6 +47,7 @@ namespace ikan_game {
     
     viewport_.UpdateMousePos();
 
+    game_data_->Update(ts);
     if (is_playing) {      
       RenderScene(ts);
     }
@@ -88,6 +89,8 @@ namespace ikan_game {
       ShowMenu();
       GamePlayButton();
 
+      game_data_->RenderGui();
+      
       if (active_scene_) {
         active_scene_->RenderGui();
         

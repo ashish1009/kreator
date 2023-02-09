@@ -80,17 +80,18 @@ namespace ikan {
   }
   
   TextureComponent::TextureComponent(const TextureComponent& other)
-  : component(other.component), use(other.use), tiling_factor(other.tiling_factor) {
+  : component(other.component), use(other.use), use_sprite(other.use_sprite), tiling_factor(other.tiling_factor) {
     IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent");
   }
   
   TextureComponent::TextureComponent(TextureComponent&& other)
-  : component(other.component), use(other.use), tiling_factor(other.tiling_factor) {
+  : component(other.component), use(other.use), use_sprite(other.use_sprite), tiling_factor(other.tiling_factor) {
     IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent");
   }
   
   TextureComponent& TextureComponent::operator=(const TextureComponent& other) {
     use = other.use;
+    use_sprite = other.use_sprite;
     component = other.component;
     tiling_factor = other.tiling_factor;
     IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent (=operator)");
@@ -99,6 +100,7 @@ namespace ikan {
   
   TextureComponent& TextureComponent::operator=(TextureComponent&& other) {
     use = other.use;
+    use_sprite = other.use_sprite;
     component = other.component;
     tiling_factor = other.tiling_factor;
     IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent (=operator)");

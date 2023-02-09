@@ -220,11 +220,16 @@ namespace ikan {
       
       // Check box to togle use of texture
       ImGui::Checkbox("Use ", &texture_comp.use);
-      
-      ui_function();
-      //    ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
-      
       if (texture_comp.use) {
+        ImGui::SameLine();
+        // Check box to togle use of texture
+        ImGui::Checkbox("Sprite", &texture_comp.use_sprite);
+        PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+      }
+
+      ui_function();
+      
+      if (texture_comp.use and !texture_comp.use_sprite) {
         ImGui::SameLine();
         ImGui::DragFloat("", &texture_comp.tiling_factor, 1.0f, 1.0f, 1000.0f);
         PropertyGrid::HoveredMsg("Tiling Factor");

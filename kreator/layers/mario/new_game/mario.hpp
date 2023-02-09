@@ -15,35 +15,15 @@ namespace mario {
     
   class MarioData : public ikan_game::GameData {
   public:
-    void Init() override {
-      BatchRenderer::Init(2000, 0, 0);
-    }
+    void Init() override;
+    void Update(Timestep ts) override;
+    void RenderGui() override;
     
-    std::string GameName() override {
-      return "Mario";
-    }
-    
-    ImguiFont RegularFontData() override {
-      return {
-        AM::ClientAsset("fonts/mario.ttf"),
-        14.0f
-        /* Size of font */
-      };
-    }
-    
-    ImguiFont BoldFontData() override {
-      return {
-        AM::ClientAsset("fonts/mario.ttf"),
-        14.0f /* Size of font */
-      };
-    }
-    
-    std::vector<std::filesystem::path> FavDirecotries() override {
-      return {
-        AM::ProjectPath("kreator/layers/mario/assets"),
-        AM::ProjectPath("kreator/layers/mario/assets/scenes"),
-      };
-    }
+    // Getters
+    std::string GameName() override;
+    ImguiFont RegularFontData() override;
+    ImguiFont BoldFontData() override;
+    std::vector<std::filesystem::path> FavDirecotries() override;
   };
   
 }
