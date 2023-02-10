@@ -85,15 +85,7 @@ namespace mario {
   void MarioData::SetState(bool is_playing)  {
     is_playing_ = is_playing;
   }
-  
-  std::string MarioData::GameName() {
-    return "Mario";
-  }
-  
-  std::string MarioData::SavedScene() {
-    return AM::ClientAsset("scenes/Mario_Scene.ikanScene");
-  }
-  
+    
   ImguiFont MarioData::RegularFontData() {
     return {
       AM::ClientAsset("fonts/mario.ttf"),
@@ -259,6 +251,26 @@ namespace mario {
   }
   
   void MarioData::AddComponentHack() {
+#if 0
+    // HACK to add components
+    static bool add = true;
+    if (add) {
+      scene_->GetRegistry().each([this](auto entity) {
+        Entity e = {entity, scene_.get()};
+        if (e.GetComponent<TagComponent>().tag == "Ground") {
+          if (e.HasComponent<QuadComponent>()) {
+            if (!e.HasComponent<RigidBodyComponent>()) {
+              e.AddComponent<RigidBodyComponent>();
+            }
+            if (!e.HasComponent<BoxColloiderComponent>()) {
+              e.AddComponent<BoxColloiderComponent>();
+            }
+          }
+        }
+      });
+      add = false;
+    }
+#endif
   }
   
   void MarioData::MoveCameraDebug(Timestep ts) {

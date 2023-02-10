@@ -28,8 +28,9 @@ namespace mario {
     void SetState(bool is_playing) override;
     
     // Getters
-    std::string GameName() override;
-    std::string SavedScene() override;
+    glm::vec4 GetBgColor() override { return level_bg_; }
+    std::string GameName() override { return "Mario"; }
+    std::string SavedScene() override { return AM::ClientAsset("scenes/Mario_Scene.ikanScene"); }
     ImguiFont RegularFontData() override;
     ImguiFont BoldFontData() override;
     std::vector<std::filesystem::path> FavDirecotries() override;
@@ -70,6 +71,7 @@ namespace mario {
     std::unordered_map<entt::entity, Entity*> selected_entities_;
     
     Player player;
+    glm::vec4 level_bg_ = {0.2, 0.4, 0.6, 1.0f};
   };
   
 }

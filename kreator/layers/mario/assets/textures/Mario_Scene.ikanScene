@@ -1,0 +1,41 @@
+Scene: Untitled
+Setting_editor_camera: true
+Setting_scene_controller: true
+Setting_scene_data: true
+Use_editor_camera: false
+Entities:
+  - Entity: 12959590060471505288
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [-17, -9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 12842791700541890921
+    TagComponent:
+      Tag: Primary Camera
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 21
+      Near: -1
+      Far: 1
+    NativeScriptComponent:
+      Script_name_0: ikan::CameraController
+      Num_Scripts: 1

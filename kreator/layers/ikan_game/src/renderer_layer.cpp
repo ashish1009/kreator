@@ -49,6 +49,7 @@ namespace ikan_game {
     viewport_.UpdateMousePos();
     
     if (is_playing) {      
+      Renderer::Clear(game_data_->GetBgColor());
       RenderScene(ts);
     }
     else {
@@ -61,6 +62,8 @@ namespace ikan_game {
       }
 
       viewport_.framebuffer->Bind();
+      Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
+      
       RenderScene(ts);
       RenderGrid();
 
@@ -180,7 +183,6 @@ namespace ikan_game {
   }
 
   void RendererLayer::RenderScene(Timestep ts) {
-    Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
     active_scene_->Update(ts);
     
     game_data_->Update(ts);

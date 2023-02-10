@@ -21,6 +21,8 @@ namespace ikan_game {
     virtual void RenderGui() {};
     virtual void SetState(bool is_playing) {};
     
+    virtual glm::vec4 GetBgColor() { return {0.2f, 0.2f, 0.2f, 1.0f}; }
+    
     virtual std::string GameName() {return "ikan Game";};
     virtual std::string SavedScene() {return "";};
     virtual ImguiFont RegularFontData() {return {AM::ProjectPath("kreator/layers/ikan_game/game_assets/fonts/Opensans/Regular.ttf"), 14};};

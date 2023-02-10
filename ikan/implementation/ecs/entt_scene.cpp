@@ -87,7 +87,9 @@ namespace ikan {
     CopyComponentIfExist<CameraComponent>(new_entity, entity);
     CopyComponentIfExist<QuadComponent>(new_entity, entity);
     CopyComponentIfExist<CircleComponent>(new_entity, entity);
-    
+    CopyComponentIfExist<RigidBodyComponent>(new_entity, entity);
+    CopyComponentIfExist<BoxColloiderComponent>(new_entity, entity);
+
     return new_entity;
   }
   
