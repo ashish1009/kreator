@@ -4,6 +4,227 @@ Setting_scene_controller: true
 Setting_scene_data: true
 Use_editor_camera: false
 Entities:
+  - Entity: 18201206072808797080
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [-2, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [8, 18]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 6561399961652122154
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [-2, -5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [24, 19]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 6138607759814413472
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [-3, -5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [8, 18]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 16732759545938706022
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [-4, -5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [22, 19]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 8284814392111292023
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [-3, -4, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [23, 19]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 5322714827289149517
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [15, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [22, 19]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 9655110765421295271
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [16, -5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [23, 19]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 12793095953778088557
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [16, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [8, 18]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 6434802691341857586
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [17, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [24, 19]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 10417033692276035996
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [-1, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [24, 19]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 17910182947035184803
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [-5, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [22, 19]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 8697727477975305378
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [-3, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [23, 18]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 11587859250609936655
+    TagComponent:
+      Tag: Grass
+    TransformComponent:
+      Translation: [-14, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [12, 16]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
   - Entity: 11419626899989032802
     TagComponent:
       Tag: Cloud
@@ -936,9 +1157,9 @@ Entities:
       Restitution Threshold: 0.5
   - Entity: 958831671802985400
     TagComponent:
-      Tag: Ground
+      Tag: Bonus
     TransformComponent:
-      Translation: [-12, -7, 0]
+      Translation: [4, -2, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -946,7 +1167,7 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
+      Coords: [24.0019073, 27]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
@@ -2833,9 +3054,9 @@ Entities:
       Color: [1, 1, 1, 1]
   - Entity: 1757645422716991741
     TagComponent:
-      Tag: Cloud
+      Tag: Grass
     TransformComponent:
-      Translation: [-14, 5, 0]
+      Translation: [10, -6, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2843,7 +3064,7 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [6, 7]
+      Coords: [12, 16]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
@@ -2997,6 +3218,277 @@ Entities:
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
       Coords: [5, 6]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 6067237934728452695
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [-12, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 2072615478155848095
+    TagComponent:
+      Tag: Bonus
+    TransformComponent:
+      Translation: [-2, -2, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [24.0019073, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 14896626395914607444
+    TagComponent:
+      Tag: Brick
+    TransformComponent:
+      Translation: [3, -2, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [13, 27.0248089]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 10525517269322488637
+    TagComponent:
+      Tag: Bonus
+    TransformComponent:
+      Translation: [2, -2, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [24.0019073, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 6108475346258469381
+    TagComponent:
+      Tag: Brick
+    TransformComponent:
+      Translation: [1, -2, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [13, 27.0248089]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 5003048345925137751
+    TagComponent:
+      Tag: Cloud
+    TransformComponent:
+      Translation: [-14, 5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [6, 7]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 1665806831511498674
+    TagComponent:
+      Tag: Grass
+    TransformComponent:
+      Translation: [9, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [12, 16]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 2003129267979330663
+    TagComponent:
+      Tag: Grass
+    TransformComponent:
+      Translation: [8, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [12, 16]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 15486626743973809576
+    TagComponent:
+      Tag: Grass
+    TransformComponent:
+      Translation: [-13, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [13, 16]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 2715846580451599061
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [-4, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [8, 18]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 15512995208424120780
+    TagComponent:
+      Tag: Grass
+    TransformComponent:
+      Translation: [-15, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [11, 16]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 2585204270914737813
+    TagComponent:
+      Tag: Grass
+    TransformComponent:
+      Translation: [11, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [13, 16]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 10898836523320828105
+    TagComponent:
+      Tag: Grass
+    TransformComponent:
+      Translation: [7, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [11, 16]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
