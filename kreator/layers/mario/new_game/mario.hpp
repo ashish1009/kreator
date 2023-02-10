@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "common.h"
+
 #include "renderer_layer.hpp"
 #include "player.hpp"
 
@@ -38,6 +40,9 @@ namespace mario {
     /// This function handles the Key button event
     /// - Parameter e: Key pressed event
     bool KeyPressEvent(KeyPressedEvent& e);
+    /// This function handles the MouseButton event
+    /// - Parameter e: MouseButton pressed event
+    bool MouseButtonPressEvent(MouseButtonPressedEvent& e);
 
     /// This function render the rectangle when clicg drag mouse
     void StoreSelectedEntities();

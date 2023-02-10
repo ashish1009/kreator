@@ -11,10 +11,12 @@ namespace mario {
   
   MarioData::MarioData(const Viewport* const viewport)
   : viewport_(viewport) {
-    
+    MARIO_INFO("Creating Mario Game Data ... ");
   }
   
   void MarioData::Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
+    MARIO_INFO("Initializing Mario Game Data ... ");
+    
     scene_ = scene;
     panel_ = panel;
     
@@ -34,6 +36,7 @@ namespace mario {
   void MarioData::EventHandler(Event& event) {
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(MarioData::KeyPressEvent));
+    dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(MarioData::MouseButtonPressEvent));
   }
     
   bool MarioData::KeyPressEvent(KeyPressedEvent &e) {
@@ -54,6 +57,10 @@ namespace mario {
         } // switch (e.GetKeyCode())
       } // if (shift)
     }
+    return false;
+  }
+  
+  bool MarioData::MouseButtonPressEvent(MouseButtonPressedEvent& e) {
     return false;
   }
   
@@ -110,7 +117,7 @@ namespace mario {
   }
 
   void MarioData::StoreSelectedEntities() {
-    if (!Input::IsKeyPressed(KeyCode::LeftShift))
+    if (!Input::IsKeyPressed(KeyCode::LeftShift) or Input::IsKeyPressed(KeyCode::LeftControl))
       return;
     
     if (!(viewport_->mouse_pos_x >= 0 and viewport_->mouse_pos_y >= 0 and
@@ -175,7 +182,7 @@ namespace mario {
             int32_t pixel = -1;
             
             Renderer::GetEntityIdFromPixels(i_x, i_y, viewport_->framebuffer->GetPixelIdIndex(), pixel);
-            IK_TRACE("Mario", "X : {0}, Y : {1}, Pixel : {2}", i_x, i_y, pixel);
+            MARIO_TRACE("X : {0}, Y : {1}, Pixel : {2}", i_x, i_y, pixel);
             
             if (scene_) {
               if (pixel <= (int32_t)scene_->GetMaxEntityId())

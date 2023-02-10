@@ -17,6 +17,7 @@ namespace mario {
     
   private:
     std::shared_ptr<EnttScene> scene_;
+    Entity entity;
   };
   
 }

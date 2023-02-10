@@ -11,6 +11,8 @@ namespace mario {
   
   void Player::Init(std::shared_ptr<EnttScene> scene) {
     scene_ = scene;
+    
+//    entity = scene_->CreateEntity("Player");
   }
   
 }
