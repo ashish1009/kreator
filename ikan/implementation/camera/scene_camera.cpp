@@ -267,7 +267,7 @@ namespace ikan {
                                 const glm::mat4& camera_transform, const glm::vec3 camera_pos) {
     if (projection_type_ == ProjectionType::Orthographic) {
       if (max_lines > BatchRenderer::MaxLines()) {
-        BatchRenderer::InitLineData(max_lines);
+        BatchRenderer::InitLineData(BatchRenderer::MaxLines() + max_lines);
       }
       
       float zoom = std::max(GetZoom(), 1.0f);

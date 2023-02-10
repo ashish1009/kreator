@@ -23,7 +23,7 @@ namespace mario {
     scene_ = scene;
     panel_ = panel;
     
-    BatchRenderer::Init(2000, 0, 0);
+    BatchRenderer::Init(2000, 0, 2000 * 5);
     
     player.Init(scene_);
   }

@@ -148,7 +148,7 @@ namespace ikan {
       // Get Transform
       auto view = registry_.view<RigidBodyComponent>();
       for (auto e : view) {
-        Entity& entity = entity_id_map_.at(e);//{ e, this };
+        Entity& entity = entity_id_map_.at(e);
 
         auto& transform = entity.GetComponent<TransformComponent>();
         auto& rb2d = entity.GetComponent<RigidBodyComponent>();
@@ -158,7 +158,7 @@ namespace ikan {
           const auto& position = body->GetPosition();
 
           transform.UpdateRotation_Z(body->GetAngle());
-          transform.UpdateTranslation({position.x, position.y, 0.0f});
+          transform.UpdateTranslation({position.x, position.y, transform.Translation().z});
         }
       }
     }
@@ -377,7 +377,7 @@ namespace ikan {
                                   circle_component.fade,
                                   (uint32_t)circle_entity);
       }
-    } // for (const auto& entity : mesh_view)
+    } // for (const auto& entity : circle_view)
 
     auto quad_view = registry_.view<TransformComponent, QuadComponent>();
     // For all quad entity
@@ -423,7 +423,7 @@ namespace ikan {
                                 quad_component.color,
                                 (uint32_t)quad_entity);
       }
-    } // for (const auto& entity : mesh_view)
+    } // for (const auto& entity : quad_view)
     
     auto sprite_view = registry_.view<TransformComponent, SpriteComponent>();
     // For all sprite entity
@@ -433,8 +433,18 @@ namespace ikan {
                               sprite_component.sub_texture,
                               glm::vec4(1.0f),
                               (uint32_t)sprite_entity);
-    } // for (const auto& entity : mesh_view)
-    
+    } // for (const auto& entity : sprite_view)
+
+#if 0
+    auto box_col_view = registry_.view<TransformComponent, BoxColloiderComponent>();
+    // For all Box Colloider
+    for (const auto& box_col_entity : box_col_view) {
+      const auto& [transform_component, box_col_comp] = box_col_view.get<TransformComponent, BoxColloiderComponent>(box_col_entity);
+      BatchRenderer::DrawRect(transform_component.Translation(),
+                              box_col_comp.size * glm::vec2(transform_component.Scale().x, transform_component.Scale().y),
+                              {0.9, 0.5, 0.4, 1.0f});
+    } // for (const auto& entity : box_col_view)
+#endif
     BatchRenderer::EndBatch();
   }
     

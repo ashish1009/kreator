@@ -185,7 +185,7 @@ namespace ikan {
     bool is_sprite = false;
     
     // Sprite Data
-    int32_t speed = 10;
+    int32_t speed = 15;
     int32_t anim_idx = 0; // No need to copy or save in scene. always starts from 0
     std::vector<std::shared_ptr<SubTexture>> sprites;
     std::shared_ptr<Texture> sprite_image; // only for sprite animation
