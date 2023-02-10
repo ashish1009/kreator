@@ -288,6 +288,25 @@ namespace ikan {
         
         out << YAML::EndMap; // CircleColloiderComponent
       }
+      
+      // ------------------------------------------------------------------------
+      if (entity.HasComponent<AnimationComponent>()) {
+        out << YAML::Key << "AnimationComponent";
+        out << YAML::BeginMap; // AnimationComponent
+        
+        auto& ac = entity.GetComponent<AnimationComponent>();
+        
+        out << YAML::Key << "Animation" << YAML::Value << ac.animation;
+        out << YAML::Key << "Sprite" << YAML::Value << ac.sprite;
+        
+        int32_t num_sprite_coords = 0;
+        for (const auto& coord : ac.sprite_coords) {
+          out << YAML::Key << "Coords" + std::to_string(num_sprite_coords) << YAML::Value << coord;
+        }
+        out << YAML::Key << "Num_Coords" << YAML::Value << num_sprite_coords;
+
+        out << YAML::EndMap; // AnimationComponent
+      }
 
       out << YAML::EndMap; // Entity
     } // for (const auto& [uuid, entity] : scene_->entity_id_map_)
@@ -515,7 +534,7 @@ namespace ikan {
           bcc.restitution = circle_colloider_component["Restitution"].as<float>();
           bcc.restitution_threshold = circle_colloider_component["Restitution Threshold"].as<float>();
           
-          IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Circle Colloider Component");
           IK_CORE_INFO(LogModule::SceneSerializer, "      Offset                | {0} | {0}", bcc.offset.x, bcc.offset.y);
           IK_CORE_INFO(LogModule::SceneSerializer, "      Radius                | {0}", bcc.radius);
           IK_CORE_INFO(LogModule::SceneSerializer, "      Density               | {0}", bcc.density);
@@ -523,7 +542,26 @@ namespace ikan {
           IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution           | {0}", bcc.restitution);
           IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution Threshold | {0}", bcc.restitution_threshold);
         } // if (circle_colloider_component)
-
+        
+        // --------------------------------------------------------------------
+        auto animation_component = entity["AnimationComponent"];
+        if (animation_component) {
+          auto& ac = deserialized_entity.AddComponent<AnimationComponent>();
+          
+          ac.animation = animation_component["Animation"].as<bool>();
+          ac.sprite = animation_component["Sprite"].as<bool>();
+          
+          int32_t num_coords = animation_component["Num_Coords"].as<int32_t>();
+          for (int i = 0; i < num_coords; i++) {
+            auto coord = animation_component["Coords" + std::to_string(i)].as<glm::vec2>();
+            ac.sprite_coords.push_back(coord);
+          }
+          
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Animation Component");
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Animation  | {0}", ac.animation);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Sprite     | {0}", ac.sprite);
+        } // if (animation_component)
+        
       } // for (auto entity : entities)
     } // if (entities)
     

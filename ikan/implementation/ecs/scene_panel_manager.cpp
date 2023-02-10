@@ -184,6 +184,7 @@ namespace ikan {
       DrawComponent<RigidBodyComponent>("Rigid Body", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
       DrawComponent<BoxColloiderComponent>("Box Collider", selected_entity_, [this](auto& bcc) { bcc.RenderGui(); });
       DrawComponent<CircleColloiderComponent>("Circle Collider", selected_entity_, [this](auto& ccc) { ccc.RenderGui(); });
+      DrawComponent<AnimationComponent>("Animation", selected_entity_, [this](auto& ac) { ac.RenderGui(); });
     }
     
     ImGui::PopID();
@@ -292,14 +293,17 @@ namespace ikan {
     
     AddComponentMenu<NativeScriptComponent>("Native Script");
     
-    AddComponentMenu<RigidBodyComponent>("Rigid Body");
     ImGui::Separator();
+    AddComponentMenu<RigidBodyComponent>("Rigid Body");
     AddComponentMenu<BoxColloiderComponent>("Box Collider", [this]() {
       return selected_entity_.HasComponent<BoxColloiderComponent>() or selected_entity_.HasComponent<CircleColloiderComponent>();
     });
     AddComponentMenu<CircleColloiderComponent>("Circle Collider", [this]() {
       return selected_entity_.HasComponent<BoxColloiderComponent>() or selected_entity_.HasComponent<CircleColloiderComponent>();
     });
+    
+    ImGui::Separator();
+    AddComponentMenu<AnimationComponent>("Animation");
   }
   
   ScenePanelManager::Setting& ScenePanelManager::GetSetting() { return setting_; }

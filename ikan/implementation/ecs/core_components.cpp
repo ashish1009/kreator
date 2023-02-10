@@ -633,4 +633,44 @@ namespace ikan {
     ImGui::Separator();
   }
   
+  // -------------------------------------------------------------------------
+  // Animation Component
+  // -------------------------------------------------------------------------
+  AnimationComponent::AnimationComponent(const AnimationComponent& other) {
+    animation = other.animation;
+    sprite = other.sprite;
+    for (const auto& coord : other.sprite_coords) {
+      sprite_coords.push_back(coord);
+    }
+  }
+  AnimationComponent& AnimationComponent::operator=(const AnimationComponent& other) {
+    animation = other.animation;
+    sprite = other.sprite;
+    for (const auto& coord : other.sprite_coords) {
+      sprite_coords.push_back(coord);
+    }
+    return *this;
+  }
+  AnimationComponent::AnimationComponent(AnimationComponent&& other) {
+    animation = other.animation;
+    sprite = other.sprite;
+    for (const auto& coord : other.sprite_coords) {
+      sprite_coords.push_back(coord);
+    }
+  }
+  AnimationComponent& AnimationComponent::operator=(AnimationComponent&& other) {
+    animation = other.animation;
+    sprite = other.sprite;
+    for (const auto& coord : other.sprite_coords) {
+      sprite_coords.push_back(coord);
+    }
+    return *this;
+  }
+  void AnimationComponent::RenderGui() {
+    PropertyGrid::CheckBox("Animation", animation);
+    PropertyGrid::CheckBox("Is Sprite", sprite);
+    
+    ImGui::Separator();
+  }
+  
 }

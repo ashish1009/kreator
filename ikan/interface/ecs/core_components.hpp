@@ -179,5 +179,16 @@ namespace ikan {
     CircleColloiderComponent() = default;
     DEFINE_COPY_MOVE_CONSTRUCTORS(CircleColloiderComponent);
   };
+  
+  struct AnimationComponent {
+    bool animation = true;
+    bool sprite = false;
+    std::vector<glm::vec2> sprite_coords;
+    // TODO: Add Data for non_sprites....
+
+    void RenderGui();
+    AnimationComponent() = default;
+    DEFINE_COPY_MOVE_CONSTRUCTORS(AnimationComponent);
+  };
 
 }
