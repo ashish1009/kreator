@@ -208,7 +208,7 @@ namespace ikan {
     if (ImGui::BeginPopupContextItem()) {
       // Duplicate Entity
       if (ImGui::MenuItem("Duplicate Entity")) {
-        scene_context_->DuplicateEntity(selected_entity_);
+        selected_entity_ = scene_context_->DuplicateEntity(selected_entity_);
       }
 
       // Delete Entity

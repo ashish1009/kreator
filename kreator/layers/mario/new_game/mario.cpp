@@ -101,6 +101,9 @@ namespace mario {
   }
 
   void MarioData::StoreSelectedEntities() {
+    if (!Input::IsKeyPressed(KeyCode::LeftShift))
+      return;
+    
     if (!(viewport_->mouse_pos_x >= 0 and viewport_->mouse_pos_y >= 0 and
           viewport_->mouse_pos_x <= viewport_->width and viewport_->mouse_pos_y <= viewport_->height))
       return;
@@ -161,7 +164,9 @@ namespace mario {
           for (float i_y = min_y; i_y < (max_y + block_size_y); i_y += block_size_y) {
             // Get pixel from rednerer
             int32_t pixel = -1;
+            
             Renderer::GetEntityIdFromPixels(i_x, i_y, viewport_->framebuffer->GetPixelIdIndex(), pixel);
+            IK_TRACE("Mario", "X : {0}, Y : {1}, Pixel : {2}", i_x, i_y, pixel);
             
             if (scene_) {
               if (pixel <= (int32_t)scene_->GetMaxEntityId())
@@ -222,9 +227,12 @@ namespace mario {
   }
   
   void MarioData::DuplicateSelectedEntities() {
+    HighlightSelectedEntities(false);
     for (Entity* entity : selected_entities_) {
-      scene_->DuplicateEntity(*entity);
+      auto e = scene_->DuplicateEntity(*entity);
+      e.GetComponent<TagComponent>().tag = entity->GetComponent<TagComponent>().tag + std::to_string((uint32_t)e);
     }
+    HighlightSelectedEntities(true);
   }
 
 }

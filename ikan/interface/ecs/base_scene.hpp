@@ -25,7 +25,7 @@ namespace ikan {
     void DestroyEntity(Entity entity);
     /// This function duplicate the entity and copy all the components
     /// - Parameter entity: entity to be destroyed
-    void DuplicateEntity(Entity entity);
+    Entity DuplicateEntity(Entity entity);
 
     /// This function returns the entity Ref from its id
     /// - Parameter id: entity ID

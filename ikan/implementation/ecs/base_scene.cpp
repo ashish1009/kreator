@@ -49,7 +49,7 @@ namespace ikan {
     registry_.destroy(entity);
   }
   
-  void Scene::DuplicateEntity(Entity entity) {
+  Entity Scene::DuplicateEntity(Entity entity) {
     Entity new_entity = CreateNewEmptyEntity("", UUID());
     
     // Copy Components
@@ -58,6 +58,8 @@ namespace ikan {
     CopyComponentIfExist<CameraComponent>(new_entity, entity);
     CopyComponentIfExist<QuadComponent>(new_entity, entity);
     CopyComponentIfExist<CircleComponent>(new_entity, entity);
+    
+    return new_entity;
   }
   
   Entity Scene::CreateNewEmptyEntity(const std::string &name, UUID uuid) {
