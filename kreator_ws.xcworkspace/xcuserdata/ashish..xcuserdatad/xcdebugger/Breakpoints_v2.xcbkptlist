@@ -135,22 +135,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2D8EAD8E-C1F5-4B48-9CFE-2A9A8D000770"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/ecs/core_components.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "745"
-            endingLineNumber = "745"
-            landmarkName = "AnimationComponent::RenderGui()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "99AF571E-5C5C-403D-98A7-B2F2183B917B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -209,6 +193,22 @@
             startingLineNumber = "639"
             endingLineNumber = "639"
             landmarkName = "AnimationComponent::AnimationComponent(sprite_image)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F00719C9-CE8D-4AED-B4ED-446D8D2CD643"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/renderer/graphics/texture.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "SubTexture::CreateFromCoords(sprite_image, coords, sprite_size, cell_size)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

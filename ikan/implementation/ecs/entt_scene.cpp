@@ -384,19 +384,42 @@ namespace ikan {
       const auto& [transform_component, quad_component] = quad_view.get<TransformComponent, QuadComponent>(quad_entity);
       if (quad_component.texture_comp.use and quad_component.texture_comp.component) {
         if (quad_component.texture_comp.use_sprite) {
-          BatchRenderer::DrawQuad(transform_component.GetTransform(),
-                                  quad_component.texture_comp.sprite,
-                                  quad_component.color,
-                                  (uint32_t)quad_entity);
+          // Animation
+          if (registry_.has<AnimationComponent>(quad_entity)) {
+            const auto& ac = registry_.get<AnimationComponent>(quad_entity);
+            if (ac.animation and ac.is_sprite and ac.sprites.size() > 0) { // Sprite Animation
+              static int anim_idx = 0;
+              BatchRenderer::DrawQuad(transform_component.GetTransform(),
+                                      ac.sprites[anim_idx],
+                                      quad_component.color,
+                                      (uint32_t)quad_entity);
+              anim_idx++;
+              
+              if (anim_idx == ac.sprites.size())
+                anim_idx = 0;
+            }
+            else { // Sprite No Animation
+              BatchRenderer::DrawQuad(transform_component.GetTransform(),
+                                      quad_component.texture_comp.sprite,
+                                      quad_component.color,
+                                      (uint32_t)quad_entity);
+            }
+          }
+          else { // Sprite No Animation
+            BatchRenderer::DrawQuad(transform_component.GetTransform(),
+                                    quad_component.texture_comp.sprite,
+                                    quad_component.color,
+                                    (uint32_t)quad_entity);
+          }
         }
-        else {
+        else { // Texture Quad
           BatchRenderer::DrawQuad(transform_component.GetTransform(),
                                   quad_component.texture_comp.component,
                                   quad_component.color,
                                   quad_component.texture_comp.tiling_factor,
                                   (uint32_t)quad_entity);
         }
-      } else {
+      } else { // Color Quad
         BatchRenderer::DrawQuad(transform_component.GetTransform(),
                                 quad_component.color,
                                 (uint32_t)quad_entity);

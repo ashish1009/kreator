@@ -641,7 +641,7 @@ namespace ikan {
 
   AnimationComponent::AnimationComponent(const AnimationComponent& other) {
     animation = other.animation;
-    sprite = other.sprite;
+    is_sprite = other.is_sprite;
     
     sprite_image = Renderer::GetTexture(other.sprite_image->GetfilePath());
     for (const auto& sprite : other.sprites) {
@@ -651,7 +651,7 @@ namespace ikan {
   }
   AnimationComponent& AnimationComponent::operator=(const AnimationComponent& other) {
     animation = other.animation;
-    sprite = other.sprite;
+    is_sprite = other.is_sprite;
     
     sprite_image = Renderer::GetTexture(other.sprite_image->GetfilePath());
     for (const auto& sprite : other.sprites) {
@@ -662,7 +662,7 @@ namespace ikan {
   }
   AnimationComponent::AnimationComponent(AnimationComponent&& other) {
     animation = other.animation;
-    sprite = other.sprite;
+    is_sprite = other.is_sprite;
     
     sprite_image = Renderer::GetTexture(other.sprite_image->GetfilePath());
     for (const auto& sprite : other.sprites) {
@@ -672,7 +672,7 @@ namespace ikan {
   }
   AnimationComponent& AnimationComponent::operator=(AnimationComponent&& other) {
     animation = other.animation;
-    sprite = other.sprite;
+    is_sprite = other.is_sprite;
     
     sprite_image = Renderer::GetTexture(other.sprite_image->GetfilePath());
     for (const auto& sprite : other.sprites) {
@@ -683,10 +683,10 @@ namespace ikan {
   }
   void AnimationComponent::RenderGui() {
     PropertyGrid::CheckBox("Animation", animation);
-    PropertyGrid::CheckBox("Is Sprite", sprite);
+    PropertyGrid::CheckBox("Is Sprite", is_sprite);
     ImGui::Separator();
     
-    if (sprite) {
+    if (is_sprite) {
       static glm::vec2 coords = {0, 0}, sprite_size = {1, 1}, cell_size = {16, 16};
       PropertyGrid::Float2("Add Coord", coords, nullptr, 0.1f, 0.0f, 100.0f, 0.0f);
       PropertyGrid::Float2("Sprite Size", sprite_size, nullptr, 1.0f, 1.0f, 100.0f, 8.0f);

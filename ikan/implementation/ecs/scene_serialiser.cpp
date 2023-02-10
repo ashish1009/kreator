@@ -297,7 +297,7 @@ namespace ikan {
         auto& ac = entity.GetComponent<AnimationComponent>();
         
         out << YAML::Key << "Animation" << YAML::Value << ac.animation;
-        out << YAML::Key << "Sprite" << YAML::Value << ac.sprite;
+        out << YAML::Key << "Sprite" << YAML::Value << ac.is_sprite;
         out << YAML::Key << "Texture_Path" << YAML::Value << ac.sprite_image->GetfilePath();
 
         int32_t num_sprite_coords = 0;
@@ -556,7 +556,7 @@ namespace ikan {
           auto& ac = deserialized_entity.AddComponent<AnimationComponent>(t);
           
           ac.animation = animation_component["Animation"].as<bool>();
-          ac.sprite = animation_component["Sprite"].as<bool>();
+          ac.is_sprite = animation_component["Sprite"].as<bool>();
           
           int32_t num_coords = animation_component["Num_Coords"].as<int32_t>();
           for (int i = 0; i < num_coords; i++) {
@@ -568,7 +568,7 @@ namespace ikan {
           
           IK_CORE_INFO(LogModule::SceneSerializer, "    Animation Component");
           IK_CORE_INFO(LogModule::SceneSerializer, "      Animation  | {0}", ac.animation);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Sprite     | {0}", ac.sprite);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Sprite     | {0}", ac.is_sprite);
         } // if (animation_component)
         
       } // for (auto entity : entities)
