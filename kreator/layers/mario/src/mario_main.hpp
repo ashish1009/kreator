@@ -14,7 +14,7 @@ namespace mario {
   
   using namespace ikan;
   
-  struct TextData {
+  struct TextData_old {
     const glm::vec2 size = { 0.6f, 0.6f };
     const glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
 
@@ -94,7 +94,7 @@ namespace mario {
     BackgroudData* background_data_;
     Player* player_;
     
-    TextData text_data_;
+    TextData_old text_data_;
     
     uint32_t score_ = 0;
     uint32_t world_ = 1;
