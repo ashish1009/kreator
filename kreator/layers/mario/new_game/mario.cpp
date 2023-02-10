@@ -34,11 +34,12 @@ namespace mario {
       AddComponentHack();
       MoveCameraDebug(ts);
     }
-    
-    // Timer
-    {
-      timer_ += ts;
-      time_left_ = MaxTime - (uint32_t)timer_;
+    else {
+      // Timer
+      {
+        timer_ += ts;
+        time_left_ = MaxTime - (uint32_t)timer_;
+      }
     }
     
     // Score and All text
