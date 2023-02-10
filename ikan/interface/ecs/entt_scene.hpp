@@ -9,7 +9,8 @@
 
 // This file includes the scene class to store data of active scene
 
-#include "base_scene.hpp"
+#include <entt.hpp>
+
 #include "camera/editor_camera.hpp"
 #include "camera/scene_camera.hpp"
 
@@ -32,7 +33,8 @@ namespace ikan {
     DELETE_COPY_MOVE_CONSTRUCTORS(CameraData);
   };
 
-  class EnttScene : public Scene {
+  class Entity;
+  class EnttScene {
   public:
     /// State of Scene
     enum State : uint8_t {
@@ -52,6 +54,18 @@ namespace ikan {
     /// This destructor destoyes the scene instance
     ~EnttScene();
     
+    /// This function create and Entity and store in scene registry
+    /// - Parameters:
+    ///   - name: name of entity
+    ///   - uuid: Unique ID of entity
+    [[nodiscard]] Entity CreateEntity(const std::string& name = "Unknown Entity", UUID uuid = UUID());
+    /// This function destory the entity from scene registry
+    /// - Parameter entity: entity to be destroyed
+    void DestroyEntity(Entity entity);
+    /// This function duplicate the entity and copy all the components
+    /// - Parameter entity: entity to be destroyed
+    Entity DuplicateEntity(Entity entity);
+
     /// This function update the scene
     /// - Parameter ts: time step
     void Update(Timestep ts);
@@ -75,7 +89,10 @@ namespace ikan {
     /// This function update the scene path
     /// - Parameter file_path: file path
     void SetFilePath(const std::string& file_path);
-    
+    /// This function update the selected entity
+    /// - Parameter entity: entity
+    void SetSelectedEntity(Entity* entity);
+
     // ------------------
     // Getters
     // ------------------
@@ -96,12 +113,31 @@ namespace ikan {
     /// This function returns the flag to use editor camera
     bool UseEditorCamera() const;
     
+    /// This function returns the entity Ref from its id
+    /// - Parameter id: entity ID
+    Entity* GetEnitityFromId(int32_t id);
+    /// This function returns the reference of registry
+    entt::registry& GetRegistry();
+    /// This function returns the number of Entities stored in Scene
+    uint32_t GetNumEntities() const;
+    /// This function returns the Max Entity ID given to scene
+    uint32_t GetMaxEntityId() const;
+    
+    /// This function return the selected entity
+    Entity* GetSelectedEntity();
+    
+
     DELETE_COPY_MOVE_CONSTRUCTORS(EnttScene);
     
   private:
     // ------------------
     // Member functions
     // ------------------
+    /// - Parameters:
+    ///   - name: name of entity
+    ///   - uuid: Unique ID of entity
+    Entity CreateNewEmptyEntity(const std::string& name, UUID uuid);
+
     /// This function updates the scene in edit mode
     /// - Parameter ts time step
     void UpdateEditor(Timestep ts);
@@ -139,6 +175,15 @@ namespace ikan {
     // ------------------
     // Member variabls
     // ------------------
+    // Registry to store the entity handles
+    entt::registry registry_;
+    std::unordered_map<entt::entity, Entity> entity_id_map_;
+    
+    Entity* selected_entity_;
+    
+    // Number of Entity stored in Scene and Max ID given to Entity
+    uint32_t num_entities_ = 0, max_entity_id_ = -1;
+    
     // Utils Memebers
     std::string file_path_ = "Unknown Path", name_ = "Unsaved Scene";
 

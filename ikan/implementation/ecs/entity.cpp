@@ -14,7 +14,7 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Entity, "Creating Default Entity with No Handle ...");
   }
   
-  Entity::Entity(entt::entity handle, Scene* scene)
+  Entity::Entity(entt::entity handle, EnttScene* scene)
   : entity_handle_(handle), scene_(scene) {
     IK_CORE_TRACE(LogModule::Entity, "Creating Entity with Handle: {0} ...", (uint32_t)entity_handle_);
   }

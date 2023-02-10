@@ -46,8 +46,8 @@
             filePath = "ikan/implementation/ecs/entt_scene.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "EnttScene::Update(ts)"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "ikan/implementation/ecs/entt_scene.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
             landmarkName = "EnttScene::InstantiateScript(ts)"
             landmarkType = "7">
             <Locations>
@@ -113,6 +113,22 @@
             startingLineNumber = "46"
             endingLineNumber = "46"
             landmarkName = "CameraController::RenderGui()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "97F3FD5F-907A-40B8-8B97-8A5EC4BE2B54"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/camera/scene_camera.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "SceneCamera::RenderGrids(max_lines, line_color, camera_transform, camera_pos)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

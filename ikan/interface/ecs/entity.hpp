@@ -21,7 +21,7 @@ namespace ikan {
     /// - parameters:
     ///   - handle: handle of Entity. Scene (registry) takes care for this
     ///   - scene: Scene pointer to which this entity to be bound
-    Entity(entt::entity handle, Scene* scene);
+    Entity(entt::entity handle, EnttScene* scene);
     
     /// This is default entity Destrcutor
     ~Entity();
@@ -94,7 +94,7 @@ namespace ikan {
 
   private:
     entt::entity entity_handle_{ entt::null };
-    Scene* scene_;
+    EnttScene* scene_;
   };
   
 }

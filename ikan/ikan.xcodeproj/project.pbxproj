@@ -63,8 +63,6 @@
 		B25F617729699FC80042FE09 /* scriptable_entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25F617529699FC80042FE09 /* scriptable_entity.cpp */; };
 		B25F61872969A8440042FE09 /* aabb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25F61852969A8440042FE09 /* aabb.cpp */; };
 		B25F61882969A8440042FE09 /* aabb.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B25F61862969A8440042FE09 /* aabb.hpp */; };
-		B2788FCE29954FD400A2BCF6 /* base_scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2788FCC29954FD400A2BCF6 /* base_scene.cpp */; };
-		B2788FCF29954FD400A2BCF6 /* base_scene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2788FCD29954FD400A2BCF6 /* base_scene.hpp */; };
 		B27CF12A295EC6E000837A36 /* uuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF128295EC6E000837A36 /* uuid.cpp */; };
 		B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B27CF129295EC6E000837A36 /* uuid.hpp */; };
 		B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */; };
@@ -259,8 +257,6 @@
 		B25F617529699FC80042FE09 /* scriptable_entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scriptable_entity.cpp; sourceTree = "<group>"; };
 		B25F61852969A8440042FE09 /* aabb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aabb.cpp; sourceTree = "<group>"; };
 		B25F61862969A8440042FE09 /* aabb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = aabb.hpp; sourceTree = "<group>"; };
-		B2788FCC29954FD400A2BCF6 /* base_scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = base_scene.cpp; sourceTree = "<group>"; };
-		B2788FCD29954FD400A2BCF6 /* base_scene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = base_scene.hpp; sourceTree = "<group>"; };
 		B27CF128295EC6E000837A36 /* uuid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = uuid.cpp; sourceTree = "<group>"; };
 		B27CF129295EC6E000837A36 /* uuid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = uuid.hpp; sourceTree = "<group>"; };
 		B2A342F32976A1010015641F /* physics_2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = physics_2d.xcodeproj; path = physics_2d/physics_2d.xcodeproj; sourceTree = "<group>"; };
@@ -555,7 +551,6 @@
 				B25F616F29699D610042FE09 /* scriptable_entity.hpp */,
 				B2C78407296AF2E5003F343E /* scene_serialiser.hpp */,
 				B25F5DDD2966D3450030DE03 /* scene_panel_manager.hpp */,
-				B2788FCD29954FD400A2BCF6 /* base_scene.hpp */,
 			);
 			path = ecs;
 			sourceTree = "<group>";
@@ -570,7 +565,6 @@
 				B25F617529699FC80042FE09 /* scriptable_entity.cpp */,
 				B2C78406296AF2E5003F343E /* scene_serialiser.cpp */,
 				B25F5DDC2966D3450030DE03 /* scene_panel_manager.cpp */,
-				B2788FCC29954FD400A2BCF6 /* base_scene.cpp */,
 			);
 			path = ecs;
 			sourceTree = "<group>";
@@ -879,7 +873,6 @@
 				B2FC3EB42958892200447A1A /* layer_stack.hpp in Headers */,
 				B2BD9E0F295CA7560076A2F9 /* open_gl_framebuffer.hpp in Headers */,
 				B227F37429597F2B0055D871 /* open_gl_renderer_id_manager.hpp in Headers */,
-				B2788FCF29954FD400A2BCF6 /* base_scene.hpp in Headers */,
 				B258111B295ADC2C00B0EDA7 /* editor_camera.hpp in Headers */,
 				B2FC3EAC2958880800447A1A /* key_event.hpp in Headers */,
 				B2FC40292958BBC500447A1A /* open_gl_renderer_context.hpp in Headers */,
@@ -1128,7 +1121,6 @@
 				B24C4A772968638B00675599 /* scene_camera.cpp in Sources */,
 				B2E7600C2958D38100ADBE79 /* mac_os_window.cpp in Sources */,
 				B2C0D80D2959FB69003F168B /* open_gl_renderer_buffer.cpp in Sources */,
-				B2788FCE29954FD400A2BCF6 /* base_scene.cpp in Sources */,
 				B2FC405E2958BD0900447A1A /* open_gl_renderer_api.cpp in Sources */,
 				B2F526522959774B00A83C65 /* open_gl_shader_compiler.cpp in Sources */,
 				B2FC3EA0295887FF00447A1A /* key_event.cpp in Sources */,
