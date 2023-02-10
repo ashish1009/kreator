@@ -183,8 +183,12 @@ namespace ikan {
   struct AnimationComponent {
     bool animation = true;
     bool is_sprite = false;
+    
+    // Sprite Data
+    int32_t speed = 10;
     std::vector<std::shared_ptr<SubTexture>> sprites;
     std::shared_ptr<Texture> sprite_image; // only for sprite animation
+    
     // TODO: Add Data for non_sprites....
 
     void RenderGui();

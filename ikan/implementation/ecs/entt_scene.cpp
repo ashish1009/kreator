@@ -89,6 +89,7 @@ namespace ikan {
     CopyComponentIfExist<CircleComponent>(new_entity, entity);
     CopyComponentIfExist<RigidBodyComponent>(new_entity, entity);
     CopyComponentIfExist<BoxColloiderComponent>(new_entity, entity);
+    CopyComponentIfExist<AnimationComponent>(new_entity, entity);
 
     return new_entity;
   }
@@ -357,7 +358,7 @@ namespace ikan {
     BatchRenderer::BeginBatch(camera_view_projection_mat);
     
     auto circle_view = registry_.view<TransformComponent, CircleComponent>();
-    // For all Mesg entity
+    // For all circle entity
     for (const auto& circle_entity : circle_view) {
       const auto& [transform_component, circle_component] = circle_view.get<TransformComponent, CircleComponent>(circle_entity);
       if (circle_component.texture_comp.use and circle_component.texture_comp.component) {
@@ -379,7 +380,7 @@ namespace ikan {
     } // for (const auto& entity : mesh_view)
 
     auto quad_view = registry_.view<TransformComponent, QuadComponent>();
-    // For all Mesg entity
+    // For all quad entity
     for (const auto& quad_entity : quad_view) {
       const auto& [transform_component, quad_component] = quad_view.get<TransformComponent, QuadComponent>(quad_entity);
       if (quad_component.texture_comp.use and quad_component.texture_comp.component) {
@@ -388,15 +389,14 @@ namespace ikan {
           if (registry_.has<AnimationComponent>(quad_entity)) {
             const auto& ac = registry_.get<AnimationComponent>(quad_entity);
             if (ac.animation and ac.is_sprite and ac.sprites.size() > 0) { // Sprite Animation
-              static int anim_idx = 0;
+              static int32_t anim_idx = 0;
+              if (anim_idx >= ac.speed * ac.sprites.size() or anim_idx < 1)
+                anim_idx = 0;
               BatchRenderer::DrawQuad(transform_component.GetTransform(),
-                                      ac.sprites[anim_idx],
+                                      ac.sprites[anim_idx / ac.speed],
                                       quad_component.color,
                                       (uint32_t)quad_entity);
               anim_idx++;
-              
-              if (anim_idx == ac.sprites.size())
-                anim_idx = 0;
             }
             else { // Sprite No Animation
               BatchRenderer::DrawQuad(transform_component.GetTransform(),
@@ -427,7 +427,7 @@ namespace ikan {
     } // for (const auto& entity : mesh_view)
     
     auto sprite_view = registry_.view<TransformComponent, SpriteComponent>();
-    // For all Mesg entity
+    // For all sprite entity
     for (const auto& sprite_entity : sprite_view) {
       const auto& [transform_component, sprite_component] = sprite_view.get<TransformComponent, SpriteComponent>(sprite_entity);
       BatchRenderer::DrawQuad(transform_component.GetTransform(),

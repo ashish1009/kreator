@@ -298,6 +298,7 @@ namespace ikan {
         
         out << YAML::Key << "Animation" << YAML::Value << ac.animation;
         out << YAML::Key << "Sprite" << YAML::Value << ac.is_sprite;
+        out << YAML::Key << "Speed" << YAML::Value << ac.speed;
         out << YAML::Key << "Texture_Path" << YAML::Value << ac.sprite_image->GetfilePath();
 
         int32_t num_sprite_coords = 0;
@@ -557,7 +558,8 @@ namespace ikan {
           
           ac.animation = animation_component["Animation"].as<bool>();
           ac.is_sprite = animation_component["Sprite"].as<bool>();
-          
+          ac.speed = animation_component["Speed"].as<int32_t>();
+
           int32_t num_coords = animation_component["Num_Coords"].as<int32_t>();
           for (int i = 0; i < num_coords; i++) {
             auto coord = animation_component["Coords" + std::to_string(i)].as<glm::vec2>();
