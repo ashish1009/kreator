@@ -117,11 +117,13 @@ namespace mario {
   }
 
   void MarioData::StoreSelectedEntities() {
-    if (!Input::IsKeyPressed(KeyCode::LeftShift) or Input::IsKeyPressed(KeyCode::LeftControl))
-      return;
-    
     if (!(viewport_->mouse_pos_x >= 0 and viewport_->mouse_pos_y >= 0 and
-          viewport_->mouse_pos_x <= viewport_->width and viewport_->mouse_pos_y <= viewport_->height))
+          viewport_->mouse_pos_x <= viewport_->width and viewport_->mouse_pos_y <= viewport_->height)) {
+      ClearSelectedEntities();
+      return;
+    }
+
+    if (!Input::IsKeyPressed(KeyCode::LeftShift) or Input::IsKeyPressed(KeyCode::LeftControl))
       return;
     
     static bool first_clicked = true;
@@ -257,23 +259,6 @@ namespace mario {
   }
   
   void MarioData::AddComponentHack() {
-    // HACK to add components
-    static bool add = true;
-    if (add)
-    {
-      scene_->GetRegistry().each([this](auto entity) {
-        Entity e = {entity, scene_.get()};
-        if (e.HasComponent<QuadComponent>()) {
-          if (!e.HasComponent<RigidBodyComponent>()) {
-            e.AddComponent<RigidBodyComponent>();
-          }
-          if (!e.HasComponent<BoxColloiderComponent>()) {
-            e.AddComponent<BoxColloiderComponent>();
-          }
-        }
-      });
-      add = false;
-    }
   }
   
   void MarioData::MoveCameraDebug(Timestep ts) {
