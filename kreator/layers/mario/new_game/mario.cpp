@@ -21,6 +21,19 @@ namespace mario {
     if (!is_playing_) {
       StoreSelectedEntities();
       
+      // HACK to add components
+      static bool add = true;
+      if (add)
+      {
+        scene_->GetRegistry().each([this](auto entity) {
+          Entity e = {entity, scene_.get()};
+          if (e.HasComponent<QuadComponent>()) {
+            e.AddComponent<RigidBodyComponent>();
+          }
+        });
+        add = false;
+      }
+      
       // Move Camera for debug
       {
         auto& cd = scene_->GetPrimaryCameraData();
@@ -250,8 +263,7 @@ namespace mario {
   void MarioData::DuplicateSelectedEntities() {
     HighlightSelectedEntities(false);
     for (Entity* entity : selected_entities_) {
-      auto e = scene_->DuplicateEntity(*entity);
-      e.GetComponent<TagComponent>().tag = entity->GetComponent<TagComponent>().tag + std::to_string((uint32_t)e);
+      scene_->DuplicateEntity(*entity);
     }
     HighlightSelectedEntities(true);
   }
