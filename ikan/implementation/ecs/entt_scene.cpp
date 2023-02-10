@@ -138,7 +138,7 @@ namespace ikan {
   }
   
   void EnttScene::UpdateRuntime(Timestep ts) {    
-    if (state_ == State::Play) { // TODO: Temp check till we use scene camera in editor mode
+    if (0) {//state_ == State::Play) { // TODO: Temp check till we use scene camera in editor mode
       // Physics
       const int32_t velocity_iteration = 6;
       const int32_t position_iteration = 2;

@@ -39,7 +39,29 @@ namespace mario {
     ac.sprites.push_back(SubTexture::CreateFromCoords(qc.texture_comp.component, {0.0f, 30.0f}));
     ac.sprites.push_back(SubTexture::CreateFromCoords(qc.texture_comp.component, {1.0f, 30.0f}));
     ac.sprites.push_back(SubTexture::CreateFromCoords(qc.texture_comp.component, {2.0f, 30.0f}));
-
+    
+    // Native script
+    entity_.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
+                                                   const std::string& script_name) {
+      if (script_name == "mario::PlayerController") {
+        sc->Bind<mario::PlayerController>(10.0f);
+        return true;
+      }
+      return false;
+    }).Bind<mario::PlayerController>(10.0f);
+  }
+  
+  PlayerController::PlayerController(float speed) : speed_(speed) {
+    
+  }
+  
+  void PlayerController::Update(Timestep ts) {
+    auto& tc = GetComponent<TransformComponent>();
+    
+    if (Input::IsKeyPressed(KeyCode::Left))
+      tc.UpdateTranslation_X(tc.Translation().x - (speed_ * ts));
+    if (Input::IsKeyPressed(KeyCode::Right))
+      tc.UpdateTranslation_X(tc.Translation().x + (speed_ * ts));
   }
   
 }
