@@ -121,19 +121,24 @@ namespace mario {
       return;
     
     static bool first_clicked = true;
+    
+    static glm::vec2 initial_mouse_position_ = glm::vec2(0.0f);
+    static glm::vec2 final_mouse_position_ = glm::vec2(0.0f);
+
     static glm::vec2 initial_block_position_ = glm::vec2(0.0f);
     static glm::vec2 final_block_position_ = glm::vec2(0.0f);
     
     static int32_t initial_x = 0, initial_y = 0;
     static int32_t final_x = 0, final_y = 0;
-    
+
+    const auto& cd = scene_->GetPrimaryCameraData();
+    float zoom = cd.scene_camera->GetZoom();
+    float aspect_ratio = cd.scene_camera->GetAspectRatio();
+
     if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft)) {
-      const auto& cd = scene_->GetPrimaryCameraData();
-      float zoom = cd.scene_camera->GetZoom();
-      float aspect_ratio = cd.scene_camera->GetAspectRatio();
-      
       if (first_clicked) {
         first_clicked = false;
+        initial_mouse_position_ = { viewport_->mouse_pos_x, viewport_->mouse_pos_y };
         initial_block_position_ = {
           viewport_->mouse_pos_x - ((float)viewport_->width / 2),
           viewport_->mouse_pos_y - ((float)viewport_->height / 2)
@@ -144,6 +149,7 @@ namespace mario {
         initial_y = std::floor(initial_block_position_.y + 0.5f);
       }
       
+      final_mouse_position_ = { viewport_->mouse_pos_x, viewport_->mouse_pos_y };
       final_block_position_ = {
         viewport_->mouse_pos_x - ((float)viewport_->width / 2),
         viewport_->mouse_pos_y - ((float)viewport_->height / 2)
@@ -163,14 +169,24 @@ namespace mario {
     }
     if (Input::IsMouseButtonReleased(MouseButton::ButtonLeft)) {
       if (!first_clicked) {
-        // Store the selected Entity
-        {
-          int32_t min_x = std::min(initial_x, final_x);
-          int32_t max_x = std::max(initial_x, final_x);
-          int32_t min_y = std::min(initial_y, final_y);
-          int32_t max_y = std::max(initial_y, final_y);
-          for (int x = min_x; x <= max_x; x++) {
-            for (int y = min_y; y <= max_y; y++) {
+        // Store entites present in selected entitity
+        float block_size_x = viewport_->width / (zoom * aspect_ratio);
+        float block_size_y = viewport_->height / zoom;
+                
+        float min_x = std::min(initial_mouse_position_.x, final_mouse_position_.x);
+        float max_x = std::max(initial_mouse_position_.x, final_mouse_position_.x);
+        float min_y = std::min(initial_mouse_position_.y, final_mouse_position_.y);
+        float max_y = std::max(initial_mouse_position_.y, final_mouse_position_.y);
+
+        for (float i_x = min_x; i_x <= (max_x + block_size_x); i_x += block_size_x) {
+          for (float i_y = min_y; i_y <= (max_y + block_size_y); i_y += block_size_y) {
+            // Get pixel from rednerer
+            int32_t pixel = -1;
+            Renderer::GetEntityIdFromPixels(i_x, i_y, viewport_->framebuffer->GetPixelIdIndex(), pixel);
+            
+            if (scene_) {
+              if (pixel <= (int32_t)scene_->GetMaxEntityId())
+                selected_entities_.push_back(scene_->GetEnitityFromId(pixel));
             }
           }
         }

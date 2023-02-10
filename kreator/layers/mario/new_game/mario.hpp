@@ -37,11 +37,13 @@ namespace mario {
     bool KeyPressEvent(KeyPressedEvent& e);
     /// This function render the rectangle when clicg drag mouse
     void RenderSelectedRectangle();
-
+    
     bool is_playing_ = false;
     const Viewport* const viewport_;
     std::shared_ptr<EnttScene> scene_;
     ScenePanelManager* panel_;
+    
+    std::vector<Entity*> selected_entities_;
   };
   
 }
