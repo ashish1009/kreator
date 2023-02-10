@@ -455,7 +455,6 @@ namespace ikan {
     for (const auto& [name, script] : scrip_name_map) {
       delete script;
     }
-    
     scrip_name_map.clear();
   }
   
@@ -669,8 +668,64 @@ namespace ikan {
   void AnimationComponent::RenderGui() {
     PropertyGrid::CheckBox("Animation", animation);
     PropertyGrid::CheckBox("Is Sprite", sprite);
-    
     ImGui::Separator();
+    
+    if (sprite) {
+      static glm::vec2 coords;
+      PropertyGrid::Float2("Add Coord", coords, nullptr, 0.1f, 0.0f, 100.0f, 0.0f);
+      ImGui::Separator();
+      // Tag
+      const ImGuiTreeNodeFlags tree_node_flags = ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_AllowItemOverlap |
+      ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_FramePadding;
+      
+      // Render the title named as entity name
+      bool open = ImGui::TreeNodeEx("Animation Coords", tree_node_flags);
+      
+      // Get the avilable width and height for button position
+      ImVec2 content_region_available = ImGui::GetContentRegionAvail();
+      float line_height = GImGui->Font->FontSize + GImGui->Style.FramePadding.y * 2.0f;
+      
+      // Set the curson position on same line for (X) button
+      ImGui::SameLine(content_region_available.x - line_height * 0.5f);
+      float content_height = GImGui->Font->FontSize;
+      
+      const auto& current_cursor_pos = ImGui::GetCursorPos();
+      ImGui::SetCursorPos({current_cursor_pos.x, current_cursor_pos.y + content_height / 4});
+      
+      // Render the button (X) for removing the component
+      static std::shared_ptr<Texture> add_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/plus.png"));
+      if (PropertyGrid::ImageButton("Add", add_texture->GetRendererID(), { content_height, content_height } )) {
+        sprite_coords.push_back(coords);
+      }
+
+      static bool delete_coord = false;
+      auto delete_it = sprite_coords.begin();
+      if (open) {
+        for (auto it = sprite_coords.begin(); it != sprite_coords.end(); it++) {
+          bool coord_open = ImGui::TreeNodeEx((std::to_string((int32_t)it->x) + " , " + std::to_string((int32_t)it->y)).c_str(),
+                                              ImGuiTreeNodeFlags_Bullet | ImGuiTreeNodeFlags_OpenOnArrow);
+          // Right click of mouse option
+          if (ImGui::BeginPopupContextItem()) {
+            // Delete Coord
+            if (ImGui::MenuItem("Delete Coord")) {
+              delete_coord = true;
+              delete_it = it;
+            }
+            ImGui::EndMenu();
+          }
+
+          if (coord_open)
+            ImGui::TreePop();
+        }
+        ImGui::TreePop();
+      }
+      ImGui::Separator();
+      
+      if (delete_coord) {
+        sprite_coords.erase(delete_it);
+        delete_coord = false;
+      }
+    }
   }
   
 }

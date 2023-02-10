@@ -149,7 +149,6 @@ namespace ikan {
     ImGui::PushID("Entity Property");
     
     if (selected_entity_) {
-      
       // Tag
       auto& tag = selected_entity_.GetComponent<TagComponent>().tag;
       PropertyGrid::TextBox(tag, "", 3);
