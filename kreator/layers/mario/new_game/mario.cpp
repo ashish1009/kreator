@@ -67,7 +67,7 @@ namespace mario {
   void MarioData::RenderGui() {
     ImGui::Begin("Mario Data");
     
-    for (Entity* entity : selected_entities_) {
+    for (auto& [entt, entity] : selected_entities_) {
       if (!entity) continue;
       ImGui::Text("%s", entity->GetComponent<TagComponent>().tag.c_str());
     }
@@ -167,26 +167,28 @@ namespace mario {
     }
     if (Input::IsMouseButtonReleased(MouseButton::ButtonLeft)) {
       if (!first_clicked) {
-        // Store entites present in selected entitity
-        float block_size_x = viewport_->width / (zoom * aspect_ratio);
-        float block_size_y = viewport_->height / zoom;
-                
+        // Store entites present in selected entitity                
         float min_x = std::min(initial_mouse_position_.x, final_mouse_position_.x);
         float max_x = std::max(initial_mouse_position_.x, final_mouse_position_.x);
         float min_y = std::min(initial_mouse_position_.y, final_mouse_position_.y);
         float max_y = std::max(initial_mouse_position_.y, final_mouse_position_.y);
 
-        for (float i_x = min_x; i_x < (max_x + block_size_x); i_x += block_size_x) {
-          for (float i_y = min_y; i_y < (max_y + block_size_y); i_y += block_size_y) {
+        for (float i_x = min_x; i_x <= max_x; i_x ++) {
+          for (float i_y = min_y; i_y <= max_y; i_y++) {
             // Get pixel from rednerer
             int32_t pixel = -1;
             
             Renderer::GetEntityIdFromPixels(i_x, i_y, viewport_->framebuffer->GetPixelIdIndex(), pixel);
+#if 0
             MARIO_TRACE("X : {0}, Y : {1}, Pixel : {2}", i_x, i_y, pixel);
+#endif
             
             if (scene_) {
-              if (pixel <= (int32_t)scene_->GetMaxEntityId())
-                selected_entities_.push_back(scene_->GetEnitityFromId(pixel));
+              if (pixel <= (int32_t)scene_->GetMaxEntityId()) {
+                if (selected_entities_.find((entt::entity)pixel) == selected_entities_.end()){
+                  selected_entities_[(entt::entity)pixel] = scene_->GetEnitityFromId(pixel);
+                }
+              }
             }
           }
         }
@@ -199,7 +201,7 @@ namespace mario {
   }
 
   void MarioData::MoveEntities(Direction direction) {
-    for (Entity* entity : selected_entities_) {
+    for (auto& [entt, entity] : selected_entities_) {
       if(!entity) continue;
       
       auto& tc = entity->GetComponent<TransformComponent>();
@@ -214,7 +216,7 @@ namespace mario {
   }
 
   void MarioData::HighlightSelectedEntities(bool enable) {
-    for (Entity* entity : selected_entities_) {
+    for (auto& [entt, entity] : selected_entities_) {
       if(!entity) continue;
       
       auto& tc = entity->GetComponent<TransformComponent>();
@@ -237,7 +239,7 @@ namespace mario {
   }
   
   void MarioData::DeleteSelectedEntities() {
-    for (Entity* entity : selected_entities_) {
+    for (auto& [entt, entity] : selected_entities_) {
       if (panel_->GetSelectedEntity() and *(panel_->GetSelectedEntity()) == *entity) {
         panel_->SetSelectedEntity(nullptr);
       }
@@ -248,7 +250,7 @@ namespace mario {
   
   void MarioData::DuplicateSelectedEntities() {
     HighlightSelectedEntities(false);
-    for (Entity* entity : selected_entities_) {
+    for (auto& [entt, entity] : selected_entities_) {
       scene_->DuplicateEntity(*entity);
     }
     HighlightSelectedEntities(true);

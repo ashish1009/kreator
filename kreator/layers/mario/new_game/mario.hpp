@@ -67,7 +67,7 @@ namespace mario {
     std::shared_ptr<EnttScene> scene_;
     ScenePanelManager* panel_;
     
-    std::vector<Entity*> selected_entities_;
+    std::unordered_map<entt::entity, Entity*> selected_entities_;
     
     Player player;
   };
