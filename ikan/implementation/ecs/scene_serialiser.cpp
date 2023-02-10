@@ -301,7 +301,7 @@ namespace ikan {
         
         int32_t num_sprite_coords = 0;
         for (const auto& coord : ac.sprite_coords) {
-          out << YAML::Key << "Coords" + std::to_string(num_sprite_coords) << YAML::Value << coord;
+          out << YAML::Key << "Coords" + std::to_string(num_sprite_coords++) << YAML::Value << coord;
         }
         out << YAML::Key << "Num_Coords" << YAML::Value << num_sprite_coords;
 
