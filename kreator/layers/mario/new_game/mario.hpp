@@ -37,6 +37,7 @@ namespace mario {
     /// This function handles the Key button event
     /// - Parameter e: Key pressed event
     bool KeyPressEvent(KeyPressedEvent& e);
+
     /// This function render the rectangle when clicg drag mouse
     void StoreSelectedEntities();
     /// This function moves the selected entities
@@ -47,8 +48,10 @@ namespace mario {
     void HighlightSelectedEntities(bool enable);
     /// This function clear the selected entities
     void ClearSelectedEntities();
-    /// This function clear the selected entities
+    /// This function Delete the selected entities
     void DeleteSelectedEntities();
+    /// This function Duplicate the selected entities
+    void DuplicateSelectedEntities();
 
     bool is_playing_ = false;
     const Viewport* const viewport_;
