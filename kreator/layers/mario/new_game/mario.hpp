@@ -47,6 +47,8 @@ namespace mario {
     void HighlightSelectedEntities(bool enable);
     /// This function clear the selected entities
     void ClearSelectedEntities();
+    /// This function clear the selected entities
+    void DeleteSelectedEntities();
 
     bool is_playing_ = false;
     const Viewport* const viewport_;

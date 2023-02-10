@@ -32,12 +32,8 @@ namespace mario {
       bool shift = Input::IsKeyPressed(KeyCode::LeftShift) or Input::IsKeyPressed(KeyCode::RightShift);
       if (shift) {
         switch (e.GetKeyCode()) {
-          case KeyCode::D: {
-            break;
-          }
-          case KeyCode::Backspace: {
-            break;
-          }
+          case KeyCode::D: break;
+          case KeyCode::Backspace: DeleteSelectedEntities(); break;
             
           case KeyCode::Escape: ClearSelectedEntities(); break;
             
@@ -213,6 +209,16 @@ namespace mario {
   
   void MarioData::ClearSelectedEntities() {
     HighlightSelectedEntities(false);
+    selected_entities_.clear();
+  }
+  
+  void MarioData::DeleteSelectedEntities() {
+    for (Entity* entity : selected_entities_) {
+      if (panel_->GetSelectedEntity() and *(panel_->GetSelectedEntity()) == *entity) {
+        panel_->SetSelectedEntity(nullptr);
+      }
+      scene_->DestroyEntity(*entity);
+    }    
     selected_entities_.clear();
   }
 
