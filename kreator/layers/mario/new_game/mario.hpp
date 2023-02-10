@@ -32,11 +32,16 @@ namespace mario {
     std::vector<std::filesystem::path> FavDirecotries() override;
     
   private:
+    enum Direction {Left, Right, Up, Down};
+
     /// This function handles the Key button event
     /// - Parameter e: Key pressed event
     bool KeyPressEvent(KeyPressedEvent& e);
     /// This function render the rectangle when clicg drag mouse
-    void RenderSelectedRectangle();
+    void StoreSelectedEntities();
+    /// This function moves the selected entities
+    /// - Parameter direction: Direction of movement
+    void MoveEntities(Direction direction);
     
     bool is_playing_ = false;
     const Viewport* const viewport_;

@@ -19,7 +19,7 @@ namespace mario {
   
   void MarioData::Update(Timestep ts) {
     if (!is_playing_)
-      RenderSelectedRectangle();
+      StoreSelectedEntities();
   }
   
   void MarioData::EventHandler(Event& event) {
@@ -31,38 +31,20 @@ namespace mario {
     if (!is_playing_) {
       bool shift = Input::IsKeyPressed(KeyCode::LeftShift) or Input::IsKeyPressed(KeyCode::RightShift);
       if (shift) {
-        if (Entity* entity = panel_->GetSelectedEntity(); entity) {
-          auto& tc = entity->GetComponent<TransformComponent>();
-          switch (e.GetKeyCode()) {
-            case KeyCode::D: {
-              scene_->DuplicateEntity(*entity);
-              break;
-            }
-            case KeyCode::Backspace: {
-              scene_->DestroyEntity(*entity);
-              panel_->SetSelectedEntity(nullptr);
-              break;
-            }
-            case KeyCode::Left: {
-              tc.UpdateTranslation_X(tc.Translation().x - 1.0f);
-              break;
-            }
-            case KeyCode::Right: {
-              tc.UpdateTranslation_X(tc.Translation().x + 1.0f);
-              break;
-            }
-            case KeyCode::Up: {
-              tc.UpdateTranslation_Y(tc.Translation().y + 1.0f);
-              break;
-            }
-            case KeyCode::Down: {
-              tc.UpdateTranslation_Y(tc.Translation().y - 1.0f);
-              break;
-            }
-            default:
-              break;
-          } // switch (e.GetKeyCode())
-        } // if (entity)
+        switch (e.GetKeyCode()) {
+          case KeyCode::D: {
+            break;
+          }
+          case KeyCode::Backspace: {
+            break;
+          }
+          case KeyCode::Left:     MoveEntities(Left);   break;
+          case KeyCode::Right:    MoveEntities(Right);  break;
+          case KeyCode::Up:       MoveEntities(Up);     break;
+          case KeyCode::Down:     MoveEntities(Down);   break;
+            
+          default: break;
+        } // switch (e.GetKeyCode())
       } // if (shift)
     }
     return false;
@@ -70,6 +52,11 @@ namespace mario {
   
   void MarioData::RenderGui() {
     ImGui::Begin("Mario Data");
+    
+    for (Entity* entity : selected_entities_) {
+      ImGui::Text("%s", entity->GetComponent<TagComponent>().tag.c_str());
+    }
+    
     ImGui::End();
     
     if (ImGui::BeginMenuBar()) {
@@ -115,7 +102,7 @@ namespace mario {
     };
   }
 
-  void MarioData::RenderSelectedRectangle() {
+  void MarioData::StoreSelectedEntities() {
     if (!(viewport_->mouse_pos_x >= 0 and viewport_->mouse_pos_y >= 0 and
           viewport_->mouse_pos_x <= viewport_->width and viewport_->mouse_pos_y <= viewport_->height))
       return;
@@ -128,15 +115,14 @@ namespace mario {
     static glm::vec2 initial_block_position_ = glm::vec2(0.0f);
     static glm::vec2 final_block_position_ = glm::vec2(0.0f);
     
-    static int32_t initial_x = 0, initial_y = 0;
-    static int32_t final_x = 0, final_y = 0;
-
     const auto& cd = scene_->GetPrimaryCameraData();
     float zoom = cd.scene_camera->GetZoom();
     float aspect_ratio = cd.scene_camera->GetAspectRatio();
 
     if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft)) {
       if (first_clicked) {
+        selected_entities_.clear();
+        
         first_clicked = false;
         initial_mouse_position_ = { viewport_->mouse_pos_x, viewport_->mouse_pos_y };
         initial_block_position_ = {
@@ -144,9 +130,6 @@ namespace mario {
           viewport_->mouse_pos_y - ((float)viewport_->height / 2)
         };
         initial_block_position_ *= ((zoom * aspect_ratio) / viewport_->width);
-        
-        initial_x = std::floor(initial_block_position_.x + 0.5f);
-        initial_y = std::floor(initial_block_position_.y + 0.5f);
       }
       
       final_mouse_position_ = { viewport_->mouse_pos_x, viewport_->mouse_pos_y };
@@ -156,9 +139,7 @@ namespace mario {
       };
       final_block_position_ *= ((zoom * aspect_ratio) / viewport_->width);
       
-      final_x = std::floor(final_block_position_.x + 0.5f);
-      final_y = std::floor(final_block_position_.y + 0.5f);
-      
+      // Render the outline rectangle
       BatchRenderer::BeginBatch(scene_->GetPrimaryCameraData().scene_camera->GetProjection() *
                                 glm::inverse(scene_->GetPrimaryCameraData().transform_matrix));
       BatchRenderer::DrawRect({initial_block_position_.x + cd.position.x, initial_block_position_.y + cd.position.y, 0.1},
@@ -194,5 +175,18 @@ namespace mario {
       first_clicked = true;
     }
   }
-  
+
+  void MarioData::MoveEntities(Direction direction) {
+    for (Entity* entity : selected_entities_) {
+      auto& tc = entity->GetComponent<TransformComponent>();
+      switch (direction) {
+        case Down:      tc.UpdateTranslation_Y(tc.Translation().y - 1.0f);     break;
+        case Up:        tc.UpdateTranslation_Y(tc.Translation().y + 1.0f);     break;
+        case Right:     tc.UpdateTranslation_X(tc.Translation().x + 1.0f);     break;
+        case Left:      tc.UpdateTranslation_X(tc.Translation().x - 1.0f);     break;
+        default: break;
+      }
+    }
+  }
+
 }
