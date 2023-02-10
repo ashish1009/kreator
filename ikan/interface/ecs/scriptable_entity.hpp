@@ -61,4 +61,13 @@ namespace ikan {
     friend class EnttScene;
   };
   
+  class CameraController : public ScriptableEntity {
+  public:
+    void Update(Timestep ts) override;
+    void RenderGui() override;
+    
+  private:
+    float speed_ = 10.0f;
+  };
+  
 }

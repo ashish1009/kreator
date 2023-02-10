@@ -7,97 +7,97 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C56735DD-003F-4926-BD20-6DC005782FBB"
+            uuid = "53FE0667-BBE5-440B-8201-A56367E922F8"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+            filePath = "ikan/implementation/ecs/scriptable_entity.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "788"
-            endingLineNumber = "788"
-            landmarkName = "BatchRenderer::DrawRect(p0, p2, color)"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "CameraController::Update(ts)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4D82403F-169A-4D2C-8AD3-CE36D0E08ED4"
+            uuid = "D6F5927C-53F5-474C-A937-69771A120964"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+            filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "533"
-            endingLineNumber = "533"
-            landmarkName = "BatchRenderer::Flush()"
+            startingLineNumber = "481"
+            endingLineNumber = "481"
+            landmarkName = "NativeScriptComponent::RenderGui()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EAE2D6C8-719E-48C3-98FA-0DF98D9E5DD3"
+            uuid = "29F12025-057E-4249-9BCA-49C25149FA57"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kreator/layers/mario/new_game/mario.cpp"
+            filePath = "ikan/implementation/ecs/entt_scene.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
-            landmarkName = "MarioData::DeleteSelectedEntities()"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "EnttScene::Update(ts)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B616FF0C-C8E8-4B4B-8208-B1427A94BF68"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/ecs/entt_scene.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "EnttScene::InstantiateScript(ts)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "EAE2D6C8-719E-48C3-98FA-0DF98D9E5DD3 - e8be0bc41cbf6d11"
+                  uuid = "B616FF0C-C8E8-4B4B-8208-B1427A94BF68 - bfc3cd4123daa3f6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "mario::MarioData::DeleteSelectedEntities()"
+                  symbolName = "auto ikan::EnttScene::InstantiateScript(ikan::Timestep)::$_0::operator()&lt;entt::entity, ikan::NativeScriptComponent&gt;(entt::entity, ikan::NativeScriptComponent&amp;) const"
                   moduleName = "kreator"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/kreator/kreator/layers/mario/new_game/mario.cpp"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/kreator/ikan/implementation/ecs/entt_scene.cpp"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "218"
-                  endingLineNumber = "218"
-                  offsetFromSymbolStart = "24">
+                  startingLineNumber = "264"
+                  endingLineNumber = "264"
+                  offsetFromSymbolStart = "40">
                </Location>
                <Location
-                  uuid = "EAE2D6C8-719E-48C3-98FA-0DF98D9E5DD3 - e8be0bc41cbf6d11"
+                  uuid = "B616FF0C-C8E8-4B4B-8208-B1427A94BF68 - bfc3cd4123daa3f6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "mario::MarioData::DeleteSelectedEntities()"
+                  symbolName = "auto ikan::EnttScene::InstantiateScript(ikan::Timestep)::$_0::operator()&lt;entt::entity, ikan::NativeScriptComponent&gt;(entt::entity, ikan::NativeScriptComponent&amp;) const"
                   moduleName = "kreator"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/kreator/kreator/layers/mario/new_game/mario.cpp"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/kreator/ikan/implementation/ecs/entt_scene.cpp"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "218"
-                  endingLineNumber = "218"
-                  offsetFromSymbolStart = "84">
+                  startingLineNumber = "264"
+                  endingLineNumber = "264"
+                  offsetFromSymbolStart = "100">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "41F346F6-B459-4A3C-8A9E-1F3E27B9E96A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kreator/layers/mario/new_game/mario.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "MarioData::DeleteSelectedEntities()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
