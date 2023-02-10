@@ -42,7 +42,12 @@ namespace mario {
     /// This function moves the selected entities
     /// - Parameter direction: Direction of movement
     void MoveEntities(Direction direction);
-    
+    /// This function highlight the selected entiies
+    /// - Parameter enable: flag to set or unset
+    void HighlightSelectedEntities(bool enable);
+    /// This function clear the selected entities
+    void ClearSelectedEntities();
+
     bool is_playing_ = false;
     const Viewport* const viewport_;
     std::shared_ptr<EnttScene> scene_;

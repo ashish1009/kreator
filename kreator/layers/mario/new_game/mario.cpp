@@ -38,6 +38,9 @@ namespace mario {
           case KeyCode::Backspace: {
             break;
           }
+            
+          case KeyCode::Escape: ClearSelectedEntities(); break;
+            
           case KeyCode::Left:     MoveEntities(Left);   break;
           case KeyCode::Right:    MoveEntities(Right);  break;
           case KeyCode::Up:       MoveEntities(Up);     break;
@@ -121,7 +124,7 @@ namespace mario {
 
     if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft)) {
       if (first_clicked) {
-        selected_entities_.clear();
+        ClearSelectedEntities();
         
         first_clicked = false;
         initial_mouse_position_ = { viewport_->mouse_pos_x, viewport_->mouse_pos_y };
@@ -159,8 +162,8 @@ namespace mario {
         float min_y = std::min(initial_mouse_position_.y, final_mouse_position_.y);
         float max_y = std::max(initial_mouse_position_.y, final_mouse_position_.y);
 
-        for (float i_x = min_x; i_x <= (max_x + block_size_x); i_x += block_size_x) {
-          for (float i_y = min_y; i_y <= (max_y + block_size_y); i_y += block_size_y) {
+        for (float i_x = min_x; i_x < (max_x + block_size_x); i_x += block_size_x) {
+          for (float i_y = min_y; i_y < (max_y + block_size_y); i_y += block_size_y) {
             // Get pixel from rednerer
             int32_t pixel = -1;
             Renderer::GetEntityIdFromPixels(i_x, i_y, viewport_->framebuffer->GetPixelIdIndex(), pixel);
@@ -171,6 +174,9 @@ namespace mario {
             }
           }
         }
+        
+        // TODO: Do it while adding to vector? or keep separate???
+        HighlightSelectedEntities(true);
       }
       first_clicked = true;
     }
@@ -187,6 +193,27 @@ namespace mario {
         default: break;
       }
     }
+  }
+
+  void MarioData::HighlightSelectedEntities(bool enable) {
+    for (Entity* entity : selected_entities_) {
+      auto& tc = entity->GetComponent<TransformComponent>();
+      auto& qc = entity->GetComponent<QuadComponent>();
+      
+      if (enable) {
+        tc.UpdateTranslation_Z(0.1f);
+        qc.color.a -=0.2f;
+      }
+      else {
+        tc.UpdateTranslation_Z(0.0f);
+        qc.color.a +=0.2f;
+      }
+    }
+  }
+  
+  void MarioData::ClearSelectedEntities() {
+    HighlightSelectedEntities(false);
+    selected_entities_.clear();
   }
 
 }
