@@ -714,7 +714,15 @@ namespace ikan {
       // Render the button (X) for removing the component
       static std::shared_ptr<Texture> add_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/plus.png"));
       if (PropertyGrid::ImageButton("Add", add_texture->GetRendererID(), { content_height, content_height } )) {
-        sprites.push_back(SubTexture::CreateFromCoords(sprite_image, coords, sprite_size, cell_size));
+        bool add = true;
+        for (const auto& sprite : sprites) {
+          if (sprite->GetCoords() == coords) {
+            add = false;
+            break;
+          }
+        }
+        if (add)
+          sprites.push_back(SubTexture::CreateFromCoords(sprite_image, coords, sprite_size, cell_size));
       }
 
       static bool delete_sprite = false;

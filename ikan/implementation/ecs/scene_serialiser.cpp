@@ -302,9 +302,10 @@ namespace ikan {
 
         int32_t num_sprite_coords = 0;
         for (const auto& sprite : ac.sprites) {
-          out << YAML::Key << "Coords" << YAML::Value << sprite->GetCoords();
-          out << YAML::Key << "Sprite_Size" << YAML::Value << sprite->GetSpriteSize();
-          out << YAML::Key << "Cell_Size" << YAML::Value << sprite->GetCellSize();
+          out << YAML::Key << "Coords" + std::to_string(num_sprite_coords) << YAML::Value << sprite->GetCoords();
+          out << YAML::Key << "Sprite_Size" + std::to_string(num_sprite_coords) << YAML::Value << sprite->GetSpriteSize();
+          out << YAML::Key << "Cell_Size" + std::to_string(num_sprite_coords) << YAML::Value << sprite->GetCellSize();
+          num_sprite_coords++;
         }
         out << YAML::Key << "Num_Coords" << YAML::Value << num_sprite_coords;
 
