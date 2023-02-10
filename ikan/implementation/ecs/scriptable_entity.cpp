@@ -43,7 +43,7 @@ namespace ikan {
       tc.UpdateTranslation_X(tc.Translation().x + (speed_ * ts));
   }
   void CameraController::RenderGui() {
-  
+    PropertyGrid::Float1("Speed", speed_);
   }
   
 }

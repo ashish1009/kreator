@@ -88,8 +88,6 @@ namespace ikan_game {
       
       ShowMenu();
       GamePlayButton();
-
-      game_data_->RenderGui();
       
       if (active_scene_) {
         active_scene_->RenderGui();
@@ -97,10 +95,11 @@ namespace ikan_game {
         if (active_scene_->IsEditing()) {
           Renderer::Framerate(&settings_.frame_rate);
           Renderer::RenderStatsGui(&settings_.stats, true);
+          
           viewport_.RenderGui(&settings_.viewport);
           cbp_.RenderGui(&settings_.cbp);
-
           spm_.RenderGui();
+          game_data_->RenderGui();
 
           SaveScene();
         }

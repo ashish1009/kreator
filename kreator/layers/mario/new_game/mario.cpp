@@ -18,8 +18,29 @@ namespace mario {
   }
   
   void MarioData::Update(Timestep ts) {
-    if (!is_playing_)
+    if (!is_playing_) {
       StoreSelectedEntities();
+      
+      // Move Camera for debug
+      {
+        auto& cd = scene_->GetPrimaryCameraData();
+        auto& cam = cd.scene_camera;
+        auto& tc = cd.transform_comp;
+        
+        bool shift = Input::IsKeyPressed(KeyCode::RightShift);
+        if (shift) {
+          if (Input::IsKeyPressed(KeyCode::A)) tc->UpdateTranslation_X(tc->Translation().x - (cam->GetZoom() * ts));
+          if (Input::IsKeyPressed(KeyCode::D)) tc->UpdateTranslation_X(tc->Translation().x + (cam->GetZoom() * ts));
+          
+          if (Input::IsKeyPressed(KeyCode::W)) tc->UpdateTranslation_Y(tc->Translation().y + (cam->GetZoom() * ts));
+          if (Input::IsKeyPressed(KeyCode::S)) tc->UpdateTranslation_Y(tc->Translation().y - (cam->GetZoom() * ts));
+          
+          if (Input::IsKeyPressed(KeyCode::Q)) cam->SetOrthographicSize(cam->GetOrthographicSize() + 1.0f);
+          if (Input::IsKeyPressed(KeyCode::E)) cam->SetOrthographicSize(cam->GetOrthographicSize() - 1.0f);
+        }
+      }
+      
+    }
   }
   
   void MarioData::EventHandler(Event& event) {
@@ -29,7 +50,7 @@ namespace mario {
     
   bool MarioData::KeyPressEvent(KeyPressedEvent &e) {
     if (!is_playing_) {
-      bool shift = Input::IsKeyPressed(KeyCode::LeftShift) or Input::IsKeyPressed(KeyCode::RightShift);
+      bool shift = Input::IsKeyPressed(KeyCode::LeftShift);
       if (shift) {
         switch (e.GetKeyCode()) {
           case KeyCode::D:          DuplicateSelectedEntities();  break;
