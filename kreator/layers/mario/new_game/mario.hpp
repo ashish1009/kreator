@@ -15,6 +15,31 @@
 namespace mario {
   
   using namespace ikan;
+  
+  struct TextData {
+    const glm::vec2 size = { 0.6f, 0.6f };
+    const glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
+    
+    glm::mat4 still_camera_projection;
+    float pos_row[2];
+    float pos_col[4];
+    
+    void Update(float width, float height) {
+      still_camera_projection = glm::ortho( 0.0f, (float)width, 0.0f, (float)height);
+      
+      pos_row[0] = (float)height - 50;
+      pos_row[1] = (float)height - 80;
+      
+      pos_col[0] = 50.0f;
+      pos_col[1] = ((float)width * (1.0f / 4.0f)) + 50.0f;
+      pos_col[2] = ((float)width * (2.0f / 4.0f)) + 50.0f;
+      pos_col[3] = ((float)width * (3.0f / 4.0f)) + 50.0f;
+    }
+    
+    void Render(const std::string& title, uint32_t row, uint32_t col) {
+      TextRenderer::RenderText(title, { pos_col[col], pos_row[row], 0.3f }, size, color);
+    }
+  };
     
   class MarioData : public ikan_game::GameData {
   public:
@@ -24,8 +49,8 @@ namespace mario {
     void Update(Timestep ts) override;
     void EventHandler(Event& event) override;
     void RenderGui() override;
-    
     void SetState(bool is_playing) override;
+    void SetViewportSize(uint32_t width, uint32_t height) override;
     
     // Getters
     glm::vec4 GetBgColor() override { return level_bg_; }
@@ -64,6 +89,10 @@ namespace mario {
     void MoveCameraDebug(Timestep ts);
     
     bool is_playing_ = false;
+    
+    uint32_t viewport_width_ = Application::Get().GetWindow().GetWidth();
+    uint32_t viewport_height_ = Application::Get().GetWindow().GetHeight();
+    
     const Viewport* const viewport_;
     std::shared_ptr<EnttScene> scene_;
     ScenePanelManager* panel_;
@@ -72,6 +101,15 @@ namespace mario {
     
     Player player;
     glm::vec4 level_bg_ = {0.2, 0.4, 0.6, 1.0f};
+    
+    TextData text_data_;
+    std::string font_path = "fonts/mario.ttf";
+    
+    uint32_t score_ = 0;
+    uint32_t world_ = 1;
+    uint32_t level_ = 1;
+    uint32_t coins_ = 0;
+    uint32_t time_ = 100;
   };
   
 }

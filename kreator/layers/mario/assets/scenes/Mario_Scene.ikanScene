@@ -4,293 +4,7 @@ Setting_scene_controller: true
 Setting_scene_data: true
 Use_editor_camera: false
 Entities:
-  - Entity: 7799475849901546842
-    TagComponent:
-      Tag: Pipe
-    TransformComponent:
-      Translation: [13, -5, 0]
-      Rotation: [0, 0, 0]
-      Scale: [2, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 18]
-      Sprite_Size: [2, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 6493182694890565766
-    TagComponent:
-      Tag: Pipe
-    TransformComponent:
-      Translation: [13, -6, 0]
-      Rotation: [0, 0, 0]
-      Scale: [2, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 18]
-      Sprite_Size: [2, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 6385352391988977199
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [13, -7, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 10898836523320828105
-    TagComponent:
-      Tag: Grass
-    TransformComponent:
-      Translation: [7, -6, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [11, 16]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 2585204270914737813
-    TagComponent:
-      Tag: Grass
-    TransformComponent:
-      Translation: [11, -6, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [13, 16]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 15512995208424120780
-    TagComponent:
-      Tag: Grass
-    TransformComponent:
-      Translation: [-15, -6, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [11, 16]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 2715846580451599061
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [-4, -6, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [8, 18]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 15486626743973809576
-    TagComponent:
-      Tag: Grass
-    TransformComponent:
-      Translation: [-13, -6, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [13, 16]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 2003129267979330663
-    TagComponent:
-      Tag: Grass
-    TransformComponent:
-      Translation: [8, -6, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [12, 16]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 1665806831511498674
-    TagComponent:
-      Tag: Grass
-    TransformComponent:
-      Translation: [9, -6, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [12, 16]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 5003048345925137751
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [-14, 5, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [6, 7]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 6108475346258469381
-    TagComponent:
-      Tag: Brick
-    TransformComponent:
-      Translation: [1, -2, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [13, 27.0248089]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 10525517269322488637
-    TagComponent:
-      Tag: Bonus
-    TransformComponent:
-      Translation: [3, 3, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [24.0019073, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-    AnimationComponent:
-      Animation: true
-      Sprite: true
-      Speed: 15
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords0: [24, 27]
-      Sprite_Size0: [1, 1]
-      Cell_Size0: [16, 16]
-      Coords1: [25, 27]
-      Sprite_Size1: [1, 1]
-      Cell_Size1: [16, 16]
-      Coords2: [26, 27]
-      Sprite_Size2: [1, 1]
-      Cell_Size2: [16, 16]
-      Num_Coords: 3
-  - Entity: 14896626395914607444
+  - Entity: 6858871284137276272
     TagComponent:
       Tag: Brick
     TransformComponent:
@@ -317,11 +31,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 2072615478155848095
+  - Entity: 17696375108782566992
     TagComponent:
       Tag: Bonus
     TransformComponent:
-      Translation: [-2, -2, 0]
+      Translation: [2, -2, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -359,11 +73,11 @@ Entities:
       Sprite_Size2: [1, 1]
       Cell_Size2: [16, 16]
       Num_Coords: 3
-  - Entity: 6067237934728452695
+  - Entity: 18201206072808797080
     TagComponent:
-      Tag: Ground
+      Tag: Forest
     TransformComponent:
-      Translation: [-12, -7, 0]
+      Translation: [-2, -6, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -371,26 +85,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
+      Coords: [8, 18]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 10693044728185278463
+  - Entity: 6561399961652122154
     TagComponent:
-      Tag: Cloud
+      Tag: Forest
     TransformComponent:
-      Translation: [-4, 5, 0]
+      Translation: [-2, -5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -398,16 +102,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [5, 6]
+      Coords: [24, 19]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 10422400217284425978
+  - Entity: 6138607759814413472
     TagComponent:
-      Tag: Cloud
+      Tag: Forest
     TransformComponent:
-      Translation: [-4, 6, 0]
+      Translation: [-3, -5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -415,16 +119,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [5, 1]
+      Coords: [8, 18]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 4401973121510305786
+  - Entity: 16732759545938706022
     TagComponent:
-      Tag: Cloud
+      Tag: Forest
     TransformComponent:
-      Translation: [-3, 5, 0]
+      Translation: [-4, -5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -432,16 +136,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [6, 6]
+      Coords: [22, 19]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 2755215440770856200
+  - Entity: 8284814392111292023
     TagComponent:
-      Tag: Cloud
+      Tag: Forest
     TransformComponent:
-      Translation: [-3, 6, 0]
+      Translation: [-3, -4, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -449,16 +153,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [6, 7]
+      Coords: [23, 19]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 12112995436358667722
+  - Entity: 5322714827289149517
     TagComponent:
-      Tag: Cloud
+      Tag: Forest
     TransformComponent:
-      Translation: [-2, 5, 0]
+      Translation: [15, -6, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -466,16 +170,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [7, 0]
+      Coords: [22, 19]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 16265523744672756011
+  - Entity: 9655110765421295271
     TagComponent:
-      Tag: Cloud
+      Tag: Forest
     TransformComponent:
-      Translation: [-2, 6, 0]
+      Translation: [16, -5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -483,16 +187,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [7, 7]
+      Coords: [23, 19]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 15436263834725054511
+  - Entity: 12793095953778088557
     TagComponent:
-      Tag: Cloud
+      Tag: Forest
     TransformComponent:
-      Translation: [-15, 4, 0]
+      Translation: [16, -6, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -500,16 +204,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [5, 6]
+      Coords: [8, 18]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 3502852259470557788
+  - Entity: 6434802691341857586
     TagComponent:
-      Tag: Cloud
+      Tag: Forest
     TransformComponent:
-      Translation: [-15, 5, 0]
+      Translation: [17, -6, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -517,16 +221,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [5, 1]
+      Coords: [24, 19]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 2750605551336339851
+  - Entity: 10417033692276035996
     TagComponent:
-      Tag: Cloud
+      Tag: Forest
     TransformComponent:
-      Translation: [-14, 4, 0]
+      Translation: [-1, -6, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -534,16 +238,50 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [6, 6]
+      Coords: [24, 19]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 1757645422716991741
+  - Entity: 17910182947035184803
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [-5, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [22, 19]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 8697727477975305378
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [-3, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [23, 18]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 11587859250609936655
     TagComponent:
       Tag: Grass
     TransformComponent:
-      Translation: [10, -6, 0]
+      Translation: [-14, -6, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -556,11 +294,11 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 15808471980466271800
+  - Entity: 11419626899989032802
     TagComponent:
       Tag: Cloud
     TransformComponent:
-      Translation: [-13, 4, 0]
+      Translation: [14, 5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -568,16 +306,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [7, 0]
+      Coords: [6, 7]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 8936663776298608779
+  - Entity: 10375913588195041479
     TagComponent:
       Tag: Cloud
     TransformComponent:
-      Translation: [-13, 5, 0]
+      Translation: [15, 5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -590,875 +328,11 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 4148277305278620851
+  - Entity: 17596909979146465868
     TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [-6, -9, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 690618700512942954
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [-6, -8, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 11764879006085125879
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [-6, -7, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 17041575215391267230
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [2, -9, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 14106735136977811335
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [2, -8, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 10346329208678461233
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [2, -7, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 11626156426266283551
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [3, -9, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 15256474915289039837
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [3, -8, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 13679531521149861375
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [3, -7, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 7953270661053598914
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [4, -9, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 6854861872605967919
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [4, -8, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 8813405848055109513
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [4, -7, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 2943799443745671493
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [5, -9, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 2996540975628986474
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [5, -8, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 10358803132444701544
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [5, -7, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 9225470617051965109
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [6, -9, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 6396780031476329478
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [6, -8, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 7020012985459100752
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [6, -7, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 17682218016759583586
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [7, -9, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 7244986713797140316
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [7, -8, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 4851858458108580968
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [7, -7, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 11693014048068079760
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [8, -9, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 6491760521284046208
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [8, -8, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 6222490144030719192
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [8, -7, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 10493339691577822313
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [9, -9, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 11345112676866392195
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [9, -8, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 10221473262409284011
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [9, -7, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 12411539184774854849
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [10, -9, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 4600103632491397856
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [10, -8, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 3251910522282985161
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [10, -7, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 234300031485869755
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [11, -9, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 8840522923722352020
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [11, -8, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 13281285565107460728
-    TagComponent:
-      Tag: Ground
+      Tag: Cloud
     TransformComponent:
-      Translation: [11, -7, 0]
+      Translation: [15, 4, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1466,26 +340,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
+      Coords: [7, 0]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 5562891648973773257
+  - Entity: 13886616966509182872
     TagComponent:
-      Tag: Ground
+      Tag: Cloud
     TransformComponent:
-      Translation: [12, -9, 0]
+      Translation: [14, 4, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1493,26 +357,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
+      Coords: [6, 6]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 16840567122626891239
+  - Entity: 14335907075868952401
     TagComponent:
-      Tag: Ground
+      Tag: Cloud
     TransformComponent:
-      Translation: [12, -8, 0]
+      Translation: [13, 4, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1520,26 +374,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
+      Coords: [5, 6]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 8454322084179948132
+  - Entity: 16482795788654360678
     TagComponent:
-      Tag: Ground
+      Tag: Cloud
     TransformComponent:
-      Translation: [12, -7, 0]
+      Translation: [13, 5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1547,53 +391,34 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
+      Coords: [5, 1]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 8190240669673585664
+  - Entity: 12842791700541890921
     TagComponent:
-      Tag: Ground
+      Tag: Primary Camera
     TransformComponent:
-      Translation: [13, -9, 0]
+      Translation: [0, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 15903854493214227779
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 21
+      Near: -1
+      Far: 1
+    NativeScriptComponent:
+      Script_name_0: ikan::CameraController
+      Num_Scripts: 1
+  - Entity: 4987278625303345844
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [13, -8, 0]
+      Translation: [1, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1603,33 +428,6 @@ Entities:
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
       Coords: [0, 27]
       Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 3476470160236717252
-    TagComponent:
-      Tag: Pipe
-    TransformComponent:
-      Translation: [13, -4, 0]
-      Rotation: [0, 0, 0]
-      Scale: [2, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 19]
-      Sprite_Size: [2, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
@@ -1643,11 +441,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 11613927966739935074
+  - Entity: 1462603990300942087
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [14, -9, 0]
+      Translation: [1, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1670,11 +468,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 8695229932235420301
+  - Entity: 3707128555237064769
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [14, -8, 0]
+      Translation: [1, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1697,11 +495,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 4051851276881688284
+  - Entity: 7048649827547908627
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [14, -7, 0]
+      Translation: [0, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1724,11 +522,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 1870545981377994086
+  - Entity: 9206980565732314580
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [15, -9, 0]
+      Translation: [0, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1751,11 +549,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 10004778057770567873
+  - Entity: 10236776575691741993
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [15, -8, 0]
+      Translation: [0, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1778,11 +576,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 2708984173092929698
+  - Entity: 14244054359438443958
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [15, -7, 0]
+      Translation: [-1, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1805,11 +603,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 9977604425631120869
+  - Entity: 14073819113859284872
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [16, -9, 0]
+      Translation: [-1, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1832,11 +630,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 12314402884279052363
+  - Entity: 4674569425553628953
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [16, -8, 0]
+      Translation: [-1, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1859,11 +657,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 9890138199140128297
+  - Entity: 10514546723590457791
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [16, -7, 0]
+      Translation: [-2, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1886,11 +684,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 12911999735975590077
+  - Entity: 250750374261288094
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [17, -9, 0]
+      Translation: [-2, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1913,11 +711,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 18139016888499622510
+  - Entity: 3933598156433592651
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [17, -8, 0]
+      Translation: [-2, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1940,11 +738,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 11910424170064437906
+  - Entity: 3951940289650910221
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [17, -7, 0]
+      Translation: [-3, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1967,11 +765,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 15092795136424343287
+  - Entity: 7454457852091795199
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-17, -9, 0]
+      Translation: [-3, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1994,11 +792,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 17026385736823998319
+  - Entity: 16789961525758319708
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-17, -8, 0]
+      Translation: [-3, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2021,11 +819,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 17935967686691771300
+  - Entity: 3947978133048118996
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-17, -7, 0]
+      Translation: [-4, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2048,11 +846,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 9020817783051953542
+  - Entity: 2693665747242680950
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-16, -9, 0]
+      Translation: [-4, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2075,11 +873,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 6625150560506378918
+  - Entity: 11500211396305514003
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-16, -8, 0]
+      Translation: [-4, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2102,11 +900,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 13983263922924880914
+  - Entity: 11525405676935747720
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-16, -7, 0]
+      Translation: [-5, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2129,11 +927,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 5775672011659065597
+  - Entity: 862168836156236711
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-15, -9, 0]
+      Translation: [-5, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2156,11 +954,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 129969210616907200
+  - Entity: 330504650540724334
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-15, -8, 0]
+      Translation: [-5, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2183,11 +981,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 7209402938110196894
+  - Entity: 5643692325639482235
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-15, -7, 0]
+      Translation: [-9, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2210,11 +1008,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 18292757508576740852
+  - Entity: 16595735058516068666
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-14, -9, 0]
+      Translation: [-9, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2237,11 +1035,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 11689161477806048279
+  - Entity: 12362939696177657284
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-14, -8, 0]
+      Translation: [-9, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2264,11 +1062,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 6381076932748775657
+  - Entity: 10299074537949258700
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-14, -7, 0]
+      Translation: [-10, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2291,11 +1089,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 13960435180634256488
+  - Entity: 6444180930928283856
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-13, -9, 0]
+      Translation: [-10, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2318,11 +1116,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 9020802463579527124
+  - Entity: 193527980446269997
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-13, -8, 0]
+      Translation: [-10, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2345,11 +1143,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 9970988322176579671
+  - Entity: 8019952083064674596
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-13, -7, 0]
+      Translation: [-11, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2372,11 +1170,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 9966536340000055771
+  - Entity: 17056726035462822155
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-12, -9, 0]
+      Translation: [-11, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2399,11 +1197,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 6538501822208492915
+  - Entity: 18341186525529570767
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-12, -8, 0]
+      Translation: [-11, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2468,11 +1266,11 @@ Entities:
       Sprite_Size2: [1, 1]
       Cell_Size2: [16, 16]
       Num_Coords: 3
-  - Entity: 18341186525529570767
+  - Entity: 6538501822208492915
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-11, -9, 0]
+      Translation: [-12, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2495,11 +1293,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 17056726035462822155
+  - Entity: 9966536340000055771
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-11, -8, 0]
+      Translation: [-12, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2522,11 +1320,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 8019952083064674596
+  - Entity: 9970988322176579671
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-11, -7, 0]
+      Translation: [-13, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2549,11 +1347,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 193527980446269997
+  - Entity: 9020802463579527124
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-10, -9, 0]
+      Translation: [-13, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2576,11 +1374,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 6444180930928283856
+  - Entity: 13960435180634256488
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-10, -8, 0]
+      Translation: [-13, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2603,11 +1401,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 10299074537949258700
+  - Entity: 6381076932748775657
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-10, -7, 0]
+      Translation: [-14, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2630,11 +1428,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 12362939696177657284
+  - Entity: 11689161477806048279
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-9, -9, 0]
+      Translation: [-14, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2657,11 +1455,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 16595735058516068666
+  - Entity: 18292757508576740852
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-9, -8, 0]
+      Translation: [-14, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2684,11 +1482,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 5643692325639482235
+  - Entity: 7209402938110196894
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-9, -7, 0]
+      Translation: [-15, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2711,11 +1509,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 330504650540724334
+  - Entity: 129969210616907200
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-5, -9, 0]
+      Translation: [-15, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2738,11 +1536,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 862168836156236711
+  - Entity: 5775672011659065597
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-5, -8, 0]
+      Translation: [-15, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2765,11 +1563,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 11525405676935747720
+  - Entity: 13983263922924880914
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-5, -7, 0]
+      Translation: [-16, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2792,11 +1590,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 11500211396305514003
+  - Entity: 6625150560506378918
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-4, -9, 0]
+      Translation: [-16, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2819,11 +1617,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 2693665747242680950
+  - Entity: 9020817783051953542
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-4, -8, 0]
+      Translation: [-16, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2846,11 +1644,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 3947978133048118996
+  - Entity: 17935967686691771300
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-4, -7, 0]
+      Translation: [-17, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2873,11 +1671,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 16789961525758319708
+  - Entity: 17026385736823998319
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-3, -9, 0]
+      Translation: [-17, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2900,11 +1698,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 7454457852091795199
+  - Entity: 15092795136424343287
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-3, -8, 0]
+      Translation: [-17, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2927,11 +1725,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 3951940289650910221
+  - Entity: 11910424170064437906
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-3, -7, 0]
+      Translation: [17, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2954,11 +1752,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 3933598156433592651
+  - Entity: 18139016888499622510
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-2, -9, 0]
+      Translation: [17, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2981,11 +1779,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 250750374261288094
+  - Entity: 12911999735975590077
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-2, -8, 0]
+      Translation: [17, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3008,11 +1806,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 10514546723590457791
+  - Entity: 9890138199140128297
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-2, -7, 0]
+      Translation: [16, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3035,11 +1833,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 4674569425553628953
+  - Entity: 12314402884279052363
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-1, -9, 0]
+      Translation: [16, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3062,11 +1860,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 14073819113859284872
+  - Entity: 9977604425631120869
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-1, -8, 0]
+      Translation: [16, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3089,11 +1887,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 14244054359438443958
+  - Entity: 2708984173092929698
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-1, -7, 0]
+      Translation: [15, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3116,11 +1914,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 10236776575691741993
+  - Entity: 10004778057770567873
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [0, -9, 0]
+      Translation: [15, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3143,11 +1941,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 9206980565732314580
+  - Entity: 1870545981377994086
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [0, -8, 0]
+      Translation: [15, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3170,11 +1968,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 7048649827547908627
+  - Entity: 4051851276881688284
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [0, -7, 0]
+      Translation: [14, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3197,11 +1995,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 3707128555237064769
+  - Entity: 8695229932235420301
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [1, -9, 0]
+      Translation: [14, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3224,11 +2022,11 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 1462603990300942087
+  - Entity: 11613927966739935074
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [1, -8, 0]
+      Translation: [14, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3251,11 +2049,38 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 4987278625303345844
+  - Entity: 3476470160236717252
+    TagComponent:
+      Tag: Pipe
+    TransformComponent:
+      Translation: [13, -4, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 19]
+      Sprite_Size: [2, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 15903854493214227779
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [1, -7, 0]
+      Translation: [13, -8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3278,97 +2103,1010 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 12842791700541890921
+  - Entity: 8190240669673585664
     TagComponent:
-      Tag: Primary Camera
+      Tag: Ground
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [13, -9, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
-    CameraComponent:
-      FixedAspectRatio: false
-      Primary: true
-      ProjectionType: 1
-      PerspectiveFOV: 0.785398185
-      OrthographicSize: 21
-      Near: -1
-      Far: 1
-    NativeScriptComponent:
-      Script_name_0: ikan::CameraController
-      Num_Scripts: 1
-  - Entity: 16482795788654360678
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 8454322084179948132
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [12, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 16840567122626891239
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [12, -8, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 5562891648973773257
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [12, -9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 13281285565107460728
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [11, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 8840522923722352020
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [11, -8, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 234300031485869755
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [11, -9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 3251910522282985161
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [10, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 4600103632491397856
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [10, -8, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 12411539184774854849
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [10, -9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 10221473262409284011
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [9, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 11345112676866392195
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [9, -8, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 10493339691577822313
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [9, -9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 6222490144030719192
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [8, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 6491760521284046208
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [8, -8, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 11693014048068079760
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [8, -9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 4851858458108580968
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [7, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 7244986713797140316
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [7, -8, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 17682218016759583586
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [7, -9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 7020012985459100752
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [6, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 6396780031476329478
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [6, -8, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 9225470617051965109
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [6, -9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 10358803132444701544
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [5, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 2996540975628986474
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [5, -8, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 2943799443745671493
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [5, -9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 8813405848055109513
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [4, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 6854861872605967919
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [4, -8, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 7953270661053598914
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [4, -9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 13679531521149861375
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [3, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 15256474915289039837
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [3, -8, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 11626156426266283551
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [3, -9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 10346329208678461233
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [2, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 14106735136977811335
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [2, -8, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 17041575215391267230
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [2, -9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 11764879006085125879
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [-6, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 690618700512942954
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [-6, -8, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 4148277305278620851
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [-6, -9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 8936663776298608779
     TagComponent:
       Tag: Cloud
     TransformComponent:
-      Translation: [13, 5, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [5, 1]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 14335907075868952401
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [13, 4, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [5, 6]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 13886616966509182872
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [14, 4, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [6, 6]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 17596909979146465868
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [15, 4, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [7, 0]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 10375913588195041479
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [15, 5, 0]
+      Translation: [-13, 5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3381,11 +3119,11 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 11419626899989032802
+  - Entity: 15808471980466271800
     TagComponent:
       Tag: Cloud
     TransformComponent:
-      Translation: [14, 5, 0]
+      Translation: [-13, 4, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3393,16 +3131,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [6, 7]
+      Coords: [7, 0]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 11587859250609936655
+  - Entity: 1757645422716991741
     TagComponent:
       Tag: Grass
     TransformComponent:
-      Translation: [-14, -6, 0]
+      Translation: [10, -6, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3415,11 +3153,11 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 8697727477975305378
+  - Entity: 2750605551336339851
     TagComponent:
-      Tag: Forest
+      Tag: Cloud
     TransformComponent:
-      Translation: [-3, -6, 0]
+      Translation: [-14, 4, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3427,16 +3165,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [23, 18]
+      Coords: [6, 6]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 17910182947035184803
+  - Entity: 3502852259470557788
     TagComponent:
-      Tag: Forest
+      Tag: Cloud
     TransformComponent:
-      Translation: [-5, -6, 0]
+      Translation: [-15, 5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3444,16 +3182,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [22, 19]
+      Coords: [5, 1]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 10417033692276035996
+  - Entity: 15436263834725054511
     TagComponent:
-      Tag: Forest
+      Tag: Cloud
     TransformComponent:
-      Translation: [-1, -6, 0]
+      Translation: [-15, 4, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3461,16 +3199,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [24, 19]
+      Coords: [5, 6]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 6434802691341857586
+  - Entity: 16265523744672756011
     TagComponent:
-      Tag: Forest
+      Tag: Cloud
     TransformComponent:
-      Translation: [17, -6, 0]
+      Translation: [-2, 6, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3478,16 +3216,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [24, 19]
+      Coords: [7, 7]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 12793095953778088557
+  - Entity: 12112995436358667722
     TagComponent:
-      Tag: Forest
+      Tag: Cloud
     TransformComponent:
-      Translation: [16, -6, 0]
+      Translation: [-2, 5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3495,16 +3233,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [8, 18]
+      Coords: [7, 0]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 9655110765421295271
+  - Entity: 2755215440770856200
     TagComponent:
-      Tag: Forest
+      Tag: Cloud
     TransformComponent:
-      Translation: [16, -5, 0]
+      Translation: [-3, 6, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3512,16 +3250,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [23, 19]
+      Coords: [6, 7]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 5322714827289149517
+  - Entity: 4401973121510305786
     TagComponent:
-      Tag: Forest
+      Tag: Cloud
     TransformComponent:
-      Translation: [15, -6, 0]
+      Translation: [-3, 5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3529,16 +3267,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [22, 19]
+      Coords: [6, 6]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 8284814392111292023
+  - Entity: 10422400217284425978
     TagComponent:
-      Tag: Forest
+      Tag: Cloud
     TransformComponent:
-      Translation: [-3, -4, 0]
+      Translation: [-4, 6, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3546,16 +3284,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [23, 19]
+      Coords: [5, 1]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 16732759545938706022
+  - Entity: 10693044728185278463
     TagComponent:
-      Tag: Forest
+      Tag: Cloud
     TransformComponent:
-      Translation: [-4, -5, 0]
+      Translation: [-4, 5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3563,16 +3301,16 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [22, 19]
+      Coords: [5, 6]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 6138607759814413472
+  - Entity: 6067237934728452695
     TagComponent:
-      Tag: Forest
+      Tag: Ground
     TransformComponent:
-      Translation: [-3, -5, 0]
+      Translation: [-12, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3580,50 +3318,26 @@ Entities:
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [8, 18]
+      Coords: [0, 27]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 6561399961652122154
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [-2, -5, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [24, 19]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 18201206072808797080
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [-2, -6, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [8, 18]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 17696375108782566992
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 2072615478155848095
     TagComponent:
       Tag: Bonus
     TransformComponent:
-      Translation: [2, -2, 0]
+      Translation: [-2, -2, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3661,3 +3375,316 @@ Entities:
       Sprite_Size2: [1, 1]
       Cell_Size2: [16, 16]
       Num_Coords: 3
+  - Entity: 14896626395914607444
+    TagComponent:
+      Tag: Brick
+    TransformComponent:
+      Translation: [5, -2, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [13, 27.0248089]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 10525517269322488637
+    TagComponent:
+      Tag: Bonus
+    TransformComponent:
+      Translation: [3, 3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [24.0019073, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+    AnimationComponent:
+      Animation: true
+      Sprite: true
+      Speed: 15
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords0: [24, 27]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Coords1: [25, 27]
+      Sprite_Size1: [1, 1]
+      Cell_Size1: [16, 16]
+      Coords2: [26, 27]
+      Sprite_Size2: [1, 1]
+      Cell_Size2: [16, 16]
+      Num_Coords: 3
+  - Entity: 6108475346258469381
+    TagComponent:
+      Tag: Brick
+    TransformComponent:
+      Translation: [1, -2, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [13, 27.0248089]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 5003048345925137751
+    TagComponent:
+      Tag: Cloud
+    TransformComponent:
+      Translation: [-14, 5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [6, 7]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 1665806831511498674
+    TagComponent:
+      Tag: Grass
+    TransformComponent:
+      Translation: [9, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [12, 16]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 2003129267979330663
+    TagComponent:
+      Tag: Grass
+    TransformComponent:
+      Translation: [8, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [12, 16]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 15486626743973809576
+    TagComponent:
+      Tag: Grass
+    TransformComponent:
+      Translation: [-13, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [13, 16]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 2715846580451599061
+    TagComponent:
+      Tag: Forest
+    TransformComponent:
+      Translation: [-4, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [8, 18]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 15512995208424120780
+    TagComponent:
+      Tag: Grass
+    TransformComponent:
+      Translation: [-15, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [11, 16]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 2585204270914737813
+    TagComponent:
+      Tag: Grass
+    TransformComponent:
+      Translation: [11, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [13, 16]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 10898836523320828105
+    TagComponent:
+      Tag: Grass
+    TransformComponent:
+      Translation: [7, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [11, 16]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 6385352391988977199
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [13, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 6493182694890565766
+    TagComponent:
+      Tag: Pipe
+    TransformComponent:
+      Translation: [13, -6, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 18]
+      Sprite_Size: [2, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 7799475849901546842
+    TagComponent:
+      Tag: Pipe
+    TransformComponent:
+      Translation: [13, -5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 18]
+      Sprite_Size: [2, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5

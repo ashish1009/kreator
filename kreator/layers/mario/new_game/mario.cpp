@@ -17,6 +17,9 @@ namespace mario {
   void MarioData::Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
     MARIO_INFO("Initializing Mario Game Data ... ");
     
+    // Change Text renderer Font
+    TextRenderer::LoadFreetype(AM::ClientAsset(font_path));
+
     scene_ = scene;
     panel_ = panel;
     
@@ -31,6 +34,33 @@ namespace mario {
       AddComponentHack();
       MoveCameraDebug(ts);
     }
+    
+    // Score and All text
+    {
+      TextRenderer::BeginBatch(text_data_.still_camera_projection);
+
+      text_data_.Render("MARIO", 0, 0);
+      text_data_.Render(std::to_string(score_), 1, 0);
+      
+      text_data_.Render("x" + std::to_string(coins_), 1, 1);
+      
+      text_data_.Render("WORLD", 0, 2);
+      text_data_.Render(std::to_string(world_) + " - " + std::to_string(level_), 1, 2);
+      
+      text_data_.Render("TIME", 0, 3);
+      text_data_.Render(std::to_string(time_), 1, 3);
+
+      TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)), { 5.0f, 5.0f, 0.3f }, { 0.35f, 0.35f }, { 0, 0, 1, 1 });
+      
+      TextRenderer::EndBatch();
+    }
+  }
+  
+  void MarioData::SetViewportSize(uint32_t width, uint32_t height) {
+    viewport_width_ = width;
+    viewport_height_ = height;
+    
+    text_data_.Update(viewport_width_, viewport_height_);
   }
   
   void MarioData::EventHandler(Event& event) {
@@ -88,7 +118,7 @@ namespace mario {
     
   ImguiFont MarioData::RegularFontData() {
     return {
-      AM::ClientAsset("fonts/mario.ttf"),
+      AM::ClientAsset(font_path),
       14.0f
       /* Size of font */
     };
@@ -96,7 +126,7 @@ namespace mario {
   
   ImguiFont MarioData::BoldFontData() {
     return {
-      AM::ClientAsset("fonts/mario.ttf"),
+      AM::ClientAsset(font_path),
       14.0f /* Size of font */
     };
   }

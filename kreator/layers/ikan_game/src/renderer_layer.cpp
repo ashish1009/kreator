@@ -59,6 +59,8 @@ namespace ikan_game {
         
         viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
         active_scene_->SetViewport(viewport_width, viewport_height);
+        
+        game_data_->SetViewportSize(viewport_width, viewport_height);
       }
 
       viewport_.framebuffer->Bind();
@@ -169,6 +171,7 @@ namespace ikan_game {
     viewport_height = event.GetHeight();
     
     active_scene_->SetViewport(viewport_width, viewport_height);
+    game_data_->SetViewportSize(viewport_width, viewport_height);
     return false;
   }
   

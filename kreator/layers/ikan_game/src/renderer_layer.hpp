@@ -20,6 +20,7 @@ namespace ikan_game {
     virtual void EventHandler(Event& event) {};
     virtual void RenderGui() {};
     virtual void SetState(bool is_playing) {};
+    virtual void SetViewportSize(uint32_t width, uint32_t height) {}
     
     virtual glm::vec4 GetBgColor() { return {0.2f, 0.2f, 0.2f, 1.0f}; }
     
