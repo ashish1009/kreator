@@ -297,12 +297,15 @@ namespace ikan {
     AddComponentMenu<BoxColloiderComponent>("Box Collider", [this]() {
       return selected_entity_.HasComponent<BoxColloiderComponent>() or selected_entity_.HasComponent<CircleColloiderComponent>();
     });
+    
     AddComponentMenu<CircleColloiderComponent>("Circle Collider", [this]() {
       return selected_entity_.HasComponent<BoxColloiderComponent>() or selected_entity_.HasComponent<CircleColloiderComponent>();
     });
     
     ImGui::Separator();
-    AddComponentMenu<AnimationComponent>("Animation");
+    if (selected_entity_.HasComponent<QuadComponent>() and selected_entity_.GetComponent<QuadComponent>().texture_comp.component) {
+      AddComponentMenu<AnimationComponent>("Animation", nullptr, selected_entity_.GetComponent<QuadComponent>().texture_comp.component);
+    }
   }
   
   ScenePanelManager::Setting& ScenePanelManager::GetSetting() { return setting_; }

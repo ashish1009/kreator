@@ -635,33 +635,49 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Animation Component
   // -------------------------------------------------------------------------
+  AnimationComponent::AnimationComponent(std::shared_ptr<Texture> sprite_image) {
+    this->sprite_image = sprite_image;
+  }
+
   AnimationComponent::AnimationComponent(const AnimationComponent& other) {
     animation = other.animation;
     sprite = other.sprite;
-    for (const auto& coord : other.sprite_coords) {
-      sprite_coords.push_back(coord);
+    
+    sprite_image = Renderer::GetTexture(other.sprite_image->GetfilePath());
+    for (const auto& sprite : other.sprites) {
+      sprites.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
+                                                     sprite->GetSpriteSize(), sprite->GetCellSize()));
     }
   }
   AnimationComponent& AnimationComponent::operator=(const AnimationComponent& other) {
     animation = other.animation;
     sprite = other.sprite;
-    for (const auto& coord : other.sprite_coords) {
-      sprite_coords.push_back(coord);
+    
+    sprite_image = Renderer::GetTexture(other.sprite_image->GetfilePath());
+    for (const auto& sprite : other.sprites) {
+      sprites.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
+                                                     sprite->GetSpriteSize(), sprite->GetCellSize()));
     }
     return *this;
   }
   AnimationComponent::AnimationComponent(AnimationComponent&& other) {
     animation = other.animation;
     sprite = other.sprite;
-    for (const auto& coord : other.sprite_coords) {
-      sprite_coords.push_back(coord);
+    
+    sprite_image = Renderer::GetTexture(other.sprite_image->GetfilePath());
+    for (const auto& sprite : other.sprites) {
+      sprites.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
+                                                     sprite->GetSpriteSize(), sprite->GetCellSize()));
     }
   }
   AnimationComponent& AnimationComponent::operator=(AnimationComponent&& other) {
     animation = other.animation;
     sprite = other.sprite;
-    for (const auto& coord : other.sprite_coords) {
-      sprite_coords.push_back(coord);
+    
+    sprite_image = Renderer::GetTexture(other.sprite_image->GetfilePath());
+    for (const auto& sprite : other.sprites) {
+      sprites.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
+                                                     sprite->GetSpriteSize(), sprite->GetCellSize()));
     }
     return *this;
   }
@@ -671,15 +687,18 @@ namespace ikan {
     ImGui::Separator();
     
     if (sprite) {
-      static glm::vec2 coords;
+      static glm::vec2 coords = {0, 0}, sprite_size = {1, 1}, cell_size = {16, 16};
       PropertyGrid::Float2("Add Coord", coords, nullptr, 0.1f, 0.0f, 100.0f, 0.0f);
+      PropertyGrid::Float2("Sprite Size", sprite_size, nullptr, 1.0f, 1.0f, 100.0f, 8.0f);
+      PropertyGrid::Float2("Cell Size", cell_size, nullptr, 8.0f, 16.0f, 100.0f, 1.0f);
+      
       ImGui::Separator();
       // Tag
       const ImGuiTreeNodeFlags tree_node_flags = ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_AllowItemOverlap |
       ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_FramePadding;
       
       // Render the title named as entity name
-      bool open = ImGui::TreeNodeEx("Animation Coords", tree_node_flags);
+      bool open = ImGui::TreeNodeEx("Animation Sprites", tree_node_flags);
       
       // Get the avilable width and height for button position
       ImVec2 content_region_available = ImGui::GetContentRegionAvail();
@@ -695,20 +714,27 @@ namespace ikan {
       // Render the button (X) for removing the component
       static std::shared_ptr<Texture> add_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/plus.png"));
       if (PropertyGrid::ImageButton("Add", add_texture->GetRendererID(), { content_height, content_height } )) {
-        sprite_coords.push_back(coords);
+        sprites.push_back(SubTexture::CreateFromCoords(sprite_image, coords, sprite_size, cell_size));
       }
 
-      static bool delete_coord = false;
-      auto delete_it = sprite_coords.begin();
+      static bool delete_sprite = false;
+      auto delete_it = sprites.begin();
       if (open) {
-        for (auto it = sprite_coords.begin(); it != sprite_coords.end(); it++) {
-          bool coord_open = ImGui::TreeNodeEx((std::to_string((int32_t)it->x) + " , " + std::to_string((int32_t)it->y)).c_str(),
-                                              ImGuiTreeNodeFlags_Bullet | ImGuiTreeNodeFlags_OpenOnArrow);
+        for (auto it = sprites.begin(); it != sprites.end(); it++) {
+          auto& sprite = *it;
+          
+          std::string sprite_data;
+          sprite_data = std::to_string((int32_t)sprite->GetCoords().x) + " , " + std::to_string((int32_t)sprite->GetCoords().y) + " | ";
+          sprite_data += std::to_string((int32_t)sprite->GetSpriteSize().x) + " , " + std::to_string((int32_t)sprite->GetSpriteSize().y) + " | ";
+          sprite_data += std::to_string((int32_t)sprite->GetCellSize().x) + " , " + std::to_string((int32_t)sprite->GetCellSize().y);
+          
+          bool coord_open = ImGui::TreeNodeEx(sprite_data.c_str(), ImGuiTreeNodeFlags_Bullet | ImGuiTreeNodeFlags_OpenOnArrow);
+          
           // Right click of mouse option
           if (ImGui::BeginPopupContextItem()) {
             // Delete Coord
             if (ImGui::MenuItem("Delete Coord")) {
-              delete_coord = true;
+              delete_sprite = true;
               delete_it = it;
             }
             ImGui::EndMenu();
@@ -721,9 +747,9 @@ namespace ikan {
       }
       ImGui::Separator();
       
-      if (delete_coord) {
-        sprite_coords.erase(delete_it);
-        delete_coord = false;
+      if (delete_sprite) {
+        sprites.erase(delete_it);
+        delete_sprite = false;
       }
     }
   }

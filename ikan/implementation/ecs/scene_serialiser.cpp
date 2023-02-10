@@ -298,10 +298,13 @@ namespace ikan {
         
         out << YAML::Key << "Animation" << YAML::Value << ac.animation;
         out << YAML::Key << "Sprite" << YAML::Value << ac.sprite;
-        
+        out << YAML::Key << "Texture_Path" << YAML::Value << ac.sprite_image->GetfilePath();
+
         int32_t num_sprite_coords = 0;
-        for (const auto& coord : ac.sprite_coords) {
-          out << YAML::Key << "Coords" + std::to_string(num_sprite_coords++) << YAML::Value << coord;
+        for (const auto& sprite : ac.sprites) {
+          out << YAML::Key << "Coords" << YAML::Value << sprite->GetCoords();
+          out << YAML::Key << "Sprite_Size" << YAML::Value << sprite->GetSpriteSize();
+          out << YAML::Key << "Cell_Size" << YAML::Value << sprite->GetCellSize();
         }
         out << YAML::Key << "Num_Coords" << YAML::Value << num_sprite_coords;
 
@@ -546,7 +549,10 @@ namespace ikan {
         // --------------------------------------------------------------------
         auto animation_component = entity["AnimationComponent"];
         if (animation_component) {
-          auto& ac = deserialized_entity.AddComponent<AnimationComponent>();
+          std::string sprite_tex_fila_path = animation_component["Texture_Path"].as<std::string>();
+          std::shared_ptr<Texture> t = Renderer::GetTexture(sprite_tex_fila_path);
+
+          auto& ac = deserialized_entity.AddComponent<AnimationComponent>(t);
           
           ac.animation = animation_component["Animation"].as<bool>();
           ac.sprite = animation_component["Sprite"].as<bool>();
@@ -554,7 +560,9 @@ namespace ikan {
           int32_t num_coords = animation_component["Num_Coords"].as<int32_t>();
           for (int i = 0; i < num_coords; i++) {
             auto coord = animation_component["Coords" + std::to_string(i)].as<glm::vec2>();
-            ac.sprite_coords.push_back(coord);
+            auto sprite_size = animation_component["Sprite_Size" + std::to_string(i)].as<glm::vec2>();
+            auto cell_size = animation_component["Cell_Size" + std::to_string(i)].as<glm::vec2>();
+            ac.sprites.push_back(SubTexture::CreateFromCoords(t, coord, sprite_size, cell_size));
           }
           
           IK_CORE_INFO(LogModule::SceneSerializer, "    Animation Component");
