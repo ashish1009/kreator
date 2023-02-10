@@ -257,14 +257,22 @@ namespace mario {
     if (add) {
       scene_->GetRegistry().each([this](auto entity) {
         Entity e = {entity, scene_.get()};
-        if (e.GetComponent<TagComponent>().tag == "Ground") {
+        if (e.GetComponent<TagComponent>().tag == "Bonus") {
           if (e.HasComponent<QuadComponent>()) {
-            if (!e.HasComponent<RigidBodyComponent>()) {
-              e.AddComponent<RigidBodyComponent>();
+            if (!e.HasComponent<AnimationComponent>()) {
+              std::shared_ptr<Texture> t = Renderer::GetTexture(AM::ClientAsset("textures/tiles.png"));
+              auto& ac = e.AddComponent<AnimationComponent>(t);
+              ac.animation = true;
+              ac.is_sprite = true;
+              ac.speed = 15;
+              
+              for (int i = 0; i < 3; i++) {
+                ac.sprites.push_back(SubTexture::CreateFromCoords(t, {24 + i, 27}));
+              }
             }
-            if (!e.HasComponent<BoxColloiderComponent>()) {
-              e.AddComponent<BoxColloiderComponent>();
-            }
+//            if (!e.HasComponent<BoxColloiderComponent>()) {
+//              e.AddComponent<BoxColloiderComponent>();
+//            }
           }
         }
       });

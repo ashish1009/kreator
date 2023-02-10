@@ -387,16 +387,15 @@ namespace ikan {
         if (quad_component.texture_comp.use_sprite) {
           // Animation
           if (registry_.has<AnimationComponent>(quad_entity)) {
-            const auto& ac = registry_.get<AnimationComponent>(quad_entity);
+            auto& ac = registry_.get<AnimationComponent>(quad_entity);
             if (ac.animation and ac.is_sprite and ac.sprites.size() > 0) { // Sprite Animation
-              static int32_t anim_idx = 0;
-              if (anim_idx >= ac.speed * ac.sprites.size() or anim_idx < 1)
-                anim_idx = 0;
+              if (ac.anim_idx >= ac.speed * ac.sprites.size() or ac.anim_idx < 1)
+                ac.anim_idx = 0;
               BatchRenderer::DrawQuad(transform_component.GetTransform(),
-                                      ac.sprites[anim_idx / ac.speed],
+                                      ac.sprites[ac.anim_idx / ac.speed],
                                       quad_component.color,
                                       (uint32_t)quad_entity);
-              anim_idx++;
+              ac.anim_idx++;
             }
             else { // Sprite No Animation
               BatchRenderer::DrawQuad(transform_component.GetTransform(),
