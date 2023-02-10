@@ -11,53 +11,23 @@ namespace mario {
   
   MarioData::MarioData(const Viewport* const viewport)
   : viewport_(viewport) {
+    
   }
   
-  void MarioData::Init() {
+  void MarioData::Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
+    scene_ = scene;
+    panel_ = panel;
+    
     BatchRenderer::Init(2000, 0, 0);
+    
+    player.Init(scene_);
   }
-  
+
   void MarioData::Update(Timestep ts) {
     if (!is_playing_) {
       StoreSelectedEntities();
-      
-      // HACK to add components
-      static bool add = true;
-      if (add)
-      {
-        scene_->GetRegistry().each([this](auto entity) {
-          Entity e = {entity, scene_.get()};
-          if (e.HasComponent<QuadComponent>()) {
-            if (!e.HasComponent<RigidBodyComponent>()) {
-              e.AddComponent<RigidBodyComponent>();
-            }
-            if (!e.HasComponent<BoxColloiderComponent>()) {
-              e.AddComponent<BoxColloiderComponent>();
-            }
-          }
-        });
-        add = false;
-      }
-      
-      // Move Camera for debug
-      {
-        auto& cd = scene_->GetPrimaryCameraData();
-        auto& cam = cd.scene_camera;
-        auto& tc = cd.transform_comp;
-        
-        bool shift = Input::IsKeyPressed(KeyCode::RightShift);
-        if (shift) {
-          if (Input::IsKeyPressed(KeyCode::A)) tc->UpdateTranslation_X(tc->Translation().x - (cam->GetZoom() * ts));
-          if (Input::IsKeyPressed(KeyCode::D)) tc->UpdateTranslation_X(tc->Translation().x + (cam->GetZoom() * ts));
-          
-          if (Input::IsKeyPressed(KeyCode::W)) tc->UpdateTranslation_Y(tc->Translation().y + (cam->GetZoom() * ts));
-          if (Input::IsKeyPressed(KeyCode::S)) tc->UpdateTranslation_Y(tc->Translation().y - (cam->GetZoom() * ts));
-          
-          if (Input::IsKeyPressed(KeyCode::Q)) cam->SetOrthographicSize(cam->GetOrthographicSize() + 1.0f);
-          if (Input::IsKeyPressed(KeyCode::E)) cam->SetOrthographicSize(cam->GetOrthographicSize() - 1.0f);
-        }
-      }
-      
+      AddComponentHack();
+      MoveCameraDebug(ts);
     }
   }
   
@@ -104,12 +74,7 @@ namespace mario {
       ImGui::EndMenuBar(); // ImGui::BeginMenuBar()
     } // if (ImGui::BeginMenuBar())
   }
-  
-  void MarioData::SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
-    scene_ = scene;
-    panel_ = panel;
-  }
-  
+    
   void MarioData::SetState(bool is_playing)  {
     is_playing_ = is_playing;
   }
@@ -280,6 +245,45 @@ namespace mario {
       scene_->DuplicateEntity(*entity);
     }
     HighlightSelectedEntities(true);
+  }
+  
+  void MarioData::AddComponentHack() {
+    // HACK to add components
+    static bool add = true;
+    if (add)
+    {
+      scene_->GetRegistry().each([this](auto entity) {
+        Entity e = {entity, scene_.get()};
+        if (e.HasComponent<QuadComponent>()) {
+          if (!e.HasComponent<RigidBodyComponent>()) {
+            e.AddComponent<RigidBodyComponent>();
+          }
+          if (!e.HasComponent<BoxColloiderComponent>()) {
+            e.AddComponent<BoxColloiderComponent>();
+          }
+        }
+      });
+      add = false;
+    }
+  }
+  
+  void MarioData::MoveCameraDebug(Timestep ts) {
+    // Move Camera for debug
+    auto& cd = scene_->GetPrimaryCameraData();
+    auto& cam = cd.scene_camera;
+    auto& tc = cd.transform_comp;
+    
+    bool shift = Input::IsKeyPressed(KeyCode::RightShift);
+    if (shift) {
+      if (Input::IsKeyPressed(KeyCode::A)) tc->UpdateTranslation_X(tc->Translation().x - (cam->GetZoom() * ts));
+      if (Input::IsKeyPressed(KeyCode::D)) tc->UpdateTranslation_X(tc->Translation().x + (cam->GetZoom() * ts));
+      
+      if (Input::IsKeyPressed(KeyCode::W)) tc->UpdateTranslation_Y(tc->Translation().y + (cam->GetZoom() * ts));
+      if (Input::IsKeyPressed(KeyCode::S)) tc->UpdateTranslation_Y(tc->Translation().y - (cam->GetZoom() * ts));
+      
+      if (Input::IsKeyPressed(KeyCode::Q)) cam->SetOrthographicSize(cam->GetOrthographicSize() + 1.0f);
+      if (Input::IsKeyPressed(KeyCode::E)) cam->SetOrthographicSize(cam->GetOrthographicSize() - 1.0f);
+    }
   }
 
 }

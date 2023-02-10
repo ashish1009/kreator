@@ -15,17 +15,16 @@ namespace ikan_game {
   public:
     virtual ~GameData() = default;
     
-    virtual void Init() {};
+    virtual void Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {};
     virtual void Update(Timestep ts) {};
     virtual void EventHandler(Event& event) {};
     virtual void RenderGui() {};
     virtual void SetState(bool is_playing) {};
-    virtual void SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {};
     
     virtual std::string GameName() {return "ikan Game";};
     virtual std::string SavedScene() {return "";};
-    virtual ImguiFont RegularFontData() {return {"", 0};};
-    virtual ImguiFont BoldFontData() {return {"", 0};};
+    virtual ImguiFont RegularFontData() {return {AM::ProjectPath("kreator/layers/ikan_game/game_assets/fonts/Opensans/Regular.ttf"), 14};};
+    virtual ImguiFont BoldFontData() {return {AM::ProjectPath("kreator/layers/ikan_game/game_assets/fonts/Opensans/Bold.ttf"), 14};};
     virtual std::vector<std::filesystem::path> FavDirecotries() {return {};};
   };
   

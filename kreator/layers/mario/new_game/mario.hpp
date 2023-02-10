@@ -8,6 +8,7 @@
 #pragma once
 
 #include "renderer_layer.hpp"
+#include "player.hpp"
 
 namespace mario {
   
@@ -17,13 +18,12 @@ namespace mario {
   public:
     MarioData(const Viewport* const viewport);
     
-    void Init() override;
+    void Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) override;
     void Update(Timestep ts) override;
     void EventHandler(Event& event) override;
     void RenderGui() override;
     
     void SetState(bool is_playing) override;
-    void SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) override;
     
     // Getters
     std::string GameName() override;
@@ -54,12 +54,17 @@ namespace mario {
     /// This function Duplicate the selected entities
     void DuplicateSelectedEntities();
 
+    void AddComponentHack();
+    void MoveCameraDebug(Timestep ts);
+    
     bool is_playing_ = false;
     const Viewport* const viewport_;
     std::shared_ptr<EnttScene> scene_;
     ScenePanelManager* panel_;
     
     std::vector<Entity*> selected_entities_;
+    
+    Player player;
   };
   
 }

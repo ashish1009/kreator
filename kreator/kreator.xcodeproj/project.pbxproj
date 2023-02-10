@@ -19,6 +19,7 @@
 		B25F617C2969A4A90042FE09 /* background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25F617A2969A40F0042FE09 /* background.cpp */; };
 		B25F618B2969A9CF0042FE09 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25F61892969A9CF0042FE09 /* player.cpp */; };
 		B275570A29601F650020D552 /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B275570829601F650020D552 /* renderer_layer.cpp */; };
+		B28D963E299643A00089F98F /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B28D963C299643A00089F98F /* player.cpp */; };
 		B2A7FA69299257350039C996 /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2A7FA67299257350039C996 /* renderer_layer.cpp */; };
 		B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2BD9DDC295C83030076A2F9 /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2BD9DD4295C7E120076A2F9 /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -75,6 +76,9 @@
 		B25F618A2969A9CF0042FE09 /* player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
 		B275570829601F650020D552 /* renderer_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
 		B275570929601F650020D552 /* renderer_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
+		B28D963C299643A00089F98F /* player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
+		B28D963D299643A00089F98F /* player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
+		B28D963F299644770089F98F /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		B295CFA32992AF4400174D0F /* bridge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bridge.png; sourceTree = "<group>"; };
 		B295CFA42992AF4400174D0F /* castel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = castel.png; sourceTree = "<group>"; };
 		B295CFA52992AF4400174D0F /* pipe_y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pipe_y.png; sourceTree = "<group>"; };
@@ -348,8 +352,11 @@
 		B2A7FA66299257150039C996 /* new_game */ = {
 			isa = PBXGroup;
 			children = (
+				B28D963F299644770089F98F /* common.h */,
 				B21E44112993FC6C00D6CDFD /* mario.hpp */,
 				B21E441A299408E500D6CDFD /* mario.cpp */,
+				B28D963D299643A00089F98F /* player.hpp */,
+				B28D963C299643A00089F98F /* player.cpp */,
 			);
 			path = new_game;
 			sourceTree = "<group>";
@@ -460,6 +467,7 @@
 				B24DD82F2962FFEE00525941 /* chess_main.cpp in Sources */,
 				B21E441B299408E500D6CDFD /* mario.cpp in Sources */,
 				B275570A29601F650020D552 /* renderer_layer.cpp in Sources */,
+				B28D963E299643A00089F98F /* player.cpp in Sources */,
 				B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
 				B25F617C2969A4A90042FE09 /* background.cpp in Sources */,

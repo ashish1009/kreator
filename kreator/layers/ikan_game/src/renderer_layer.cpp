@@ -16,8 +16,6 @@ namespace ikan_game {
       game_data_ = std::make_unique<GameData>();
 
     IK_INFO(game_data_->GameName(), "Creating {0} Layer instance ... ", game_data_->GameName().c_str());
-    
-    game_data_->Init();
   }
   
   RendererLayer::~RendererLayer() {
@@ -35,7 +33,6 @@ namespace ikan_game {
     // TODO: Add File Menu
     ImguiAPI::SetLightGreyThemeColors();
 
-    // TODO: Openging File in start. Later will not do this
     if (!OpenScene(game_data_->SavedScene())) {
       NewScene(AM::ClientAsset("scenes/New_scene"));
     }
@@ -313,7 +310,7 @@ namespace ikan_game {
     active_scene_ = std::make_shared<EnttScene>(scene_path);
     spm_.SetSceneContext(active_scene_.get());
     
-    game_data_->SetScene(active_scene_, &spm_);
+    game_data_->Init(active_scene_, &spm_);
   }
 
   const bool RendererLayer::OpenScene(const std::string& scene_path) {
