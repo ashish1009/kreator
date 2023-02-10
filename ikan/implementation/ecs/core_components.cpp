@@ -198,62 +198,72 @@ namespace ikan {
       }
       ImGui::Separator();
       
-      size_t tex_id = texture_comp.sprite->GetSpriteImage()->GetRendererID();
-
-      float tex_width = (float)texture_comp.sprite->GetSpriteImage()->GetWidth();
-      float tex_height = (float)texture_comp.sprite->GetSpriteImage()->GetHeight() ;
-      float width = std::min(ImGui::GetContentRegionAvailWidth(), tex_width);
+      const ImGuiTreeNodeFlags tree_node_flags =
+      ImGuiTreeNodeFlags_SpanAvailWidth |
+      ImGuiTreeNodeFlags_AllowItemOverlap |
+      ImGuiTreeNodeFlags_DefaultOpen;
       
-      float size_ratio = width / tex_width;
-      float height = tex_height * size_ratio;
-      
-      ImGui::Image((void*)tex_id, ImVec2(width, height), ImVec2(0, 1), ImVec2(1, 0),
-                   ImVec4(1.0f,1.0f,1.0f,1.0f), ImVec4(1.0f,1.0f,1.0f,0.5f));
-      
-
-      ImVec2 pos = ImGui::GetCursorScreenPos();
-      if (ImGui::IsItemHovered()) {
-        ImGui::BeginTooltip();
-
-        ImGuiIO& io = ImGui::GetIO();
-
-        float region_fixed_x = (float)((int32_t)(sprite_size.x * cell_size.x * size_ratio));
-        float region_fixed_y = (float)((int32_t)(sprite_size.y * cell_size.y * size_ratio));
-        static float zoom = 10.0f;
-
-        float region_x = io.MousePos.x - pos.x - region_fixed_x * 0.5f;
-        if (region_x < 0.0f)
-          region_x = 0.0f;
+      // Render the title named as entity name
+      bool open = ImGui::TreeNodeEx("Sprite", tree_node_flags);
+      if (open) {
+        size_t tex_id = texture_comp.sprite->GetSpriteImage()->GetRendererID();
         
-        else if (region_x > width - region_fixed_x)
-          region_x = width - region_fixed_x;
+        float tex_width = (float)texture_comp.sprite->GetSpriteImage()->GetWidth();
+        float tex_height = (float)texture_comp.sprite->GetSpriteImage()->GetHeight() ;
+        float width = std::min(ImGui::GetContentRegionAvailWidth(), tex_width);
         
-        float region_y = pos.y - io.MousePos.y - region_fixed_y * 0.5f;
-        if (region_y < 0.0f)
-          region_y = 0.0f;
+        float size_ratio = width / tex_width;
+        float height = tex_height * size_ratio;
         
-        else if (region_y > width - region_fixed_y)
-          region_y = height - region_fixed_y;
-
-        ImGui::Text("Min: (%.2f, %.2f)", region_x, region_y);
-        ImGui::Text("Max: (%.2f, %.2f)", region_x + region_fixed_x, region_y + region_fixed_y);
+        ImGui::Image((void*)tex_id, ImVec2(width, height), ImVec2(0, 1), ImVec2(1, 0),
+                     ImVec4(1.0f,1.0f,1.0f,1.0f), ImVec4(1.0f,1.0f,1.0f,0.5f));
         
-        ImVec2 uv0 = ImVec2((region_x) / width, (region_y + region_fixed_y) / height);
-        ImVec2 uv1 = ImVec2((region_x + region_fixed_x) / width, (region_y) / height);
-
-        ImGui::Image((void*)tex_id, ImVec2(region_fixed_x * zoom, region_fixed_y * zoom),
-                     uv0, uv1, ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
-
-        if (ImGui::IsMouseClicked(0)) {
-          glm::vec3 coords;
-          coords.x = (((region_x + region_fixed_x)) / (cell_size.x * size_ratio)) - sprite_size.x;
-          coords.y = (((region_y + region_fixed_y)) / (cell_size.y * size_ratio)) - sprite_size.y;
+        
+        ImVec2 pos = ImGui::GetCursorScreenPos();
+        if (ImGui::IsItemHovered()) {
+          ImGui::BeginTooltip();
           
-          texture_comp.sprite->GetSpriteImage().reset();
-          texture_comp.sprite = SubTexture::CreateFromCoords(texture_comp.component, coords, sprite_size, cell_size);
+          ImGuiIO& io = ImGui::GetIO();
+          
+          float region_fixed_x = (float)((int32_t)(sprite_size.x * cell_size.x * size_ratio));
+          float region_fixed_y = (float)((int32_t)(sprite_size.y * cell_size.y * size_ratio));
+          static float zoom = 10.0f;
+          
+          float region_x = io.MousePos.x - pos.x - region_fixed_x * 0.5f;
+          if (region_x < 0.0f)
+            region_x = 0.0f;
+          
+          else if (region_x > width - region_fixed_x)
+            region_x = width - region_fixed_x;
+          
+          float region_y = pos.y - io.MousePos.y - region_fixed_y * 0.5f;
+          if (region_y < 0.0f)
+            region_y = 0.0f;
+          
+          else if (region_y > width - region_fixed_y)
+            region_y = height - region_fixed_y;
+          
+          ImGui::Text("Min: (%.2f, %.2f)", region_x, region_y);
+          ImGui::Text("Max: (%.2f, %.2f)", region_x + region_fixed_x, region_y + region_fixed_y);
+          
+          ImVec2 uv0 = ImVec2((region_x) / width, (region_y + region_fixed_y) / height);
+          ImVec2 uv1 = ImVec2((region_x + region_fixed_x) / width, (region_y) / height);
+          
+          ImGui::Image((void*)tex_id, ImVec2(region_fixed_x * zoom, region_fixed_y * zoom),
+                       uv0, uv1, ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
+          
+          if (ImGui::IsMouseClicked(0)) {
+            glm::vec3 coords;
+            coords.x = (((region_x + region_fixed_x)) / (cell_size.x * size_ratio)) - sprite_size.x;
+            coords.y = (((region_y + region_fixed_y)) / (cell_size.y * size_ratio)) - sprite_size.y;
+            
+            texture_comp.sprite->GetSpriteImage().reset();
+            texture_comp.sprite = SubTexture::CreateFromCoords(texture_comp.component, coords, sprite_size, cell_size);
+          }
+          
+          ImGui::EndTooltip();
         }
-
-        ImGui::EndTooltip();
+        ImGui::TreePop();
       }
     }
   }

@@ -28,7 +28,12 @@ namespace mario {
         scene_->GetRegistry().each([this](auto entity) {
           Entity e = {entity, scene_.get()};
           if (e.HasComponent<QuadComponent>()) {
-            e.AddComponent<RigidBodyComponent>();
+            if (!e.HasComponent<RigidBodyComponent>()) {
+              e.AddComponent<RigidBodyComponent>();
+            }
+            if (!e.HasComponent<BoxColloiderComponent>()) {
+              e.AddComponent<BoxColloiderComponent>();
+            }
           }
         });
         add = false;
@@ -86,6 +91,7 @@ namespace mario {
     ImGui::Begin("Mario Data");
     
     for (Entity* entity : selected_entities_) {
+      if (!entity) continue;
       ImGui::Text("%s", entity->GetComponent<TagComponent>().tag.c_str());
     }
     
@@ -110,6 +116,10 @@ namespace mario {
   
   std::string MarioData::GameName() {
     return "Mario";
+  }
+  
+  std::string MarioData::SavedScene() {
+    return AM::ClientAsset("scenes/Mario_Scene.ikanScene");
   }
   
   ImguiFont MarioData::RegularFontData() {
@@ -218,6 +228,8 @@ namespace mario {
 
   void MarioData::MoveEntities(Direction direction) {
     for (Entity* entity : selected_entities_) {
+      if(!entity) continue;
+      
       auto& tc = entity->GetComponent<TransformComponent>();
       switch (direction) {
         case Down:      tc.UpdateTranslation_Y(tc.Translation().y - 1.0f);     break;
@@ -231,6 +243,8 @@ namespace mario {
 
   void MarioData::HighlightSelectedEntities(bool enable) {
     for (Entity* entity : selected_entities_) {
+      if(!entity) continue;
+      
       auto& tc = entity->GetComponent<TransformComponent>();
       auto& qc = entity->GetComponent<QuadComponent>();
       

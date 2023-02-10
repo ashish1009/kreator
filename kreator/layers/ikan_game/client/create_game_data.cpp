@@ -9,5 +9,5 @@
 #include "layers/mario/new_game/mario.hpp"
 
 std::unique_ptr<ikan_game::GameData> ikan_game::CreateGameData(const ikan::Viewport* const viewport) {
-  return std::make_unique<mario::MarioData>(viewport);
+  return nullptr;// std::make_unique<mario::MarioData>(viewport);
 }

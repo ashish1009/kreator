@@ -12,7 +12,11 @@ namespace ikan_game {
 #define is_playing settings_.play
   
   RendererLayer::RendererLayer() : Layer("ikan Game"), game_data_(CreateGameData(&viewport_)) {
+    if (!game_data_)
+      game_data_ = std::make_unique<GameData>();
+
     IK_INFO(game_data_->GameName(), "Creating {0} Layer instance ... ", game_data_->GameName().c_str());
+    
     game_data_->Init();
   }
   
@@ -32,7 +36,7 @@ namespace ikan_game {
     ImguiAPI::SetLightGreyThemeColors();
 
     // TODO: Openging File in start. Later will not do this
-    if (!OpenScene(AM::ClientAsset("scenes/Mario_Scene.ikanScene"))) {
+    if (!OpenScene(game_data_->SavedScene())) {
       NewScene(AM::ClientAsset("scenes/New_scene"));
     }
   }

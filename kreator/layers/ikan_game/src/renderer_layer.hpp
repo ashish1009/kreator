@@ -15,17 +15,18 @@ namespace ikan_game {
   public:
     virtual ~GameData() = default;
     
-    virtual void Init() = 0;
-    virtual void Update(Timestep ts) = 0;
-    virtual void EventHandler(Event& event) = 0;
-    virtual void RenderGui() = 0;
-    virtual void SetState(bool is_playing) = 0;
-    virtual void SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) = 0;
+    virtual void Init() {};
+    virtual void Update(Timestep ts) {};
+    virtual void EventHandler(Event& event) {};
+    virtual void RenderGui() {};
+    virtual void SetState(bool is_playing) {};
+    virtual void SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {};
     
-    virtual std::string GameName() = 0;
-    virtual ImguiFont RegularFontData() = 0;
-    virtual ImguiFont BoldFontData() = 0;
-    virtual std::vector<std::filesystem::path> FavDirecotries() = 0;
+    virtual std::string GameName() {return "ikan Game";};
+    virtual std::string SavedScene() {return "";};
+    virtual ImguiFont RegularFontData() {return {"", 0};};
+    virtual ImguiFont BoldFontData() {return {"", 0};};
+    virtual std::vector<std::filesystem::path> FavDirecotries() {return {};};
   };
   
   /// This function is the defination of game data. Implementaiton should be at client
@@ -116,7 +117,6 @@ namespace ikan_game {
     /// This function Render grids for 2D Entities
     /// - Note: Only render for Orthpgraphic primary camera
     void RenderGrid();
-    
     /// This function render the menue bar
     void ShowMenu();
     

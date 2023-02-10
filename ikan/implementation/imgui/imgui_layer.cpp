@@ -99,8 +99,10 @@ namespace ikan {
     }
   }
   
-  void ImguiLayer::SetFont(const ImguiFont &default_font,
-                           const ImguiFont &bold_font) {
+  void ImguiLayer::SetFont(const ImguiFont &default_font, const ImguiFont &bold_font) {
+    if (default_font.path == "" or bold_font.path == "")
+      return;
+    
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     io.Fonts->ClearFonts();
 

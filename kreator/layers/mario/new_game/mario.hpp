@@ -27,6 +27,7 @@ namespace mario {
     
     // Getters
     std::string GameName() override;
+    std::string SavedScene() override;
     ImguiFont RegularFontData() override;
     ImguiFont BoldFontData() override;
     std::vector<std::filesystem::path> FavDirecotries() override;

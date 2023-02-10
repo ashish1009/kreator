@@ -301,6 +301,8 @@ namespace ikan {
   }
   
   bool SceneSerializer::Deserialize(const std::string& file_path) {
+    if (file_path == "") return false;
+    
     YAML::Node data = YAML::LoadFile(file_path);
     
     if (!data["Scene"])
