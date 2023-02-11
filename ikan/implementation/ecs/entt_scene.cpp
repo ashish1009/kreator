@@ -170,6 +170,9 @@ namespace ikan {
   
   void EnttScene::RuntimeStart() {
     physics_world_ = new b2World({0.0f, -9.8f});
+    if (client_listner_)
+      physics_world_->SetContactListener(client_listner_);
+    
     auto view = registry_.view<RigidBodyComponent>();
     for (auto e : view) {
       Entity entity = { e, this };
@@ -451,4 +454,11 @@ namespace ikan {
   const std::string& EnttScene::GetFilePath() const { return file_path_; }
   const CameraData& EnttScene::GetPrimaryCameraData() const { return primary_camera_data_; }
   bool EnttScene::UseEditorCamera() const { return setting_.use_editor_camera; }
+  
+  b2World* EnttScene::GetPhysicsWorld() { return physics_world_; }
+  void EnttScene::SetContactListner(b2ContactListener *listener) {
+    IK_CORE_ASSERT(listener);
+    client_listner_ = listener;
+  }
+  
 }

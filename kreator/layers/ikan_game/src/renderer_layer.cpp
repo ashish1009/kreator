@@ -36,10 +36,14 @@ namespace ikan_game {
     if (!OpenScene(game_data_->SavedScene())) {
       NewScene(AM::ClientAsset("scenes/New_scene"));
     }
+    
+    contact_listner_ = new GameContactListner;
+    active_scene_->SetContactListner(contact_listner_);
   }
   
   void RendererLayer::Detach() {
     IK_WARN(game_data_->GameName(), "Detaching {0} Layer instance ", game_data_->GameName().c_str());
+    delete contact_listner_;
   }
     
   void RendererLayer::Update(Timestep ts) {

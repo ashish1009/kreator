@@ -244,6 +244,9 @@ namespace ikan_game {
       Light, Dark, Grey, LightGrey
     };
     Theme current_theme_ = Theme::LightGrey;
+    
+    // Physics
+    GameContactListner* contact_listner_;
   };
   
 }

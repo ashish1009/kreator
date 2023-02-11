@@ -158,10 +158,11 @@ namespace ikan {
     /// This function return the selected entity
     Entity* GetSelectedEntity();
     
-    template<typename... Components>
-    auto GetEntitesWith() {
-      return registry_.view<Components...>();
-    }
+    /// This function retirns the physics 2D World pointer
+    b2World* GetPhysicsWorld();
+    /// This funciton takes client contact listener and add to physics world
+    /// - Parameter listener: client contact listener
+    void SetContactListner(b2ContactListener* listener);
     
     /// This function callback the world raycast
     /// - Parameters:
@@ -169,6 +170,11 @@ namespace ikan {
     ///   - hit_point: hit point
     ///   - normal: normal of ray
     RayCastInfo RayCast(void* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal);
+    
+    template<typename... Components>
+    auto GetEntitesWith() {
+      return registry_.view<Components...>();
+    }
     
     DELETE_COPY_MOVE_CONSTRUCTORS(EnttScene);
     
@@ -252,6 +258,7 @@ namespace ikan {
     
     // Physics Data
     b2World* physics_world_ = nullptr;
+    b2ContactListener* client_listner_ = nullptr;
     
     friend class Entity;
     friend class ScenePanelManager;
