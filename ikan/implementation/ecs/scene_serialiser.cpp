@@ -342,11 +342,16 @@ namespace ikan {
       }
       
       // ------------------------------------------------------------------------
-      if (entity.HasComponent<PhillBoxColliderComponent>()) {
-        out << YAML::Key << "PhillBoxColliderComponent";
-        out << YAML::BeginMap; // PhillBoxColliderComponent
+      if (entity.HasComponent<PillBoxCollider>()) {
+        out << YAML::Key << "PillBoxColliderComponent";
+        out << YAML::BeginMap; // PillBoxColliderComponent
         
-        auto& pbc = entity.GetComponent<PhillBoxColliderComponent>();
+        auto& pbc = entity.GetComponent<PillBoxCollider>();
+        
+        out << YAML::Key << "Offset" << YAML::Value << pbc.offset;
+        out << YAML::Key << "Width" << YAML::Value << pbc.width;
+        out << YAML::Key << "Height" << YAML::Value << pbc.height;
+        
         auto& bcc = pbc.bcc;
         SerializeBoxCollider(out, bcc, "_box");
 
@@ -356,7 +361,7 @@ namespace ikan {
         auto& b_ccc = pbc.bottom_ccc;
         SerializeCircleCollider(out, b_ccc, "_bottom_circle");
 
-        out << YAML::EndMap; // PhillBoxColliderComponent
+        out << YAML::EndMap; // PillBoxColliderComponent
       }
 
       // ------------------------------------------------------------------------
@@ -598,19 +603,24 @@ namespace ikan {
         } // if (circle_colloider_component)
 
         // --------------------------------------------------------------------
-        auto phill_box_colloider_component = entity["PhillBoxColliderComponent"];
-        if (phill_box_colloider_component) {
-          auto& pbc = deserialized_entity.AddComponent<PhillBoxColliderComponent>();
+        auto Pill_box_colloider_component = entity["PillBoxColliderComponent"];
+        if (Pill_box_colloider_component) {
+          auto& pbc = deserialized_entity.AddComponent<PillBoxCollider>();
+          
+          pbc.offset  = Pill_box_colloider_component["Offset"].as<glm::vec2>();
+          pbc.width  = Pill_box_colloider_component["Width"].as<float>();
+          pbc.height  = Pill_box_colloider_component["Height"].as<float>();
+          
           auto& bcc = pbc.bcc;
-          DeserializeBoxCollider(bcc, phill_box_colloider_component, "_box");
+          DeserializeBoxCollider(bcc, Pill_box_colloider_component, "_box");
           
           auto& t_ccc = pbc.top_ccc;
-          DeserializeCircleCollider(t_ccc, phill_box_colloider_component, "_top_circle");
+          DeserializeCircleCollider(t_ccc, Pill_box_colloider_component, "_top_circle");
           
           auto& b_ccc = pbc.bottom_ccc;
-          DeserializeCircleCollider(b_ccc, phill_box_colloider_component, "_bottom_circle");
+          DeserializeCircleCollider(b_ccc, Pill_box_colloider_component, "_bottom_circle");
 
-        } // if (phill_box_colloider_component)
+        } // if (Pill_box_colloider_component)
 
         // --------------------------------------------------------------------
         auto animation_component = entity["AnimationComponent"];

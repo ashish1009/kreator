@@ -186,7 +186,7 @@ namespace ikan {
       DrawComponent<RigidBodyComponent>("Rigid Body", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
       DrawComponent<BoxColloiderComponent>("Box Collider", selected_entity_, [this](auto& bcc) { bcc.RenderGui(); });
       DrawComponent<CircleColloiderComponent>("Circle Collider", selected_entity_, [this](auto& ccc) { ccc.RenderGui(); });
-      DrawComponent<PhillBoxColliderComponent>("Phill Box Collider", selected_entity_, [this](auto& pbc) { pbc.RenderGui(); });
+      DrawComponent<PillBoxCollider>("Pill Box Collider", selected_entity_, [this](auto& pbc) { pbc.RenderGui(); });
       DrawComponent<AnimationComponent>("Animation", selected_entity_, [this](auto& ac) { ac.RenderGui(); });
     }
     
@@ -301,18 +301,18 @@ namespace ikan {
     AddComponentMenu<BoxColloiderComponent>("Box Collider", [this]() {
       return selected_entity_.HasComponent<BoxColloiderComponent>() or
       selected_entity_.HasComponent<CircleColloiderComponent>() or
-      selected_entity_.HasComponent<PhillBoxColliderComponent>();
+      selected_entity_.HasComponent<PillBoxCollider>();
     });
     
     AddComponentMenu<CircleColloiderComponent>("Circle Collider", [this]() {
       return selected_entity_.HasComponent<BoxColloiderComponent>() or
       selected_entity_.HasComponent<CircleColloiderComponent>() or
-      selected_entity_.HasComponent<PhillBoxColliderComponent>();
+      selected_entity_.HasComponent<PillBoxCollider>();
     });
-    AddComponentMenu<PhillBoxColliderComponent>("Phill Box Collider", [this]() {
+    AddComponentMenu<PillBoxCollider>("Pill Box Collider", [this]() {
       return selected_entity_.HasComponent<BoxColloiderComponent>() or
       selected_entity_.HasComponent<CircleColloiderComponent>() or
-      selected_entity_.HasComponent<PhillBoxColliderComponent>();
+      selected_entity_.HasComponent<PillBoxCollider>();
     });
 
     ImGui::Separator();

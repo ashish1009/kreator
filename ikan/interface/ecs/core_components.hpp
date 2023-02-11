@@ -199,14 +199,20 @@ namespace ikan {
     DEFINE_COPY_MOVE_CONSTRUCTORS(CircleColloiderComponent);
   };
   
-  struct PhillBoxColliderComponent {
+  struct PillBoxCollider {
+    float width = 0.5f;
+    float height = 0.5f;
+    glm::vec2 offset;
+    
     BoxColloiderComponent bcc;
     CircleColloiderComponent top_ccc;
     CircleColloiderComponent bottom_ccc;
 
+    void RecalculateColliders();
+    
     void RenderGui();
-    PhillBoxColliderComponent() = default;
-    DEFINE_COPY_MOVE_CONSTRUCTORS(PhillBoxColliderComponent);
+    PillBoxCollider();
+    DEFINE_COPY_MOVE_CONSTRUCTORS(PillBoxCollider);
   };
   
   struct AnimationComponent {

@@ -32,27 +32,30 @@ Entities:
       Gravity Scale: 1
       Is Sensor: false
       Continous Collision: true
-    PhillBoxColliderComponent:
+    PillBoxColliderComponent:
+      Offset: [0, 0]
+      Width: 0.5
+      Height: 0.5
       Offset_box: [0, 0]
-      Size_box: [0.5, 0.5]
+      Size_box: [0.25, 0.125]
       Density_box: 1
       Friction_box: 0.5
       Restitution_box: 0
       Restitution Threshold_box: 0.5
-      Offset_top_circle: [0, 0]
-      Radius_top_circle: 0.5
+      Offset_top_circle: [0, -0.0625]
+      Radius_top_circle: 0.125
       Density_top_circle: 1
       Friction_top_circle: 0.5
       Restitution_top_circle: 0
       Restitution Threshold_top_circle: 0.5
       Offset_bottom_circle: [0, 0]
-      Radius_bottom_circle: 0.5
+      Radius_bottom_circle: 0.125
       Density_bottom_circle: 1
       Friction_bottom_circle: 0.5
       Restitution_bottom_circle: 0
       Restitution Threshold_bottom_circle: 0.5
     AnimationComponent:
-      Animation: true
+      Animation: false
       Sprite: true
       Speed: 15
       Texture_Path: ../../../kreator/layers/mario/assets/textures/player.png
@@ -26384,7 +26387,7 @@ Entities:
     TagComponent:
       Tag: Primary Camera
     TransformComponent:
-      Translation: [0, 1, 0]
+      Translation: [-8.90461731, 3.67151642, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
@@ -26392,7 +26395,7 @@ Entities:
       Primary: true
       ProjectionType: 1
       PerspectiveFOV: 0.785398185
-      OrthographicSize: 19
+      OrthographicSize: 4
       Near: -1
       Far: 1
     NativeScriptComponent:

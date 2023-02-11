@@ -200,8 +200,8 @@ namespace ikan {
       
       const ImGuiTreeNodeFlags tree_node_flags =
       ImGuiTreeNodeFlags_SpanAvailWidth |
-      ImGuiTreeNodeFlags_AllowItemOverlap |
-      ImGuiTreeNodeFlags_DefaultOpen;
+      //      ImGuiTreeNodeFlags_DefaultOpen |
+      ImGuiTreeNodeFlags_AllowItemOverlap;
       
       // Render the title named as entity name
       bool open = ImGui::TreeNodeEx("Sprite", tree_node_flags);
@@ -549,14 +549,14 @@ namespace ikan {
   }
   
   void RigidBodyComponent::SetIsSensor() {
-  
+    
   }
   
   void RigidBodyComponent::SetNotSensor() {
-  
+    
   }
   
-
+  
   void RigidBodyComponent::RenderGui() {
     b2BodyType new_body_type = b2BodyType(PropertyGrid::ComboDrop("Rigid Body Type",
                                                                   { "Static" , "Kinamatic", "Dynamic" },
@@ -569,14 +569,14 @@ namespace ikan {
     
     PropertyGrid::Float2("Linear Velocity", velocity, nullptr, 0.1, 0.0f, 200.0f);
     PropertyGrid::Float1("Angular Velocity", angular_velocity, nullptr, 0.1, 0.0f, 200.0f);
-
+    
     ImGui::Separator();
     PropertyGrid::Float1("Linear Damping", linear_damping, nullptr, 0.1, 0.0f, 200.0f);
     PropertyGrid::Float1("Angular Damping", angular_damping, nullptr, 0.1, 0.0f, 200.0f);
-
+    
     ImGui::Separator();
     PropertyGrid::Float1("Gravity Scale", gravity_scale, nullptr, 0.1, 0.0f, 200.0f);
-
+    
     ImGui::Separator();
     PropertyGrid::CheckBox("Fixed Rotation", fixed_rotation, ImGui::GetWindowContentRegionMax().x / 2);
     PropertyGrid::CheckBox("Is Sensor", is_sensor, ImGui::GetWindowContentRegionMax().x / 2);
@@ -685,42 +685,68 @@ namespace ikan {
   }
   
   // -------------------------------------------------------------------------
-  // Phill Box Colloider Component
+  // Pill Box Colloider Component
   // -------------------------------------------------------------------------
-  PhillBoxColliderComponent::PhillBoxColliderComponent(const PhillBoxColliderComponent& other) {
-    bcc = other.bcc;
-    top_ccc = other.top_ccc;
-    bottom_ccc = other.bottom_ccc;
+  PillBoxCollider::PillBoxCollider() {
+    RecalculateColliders();
   }
-  PhillBoxColliderComponent& PhillBoxColliderComponent::operator=(const PhillBoxColliderComponent& other) {
+  PillBoxCollider::PillBoxCollider(const PillBoxCollider& other) {
     bcc = other.bcc;
     top_ccc = other.top_ccc;
     bottom_ccc = other.bottom_ccc;
+    RecalculateColliders();
+  }
+  PillBoxCollider& PillBoxCollider::operator=(const PillBoxCollider& other) {
+    bcc = other.bcc;
+    top_ccc = other.top_ccc;
+    bottom_ccc = other.bottom_ccc;
+    RecalculateColliders();
     return *this;
   }
-  PhillBoxColliderComponent::PhillBoxColliderComponent(PhillBoxColliderComponent&& other) {
+  PillBoxCollider::PillBoxCollider(PillBoxCollider&& other) {
     bcc = other.bcc;
     top_ccc = other.top_ccc;
     bottom_ccc = other.bottom_ccc;
+    RecalculateColliders();
   }
-  PhillBoxColliderComponent& PhillBoxColliderComponent::operator=(PhillBoxColliderComponent&& other) {
+  PillBoxCollider& PillBoxCollider::operator=(PillBoxCollider&& other) {
     bcc = other.bcc;
     top_ccc = other.top_ccc;
     bottom_ccc = other.bottom_ccc;
+    RecalculateColliders();
     return *this;
   }
   
-  void PhillBoxColliderComponent::RenderGui() {
+  void PillBoxCollider::RecalculateColliders() {
+    float circle_radius = width / 4.0f;
+    float box_height = height - 2 * circle_radius;
+    
+    top_ccc.radius = circle_radius;
+    top_ccc.offset = offset + glm::vec2(0, box_height / 4.0f);
+    
+    bottom_ccc.radius = circle_radius;
+    top_ccc.offset = offset - glm::vec2(0, box_height / 4.0f);
+    
+    bcc.size = {width / 2.0f, box_height / 2.0f };
+    bcc.offset = offset;
+  }
+  
+  void PillBoxCollider::RenderGui() {
+    PropertyGrid::Float2("Offset", offset);
+    PropertyGrid::Float1("Width ", width);
+    PropertyGrid::Float1("Height ", height);
+    ImGui::Separator();
+    
     const ImGuiTreeNodeFlags tree_node_flags = ImGuiTreeNodeFlags_SpanAvailWidth |
     ImGuiTreeNodeFlags_AllowItemOverlap |
     ImGuiTreeNodeFlags_FramePadding;
-    
+
     bool box_open = ImGui::TreeNodeEx("Box Collider", tree_node_flags);
     if (box_open) {
       bcc.RenderGui();
       ImGui::TreePop();
     }
-    
+
     bool top_circle_open = ImGui::TreeNodeEx("Top Circle Collider", tree_node_flags);
     if (top_circle_open) {
       top_ccc.RenderGui();
