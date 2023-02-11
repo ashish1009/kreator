@@ -15,8 +15,42 @@
 #include "camera/scene_camera.hpp"
 
 #include "box2d/b2_world.h"
+#include "box2d/b2_fixture.h"
 
 namespace ikan {
+  
+  class RayCastInfo : public b2RayCastCallback {
+  public:
+    RayCastInfo(void* object) {
+      
+    }
+    
+    float ReportFixture(b2Fixture* fixture, const b2Vec2& hit_point, const b2Vec2& normal, float fraction) override {
+      if ((void*)fixture->GetUserData().pointer == request_object) {
+        return 1;
+      }
+      
+      this->fixture = fixture;
+      this->hit_point = hit_point;
+      this->normal = normal;
+      this->hit = true;
+      this->fraction = fraction;
+      this->hit_object = (void*)fixture->GetUserData().pointer;
+      
+      return fraction;
+    }
+
+  public:
+    b2Fixture* fixture = nullptr;
+    b2Vec2 hit_point;
+    b2Vec2 normal;
+    float fraction = 0.0f;
+    bool hit = false;
+    
+    void* hit_object = nullptr;
+    void* request_object = nullptr;
+  };
+  
   
   // TODO: For debug only
   struct TransformComponent;
@@ -128,6 +162,13 @@ namespace ikan {
     auto GetEntitesWith() {
       return registry_.view<Components...>();
     }
+    
+    /// This function callback the world raycast
+    /// - Parameters:
+    ///   - requesting_obj: requesting object type
+    ///   - hit_point: hit point
+    ///   - normal: normal of ray
+    RayCastInfo RayCast(void* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal);
     
     DELETE_COPY_MOVE_CONSTRUCTORS(EnttScene);
     

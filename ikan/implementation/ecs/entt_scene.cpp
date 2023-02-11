@@ -418,6 +418,12 @@ namespace ikan {
     } // for (const auto& entity : sprite_view)
     BatchRenderer::EndBatch();
   }
+  
+  RayCastInfo EnttScene::RayCast(void* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal) {
+    RayCastInfo* callback = new RayCastInfo(requesting_obj);
+    physics_world_->RayCast(callback, { hit_point.x, hit_point.y }, { normal.x, normal.y });
+    return callback;
+  }
     
   void EnttScene::SetFilePath(const std::string& file_path) {
     file_path_ = file_path;
