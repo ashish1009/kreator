@@ -299,15 +299,11 @@ namespace ikan {
     ImGui::Separator();
     AddComponentMenu<RigidBodyComponent>("Rigid Body");
     AddComponentMenu<BoxColloiderComponent>("Box Collider", [this]() {
-      return selected_entity_.HasComponent<BoxColloiderComponent>() or
-      selected_entity_.HasComponent<CircleColloiderComponent>() or
-      selected_entity_.HasComponent<PillBoxCollider>();
+      return selected_entity_.HasComponent<PillBoxCollider>();
     });
     
     AddComponentMenu<CircleColloiderComponent>("Circle Collider", [this]() {
-      return selected_entity_.HasComponent<BoxColloiderComponent>() or
-      selected_entity_.HasComponent<CircleColloiderComponent>() or
-      selected_entity_.HasComponent<PillBoxCollider>();
+      return selected_entity_.HasComponent<PillBoxCollider>();
     });
     AddComponentMenu<PillBoxCollider>("Pill Box Collider", [this]() {
       return selected_entity_.HasComponent<BoxColloiderComponent>() or

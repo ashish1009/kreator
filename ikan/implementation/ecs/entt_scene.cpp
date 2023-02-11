@@ -209,9 +209,9 @@ namespace ikan {
       
       if (entity.HasComponent<PillBoxCollider>()) {
         auto& cc2d = entity.GetComponent<PillBoxCollider>();
-        AddBoxColliderData(transform, cc2d.bcc, body);
-        AddCircleColliderData(transform, cc2d.top_ccc, body);
-        AddCircleColliderData(transform, cc2d.bottom_ccc, body);
+        AddBoxColliderData(transform, cc2d.bcc, body, true);
+        AddCircleColliderData(transform, cc2d.top_ccc, body, false);
+        AddCircleColliderData(transform, cc2d.bottom_ccc, body, false);
       }
     }
   }
@@ -443,9 +443,12 @@ namespace ikan {
   }
 
   
-  void EnttScene::AddBoxColliderData(const TransformComponent& tc, const BoxColloiderComponent& bc2d, b2Body* body) {
+  void EnttScene::AddBoxColliderData(const TransformComponent& tc, const BoxColloiderComponent& bc2d, b2Body* body, bool add_tc) {
     b2PolygonShape polygon_shape;
-    polygon_shape.SetAsBox(bc2d.size.x * tc.Scale().x, bc2d.size.y * tc.Scale().y, {bc2d.offset.x, bc2d.offset.y}, 0);
+    if (add_tc)
+      polygon_shape.SetAsBox(bc2d.size.x * tc.Scale().x, bc2d.size.y * tc.Scale().y, {bc2d.offset.x, bc2d.offset.y}, 0);
+    else
+      polygon_shape.SetAsBox(bc2d.size.x, bc2d.size.y, {bc2d.offset.x, bc2d.offset.y}, 0);
     
     b2FixtureDef fixture_def;
     fixture_def.shape = & polygon_shape;
@@ -459,11 +462,14 @@ namespace ikan {
     body->CreateFixture(&fixture_def);
   }
   
-  void EnttScene::AddCircleColliderData(const TransformComponent& tc, const CircleColloiderComponent& cc2d, b2Body* body) {
+  void EnttScene::AddCircleColliderData(const TransformComponent& tc, const CircleColloiderComponent& cc2d, b2Body* body, bool add_tc) {
     b2CircleShape circle_shape;
     
     circle_shape.m_p.Set(cc2d.offset.x, cc2d.offset.y);
-    circle_shape.m_radius = tc.Scale().x * cc2d.radius;
+    if (add_tc)
+      circle_shape.m_radius = tc.Scale().x * cc2d.radius;
+    else
+      circle_shape.m_radius = cc2d.radius;
     
     b2FixtureDef fixture_def;
     fixture_def.shape = & circle_shape;

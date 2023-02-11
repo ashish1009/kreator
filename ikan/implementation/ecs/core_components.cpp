@@ -691,12 +691,18 @@ namespace ikan {
     RecalculateColliders();
   }
   PillBoxCollider::PillBoxCollider(const PillBoxCollider& other) {
+    offset = other.offset;
+    width = other.width;
+    height = other.height;
     bcc = other.bcc;
     top_ccc = other.top_ccc;
     bottom_ccc = other.bottom_ccc;
     RecalculateColliders();
   }
   PillBoxCollider& PillBoxCollider::operator=(const PillBoxCollider& other) {
+    offset = other.offset;
+    width = other.width;
+    height = other.height;
     bcc = other.bcc;
     top_ccc = other.top_ccc;
     bottom_ccc = other.bottom_ccc;
@@ -704,12 +710,18 @@ namespace ikan {
     return *this;
   }
   PillBoxCollider::PillBoxCollider(PillBoxCollider&& other) {
+    offset = other.offset;
+    width = other.width;
+    height = other.height;
     bcc = other.bcc;
     top_ccc = other.top_ccc;
     bottom_ccc = other.bottom_ccc;
     RecalculateColliders();
   }
   PillBoxCollider& PillBoxCollider::operator=(PillBoxCollider&& other) {
+    offset = other.offset;
+    width = other.width;
+    height = other.height;
     bcc = other.bcc;
     top_ccc = other.top_ccc;
     bottom_ccc = other.bottom_ccc;
@@ -719,15 +731,16 @@ namespace ikan {
   
   void PillBoxCollider::RecalculateColliders() {
     float circle_radius = width / 2.0f;
-    float box_height = height - 2 * circle_radius;
+    float box_height = std::max((height - 2 * circle_radius), 0.1f);
     
     top_ccc.radius = circle_radius;
-    top_ccc.offset = offset + glm::vec2(0, box_height / 2.0f);
-    
     bottom_ccc.radius = circle_radius;
+
+    top_ccc.offset = offset + glm::vec2(0, box_height / 2.0f);
     bottom_ccc.offset = offset - glm::vec2(0, box_height / 2.0f);
     
-    bcc.size = {width / 2.0f, box_height / 2.0f };
+    box_height = std::max((box_height - 2 * circle_radius), 0.1f);
+    bcc.size = {width / 2.0f, box_height};
     bcc.offset = offset;
   }
   
@@ -740,7 +753,7 @@ namespace ikan {
       RecalculateColliders();
     ImGui::Separator();
     
-#if 0
+#if 1
     const ImGuiTreeNodeFlags tree_node_flags = ImGuiTreeNodeFlags_SpanAvailWidth |
     ImGuiTreeNodeFlags_AllowItemOverlap |
     ImGuiTreeNodeFlags_FramePadding;

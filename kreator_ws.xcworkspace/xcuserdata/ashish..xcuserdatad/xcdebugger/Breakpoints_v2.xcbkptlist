@@ -142,8 +142,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "869"
-            endingLineNumber = "869"
+            startingLineNumber = "882"
+            endingLineNumber = "882"
             landmarkName = "AnimationComponent::RenderGui()"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,8 +190,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "772"
-            endingLineNumber = "772"
+            startingLineNumber = "785"
+            endingLineNumber = "785"
             landmarkName = "AnimationComponent::AnimationComponent(sprite_image)"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,8 +414,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "721"
-            endingLineNumber = "721"
+            startingLineNumber = "733"
+            endingLineNumber = "733"
             landmarkName = "PillBoxCollider::RecalculateColliders()"
             landmarkType = "7">
          </BreakpointContent>

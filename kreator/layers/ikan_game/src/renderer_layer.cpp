@@ -559,13 +559,13 @@ namespace ikan_game {
 
           glm::vec3 p = tc.Translation() + glm::vec3(bcc.offset, 0.001f);
           glm::vec3 s = tc.Scale() * glm::vec3((bcc.size * 2.0f), 1.0f); // We need diameter
-          
+
           BatchRenderer::DrawRect(Math::GetTransformMatrix(p, tc.Rotation(), s), collider_color);
         }
         {
           const auto& ccc = pbc.top_ccc;
           glm::vec3 p = tc.Translation() + glm::vec3(ccc.offset, 0.001f);
-          glm::vec3 s = tc.Scale() * glm::vec3(ccc.radius * 2.0f); // We need diameter
+          glm::vec3 s = glm::vec3(ccc.radius * 2.0f); // We need diameter
           
           // Rotation ???
           BatchRenderer::DrawCircle(Math::GetTransformMatrix(p, {0, 0, 0}, s), collider_color, 0.05f);
@@ -573,7 +573,7 @@ namespace ikan_game {
         {
           const auto& ccc = pbc.bottom_ccc;
           glm::vec3 p = tc.Translation() + glm::vec3(ccc.offset, 0.001f);
-          glm::vec3 s = tc.Scale() * glm::vec3(ccc.radius * 2.0f); // We need diameter
+          glm::vec3 s = glm::vec3(ccc.radius * 2.0f); // We need diameter
           
           // Rotation ???
           BatchRenderer::DrawCircle(Math::GetTransformMatrix(p, {0, 0, 0}, s), collider_color, 0.05f);
