@@ -62,8 +62,8 @@
             filePath = "ikan/implementation/ecs/entt_scene.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
             landmarkName = "EnttScene::UpdatePrimaryCameraData()"
             landmarkType = "7">
             <Locations>

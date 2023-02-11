@@ -209,6 +209,10 @@ namespace ikan {
       
       if (entity.HasComponent<PillBoxCollider>()) {
         auto& cc2d = entity.GetComponent<PillBoxCollider>();
+        cc2d.width = transform.Scale().x;
+        cc2d.height = transform.Scale().y;
+        cc2d.RecalculateColliders();
+        
         AddBoxColliderData(transform, cc2d.bcc, body, true);
         AddCircleColliderData(transform, cc2d.top_ccc, body, false);
         AddCircleColliderData(transform, cc2d.bottom_ccc, body, false);
@@ -443,10 +447,10 @@ namespace ikan {
   }
 
   
-  void EnttScene::AddBoxColliderData(const TransformComponent& tc, const BoxColloiderComponent& bc2d, b2Body* body, bool add_tc) {
+  void EnttScene::AddBoxColliderData(const TransformComponent& tc, const BoxColloiderComponent& bc2d, b2Body* body, bool is_pill) {
     b2PolygonShape polygon_shape;
-    if (add_tc)
-      polygon_shape.SetAsBox(bc2d.size.x * tc.Scale().x, bc2d.size.y * tc.Scale().y, {bc2d.offset.x, bc2d.offset.y}, 0);
+    if (is_pill)
+      polygon_shape.SetAsBox(bc2d.size.x, bc2d.size.y, {bc2d.offset.x, bc2d.offset.y}, 0);
     else
       polygon_shape.SetAsBox(bc2d.size.x, bc2d.size.y, {bc2d.offset.x, bc2d.offset.y}, 0);
     
@@ -462,14 +466,13 @@ namespace ikan {
     body->CreateFixture(&fixture_def);
   }
   
-  void EnttScene::AddCircleColliderData(const TransformComponent& tc, const CircleColloiderComponent& cc2d, b2Body* body, bool add_tc) {
+  void EnttScene::AddCircleColliderData(const TransformComponent& tc, const CircleColloiderComponent& cc2d, b2Body* body, bool is_pill) {
     b2CircleShape circle_shape;
-    
     circle_shape.m_p.Set(cc2d.offset.x, cc2d.offset.y);
-    if (add_tc)
-      circle_shape.m_radius = tc.Scale().x * cc2d.radius;
-    else
+    if (is_pill)
       circle_shape.m_radius = cc2d.radius;
+    else
+      circle_shape.m_radius = tc.Scale().x * cc2d.radius;
     
     b2FixtureDef fixture_def;
     fixture_def.shape = & circle_shape;

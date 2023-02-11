@@ -554,11 +554,12 @@ namespace ikan_game {
       auto view = active_scene_->GetEntitesWith<TransformComponent, PillBoxCollider>();
       for (auto entity : view) {
         auto [tc, pbc] = view.get<TransformComponent, PillBoxCollider>(entity);
+        pbc.RecalculateColliders();
         {
           const auto& bcc = pbc.bcc;
 
           glm::vec3 p = tc.Translation() + glm::vec3(bcc.offset, 0.001f);
-          glm::vec3 s = tc.Scale() * glm::vec3((bcc.size * 2.0f), 1.0f); // We need diameter
+          glm::vec3 s = glm::vec3((bcc.size * 2.0f), 1.0f); // We need diameter
 
           BatchRenderer::DrawRect(Math::GetTransformMatrix(p, tc.Rotation(), s), collider_color);
         }
