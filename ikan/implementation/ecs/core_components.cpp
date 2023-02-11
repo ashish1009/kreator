@@ -718,25 +718,29 @@ namespace ikan {
   }
   
   void PillBoxCollider::RecalculateColliders() {
-    float circle_radius = width / 4.0f;
+    float circle_radius = width / 2.0f;
     float box_height = height - 2 * circle_radius;
     
     top_ccc.radius = circle_radius;
-    top_ccc.offset = offset + glm::vec2(0, box_height / 4.0f);
+    top_ccc.offset = offset + glm::vec2(0, box_height / 2.0f);
     
     bottom_ccc.radius = circle_radius;
-    top_ccc.offset = offset - glm::vec2(0, box_height / 4.0f);
+    bottom_ccc.offset = offset - glm::vec2(0, box_height / 2.0f);
     
     bcc.size = {width / 2.0f, box_height / 2.0f };
     bcc.offset = offset;
   }
   
   void PillBoxCollider::RenderGui() {
-    PropertyGrid::Float2("Offset", offset);
-    PropertyGrid::Float1("Width ", width);
-    PropertyGrid::Float1("Height ", height);
+    if (PropertyGrid::Float2("Offset", offset))
+      RecalculateColliders();
+    if (PropertyGrid::Float1("Width ", width))
+      RecalculateColliders();
+    if (PropertyGrid::Float1("Height ", height))
+      RecalculateColliders();
     ImGui::Separator();
     
+#if 0
     const ImGuiTreeNodeFlags tree_node_flags = ImGuiTreeNodeFlags_SpanAvailWidth |
     ImGuiTreeNodeFlags_AllowItemOverlap |
     ImGuiTreeNodeFlags_FramePadding;
@@ -758,7 +762,7 @@ namespace ikan {
       bottom_ccc.RenderGui();
       ImGui::TreePop();
     }
-
+#endif
   }
   
   // -------------------------------------------------------------------------

@@ -206,6 +206,13 @@ namespace ikan {
         auto& cc2d = entity.GetComponent<CircleColloiderComponent>();
         AddCircleColliderData(transform, cc2d, body);
       }
+      
+      if (entity.HasComponent<PillBoxCollider>()) {
+        auto& cc2d = entity.GetComponent<PillBoxCollider>();
+        AddBoxColliderData(transform, cc2d.bcc, body);
+        AddCircleColliderData(transform, cc2d.top_ccc, body);
+        AddCircleColliderData(transform, cc2d.bottom_ccc, body);
+      }
     }
   }
   

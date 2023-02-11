@@ -352,6 +352,7 @@ namespace ikan {
         out << YAML::Key << "Width" << YAML::Value << pbc.width;
         out << YAML::Key << "Height" << YAML::Value << pbc.height;
         
+#if 0
         auto& bcc = pbc.bcc;
         SerializeBoxCollider(out, bcc, "_box");
 
@@ -360,7 +361,7 @@ namespace ikan {
 
         auto& b_ccc = pbc.bottom_ccc;
         SerializeCircleCollider(out, b_ccc, "_bottom_circle");
-
+#endif
         out << YAML::EndMap; // PillBoxColliderComponent
       }
 
@@ -611,15 +612,17 @@ namespace ikan {
           pbc.width  = Pill_box_colloider_component["Width"].as<float>();
           pbc.height  = Pill_box_colloider_component["Height"].as<float>();
           
+          pbc.RecalculateColliders();
+#if 0
           auto& bcc = pbc.bcc;
           DeserializeBoxCollider(bcc, Pill_box_colloider_component, "_box");
-          
+
           auto& t_ccc = pbc.top_ccc;
           DeserializeCircleCollider(t_ccc, Pill_box_colloider_component, "_top_circle");
-          
+
           auto& b_ccc = pbc.bottom_ccc;
           DeserializeCircleCollider(b_ccc, Pill_box_colloider_component, "_bottom_circle");
-
+#endif
         } // if (Pill_box_colloider_component)
 
         // --------------------------------------------------------------------
