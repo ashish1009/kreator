@@ -296,11 +296,10 @@ namespace mario {
     // HACK to add components
     static bool add = true;
     if (add) {
-      auto v = scene_->GetEntitesWith<RigidBodyComponent>();
+      auto v = scene_->GetEntitesWith<BoxColloiderComponent>();
       for (auto e : v) {
-        auto& rb = v.get<RigidBodyComponent>(e);
-        rb.velocity.x = 0;
-        rb.velocity.y = 0;
+        auto& rb = v.get<BoxColloiderComponent>(e);
+        rb.friction = 0.0f;
       }
       
       add = false;

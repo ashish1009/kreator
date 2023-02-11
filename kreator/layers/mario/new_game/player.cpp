@@ -41,6 +41,8 @@ namespace mario {
       }
     }
     
+    acceleration_.y = -9.8;
+    
     velocity_.x += acceleration_.x * ts;
     velocity_.y += acceleration_.y * ts;
     

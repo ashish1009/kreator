@@ -141,7 +141,7 @@ namespace ikan {
     float angular_damping = 0.8f;
     float linear_damping = 0.9f;
     float mass = 0;
-    float friction = 0.1f;
+    float friction = 0.0f;
     float angular_velocity = 0.0f;
     float gravity_scale = 1.0f;
     bool is_sensor = false;
