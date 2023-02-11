@@ -136,9 +136,20 @@ namespace ikan {
   struct RigidBodyComponent {
     b2BodyType type = b2BodyType::b2_staticBody;
     bool fixed_rotation = false;
-    // Storage
-    void* runtime_body = nullptr;
+    
+    glm::vec2 velocity;
+    float angular_damping = 0.8f;
+    float linear_damping = 0.9f;
+    float mass = 0;
+    float friction = 0.1f;
+    float angular_velocity = 0.0f;
+    float gravity_scale = 1.0f;
+    bool is_sensor = false;
+    bool continuous_collision = true;
 
+    // Storage
+    b2Body* runtime_body = nullptr;
+    
     void RenderGui();
     RigidBodyComponent() = default;
     DEFINE_COPY_MOVE_CONSTRUCTORS(RigidBodyComponent);

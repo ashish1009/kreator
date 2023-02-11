@@ -527,8 +527,21 @@ namespace ikan {
     // Render the property based on the projection type of camera
     if (new_body_type != type)
       type = new_body_type;
+    
+    PropertyGrid::Float2("Linear Velocity", velocity, nullptr, 0.1, 0.0f, 200.0f);
+    PropertyGrid::Float1("Angular Velocity", angular_velocity, nullptr, 0.1, 0.0f, 200.0f);
 
+    ImGui::Separator();
+    PropertyGrid::Float1("Linear Damping", linear_damping, nullptr, 0.1, 0.0f, 200.0f);
+    PropertyGrid::Float1("Angular Damping", angular_damping, nullptr, 0.1, 0.0f, 200.0f);
+
+    ImGui::Separator();
+    PropertyGrid::Float1("Gravity Scale", gravity_scale, nullptr, 0.1, 0.0f, 200.0f);
+
+    ImGui::Separator();
     PropertyGrid::CheckBox("Fixed Rotation", fixed_rotation, ImGui::GetWindowContentRegionMax().x / 2);
+    PropertyGrid::CheckBox("Is Sensor", is_sensor, ImGui::GetWindowContentRegionMax().x / 2);
+    PropertyGrid::CheckBox("Continuous Collision", continuous_collision, ImGui::GetWindowContentRegionMax().x / 2);
     ImGui::Separator();
   }
   

@@ -250,6 +250,17 @@ namespace ikan {
         uint32_t type = (uint32_t)rc.type;
         out << YAML::Key << "Type" << YAML::Value << type;
         out << YAML::Key << "Fixed Rotation" << YAML::Value << rc.fixed_rotation;
+        
+        out << YAML::Key << "Linear Velocity" << YAML::Value << rc.velocity;
+        out << YAML::Key << "Angular Damping" << YAML::Value << rc.angular_damping;
+        out << YAML::Key << "Angular Velocity" << YAML::Value << rc.angular_velocity;
+        out << YAML::Key << "Linear Damping" << YAML::Value << rc.linear_damping;
+        out << YAML::Key << "Mass" << YAML::Value << rc.mass;
+        out << YAML::Key << "Friction" << YAML::Value << rc.friction;
+        out << YAML::Key << "Gravity Scale" << YAML::Value << rc.gravity_scale;
+        out << YAML::Key << "Is Sensor" << YAML::Value << rc.is_sensor;
+        out << YAML::Key << "Continous Collision" << YAML::Value << rc.continuous_collision;
+
         out << YAML::EndMap; // RigidBodyComponent
       }
 
@@ -497,6 +508,16 @@ namespace ikan {
           rc.type = (b2BodyType)type;
           rc.fixed_rotation = rigid_body_component["Fixed Rotation"].as<bool>();
 
+          rc.velocity         = rigid_body_component["Linear Velocity"].as<glm::vec2>();
+          rc.angular_damping  = rigid_body_component["Angular Damping"].as<float>();
+          rc.angular_velocity = rigid_body_component["Angular Velocity"].as<float>();
+          rc.linear_damping   = rigid_body_component["Linear Damping"].as<float>();
+          rc.mass             = rigid_body_component["Mass"].as<float>();
+          rc.friction         = rigid_body_component["Friction"].as<float>();
+          rc.gravity_scale    = rigid_body_component["Gravity Scale"].as<float>();
+          rc.is_sensor        = rigid_body_component["Is Sensor"].as<bool>();
+          rc.continuous_collision = rigid_body_component["Continous Collision"].as<bool>();
+          
           IK_CORE_INFO(LogModule::SceneSerializer, "    Rigid Body Component");
           IK_CORE_INFO(LogModule::SceneSerializer, "      Type           | {0}", type);
           IK_CORE_INFO(LogModule::SceneSerializer, "      Fixed Rotation | {0}", rc.fixed_rotation);

@@ -181,6 +181,14 @@ namespace ikan {
       body_def.position.Set(transform.Translation().x, transform.Translation().y);
       body_def.angle = transform.Rotation().z;
       
+      body_def.linearVelocity = {rb2d.velocity.x, rb2d.velocity.y};
+      body_def.angularVelocity = rb2d.angular_velocity;
+      body_def.linearDamping = rb2d.linear_damping;
+      body_def.angularDamping = rb2d.angular_damping;
+      body_def.gravityScale = rb2d.gravity_scale;
+
+//      body_def.userData.pointer;
+      
       b2Body* body = physics_world_->CreateBody(&body_def);
       body->SetFixedRotation(rb2d.fixed_rotation);
       

@@ -62,8 +62,8 @@
             filePath = "ikan/implementation/ecs/entt_scene.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
             landmarkName = "EnttScene::UpdatePrimaryCameraData()"
             landmarkType = "7">
             <Locations>
@@ -142,8 +142,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "736"
-            endingLineNumber = "736"
+            startingLineNumber = "749"
+            endingLineNumber = "749"
             landmarkName = "AnimationComponent::RenderGui()"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "ikan/implementation/ecs/scene_serialiser.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "555"
-            endingLineNumber = "555"
+            startingLineNumber = "576"
+            endingLineNumber = "576"
             landmarkName = "SceneSerializer::Deserialize(file_path)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,8 +190,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "639"
-            endingLineNumber = "639"
+            startingLineNumber = "652"
+            endingLineNumber = "652"
             landmarkName = "AnimationComponent::AnimationComponent(sprite_image)"
             landmarkType = "7">
          </BreakpointContent>
