@@ -4,39 +4,26 @@ Setting_scene_controller: true
 Setting_scene_data: true
 Use_editor_camera: false
 Entities:
-  - Entity: 7128868408171439013
+  - Entity: 12684878108117445603
     TagComponent:
-      Tag: Circle
+      Tag: Camera
     TransformComponent:
-      Translation: [0.567021012, 1.06086969, 2.38418579e-07]
-      Rotation: [0, 0, 0]
-      Scale: [2.31999993, 2.31999993, 2.31999993]
-    CircleComponent:
-      Texture_Use: false
-      Texture_Path: ""
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Thickness: 0.100000001
-      Fade: 0
-  - Entity: 9927058916215126044
-    TagComponent:
-      Tag: Circle
-    TransformComponent:
-      Translation: [-1.41755223, 0.626087308, 0]
+      Translation: [0, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
-    CircleComponent:
-      Texture_Use: false
-      Texture_Path: ""
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Thickness: 1
-      Fade: 0.00499999989
-  - Entity: 15203987038133962057
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 10
+      Near: -1
+      Far: 1
+  - Entity: 11762201061781785941
     TagComponent:
       Tag: Quad
     TransformComponent:
-      Translation: [-2.05128193, 0, 0]
+      Translation: [-0.718991518, 0.939130068, 2.38418579e-07]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -60,11 +47,11 @@ Entities:
       Color: [1, 1, 1, 1]
       Thickness: 1
       Fade: 0.00499999989
-  - Entity: 11762201061781785941
+  - Entity: 15203987038133962057
     TagComponent:
       Tag: Quad
     TransformComponent:
-      Translation: [-0.718991518, 0.939130068, 2.38418579e-07]
+      Translation: [-2.05128193, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -74,18 +61,38 @@ Entities:
       Texture_Path: ""
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 12684878108117445603
+  - Entity: 9927058916215126044
     TagComponent:
-      Tag: Camera
+      Tag: Circle
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [-1.41755223, 0.626087308, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
-    CameraComponent:
-      FixedAspectRatio: false
-      Primary: true
-      ProjectionType: 1
-      PerspectiveFOV: 0.785398185
-      OrthographicSize: 10
-      Near: -1
-      Far: 1
+    CircleComponent:
+      Texture_Use: false
+      Texture_Path: ""
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Thickness: 1
+      Fade: 0.00499999989
+  - Entity: 7128868408171439013
+    TagComponent:
+      Tag: Circle
+    TransformComponent:
+      Translation: [0.567021012, 1.06086969, 2.38418579e-07]
+      Rotation: [0, 0, 0]
+      Scale: [2.31999993, 2.31999993, 2.31999993]
+    CircleComponent:
+      Texture_Use: false
+      Texture_Path: ""
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Thickness: 0.100000001
+      Fade: 0
+    CircleColloiderComponent:
+      Offset: [0, 0]
+      Radius: 0.5
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5

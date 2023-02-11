@@ -434,17 +434,6 @@ namespace ikan {
                               glm::vec4(1.0f),
                               (uint32_t)sprite_entity);
     } // for (const auto& entity : sprite_view)
-
-#if 0
-    auto box_col_view = registry_.view<TransformComponent, BoxColloiderComponent>();
-    // For all Box Colloider
-    for (const auto& box_col_entity : box_col_view) {
-      const auto& [transform_component, box_col_comp] = box_col_view.get<TransformComponent, BoxColloiderComponent>(box_col_entity);
-      BatchRenderer::DrawRect(transform_component.Translation(),
-                              box_col_comp.size * glm::vec2(transform_component.Scale().x, transform_component.Scale().y),
-                              {0.9, 0.5, 0.4, 1.0f});
-    } // for (const auto& entity : box_col_view)
-#endif
     BatchRenderer::EndBatch();
   }
     
