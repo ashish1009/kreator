@@ -730,17 +730,16 @@ namespace ikan {
   }
   
   void PillBoxCollider::RecalculateColliders() {
-    float circle_radius = width / 2.0f;
-    float box_height = std::max((height - 2 * circle_radius), 0.1f);
+    float circle_radius = width;
+    float box_height = std::max((height - circle_radius), 0.1f);
     
     top_ccc.radius = circle_radius;
     bottom_ccc.radius = circle_radius;
 
-    top_ccc.offset = offset + glm::vec2(0, box_height / 2.0f);
-    bottom_ccc.offset = offset - glm::vec2(0, box_height / 2.0f);
+    top_ccc.offset = offset + glm::vec2(0, box_height);
+    bottom_ccc.offset = offset - glm::vec2(0, box_height);
     
-    box_height = std::max((box_height - 2 * circle_radius), 0.1f);
-    bcc.size = {width / 2.0f, box_height};
+    bcc.size = {width, box_height};
     bcc.offset = offset;
   }
   

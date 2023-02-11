@@ -209,10 +209,12 @@ namespace ikan {
       
       if (entity.HasComponent<PillBoxCollider>()) {
         auto& cc2d = entity.GetComponent<PillBoxCollider>();
-        cc2d.width = transform.Scale().x;
-        cc2d.height = transform.Scale().y;
-        cc2d.RecalculateColliders();
         
+#if 0
+        cc2d.width = transform.Scale().x / 2.0f;
+        cc2d.height = transform.Scale().y / 2.0f;
+        cc2d.RecalculateColliders();
+#endif
         AddBoxColliderData(transform, cc2d.bcc, body, true);
         AddCircleColliderData(transform, cc2d.top_ccc, body, false);
         AddCircleColliderData(transform, cc2d.bottom_ccc, body, false);
@@ -452,8 +454,8 @@ namespace ikan {
     if (is_pill)
       polygon_shape.SetAsBox(bc2d.size.x, bc2d.size.y, {bc2d.offset.x, bc2d.offset.y}, 0);
     else
-      polygon_shape.SetAsBox(bc2d.size.x, bc2d.size.y, {bc2d.offset.x, bc2d.offset.y}, 0);
-    
+      polygon_shape.SetAsBox(bc2d.size.x * tc.Scale().x, bc2d.size.y * tc.Scale().y, {bc2d.offset.x, bc2d.offset.y}, 0);
+
     b2FixtureDef fixture_def;
     fixture_def.shape = & polygon_shape;
     fixture_def.density = bc2d.density;
