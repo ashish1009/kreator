@@ -131,6 +131,7 @@ namespace ikan {
   struct CircleData : BatchRendererData {
     /// Single vertex of a Circle
     struct Vertex : BaseVertex {
+      glm::vec3 local_position;
       float thickness;    // Thickness of Circle
       float fade;         // Fadeness of Edge of Circle
       
@@ -376,6 +377,7 @@ namespace ikan {
       { "a_TexCoords",    ShaderDataType::Float2 },
       { "a_TexIndex",     ShaderDataType::Float },
       { "a_TilingFactor", ShaderDataType::Float },
+      { "a_LocalPosition",ShaderDataType::Float3 },
       { "a_Thickness",    ShaderDataType::Float },
       { "a_Fade",         ShaderDataType::Float },
       { "a_ObjectID",     ShaderDataType::Int },
@@ -775,6 +777,7 @@ namespace ikan {
       circle_data_->vertex_buffer_ptr->texture_coords   = 2.0f * circle_data_->vertex_base_position[i];
       circle_data_->vertex_buffer_ptr->texture_index    = texture_index;
       circle_data_->vertex_buffer_ptr->tiling_factor    = tiling_factor;
+      circle_data_->vertex_buffer_ptr->local_position   = 2.0f * circle_data_->vertex_base_position[i];
       circle_data_->vertex_buffer_ptr->thickness        = thickness;
       circle_data_->vertex_buffer_ptr->fade             = fade;
       circle_data_->vertex_buffer_ptr->object_id        = object_id;
