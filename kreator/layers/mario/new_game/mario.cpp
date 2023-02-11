@@ -25,7 +25,7 @@ namespace mario {
     
     BatchRenderer::Init(2000, 0, 2000 * 5);
     
-    player.Init(scene_);
+//    player.Init(scene_);
   }
 
   void MarioData::Update(Timestep ts) {

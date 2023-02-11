@@ -102,7 +102,7 @@ namespace ikan_game {
         Renderer::RenderStatsGui(&settings_.stats, true);
         viewport_.RenderGui(&settings_.viewport);
 
-        if (active_scene_->IsEditing()) {
+        if (1) { // (active_scene_->IsEditing()) {
           cbp_.RenderGui(&settings_.cbp);
           spm_.RenderGui();
           game_data_->RenderGui();
