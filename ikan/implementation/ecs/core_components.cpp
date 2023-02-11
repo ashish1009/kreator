@@ -61,7 +61,7 @@ namespace ikan {
     tag = other.tag;
     return *this;
   }
-
+  
   // -------------------------------------------------------------------------
   // Transform Component
   // -------------------------------------------------------------------------
@@ -96,7 +96,7 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Component, "Moving Transform Component using = operator...");
     return *this;
   }
-
+  
   const glm::mat4& TransformComponent::GetTransform() const { return transform; }
   const glm::vec3& TransformComponent::Translation() const { return translation; }
   const glm::vec3& TransformComponent::Rotation() const { return rotation; }
@@ -113,7 +113,7 @@ namespace ikan {
   void TransformComponent::UpdateTranslation_Z(float value) { UpdateTranslation({translation.x, translation.y, value} ); }
   void TransformComponent::UpdateRotation_Z(float value) { UpdateRotation({rotation.x, rotation.y, value} ); }
   void TransformComponent::UpdateScale_Z(float value) { UpdateScale({scale.x, scale.y, value} ); }
-
+  
   void TransformComponent::UpdateTranslation(const glm::vec3& value) {
     translation = value;
     transform = Math::GetTransformMatrix(translation, rotation, scale);
@@ -126,7 +126,7 @@ namespace ikan {
     scale = value;
     transform = Math::GetTransformMatrix(translation, rotation, scale);
   }
-
+  
   void TransformComponent::RenderGui() {
     if (PropertyGrid::Float3("Translation", translation, nullptr, 0.25f, 0.0f, 80.0f)) {
       transform = Math::GetTransformMatrix(translation, rotation, scale);
@@ -143,7 +143,7 @@ namespace ikan {
     }
     ImGui::Separator();
   }
-
+  
   // -------------------------------------------------------------------------
   // Quad Component
   // -------------------------------------------------------------------------
@@ -183,7 +183,7 @@ namespace ikan {
       glm::vec2 coords = texture_comp.sprite->GetCoords();
       glm::vec2 sprite_size = texture_comp.sprite->GetSpriteSize();
       glm::vec2 cell_size   = texture_comp.sprite->GetCellSize();
-
+      
       if (PropertyGrid::Float2("Coords", coords, nullptr, 0.1f, 0.0f, 100.0f, 0.0f)) {
         texture_comp.sprite->GetSpriteImage().reset();
         texture_comp.sprite = SubTexture::CreateFromCoords(texture_comp.component, coords, sprite_size, cell_size);
@@ -350,7 +350,7 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Component, "Moving Quad Component using = operator...");
     return *this;
   }
-
+  
   void CircleComponent::RenderGui() {
     texture_comp.RenderGui(color, [this]() {
       ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
@@ -360,7 +360,7 @@ namespace ikan {
     PropertyGrid::Float1("Fade", fade, nullptr, 0.1f, 0.0f, 100.0f, 0.0f);
     ImGui::Separator();
   }
-
+  
   // -------------------------------------------------------------------------
   // Camera Component
   // -------------------------------------------------------------------------
@@ -395,7 +395,7 @@ namespace ikan {
   void CameraComponent::RenderGui() {
     auto column_width = ImGui::GetWindowContentRegionMax().x / 2;
     ImGui::Columns(2);
-
+    
     ImGui::SetColumnWidth(0, column_width);
     ImGui::Checkbox("Primary", &is_primary); ImGui::SameLine();
     
@@ -418,7 +418,7 @@ namespace ikan {
   
   NativeScriptComponent::NativeScriptComponent(const NativeScriptComponent& other) {
     loader_function = other.loader_function;
-
+    
     for (const auto& [name, script] : other.scrip_name_map) {
       scrip_name_map[name] = script;
       ScriptManager::UpdateScript(this, name, loader_function);
@@ -518,6 +518,46 @@ namespace ikan {
     fixed_rotation = other.fixed_rotation;
     return *this;
   }
+  
+  void RigidBodyComponent::AddVelocity() {
+    if (runtime_body != nullptr) {
+      runtime_body->ApplyForceToCenter({velocity.x, velocity.y}, true);
+    }
+  }
+  
+  void RigidBodyComponent::AddImpulse() {
+    if (runtime_body != nullptr) {
+      runtime_body->ApplyLinearImpulse({velocity.x, velocity.y}, runtime_body->GetWorldCenter(), true);
+    }
+  }
+  
+  void RigidBodyComponent::SetVelocity() {
+    if (runtime_body != nullptr) {
+      runtime_body->SetLinearVelocity({velocity.x, velocity.y});
+    }
+  }
+  
+  void RigidBodyComponent::SetAngularVelocity() {
+    if (runtime_body != nullptr) {
+      runtime_body->SetAngularVelocity(angular_velocity);
+    }
+  }
+  
+  void RigidBodyComponent::SetGravityScale() {
+    if (runtime_body != nullptr) {
+      runtime_body->SetGravityScale(gravity_scale);
+    }
+  }
+  
+  void RigidBodyComponent::SetIsSensor() {
+  
+  }
+  
+  void RigidBodyComponent::SetNotSensor() {
+  
+  }
+  
+
   void RigidBodyComponent::RenderGui() {
     b2BodyType new_body_type = b2BodyType(PropertyGrid::ComboDrop("Rigid Body Type",
                                                                   { "Static" , "Kinamatic", "Dynamic" },

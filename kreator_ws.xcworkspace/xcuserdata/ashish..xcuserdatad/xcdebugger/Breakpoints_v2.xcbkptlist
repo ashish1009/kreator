@@ -142,8 +142,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "749"
-            endingLineNumber = "749"
+            startingLineNumber = "789"
+            endingLineNumber = "789"
             landmarkName = "AnimationComponent::RenderGui()"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,8 +190,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "652"
-            endingLineNumber = "652"
+            startingLineNumber = "692"
+            endingLineNumber = "692"
             landmarkName = "AnimationComponent::AnimationComponent(sprite_image)"
             landmarkType = "7">
          </BreakpointContent>

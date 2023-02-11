@@ -150,6 +150,14 @@ namespace ikan {
     // Storage
     b2Body* runtime_body = nullptr;
     
+    void AddVelocity();
+    void AddImpulse();
+    void SetVelocity();
+    void SetAngularVelocity();
+    void SetGravityScale();
+    void SetIsSensor();
+    void SetNotSensor();
+    
     void RenderGui();
     RigidBodyComponent() = default;
     DEFINE_COPY_MOVE_CONSTRUCTORS(RigidBodyComponent);
