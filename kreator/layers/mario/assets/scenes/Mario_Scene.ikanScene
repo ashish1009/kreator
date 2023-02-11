@@ -7,7 +7,7 @@ Entities:
     TagComponent:
       Tag: Player
     TransformComponent:
-      Translation: [-15, 3.21284342, 0.100000001]
+      Translation: [-9, 2.21284342, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -33,7 +33,7 @@ Entities:
       Linear Damping: 0.899999976
       Mass: 0
       Friction: 0
-      Gravity Scale: 0
+      Gravity Scale: 1
       Is Sensor: false
       Continous Collision: true
     PillBoxColliderComponent:
@@ -3516,42 +3516,6 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 10217803154091669934
-    TagComponent:
-      Tag: Pipe
-    TransformComponent:
-      Translation: [14, -5, 0]
-      Rotation: [0, 0, 0]
-      Scale: [2, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [0, 19]
-      Sprite_Size: [2, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Fixed Rotation: false
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0
-      Restitution: 0
-      Restitution Threshold: 0.5
   - Entity: 9585615433703320947
     TagComponent:
       Tag: Pipe
@@ -50430,6 +50394,42 @@ Entities:
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
       Coords: [0, 18]
+      Sprite_Size: [2, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Mass: 0
+      Friction: 0
+      Gravity Scale: 1
+      Is Sensor: false
+      Continous Collision: true
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 5586218776917139895
+    TagComponent:
+      Tag: Pipe
+    TransformComponent:
+      Translation: [14, -5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 19]
       Sprite_Size: [2, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1

@@ -29,7 +29,7 @@ namespace mario {
     float warlk_speed_ = 10.0f;
     float jumb_boost_ = 1.0f;
     float jump_impuls_ = 3.0f;
-    float slow_down_force_ = 0.05f;
+    float slow_down_force_ = 0.5f;
     glm::vec2 terminal_velocity_ = {10.1f, 10.1f};
     
     bool on_ground_ = false;

@@ -227,14 +227,14 @@ namespace ikan {
     ///   - bc2d: box data
     ///   - body: body
     ///   - is_pill: Is Pill Box
-    static void AddBoxColliderData(const TransformComponent& tc, const BoxColloiderComponent& bc2d, b2Body* body, bool is_pill = true);
+    static void AddBoxColliderData(const TransformComponent& tc, const BoxColloiderComponent& bc2d, b2Body* body, bool is_pill = false);
     /// This function add the circle collider data to worlds body
     /// - Parameters:
     ///   - tc: transform of entity
     ///   - cc2d: circlw data
     ///   - body: body
     ///   - is_pill: is Pill Box
-    static void AddCircleColliderData(const TransformComponent& tc, const CircleColloiderComponent& cc2d, b2Body* body, bool is_pill = true);
+    static void AddCircleColliderData(const TransformComponent& tc, const CircleColloiderComponent& cc2d, b2Body* body, bool is_pill = false);
 
     // ------------------
     // Member variabls

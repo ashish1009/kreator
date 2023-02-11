@@ -15,8 +15,10 @@ namespace mario {
   
   void PlayerController::Update(Timestep ts) {
     auto& tc = GetComponent<TransformComponent>();
+    auto& ac = GetComponent<AnimationComponent>();
     
     if (Input::IsKeyPressed(KeyCode::Left)) {
+      ac.animation = true;
       tc.UpdateScale_X(-player_width_);
       acceleration_.x = -warlk_speed_;
       
@@ -29,6 +31,7 @@ namespace mario {
       }
     }
     if (Input::IsKeyPressed(KeyCode::Right)) {
+      ac.animation = true;
       tc.UpdateScale_X(player_width_);
       acceleration_.x = warlk_speed_;
       
