@@ -266,9 +266,7 @@ namespace ikan {
   void SceneCamera::RenderGrids(uint32_t max_lines, const glm::vec4& line_color,
                                 const glm::mat4& camera_transform, const glm::vec3 camera_pos) {
     if (projection_type_ == ProjectionType::Orthographic) {
-      if (max_lines > BatchRenderer::MaxLines()) {
-        BatchRenderer::InitLineData(BatchRenderer::MaxLines() + max_lines);
-      }
+      BatchRenderer::InitLineData(max_lines);
       
       float zoom = std::max(GetZoom(), 1.0f);
       

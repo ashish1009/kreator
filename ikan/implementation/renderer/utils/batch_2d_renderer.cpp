@@ -259,15 +259,21 @@ namespace ikan {
   }
   
   void BatchRenderer::InitQuadData(uint32_t max_quads) {
-    delete quad_data_;
-    quad_data_ = nullptr;
+    uint32_t prev_max_quads = 0;
+    if (quad_data_)
+      prev_max_quads = quad_data_->max_element;
     
     if (max_quads == 0)
       return;
     
+    max_quads += prev_max_quads;
+    
+    delete quad_data_;
+    quad_data_ = nullptr;
+    
     // Allocate memory for Quad Data
     quad_data_ = new QuadData();
-    
+
     quad_data_->max_element = max_quads;
     quad_data_->max_vertices = max_quads * BatchRendererData::VertexForSingleElement;
     quad_data_->max_indices = max_quads * BatchRendererData::IndicesForSingleElement;
@@ -337,15 +343,21 @@ namespace ikan {
   }
   
   void BatchRenderer::InitCircleData(uint32_t max_circles) {
-    delete circle_data_;
-    circle_data_ = nullptr;
+    uint32_t prev_max_circle = 0;
+    if (circle_data_)
+      prev_max_circle = circle_data_->max_element;
     
     if (max_circles == 0)
       return;
     
+    max_circles += prev_max_circle;
+
+    delete circle_data_;
+    circle_data_ = nullptr;
+    
     // Allocate memory for Circle Data
     circle_data_ = new CircleData();
-    
+        
     circle_data_->max_element = max_circles;
     circle_data_->max_vertices = max_circles * BatchRendererData::VertexForSingleElement;
     circle_data_->max_indices = max_circles * BatchRendererData::IndicesForSingleElement;
@@ -418,15 +430,21 @@ namespace ikan {
   }
   
   void BatchRenderer::InitLineData(uint32_t max_lines) {
-    delete line_data_;
-    line_data_ = nullptr;
+    uint32_t prev_max_lines = 0;
+    if (line_data_)
+      prev_max_lines = line_data_->max_element;
     
     if (max_lines == 0)
       return;
     
-    // Allocate memory for Line Data
-    line_data_ = new LineData();
+    max_lines += prev_max_lines;
     
+    delete line_data_;
+    line_data_ = nullptr;
+    
+    // Allocate memory for Quad Data
+    line_data_ = new LineData();
+
     line_data_->max_element = max_lines;
     line_data_->max_vertices = max_lines * line_data_->kVertexForSingleLine;
     
