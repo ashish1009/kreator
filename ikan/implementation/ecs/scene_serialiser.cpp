@@ -102,14 +102,14 @@ namespace ikan {
     return out;
   }
   
-  void DeserializeBoxCollider(BoxColloiderComponent& bcc, const YAML::Node& box_colloider_component) {
-    bcc.offset = box_colloider_component["Offset"].as<glm::vec2>();
-    bcc.size = box_colloider_component["Size"].as<glm::vec2>();
+  void DeserializeBoxCollider(BoxColloiderComponent& bcc, const YAML::Node& box_colloider_component, std::string identifier) {
+    bcc.offset = box_colloider_component["Offset" + identifier].as<glm::vec2>();
+    bcc.size = box_colloider_component["Size" + identifier].as<glm::vec2>();
     
-    bcc.density = box_colloider_component["Density"].as<float>();
-    bcc.friction = box_colloider_component["Friction"].as<float>();
-    bcc.restitution = box_colloider_component["Restitution"].as<float>();
-    bcc.restitution_threshold = box_colloider_component["Restitution Threshold"].as<float>();
+    bcc.density = box_colloider_component["Density" + identifier].as<float>();
+    bcc.friction = box_colloider_component["Friction" + identifier].as<float>();
+    bcc.restitution = box_colloider_component["Restitution" + identifier].as<float>();
+    bcc.restitution_threshold = box_colloider_component["Restitution Threshold" + identifier].as<float>();
     
     IK_CORE_INFO(LogModule::SceneSerializer, "    Box Collider Component");
     IK_CORE_INFO(LogModule::SceneSerializer, "      Offset                | {0} | {0}", bcc.offset.x, bcc.offset.y);
@@ -120,14 +120,14 @@ namespace ikan {
     IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution Threshold | {0}", bcc.restitution_threshold);
   }
   
-  void DeserializeCircleCollider(CircleColloiderComponent& ccc, const YAML::Node& circle_colloider_component) {
-    ccc.offset = circle_colloider_component["Offset"].as<glm::vec2>();
-    ccc.radius = circle_colloider_component["Radius"].as<float>();
+  void DeserializeCircleCollider(CircleColloiderComponent& ccc, const YAML::Node& circle_colloider_component, std::string identifier) {
+    ccc.offset = circle_colloider_component["Offset" + identifier].as<glm::vec2>();
+    ccc.radius = circle_colloider_component["Radius" + identifier].as<float>();
     
-    ccc.density = circle_colloider_component["Density"].as<float>();
-    ccc.friction = circle_colloider_component["Friction"].as<float>();
-    ccc.restitution = circle_colloider_component["Restitution"].as<float>();
-    ccc.restitution_threshold = circle_colloider_component["Restitution Threshold"].as<float>();
+    ccc.density = circle_colloider_component["Density" + identifier].as<float>();
+    ccc.friction = circle_colloider_component["Friction" + identifier].as<float>();
+    ccc.restitution = circle_colloider_component["Restitution" + identifier].as<float>();
+    ccc.restitution_threshold = circle_colloider_component["Restitution Threshold" + identifier].as<float>();
     
     IK_CORE_INFO(LogModule::SceneSerializer, "    Circle Colloider Component");
     IK_CORE_INFO(LogModule::SceneSerializer, "      Offset                | {0} | {0}", ccc.offset.x, ccc.offset.y);
@@ -138,36 +138,24 @@ namespace ikan {
     IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution Threshold | {0}", ccc.restitution_threshold);
   }
   
-  void SerializeBoxCollider(YAML::Emitter& out, const BoxColloiderComponent& bcc) {
-    out << YAML::Key << "BoxColloiderComponent";
-    out << YAML::BeginMap; // BoxColloiderComponent
+  void SerializeBoxCollider(YAML::Emitter& out, const BoxColloiderComponent& bcc, std::string identifier) {
+    out << YAML::Key << "Offset" + identifier << YAML::Value << bcc.offset;
+    out << YAML::Key << "Size" + identifier << YAML::Value << bcc.size;
     
-    out << YAML::Key << "Offset" << YAML::Value << bcc.offset;
-    out << YAML::Key << "Size" << YAML::Value << bcc.size;
-    
-    out << YAML::Key << "Density" << YAML::Value << bcc.density;
-    out << YAML::Key << "Friction" << YAML::Value << bcc.friction;
-    out << YAML::Key << "Restitution" << YAML::Value << bcc.restitution;
-    out << YAML::Key << "Restitution Threshold" << YAML::Value << bcc.restitution_threshold;
-    
-    out << YAML::EndMap; // BoxColloiderComponent
+    out << YAML::Key << "Density" + identifier << YAML::Value << bcc.density;
+    out << YAML::Key << "Friction" + identifier << YAML::Value << bcc.friction;
+    out << YAML::Key << "Restitution" + identifier << YAML::Value << bcc.restitution;
+    out << YAML::Key << "Restitution Threshold" + identifier << YAML::Value << bcc.restitution_threshold;
   }
   
-  void SerializeCircleCollider(YAML::Emitter& out, const CircleColloiderComponent& ccc) {
-    out << YAML::Key << "CircleColloiderComponent";
-    out << YAML::BeginMap; // CircleColloiderComponent
+  void SerializeCircleCollider(YAML::Emitter& out, const CircleColloiderComponent& ccc, std::string identifier) {
+    out << YAML::Key << "Offset" + identifier << YAML::Value << ccc.offset;
+    out << YAML::Key << "Radius" + identifier << YAML::Value << ccc.radius;
     
-    
-    out << YAML::Key << "Offset" << YAML::Value << ccc.offset;
-    out << YAML::Key << "Radius" << YAML::Value << ccc.radius;
-    
-    out << YAML::Key << "Density" << YAML::Value << ccc.density;
-    out << YAML::Key << "Friction" << YAML::Value << ccc.friction;
-    out << YAML::Key << "Restitution" << YAML::Value << ccc.restitution;
-    out << YAML::Key << "Restitution Threshold" << YAML::Value << ccc.restitution_threshold;
-    
-    out << YAML::EndMap; // CircleColloiderComponent
-
+    out << YAML::Key << "Density" + identifier << YAML::Value << ccc.density;
+    out << YAML::Key << "Friction" + identifier << YAML::Value << ccc.friction;
+    out << YAML::Key << "Restitution" + identifier << YAML::Value << ccc.restitution;
+    out << YAML::Key << "Restitution Threshold" + identifier << YAML::Value << ccc.restitution_threshold;
   }
   
   SceneSerializer::SceneSerializer(EnttScene* scene) : scene_(scene) { }
@@ -334,15 +322,43 @@ namespace ikan {
 
       // ------------------------------------------------------------------------
       if (entity.HasComponent<BoxColloiderComponent>()) {
+        out << YAML::Key << "BoxColloiderComponent";
+        out << YAML::BeginMap; // BoxColloiderComponent
+        
         auto& bcc = entity.GetComponent<BoxColloiderComponent>();
-        SerializeBoxCollider(out, bcc);
+        SerializeBoxCollider(out, bcc, "");
+        
+        out << YAML::EndMap; // BoxColloiderComponent
       }
       // ------------------------------------------------------------------------
       if (entity.HasComponent<CircleColloiderComponent>()) {
+        out << YAML::Key << "CircleColloiderComponent";
+        out << YAML::BeginMap; // CircleColloiderComponent
+                
         auto& ccc = entity.GetComponent<CircleColloiderComponent>();
-        SerializeCircleCollider(out, ccc);
+        SerializeCircleCollider(out, ccc, "");
+        
+        out << YAML::EndMap; // CircleColloiderComponent
       }
       
+      // ------------------------------------------------------------------------
+      if (entity.HasComponent<PhillBoxColliderComponent>()) {
+        out << YAML::Key << "PhillBoxColliderComponent";
+        out << YAML::BeginMap; // PhillBoxColliderComponent
+        
+        auto& pbc = entity.GetComponent<PhillBoxColliderComponent>();
+        auto& bcc = pbc.bcc;
+        SerializeBoxCollider(out, bcc, "_box");
+
+        auto& t_ccc = pbc.top_ccc;
+        SerializeCircleCollider(out, t_ccc, "_top_circle");
+
+        auto& b_ccc = pbc.bottom_ccc;
+        SerializeCircleCollider(out, b_ccc, "_bottom_circle");
+
+        out << YAML::EndMap; // PhillBoxColliderComponent
+      }
+
       // ------------------------------------------------------------------------
       if (entity.HasComponent<AnimationComponent>()) {
         out << YAML::Key << "AnimationComponent";
@@ -571,16 +587,31 @@ namespace ikan {
         auto box_colloider_component = entity["BoxColloiderComponent"];
         if (box_colloider_component) {
           auto& bcc = deserialized_entity.AddComponent<BoxColloiderComponent>();
-          DeserializeBoxCollider(bcc, box_colloider_component);
+          DeserializeBoxCollider(bcc, box_colloider_component, "");
         } // if (box_colloider_component)
 
         // --------------------------------------------------------------------
         auto circle_colloider_component = entity["CircleColloiderComponent"];
         if (circle_colloider_component) {
           auto& ccc = deserialized_entity.AddComponent<CircleColloiderComponent>();
-          DeserializeCircleCollider(ccc, circle_colloider_component);
+          DeserializeCircleCollider(ccc, circle_colloider_component, "");
         } // if (circle_colloider_component)
-        
+
+        // --------------------------------------------------------------------
+        auto phill_box_colloider_component = entity["PhillBoxColliderComponent"];
+        if (phill_box_colloider_component) {
+          auto& pbc = deserialized_entity.AddComponent<PhillBoxColliderComponent>();
+          auto& bcc = pbc.bcc;
+          DeserializeBoxCollider(bcc, phill_box_colloider_component, "_box");
+          
+          auto& t_ccc = pbc.top_ccc;
+          DeserializeCircleCollider(t_ccc, phill_box_colloider_component, "_top_circle");
+          
+          auto& b_ccc = pbc.bottom_ccc;
+          DeserializeCircleCollider(b_ccc, phill_box_colloider_component, "_bottom_circle");
+
+        } // if (phill_box_colloider_component)
+
         // --------------------------------------------------------------------
         auto animation_component = entity["AnimationComponent"];
         if (animation_component) {

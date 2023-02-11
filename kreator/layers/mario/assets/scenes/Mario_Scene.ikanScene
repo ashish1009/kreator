@@ -32,6 +32,25 @@ Entities:
       Gravity Scale: 1
       Is Sensor: false
       Continous Collision: true
+    PhillBoxColliderComponent:
+      Offset_box: [0, 0]
+      Size_box: [0.5, 0.5]
+      Density_box: 1
+      Friction_box: 0.5
+      Restitution_box: 0
+      Restitution Threshold_box: 0.5
+      Offset_top_circle: [0, 0]
+      Radius_top_circle: 0.5
+      Density_top_circle: 1
+      Friction_top_circle: 0.5
+      Restitution_top_circle: 0
+      Restitution Threshold_top_circle: 0.5
+      Offset_bottom_circle: [0, 0]
+      Radius_bottom_circle: 0.5
+      Density_bottom_circle: 1
+      Friction_bottom_circle: 0.5
+      Restitution_bottom_circle: 0
+      Restitution Threshold_bottom_circle: 0.5
     AnimationComponent:
       Animation: true
       Sprite: true
