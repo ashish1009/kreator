@@ -138,7 +138,7 @@ namespace ikan {
   }
   
   void EnttScene::UpdateRuntime(Timestep ts) {    
-    if (0) {//state_ == State::Play) { // TODO: Temp check till we use scene camera in editor mode
+    if (state_ == State::Play) { // TODO: Temp check till we use scene camera in editor mode
       // Physics
       const int32_t velocity_iteration = 6;
       const int32_t position_iteration = 2;
@@ -190,7 +190,7 @@ namespace ikan {
         auto& bc2d = entity.GetComponent<BoxColloiderComponent>();
         
         b2PolygonShape polygon_shape;
-        polygon_shape.SetAsBox(bc2d.size.x * transform.Scale().x, bc2d.size.y * transform.Scale().y);
+        polygon_shape.SetAsBox(bc2d.size.x * transform.Scale().x, bc2d.size.y * transform.Scale().y, {bc2d.offset.x, bc2d.offset.y}, 0);
         
         b2FixtureDef fixture_def;
         fixture_def.shape = & polygon_shape;
@@ -199,9 +199,11 @@ namespace ikan {
         fixture_def.restitution = bc2d.restitution;
         fixture_def.restitutionThreshold = bc2d.restitution_threshold;
         
+        fixture_def.userData.pointer = (uintptr_t)bc2d.runtime_fixture;
+        
         body->CreateFixture(&fixture_def);
       }
-      
+            
       if (entity.HasComponent<CircleColloiderComponent>()) {
         auto& cc2d = entity.GetComponent<CircleColloiderComponent>();
         

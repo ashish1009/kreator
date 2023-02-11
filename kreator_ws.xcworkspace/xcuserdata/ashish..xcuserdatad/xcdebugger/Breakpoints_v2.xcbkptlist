@@ -62,10 +62,10 @@
             filePath = "ikan/implementation/ecs/entt_scene.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
-            landmarkName = "EnttScene::InstantiateScript(ts)"
-            landmarkType = "7">
+            startingLineNumber = "324"
+            endingLineNumber = "324"
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
                   uuid = "B616FF0C-C8E8-4B4B-8208-B1427A94BF68 - bfc3cd4123daa3f6"
@@ -398,8 +398,8 @@
             filePath = "kreator/layers/ikan_game/src/renderer_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "538"
-            endingLineNumber = "538"
+            startingLineNumber = "539"
+            endingLineNumber = "539"
             landmarkName = "RendererLayer::OverlayRender()"
             landmarkType = "7">
          </BreakpointContent>

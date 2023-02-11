@@ -500,6 +500,7 @@ namespace ikan_game {
   }
   
   void RendererLayer::OverlayRender() {
+    static const glm::vec4 collider_color = {0.0f, 1.0f, 0.0f, 1.0f};
     bool camera_found = false;
   
     if (active_scene_->UseEditorCamera()) {
@@ -525,7 +526,7 @@ namespace ikan_game {
         glm::vec3 p = tc.Translation() + glm::vec3(bcc.offset, 0.001f);
         glm::vec3 s = tc.Scale() * glm::vec3((bcc.size * 2.0f), 1.0f); // We need diameter
         
-        BatchRenderer::DrawRect(Math::GetTransformMatrix(p, tc.Rotation(), s), {0, 0, 1, 1});
+        BatchRenderer::DrawRect(Math::GetTransformMatrix(p, tc.Rotation(), s), collider_color);
       }
     }
 
@@ -540,7 +541,7 @@ namespace ikan_game {
         
         // Rotation ???
         
-        BatchRenderer::DrawCircle(Math::GetTransformMatrix(p, {0, 0, 0}, s), {0, 0, 1, 1}, 0.05f);
+        BatchRenderer::DrawCircle(Math::GetTransformMatrix(p, {0, 0, 0}, s), collider_color, 0.05f);
       }
     }
     BatchRenderer::EndBatch();
