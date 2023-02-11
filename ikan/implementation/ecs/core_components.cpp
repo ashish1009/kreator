@@ -531,29 +531,32 @@ namespace ikan {
     }
   }
   
-  void RigidBodyComponent::SetVelocity() {
+  void RigidBodyComponent::SetVelocity(const glm::vec2& vel) {
+    velocity = vel;
     if (runtime_body != nullptr) {
       runtime_body->SetLinearVelocity({velocity.x, velocity.y});
     }
   }
   
-  void RigidBodyComponent::SetAngularVelocity() {
+  void RigidBodyComponent::SetAngularVelocity(float ang_vel) {
+    angular_velocity = ang_vel;
     if (runtime_body != nullptr) {
       runtime_body->SetAngularVelocity(angular_velocity);
     }
   }
   
-  void RigidBodyComponent::SetGravityScale() {
+  void RigidBodyComponent::SetGravityScale(float scale) {
+    gravity_scale = scale;
     if (runtime_body != nullptr) {
       runtime_body->SetGravityScale(gravity_scale);
     }
   }
   
-  void RigidBodyComponent::SetIsSensor() {
+  void RigidBodyComponent::SetIsSensor(bool flag) {
     
   }
   
-  void RigidBodyComponent::SetNotSensor() {
+  void RigidBodyComponent::SetNotSensor(bool flag) {
     
   }
   

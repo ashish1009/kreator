@@ -42,10 +42,10 @@ namespace ikan {
   void CameraController::Update(Timestep ts) {
     auto& tc = GetComponent<TransformComponent>();
 
-    if (Input::IsKeyPressed(KeyCode::Left))
-      tc.UpdateTranslation_X(tc.Translation().x - (speed_ * ts));
-    if (Input::IsKeyPressed(KeyCode::Right))
-      tc.UpdateTranslation_X(tc.Translation().x + (speed_ * ts));
+//    if (Input::IsKeyPressed(KeyCode::Left))
+//      tc.UpdateTranslation_X(tc.Translation().x - (speed_ * ts));
+//    if (Input::IsKeyPressed(KeyCode::Right))
+//      tc.UpdateTranslation_X(tc.Translation().x + (speed_ * ts));
   }
   void CameraController::RenderGui() {
     PropertyGrid::Float1("Speed", speed_);

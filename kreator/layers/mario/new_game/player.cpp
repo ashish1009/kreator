@@ -9,17 +9,51 @@
 
 namespace mario {
   
+  PlayerController::PlayerController(RigidBodyComponent* rb) : rigid_body_comp_(rb) {
+    rigid_body_comp_->SetGravityScale(0.0f);
+  }
+  
+  void PlayerController::Update(Timestep ts) {
+    auto& tc = GetComponent<TransformComponent>();
+    
+    if (Input::IsKeyPressed(KeyCode::Left)) {
+      tc.UpdateScale_X(-player_width_);
+      acceleration_.x = -warlk_speed_;
+      
+      if (velocity_.x > 0) {
+        velocity_.x -= slow_down_force_;
+        // State Machine change direction
+      }
+      else {
+        // State Machine Running
+      }
+    }
+    if (Input::IsKeyPressed(KeyCode::Right)) {
+      tc.UpdateScale_X(player_width_);
+      acceleration_.x = warlk_speed_;
+      
+      if (velocity_.x < 0) {
+        velocity_.x += slow_down_force_;
+        // State Machine change direction
+      }
+      else {
+        // State Machine Running
+      }
+    }
+    
+    velocity_.x += acceleration_.x * ts;
+    velocity_.y += acceleration_.y * ts;
+    
+    velocity_.x = std::max(std::min(velocity_.x, terminal_velocity_.x), -terminal_velocity_.x);
+    velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
+   
+    rigid_body_comp_->SetVelocity(velocity_);
+    rigid_body_comp_->SetAngularVelocity(0.0f);
+  }
+  
   void Player::Init(std::shared_ptr<EnttScene> scene) {
     scene_ = scene;
-    
-    auto player_script_loader = [](NativeScriptComponent* sc, const std::string& script_name) {
-      if (script_name == "mario::PlayerController") {
-        sc->Bind<mario::PlayerController>(10.0f);
-        return true;
-      }
-      return false;
-    };
-    
+        
     // Hack to add Player first time
     bool create_player = false;
     if (create_player) {
@@ -55,7 +89,7 @@ namespace mario {
       ac.sprites.push_back(SubTexture::CreateFromCoords(qc.texture_comp.component, {2.0f, 30.0f}));
       
       // Native script
-      entity_.AddComponent<NativeScriptComponent>(player_script_loader).Bind<mario::PlayerController>(10.0f);
+      entity_.AddComponent<NativeScriptComponent>();
     }
     else {
       auto view = scene_->GetEntitesWith<TagComponent>();
@@ -69,23 +103,8 @@ namespace mario {
       
       if (entity_.HasComponent<NativeScriptComponent>()) {
         auto& ns = entity_.GetComponent<NativeScriptComponent>();
-        ScriptManager::UpdateScript(&ns, "mario::PlayerController", player_script_loader);
+        ns.Bind<PlayerController>(&entity_.GetComponent<RigidBodyComponent>());
       }
-      
     }
   }
-  
-  PlayerController::PlayerController(float speed) : speed_(speed) {
-    
-  }
-  
-  void PlayerController::Update(Timestep ts) {
-    auto& tc = GetComponent<TransformComponent>();
-    
-    if (Input::IsKeyPressed(KeyCode::Left))
-      tc.UpdateTranslation_X(tc.Translation().x - (speed_ * ts));
-    if (Input::IsKeyPressed(KeyCode::Right))
-      tc.UpdateTranslation_X(tc.Translation().x + (speed_ * ts));
-  }
-  
 }

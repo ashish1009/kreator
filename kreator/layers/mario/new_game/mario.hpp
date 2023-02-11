@@ -60,7 +60,7 @@ namespace mario {
     // Getters
     glm::vec4 GetBgColor() override { return level_bg_; }
     std::string GameName() override { return "Mario"; }
-    std::string SavedScene() override { return AM::ClientAsset("scenes/Mario_Scene.ikanScene"); }
+    std::string SavedScene() override { return AM::ClientAsset("scenes/m.ikanScene"); }
     ImguiFont RegularFontData() override;
     ImguiFont BoldFontData() override;
     std::vector<std::filesystem::path> FavDirecotries() override;

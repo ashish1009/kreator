@@ -152,11 +152,11 @@ namespace ikan {
     
     void AddVelocity();
     void AddImpulse();
-    void SetVelocity();
-    void SetAngularVelocity();
-    void SetGravityScale();
-    void SetIsSensor();
-    void SetNotSensor();
+    void SetVelocity(const glm::vec2& vel);
+    void SetAngularVelocity(float ang_vel);
+    void SetGravityScale(float scale);
+    void SetIsSensor(bool flag);
+    void SetNotSensor(bool flag);
     
     void RenderGui();
     RigidBodyComponent() = default;

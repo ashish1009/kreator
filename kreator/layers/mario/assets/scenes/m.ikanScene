@@ -1,0 +1,71 @@
+Scene: Untitled
+Setting_editor_camera: true
+Setting_scene_data: true
+Use_editor_camera: false
+Entities:
+  - Entity: 15621815037996808333
+    TagComponent:
+      Tag: Player
+    TransformComponent:
+      Translation: [-15, 4, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/player.png
+      Coords: [6, 30]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_0: mario::PlayerController
+      Num_Scripts: 1
+    RigidBodyComponent:
+      Type: 2
+      Fixed Rotation: false
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Mass: 0
+      Friction: 0.100000001
+      Gravity Scale: 0
+      Is Sensor: false
+      Continous Collision: true
+    PillBoxColliderComponent:
+      Offset: [0, 0]
+      Width: 0.400000006
+      Height: 0.5
+    AnimationComponent:
+      Animation: false
+      Sprite: true
+      Speed: 15
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/player.png
+      Coords0: [0, 30]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Coords1: [1, 30]
+      Sprite_Size1: [1, 1]
+      Cell_Size1: [16, 16]
+      Coords2: [2, 30]
+      Sprite_Size2: [1, 1]
+      Cell_Size2: [16, 16]
+      Num_Coords: 3
+  - Entity: 1233372352514378249
+    TagComponent:
+      Tag: Camera
+    TransformComponent:
+      Translation: [-15, 3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 10
+      Near: -1
+      Far: 1
