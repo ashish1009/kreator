@@ -34,6 +34,100 @@ namespace ikan_game {
   /// This function is the defination of game data. Implementaiton should be at client
   std::unique_ptr<GameData> CreateGameData(const Viewport* const viewport);
   
+  class GameContactListner : public b2ContactListener {
+  public:
+    void BeginContact(b2Contact* contact) {
+      void* obj_a = (void*)contact->GetFixtureA()->GetUserData().pointer;
+      void* obj_b = (void*)contact->GetFixtureB()->GetUserData().pointer;
+      
+      b2WorldManifold world_manifold;
+      contact->GetWorldManifold(&world_manifold);
+      
+      glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
+      glm::vec2 b_normal = a_normal * -1.0f;
+      
+      /*
+      for (Component c : obj_a.GetAllComponent()) {
+       c.BeginCollision(obj_b, contact, a_normal);
+      }
+       
+      for (Component c : obj_b.GetAllComponent()) {
+       c.BeginCollision(obj_a, contact, b_normal);
+      }
+
+      */
+    }
+    
+    void EndContact(b2Contact* contact) {
+      void* obj_a = (void*)contact->GetFixtureA()->GetUserData().pointer;
+      void* obj_b = (void*)contact->GetFixtureB()->GetUserData().pointer;
+      
+      b2WorldManifold world_manifold;
+      contact->GetWorldManifold(&world_manifold);
+      
+      glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
+      glm::vec2 b_normal = a_normal * -1.0f;
+      
+      /*
+       for (Component c : obj_a.GetAllComponent()) {
+       c.EndCollision(obj_b, contact, a_normal);
+       }
+       
+       for (Component c : obj_b.GetAllComponent()) {
+       c.EndCollision(obj_a, contact, b_normal);
+       }
+       
+       */
+
+    }
+    
+    void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) {
+      void* obj_a = (void*)contact->GetFixtureA()->GetUserData().pointer;
+      void* obj_b = (void*)contact->GetFixtureB()->GetUserData().pointer;
+      
+      b2WorldManifold world_manifold;
+      contact->GetWorldManifold(&world_manifold);
+      
+      glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
+      glm::vec2 b_normal = a_normal * -1.0f;
+      
+      /*
+       for (Component c : obj_a.GetAllComponent()) {
+       c.PreSolve(obj_b, contact, a_normal);
+       }
+       
+       for (Component c : obj_b.GetAllComponent()) {
+       c.PreSolve(obj_a, contact, b_normal);
+       }
+       
+       */
+
+    }
+    
+    void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse) {
+      void* obj_a = (void*)contact->GetFixtureA()->GetUserData().pointer;
+      void* obj_b = (void*)contact->GetFixtureB()->GetUserData().pointer;
+      
+      b2WorldManifold world_manifold;
+      contact->GetWorldManifold(&world_manifold);
+      
+      glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
+      glm::vec2 b_normal = a_normal * -1.0f;
+      
+      /*
+       for (Component c : obj_a.GetAllComponent()) {
+       c.PostSolve(obj_b, contact, a_normal);
+       }
+       
+       for (Component c : obj_b.GetAllComponent()) {
+       c.PostSolve(obj_a, contact, b_normal);
+       }
+       
+       */
+
+    }
+  };
+  
   class RendererLayer : public Layer {
   public:
     struct Setting {
