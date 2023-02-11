@@ -101,7 +101,75 @@ namespace ikan {
     out << YAML::BeginSeq << v.x << v.y << v.z << v.a << YAML::EndSeq;
     return out;
   }
+  
+  void DeserializeBoxCollider(BoxColloiderComponent& bcc, const YAML::Node& box_colloider_component) {
+    bcc.offset = box_colloider_component["Offset"].as<glm::vec2>();
+    bcc.size = box_colloider_component["Size"].as<glm::vec2>();
+    
+    bcc.density = box_colloider_component["Density"].as<float>();
+    bcc.friction = box_colloider_component["Friction"].as<float>();
+    bcc.restitution = box_colloider_component["Restitution"].as<float>();
+    bcc.restitution_threshold = box_colloider_component["Restitution Threshold"].as<float>();
+    
+    IK_CORE_INFO(LogModule::SceneSerializer, "    Box Collider Component");
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Offset                | {0} | {0}", bcc.offset.x, bcc.offset.y);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Size                  | {0} | {0}", bcc.size.x, bcc.size.y);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Density               | {0}", bcc.density);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Friction              | {0}", bcc.friction);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution           | {0}", bcc.restitution);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution Threshold | {0}", bcc.restitution_threshold);
+  }
+  
+  void DeserializeCircleCollider(CircleColloiderComponent& ccc, const YAML::Node& circle_colloider_component) {
+    ccc.offset = circle_colloider_component["Offset"].as<glm::vec2>();
+    ccc.radius = circle_colloider_component["Radius"].as<float>();
+    
+    ccc.density = circle_colloider_component["Density"].as<float>();
+    ccc.friction = circle_colloider_component["Friction"].as<float>();
+    ccc.restitution = circle_colloider_component["Restitution"].as<float>();
+    ccc.restitution_threshold = circle_colloider_component["Restitution Threshold"].as<float>();
+    
+    IK_CORE_INFO(LogModule::SceneSerializer, "    Circle Colloider Component");
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Offset                | {0} | {0}", ccc.offset.x, ccc.offset.y);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Radius                | {0}", ccc.radius);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Density               | {0}", ccc.density);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Friction              | {0}", ccc.friction);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution           | {0}", ccc.restitution);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution Threshold | {0}", ccc.restitution_threshold);
+  }
+  
+  void SerializeBoxCollider(YAML::Emitter& out, const BoxColloiderComponent& bcc) {
+    out << YAML::Key << "BoxColloiderComponent";
+    out << YAML::BeginMap; // BoxColloiderComponent
+    
+    out << YAML::Key << "Offset" << YAML::Value << bcc.offset;
+    out << YAML::Key << "Size" << YAML::Value << bcc.size;
+    
+    out << YAML::Key << "Density" << YAML::Value << bcc.density;
+    out << YAML::Key << "Friction" << YAML::Value << bcc.friction;
+    out << YAML::Key << "Restitution" << YAML::Value << bcc.restitution;
+    out << YAML::Key << "Restitution Threshold" << YAML::Value << bcc.restitution_threshold;
+    
+    out << YAML::EndMap; // BoxColloiderComponent
+  }
+  
+  void SerializeCircleCollider(YAML::Emitter& out, const CircleColloiderComponent& ccc) {
+    out << YAML::Key << "CircleColloiderComponent";
+    out << YAML::BeginMap; // CircleColloiderComponent
+    
+    
+    out << YAML::Key << "Offset" << YAML::Value << ccc.offset;
+    out << YAML::Key << "Radius" << YAML::Value << ccc.radius;
+    
+    out << YAML::Key << "Density" << YAML::Value << ccc.density;
+    out << YAML::Key << "Friction" << YAML::Value << ccc.friction;
+    out << YAML::Key << "Restitution" << YAML::Value << ccc.restitution;
+    out << YAML::Key << "Restitution Threshold" << YAML::Value << ccc.restitution_threshold;
+    
+    out << YAML::EndMap; // CircleColloiderComponent
 
+  }
+  
   SceneSerializer::SceneSerializer(EnttScene* scene) : scene_(scene) { }
   SceneSerializer::~SceneSerializer() { }
 
@@ -266,37 +334,13 @@ namespace ikan {
 
       // ------------------------------------------------------------------------
       if (entity.HasComponent<BoxColloiderComponent>()) {
-        out << YAML::Key << "BoxColloiderComponent";
-        out << YAML::BeginMap; // BoxColloiderComponent
-        
         auto& bcc = entity.GetComponent<BoxColloiderComponent>();
-        
-        out << YAML::Key << "Offset" << YAML::Value << bcc.offset;
-        out << YAML::Key << "Size" << YAML::Value << bcc.size;
-        
-        out << YAML::Key << "Density" << YAML::Value << bcc.density;
-        out << YAML::Key << "Friction" << YAML::Value << bcc.friction;
-        out << YAML::Key << "Restitution" << YAML::Value << bcc.restitution;
-        out << YAML::Key << "Restitution Threshold" << YAML::Value << bcc.restitution_threshold;
-        
-        out << YAML::EndMap; // BoxColloiderComponent
+        SerializeBoxCollider(out, bcc);
       }
       // ------------------------------------------------------------------------
       if (entity.HasComponent<CircleColloiderComponent>()) {
-        out << YAML::Key << "CircleColloiderComponent";
-        out << YAML::BeginMap; // CircleColloiderComponent
-        
         auto& ccc = entity.GetComponent<CircleColloiderComponent>();
-        
-        out << YAML::Key << "Offset" << YAML::Value << ccc.offset;
-        out << YAML::Key << "Radius" << YAML::Value << ccc.radius;
-        
-        out << YAML::Key << "Density" << YAML::Value << ccc.density;
-        out << YAML::Key << "Friction" << YAML::Value << ccc.friction;
-        out << YAML::Key << "Restitution" << YAML::Value << ccc.restitution;
-        out << YAML::Key << "Restitution Threshold" << YAML::Value << ccc.restitution_threshold;
-        
-        out << YAML::EndMap; // CircleColloiderComponent
+        SerializeCircleCollider(out, ccc);
       }
       
       // ------------------------------------------------------------------------
@@ -527,44 +571,14 @@ namespace ikan {
         auto box_colloider_component = entity["BoxColloiderComponent"];
         if (box_colloider_component) {
           auto& bcc = deserialized_entity.AddComponent<BoxColloiderComponent>();
-
-          bcc.offset = box_colloider_component["Offset"].as<glm::vec2>();
-          bcc.size = box_colloider_component["Size"].as<glm::vec2>();
-
-          bcc.density = box_colloider_component["Density"].as<float>();
-          bcc.friction = box_colloider_component["Friction"].as<float>();
-          bcc.restitution = box_colloider_component["Restitution"].as<float>();
-          bcc.restitution_threshold = box_colloider_component["Restitution Threshold"].as<float>();
-
-          IK_CORE_INFO(LogModule::SceneSerializer, "    Box Collider Component");
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Offset                | {0} | {0}", bcc.offset.x, bcc.offset.y);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Size                  | {0} | {0}", bcc.size.x, bcc.size.y);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Density               | {0}", bcc.density);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Friction              | {0}", bcc.friction);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution           | {0}", bcc.restitution);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution Threshold | {0}", bcc.restitution_threshold);
+          DeserializeBoxCollider(bcc, box_colloider_component);
         } // if (box_colloider_component)
 
         // --------------------------------------------------------------------
         auto circle_colloider_component = entity["CircleColloiderComponent"];
         if (circle_colloider_component) {
-          auto& bcc = deserialized_entity.AddComponent<CircleColloiderComponent>();
-          
-          bcc.offset = circle_colloider_component["Offset"].as<glm::vec2>();
-          bcc.radius = circle_colloider_component["Radius"].as<float>();
-          
-          bcc.density = circle_colloider_component["Density"].as<float>();
-          bcc.friction = circle_colloider_component["Friction"].as<float>();
-          bcc.restitution = circle_colloider_component["Restitution"].as<float>();
-          bcc.restitution_threshold = circle_colloider_component["Restitution Threshold"].as<float>();
-          
-          IK_CORE_INFO(LogModule::SceneSerializer, "    Circle Colloider Component");
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Offset                | {0} | {0}", bcc.offset.x, bcc.offset.y);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Radius                | {0}", bcc.radius);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Density               | {0}", bcc.density);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Friction              | {0}", bcc.friction);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution           | {0}", bcc.restitution);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution Threshold | {0}", bcc.restitution_threshold);
+          auto& ccc = deserialized_entity.AddComponent<CircleColloiderComponent>();
+          DeserializeCircleCollider(ccc, circle_colloider_component);
         } // if (circle_colloider_component)
         
         // --------------------------------------------------------------------
