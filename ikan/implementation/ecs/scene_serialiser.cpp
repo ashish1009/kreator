@@ -560,7 +560,7 @@ namespace ikan {
             name_tag += std::to_string(i);
             std::string script_name = script_component[name_tag].as<std::string>();
             
-            ScriptManager::UpdateScript(&sc, script_name, nullptr);
+            ScriptManager::UpdateScript(&sc, script_name, sc.loader_function);
             IK_CORE_INFO(LogModule::SceneSerializer, "      Script | {0}", script_name);
           }
         } // if (script_component)

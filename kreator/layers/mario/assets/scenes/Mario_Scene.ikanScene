@@ -3,54 +3,6 @@ Setting_editor_camera: true
 Setting_scene_data: true
 Use_editor_camera: false
 Entities:
-  - Entity: 1725895050382086716
-    TagComponent:
-      Tag: Temp_debug_player
-    TransformComponent:
-      Translation: [-9.9869442, -2.93222666, 2.38418579e-07]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/player.png
-      Coords: [6, 31]
-      Sprite_Size: [1, 2]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 2
-      Fixed Rotation: false
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0.100000001
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    PillBoxColliderComponent:
-      Offset: [0, 0]
-      Width: 0.5
-      Height: 1
-    AnimationComponent:
-      Animation: false
-      Sprite: true
-      Speed: 15
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/player.png
-      Coords0: [0, 30]
-      Sprite_Size0: [1, 1]
-      Cell_Size0: [16, 16]
-      Coords1: [1, 30]
-      Sprite_Size1: [1, 1]
-      Cell_Size1: [16, 16]
-      Coords2: [2, 30]
-      Sprite_Size2: [1, 1]
-      Cell_Size2: [16, 16]
-      Num_Coords: 3
   - Entity: 7366802958975670796
     TagComponent:
       Tag: Pipe
@@ -14010,16 +13962,43 @@ Entities:
       Sprite: true
       Speed: 15
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords0: [24, 27]
+      Coords0: [0, 30]
       Sprite_Size0: [1, 1]
       Cell_Size0: [16, 16]
-      Coords1: [25, 27]
+      Coords1: [1, 30]
       Sprite_Size1: [1, 1]
       Cell_Size1: [16, 16]
-      Coords2: [26, 27]
+      Coords2: [2, 30]
       Sprite_Size2: [1, 1]
       Cell_Size2: [16, 16]
-      Num_Coords: 3
+      Coords3: [0, 30]
+      Sprite_Size3: [1, 1]
+      Cell_Size3: [16, 16]
+      Coords4: [1, 30]
+      Sprite_Size4: [1, 1]
+      Cell_Size4: [16, 16]
+      Coords5: [2, 30]
+      Sprite_Size5: [1, 1]
+      Cell_Size5: [16, 16]
+      Coords6: [0, 30]
+      Sprite_Size6: [1, 1]
+      Cell_Size6: [16, 16]
+      Coords7: [1, 30]
+      Sprite_Size7: [1, 1]
+      Cell_Size7: [16, 16]
+      Coords8: [2, 30]
+      Sprite_Size8: [1, 1]
+      Cell_Size8: [16, 16]
+      Coords9: [24, 27]
+      Sprite_Size9: [1, 1]
+      Cell_Size9: [16, 16]
+      Coords10: [25, 27]
+      Sprite_Size10: [1, 1]
+      Cell_Size10: [16, 16]
+      Coords11: [26, 27]
+      Sprite_Size11: [1, 1]
+      Cell_Size11: [16, 16]
+      Num_Coords: 12
   - Entity: 13642458462156488662
     TagComponent:
       Tag: Bonus
@@ -23211,7 +23190,7 @@ Entities:
     TagComponent:
       Tag: Grass
     TransformComponent:
-      Translation: [-6, -6, 0]
+      Translation: [-4, -6, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -23220,23 +23199,6 @@ Entities:
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
       Coords: [11, 16]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 1404077645358737474
-    TagComponent:
-      Tag: Grass
-    TransformComponent:
-      Translation: [-5, -6, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [12, 16]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
@@ -23271,23 +23233,6 @@ Entities:
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
       Coords: [8, 18]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 2464804035426146995
-    TagComponent:
-      Tag: Grass
-    TransformComponent:
-      Translation: [-4, -6, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords: [12, 16]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
@@ -24128,7 +24073,7 @@ Entities:
     TagComponent:
       Tag: Primary Camera
     TransformComponent:
-      Translation: [-6.66308594, -4.95683289, 0]
+      Translation: [-2.75, 1, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
@@ -24136,7 +24081,7 @@ Entities:
       Primary: true
       ProjectionType: 1
       PerspectiveFOV: 0.785398185
-      OrthographicSize: 10
+      OrthographicSize: 19
       Near: -1
       Far: 1
     NativeScriptComponent:
@@ -50456,12 +50401,12 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 15490046835455799127
+  - Entity: 5143234997820639185
     TagComponent:
-      Tag: Temp_debug_player
+      Tag: Player
     TransformComponent:
-      Translation: [-11.7239866, -2.89448953, 2.38418579e-07]
-      Rotation: [0, 0, 2.8722954e-07]
+      Translation: [-15, 4, 0.100000001]
+      Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
       Texture_Use: true
@@ -50473,6 +50418,9 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_0: mario::PlayerController
+      Num_Scripts: 1
     RigidBodyComponent:
       Type: 2
       Fixed Rotation: false
@@ -50503,22 +50451,4 @@ Entities:
       Coords2: [2, 30]
       Sprite_Size2: [1, 1]
       Cell_Size2: [16, 16]
-      Coords3: [0, 30]
-      Sprite_Size3: [1, 1]
-      Cell_Size3: [16, 16]
-      Coords4: [1, 30]
-      Sprite_Size4: [1, 1]
-      Cell_Size4: [16, 16]
-      Coords5: [2, 30]
-      Sprite_Size5: [1, 1]
-      Cell_Size5: [16, 16]
-      Coords6: [0, 30]
-      Sprite_Size6: [1, 1]
-      Cell_Size6: [16, 16]
-      Coords7: [1, 30]
-      Sprite_Size7: [1, 1]
-      Cell_Size7: [16, 16]
-      Coords8: [2, 30]
-      Sprite_Size8: [1, 1]
-      Cell_Size8: [16, 16]
-      Num_Coords: 9
+      Num_Coords: 3

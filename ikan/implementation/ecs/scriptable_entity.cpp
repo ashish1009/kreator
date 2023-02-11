@@ -22,12 +22,17 @@ namespace ikan {
   void ScriptManager::UpdateScript(NativeScriptComponent* sc,
                                    const std::string& script_name,
                                    ScriptLoaderFn loader_function) {
-    if (script_name == "ikan::ScriptableEntity") sc->Bind<ikan::ScriptableEntity>();
-    if (script_name == "ikan::CameraController") sc->Bind<ikan::CameraController>();
+    if (script_name == "ikan::CameraController") {
+      sc->Bind<ikan::CameraController>();
+    }
     else {
-      IK_ASSERT(loader_function, "Invalid Script name");
-      bool script_loaded = loader_function(sc, script_name);
-      IK_ASSERT(script_loaded, "Invalid Script name");
+      if (loader_function) {
+        bool script_loaded = loader_function(sc, script_name);
+        IK_ASSERT(script_loaded, "Invalid Script name");
+      }
+      else {
+        sc->Bind<ikan::ScriptableEntity>();
+      }
     }
   }
 

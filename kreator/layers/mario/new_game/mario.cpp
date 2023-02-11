@@ -24,11 +24,15 @@ namespace mario {
     panel_ = panel;
     
     BatchRenderer::Init(2000, 0, 2000 * 5);
-    
-//    player.Init(scene_);
   }
 
   void MarioData::Update(Timestep ts) {
+    static bool player_created = false;
+    if (!player_created) {
+      player.Init(scene_);
+      player_created = true;
+    }
+    
     if (!is_playing_) {
       StoreSelectedEntities();
       AddComponentHack();

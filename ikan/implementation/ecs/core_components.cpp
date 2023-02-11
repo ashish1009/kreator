@@ -413,6 +413,7 @@ namespace ikan {
   // -------------------------------------------------------------------------
   NativeScriptComponent::NativeScriptComponent(ScriptLoaderFn loader_fun)
   : loader_function(loader_fun) {
+    
   }
   
   NativeScriptComponent::NativeScriptComponent(const NativeScriptComponent& other) {
