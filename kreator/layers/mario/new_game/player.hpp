@@ -10,14 +10,21 @@
 namespace mario {
   
   using namespace ikan;
-
-  class Player {
+  
+  class StateMachine {
   public:
-    void Init(std::shared_ptr<EnttScene> scene);
+    enum State {
+      Idle, Run, SwitchDirection
+    };
+    
+    StateMachine(Entity* entity);
+    
+    void ChangeState(State state);
+    State GetState() const;
     
   private:
-    std::shared_ptr<EnttScene> scene_;
-    Entity entity_;
+    Entity* entity_;
+    State state_;
   };
 
   class PlayerController : public ScriptableEntity {
@@ -45,6 +52,17 @@ namespace mario {
     glm::vec2 velocity_;
     bool is_dead_ = false;
     int32_t enemy_bounce_ = 0;
-  };
     
+    StateMachine state_machine_;
+  };
+
+  class Player {
+  public:
+    void Init(std::shared_ptr<EnttScene> scene);
+    
+  private:
+    std::shared_ptr<EnttScene> scene_;
+    Entity entity_;
+  };
+  
 }
