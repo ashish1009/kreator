@@ -129,7 +129,7 @@ namespace ikan {
   }
   
   void EnttScene::UpdateEditor(Timestep ts) {
-    if (use_editor_camera_) {
+    if (setting_.use_editor_camera) {
       editor_camera_.Update(ts);
       Render2DEntities(editor_camera_.GetViewProjection());
     } else {
@@ -238,28 +238,8 @@ namespace ikan {
   }
   
   void EnttScene::RenderImguiEditor() {
-    if (use_editor_camera_)
+    if (setting_.use_editor_camera)
       editor_camera_.RendererGui(&setting_.editor_camera);
-    
-    // Scene Debugger
-    if (setting_.scene_controller) {
-      ImGui::Begin("Scene Controller", &setting_.scene_controller);
-      ImGui::PushID("Scene Controller");
-      
-      PropertyGrid::CheckBox("Use Editor Camera", use_editor_camera_, ImGui::GetContentRegionAvailWidth() / 2);
-      
-      ImGui::PopID();
-      ImGui::End();
-    }
-  
-    ImGui::Begin("Scene Data", &setting_.scene_data);
-   
-    // Render Scene Information
-    ImGui::Text(" Scene | %s ", name_.c_str());
-    std::string hovered_msg = "Num Entities   : " + std::to_string(num_entities_) + "\n" "Max Entity ID  : " + std::to_string(max_entity_id_);
-    PropertyGrid::HoveredMsg(hovered_msg.c_str());
-    
-    ImGui::End();
   }
   
   void EnttScene::RenderImguiRuntime() {
@@ -454,5 +434,5 @@ namespace ikan {
   const std::string& EnttScene::GetName() const { return name_; }
   const std::string& EnttScene::GetFilePath() const { return file_path_; }
   const CameraData& EnttScene::GetPrimaryCameraData() const { return primary_camera_data_; }
-  bool EnttScene::UseEditorCamera() const { return use_editor_camera_; }
+  bool EnttScene::UseEditorCamera() const { return setting_.use_editor_camera; }
 }

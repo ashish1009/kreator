@@ -42,6 +42,7 @@ namespace ikan {
     };
     
     struct Setting {
+      bool use_editor_camera = true;
       bool editor_camera = true;
       bool scene_controller = true;
       bool scene_data = true;
@@ -208,7 +209,6 @@ namespace ikan {
     
     // Scene Debugger
     Setting setting_;
-    bool use_editor_camera_ = true;
     
     // Physics Data
     b2World* physics_world_ = nullptr;

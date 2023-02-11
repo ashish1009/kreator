@@ -119,7 +119,7 @@ namespace ikan {
       out << YAML::Key << "Setting_editor_camera" << YAML::Value << scene_->setting_.editor_camera;
       out << YAML::Key << "Setting_scene_controller" << YAML::Value << scene_->setting_.scene_controller;
       out << YAML::Key << "Setting_scene_data" << YAML::Value << scene_->setting_.scene_data;
-      out << YAML::Key << "Use_editor_camera" << YAML::Value << scene_->use_editor_camera_;
+      out << YAML::Key << "Use_editor_camera" << YAML::Value << scene_->setting_.use_editor_camera;
     }
     
     out << YAML::Key << "Entities" << YAML::Value << YAML::BeginSeq;
@@ -340,7 +340,7 @@ namespace ikan {
     scene_->setting_.editor_camera = data["Setting_editor_camera"].as<bool>();
     scene_->setting_.scene_controller = data["Setting_scene_controller"].as<bool>();
     scene_->setting_.scene_data = data["Setting_scene_data"].as<bool>();
-    scene_->use_editor_camera_ = data["Use_editor_camera"].as<bool>();
+    scene_->setting_.use_editor_camera = data["Use_editor_camera"].as<bool>();
 
     auto entities = data["Entities"];
     if (entities) {

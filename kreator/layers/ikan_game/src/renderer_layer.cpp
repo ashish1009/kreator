@@ -69,7 +69,8 @@ namespace ikan_game {
       RenderScene(ts);
       RenderGrid();
 
-      OverlayRender();
+      if (settings_.show_colliders)
+        OverlayRender();
       
       viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
       viewport_.framebuffer->Unbind();
@@ -93,6 +94,8 @@ namespace ikan_game {
     }
     else {
       ImguiAPI::StartDcocking();
+
+      ShowSettings();
       
       ShowMenu();
       GamePlayButton();
@@ -460,6 +463,7 @@ namespace ikan_game {
         if (ImGui::BeginMenu("Scene")) {
           Setting::UpdateSetting("Editor Camera", active_scene_->GetSetting().editor_camera);
           Setting::UpdateSetting("Scene Controller", active_scene_->GetSetting().scene_controller);
+          Setting::UpdateSetting("Show Colliders", settings_.show_colliders);
           ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene"))
         }
         if (ImGui::BeginMenu("Scene Panels")) {
@@ -536,4 +540,31 @@ namespace ikan_game {
     BatchRenderer::EndBatch();
   }
 
+  void RendererLayer::ShowSettings() {
+    ImGui::Begin("Settings");
+
+    PropertyGrid::CheckBox("Show Editor Camera", active_scene_->GetSetting().editor_camera);
+    PropertyGrid::CheckBox("Use Editor Camera", active_scene_->GetSetting().use_editor_camera);
+    PropertyGrid::CheckBox("Scene Controller", active_scene_->GetSetting().scene_controller);
+    PropertyGrid::CheckBox("Show Colliders", settings_.show_colliders);
+
+    ImGui::Separator();
+    PropertyGrid::CheckBox("Entity Panel", spm_.GetSetting().scene_panel);
+    PropertyGrid::CheckBox("Property Panel", spm_.GetSetting().property_panel);
+
+    ImGui::Separator();
+    PropertyGrid::CheckBox("Content Browser Panel", settings_.cbp);
+
+    ImGui::Separator();
+    PropertyGrid::CheckBox("Save Scene", settings_.save_scene);
+    PropertyGrid::CheckBox("Show Colliders", settings_.show_colliders);
+    
+    ImGui::Separator();
+    PropertyGrid::CheckBox("Frame Rate", settings_.frame_rate);
+    PropertyGrid::CheckBox("Viewport Data", settings_.viewport);
+    PropertyGrid::CheckBox("Renderer Stats", settings_.stats);
+
+    ImGui::End();
+  }
+  
 }

@@ -87,7 +87,6 @@ namespace ikan {
   
   void ScenePanelManager::RenderGui() {
     ScenePannel();
-
     PropertyPannel();
   }
   
@@ -98,6 +97,10 @@ namespace ikan {
     ImGui::Begin("Scene Manager", &setting_.scene_panel);
     ImGui::PushID("Scene Manager");
     
+    ImGui::Text(" Scene | %s ", scene_context_->name_.c_str());
+    std::string hovered_msg = "Num Entities   : " + std::to_string(scene_context_->num_entities_) + "\n" "Max Entity ID  : " + std::to_string(scene_context_->max_entity_id_);
+    PropertyGrid::HoveredMsg(hovered_msg.c_str());
+
     static ImGuiTextFilter entity_filter;
     ImGui::SetNextItemWidth(ImGui::GetFontSize() * 16);
     if (PropertyGrid::Search(entity_filter.InputBuf, "Search ... "))

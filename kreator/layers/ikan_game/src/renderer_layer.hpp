@@ -40,14 +40,14 @@ namespace ikan_game {
       bool play = false;
       
       bool cbp = true;
-      bool spm = true;
       
       bool frame_rate = true;
       bool viewport = true;
       bool stats = true;
       
       bool save_scene = true;
-            
+      bool show_colliders = true;
+                  
       /// This function changes the flag of setting for menu
       /// - Parameters:
       ///   - tag: tag of menu
@@ -124,7 +124,8 @@ namespace ikan_game {
     void RenderGrid();
     /// This function render the menue bar
     void ShowMenu();
-    
+    /// This function renders the setting Widget
+    void ShowSettings();
     /// This function set the game state
     /// - Parameter is_play: game state
     void SetPlay(bool is_play);
