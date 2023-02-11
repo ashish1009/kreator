@@ -199,38 +199,12 @@ namespace ikan {
       
       if (entity.HasComponent<BoxColloiderComponent>()) {
         auto& bc2d = entity.GetComponent<BoxColloiderComponent>();
-        
-        b2PolygonShape polygon_shape;
-        polygon_shape.SetAsBox(bc2d.size.x * transform.Scale().x, bc2d.size.y * transform.Scale().y, {bc2d.offset.x, bc2d.offset.y}, 0);
-        
-        b2FixtureDef fixture_def;
-        fixture_def.shape = & polygon_shape;
-        fixture_def.density = bc2d.density;
-        fixture_def.friction = bc2d.friction;
-        fixture_def.restitution = bc2d.restitution;
-        fixture_def.restitutionThreshold = bc2d.restitution_threshold;
-        
-        fixture_def.userData.pointer = (uintptr_t)bc2d.runtime_fixture;
-        
-        body->CreateFixture(&fixture_def);
+        AddBoxColliderData(transform, bc2d, body);
       }
             
       if (entity.HasComponent<CircleColloiderComponent>()) {
         auto& cc2d = entity.GetComponent<CircleColloiderComponent>();
-        
-        b2CircleShape circle_shape;
-        
-        circle_shape.m_p.Set(cc2d.offset.x, cc2d.offset.y);
-        circle_shape.m_radius = transform.Scale().x * cc2d.radius;
-        
-        b2FixtureDef fixture_def;
-        fixture_def.shape = & circle_shape;
-        fixture_def.density = cc2d.density;
-        fixture_def.friction = cc2d.friction;
-        fixture_def.restitution = cc2d.restitution;
-        fixture_def.restitutionThreshold = cc2d.restitution_threshold;
-        
-        body->CreateFixture(&fixture_def);
+        AddCircleColliderData(transform, cc2d, body);
       }
     }
   }
@@ -460,5 +434,39 @@ namespace ikan {
     IK_CORE_ASSERT(listener);
     client_listner_ = listener;
   }
+
   
+  void EnttScene::AddBoxColliderData(const TransformComponent& tc, const BoxColloiderComponent& bc2d, b2Body* body) {
+    b2PolygonShape polygon_shape;
+    polygon_shape.SetAsBox(bc2d.size.x * tc.Scale().x, bc2d.size.y * tc.Scale().y, {bc2d.offset.x, bc2d.offset.y}, 0);
+    
+    b2FixtureDef fixture_def;
+    fixture_def.shape = & polygon_shape;
+    fixture_def.density = bc2d.density;
+    fixture_def.friction = bc2d.friction;
+    fixture_def.restitution = bc2d.restitution;
+    fixture_def.restitutionThreshold = bc2d.restitution_threshold;
+    
+    fixture_def.userData.pointer = (uintptr_t)bc2d.runtime_fixture;
+    
+    body->CreateFixture(&fixture_def);
+  }
+  
+  void EnttScene::AddCircleColliderData(const TransformComponent& tc, const CircleColloiderComponent& cc2d, b2Body* body) {
+    b2CircleShape circle_shape;
+    
+    circle_shape.m_p.Set(cc2d.offset.x, cc2d.offset.y);
+    circle_shape.m_radius = tc.Scale().x * cc2d.radius;
+    
+    b2FixtureDef fixture_def;
+    fixture_def.shape = & circle_shape;
+    fixture_def.density = cc2d.density;
+    fixture_def.friction = cc2d.friction;
+    fixture_def.restitution = cc2d.restitution;
+    fixture_def.restitutionThreshold = cc2d.restitution_threshold;
+    
+    fixture_def.userData.pointer = (uintptr_t)cc2d.runtime_fixture;
+    
+    body->CreateFixture(&fixture_def);
+  }
 }

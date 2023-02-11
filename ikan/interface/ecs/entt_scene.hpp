@@ -51,9 +51,9 @@ namespace ikan {
     void* request_object = nullptr;
   };
   
-  
-  // TODO: For debug only
   struct TransformComponent;
+  struct BoxColloiderComponent;
+  struct CircleColloiderComponent;
   
   struct CameraData {
     SceneCamera* scene_camera = nullptr;
@@ -220,6 +220,19 @@ namespace ikan {
     
     /// This function starts the runtime physics
     void RuntimeStart();
+    
+    /// This function add the box collider data to worlds body
+    /// - Parameters:
+    ///   - tc: transform of entity
+    ///   - bc2d: box data
+    ///   - body: body
+    static void AddBoxColliderData(const TransformComponent& tc, const BoxColloiderComponent& bc2d, b2Body* body);
+    /// This function add the circle collider data to worlds body
+    /// - Parameters:
+    ///   - tc: transform of entity
+    ///   - cc2d: circlw data
+    ///   - body: body
+    static void AddCircleColliderData(const TransformComponent& tc, const CircleColloiderComponent& cc2d, b2Body* body);
 
     // ------------------
     // Member variabls
