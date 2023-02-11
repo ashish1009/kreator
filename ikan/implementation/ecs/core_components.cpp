@@ -218,7 +218,6 @@ namespace ikan {
         ImGui::Image((void*)tex_id, ImVec2(width, height), ImVec2(0, 1), ImVec2(1, 0),
                      ImVec4(1.0f,1.0f,1.0f,1.0f), ImVec4(1.0f,1.0f,1.0f,0.5f));
         
-        
         ImVec2 pos = ImGui::GetCursorScreenPos();
         if (ImGui::IsItemHovered()) {
           ImGui::BeginTooltip();
@@ -240,7 +239,7 @@ namespace ikan {
           if (region_y < 0.0f)
             region_y = 0.0f;
           
-          else if (region_y > width - region_fixed_y)
+          else if (region_y > height - region_fixed_y)
             region_y = height - region_fixed_y;
           
           ImGui::Text("Min: (%.2f, %.2f)", region_x, region_y);
