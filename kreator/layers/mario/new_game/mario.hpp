@@ -104,7 +104,6 @@ namespace mario {
     
     std::unordered_map<entt::entity, Entity*> selected_entities_;
     
-    Player player;
     glm::vec4 level_bg_ = {0.2, 0.4, 0.6, 1.0f};
     
     TextData text_data_;

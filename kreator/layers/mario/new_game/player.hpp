@@ -19,14 +19,21 @@ namespace mario {
     
     StateMachine(Entity* entity);
     
+    void ExtractData();
+    
     void ChangeState(State state);
     State GetState() const;
     
   private:
     Entity* entity_;
     State state_;
+    
+    std::shared_ptr<Texture> sprite_image_;
+    glm::vec2 coords_;
+    glm::vec2 sprite_size_;
+    glm::vec2 cell_size_;
   };
-
+  
   class PlayerController : public ScriptableEntity {
   public:
     PlayerController(RigidBodyComponent* rb);
@@ -36,7 +43,7 @@ namespace mario {
     float warlk_speed_ = 10.0f;
     float jumb_boost_ = 1.0f;
     float jump_impuls_ = 3.0f;
-    float slow_down_force_ = 0.5f;
+    float slow_down_force_ = 0.08f;
     glm::vec2 terminal_velocity_ = {10.1f, 10.1f};
     
     bool on_ground_ = false;
@@ -54,15 +61,6 @@ namespace mario {
     int32_t enemy_bounce_ = 0;
     
     StateMachine state_machine_;
-  };
-
-  class Player {
-  public:
-    void Init(std::shared_ptr<EnttScene> scene);
-    
-  private:
-    std::shared_ptr<EnttScene> scene_;
-    Entity entity_;
   };
   
 }

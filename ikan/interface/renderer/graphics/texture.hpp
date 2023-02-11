@@ -315,7 +315,7 @@ namespace ikan {
       
       // Check box to togle use of texture
       ImGui::Checkbox("Use ", &use);
-      if (use) {
+      if (use and component) {
         ImGui::SameLine();
         // Check box to togle use of texture
         if (ImGui::Checkbox("Linear Edge", &linear_edge)) {

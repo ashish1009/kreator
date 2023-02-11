@@ -27,12 +27,6 @@ namespace mario {
   }
 
   void MarioData::Update(Timestep ts) {
-    static bool player_created = false;
-    if (!player_created) {
-      player.Init(scene_);
-      player_created = true;
-    }
-    
     if (!is_playing_) {
       StoreSelectedEntities();
       AddComponentHack();
@@ -49,7 +43,7 @@ namespace mario {
     // Score and All text
     {
       TextRenderer::BeginBatch(text_data_.still_camera_projection);
-
+      
       text_data_.Render("MARIO", 0, 0);
       text_data_.Render(std::to_string(score_), 1, 0);
       
@@ -60,7 +54,7 @@ namespace mario {
       
       text_data_.Render("TIME", 0, 3);
       text_data_.Render(std::to_string(time_left_), 1, 3);
-
+      
       TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)), { 5.0f, 5.0f, 0.3f }, { 0.35f, 0.35f }, { 0, 0, 1, 1 });
       
       TextRenderer::EndBatch();

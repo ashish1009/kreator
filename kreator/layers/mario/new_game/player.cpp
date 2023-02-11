@@ -10,12 +10,19 @@
 namespace mario {
   
   StateMachine::StateMachine(Entity* entity) : entity_(entity) {
-    
+  }
+  
+  void StateMachine::ExtractData() {
   }
   
   void StateMachine::ChangeState(State state) {
-    auto& ac = entity_->GetComponent<AnimationComponent>();
-    ac.animation = true;
+    if (state == State::Run) {
+      auto& ac = entity_->GetComponent<AnimationComponent>();
+      ac.animation = true;
+    }
+    else if (state == State::SwitchDirection) {
+      static std::shared_ptr<SubTexture> switch_dir = SubTexture::CreateFromCoords(sprite_image_, {}, sprite_size_, cell_size_);
+    }
   }
   
   StateMachine::State StateMachine::GetState() const {
@@ -71,60 +78,4 @@ namespace mario {
     rigid_body_comp_->SetAngularVelocity(0.0f);
   }
   
-  void Player::Init(std::shared_ptr<EnttScene> scene) {
-    scene_ = scene;
-        
-    // Hack to add Player first time
-    bool create_player = false;
-    if (create_player) {
-      entity_ = scene_->CreateEntity("Player");
-      
-      entity_.GetComponent<TransformComponent>().UpdateTranslation({-15, 4, 0.1});
-      
-      // Quad Component
-      auto& qc = entity_.AddComponent<QuadComponent>();
-      
-      qc.texture_comp.use = true;
-      qc.texture_comp.use_sprite = true;
-      qc.texture_comp.linear_edge = false;
-      
-      qc.texture_comp.component = Renderer::GetTexture(AM::ClientAsset("textures/player.png"), qc.texture_comp.linear_edge);
-      qc.texture_comp.sprite = SubTexture::CreateFromCoords(qc.texture_comp.component, {6.0f, 30.0f});
-      
-      // Rigid Body Component
-      auto& rbc = entity_.AddComponent<RigidBodyComponent>();
-      rbc.type = b2_dynamicBody;
-      
-      // Box Collider
-      auto& pbc = entity_.AddComponent<PillBoxCollider>();
-      pbc.width = 0.4f;
-      pbc.height = 0.5f;
-      
-      // Animation
-      auto& ac = entity_.AddComponent<AnimationComponent>(qc.texture_comp.component);
-      ac.animation = false;
-      ac.is_sprite = true;
-      ac.sprites.push_back(SubTexture::CreateFromCoords(qc.texture_comp.component, {0.0f, 30.0f}));
-      ac.sprites.push_back(SubTexture::CreateFromCoords(qc.texture_comp.component, {1.0f, 30.0f}));
-      ac.sprites.push_back(SubTexture::CreateFromCoords(qc.texture_comp.component, {2.0f, 30.0f}));
-      
-      // Native script
-      entity_.AddComponent<NativeScriptComponent>();
-    }
-    else {
-      auto view = scene_->GetEntitesWith<TagComponent>();
-      for (auto e : view) {
-        auto t = view.get<TagComponent>(e).tag;
-        if (t == "Player") {
-          entity_ = Entity(e, scene_.get());
-          break;
-        }
-      }
-      
-      if (entity_.HasComponent<NativeScriptComponent>()) {
-        auto& ns = entity_.GetComponent<NativeScriptComponent>();
-        ns.Bind<PlayerController>(&entity_.GetComponent<RigidBodyComponent>());
-      }
-    }
-  }
 }
