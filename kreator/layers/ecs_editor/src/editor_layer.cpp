@@ -439,7 +439,6 @@ namespace editor {
       if (ImGui::BeginMenu("Setting", active_scene_ and active_scene_->IsEditing())) {
         if (ImGui::BeginMenu("Scene")) {
           Setting::UpdateSetting("Editor Camera", active_scene_->GetSetting().editor_camera);
-          Setting::UpdateSetting("Scene Controller", active_scene_->GetSetting().scene_controller);
           ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene"))
         }
         if (ImGui::BeginMenu("Scene Panels")) {

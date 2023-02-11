@@ -44,7 +44,6 @@ namespace ikan {
     struct Setting {
       bool use_editor_camera = true;
       bool editor_camera = true;
-      bool scene_controller = true;
       bool scene_data = true;
     };
 

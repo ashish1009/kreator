@@ -67,7 +67,9 @@ namespace ikan_game {
       Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
       
       RenderScene(ts);
-      RenderGrid();
+      
+      if (settings_.show_grids)
+        RenderGrid();
 
       if (settings_.show_colliders)
         OverlayRender();
@@ -95,12 +97,12 @@ namespace ikan_game {
     else {
       ImguiAPI::StartDcocking();
 
-      ShowSettings();
-      
       ShowMenu();
       GamePlayButton();
       
       if (active_scene_) {
+        ShowSettings();
+        
         active_scene_->RenderGui();
 
         Renderer::Framerate(&settings_.frame_rate);
@@ -462,8 +464,8 @@ namespace ikan_game {
       if (ImGui::BeginMenu("Setting", active_scene_ and active_scene_->IsEditing())) {
         if (ImGui::BeginMenu("Scene")) {
           Setting::UpdateSetting("Editor Camera", active_scene_->GetSetting().editor_camera);
-          Setting::UpdateSetting("Scene Controller", active_scene_->GetSetting().scene_controller);
           Setting::UpdateSetting("Show Colliders", settings_.show_colliders);
+          Setting::UpdateSetting("Show Grids", settings_.show_grids);
           ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene"))
         }
         if (ImGui::BeginMenu("Scene Panels")) {
@@ -500,16 +502,20 @@ namespace ikan_game {
   void RendererLayer::OverlayRender() {
     bool camera_found = false;
   
-    // Get Camera From Scene state if Runtime or Editor
-    const auto& cd = active_scene_->GetPrimaryCameraData();
-    if (cd.scene_camera)
+    if (active_scene_->UseEditorCamera()) {
+      BatchRenderer::BeginBatch(active_scene_->GetEditorCamera()->GetViewProjection());
       camera_found = true;
-
-    if (!camera_found)
-      return;
-    
-    BatchRenderer::BeginBatch(cd.scene_camera->GetProjection() * glm::inverse(cd.transform_matrix));
-
+    }
+    else {
+      const auto& cd = active_scene_->GetPrimaryCameraData();
+      if (cd.scene_camera)
+        camera_found = true;
+      
+      if (!camera_found)
+        return;
+      
+      BatchRenderer::BeginBatch(cd.scene_camera->GetProjection() * glm::inverse(cd.transform_matrix));
+    }
     // Box coilider
     {
       auto view = active_scene_->GetEntitesWith<TransformComponent, BoxColloiderComponent>();
@@ -543,10 +549,11 @@ namespace ikan_game {
   void RendererLayer::ShowSettings() {
     ImGui::Begin("Settings");
 
-    PropertyGrid::CheckBox("Show Editor Camera", active_scene_->GetSetting().editor_camera);
     PropertyGrid::CheckBox("Use Editor Camera", active_scene_->GetSetting().use_editor_camera);
-    PropertyGrid::CheckBox("Scene Controller", active_scene_->GetSetting().scene_controller);
+    if (active_scene_->GetSetting().use_editor_camera)
+      PropertyGrid::CheckBox("Show Editor Camera", active_scene_->GetSetting().editor_camera);
     PropertyGrid::CheckBox("Show Colliders", settings_.show_colliders);
+    PropertyGrid::CheckBox("Show Grids", settings_.show_grids);
 
     ImGui::Separator();
     PropertyGrid::CheckBox("Entity Panel", spm_.GetSetting().scene_panel);

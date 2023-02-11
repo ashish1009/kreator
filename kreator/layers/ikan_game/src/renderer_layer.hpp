@@ -47,6 +47,7 @@ namespace ikan_game {
       
       bool save_scene = true;
       bool show_colliders = true;
+      bool show_grids = true;
                   
       /// This function changes the flag of setting for menu
       /// - Parameters:
