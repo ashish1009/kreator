@@ -142,9 +142,9 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "788"
-            endingLineNumber = "788"
-            landmarkName = "AnimationComponent::RenderGui()"
+            startingLineNumber = "839"
+            endingLineNumber = "839"
+            landmarkName = "PhillBoxColliderComponent::RenderGui()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -190,9 +190,9 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "691"
-            endingLineNumber = "691"
-            landmarkName = "AnimationComponent::AnimationComponent(sprite_image)"
+            startingLineNumber = "742"
+            endingLineNumber = "742"
+            landmarkName = "PhillBoxColliderComponent::RenderGui()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

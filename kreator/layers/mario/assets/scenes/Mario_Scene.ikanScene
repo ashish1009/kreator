@@ -5,7 +5,7 @@ Use_editor_camera: false
 Entities:
   - Entity: 15490046835455799127
     TagComponent:
-      Tag: Quad
+      Tag: Temp_debug_player
     TransformComponent:
       Translation: [-10, 4, 0]
       Rotation: [0, 0, 0]
@@ -32,6 +32,21 @@ Entities:
       Gravity Scale: 1
       Is Sensor: false
       Continous Collision: true
+    AnimationComponent:
+      Animation: true
+      Sprite: true
+      Speed: 15
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/player.png
+      Coords0: [0, 30]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Coords1: [1, 30]
+      Sprite_Size1: [1, 1]
+      Cell_Size1: [16, 16]
+      Coords2: [2, 30]
+      Sprite_Size2: [1, 1]
+      Cell_Size2: [16, 16]
+      Num_Coords: 3
   - Entity: 2214066489975948466
     TagComponent:
       Tag: Brick

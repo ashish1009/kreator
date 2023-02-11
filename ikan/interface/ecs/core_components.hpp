@@ -199,6 +199,16 @@ namespace ikan {
     DEFINE_COPY_MOVE_CONSTRUCTORS(CircleColloiderComponent);
   };
   
+  struct PhillBoxColliderComponent {
+    BoxColloiderComponent bcc;
+    CircleColloiderComponent top_ccc;
+    CircleColloiderComponent bottom_ccc;
+
+    void RenderGui();
+    PhillBoxColliderComponent() = default;
+    DEFINE_COPY_MOVE_CONSTRUCTORS(PhillBoxColliderComponent);
+  };
+  
   struct AnimationComponent {
     bool animation = true;
     bool is_sprite = false;

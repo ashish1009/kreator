@@ -186,6 +186,7 @@ namespace ikan {
       DrawComponent<RigidBodyComponent>("Rigid Body", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
       DrawComponent<BoxColloiderComponent>("Box Collider", selected_entity_, [this](auto& bcc) { bcc.RenderGui(); });
       DrawComponent<CircleColloiderComponent>("Circle Collider", selected_entity_, [this](auto& ccc) { ccc.RenderGui(); });
+      DrawComponent<PhillBoxColliderComponent>("Phill Box Collider", selected_entity_, [this](auto& pbc) { pbc.RenderGui(); });
       DrawComponent<AnimationComponent>("Animation", selected_entity_, [this](auto& ac) { ac.RenderGui(); });
     }
     
@@ -298,13 +299,22 @@ namespace ikan {
     ImGui::Separator();
     AddComponentMenu<RigidBodyComponent>("Rigid Body");
     AddComponentMenu<BoxColloiderComponent>("Box Collider", [this]() {
-      return selected_entity_.HasComponent<BoxColloiderComponent>() or selected_entity_.HasComponent<CircleColloiderComponent>();
+      return selected_entity_.HasComponent<BoxColloiderComponent>() or
+      selected_entity_.HasComponent<CircleColloiderComponent>() or
+      selected_entity_.HasComponent<PhillBoxColliderComponent>();
     });
     
     AddComponentMenu<CircleColloiderComponent>("Circle Collider", [this]() {
-      return selected_entity_.HasComponent<BoxColloiderComponent>() or selected_entity_.HasComponent<CircleColloiderComponent>();
+      return selected_entity_.HasComponent<BoxColloiderComponent>() or
+      selected_entity_.HasComponent<CircleColloiderComponent>() or
+      selected_entity_.HasComponent<PhillBoxColliderComponent>();
     });
-    
+    AddComponentMenu<PhillBoxColliderComponent>("Phill Box Collider", [this]() {
+      return selected_entity_.HasComponent<BoxColloiderComponent>() or
+      selected_entity_.HasComponent<CircleColloiderComponent>() or
+      selected_entity_.HasComponent<PhillBoxColliderComponent>();
+    });
+
     ImGui::Separator();
     if (selected_entity_.HasComponent<QuadComponent>() and selected_entity_.GetComponent<QuadComponent>().texture_comp.component) {
       AddComponentMenu<AnimationComponent>("Animation", nullptr, selected_entity_.GetComponent<QuadComponent>().texture_comp.component);

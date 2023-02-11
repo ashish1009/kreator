@@ -585,7 +585,7 @@ namespace ikan {
         auto animation_component = entity["AnimationComponent"];
         if (animation_component) {
           std::string sprite_tex_fila_path = animation_component["Texture_Path"].as<std::string>();
-          std::shared_ptr<Texture> t = Renderer::GetTexture(sprite_tex_fila_path);
+          std::shared_ptr<Texture> t = Renderer::GetTexture(sprite_tex_fila_path, false);
 
           auto& ac = deserialized_entity.AddComponent<AnimationComponent>(t);
           
