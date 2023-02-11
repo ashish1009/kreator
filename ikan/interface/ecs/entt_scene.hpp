@@ -116,8 +116,6 @@ namespace ikan {
     /// This function returns the entity Ref from its id
     /// - Parameter id: entity ID
     Entity* GetEnitityFromId(int32_t id);
-    /// This function returns the reference of registry
-    entt::registry& GetRegistry();
     /// This function returns the number of Entities stored in Scene
     uint32_t GetNumEntities() const;
     /// This function returns the Max Entity ID given to scene
@@ -126,7 +124,11 @@ namespace ikan {
     /// This function return the selected entity
     Entity* GetSelectedEntity();
     
-
+    template<typename... Components>
+    auto GetEntitesWith() {
+      return registry_.view<Components...>();
+    }
+    
     DELETE_COPY_MOVE_CONSTRUCTORS(EnttScene);
     
   private:

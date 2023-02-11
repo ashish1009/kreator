@@ -456,7 +456,6 @@ namespace ikan {
   void EnttScene::SetSelectedEntity(Entity* entity) { selected_entity_ = entity; }
   Entity* EnttScene::GetSelectedEntity() { return selected_entity_; }
   
-  entt::registry& EnttScene::GetRegistry() { return registry_; }
   uint32_t EnttScene::GetNumEntities() const { return num_entities_; }
   uint32_t EnttScene::GetMaxEntityId() const { return max_entity_id_; }
 

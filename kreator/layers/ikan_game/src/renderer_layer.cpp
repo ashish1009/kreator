@@ -69,6 +69,8 @@ namespace ikan_game {
       RenderScene(ts);
       RenderGrid();
 
+      OverlayRender();
+      
       viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
       viewport_.framebuffer->Unbind();
     }
@@ -489,6 +491,32 @@ namespace ikan_game {
   void RendererLayer::SetPlay(bool is_play) {
     is_playing = is_play;
     game_data_->SetState(is_play);
+  }
+  
+  void RendererLayer::OverlayRender() {
+    auto view = active_scene_->GetEntitesWith<TransformComponent, CircleColloiderComponent>();
+    bool camera_found = false;
+  
+    // Get Camera From Scene state if Runtime or Editor
+    const auto& cd = active_scene_->GetPrimaryCameraData();
+    if (cd.scene_camera)
+      camera_found = true;
+
+    if (!camera_found)
+      return;
+    
+    BatchRenderer::BeginBatch(cd.scene_camera->GetProjection() * glm::inverse(cd.transform_matrix));
+    for (auto entity : view) {
+      auto [tc, ccc] = view.get<TransformComponent, CircleColloiderComponent>(entity);
+      
+      glm::vec3 p = tc.Translation() + glm::vec3(ccc.offset, 0.001f);
+      glm::vec3 s = tc.Scale() * glm::vec3(ccc.radius * 2.0f); // We need diameter
+      
+      // Rotation ???
+      
+      BatchRenderer::DrawCircle(Math::GetTransformMatrix(p, {0, 0, 0}, s), {0, 0, 1, 1}, 0.05f);
+    }
+    BatchRenderer::EndBatch();
   }
 
 }
