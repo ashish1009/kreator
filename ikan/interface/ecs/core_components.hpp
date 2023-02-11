@@ -137,7 +137,7 @@ namespace ikan {
     b2BodyType type = b2BodyType::b2_staticBody;
     bool fixed_rotation = false;
     
-    glm::vec2 velocity;
+    glm::vec2 velocity{0, 0};
     float angular_damping = 0.8f;
     float linear_damping = 0.9f;
     float mass = 0;

@@ -292,27 +292,13 @@ namespace mario {
     // HACK to add components
     static bool add = true;
     if (add) {
-      scene_->GetRegistry().each([this](auto entity) {
-        Entity e = {entity, scene_.get()};
-        if (e.GetComponent<TagComponent>().tag == "Bonus") {
-          if (e.HasComponent<QuadComponent>()) {
-            if (!e.HasComponent<AnimationComponent>()) {
-              std::shared_ptr<Texture> t = Renderer::GetTexture(AM::ClientAsset("textures/tiles.png"));
-              auto& ac = e.AddComponent<AnimationComponent>(t);
-              ac.animation = true;
-              ac.is_sprite = true;
-              ac.speed = 15;
-              
-              for (int i = 0; i < 3; i++) {
-                ac.sprites.push_back(SubTexture::CreateFromCoords(t, {24 + i, 27}));
-              }
-            }
-//            if (!e.HasComponent<BoxColloiderComponent>()) {
-//              e.AddComponent<BoxColloiderComponent>();
-//            }
-          }
-        }
-      });
+      auto v = scene_->GetEntitesWith<RigidBodyComponent>();
+      for (auto e : v) {
+        auto& rb = v.get<RigidBodyComponent>(e);
+        rb.velocity.x = 0;
+        rb.velocity.y = 0;
+      }
+      
       add = false;
     }
 #endif
