@@ -6,6 +6,7 @@
 //
 
 #include "block.hpp"
+#include "coin.hpp"
 
 namespace mario {
   
@@ -60,6 +61,8 @@ namespace mario {
   
   void BlockController::BeginCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 contact_normal) {
     PlayerController* pc = PlayerController::Get();
+    auto& tc = entity_.GetComponent<TransformComponent>();
+    
     if (active_ and pc and contact_normal.y < -0.8f) {
       switch (type_) {
         case Type::Empty : {
@@ -69,6 +72,7 @@ namespace mario {
           break;
         }
         case Type::Coin : {
+          Coin::CreateBlockCoin(entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
           break;
         }
         case Type::Star : {

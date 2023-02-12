@@ -13577,7 +13577,7 @@ Entities:
       Color: [1, 1, 1, 1]
   - Entity: 16488310164698476702
     TagComponent:
-      Tag: Bonus
+      Tag: Coin
     TransformComponent:
       Translation: [178, -2, 0]
       Rotation: [0, 0, 0]
@@ -13592,6 +13592,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -13616,43 +13618,16 @@ Entities:
       Sprite: true
       Speed: 40
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
-      Coords0: [0, 30]
+      Coords0: [26, 27]
       Sprite_Size0: [1, 1]
       Cell_Size0: [16, 16]
-      Coords1: [1, 30]
+      Coords1: [25, 27]
       Sprite_Size1: [1, 1]
       Cell_Size1: [16, 16]
-      Coords2: [2, 30]
+      Coords2: [24, 27]
       Sprite_Size2: [1, 1]
       Cell_Size2: [16, 16]
-      Coords3: [0, 30]
-      Sprite_Size3: [1, 1]
-      Cell_Size3: [16, 16]
-      Coords4: [1, 30]
-      Sprite_Size4: [1, 1]
-      Cell_Size4: [16, 16]
-      Coords5: [2, 30]
-      Sprite_Size5: [1, 1]
-      Cell_Size5: [16, 16]
-      Coords6: [0, 30]
-      Sprite_Size6: [1, 1]
-      Cell_Size6: [16, 16]
-      Coords7: [1, 30]
-      Sprite_Size7: [1, 1]
-      Cell_Size7: [16, 16]
-      Coords8: [2, 30]
-      Sprite_Size8: [1, 1]
-      Cell_Size8: [16, 16]
-      Coords9: [24, 27]
-      Sprite_Size9: [1, 1]
-      Cell_Size9: [16, 16]
-      Coords10: [25, 27]
-      Sprite_Size10: [1, 1]
-      Cell_Size10: [16, 16]
-      Coords11: [26, 27]
-      Sprite_Size11: [1, 1]
-      Cell_Size11: [16, 16]
-      Num_Coords: 12
+      Num_Coords: 3
   - Entity: 13642458462156488662
     TagComponent:
       Tag: Bonus
@@ -14024,7 +13999,7 @@ Entities:
       Color: [1, 1, 1, 1]
   - Entity: 10727321920196225883
     TagComponent:
-      Tag: Bonus
+      Tag: Coin
     TransformComponent:
       Translation: [107, -2, 0]
       Rotation: [0, 0, 0]
@@ -14039,6 +14014,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -14075,7 +14052,7 @@ Entities:
       Num_Coords: 3
   - Entity: 8393504100727317860
     TagComponent:
-      Tag: Bonus
+      Tag: Coin
     TransformComponent:
       Translation: [104, -2, 0]
       Rotation: [0, 0, 0]
@@ -14090,6 +14067,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -14126,7 +14105,7 @@ Entities:
       Num_Coords: 3
   - Entity: 17475467643697964171
     TagComponent:
-      Tag: Bonus
+      Tag: Coin
     TransformComponent:
       Translation: [101, -2, 0]
       Rotation: [0, 0, 0]
@@ -14141,6 +14120,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -14177,7 +14158,7 @@ Entities:
       Num_Coords: 3
   - Entity: 5754774659424880418
     TagComponent:
-      Tag: Bonus
+      Tag: PowerUp
     TransformComponent:
       Translation: [66, -2, 0]
       Rotation: [0, 0, 0]
@@ -19661,7 +19642,7 @@ Entities:
       Restitution Threshold: 0.5
   - Entity: 13477569131728473116
     TagComponent:
-      Tag: Bonus
+      Tag: Coin
     TransformComponent:
       Translation: [6, -2, 0]
       Rotation: [0, 0, 0]
@@ -19676,6 +19657,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -23103,7 +23086,7 @@ Entities:
       Num_Coords: 3
   - Entity: 13209594282392507184
     TagComponent:
-      Tag: Bonus
+      Tag: Coin
     TransformComponent:
       Translation: [85, 3, 0]
       Rotation: [0, 0, 0]
@@ -23118,6 +23101,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -23230,7 +23215,7 @@ Entities:
       Restitution Threshold: 0.5
   - Entity: 9579927487902483714
     TagComponent:
-      Tag: Bonus
+      Tag: Coin
     TransformComponent:
       Translation: [5, 3, 0]
       Rotation: [0, 0, 0]
@@ -23245,6 +23230,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -28999,7 +28986,7 @@ Entities:
       Restitution Threshold: 0.5
   - Entity: 2072615478155848095
     TagComponent:
-      Tag: Bonus
+      Tag: PowerUp
     TransformComponent:
       Translation: [4, -2, 0]
       Rotation: [0, 0, 0]
@@ -45690,7 +45677,7 @@ Entities:
       Restitution Threshold: 0.5
   - Entity: 122605306110892287
     TagComponent:
-      Tag: Bonus
+      Tag: Coin
     TransformComponent:
       Translation: [128, 5, 0]
       Rotation: [0, 0, 0]
@@ -45705,6 +45692,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45741,7 +45730,7 @@ Entities:
       Num_Coords: 3
   - Entity: 4503243790188878743
     TagComponent:
-      Tag: Bonus
+      Tag: Coin
     TransformComponent:
       Translation: [127, 5, 0]
       Rotation: [0, 0, 0]
@@ -45756,6 +45745,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -48632,6 +48623,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false

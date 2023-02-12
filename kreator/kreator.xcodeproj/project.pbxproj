@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B20D5E362999484C0089069D /* block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B20D5E352999484C0089069D /* block.cpp */; };
+		B20D5E3929994E5A0089069D /* coin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B20D5E3729994E5A0089069D /* coin.cpp */; };
 		B21E4417299406F900D6CDFD /* create_game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21E4415299406F900D6CDFD /* create_game_data.cpp */; };
 		B21E441B299408E500D6CDFD /* mario.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21E441A299408E500D6CDFD /* mario.cpp */; };
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
@@ -54,6 +55,8 @@
 
 /* Begin PBXFileReference section */
 		B20D5E352999484C0089069D /* block.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = block.cpp; sourceTree = "<group>"; };
+		B20D5E3729994E5A0089069D /* coin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = coin.cpp; sourceTree = "<group>"; };
+		B20D5E3829994E5A0089069D /* coin.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = coin.hpp; sourceTree = "<group>"; };
 		B21E44112993FC6C00D6CDFD /* mario.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario.hpp; sourceTree = "<group>"; };
 		B21E4415299406F900D6CDFD /* create_game_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = create_game_data.cpp; sourceTree = "<group>"; };
 		B21E441A299408E500D6CDFD /* mario.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario.cpp; sourceTree = "<group>"; wrapsLines = 0; };
@@ -374,6 +377,8 @@
 				B28D963C299643A00089F98F /* player.cpp */,
 				B2E047E12998BB5900EE71D0 /* sprite_manager.hpp */,
 				B2E047E02998BB5900EE71D0 /* sprite_manager.cpp */,
+				B20D5E3729994E5A0089069D /* coin.cpp */,
+				B20D5E3829994E5A0089069D /* coin.hpp */,
 			);
 			path = new_game;
 			sourceTree = "<group>";
@@ -492,6 +497,7 @@
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
 				B25F617C2969A4A90042FE09 /* background.cpp in Sources */,
 				B21E4417299406F900D6CDFD /* create_game_data.cpp in Sources */,
+				B20D5E3929994E5A0089069D /* coin.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

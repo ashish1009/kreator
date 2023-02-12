@@ -139,6 +139,10 @@ namespace ikan_game {
     bool cmd = Input::IsKeyPressed(KeyCode::LeftSuper) or Input::IsKeyPressed(KeyCode::RightSuper);
 
     switch (event.GetKeyCode()) {
+      case KeyCode::T:
+        active_scene_->PlayScene();
+        break;
+        
         // File Manager
       case KeyCode::N:
         if (cmd)
