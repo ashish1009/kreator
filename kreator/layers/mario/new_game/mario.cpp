@@ -6,12 +6,16 @@
 //
 
 #include "mario.hpp"
-
+#include "sprite_manager.hpp"
 namespace mario {
   
   MarioData::MarioData(const Viewport* const viewport)
   : viewport_(viewport) {
     MARIO_INFO("Creating Mario Game Data ... ");
+  }
+  
+  MarioData::~MarioData() {
+    SpriteManager::Shutdown();
   }
   
   void MarioData::Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
@@ -22,6 +26,8 @@ namespace mario {
     // Change Text renderer Font
     TextRenderer::LoadFreetype(AM::ClientAsset(font_path));
     BatchRenderer::Init(2000, 0, 2000 * 5);
+    
+    SpriteManager::Init();
     
     CreateOrFindPlayer();
   }
@@ -78,6 +84,15 @@ namespace mario {
     }
     else {
       player_entity = scene_->CreateEntity(player_name);
+    }
+    
+    if (!player_entity.HasComponent<QuadComponent>()) {
+      auto& qc = player_entity.AddComponent<QuadComponent>();
+      qc.texture_comp.use = true;
+      qc.texture_comp.use_sprite = true;
+      qc.texture_comp.linear_edge = false;
+      qc.texture_comp.component = SpriteManager::GetSpriteImage(SpriteType::Player);
+      qc.texture_comp.sprite = SubTexture::CreateFromCoords(qc.texture_comp.component, {6.0f, 30.0f});
     }
   }
   

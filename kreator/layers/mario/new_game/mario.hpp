@@ -47,6 +47,7 @@ namespace mario {
   class MarioData : public ikan_game::GameData {
   public:
     MarioData(const Viewport* const viewport);
+    ~MarioData();
     
     void Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) override;
     void Update(Timestep ts) override;
