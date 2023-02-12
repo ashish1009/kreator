@@ -7,32 +7,11 @@
 
 #pragma once
 
+#include "game_data.hpp"
+
 namespace ikan_game {
   
   using namespace ikan;
-  
-  class GameData {
-  public:
-    virtual ~GameData() = default;
-    
-    virtual void Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {};
-    virtual void Update(Timestep ts) {};
-    virtual void EventHandler(Event& event) {};
-    virtual void RenderGui() {};
-    virtual void SetState(bool is_playing) {};
-    virtual void SetViewportSize(uint32_t width, uint32_t height) {}
-    
-    virtual glm::vec4 GetBgColor() { return {0.2f, 0.2f, 0.2f, 1.0f}; }
-    
-    virtual std::string GameName() {return "ikan Game";};
-    virtual std::string SavedScene() {return "";};
-    virtual ImguiFont RegularFontData() {return {AM::ProjectPath("kreator/layers/ikan_game/game_assets/fonts/Opensans/Regular.ttf"), 14};};
-    virtual ImguiFont BoldFontData() {return {AM::ProjectPath("kreator/layers/ikan_game/game_assets/fonts/Opensans/Bold.ttf"), 14};};
-    virtual std::vector<std::filesystem::path> FavDirecotries() {return {};};
-  };
-  
-  /// This function is the defination of game data. Implementaiton should be at client
-  std::unique_ptr<GameData> CreateGameData(const Viewport* const viewport);
   
   class GameContactListner : public b2ContactListener {
   public:

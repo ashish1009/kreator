@@ -30,6 +30,7 @@
 		B2C3BFB12964872C00D6D7C3 /* libvulkan.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2C3BFAF2964872700D6D7C3 /* libvulkan.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2C3BFB32964876F00D6D7C3 /* libMoltenVK.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C3BFB22964876F00D6D7C3 /* libMoltenVK.dylib */; };
 		B2C3BFB42964877300D6D7C3 /* libMoltenVK.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2C3BFB22964876F00D6D7C3 /* libMoltenVK.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B2E047DF2998B5F900EE71D0 /* game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E047DD2998B5F900EE71D0 /* game_data.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -113,6 +114,8 @@
 		B2C3BFAF2964872700D6D7C3 /* libvulkan.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.dylib; path = ../../../../../../../usr/local/macOS/lib/libvulkan.1.dylib; sourceTree = "<group>"; };
 		B2C3BFB22964876F00D6D7C3 /* libMoltenVK.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMoltenVK.dylib; path = ../../../../../../../usr/local/macOS/lib/libMoltenVK.dylib; sourceTree = "<group>"; };
 		B2DAAB76296544CB003578D9 /* vulkan_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vulkan_entry_point.h; sourceTree = "<group>"; };
+		B2E047DD2998B5F900EE71D0 /* game_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = game_data.cpp; sourceTree = "<group>"; };
+		B2E047DE2998B5F900EE71D0 /* game_data.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = game_data.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,8 @@
 			children = (
 				B2A7FA67299257350039C996 /* renderer_layer.cpp */,
 				B2A7FA68299257350039C996 /* renderer_layer.hpp */,
+				B2E047DD2998B5F900EE71D0 /* game_data.cpp */,
+				B2E047DE2998B5F900EE71D0 /* game_data.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -464,6 +469,7 @@
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
 				B25F618B2969A9CF0042FE09 /* player.cpp in Sources */,
 				B2A7FA69299257350039C996 /* renderer_layer.cpp in Sources */,
+				B2E047DF2998B5F900EE71D0 /* game_data.cpp in Sources */,
 				B24DD82F2962FFEE00525941 /* chess_main.cpp in Sources */,
 				B21E441B299408E500D6CDFD /* mario.cpp in Sources */,
 				B275570A29601F650020D552 /* renderer_layer.cpp in Sources */,

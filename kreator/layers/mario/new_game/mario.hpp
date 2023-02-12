@@ -15,9 +15,7 @@
 namespace mario {
   
   using namespace ikan;
-  
-  static const uint32_t MaxTime = 100;
-  
+    
   struct TextData {
     glm::vec2 size = { 0.6f, 0.6f };
     const glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -60,7 +58,7 @@ namespace mario {
     // Getters
     glm::vec4 GetBgColor() override { return level_bg_; }
     std::string GameName() override { return "Mario"; }
-    std::string SavedScene() override { return AM::ClientAsset("scenes/Mario_Scene.ikanScene"); }
+    std::string OpenSavedScene() override { return AM::ClientAsset("scenes/Mario_Scene.ikanScene"); }
     ImguiFont RegularFontData() override;
     ImguiFont BoldFontData() override;
     std::vector<std::filesystem::path> FavDirecotries() override;
@@ -89,10 +87,18 @@ namespace mario {
     void DeleteSelectedEntities();
     /// This function Duplicate the selected entities
     void DuplicateSelectedEntities();
-
-    void AddComponentHack();
-    void MoveCameraDebug(Timestep ts);
     
+    /// This is hack function to Mandle the Entities
+    void MandleComponentHack();
+    /// This hack moves the camera without camera controller with keys
+    /// - Parameter ts: time step
+    void MoveCameraDebug(Timestep ts);
+
+    // -----------------------------------
+    // Member Variables
+    // -----------------------------------
+    static const uint32_t MaxTime = 100;
+
     bool is_playing_ = false;
     
     uint32_t viewport_width_ = Application::Get().GetWindow().GetWidth();

@@ -33,7 +33,7 @@ namespace ikan_game {
     // TODO: Add File Menu
     ImguiAPI::SetLightGreyThemeColors();
 
-    if (!OpenScene(game_data_->SavedScene())) {
+    if (!OpenScene(game_data_->OpenSavedScene())) {
       NewScene(AM::ClientAsset("scenes/New_scene"));
     }
     
