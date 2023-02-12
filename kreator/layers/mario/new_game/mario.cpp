@@ -375,7 +375,7 @@ namespace mario {
     auto v = scene_->GetEntitesWith<BoxColloiderComponent>();
     for (auto e : v) {
       auto &c = v.get<BoxColloiderComponent>(e);
-      c.friction = 0.5f;
+      c.friction = 0.0f;
     }
 #endif
   }

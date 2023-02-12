@@ -14,7 +14,7 @@ namespace mario {
     rigid_body_comp_->SetGravityScale(0.0f);
   }
   
-  void PlayerController::Update(Timestep ts) {
+  void PlayerController::Update(Timestep ts) { // Run Left
     if (Input::IsKeyPressed(KeyCode::Left)) {
       acceleration_.x = -warlk_speed_;
       
@@ -26,7 +26,7 @@ namespace mario {
         // State Machine Running
       }
     }
-    if (Input::IsKeyPressed(KeyCode::Right)) {
+    else if (Input::IsKeyPressed(KeyCode::Right)) { // Run Right
       acceleration_.x = warlk_speed_;
       
       if (velocity_.x < 0) {
@@ -35,6 +35,19 @@ namespace mario {
       }
       else {
         // State Machine Running
+      }
+    }
+    else { // Friction Stop
+      acceleration_.x = 0;
+      if (velocity_.x > 0) {
+        velocity_.x = std::max(0.0f, velocity_.x - slow_down_force_);
+      }
+      else if (velocity_.x < 0) {
+        velocity_.x = std::min(0.0f, velocity_.x + slow_down_force_);
+      }
+      
+      if (velocity_.x == 0) {
+        // State change stop running / Idle
       }
     }
     
@@ -51,7 +64,7 @@ namespace mario {
   }
   
   void PlayerController::RenderGui() {
-    ImGui::Text("%f %f", velocity_.x, velocity_.y);
+    ImGui::Text(" %f %f", acceleration_.x, acceleration_.y);
   }
   
 }
