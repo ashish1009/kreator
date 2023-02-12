@@ -22,11 +22,7 @@ namespace mario {
     qc.texture_comp.component = icons;
     qc.texture_comp.sprite = SubTexture::CreateFromCoords(icons, {0.0f, 14.0f});
     
-    auto& ac = coin_entity.AddComponent<AnimationComponent>(icons);
-    ac.animation = true;
-    ac.is_sprite = true;
-    ac.sprites.push_back(SubTexture::CreateFromCoords(icons, {0.0f, 14.0f}));
-    ac.sprites.push_back(SubTexture::CreateFromCoords(icons, {0.0f, 13.0f}));
+    coin_entity.AddComponent<NativeScriptComponent>().Bind<CoinController>();
   }
   
 }

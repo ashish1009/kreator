@@ -32,7 +32,7 @@ namespace mario {
   void BlockController::Create(Entity entity) {
     entity_ = entity;
     start_pos_ = glm::vec2(entity_.GetComponent<TransformComponent>().Translation());
-    end_pos_ = start_pos_ + glm::vec2(0.0f, 0.4f);
+    end_pos_ = start_pos_ + glm::vec2(0.0f, 0.2f);
   }
   
   void BlockController::Update(Timestep ts) {
@@ -72,6 +72,7 @@ namespace mario {
           break;
         }
         case Type::Coin : {
+          animation_ = true;
           Coin::CreateBlockCoin(entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
           break;
         }

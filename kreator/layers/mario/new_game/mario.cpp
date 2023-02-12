@@ -62,6 +62,9 @@ namespace mario {
     text_data_.Render("MARIO", 0, 0);
     text_data_.Render(std::to_string(score_), 1, 0);
     
+    BatchRenderer::BeginBatch(text_data_.still_camera_projection);
+    BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, 0, 0}, {0, 0, 0}, {10, 10, 10}), {1, 1,1 ,1});
+    BatchRenderer::EndBatch();
     text_data_.Render("x " + std::to_string(coins_), 1, 1);
     
     text_data_.Render("WORLD", 0, 2);

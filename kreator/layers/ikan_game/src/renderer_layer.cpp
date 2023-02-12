@@ -140,7 +140,7 @@ namespace ikan_game {
 
     switch (event.GetKeyCode()) {
       case KeyCode::T:
-        active_scene_->PlayScene();
+        PlayScene();
         break;
         
         // File Manager
@@ -216,7 +216,7 @@ namespace ikan_game {
     // Button action
     if (PropertyGrid::ImageButton("Game Play", play_texture->GetRendererID(), { size, size })) {
       SetPlay(true);
-      active_scene_->PlayScene();
+      PlayScene();
       Application::Get().MaximizeWindow();
     }
     PropertyGrid::HoveredMsg("Play Button for Game");
@@ -241,14 +241,7 @@ namespace ikan_game {
     // Button action
     if (PropertyGrid::ImageButton("Scene Play/Pause", tex_id, { size, size })) {
       if (active_scene_->IsEditing()) {
-        active_scene_ = EnttScene::Copy(editor_scene_);
-        spm_.SetSceneContext(active_scene_.get());
-
-        game_data_->SetScene(active_scene_, &spm_);
-        active_scene_->SetContactListner(contact_listner_);
-        
-        // After Set contact listner
-        active_scene_->PlayScene();
+        PlayScene();
       }
       else {
         active_scene_ = editor_scene_;
@@ -610,6 +603,17 @@ namespace ikan_game {
       }
     }
     BatchRenderer::EndBatch();
+  }
+  
+  void RendererLayer::PlayScene() {
+    active_scene_ = EnttScene::Copy(editor_scene_);
+    spm_.SetSceneContext(active_scene_.get());
+    
+    game_data_->SetScene(active_scene_, &spm_);
+    active_scene_->SetContactListner(contact_listner_);
+    
+    // After Set contact listner
+    active_scene_->PlayScene();
   }
 
   void RendererLayer::ShowSettings() {

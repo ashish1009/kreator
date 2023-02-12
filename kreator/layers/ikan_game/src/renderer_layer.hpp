@@ -176,6 +176,8 @@ namespace ikan_game {
     /// This function set the game state
     /// - Parameter is_play: game state
     void SetPlay(bool is_play);
+    /// This function wraps the scene play
+    void PlayScene();
     
     // ------------------
     // Member variables
