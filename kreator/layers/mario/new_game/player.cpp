@@ -62,6 +62,17 @@ namespace mario {
       qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(state_)[0];
     }
   }
+  
+  PlayerController* PlayerController::instance_ = nullptr;
+  
+  PlayerController::PlayerController() {
+    instance_ = this;
+  }
+  
+  PlayerController::~PlayerController() {
+    instance_ = nullptr;
+    delete state_machine_;
+  }
     
   void PlayerController::Create(Entity entity)  {
     entity_ = entity;

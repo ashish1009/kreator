@@ -32,10 +32,8 @@ namespace mario {
   
   class PlayerController : public ScriptableEntity {
   public:
-    PlayerController() = default;
-    ~PlayerController() {
-      delete state_machine_;
-    }
+    PlayerController();
+    ~PlayerController();
 
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
@@ -44,6 +42,8 @@ namespace mario {
     void EndCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
     void PreSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
     void PostSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
+    
+    static PlayerController& Get() { return *instance_; }
 
   private:
     void CheckOnGround();
@@ -72,6 +72,8 @@ namespace mario {
     PlayerSize player_size = PlayerSize::Small;
     RigidBodyComponent* rigid_body_comp_;
     StateMachine* state_machine_;
+    
+    static PlayerController* instance_;
   };
   
 }
