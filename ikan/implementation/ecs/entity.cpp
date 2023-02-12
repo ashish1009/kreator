@@ -57,5 +57,6 @@ namespace ikan {
 
   UUID Entity::GetUUID() const { return GetComponent<IDComponent>().id; }
   const std::string& Entity::GetName() const { return GetComponent<TagComponent>().tag; }
-
+  EnttScene* Entity::GetScene() { return scene_; }
+  
 }

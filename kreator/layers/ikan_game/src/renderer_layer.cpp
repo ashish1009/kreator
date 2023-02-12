@@ -15,6 +15,8 @@ namespace ikan_game {
     if (!game_data_)
       game_data_ = std::make_unique<GameData>();
 
+    game_data_->Init();
+    
     IK_INFO(game_data_->GameName(), "Creating {0} Layer instance ... ", game_data_->GameName().c_str());
   }
   
@@ -239,14 +241,15 @@ namespace ikan_game {
     if (PropertyGrid::ImageButton("Scene Play/Pause", tex_id, { size, size })) {
       if (active_scene_->IsEditing()) {
         active_scene_ = EnttScene::Copy(editor_scene_);
-        spm_.SetSceneContext(active_scene_.get());
         active_scene_->PlayScene();
+        spm_.SetSceneContext(active_scene_.get());
       }
       else {
         active_scene_ = editor_scene_;
         active_scene_->EditScene();
         spm_.SetSceneContext(active_scene_.get());
       }
+      game_data_->SetScene(active_scene_, &spm_);
     }
     PropertyGrid::HoveredMsg("Play Button for Scene (Debug Scene in play mode)");
     ImGui::PopID();
@@ -355,7 +358,7 @@ namespace ikan_game {
         
     active_scene_ = editor_scene_;
     spm_.SetSceneContext(active_scene_.get());
-    game_data_->Init(active_scene_, &spm_);
+    game_data_->SetScene(active_scene_, &spm_);
     
     return result;
   }

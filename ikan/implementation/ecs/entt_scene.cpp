@@ -20,7 +20,7 @@
 #include "box2d/b2_fixture.h"
 
 namespace ikan {
-
+  
   template<typename... Component>
   static void CopyComponent(entt::registry& dst,
                             entt::registry& src,
@@ -44,7 +44,7 @@ namespace ikan {
                             const std::unordered_map<UUID, entt::entity>& entt_map) {
     CopyComponent<Component...>(dst, src, entt_map);
   }
-
+  
   template<typename... Component>
   static void CopyComponentIfExists(Entity dst, Entity src) {
     ([&]()
@@ -64,10 +64,10 @@ namespace ikan {
     if (src.HasComponent<Component>())
       dst.AddOrReplaceComponent<Component>(src.GetComponent<Component>());
   }
-    
+  
   std::shared_ptr<EnttScene> EnttScene::Copy(std::shared_ptr<EnttScene> other) {
     std::shared_ptr<EnttScene> new_scene = std::make_shared<EnttScene>(other->file_path_);
-
+    
     new_scene->setting_= other->setting_;
     
     new_scene->viewport_width_ = other->viewport_width_;
@@ -97,7 +97,7 @@ namespace ikan {
   : file_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)) {
     IK_CORE_INFO(LogModule::EnttScene, "Creating Scene ...");
     IK_CORE_INFO(LogModule::EnttScene, "  Name | {0}", name_);
-
+    
     // Set the Scene state and register their corresponding Functions
     if (state_ == State::Edit)
       EditScene();
@@ -145,7 +145,7 @@ namespace ikan {
     CopySingleComponentIfExists<TagComponent>(new_entity, entity);
     
     CopyComponentIfExists(AllComponents{}, new_entity, entity);
-
+    
     return new_entity;
   }
   
@@ -179,7 +179,7 @@ namespace ikan {
     
     // Update scripts
     InstantiateScript(ts);
-
+    
     update_(ts);
   }
   
@@ -192,7 +192,7 @@ namespace ikan {
     }
   }
   
-  void EnttScene::UpdateRuntime(Timestep ts) {    
+  void EnttScene::UpdateRuntime(Timestep ts) {
     if (state_ == State::Play) { // TODO: Temp check till we use scene camera in editor mode
       // Physics
       const int32_t velocity_iteration = 6;
@@ -204,14 +204,14 @@ namespace ikan {
       auto view = registry_.view<RigidBodyComponent>();
       for (auto e : view) {
         Entity& entity = entity_id_map_.at(e);
-
+        
         auto& transform = entity.GetComponent<TransformComponent>();
         auto& rb2d = entity.GetComponent<RigidBodyComponent>();
-
+        
         b2Body* body = (b2Body*)rb2d.runtime_body;
         if (body != nullptr) {
           const auto& position = body->GetPosition();
-
+          
           transform.UpdateRotation_Z(body->GetAngle());
           transform.UpdateTranslation({position.x, position.y, transform.Translation().z});
         }
@@ -244,8 +244,8 @@ namespace ikan {
       body_def.linearDamping = rb2d.linear_damping;
       body_def.angularDamping = rb2d.angular_damping;
       body_def.gravityScale = rb2d.gravity_scale;
-
-//      body_def.userData.pointer;
+      
+      //      body_def.userData.pointer;
       
       b2Body* body = physics_world_->CreateBody(&body_def);
       body->SetFixedRotation(rb2d.fixed_rotation);
@@ -256,7 +256,7 @@ namespace ikan {
         auto& bc2d = entity.GetComponent<BoxColloiderComponent>();
         AddBoxColliderData(transform, bc2d, body);
       }
-            
+      
       if (entity.HasComponent<CircleColloiderComponent>()) {
         auto& cc2d = entity.GetComponent<CircleColloiderComponent>();
         AddCircleColliderData(transform, cc2d, body);
@@ -287,7 +287,7 @@ namespace ikan {
   
   void EnttScene::EventHandlerRuntime(Event& event) {
   }
-
+  
   void EnttScene::RenderGui() {
     render_imgui_();
   }
@@ -319,7 +319,7 @@ namespace ikan {
     // Update viewport
     viewport_width_ = width;
     viewport_height_ = height;
-
+    
     // editor
     editor_camera_.SetViewportSize(width, height);
     
@@ -409,7 +409,7 @@ namespace ikan {
                                   (uint32_t)circle_entity);
       }
     } // for (const auto& entity : circle_view)
-
+    
     auto quad_view = registry_.view<TransformComponent, QuadComponent>();
     // For all quad entity
     for (const auto& quad_entity : quad_view) {
@@ -468,23 +468,23 @@ namespace ikan {
     BatchRenderer::EndBatch();
   }
   
-  RayCastInfo EnttScene::RayCast(void* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal) {
+  RayCastInfo* EnttScene::RayCast(Entity* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal) {
     RayCastInfo* callback = new RayCastInfo(requesting_obj);
     physics_world_->RayCast(callback, { hit_point.x, hit_point.y }, { normal.x, normal.y });
     return callback;
   }
-    
+  
   void EnttScene::SetFilePath(const std::string& file_path) {
     file_path_ = file_path;
     name_ = StringUtils::GetNameFromFilePath(file_path_);
   }
-
+  
   void EnttScene::SetSelectedEntity(Entity* entity) { selected_entity_ = entity; }
   Entity* EnttScene::GetSelectedEntity() { return selected_entity_; }
   
   uint32_t EnttScene::GetNumEntities() const { return num_entities_; }
   uint32_t EnttScene::GetMaxEntityId() const { return max_entity_id_; }
-
+  
   EnttScene::Setting& EnttScene::GetSetting() { return setting_; }
   EditorCamera* EnttScene::GetEditorCamera() { return &editor_camera_; }
   bool EnttScene::IsEditing() const { return state_ == EnttScene::State::Edit; }
@@ -505,7 +505,7 @@ namespace ikan {
       polygon_shape.SetAsBox(bc2d.size.x, bc2d.size.y, {bc2d.offset.x, bc2d.offset.y}, 0);
     else
       polygon_shape.SetAsBox(bc2d.size.x * tc.Scale().x, bc2d.size.y * tc.Scale().y, {bc2d.offset.x, bc2d.offset.y}, 0);
-
+    
     b2FixtureDef fixture_def;
     fixture_def.shape = & polygon_shape;
     fixture_def.density = bc2d.density;
@@ -536,5 +536,21 @@ namespace ikan {
     fixture_def.userData.pointer = (uintptr_t)cc2d.runtime_fixture;
     
     body->CreateFixture(&fixture_def);
+  }
+  
+  
+  float RayCastInfo::ReportFixture(b2Fixture *fixture, const b2Vec2 &hit_point, const b2Vec2 &normal, float fraction) {
+    if ((Entity*)fixture->GetUserData().pointer == request_object) {
+      return 1;
+    }
+    
+    this->fixture = fixture;
+    this->hit_point = hit_point;
+    this->normal = normal;
+    this->hit = true;
+    this->fraction = fraction;    
+    this->hit_object = (Entity*)fixture->GetUserData().pointer;
+    
+    return fraction;
   }
 }

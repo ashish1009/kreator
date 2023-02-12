@@ -8,6 +8,7 @@
 #pragma once
 
 #include "enums.h"
+#include "common.h"
 
 namespace mario {
   
@@ -41,6 +42,8 @@ namespace mario {
     void RenderGui() override;
     
   private:
+    void CheckOnGround();
+    
     float warlk_speed_ = 10.0f;
     float jumb_boost_ = 1.0f;
     float jump_impuls_ = 3.0f;
@@ -53,6 +56,7 @@ namespace mario {
     
     float big_jump_boost_ = 1.0f;
     float player_width_ = 1.0f;
+    float player_height_ = 1.0f;
     int32_t jump_time_ = 0;
     
     glm::vec2 acceleration_;
@@ -60,6 +64,7 @@ namespace mario {
     bool is_dead_ = false;
     int32_t enemy_bounce_ = 0;
     
+    PlayerSize player_size = PlayerSize::Small;
     RigidBodyComponent* rigid_body_comp_;
     StateMachine* state_machine_;
   };

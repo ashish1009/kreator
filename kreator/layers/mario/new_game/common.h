@@ -7,6 +7,8 @@
 
 #pragma once
 
+#define DEBUG_DRAW 1
+
 #define MARIO_INFO(...)   IK_INFO("Mario", __VA_ARGS__)
 #define MARIO_TRACE(...)  IK_TRACE("Mario", __VA_ARGS__)
 

@@ -19,27 +19,15 @@
 
 namespace ikan {
   
+  class Entity;
+
   class RayCastInfo : public b2RayCastCallback {
   public:
-    RayCastInfo(void* object) {
-      
+    RayCastInfo(Entity* object) {
+      request_object = object;
     }
     
-    float ReportFixture(b2Fixture* fixture, const b2Vec2& hit_point, const b2Vec2& normal, float fraction) override {
-      if ((void*)fixture->GetUserData().pointer == request_object) {
-        return 1;
-      }
-      
-      this->fixture = fixture;
-      this->hit_point = hit_point;
-      this->normal = normal;
-      this->hit = true;
-      this->fraction = fraction;
-      this->hit_object = (void*)fixture->GetUserData().pointer;
-      
-      return fraction;
-    }
-
+    float ReportFixture(b2Fixture* fixture, const b2Vec2& hit_point, const b2Vec2& normal, float fraction) override;
   public:
     b2Fixture* fixture = nullptr;
     b2Vec2 hit_point;
@@ -47,8 +35,8 @@ namespace ikan {
     float fraction = 0.0f;
     bool hit = false;
     
-    void* hit_object = nullptr;
-    void* request_object = nullptr;
+    Entity* hit_object = nullptr;
+    Entity* request_object = nullptr;
   };
   
   struct TransformComponent;
@@ -67,7 +55,6 @@ namespace ikan {
     DELETE_COPY_MOVE_CONSTRUCTORS(CameraData);
   };
 
-  class Entity;
   class EnttScene {
   public:
     /// State of Scene
@@ -169,7 +156,7 @@ namespace ikan {
     ///   - requesting_obj: requesting object type
     ///   - hit_point: hit point
     ///   - normal: normal of ray
-    RayCastInfo RayCast(void* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal);
+    RayCastInfo* RayCast(Entity* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal);
     
     /// This function create new scene copy the scene data from argument
     /// - Parameter other: copy scene

@@ -91,7 +91,9 @@ namespace ikan {
     UUID GetUUID() const;
     /// This function returns name of entity
     const std::string& GetName() const;
-
+    /// This function returns the scens pointer
+    EnttScene* GetScene();
+    
   private:
     entt::entity entity_handle_{ entt::null };
     EnttScene* scene_;

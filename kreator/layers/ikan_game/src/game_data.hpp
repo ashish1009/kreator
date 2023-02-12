@@ -15,11 +15,13 @@ namespace ikan_game {
   public:
     virtual ~GameData() = default;
     
+    virtual void Init() {}
+    
     /// Initilize your game data here. This function triggers when scene in opened in game. Initialize Game renderes like Batch 2d. and Text renderer.
     /// - Parameters:
     ///   - scene: This is the reference of created scene
     ///   - panel: Scene panel pointer
-    virtual void Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {};
+    virtual void SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {};
     
     /// This funcion calls each frame in renderer Pass. Update or debug render your game.
     /// - Parameter ts: tiem step of frames

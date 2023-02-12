@@ -557,6 +557,8 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    
+    runtime_fixture = other.runtime_fixture;
   }
   BoxColloiderComponent& BoxColloiderComponent::operator=(const BoxColloiderComponent& other) {
     offset = other.offset;
@@ -565,6 +567,8 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    
+    runtime_fixture = other.runtime_fixture;
     return *this;
   }
   BoxColloiderComponent::BoxColloiderComponent(BoxColloiderComponent&& other) {
@@ -574,6 +578,8 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    
+    runtime_fixture = other.runtime_fixture;
   }
   BoxColloiderComponent& BoxColloiderComponent::operator=(BoxColloiderComponent&& other) {
     offset = other.offset;
@@ -582,6 +588,8 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    
+    runtime_fixture = other.runtime_fixture;
     return *this;
   }
   void BoxColloiderComponent::RenderGui() {

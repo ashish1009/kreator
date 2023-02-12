@@ -18,24 +18,28 @@ namespace mario {
     SpriteManager::Shutdown();
   }
   
-  void MarioData::Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
+  void MarioData::Init() {
     MARIO_INFO("Initializing Mario Game Data ... ");
-    scene_ = scene;
-    panel_ = panel;
 
     // Change Text renderer Font
     TextRenderer::LoadFreetype(AM::ClientAsset(font_path));
     BatchRenderer::Init(2000, 0, 2000 * 5);
-    
     SpriteManager::Init();
+  }
+  
+  void MarioData::SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
+    MARIO_INFO("Update Mario Scene ... ");
+
+    scene_ = scene;
+    panel_ = panel;
     
     CreateOrFindPlayer();
+    MandleComponentHack();
   }
 
   void MarioData::Update(Timestep ts) {
     if (!is_playing_) {
       StoreSelectedEntities();
-      MandleComponentHack();
       MoveCameraDebug(ts);
     }
     else {
@@ -373,12 +377,13 @@ namespace mario {
   }
 
   void MarioData::MandleComponentHack() {
-#if 0
+#if 1
     // HACK to add components
     auto v = scene_->GetEntitesWith<BoxColloiderComponent>();
     for (auto e : v) {
       auto &c = v.get<BoxColloiderComponent>(e);
-      c.friction = 0.0f;
+      Entity* entity = new Entity(e, scene_.get());
+      c.runtime_fixture = (void*)entity;
     }
 #endif
   }
