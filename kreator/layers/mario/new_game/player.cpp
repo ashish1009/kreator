@@ -6,10 +6,58 @@
 //
 
 #include "player.hpp"
+#include "sprite_manager.hpp"
 
 namespace mario {
     
   void StateMachine::Update() {
+    switch (state_) {
+      case PlayerState::Idle:
+        break;
+      case PlayerState::Run: {
+        static const auto& sprites = SpriteManager::GetPlayerStateSprite(PlayerState::Run);
+        static const int32_t speed = 10;
+        static int32_t anim_idx = 0;
+
+        auto& qc = player_entity_->GetComponent<QuadComponent>();
+        
+        if (anim_idx >= speed * sprites.size() or anim_idx < 1)
+          anim_idx = 0;
+          
+        qc.texture_comp.sprite = sprites[anim_idx / speed];
+
+        anim_idx++;
+        break;
+      }
+      case PlayerState::SwitchSide:
+        break;
+      case PlayerState::Jump:
+        break;
+      case PlayerState::Die:
+        break;
+      case PlayerState::BigIdle:
+        break;
+      case PlayerState::BigRun:
+        break;
+      case PlayerState::BigJump:
+        break;
+      case PlayerState::BigSwitchSide:
+        break;
+      case PlayerState::FireIdle:
+        break;
+      case PlayerState::FireRun:
+        break;
+      case PlayerState::FireJump:
+        break;
+      case PlayerState::FireSwitchSide:
+        break;
+    }
+  }
+  
+  void StateMachine::ChangeState(PlayerState state) {
+    state_ = state;
+    
+    auto& qc = player_entity_->GetComponent<QuadComponent>();
     switch (state_) {
       case PlayerState::Idle:
         break;
@@ -60,10 +108,9 @@ namespace mario {
       if (velocity_.x > 0) {
         velocity_.x -= slow_down_force_;
         state_machine_->ChangeState(PlayerState::SwitchSide);
-        // State Machine change direction
       }
       else {
-        // State Machine Running
+        state_machine_->ChangeState(PlayerState::Run);
       }
     }
     else if (Input::IsKeyPressed(KeyCode::Right)) { // Run Right
@@ -75,7 +122,7 @@ namespace mario {
         state_machine_->ChangeState(PlayerState::SwitchSide);
       }
       else {
-        // State Machine Running
+        state_machine_->ChangeState(PlayerState::Run);
       }
     }
     else { // Friction Stop
@@ -88,7 +135,7 @@ namespace mario {
       }
       
       if (velocity_.x == 0) {
-        // State change stop running / Idle
+        state_machine_->ChangeState(PlayerState::Idle);
       }
     }
     

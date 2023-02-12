@@ -16,17 +16,17 @@ namespace mario {
   class StateMachine {
   public:
     StateMachine(Entity* entity) {
-      player_entity = entity;
+      player_entity_ = entity;
     }
     
     void Update();
     
-    void ChangeState(PlayerState state) { state_ = state; }
+    void ChangeState(PlayerState state);
     PlayerState GetState() const { return state_;}
     
   private:
     PlayerState state_ = PlayerState::Idle;
-    Entity* player_entity;
+    Entity* player_entity_;
   };
   
   class PlayerController : public ScriptableEntity {
