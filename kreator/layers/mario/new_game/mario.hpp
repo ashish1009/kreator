@@ -65,6 +65,8 @@ namespace mario {
     ImguiFont BoldFontData() override;
     std::vector<std::filesystem::path> FavDirecotries() override;
     
+    static MarioData& Get() { return *instance_; }
+    
   private:
     enum Direction {Left, Right, Up, Down};
 
@@ -132,6 +134,8 @@ namespace mario {
     uint32_t time_left_ = 0;
     
     float timer_ = 0;
+    
+    static MarioData* instance_;
   };
   
 }

@@ -61,37 +61,44 @@ namespace mario {
   
   void BlockController::BeginCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 contact_normal) {
     PlayerController* pc = PlayerController::Get();
-    auto& tc = entity_.GetComponent<TransformComponent>();
-    
     if (active_ and pc and contact_normal.y < -0.8f) {
-      switch (type_) {
-        case Type::Empty : {
-          animation_ = true;
-          PlayerHit(pc);
-          // ADD Suund
-          break;
-        }
-        case Type::Coin : {
-          animation_ = true;
-          Coin::CreateBlockCoin(entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
-          break;
-        }
-        case Type::Star : {
-          break;
-        }
-        case Type::PowerUp : {
-          break;
-        }
-        default:
-          break;
-      }
+      animation_ = true;
+      PlayerHit(pc);
     }
   }
   
-  void BlockController:: PlayerHit(PlayerController* pc) {
-    if (!pc->IsSmall()) {
-      // Play sound // Break
-      // Destory the object
+  void BlockController::PlayerHit(PlayerController* pc) {
+    switch (type_) {
+      case Type::Empty : {
+        if (!pc->IsSmall()) {
+          // Play sound // Break
+          // Destory the object
+        }
+        break;
+      }
+      case Type::Coin : {
+        auto& tc = entity_.GetComponent<TransformComponent>();
+        Coin::CreateBlockCoin(entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
+        
+        auto& qc = entity_.GetComponent<QuadComponent>();
+        const auto& tex = qc.texture_comp.component;
+        qc.texture_comp.sprite = SubTexture::CreateFromCoords(tex, {27.0f, 27.0f});
+        
+        if (entity_.HasComponent<AnimationComponent>())
+          entity_.RemoveComponent<AnimationComponent>();
+        
+        active_ = false;
+        
+        break;
+      }
+      case Type::Star : {
+        break;
+      }
+      case Type::PowerUp : {
+        break;
+      }
+      default:
+        break;
     }
   }
 

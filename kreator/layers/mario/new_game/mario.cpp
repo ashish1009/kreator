@@ -10,9 +10,14 @@
 #include "block.hpp"
 
 namespace mario {
+
+  MarioData* MarioData::instance_ = nullptr;
   
   MarioData::MarioData(const Viewport* const viewport)
   : viewport_(viewport) {
+    IK_ASSERT(!instance_);
+    instance_ = this;
+    
     MARIO_INFO("Creating Mario Game Data ... ");
   }
   
