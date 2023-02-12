@@ -26,8 +26,8 @@ namespace ikan {
     RayCastInfo(Entity* object) {
       request_object = object;
     }
-    
     float ReportFixture(b2Fixture* fixture, const b2Vec2& hit_point, const b2Vec2& normal, float fraction) override;
+    
   public:
     b2Fixture* fixture = nullptr;
     b2Vec2 hit_point;
@@ -156,7 +156,7 @@ namespace ikan {
     ///   - requesting_obj: requesting object type
     ///   - hit_point: hit point
     ///   - normal: normal of ray
-    RayCastInfo* RayCast(Entity* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal);
+    std::shared_ptr<RayCastInfo> RayCast(Entity* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal);
     
     /// This function create new scene copy the scene data from argument
     /// - Parameter other: copy scene

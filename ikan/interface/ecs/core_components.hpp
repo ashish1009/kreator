@@ -106,13 +106,13 @@ namespace ikan {
 
   class ScriptableEntity;
   struct NativeScriptComponent {
-    ScriptableEntity* script;
+    std::shared_ptr<ScriptableEntity> script;
     ScriptLoaderFn loader_function;
     std::string script_name;
     
     template<typename T, typename... Args>
     void Bind(Args... args) {
-      script = static_cast<ScriptableEntity*>(new T(std::forward<Args>(args)...));
+      script = static_cast<std::shared_ptr<ScriptableEntity>>(std::make_shared<T>(std::forward<Args>(args)...));
       
       // Store the script name
       int32_t status;

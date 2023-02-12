@@ -191,6 +191,8 @@ namespace ikan {
     IK_CORE_DEBUG(LogModule::Texture, "  Number of Channel | {0}", channel_);
     IK_CORE_DEBUG(LogModule::Texture, "  InternalFormat    | {0}", texture_utils::GetFormatNameFromEnum(internal_format_));
     IK_CORE_DEBUG(LogModule::Texture, "  DataFormat        | {0}", texture_utils::GetFormatNameFromEnum(data_format_));
+    
+    delete (uint32_t*)texture_data_;
   }
 
   OpenGLTexture::~OpenGLTexture() noexcept {

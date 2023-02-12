@@ -143,17 +143,17 @@ namespace mario {
     ray_cast_1_begin -= glm::vec2(inner_player_width / 2.0f, 0.0f);
     
     glm::vec2 ray_cast_1_end = ray_cast_1_begin + glm::vec2(0.0f, y_val);
-    RayCastInfo* info_1 = entity_.GetScene()->RayCast(&entity_,
-                                                     {ray_cast_1_begin.x, ray_cast_1_begin.y},
-                                                     {ray_cast_1_end.x, ray_cast_1_end.y});
+    std::shared_ptr<RayCastInfo> info_1 = entity_.GetScene()->RayCast(&entity_,
+                                                                      {ray_cast_1_begin.x, ray_cast_1_begin.y},
+                                                                      {ray_cast_1_end.x, ray_cast_1_end.y});
     
     
     glm::vec2 ray_cast_2_begin = ray_cast_1_begin + glm::vec2(inner_player_width, 0.0f);
     glm::vec2 ray_cast_2_end = ray_cast_1_end + glm::vec2(inner_player_width, 0.0f);
 
-    RayCastInfo* info_2 = entity_.GetScene()->RayCast(&entity_,
-                                                     {ray_cast_2_begin.x, ray_cast_2_begin.y},
-                                                     {ray_cast_2_end.x, ray_cast_2_end.y});
+    std::shared_ptr<RayCastInfo> info_2 = entity_.GetScene()->RayCast(&entity_,
+                                                                      {ray_cast_2_begin.x, ray_cast_2_begin.y},
+                                                                      {ray_cast_2_end.x, ray_cast_2_end.y});
     
     on_ground_ = ((info_1->hit and info_1->hit_object and info_1->hit_object->HasComponent<RigidBodyComponent>()) or
                   (info_2->hit and info_2->hit_object and info_2->hit_object->HasComponent<RigidBodyComponent>()));

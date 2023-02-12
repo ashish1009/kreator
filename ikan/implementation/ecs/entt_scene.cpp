@@ -468,9 +468,9 @@ namespace ikan {
     BatchRenderer::EndBatch();
   }
   
-  RayCastInfo* EnttScene::RayCast(Entity* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal) {
-    RayCastInfo* callback = new RayCastInfo(requesting_obj);
-    physics_world_->RayCast(callback, { hit_point.x, hit_point.y }, { normal.x, normal.y });
+  std::shared_ptr<RayCastInfo> EnttScene::RayCast(Entity* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal) {
+    std::shared_ptr<RayCastInfo> callback = std::make_shared<RayCastInfo>(requesting_obj);
+    physics_world_->RayCast(callback.get(), { hit_point.x, hit_point.y }, { normal.x, normal.y });
     return callback;
   }
   

@@ -440,7 +440,6 @@ namespace ikan {
   }
   
   NativeScriptComponent::~NativeScriptComponent() {
-    delete script;
   }
   
   void NativeScriptComponent::RenderGui() {
