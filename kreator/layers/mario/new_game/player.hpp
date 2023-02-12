@@ -44,9 +44,7 @@ namespace mario {
   private:
     void CheckOnGround();
     
-    float warlk_speed_ = 10.0f;
-    float jumb_boost_ = 1.0f;
-    float jump_impuls_ = 3.0f;
+    float warlk_speed_ = 4.0f;
     float slow_down_force_ = 0.08f;
     glm::vec2 terminal_velocity_ = {10.1f, 10.1f};
     
@@ -54,9 +52,12 @@ namespace mario {
     float ground_debounce_ = 0.0f; // Seconds
     float ground_debounce_time_ = 0.1f; // Seconds
     
-    float big_jump_boost_ = 1.0f;
     float player_width_ = 1.0f;
     float player_height_ = 1.0f;
+
+    float jumb_boost_ = 1.0f;
+    float big_jump_boost_ = 1.0f;
+    float jump_impuls_ = 3.0f;
     int32_t jump_time_ = 0;
     
     glm::vec2 acceleration_;

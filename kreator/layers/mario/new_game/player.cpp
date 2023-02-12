@@ -118,9 +118,38 @@ namespace mario {
         state_machine_->ChangeState(PlayerState::Idle);
       }
     }
-    
-    acceleration_.y = -9.8;
-    
+
+    CheckOnGround();
+ 
+    if (Input::IsKeyPressed(KeyCode::Space) and (jump_time_ > 0 or on_ground_ or ground_debounce_ > 0)) {
+      if ((on_ground_ or ground_debounce_ > 0) and jump_time_ == 0) { // Just Press Jump Key
+        // Play Sound
+        jump_time_ = 70;
+        velocity_.y = jump_impuls_;
+      }
+      else if (jump_time_ > 0) {
+        jump_time_--;
+        velocity_.y = (jump_time_ / 2.2f) * jumb_boost_;
+      }
+      else {
+        velocity_.y = 0.0f;
+      }
+      ground_debounce_ = 0.0f;
+    }
+    else if (!on_ground_) {
+      if (jump_time_ > 0) {
+        velocity_.y *= 0.35f;
+        jump_time_ = 0;
+      }
+      ground_debounce_ -= ts;
+      acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * 2.7f;
+    }
+    else {
+      velocity_.y = 0;
+      acceleration_.y = 0;
+      ground_debounce_ = ground_debounce_time_;
+    }
+     
     velocity_.x += acceleration_.x * ts;
     velocity_.y += acceleration_.y * ts;
     
@@ -130,7 +159,12 @@ namespace mario {
     rigid_body_comp_->SetVelocity(velocity_);
     rigid_body_comp_->SetAngularVelocity(0.0f);
     
-    CheckOnGround();
+    if (!on_ground_) {
+      state_machine_->ChangeState(PlayerState::Jump);
+    }
+    else {
+//      state_machine_->ChangeState(PlayerState::Idle);
+    }
   }
   
   void PlayerController::CheckOnGround() {
@@ -168,8 +202,15 @@ namespace mario {
   }
   
   void PlayerController::RenderGui() {
-    ImGui::Text(" %f %f", acceleration_.x, acceleration_.y);
-    ImGui::Text(" %d", on_ground_);
+    ImGui::Text(" Acc %f %f", acceleration_.x, acceleration_.y);
+    ImGui::Text(" Vel %f %f", acceleration_.x, acceleration_.y);
+    ImGui::Text(" On Ground %d", on_ground_);
+    
+    ImGui::Text(" Jump Time %d", jump_time_);
+    ImGui::Text(" Ground Debouce %f", ground_debounce_);
+    ImGui::Text(" Ground Debounce time %f", ground_debounce_time_);
+    ImGui::Text(" Jump Boost %f", jumb_boost_);
+    
   }
   
 }

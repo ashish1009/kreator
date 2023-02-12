@@ -58,7 +58,7 @@ Entities:
     TagComponent:
       Tag: Mario Player
     TransformComponent:
-      Translation: [-5.75, -3.25, 0]
+      Translation: [-4.71422482, -5.24872208, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -87,7 +87,7 @@ Entities:
       Continous Collision: true
     PillBoxColliderComponent:
       Offset: [0, 0]
-      Width: 0.5
+      Width: 0.400000006
       Height: 0.5
   - Entity: 2214066489975948466
     TagComponent:
@@ -24931,7 +24931,7 @@ Entities:
     TagComponent:
       Tag: Primary Camera
     TransformComponent:
-      Translation: [-3.644485, -4.18178701, 0]
+      Translation: [-3.91827393, -7.28211212, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
@@ -24939,7 +24939,7 @@ Entities:
       Primary: true
       ProjectionType: 1
       PerspectiveFOV: 0.785398185
-      OrthographicSize: 9
+      OrthographicSize: 7
       Near: -1
       Far: 1
     NativeScriptComponent:

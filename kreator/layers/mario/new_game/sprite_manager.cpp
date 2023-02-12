@@ -60,6 +60,8 @@ namespace mario {
     data_->player_subtextures_map[PlayerState::Run].push_back(SubTexture::CreateFromCoords(data_->player_sprite, {2.0f, 30.0f}));
     
     data_->player_subtextures_map[PlayerState::SwitchSide].push_back(SubTexture::CreateFromCoords(data_->player_sprite, {3.0f, 30.0f}));
+    
+    data_->player_subtextures_map[PlayerState::Jump].push_back(SubTexture::CreateFromCoords(data_->player_sprite, {4.0f, 30.0f}));
   }
   
 }
