@@ -56,35 +56,10 @@ namespace mario {
   
   void StateMachine::ChangeState(PlayerState state) {
     state_ = state;
-    
-    auto& qc = player_entity_->GetComponent<QuadComponent>();
-    switch (state_) {
-      case PlayerState::Idle:
-        break;
-      case PlayerState::Run:
-        break;
-      case PlayerState::SwitchSide:
-        break;
-      case PlayerState::Jump:
-        break;
-      case PlayerState::Die:
-        break;
-      case PlayerState::BigIdle:
-        break;
-      case PlayerState::BigRun:
-        break;
-      case PlayerState::BigJump:
-        break;
-      case PlayerState::BigSwitchSide:
-        break;
-      case PlayerState::FireIdle:
-        break;
-      case PlayerState::FireRun:
-        break;
-      case PlayerState::FireJump:
-        break;
-      case PlayerState::FireSwitchSide:
-        break;
+
+    if (state_ != PlayerState::Run) {
+      auto& qc = player_entity_->GetComponent<QuadComponent>();
+      qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(state_)[0];
     }
   }
     
