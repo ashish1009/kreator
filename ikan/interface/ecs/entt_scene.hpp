@@ -171,6 +171,10 @@ namespace ikan {
     ///   - normal: normal of ray
     RayCastInfo RayCast(void* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal);
     
+    /// This function create new scene copy the scene data from argument
+    /// - Parameter other: copy scene
+    static std::shared_ptr<EnttScene> Copy(std::shared_ptr<EnttScene> other);
+
     template<typename... Components>
     auto GetEntitesWith() {
       return registry_.view<Components...>();
@@ -182,10 +186,8 @@ namespace ikan {
     // ------------------
     // Member functions
     // ------------------
-    /// - Parameters:
-    ///   - name: name of entity
-    ///   - uuid: Unique ID of entity
-    Entity CreateNewEmptyEntity(const std::string& name, UUID uuid);
+    /// - Parameter uuid: Unique ID of entity
+    Entity CreateNewEmptyEntity(UUID uuid);
 
     /// This function updates the scene in edit mode
     /// - Parameter ts time step
@@ -243,7 +245,7 @@ namespace ikan {
     entt::registry registry_;
     std::unordered_map<entt::entity, Entity> entity_id_map_;
     
-    Entity* selected_entity_;
+    Entity* selected_entity_ = nullptr;
     
     // Number of Entity stored in Scene and Max ID given to Entity
     uint32_t num_entities_ = 0, max_entity_id_ = -1;

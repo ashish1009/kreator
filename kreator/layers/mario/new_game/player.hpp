@@ -12,7 +12,7 @@
 namespace mario {
   
   using namespace ikan;
-    
+  
   class PlayerController : public ScriptableEntity {
   public:
     PlayerController(RigidBodyComponent* rb);

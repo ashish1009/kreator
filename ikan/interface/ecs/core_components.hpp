@@ -232,5 +232,13 @@ namespace ikan {
     AnimationComponent(std::shared_ptr<Texture> sprite_image);
     DEFINE_COPY_MOVE_CONSTRUCTORS(AnimationComponent);
   };
+  
+  template<typename... Component>
+  struct ComponentGroup {
+  };
+  
+  using AllComponents =
+  ComponentGroup<TransformComponent, QuadComponent, CircleComponent, CameraComponent, NativeScriptComponent,
+  RigidBodyComponent, BoxColloiderComponent, CircleColloiderComponent, PillBoxCollider, AnimationComponent>;
 
 }

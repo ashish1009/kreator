@@ -20,16 +20,81 @@
 #include "box2d/b2_fixture.h"
 
 namespace ikan {
+
+  template<typename... Component>
+  static void CopyComponent(entt::registry& dst,
+                            entt::registry& src,
+                            const std::unordered_map<UUID, entt::entity>& enttMap) {
+    ([&]()
+     {
+      auto view = src.view<Component>();
+      for (auto src_entity : view) {
+        entt::entity dst_entity = enttMap.at(src.get<IDComponent>(src_entity).id);
+        
+        auto& srcComponent = src.get<Component>(src_entity);
+        dst.emplace_or_replace<Component>(dst_entity, srcComponent);
+      }
+    }(), ...);
+  }
+  
+  template<typename... Component>
+  static void CopyComponent(ComponentGroup<Component...>,
+                            entt::registry& dst,
+                            entt::registry& src,
+                            const std::unordered_map<UUID, entt::entity>& entt_map) {
+    CopyComponent<Component...>(dst, src, entt_map);
+  }
+
+  template<typename... Component>
+  static void CopyComponentIfExists(Entity dst, Entity src) {
+    ([&]()
+     {
+      if (src.HasComponent<Component>())
+        dst.AddOrReplaceComponent<Component>(src.GetComponent<Component>());
+    }(), ...);
+  }
+  
+  template<typename... Component>
+  static void CopyComponentIfExists(ComponentGroup<Component...>, Entity dst, Entity src) {
+    CopyComponentIfExists<Component...>(dst, src);
+  }
   
   template<typename Component>
-  /// Copy the entity components
-  /// - Parameters:
-  ///   - dst: Destination entity
-  ///   - src: Source entity
-  static void CopyComponentIfExist(Entity& dst, Entity& src) {
+  static void CopySingleComponentIfExists(Entity& dst, Entity& src) {
     if (src.HasComponent<Component>())
       dst.AddOrReplaceComponent<Component>(src.GetComponent<Component>());
   }
+    
+  std::shared_ptr<EnttScene> EnttScene::Copy(std::shared_ptr<EnttScene> other) {
+    std::shared_ptr<EnttScene> new_scene;
+    
+    new_scene->file_path_= other->file_path_;
+    new_scene->name_ = other->name_;
+
+    new_scene->setting_= other->setting_;
+    
+    new_scene->viewport_width_ = other->viewport_width_;
+    new_scene->viewport_height_ = other->viewport_width_;
+    
+    auto& src_scene_registry = other->registry_;
+    auto& dst_scene_registry = new_scene->registry_;
+    std::unordered_map<UUID, entt::entity> entt_map;
+    
+    // Create entities in new scene
+    auto id_view = src_scene_registry.view<IDComponent>();
+    for (auto e : id_view) {
+      UUID uuid = src_scene_registry.get<IDComponent>(e).id;
+      const auto& name = src_scene_registry.get<TagComponent>(e).tag;
+      Entity new_entity = new_scene->CreateEntity(name, uuid);
+      entt_map[uuid] = (entt::entity)new_entity;
+    }
+    
+    // Copy components (except IDComponent and TagComponent)
+    CopyComponent(AllComponents{}, dst_scene_registry, src_scene_registry, entt_map);
+    
+    return new_scene;
+  }
+  
   
   EnttScene::EnttScene(const std::string& file_path)
   : file_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)) {
@@ -51,7 +116,7 @@ namespace ikan {
   }
   
   Entity EnttScene::CreateEntity(const std::string& name, UUID uuid) {
-    Entity entity = CreateNewEmptyEntity(name, uuid);
+    Entity entity = CreateNewEmptyEntity(uuid);
     
     entity.AddComponent<TagComponent>(name);
     entity.AddComponent<TransformComponent>();
@@ -79,22 +144,15 @@ namespace ikan {
   }
   
   Entity EnttScene::DuplicateEntity(Entity entity) {
-    Entity new_entity = CreateNewEmptyEntity("", UUID());
+    Entity new_entity = CreateNewEmptyEntity(UUID());
+    CopySingleComponentIfExists<TagComponent>(new_entity, entity);
     
-    // Copy Components
-    CopyComponentIfExist<TagComponent>(new_entity, entity);
-    CopyComponentIfExist<TransformComponent>(new_entity, entity);
-    CopyComponentIfExist<CameraComponent>(new_entity, entity);
-    CopyComponentIfExist<QuadComponent>(new_entity, entity);
-    CopyComponentIfExist<CircleComponent>(new_entity, entity);
-    CopyComponentIfExist<RigidBodyComponent>(new_entity, entity);
-    CopyComponentIfExist<BoxColloiderComponent>(new_entity, entity);
-    CopyComponentIfExist<AnimationComponent>(new_entity, entity);
+    CopyComponentIfExists(AllComponents{}, new_entity, entity);
 
     return new_entity;
   }
   
-  Entity EnttScene::CreateNewEmptyEntity(const std::string &name, UUID uuid) {
+  Entity EnttScene::CreateNewEmptyEntity(UUID uuid) {
     Entity entity {registry_.create(), this};
     
     // Assert if this entity id is already present in scene entity map
@@ -444,7 +502,6 @@ namespace ikan {
     IK_CORE_ASSERT(listener);
     client_listner_ = listener;
   }
-
   
   void EnttScene::AddBoxColliderData(const TransformComponent& tc, const BoxColloiderComponent& bc2d, b2Body* body, bool is_pill) {
     b2PolygonShape polygon_shape;

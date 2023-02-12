@@ -113,13 +113,14 @@ namespace ikan_game {
         Renderer::RenderStatsGui(&settings_.stats, true);
         viewport_.RenderGui(&settings_.viewport);
 
-        if (1) { // (active_scene_->IsEditing()) {
-          cbp_.RenderGui(&settings_.cbp);
-          spm_.RenderGui();
-          game_data_->RenderGui();
+        cbp_.RenderGui(&settings_.cbp);
+        spm_.RenderGui();
+        game_data_->RenderGui();
 
+        if (active_scene_->IsEditing()) {
           SaveScene();
         }
+        
         ScenePlayPauseButton();
         RenderViewport();
       }
@@ -236,10 +237,12 @@ namespace ikan_game {
     
     // Button action
     if (PropertyGrid::ImageButton("Scene Play/Pause", tex_id, { size, size })) {
-      if (active_scene_->IsEditing())
+      if (active_scene_->IsEditing()) {
         active_scene_->PlayScene();
-      else
+      }
+      else {
         active_scene_->EditScene();
+      }
     }
     PropertyGrid::HoveredMsg("Play Button for Scene (Debug Scene in play mode)");
     ImGui::PopID();
@@ -316,6 +319,9 @@ namespace ikan_game {
     IK_INFO(game_data_->GameName(), "Closing Scene {0}", active_scene_->GetName().c_str());
     active_scene_.reset();
     active_scene_ = nullptr;
+    
+    editor_scene_.reset();
+    editor_scene_ = nullptr;
   }
   
   const void RendererLayer::NewScene(const std::string& scene_path) {
@@ -324,20 +330,29 @@ namespace ikan_game {
     
     // Create New Scene
     IK_INFO(game_data_->GameName(), "Creating New Scene {0}", scene_path.c_str());
-    active_scene_ = std::make_shared<EnttScene>(scene_path);
-    spm_.SetSceneContext(active_scene_.get());
+    editor_scene_ = std::make_shared<EnttScene>(scene_path);
+    spm_.SetSceneContext(editor_scene_.get());
+    
+    active_scene_ = editor_scene_;
   }
 
   const bool RendererLayer::OpenScene(const std::string& scene_path) {
     IK_INFO(game_data_->GameName(), "Opening saved scene from {0}", scene_path.c_str());
     
-    NewScene(scene_path);
-    SceneSerializer serializer(active_scene_.get());
+    // Close the current scene
+    CloseScene();
+    
+    editor_scene_ = std::make_shared<EnttScene>(scene_path);
+    spm_.SetSceneContext(editor_scene_.get());
+
+    SceneSerializer serializer(editor_scene_.get());
     
     bool result = serializer.Deserialize(scene_path);
-    active_scene_->SetViewport(viewport_width, viewport_height);
+    editor_scene_->SetViewport(viewport_width, viewport_height);
     
-    game_data_->Init(active_scene_, &spm_);
+    game_data_->Init(editor_scene_, &spm_);
+    
+    active_scene_ = editor_scene_;
     return result;
   }
   
