@@ -16,14 +16,14 @@ namespace mario {
   
   void MarioData::Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
     MARIO_INFO("Initializing Mario Game Data ... ");
-    
-    // Change Text renderer Font
-    TextRenderer::LoadFreetype(AM::ClientAsset(font_path));
-
     scene_ = scene;
     panel_ = panel;
-    
+
+    // Change Text renderer Font
+    TextRenderer::LoadFreetype(AM::ClientAsset(font_path));
     BatchRenderer::Init(2000, 0, 2000 * 5);
+    
+    CreateOrFindPlayer();
   }
 
   void MarioData::Update(Timestep ts) {
@@ -55,6 +55,30 @@ namespace mario {
     TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)), { 5.0f, 5.0f, 0.3f }, { 0.35f, 0.35f }, { 0, 0, 1, 1 });
     
     TextRenderer::EndBatch();
+  }
+  
+  void MarioData::CreateOrFindPlayer() {
+    const std::string player_name = "Mario Player";
+    bool found_player = false;
+    Entity player_entity;
+    
+    auto player_view = scene_->GetEntitesWith<TagComponent>();
+    for (auto entity : player_view) {
+      auto& player_tag = player_view.get<TagComponent>(entity).tag;
+      // - Note: This has to be the payer Name in the game
+      if (player_tag == player_name) {
+        found_player = true;
+        player_entity = Entity(entity, scene_.get());
+        break;
+      }
+    }
+    
+    if (found_player) {
+      
+    }
+    else {
+      player_entity = scene_->CreateEntity(player_name);
+    }
   }
   
   void MarioData::SetViewportSize(uint32_t width, uint32_t height) {
@@ -281,22 +305,6 @@ namespace mario {
     HighlightSelectedEntities(true);
   }
   
-  void MarioData::MandleComponentHack() {
-#if 1
-    // HACK to add components
-    static bool add = true;
-    if (add) {
-      auto v = scene_->GetEntitesWith<AnimationComponent>();
-      for (auto e : v) {
-        auto& rb = v.get<AnimationComponent>(e);
-        rb.speed = 40;
-      }
-      
-      add = false;
-    }
-#endif
-  }
-  
   void MarioData::MoveCameraDebug(Timestep ts) {
     // Move Camera for debug
     auto& cd = scene_->GetPrimaryCameraData();
@@ -316,4 +324,21 @@ namespace mario {
     }
   }
 
+  void MarioData::MandleComponentHack() {
+#if 0
+    // HACK to add components
+    static bool add = true;
+    if (add) {
+      auto v = scene_->GetEntitesWith<TagComponent, TransformComponent>();
+      for (auto e : v) {
+        auto [c, t] = v.get<TagComponent, TransformComponent>(e);
+        if (c.tag == "Forest" or c.tag == "Grass")
+          t.UpdateTranslation_Z(-0.1f);
+      }
+      
+      add = false;
+    }
+#endif
+  }
+  
 }

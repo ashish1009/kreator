@@ -326,8 +326,6 @@ namespace ikan_game {
     IK_INFO(game_data_->GameName(), "Creating New Scene {0}", scene_path.c_str());
     active_scene_ = std::make_shared<EnttScene>(scene_path);
     spm_.SetSceneContext(active_scene_.get());
-    
-    game_data_->Init(active_scene_, &spm_);
   }
 
   const bool RendererLayer::OpenScene(const std::string& scene_path) {
@@ -339,6 +337,7 @@ namespace ikan_game {
     bool result = serializer.Deserialize(scene_path);
     active_scene_->SetViewport(viewport_width, viewport_height);
     
+    game_data_->Init(active_scene_, &spm_);
     return result;
   }
   

@@ -94,6 +94,10 @@ namespace mario {
     /// - Parameter ts: time step
     void MoveCameraDebug(Timestep ts);
 
+    /// This function Finds the player entity "Named as Player". And add the player Controller with its entity. If not created then it creates one.
+    /// with all the required components
+    void CreateOrFindPlayer();
+    
     // -----------------------------------
     // Member Variables
     // -----------------------------------

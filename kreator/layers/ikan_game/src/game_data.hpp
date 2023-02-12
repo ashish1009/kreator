@@ -15,7 +15,7 @@ namespace ikan_game {
   public:
     virtual ~GameData() = default;
     
-    /// Initilize your game data here. This function triggers when scene in created in game Initialize Game renderes like Batch 2d. and Text renderer.
+    /// Initilize your game data here. This function triggers when scene in opened in game. Initialize Game renderes like Batch 2d. and Text renderer.
     /// - Parameters:
     ///   - scene: This is the reference of created scene
     ///   - panel: Scene panel pointer
