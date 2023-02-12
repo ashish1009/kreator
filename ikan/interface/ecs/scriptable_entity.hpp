@@ -9,6 +9,7 @@
 
 #include "ecs/entity.hpp"
 #include "core/math/aabb.hpp"
+#include <box2d/b2_contact.h>
 
 namespace ikan {
     
@@ -47,6 +48,10 @@ namespace ikan {
     template<typename T> bool HasComponent() { return entity_.HasComponent<T>(); }
 
     virtual void RenderGui() {}
+    virtual void BeginCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) {}
+    virtual void EndCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) {}
+    virtual void PreSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) {}
+    virtual void PostSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) {}
 
   protected:
     virtual void Create(Entity entity) { entity_ = entity; }

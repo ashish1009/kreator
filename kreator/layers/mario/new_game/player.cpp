@@ -201,6 +201,17 @@ namespace mario {
 #endif
   }
   
+  void PlayerController::BeginCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 contact_normal) {
+    if (is_dead_)
+      return;
+    
+    if (collided_entity->HasComponent<RigidBodyComponent>()) {
+      if (std::abs(contact_normal.x) > 0.8f) {
+        velocity_.x = 0.0f;
+      }
+    }
+  }
+  
   void PlayerController::RenderGui() {
     ImGui::Text(" Acc %f %f", acceleration_.x, acceleration_.y);
     ImGui::Text(" Vel %f %f", acceleration_.x, acceleration_.y);

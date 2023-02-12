@@ -27,20 +27,18 @@ namespace ikan_game {
   void RendererLayer::Attach() {
     IK_INFO(game_data_->GameName(), "Attaching {0} Layer instance", game_data_->GameName().c_str());
     
+    contact_listner_ = new GameContactListner;
+
     cbp_.AddFavouritPaths(game_data_->FavDirecotries());
 
     // Decorate the Imgui Change the font of imgui
     ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
-    
     // TODO: Add File Menu
     ImguiAPI::SetLightGreyThemeColors();
 
     if (!OpenScene(game_data_->OpenSavedScene())) {
       NewScene(AM::ClientAsset("scenes/New_scene"));
     }
-    
-    contact_listner_ = new GameContactListner;
-    active_scene_->SetContactListner(contact_listner_);
   }
   
   void RendererLayer::Detach() {
@@ -241,15 +239,21 @@ namespace ikan_game {
     if (PropertyGrid::ImageButton("Scene Play/Pause", tex_id, { size, size })) {
       if (active_scene_->IsEditing()) {
         active_scene_ = EnttScene::Copy(editor_scene_);
-        active_scene_->PlayScene();
         spm_.SetSceneContext(active_scene_.get());
+
+        game_data_->SetScene(active_scene_, &spm_);
+        active_scene_->SetContactListner(contact_listner_);
+        
+        // After Set contact listner
+        active_scene_->PlayScene();
       }
       else {
         active_scene_ = editor_scene_;
         active_scene_->EditScene();
+
+        game_data_->SetScene(active_scene_, &spm_);
         spm_.SetSceneContext(active_scene_.get());
       }
-      game_data_->SetScene(active_scene_, &spm_);
     }
     PropertyGrid::HoveredMsg("Play Button for Scene (Debug Scene in play mode)");
     ImGui::PopID();
@@ -359,7 +363,7 @@ namespace ikan_game {
     active_scene_ = editor_scene_;
     spm_.SetSceneContext(active_scene_.get());
     game_data_->SetScene(active_scene_, &spm_);
-    
+
     return result;
   }
   

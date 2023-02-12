@@ -16,8 +16,8 @@ namespace ikan_game {
   class GameContactListner : public b2ContactListener {
   public:
     void BeginContact(b2Contact* contact) {
-      void* obj_a = (void*)contact->GetFixtureA()->GetUserData().pointer;
-      void* obj_b = (void*)contact->GetFixtureB()->GetUserData().pointer;
+      Entity* entity_a = (Entity*)contact->GetFixtureA()->GetUserData().pointer;
+      Entity* entity_b = (Entity*)contact->GetFixtureB()->GetUserData().pointer;
       
       b2WorldManifold world_manifold;
       contact->GetWorldManifold(&world_manifold);
@@ -25,21 +25,15 @@ namespace ikan_game {
       glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
       glm::vec2 b_normal = a_normal * -1.0f;
       
-      /*
-      for (Component c : obj_a.GetAllComponent()) {
-       c.BeginCollision(obj_b, contact, a_normal);
-      }
-       
-      for (Component c : obj_b.GetAllComponent()) {
-       c.BeginCollision(obj_a, contact, b_normal);
-      }
-
-      */
+      if (entity_a->HasComponent<NativeScriptComponent>())
+        entity_a->GetComponent<NativeScriptComponent>().script->BeginCollision(entity_b, contact, a_normal);
+      if (entity_b->HasComponent<NativeScriptComponent>())
+        entity_b->GetComponent<NativeScriptComponent>().script->BeginCollision(entity_a, contact, b_normal);
     }
     
     void EndContact(b2Contact* contact) {
-      void* obj_a = (void*)contact->GetFixtureA()->GetUserData().pointer;
-      void* obj_b = (void*)contact->GetFixtureB()->GetUserData().pointer;
+      Entity* entity_a = (Entity*)contact->GetFixtureA()->GetUserData().pointer;
+      Entity* entity_b = (Entity*)contact->GetFixtureB()->GetUserData().pointer;
       
       b2WorldManifold world_manifold;
       contact->GetWorldManifold(&world_manifold);
@@ -47,22 +41,15 @@ namespace ikan_game {
       glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
       glm::vec2 b_normal = a_normal * -1.0f;
       
-      /*
-       for (Component c : obj_a.GetAllComponent()) {
-       c.EndCollision(obj_b, contact, a_normal);
-       }
-       
-       for (Component c : obj_b.GetAllComponent()) {
-       c.EndCollision(obj_a, contact, b_normal);
-       }
-       
-       */
-
+      if (entity_a->HasComponent<NativeScriptComponent>())
+        entity_a->GetComponent<NativeScriptComponent>().script->EndCollision(entity_b, contact, a_normal);
+      if (entity_b->HasComponent<NativeScriptComponent>())
+        entity_b->GetComponent<NativeScriptComponent>().script->EndCollision(entity_a, contact, b_normal);
     }
     
     void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) {
-      void* obj_a = (void*)contact->GetFixtureA()->GetUserData().pointer;
-      void* obj_b = (void*)contact->GetFixtureB()->GetUserData().pointer;
+      Entity* entity_a = (Entity*)contact->GetFixtureA()->GetUserData().pointer;
+      Entity* entity_b = (Entity*)contact->GetFixtureB()->GetUserData().pointer;
       
       b2WorldManifold world_manifold;
       contact->GetWorldManifold(&world_manifold);
@@ -70,22 +57,15 @@ namespace ikan_game {
       glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
       glm::vec2 b_normal = a_normal * -1.0f;
       
-      /*
-       for (Component c : obj_a.GetAllComponent()) {
-       c.PreSolve(obj_b, contact, a_normal);
-       }
-       
-       for (Component c : obj_b.GetAllComponent()) {
-       c.PreSolve(obj_a, contact, b_normal);
-       }
-       
-       */
-
+      if (entity_a->HasComponent<NativeScriptComponent>())
+        entity_a->GetComponent<NativeScriptComponent>().script->PreSolve(entity_b, contact, a_normal);
+      if (entity_b->HasComponent<NativeScriptComponent>())
+        entity_b->GetComponent<NativeScriptComponent>().script->PreSolve(entity_a, contact, b_normal);
     }
     
     void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse) {
-      void* obj_a = (void*)contact->GetFixtureA()->GetUserData().pointer;
-      void* obj_b = (void*)contact->GetFixtureB()->GetUserData().pointer;
+      Entity* entity_a = (Entity*)contact->GetFixtureA()->GetUserData().pointer;
+      Entity* entity_b = (Entity*)contact->GetFixtureB()->GetUserData().pointer;
       
       b2WorldManifold world_manifold;
       contact->GetWorldManifold(&world_manifold);
@@ -93,17 +73,10 @@ namespace ikan_game {
       glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
       glm::vec2 b_normal = a_normal * -1.0f;
       
-      /*
-       for (Component c : obj_a.GetAllComponent()) {
-       c.PostSolve(obj_b, contact, a_normal);
-       }
-       
-       for (Component c : obj_b.GetAllComponent()) {
-       c.PostSolve(obj_a, contact, b_normal);
-       }
-       
-       */
-
+      if (entity_a->HasComponent<NativeScriptComponent>())
+        entity_a->GetComponent<NativeScriptComponent>().script->PostSolve(entity_b, contact, a_normal);
+      if (entity_b->HasComponent<NativeScriptComponent>())
+        entity_b->GetComponent<NativeScriptComponent>().script->PostSolve(entity_a, contact, b_normal);
     }
   };
   
@@ -121,7 +94,7 @@ namespace ikan_game {
       bool save_scene = true;
       bool show_colliders = false;
       bool show_grids = true;
-                  
+      
       /// This function changes the flag of setting for menu
       /// - Parameters:
       ///   - tag: tag of menu
@@ -164,7 +137,7 @@ namespace ikan_game {
     /// This function handles the mouse button event
     /// - Parameter e: mouse button pressed event
     bool MouseButtonPressed(MouseButtonPressedEvent& e);
-
+    
     /// This function renders the play buttorn for  game
     void GamePlayButton();
     /// This function renders the play/pause buttorn for active scene
@@ -189,7 +162,7 @@ namespace ikan_game {
     const void SaveScene();
     /// This function closes the current scene
     void CloseScene();
-
+    
     /// This funciton Render the imguizmo
     void OnImguizmoUpdate();
     

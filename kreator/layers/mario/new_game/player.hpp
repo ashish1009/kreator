@@ -40,10 +40,14 @@ namespace mario {
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
     void RenderGui() override;
-    
+    void BeginCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override;
+    void EndCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
+    void PreSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
+    void PostSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
+
   private:
     void CheckOnGround();
-    
+
     float warlk_speed_ = 4.0f;
     float slow_down_force_ = 0.08f;
     glm::vec2 terminal_velocity_ = {10.1f, 10.1f};

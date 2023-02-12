@@ -34,6 +34,24 @@ namespace mario {
     panel_ = panel;
     
     CreateOrFindPlayer();
+    
+    // Store the Entity in each box collider
+    auto box_view = scene_->GetEntitesWith<BoxColloiderComponent>();
+    for (auto e : box_view) {
+      auto &c = box_view.get<BoxColloiderComponent>(e);
+      Entity* entity = new Entity(e, scene_.get());
+      c.runtime_fixture = (void*)entity;
+    }
+
+    auto pill_view = scene_->GetEntitesWith<PillBoxCollider>();
+    for (auto e : pill_view) {
+      auto &c = pill_view.get<PillBoxCollider>(e);
+      Entity* entity = new Entity(e, scene_.get());
+      c.bcc.runtime_fixture = (void*)entity;
+      c.top_ccc.runtime_fixture = (void*)entity;
+      c.bottom_ccc.runtime_fixture = (void*)entity;
+    }
+
     MandleComponentHack();
   }
 
@@ -377,7 +395,7 @@ namespace mario {
   }
 
   void MarioData::MandleComponentHack() {
-#if 1
+#if 0
     // HACK to add components
     auto v = scene_->GetEntitesWith<BoxColloiderComponent>();
     for (auto e : v) {

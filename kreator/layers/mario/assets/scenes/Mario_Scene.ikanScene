@@ -58,7 +58,7 @@ Entities:
     TagComponent:
       Tag: Mario Player
     TransformComponent:
-      Translation: [-4.71422482, -5.24872208, 0]
+      Translation: [-4.71422482, 5.6916523, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -24931,7 +24931,7 @@ Entities:
     TagComponent:
       Tag: Primary Camera
     TransformComponent:
-      Translation: [-3.91827393, -7.28211212, 0]
+      Translation: [0, 1, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
@@ -24939,7 +24939,7 @@ Entities:
       Primary: true
       ProjectionType: 1
       PerspectiveFOV: 0.785398185
-      OrthographicSize: 7
+      OrthographicSize: 19
       Near: -1
       Far: 1
     NativeScriptComponent:
