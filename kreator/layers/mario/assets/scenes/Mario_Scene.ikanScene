@@ -20,10 +20,12 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::PlayerController
     RigidBodyComponent:
       Type: 2
       Fixed Rotation: true
-      Linear Velocity: [0, -10.1000004]
+      Linear Velocity: [0, 0]
       Angular Damping: 0.800000012
       Angular Velocity: 0
       Linear Damping: 0.899999976

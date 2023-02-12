@@ -111,18 +111,21 @@ namespace mario {
       player_entity.AddComponent<PillBoxCollider>();
     }
     
+    auto player_controler_loader_fn = [](NativeScriptComponent* sc,
+                                         const std::string& script_name) {
+      if (script_name == "mario::PlayerController") {
+        sc->Bind<mario::PlayerController>();
+        return true;
+      }
+      return false;
+    };
     if (!player_entity.HasComponent<NativeScriptComponent>()) {
-      player_entity.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
-                                                           const std::string& script_name) {
-        if (script_name == "mario::PlayerController") {
-          sc->Bind<mario::PlayerController>();
-          return true;
-        }
-        return false;
-      }).Bind<mario::PlayerController>();
+      player_entity.AddComponent<NativeScriptComponent>(player_controler_loader_fn).Bind<mario::PlayerController>();
     }
     else {
-      player_entity.GetComponent<NativeScriptComponent>().Bind<PlayerController>();
+      auto& nsc = player_entity.GetComponent<NativeScriptComponent>();
+      nsc.loader_function = player_controler_loader_fn;
+      nsc.Bind<PlayerController>();
     }
   }
   

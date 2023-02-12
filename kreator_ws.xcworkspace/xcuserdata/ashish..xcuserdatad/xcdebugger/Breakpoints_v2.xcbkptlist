@@ -142,8 +142,8 @@
             filePath = "kreator/layers/mario/new_game/mario.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "MarioData::CreateOrFindPlayer()"
             landmarkType = "7">
          </BreakpointContent>
@@ -183,16 +183,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "97D47C67-56A0-4B77-B531-5CD840C1A1D0"
+            uuid = "F2BA47D8-F6D9-43F2-8A38-1C47DBA160B8"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kreator/layers/mario/new_game/player.cpp"
+            filePath = "kreator/layers/mario/new_game/mario.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
-            landmarkName = "PlayerController::PlayerController()"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "MarioData::CreateOrFindPlayer()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

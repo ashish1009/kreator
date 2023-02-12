@@ -13,9 +13,28 @@ namespace mario {
   
   using namespace ikan;
   
+  class StateMachine {
+  public:
+    StateMachine(Entity* entity) {
+      player_entity = entity;
+    }
+    
+    void Update();
+    
+    void ChangeState(PlayerState state) { state_ = state; }
+    PlayerState GetState() const { return state_;}
+    
+  private:
+    PlayerState state_ = PlayerState::Idle;
+    Entity* player_entity;
+  };
+  
   class PlayerController : public ScriptableEntity {
   public:
-    PlayerController();
+    PlayerController() = default;
+    ~PlayerController() {
+      delete state_machine_;
+    }
 
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
@@ -31,7 +50,6 @@ namespace mario {
     bool on_ground_ = false;
     float ground_debounce_ = 0.0f; // Seconds
     float ground_debounce_time_ = 0.1f; // Seconds
-    RigidBodyComponent* rigid_body_comp_;
     
     float big_jump_boost_ = 1.0f;
     float player_width_ = 1.0f;
@@ -41,6 +59,9 @@ namespace mario {
     glm::vec2 velocity_;
     bool is_dead_ = false;
     int32_t enemy_bounce_ = 0;
+    
+    RigidBodyComponent* rigid_body_comp_;
+    StateMachine* state_machine_;
   };
   
 }
