@@ -171,7 +171,7 @@ namespace mario {
     // TODO: Create main API in EnttScene and use wrapper here only
     const auto& tc = entity_.GetComponent<TransformComponent>();
     float inner_player_width = player_width_ * 0.6f;
-    float y_val = -(player_height_ / 2 + 0.15f);
+    float y_val = -(player_height_ / 2 + 0.10f);
 
     glm::vec2 ray_cast_1_begin = { tc.Translation().x, tc.Translation().y };
     ray_cast_1_begin -= glm::vec2(inner_player_width / 2.0f, 0.0f);
@@ -208,6 +208,11 @@ namespace mario {
     if (collided_entity->HasComponent<RigidBodyComponent>()) {
       if (std::abs(contact_normal.x) > 0.8f) {
         velocity_.x = 0.0f;
+      }
+      else if (contact_normal.y > 0.8f) {
+        velocity_.y = 0;
+        acceleration_.y = 0;
+        jump_time_ = 0;
       }
     }
   }
