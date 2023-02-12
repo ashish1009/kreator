@@ -40,9 +40,7 @@ namespace ikan {
   class ScriptableEntity {
   public:
     template <typename... Args>
-    ScriptableEntity(Args... args) {
-      
-    }
+    ScriptableEntity(Args... args) {}
     virtual ~ScriptableEntity() {}
 
     template<typename T> T& GetComponent() { return entity_.GetComponent<T>(); }
@@ -51,7 +49,7 @@ namespace ikan {
     virtual void RenderGui() {}
 
   protected:
-    virtual void Create() {}
+    virtual void Create(Entity entity) { entity_ = entity; }
     virtual void Destroy() {}
     virtual void Update(Timestep ts) {}
     

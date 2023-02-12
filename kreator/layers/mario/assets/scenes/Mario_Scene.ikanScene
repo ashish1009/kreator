@@ -20,8 +20,6 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-    NativeScriptComponent:
-      Script_name_: mario::PlayerController
     RigidBodyComponent:
       Type: 2
       Fixed Rotation: true

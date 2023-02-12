@@ -9,8 +9,13 @@
 
 namespace mario {
   
-  PlayerController::PlayerController(RigidBodyComponent* rb)
-  : rigid_body_comp_(rb) {
+  PlayerController::PlayerController() {
+  }
+  
+  void PlayerController::Create(Entity entity)  {
+    entity_ = entity;
+
+    rigid_body_comp_ = &(GetComponent<RigidBodyComponent>());
     rigid_body_comp_->SetGravityScale(0.0f);
   }
   

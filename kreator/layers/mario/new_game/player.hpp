@@ -15,7 +15,9 @@ namespace mario {
   
   class PlayerController : public ScriptableEntity {
   public:
-    PlayerController(RigidBodyComponent* rb);
+    PlayerController();
+
+    void Create(Entity entity) override;
     void Update(Timestep ts) override;
     void RenderGui() override;
     

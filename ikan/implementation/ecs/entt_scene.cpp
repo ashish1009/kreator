@@ -375,9 +375,8 @@ namespace ikan {
     registry_.view<NativeScriptComponent>().each([=](auto entity, auto& nsc)
                                                  {
       if (!nsc.script->scene_) {
-        nsc.script->entity_ = Entity{ entity, this };
         nsc.script->scene_ = this;
-        nsc.script->Create();
+        nsc.script->Create(Entity{ entity, this });
       }
       
       if (state_ == State::Play)
