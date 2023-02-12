@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B20D5E362999484C0089069D /* block_script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B20D5E352999484C0089069D /* block_script.cpp */; };
+		B20D5E362999484C0089069D /* block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B20D5E352999484C0089069D /* block.cpp */; };
 		B21E4417299406F900D6CDFD /* create_game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21E4415299406F900D6CDFD /* create_game_data.cpp */; };
 		B21E441B299408E500D6CDFD /* mario.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21E441A299408E500D6CDFD /* mario.cpp */; };
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
@@ -53,7 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B20D5E352999484C0089069D /* block_script.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = block_script.cpp; sourceTree = "<group>"; };
+		B20D5E352999484C0089069D /* block.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = block.cpp; sourceTree = "<group>"; };
 		B21E44112993FC6C00D6CDFD /* mario.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario.hpp; sourceTree = "<group>"; };
 		B21E4415299406F900D6CDFD /* create_game_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = create_game_data.cpp; sourceTree = "<group>"; };
 		B21E441A299408E500D6CDFD /* mario.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario.cpp; sourceTree = "<group>"; wrapsLines = 0; };
@@ -122,7 +122,7 @@
 		B2E047E02998BB5900EE71D0 /* sprite_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sprite_manager.cpp; sourceTree = "<group>"; };
 		B2E047E12998BB5900EE71D0 /* sprite_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sprite_manager.hpp; sourceTree = "<group>"; };
 		B2E047E92998C0B400EE71D0 /* enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = enums.h; sourceTree = "<group>"; };
-		B2EB5AFD2999206600BEBFC6 /* block_script.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = block_script.hpp; sourceTree = "<group>"; };
+		B2EB5AFD2999206600BEBFC6 /* block.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = block.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -366,8 +366,8 @@
 			children = (
 				B28D963F299644770089F98F /* common.h */,
 				B2E047E92998C0B400EE71D0 /* enums.h */,
-				B2EB5AFD2999206600BEBFC6 /* block_script.hpp */,
-				B20D5E352999484C0089069D /* block_script.cpp */,
+				B2EB5AFD2999206600BEBFC6 /* block.hpp */,
+				B20D5E352999484C0089069D /* block.cpp */,
 				B21E44112993FC6C00D6CDFD /* mario.hpp */,
 				B21E441A299408E500D6CDFD /* mario.cpp */,
 				B28D963D299643A00089F98F /* player.hpp */,
@@ -476,7 +476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B20D5E362999484C0089069D /* block_script.cpp in Sources */,
+				B20D5E362999484C0089069D /* block.cpp in Sources */,
 				B2262960296C5DB600EBE59B /* piece.cpp in Sources */,
 				B24DD8322963000100525941 /* mario_main.cpp in Sources */,
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,

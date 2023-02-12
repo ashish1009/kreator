@@ -7,7 +7,7 @@
 
 #include "mario.hpp"
 #include "sprite_manager.hpp"
-#include "block_script.hpp"
+#include "block.hpp"
 
 namespace mario {
   
