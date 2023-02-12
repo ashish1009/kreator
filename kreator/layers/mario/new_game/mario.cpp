@@ -406,8 +406,8 @@ namespace mario {
     
     auto brick_loader_fn = [](NativeScriptComponent* sc,
                               const std::string& script_name) {
-      if (script_name == "mario::BrickController") {
-        sc->Bind<mario::BrickController>();
+      if (script_name == "mario::BlockController") {
+        sc->Bind<mario::BlockController>();
         return true;
       }
       return false;
@@ -420,10 +420,10 @@ namespace mario {
         if (brick_entity.HasComponent<NativeScriptComponent>()) {
           auto& nsc = brick_entity.GetComponent<NativeScriptComponent>();
           nsc.loader_function = brick_loader_fn;
-          nsc.Bind<mario::BrickController>();
+          nsc.Bind<mario::BlockController>();
         }
         else {
-          brick_entity.AddComponent<NativeScriptComponent>(brick_loader_fn).Bind<mario::BrickController>();
+          brick_entity.AddComponent<NativeScriptComponent>(brick_loader_fn).Bind<mario::BlockController>();
         }
       }
     }
