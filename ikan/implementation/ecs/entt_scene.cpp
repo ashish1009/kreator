@@ -66,10 +66,7 @@ namespace ikan {
   }
     
   std::shared_ptr<EnttScene> EnttScene::Copy(std::shared_ptr<EnttScene> other) {
-    std::shared_ptr<EnttScene> new_scene;
-    
-    new_scene->file_path_= other->file_path_;
-    new_scene->name_ = other->name_;
+    std::shared_ptr<EnttScene> new_scene = std::make_shared<EnttScene>(other->file_path_);
 
     new_scene->setting_= other->setting_;
     

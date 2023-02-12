@@ -59,8 +59,10 @@ namespace ikan {
   }
 
   void Viewport::UpdateHoveredEntity(Entity* current_selected_entity, EnttScene* scene) {
-    if (!hovered)
+    if (!hovered) {
+      hovered_entity_ = nullptr;
       return;
+    }
     
     if (ImGuizmo::IsOver()) {
       hovered_entity_ = current_selected_entity;

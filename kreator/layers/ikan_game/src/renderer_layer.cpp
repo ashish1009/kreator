@@ -238,10 +238,14 @@ namespace ikan_game {
     // Button action
     if (PropertyGrid::ImageButton("Scene Play/Pause", tex_id, { size, size })) {
       if (active_scene_->IsEditing()) {
+        active_scene_ = EnttScene::Copy(editor_scene_);
+        spm_.SetSceneContext(active_scene_.get());
         active_scene_->PlayScene();
       }
       else {
+        active_scene_ = editor_scene_;
         active_scene_->EditScene();
+        spm_.SetSceneContext(active_scene_.get());
       }
     }
     PropertyGrid::HoveredMsg("Play Button for Scene (Debug Scene in play mode)");
@@ -331,9 +335,9 @@ namespace ikan_game {
     // Create New Scene
     IK_INFO(game_data_->GameName(), "Creating New Scene {0}", scene_path.c_str());
     editor_scene_ = std::make_shared<EnttScene>(scene_path);
-    spm_.SetSceneContext(editor_scene_.get());
     
     active_scene_ = editor_scene_;
+    spm_.SetSceneContext(active_scene_.get());
   }
 
   const bool RendererLayer::OpenScene(const std::string& scene_path) {
@@ -343,16 +347,16 @@ namespace ikan_game {
     CloseScene();
     
     editor_scene_ = std::make_shared<EnttScene>(scene_path);
-    spm_.SetSceneContext(editor_scene_.get());
-
+    editor_scene_->SetViewport(viewport_width, viewport_height);
+    
     SceneSerializer serializer(editor_scene_.get());
     
     bool result = serializer.Deserialize(scene_path);
-    editor_scene_->SetViewport(viewport_width, viewport_height);
-    
-    game_data_->Init(editor_scene_, &spm_);
-    
+        
     active_scene_ = editor_scene_;
+    spm_.SetSceneContext(active_scene_.get());
+    game_data_->Init(active_scene_, &spm_);
+    
     return result;
   }
   
