@@ -709,7 +709,7 @@ namespace ikan {
     top_ccc.offset = offset + glm::vec2(0, box_height);
     bottom_ccc.offset = offset - glm::vec2(0, box_height);
     
-    bcc.size = {width, box_height};
+    bcc.size = {width - 0.01, box_height};
     bcc.offset = offset;
   }
   

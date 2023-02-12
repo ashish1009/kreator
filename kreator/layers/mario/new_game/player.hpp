@@ -43,14 +43,16 @@ namespace mario {
     void PreSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
     void PostSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
     
-    static PlayerController& Get() { return *instance_; }
+    bool IsSmall() const { return player_size == PlayerSize::Small; }
+    
+    static PlayerController* Get() { return instance_; }
 
   private:
     void CheckOnGround();
 
     float warlk_speed_ = 4.0f;
     float slow_down_force_ = 0.08f;
-    glm::vec2 terminal_velocity_ = {10.1f, 10.1f};
+    glm::vec2 terminal_velocity_ = {8.1f, 8.1f};
     
     bool on_ground_ = false;
     float ground_debounce_ = 0.0f; // Seconds

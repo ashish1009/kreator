@@ -58,7 +58,7 @@ Entities:
     TagComponent:
       Tag: Mario Player
     TransformComponent:
-      Translation: [-4.71422482, 5.6916523, 0]
+      Translation: [-4.71422482, -3.3083477, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -82,7 +82,7 @@ Entities:
       Linear Damping: 0.899999976
       Mass: 0
       Friction: 0
-      Gravity Scale: 0
+      Gravity Scale: 1
       Is Sensor: false
       Continous Collision: true
     PillBoxColliderComponent:
@@ -106,6 +106,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -142,6 +144,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -178,6 +182,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -214,6 +220,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -250,6 +258,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -286,6 +296,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -322,6 +334,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -358,6 +372,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -857,6 +873,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -1063,6 +1081,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -2838,6 +2858,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -2976,6 +2998,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -3599,6 +3623,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -3921,6 +3947,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -3993,6 +4021,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -4065,6 +4095,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -4137,6 +4169,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -4209,6 +4243,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -4281,6 +4317,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -4955,6 +4993,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -5027,6 +5067,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -5135,6 +5177,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -5315,6 +5359,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -5423,6 +5469,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -5495,6 +5543,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -6827,6 +6877,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -7187,6 +7239,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -9059,6 +9113,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -9275,6 +9331,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -9419,6 +9477,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -9491,6 +9551,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -10175,6 +10237,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -16079,6 +16143,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -16151,6 +16217,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -16223,6 +16291,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -16295,6 +16365,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -16367,6 +16439,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -16439,6 +16513,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -21221,6 +21297,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -21490,6 +21568,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -21562,6 +21642,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -21670,6 +21752,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -21778,6 +21862,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -21850,6 +21936,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -21922,6 +22010,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -22030,6 +22120,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -22102,6 +22194,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -22174,6 +22268,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -22246,6 +22342,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -22318,6 +22416,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -22390,6 +22490,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -25114,6 +25216,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -25339,9 +25443,9 @@ Entities:
       Num_Coords: 3
   - Entity: 1977072805284687667
     TagComponent:
-      Tag: Special Brick
+      Tag: Brick
     TransformComponent:
-      Translation: [3, -2, 0]
+      Translation: [-4, -2, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -25354,6 +25458,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -25390,6 +25496,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -26831,6 +26939,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -27479,6 +27589,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -28826,6 +28938,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -28913,6 +29027,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -29391,6 +29507,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -29463,6 +29581,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -29535,6 +29655,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -29607,6 +29729,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -29679,6 +29803,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -29851,6 +29977,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -29887,6 +30015,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -29923,6 +30053,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -29959,6 +30091,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -30211,6 +30345,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -34248,6 +34384,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -34284,6 +34422,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -34728,6 +34868,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -34764,6 +34906,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -34800,6 +34944,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -35475,6 +35621,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -35511,6 +35659,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -35547,6 +35697,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -35583,6 +35735,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -37507,6 +37661,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -37543,6 +37699,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -37579,6 +37737,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -37615,6 +37775,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -37651,6 +37813,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -37687,6 +37851,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -37723,6 +37889,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -37759,6 +37927,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -37795,6 +37965,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -37831,6 +38003,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -37867,6 +38041,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -37903,6 +38079,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -37939,6 +38117,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -37975,6 +38155,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38011,6 +38193,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38047,6 +38231,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38083,6 +38269,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38119,6 +38307,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38155,6 +38345,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38191,6 +38383,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38227,6 +38421,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38263,6 +38459,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38299,6 +38497,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38335,6 +38535,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38371,6 +38573,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38407,6 +38611,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38443,6 +38649,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38479,6 +38687,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38515,6 +38725,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38551,6 +38763,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38587,6 +38801,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38623,6 +38839,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38659,6 +38877,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38695,6 +38915,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38731,6 +38953,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38767,6 +38991,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38803,6 +39029,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38839,6 +39067,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38875,6 +39105,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38911,6 +39143,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38947,6 +39181,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -38983,6 +39219,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39019,6 +39257,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39055,6 +39295,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39091,6 +39333,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39127,6 +39371,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39163,6 +39409,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39199,6 +39447,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39235,6 +39485,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39271,6 +39523,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39307,6 +39561,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39343,6 +39599,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39379,6 +39637,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39415,6 +39675,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39451,6 +39713,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39487,6 +39751,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39523,6 +39789,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39559,6 +39827,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39595,6 +39865,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39631,6 +39903,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39667,6 +39941,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39703,6 +39979,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39739,6 +40017,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39775,6 +40055,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39811,6 +40093,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39847,6 +40131,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39883,6 +40169,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39919,6 +40207,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39955,6 +40245,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -39991,6 +40283,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40027,6 +40321,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40063,6 +40359,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40099,6 +40397,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40135,6 +40435,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40171,6 +40473,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40207,6 +40511,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40243,6 +40549,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40279,6 +40587,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40315,6 +40625,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40351,6 +40663,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40387,6 +40701,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40423,6 +40739,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40459,6 +40777,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40495,6 +40815,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40531,6 +40853,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40567,6 +40891,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40603,6 +40929,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40639,6 +40967,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40675,6 +41005,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40711,6 +41043,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40747,6 +41081,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40783,6 +41119,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40819,6 +41157,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40855,6 +41195,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40891,6 +41233,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40927,6 +41271,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40963,6 +41309,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -40999,6 +41347,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41035,6 +41385,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41071,6 +41423,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41107,6 +41461,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41143,6 +41499,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41179,6 +41537,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41215,6 +41575,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41251,6 +41613,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41287,6 +41651,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41323,6 +41689,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41431,6 +41799,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41467,6 +41837,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41503,6 +41875,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41539,6 +41913,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41575,6 +41951,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41611,6 +41989,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41647,6 +42027,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41683,6 +42065,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41719,6 +42103,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41755,6 +42141,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41791,6 +42179,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41827,6 +42217,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41863,6 +42255,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41899,6 +42293,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41935,6 +42331,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -41971,6 +42369,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42007,6 +42407,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42043,6 +42445,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42079,6 +42483,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42115,6 +42521,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42151,6 +42559,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42187,6 +42597,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42223,6 +42635,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42259,6 +42673,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42295,6 +42711,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42331,6 +42749,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42367,6 +42787,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42403,6 +42825,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42439,6 +42863,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42475,6 +42901,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42511,6 +42939,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42547,6 +42977,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42583,6 +43015,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42619,6 +43053,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42655,6 +43091,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42691,6 +43129,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42727,6 +43167,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42763,6 +43205,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42799,6 +43243,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42835,6 +43281,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42871,6 +43319,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42907,6 +43357,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42943,6 +43395,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -42979,6 +43433,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43015,6 +43471,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43051,6 +43509,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43087,6 +43547,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43123,6 +43585,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43159,6 +43623,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43195,6 +43661,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43231,6 +43699,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43267,6 +43737,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43303,6 +43775,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43339,6 +43813,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43375,6 +43851,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43411,6 +43889,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43447,6 +43927,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43483,6 +43965,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43519,6 +44003,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43555,6 +44041,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43591,6 +44079,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43627,6 +44117,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43663,6 +44155,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43699,6 +44193,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43735,6 +44231,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43771,6 +44269,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43807,6 +44307,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43843,6 +44345,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43879,6 +44383,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43915,6 +44421,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43951,6 +44459,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -43987,6 +44497,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44023,6 +44535,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44059,6 +44573,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44095,6 +44611,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44131,6 +44649,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44167,6 +44687,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44203,6 +44725,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44239,6 +44763,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44275,6 +44801,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44311,6 +44839,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44347,6 +44877,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44383,6 +44915,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44419,6 +44953,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44455,6 +44991,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44491,6 +45029,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44527,6 +45067,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44563,6 +45105,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44599,6 +45143,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44635,6 +45181,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44671,6 +45219,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44707,6 +45257,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44743,6 +45295,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44779,6 +45333,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44815,6 +45371,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44851,6 +45409,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44887,6 +45447,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44923,6 +45485,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44959,6 +45523,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -44995,6 +45561,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45031,6 +45599,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45067,6 +45637,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45103,6 +45675,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45139,6 +45713,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45175,6 +45751,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45211,6 +45789,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45247,6 +45827,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45283,6 +45865,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45319,6 +45903,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45355,6 +45941,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45391,6 +45979,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45427,6 +46017,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45463,6 +46055,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45499,6 +46093,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45535,6 +46131,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45571,6 +46169,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45607,6 +46207,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45643,6 +46245,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45679,6 +46283,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45715,6 +46321,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45751,6 +46359,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45787,6 +46397,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45823,6 +46435,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45859,6 +46473,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45895,6 +46511,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45931,6 +46549,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -45967,6 +46587,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46003,6 +46625,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46039,6 +46663,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46075,6 +46701,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46111,6 +46739,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46147,6 +46777,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46183,6 +46815,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46219,6 +46853,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46255,6 +46891,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46291,6 +46929,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46327,6 +46967,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46363,6 +47005,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46399,6 +47043,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46435,6 +47081,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46471,6 +47119,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46507,6 +47157,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46543,6 +47195,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46579,6 +47233,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46615,6 +47271,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46651,6 +47309,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46687,6 +47347,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46723,6 +47385,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46759,6 +47423,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46795,6 +47461,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46831,6 +47499,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46867,6 +47537,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46903,6 +47575,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46939,6 +47613,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -46975,6 +47651,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -47011,6 +47689,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -47047,6 +47727,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -47083,6 +47765,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -47119,6 +47803,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -47155,6 +47841,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -47191,6 +47879,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -47227,6 +47917,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -47263,6 +47955,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -47299,6 +47993,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -47335,6 +48031,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false
@@ -47911,6 +48609,44 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Mass: 0
+      Friction: 0
+      Gravity Scale: 1
+      Is Sensor: false
+      Continous Collision: true
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 9499652077841338023
+    TagComponent:
+      Tag: Brick
+    TransformComponent:
+      Translation: [3, -2, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [13, 27.0248089]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: ikan::ScriptableEntity
     RigidBodyComponent:
       Type: 0
       Fixed Rotation: false

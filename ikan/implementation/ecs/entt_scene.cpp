@@ -176,10 +176,6 @@ namespace ikan {
   void EnttScene::Update(Timestep ts) {
     // Update the primary scene camera for run time rendering
     UpdatePrimaryCameraData();
-    
-    // Update scripts
-    InstantiateScript(ts);
-    
     update_(ts);
   }
   
@@ -194,6 +190,9 @@ namespace ikan {
   
   void EnttScene::UpdateRuntime(Timestep ts) {
     if (state_ == State::Play) { // TODO: Temp check till we use scene camera in editor mode
+      // Update scripts
+      InstantiateScript(ts);
+      
       // Physics
       const int32_t velocity_iteration = 6;
       const int32_t position_iteration = 2;
@@ -205,15 +204,16 @@ namespace ikan {
       for (auto e : view) {
         Entity& entity = entity_id_map_.at(e);
         
-        auto& transform = entity.GetComponent<TransformComponent>();
         auto& rb2d = entity.GetComponent<RigidBodyComponent>();
-        
-        b2Body* body = (b2Body*)rb2d.runtime_body;
-        if (body != nullptr) {
-          const auto& position = body->GetPosition();
-          
-          transform.UpdateRotation_Z(body->GetAngle());
-          transform.UpdateTranslation({position.x, position.y, transform.Translation().z});
+        if (rb2d.type == b2_dynamicBody) {
+          auto& transform = entity.GetComponent<TransformComponent>();
+          b2Body* body = (b2Body*)rb2d.runtime_body;
+          if (body != nullptr) {
+            const auto& position = body->GetPosition();
+            
+            transform.UpdateRotation_Z(body->GetAngle());
+            transform.UpdateTranslation({position.x, position.y, transform.Translation().z});
+          }
         }
       }
     }

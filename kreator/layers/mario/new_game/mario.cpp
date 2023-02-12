@@ -415,7 +415,7 @@ namespace mario {
 
     for (auto e : tag_view) {
       const auto &c = tag_view.get<TagComponent>(e);
-      if (c.tag == "Special Brick") {
+      if (c.tag == "Brick") {
         Entity brick_entity = Entity(e, scene_.get());
         if (brick_entity.HasComponent<NativeScriptComponent>()) {
           auto& nsc = brick_entity.GetComponent<NativeScriptComponent>();

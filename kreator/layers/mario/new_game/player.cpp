@@ -70,7 +70,6 @@ namespace mario {
   }
   
   PlayerController::~PlayerController() {
-    instance_ = nullptr;
     delete state_machine_;
   }
     
@@ -135,7 +134,7 @@ namespace mario {
     if (Input::IsKeyPressed(KeyCode::Space) and (jump_time_ > 0 or on_ground_ or ground_debounce_ > 0)) {
       if ((on_ground_ or ground_debounce_ > 0) and jump_time_ == 0) { // Just Press Jump Key
         // Play Sound
-        jump_time_ = 70;
+        jump_time_ = 80;
         velocity_.y = jump_impuls_;
       }
       else if (jump_time_ > 0) {
@@ -161,8 +160,8 @@ namespace mario {
       ground_debounce_ = ground_debounce_time_;
     }
      
-    velocity_.x += acceleration_.x * ts;
-    velocity_.y += acceleration_.y * ts;
+    velocity_.x += acceleration_.x * ts * 2.0f;
+    velocity_.y += acceleration_.y * ts * 2.0f;
     
     velocity_.x = std::max(std::min(velocity_.x, terminal_velocity_.x), -terminal_velocity_.x);
     velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
@@ -230,7 +229,7 @@ namespace mario {
   
   void PlayerController::RenderGui() {
     ImGui::Text(" Acc %f %f", acceleration_.x, acceleration_.y);
-    ImGui::Text(" Vel %f %f", acceleration_.x, acceleration_.y);
+    ImGui::Text(" Vel %f %f", velocity_.x, velocity_.y);
     ImGui::Text(" On Ground %d", on_ground_);
     
     ImGui::Text(" Jump Time %d", jump_time_);

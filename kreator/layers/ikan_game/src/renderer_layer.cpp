@@ -199,7 +199,6 @@ namespace ikan_game {
 
   void RendererLayer::RenderScene(Timestep ts) {
     active_scene_->Update(ts);
-    
     game_data_->Update(ts);
   }
   
