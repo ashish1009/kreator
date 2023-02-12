@@ -319,17 +319,14 @@ namespace ikan {
   void EnttScene::InstantiateScript(Timestep ts) {
     registry_.view<NativeScriptComponent>().each([=](auto entity, auto& nsc)
                                                  {
-      for (auto& [name, script] : nsc.scrip_name_map) {
-        if (!script->scene_) {
-          script->entity_ = Entity{ entity, this };
-          script->scene_ = this;
-          
-          script->Create();
-        }
-        
-        if (state_ == State::Play)
-          script->Update(ts);
+      if (!nsc.script->scene_) {
+        nsc.script->entity_ = Entity{ entity, this };
+        nsc.script->scene_ = this;
+        nsc.script->Create();
       }
+      
+      if (state_ == State::Play)
+        nsc.script->Update(ts);
     });
   }
   

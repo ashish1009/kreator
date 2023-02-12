@@ -418,82 +418,41 @@ namespace ikan {
   
   NativeScriptComponent::NativeScriptComponent(const NativeScriptComponent& other) {
     loader_function = other.loader_function;
-    
-    for (const auto& [name, script] : other.scrip_name_map) {
-      scrip_name_map[name] = script;
-      ScriptManager::UpdateScript(this, name, loader_function);
-    }
+    script_name = other.script_name;
+    ScriptManager::UpdateScript(this, script_name, loader_function);
   }
   NativeScriptComponent& NativeScriptComponent::operator=(const NativeScriptComponent& other) {
     loader_function = other.loader_function;
-    
-    for (const auto& [name, script] : other.scrip_name_map) {
-      scrip_name_map[name] = script;
-      ScriptManager::UpdateScript(this, name, loader_function);
-    }
+    script_name = other.script_name;
+    ScriptManager::UpdateScript(this, script_name, loader_function);
     return *this;
   }
   NativeScriptComponent::NativeScriptComponent(NativeScriptComponent&& other) {
     loader_function = other.loader_function;
-    
-    for (const auto& [name, script] : other.scrip_name_map) {
-      scrip_name_map[name] = script;
-      ScriptManager::UpdateScript(this, name, loader_function);
-    }
+    script_name = other.script_name;
+    ScriptManager::UpdateScript(this, script_name, loader_function);
   }
   NativeScriptComponent& NativeScriptComponent::operator=(NativeScriptComponent&& other) {
     loader_function = other.loader_function;
-    
-    for (const auto& [name, script] : other.scrip_name_map) {
-      scrip_name_map[name] = script;
-      ScriptManager::UpdateScript(this, name, loader_function);
-    }
+    script_name = other.script_name;
+    ScriptManager::UpdateScript(this, script_name, loader_function);
     return *this;
   }
   
   NativeScriptComponent::~NativeScriptComponent() {
-    for (const auto& [name, script] : scrip_name_map) {
-      delete script;
-    }
-    scrip_name_map.clear();
+    delete script;
   }
   
   void NativeScriptComponent::RenderGui() {
     ImGui::PushID("Natiove Script Component");
     
-    const ImGuiTreeNodeFlags tree_node_flags =
-    ImGuiTreeNodeFlags_SpanAvailWidth |
-    ImGuiTreeNodeFlags_AllowItemOverlap |
-    ImGuiTreeNodeFlags_DefaultOpen |
-    ImGuiTreeNodeFlags_FramePadding;
-    
-    // Render the title named as entity name
-    bool open = ImGui::TreeNodeEx("Scripts", tree_node_flags);
-    if (open) {
-      for (const auto& [name, script] : scrip_name_map) {
-        bool opened = ImGui::TreeNodeEx(name.c_str(), ImGuiTreeNodeFlags_Bullet);
-        if (opened) {
-          script->RenderGui();
-          ImGui::TreePop();
-        }
-      }
+    bool opened = ImGui::TreeNodeEx(script_name.c_str(), ImGuiTreeNodeFlags_Bullet);
+    if (opened) {
+      script->RenderGui();
       ImGui::TreePop();
     }
+
     ImGui::Separator();
-    
-    int32_t new_script_idx = -1;
-    new_script_idx = PropertyGrid::ComboDrop("Add Script",
-                                             ScriptManager::scripts_,
-                                             0,
-                                             ImGui::GetWindowContentRegionMax().x / 2);
-    if (new_script_idx > 0) {
-      const auto script_name = ScriptManager::scripts_[new_script_idx];
-      if (scrip_name_map.find(script_name) == scrip_name_map.end())
-        ScriptManager::UpdateScript(this, script_name, nullptr);
-      else
-        IK_CORE_TRACE(LogModule::Component, "Script {0} already loaded to current entity", script_name.c_str());
-    }
-    
     ImGui::PopID();
   }
   

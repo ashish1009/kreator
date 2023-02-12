@@ -372,16 +372,10 @@ namespace mario {
   void MarioData::MandleComponentHack() {
 #if 0
     // HACK to add components
-    static bool add = true;
-    if (add) {
-      auto v = scene_->GetEntitesWith<TagComponent, TransformComponent>();
-      for (auto e : v) {
-        auto [c, t] = v.get<TagComponent, TransformComponent>(e);
-        if (c.tag == "Forest" or c.tag == "Grass")
-          t.UpdateTranslation_Z(-0.1f);
-      }
-      
-      add = false;
+    auto v = scene_->GetEntitesWith<BoxColloiderComponent>();
+    for (auto e : v) {
+      auto &c = v.get<BoxColloiderComponent>(e);
+      c.friction = 0.5f;
     }
 #endif
   }

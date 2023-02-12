@@ -40,8 +40,8 @@ namespace ikan {
   // Camera Controller
   // --------------------------------------------------------------------------
   void CameraController::Update(Timestep ts) {
-    auto& tc = GetComponent<TransformComponent>();
-
+//    auto& tc = GetComponent<TransformComponent>();
+//
 //    if (Input::IsKeyPressed(KeyCode::Left))
 //      tc.UpdateTranslation_X(tc.Translation().x - (speed_ * ts));
 //    if (Input::IsKeyPressed(KeyCode::Right))

@@ -17,6 +17,7 @@ namespace mario {
   public:
     PlayerController(RigidBodyComponent* rb);
     void Update(Timestep ts) override;
+    void RenderGui() override;
     
   private:
     float warlk_speed_ = 10.0f;

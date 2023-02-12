@@ -285,14 +285,8 @@ namespace ikan {
         
         auto& sc = entity.GetComponent<NativeScriptComponent>();
         std::string name_tag = "Script_name_";
-        int32_t i = 0;
-        for (const auto& [name, scriot] : sc.scrip_name_map) {
-          name_tag += std::to_string(i++);
-          out << YAML::Key << name_tag << YAML::Value << name;
-        }
+        out << YAML::Key << name_tag << YAML::Value << sc.script_name;
         
-        out << YAML::Key << "Num_Scripts" << YAML::Value << i;
-
         out << YAML::EndMap; // NativeScriptComponent
       }
 
@@ -553,16 +547,12 @@ namespace ikan {
         auto script_component = entity["NativeScriptComponent"];
         if (script_component) {
           auto& sc = deserialized_entity.AddComponent<NativeScriptComponent>();
-          int32_t num_scripts = script_component["Num_Scripts"].as<int32_t>();
           std::string name_tag = "Script_name_";
           IK_CORE_INFO(LogModule::SceneSerializer, "    Script Component");
-          for (int i = 0; i < num_scripts; i++) {
-            name_tag += std::to_string(i);
-            std::string script_name = script_component[name_tag].as<std::string>();
+          std::string script_name = script_component[name_tag].as<std::string>();
             
-            ScriptManager::UpdateScript(&sc, script_name, sc.loader_function);
-            IK_CORE_INFO(LogModule::SceneSerializer, "      Script | {0}", script_name);
-          }
+          ScriptManager::UpdateScript(&sc, script_name, sc.loader_function);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Script | {0}", script_name);
         } // if (script_component)
 
         // --------------------------------------------------------------------

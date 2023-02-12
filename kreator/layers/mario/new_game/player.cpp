@@ -15,10 +15,7 @@ namespace mario {
   }
   
   void PlayerController::Update(Timestep ts) {
-    auto& tc = GetComponent<TransformComponent>();
-    
     if (Input::IsKeyPressed(KeyCode::Left)) {
-      tc.UpdateScale_X(-player_width_);
       acceleration_.x = -warlk_speed_;
       
       if (velocity_.x > 0) {
@@ -30,7 +27,6 @@ namespace mario {
       }
     }
     if (Input::IsKeyPressed(KeyCode::Right)) {
-      tc.UpdateScale_X(player_width_);
       acceleration_.x = warlk_speed_;
       
       if (velocity_.x < 0) {
@@ -52,6 +48,10 @@ namespace mario {
    
     rigid_body_comp_->SetVelocity(velocity_);
     rigid_body_comp_->SetAngularVelocity(0.0f);
+  }
+  
+  void PlayerController::RenderGui() {
+    ImGui::Text("%f %f", velocity_.x, velocity_.y);
   }
   
 }
