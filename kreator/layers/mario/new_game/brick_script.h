@@ -17,7 +17,7 @@ namespace mario {
     void Create(Entity entity) override {}
     void Update(Timestep ts) override {}
     void RenderGui() override {}
-    void BeginCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {
+    void BeginCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
     void EndCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
     void PreSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
     void PostSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}

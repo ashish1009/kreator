@@ -7,6 +7,8 @@
 
 #include "mario.hpp"
 #include "sprite_manager.hpp"
+#include "brick_script.h"
+
 namespace mario {
   
   MarioData::MarioData(const Viewport* const viewport)
@@ -34,24 +36,9 @@ namespace mario {
     panel_ = panel;
     
     CreateOrFindPlayer();
+    AddingRuntimeFixtureToColliders();
+    AddingScriptsToEntities();
     
-    // Store the Entity in each box collider
-    auto box_view = scene_->GetEntitesWith<BoxColloiderComponent>();
-    for (auto e : box_view) {
-      auto &c = box_view.get<BoxColloiderComponent>(e);
-      Entity* entity = new Entity(e, scene_.get());
-      c.runtime_fixture = (void*)entity;
-    }
-
-    auto pill_view = scene_->GetEntitesWith<PillBoxCollider>();
-    for (auto e : pill_view) {
-      auto &c = pill_view.get<PillBoxCollider>(e);
-      Entity* entity = new Entity(e, scene_.get());
-      c.bcc.runtime_fixture = (void*)entity;
-      c.top_ccc.runtime_fixture = (void*)entity;
-      c.bottom_ccc.runtime_fixture = (void*)entity;
-    }
-
     MandleComponentHack();
   }
 
@@ -391,6 +378,54 @@ namespace mario {
       
       if (Input::IsKeyPressed(KeyCode::Q)) cam->SetOrthographicSize(cam->GetOrthographicSize() + 1.0f);
       if (Input::IsKeyPressed(KeyCode::E)) cam->SetOrthographicSize(cam->GetOrthographicSize() - 1.0f);
+    }
+  }
+  
+  void MarioData::AddingRuntimeFixtureToColliders() {
+    // Store the Entity in each box collider
+    auto box_view = scene_->GetEntitesWith<BoxColloiderComponent>();
+    for (auto e : box_view) {
+      auto &c = box_view.get<BoxColloiderComponent>(e);
+      Entity* entity = new Entity(e, scene_.get());
+      c.runtime_fixture = (void*)entity;
+    }
+    
+    auto pill_view = scene_->GetEntitesWith<PillBoxCollider>();
+    for (auto e : pill_view) {
+      auto &c = pill_view.get<PillBoxCollider>(e);
+      Entity* entity = new Entity(e, scene_.get());
+      c.bcc.runtime_fixture = (void*)entity;
+      c.top_ccc.runtime_fixture = (void*)entity;
+      c.bottom_ccc.runtime_fixture = (void*)entity;
+    }
+  }
+  
+  void MarioData::
+  AddingScriptsToEntities() {
+    auto tag_view = scene_->GetEntitesWith<TagComponent>();
+    
+    auto brick_loader_fn = [](NativeScriptComponent* sc,
+                              const std::string& script_name) {
+      if (script_name == "mario::BrickController") {
+        sc->Bind<mario::BrickController>();
+        return true;
+      }
+      return false;
+    };
+
+    for (auto e : tag_view) {
+      const auto &c = tag_view.get<TagComponent>(e);
+      if (c.tag == "Special Brick") {
+        Entity brick_entity = Entity(e, scene_.get());
+        if (brick_entity.HasComponent<NativeScriptComponent>()) {
+          auto& nsc = brick_entity.GetComponent<NativeScriptComponent>();
+          nsc.loader_function = brick_loader_fn;
+          nsc.Bind<mario::BrickController>();
+        }
+        else {
+          brick_entity.AddComponent<NativeScriptComponent>(brick_loader_fn).Bind<mario::BrickController>();
+        }
+      }
     }
   }
 

@@ -25339,7 +25339,7 @@ Entities:
       Num_Coords: 3
   - Entity: 1977072805284687667
     TagComponent:
-      Tag: Brick
+      Tag: Special Brick
     TransformComponent:
       Translation: [3, -2, 0]
       Rotation: [0, 0, 0]
