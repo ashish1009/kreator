@@ -10,11 +10,11 @@
 #include "player.hpp"
 
 namespace mario {
-
+  
   class BlockController : public ScriptableEntity {
   public:
     enum class Type {
-      Coin, PowerUp, Star, Empty
+      Empty, Coin, PowerUp, Star 
     };
     
     BlockController(Type type) : type_(type) {
@@ -89,5 +89,14 @@ namespace mario {
     
     Type type_ = Type::Empty;
   };
+  
+  class BlockScriptManager {
+  public:
+    static void Init();
+    static void Shutdown();
+    
+    static ScriptLoaderFn GetLoaderFn(const std::string& tag);
+    static BlockController::Type GetType(const std::string& tag);
+  };  
   
 }
