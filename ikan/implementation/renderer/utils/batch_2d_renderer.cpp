@@ -601,7 +601,7 @@ namespace ikan {
                                float tiling_factor,
                                int32_t object_id) {
     DrawTextureQuad(transform,
-                    texture,
+                    texture ? texture : nullptr,
                     texture_coords_,
                     tiling_factor,
                     tint_color,
@@ -615,8 +615,8 @@ namespace ikan {
                                int32_t object_id) {
     const glm::vec2* texture_coords = sub_texture->GetTexCoord();
     DrawTextureQuad(transform,
-                    sub_texture->GetSpriteImage(),
-                    texture_coords,
+                    (sub_texture) ? sub_texture->GetSpriteImage() : nullptr,
+                    (sub_texture) ? texture_coords : texture_coords_,
                     1.0f,
                     tint_color,
                     object_id);

@@ -20,6 +20,25 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_0: mario::PlayerController
+      Num_Scripts: 1
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: true
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Mass: 0
+      Friction: 0
+      Gravity Scale: 0
+      Is Sensor: false
+      Continous Collision: true
+    PillBoxColliderComponent:
+      Offset: [0, 0]
+      Width: 0.5
+      Height: 0.5
   - Entity: 2214066489975948466
     TagComponent:
       Tag: Brick

@@ -7,33 +7,12 @@
 
 #pragma once
 
+#include "enums.h"
+
 namespace mario {
   
   using namespace ikan;
-  
-  class StateMachine {
-  public:
-    enum State {
-      Idle, Run, SwitchDirection
-    };
     
-    StateMachine(Entity* entity);
-    
-    void ExtractData();
-    
-    void ChangeState(State state);
-    State GetState() const;
-    
-  private:
-    Entity* entity_;
-    State state_;
-    
-    std::shared_ptr<Texture> sprite_image_;
-    glm::vec2 coords_;
-    glm::vec2 sprite_size_;
-    glm::vec2 cell_size_;
-  };
-  
   class PlayerController : public ScriptableEntity {
   public:
     PlayerController(RigidBodyComponent* rb);
@@ -59,8 +38,6 @@ namespace mario {
     glm::vec2 velocity_;
     bool is_dead_ = false;
     int32_t enemy_bounce_ = 0;
-    
-    StateMachine state_machine_;
   };
   
 }

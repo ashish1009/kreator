@@ -86,13 +86,43 @@ namespace mario {
       player_entity = scene_->CreateEntity(player_name);
     }
     
+    // Quad Component
     if (!player_entity.HasComponent<QuadComponent>()) {
       auto& qc = player_entity.AddComponent<QuadComponent>();
       qc.texture_comp.use = true;
       qc.texture_comp.use_sprite = true;
       qc.texture_comp.linear_edge = false;
       qc.texture_comp.component = SpriteManager::GetSpriteImage(SpriteType::Player);
-      qc.texture_comp.sprite = SubTexture::CreateFromCoords(qc.texture_comp.component, {6.0f, 30.0f});
+      qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(PlayerState::Idle)[0]; // As we know only one image for idle state
+    }
+    
+    // Rigid Body Component
+    RigidBodyComponent* rbc = nullptr;
+    if (!player_entity.HasComponent<RigidBodyComponent>()) {
+      rbc = &(player_entity.AddComponent<RigidBodyComponent>());
+      rbc->fixed_rotation = true;
+    }
+    else {
+      rbc = &(player_entity.GetComponent<RigidBodyComponent>());
+    }
+    
+    // Collider Component
+    if (!player_entity.HasComponent<PillBoxCollider>()) {
+      player_entity.AddComponent<PillBoxCollider>();
+    }
+    
+    NativeScriptComponent* nsc;
+    if (!player_entity.HasComponent<NativeScriptComponent>()) {
+      nsc = &(player_entity.AddComponent<NativeScriptComponent>());
+    }
+    else {
+      nsc = &(player_entity.GetComponent<NativeScriptComponent>());
+    }
+    if (rbc) {
+      nsc->Bind<PlayerController>(rbc);
+    }
+    else {
+      IK_ASSERT(false, "No Rigid Body");
     }
   }
   

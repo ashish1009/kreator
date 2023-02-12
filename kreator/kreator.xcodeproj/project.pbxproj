@@ -119,6 +119,7 @@
 		B2E047DE2998B5F900EE71D0 /* game_data.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = game_data.hpp; sourceTree = "<group>"; };
 		B2E047E02998BB5900EE71D0 /* sprite_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sprite_manager.cpp; sourceTree = "<group>"; };
 		B2E047E12998BB5900EE71D0 /* sprite_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sprite_manager.hpp; sourceTree = "<group>"; };
+		B2E047E92998C0B400EE71D0 /* enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = enums.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,12 +362,13 @@
 			isa = PBXGroup;
 			children = (
 				B28D963F299644770089F98F /* common.h */,
+				B2E047E92998C0B400EE71D0 /* enums.h */,
 				B21E44112993FC6C00D6CDFD /* mario.hpp */,
 				B21E441A299408E500D6CDFD /* mario.cpp */,
 				B28D963D299643A00089F98F /* player.hpp */,
 				B28D963C299643A00089F98F /* player.cpp */,
-				B2E047E02998BB5900EE71D0 /* sprite_manager.cpp */,
 				B2E047E12998BB5900EE71D0 /* sprite_manager.hpp */,
+				B2E047E02998BB5900EE71D0 /* sprite_manager.cpp */,
 			);
 			path = new_game;
 			sourceTree = "<group>";
