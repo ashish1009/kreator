@@ -54,7 +54,7 @@
 /* Begin PBXFileReference section */
 		B21E44112993FC6C00D6CDFD /* mario.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario.hpp; sourceTree = "<group>"; };
 		B21E4415299406F900D6CDFD /* create_game_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = create_game_data.cpp; sourceTree = "<group>"; };
-		B21E441A299408E500D6CDFD /* mario.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario.cpp; sourceTree = "<group>"; };
+		B21E441A299408E500D6CDFD /* mario.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario.cpp; sourceTree = "<group>"; wrapsLines = 0; };
 		B2250CAA29584CE00067C43B /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCC29584D1A0067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CD029585E890067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 		B2E047E02998BB5900EE71D0 /* sprite_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sprite_manager.cpp; sourceTree = "<group>"; };
 		B2E047E12998BB5900EE71D0 /* sprite_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sprite_manager.hpp; sourceTree = "<group>"; };
 		B2E047E92998C0B400EE71D0 /* enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = enums.h; sourceTree = "<group>"; };
-		B2EB5AFD2999206600BEBFC6 /* brick_script.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = brick_script.h; sourceTree = "<group>"; };
+		B2EB5AFD2999206600BEBFC6 /* block_script.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = block_script.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,7 +364,7 @@
 			children = (
 				B28D963F299644770089F98F /* common.h */,
 				B2E047E92998C0B400EE71D0 /* enums.h */,
-				B2EB5AFD2999206600BEBFC6 /* brick_script.h */,
+				B2EB5AFD2999206600BEBFC6 /* block_script.h */,
 				B21E44112993FC6C00D6CDFD /* mario.hpp */,
 				B21E441A299408E500D6CDFD /* mario.cpp */,
 				B28D963D299643A00089F98F /* player.hpp */,

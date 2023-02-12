@@ -205,7 +205,7 @@ namespace ikan {
         Entity& entity = entity_id_map_.at(e);
         
         auto& rb2d = entity.GetComponent<RigidBodyComponent>();
-        if (rb2d.type == b2_dynamicBody) {
+        if (rb2d.type == b2_dynamicBody or rb2d.type == b2_kinematicBody) {
           auto& transform = entity.GetComponent<TransformComponent>();
           b2Body* body = (b2Body*)rb2d.runtime_body;
           if (body != nullptr) {

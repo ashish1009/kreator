@@ -13,7 +13,14 @@ namespace mario {
 
   class BlockController : public ScriptableEntity {
   public:
-    BlockController() = default;
+    enum class Type {
+      Coin, PowerUp, Star, Empty
+    };
+    
+    BlockController(Type type) : type_(type) {
+      
+    }
+    
     ~BlockController() = default;
     
     void Create(Entity entity) override {
@@ -79,6 +86,8 @@ namespace mario {
     
     bool active_ = true;
     float speed_ = 3.0f;
+    
+    Type type_ = Type::Empty;
   };
   
 }

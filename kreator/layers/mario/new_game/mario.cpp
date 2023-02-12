@@ -7,7 +7,7 @@
 
 #include "mario.hpp"
 #include "sprite_manager.hpp"
-#include "brick_script.h"
+#include "block_script.h"
 
 namespace mario {
   
@@ -400,14 +400,24 @@ namespace mario {
     }
   }
   
-  void MarioData::
-  AddingScriptsToEntities() {
+  bool IsBlock(const std::string& tag) {
+    return tag == "Brick" or tag == "Coin";
+  }
+  
+  void MarioData:: AddingScriptsToEntities() {
     auto tag_view = scene_->GetEntitesWith<TagComponent>();
     
-    auto brick_loader_fn = [](NativeScriptComponent* sc,
-                              const std::string& script_name) {
+    auto brick_loader_fn = [](NativeScriptComponent* sc, const std::string& script_name) {
       if (script_name == "mario::BlockController") {
-        sc->Bind<mario::BlockController>();
+        sc->Bind<mario::BlockController>(mario::BlockController::Type::Empty);
+        return true;
+      }
+      return false;
+    };
+
+    auto coin_loader_fn = [](NativeScriptComponent* sc, const std::string& script_name) {
+      if (script_name == "mario::BlockController") {
+        sc->Bind<mario::BlockController>(mario::BlockController::Type::Coin);
         return true;
       }
       return false;
@@ -415,15 +425,27 @@ namespace mario {
 
     for (auto e : tag_view) {
       const auto &c = tag_view.get<TagComponent>(e);
-      if (c.tag == "Brick") {
+      if (IsBlock(c.tag)) {
         Entity brick_entity = Entity(e, scene_.get());
         if (brick_entity.HasComponent<NativeScriptComponent>()) {
           auto& nsc = brick_entity.GetComponent<NativeScriptComponent>();
-          nsc.loader_function = brick_loader_fn;
-          nsc.Bind<mario::BlockController>();
+
+          if (c.tag == "Brick") {
+            nsc.loader_function = brick_loader_fn;
+            nsc.Bind<BlockController>(BlockController::Type::Empty);
+          }
+          else if (c.tag == "Coin") {
+            nsc.loader_function = coin_loader_fn;
+            nsc.Bind<BlockController>(BlockController::Type::Coin);
+          }
         }
         else {
-          brick_entity.AddComponent<NativeScriptComponent>(brick_loader_fn).Bind<mario::BlockController>();
+          if (c.tag == "Brick") {
+            brick_entity.AddComponent<NativeScriptComponent>(brick_loader_fn).Bind<BlockController>(BlockController::Type::Empty);
+          }
+          else if (c.tag == "Coin") {
+            brick_entity.AddComponent<NativeScriptComponent>(brick_loader_fn).Bind<BlockController>(BlockController::Type::Coin);
+          }
         }
       }
     }

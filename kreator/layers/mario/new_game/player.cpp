@@ -134,7 +134,7 @@ namespace mario {
     if (Input::IsKeyPressed(KeyCode::Space) and (jump_time_ > 0 or on_ground_ or ground_debounce_ > 0)) {
       if ((on_ground_ or ground_debounce_ > 0) and jump_time_ == 0) { // Just Press Jump Key
         // Play Sound
-        jump_time_ = 80;
+        jump_time_ = 55;
         velocity_.y = jump_impuls_;
       }
       else if (jump_time_ > 0) {
