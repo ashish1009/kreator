@@ -25,6 +25,9 @@ namespace mario {
   public:
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
+    
+  private:
+    RigidBodyComponent* rigid_body_comp_;
   };
 
   enum class Items {

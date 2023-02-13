@@ -29,9 +29,19 @@ namespace mario {
   
   void MushroomController::Create(Entity entity) {
     entity_ = entity;
+    rigid_body_comp_ = &(entity_.AddComponent<RigidBodyComponent>());
+    rigid_body_comp_->type = b2_dynamicBody;
+    rigid_body_comp_->angular_velocity = 0.0f;
+    rigid_body_comp_->fixed_rotation = true;
+    
+    auto& bcc = entity.AddComponent<BoxColloiderComponent>();
+    bcc.runtime_fixture = &entity_;
+    
+    entity_.GetScene()->AddBodyToPhysicsWorld(entity_, *rigid_body_comp_);
   }
   
   void MushroomController::Update(Timestep ts) {
+    rigid_body_comp_->SetVelocity({8.0f, -10.0f});
   }
 
   struct ItemData {
