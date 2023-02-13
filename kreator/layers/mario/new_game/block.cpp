@@ -6,7 +6,7 @@
 //
 
 #include "block.hpp"
-#include "coin.hpp"
+#include "item_factory.hpp"
 
 namespace mario {
   
@@ -78,7 +78,7 @@ namespace mario {
       }
       case Type::Coin : {
         auto& tc = entity_.GetComponent<TransformComponent>();
-        Coin::CreateBlockCoin(entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
+        RuntimeItem::CreateBlockCoin(Items::Coin, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
         count_--;
         
         if (count_ == 0) {

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B20D5E362999484C0089069D /* block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B20D5E352999484C0089069D /* block.cpp */; };
-		B20D5E3929994E5A0089069D /* coin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B20D5E3729994E5A0089069D /* coin.cpp */; };
+		B20D5E3929994E5A0089069D /* runtime_items.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B20D5E3729994E5A0089069D /* runtime_items.cpp */; };
 		B21E4417299406F900D6CDFD /* create_game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21E4415299406F900D6CDFD /* create_game_data.cpp */; };
 		B21E441B299408E500D6CDFD /* mario.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21E441A299408E500D6CDFD /* mario.cpp */; };
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
@@ -32,6 +32,7 @@
 		B2C3BFB12964872C00D6D7C3 /* libvulkan.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2C3BFAF2964872700D6D7C3 /* libvulkan.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2C3BFB32964876F00D6D7C3 /* libMoltenVK.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C3BFB22964876F00D6D7C3 /* libMoltenVK.dylib */; };
 		B2C3BFB42964877300D6D7C3 /* libMoltenVK.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2C3BFB22964876F00D6D7C3 /* libMoltenVK.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B2D0C44B299A45F300F1635F /* item_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2D0C449299A45F300F1635F /* item_factory.cpp */; };
 		B2E047DF2998B5F900EE71D0 /* game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E047DD2998B5F900EE71D0 /* game_data.cpp */; };
 		B2E047E22998BB5900EE71D0 /* sprite_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E047E02998BB5900EE71D0 /* sprite_manager.cpp */; };
 /* End PBXBuildFile section */
@@ -55,8 +56,8 @@
 
 /* Begin PBXFileReference section */
 		B20D5E352999484C0089069D /* block.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = block.cpp; sourceTree = "<group>"; };
-		B20D5E3729994E5A0089069D /* coin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = coin.cpp; sourceTree = "<group>"; };
-		B20D5E3829994E5A0089069D /* coin.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = coin.hpp; sourceTree = "<group>"; };
+		B20D5E3729994E5A0089069D /* runtime_items.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = runtime_items.cpp; sourceTree = "<group>"; };
+		B20D5E3829994E5A0089069D /* runtime_items.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = runtime_items.hpp; sourceTree = "<group>"; };
 		B21E44112993FC6C00D6CDFD /* mario.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario.hpp; sourceTree = "<group>"; };
 		B21E4415299406F900D6CDFD /* create_game_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = create_game_data.cpp; sourceTree = "<group>"; };
 		B21E441A299408E500D6CDFD /* mario.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario.cpp; sourceTree = "<group>"; wrapsLines = 0; };
@@ -119,6 +120,8 @@
 		B2C3BFAC296486D100D6D7C3 /* libvulkan.1.3.236.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.3.236.dylib; path = ../../../../../../../usr/local/macOS/lib/libvulkan.1.3.236.dylib; sourceTree = "<group>"; };
 		B2C3BFAF2964872700D6D7C3 /* libvulkan.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.dylib; path = ../../../../../../../usr/local/macOS/lib/libvulkan.1.dylib; sourceTree = "<group>"; };
 		B2C3BFB22964876F00D6D7C3 /* libMoltenVK.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMoltenVK.dylib; path = ../../../../../../../usr/local/macOS/lib/libMoltenVK.dylib; sourceTree = "<group>"; };
+		B2D0C449299A45F300F1635F /* item_factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = item_factory.cpp; sourceTree = "<group>"; };
+		B2D0C44A299A45F300F1635F /* item_factory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = item_factory.hpp; sourceTree = "<group>"; };
 		B2DAAB76296544CB003578D9 /* vulkan_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vulkan_entry_point.h; sourceTree = "<group>"; };
 		B2E047DD2998B5F900EE71D0 /* game_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = game_data.cpp; sourceTree = "<group>"; };
 		B2E047DE2998B5F900EE71D0 /* game_data.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = game_data.hpp; sourceTree = "<group>"; };
@@ -377,8 +380,10 @@
 				B28D963C299643A00089F98F /* player.cpp */,
 				B2E047E12998BB5900EE71D0 /* sprite_manager.hpp */,
 				B2E047E02998BB5900EE71D0 /* sprite_manager.cpp */,
-				B20D5E3729994E5A0089069D /* coin.cpp */,
-				B20D5E3829994E5A0089069D /* coin.hpp */,
+				B20D5E3729994E5A0089069D /* runtime_items.cpp */,
+				B20D5E3829994E5A0089069D /* runtime_items.hpp */,
+				B2D0C449299A45F300F1635F /* item_factory.cpp */,
+				B2D0C44A299A45F300F1635F /* item_factory.hpp */,
 			);
 			path = new_game;
 			sourceTree = "<group>";
@@ -494,10 +499,11 @@
 				B275570A29601F650020D552 /* renderer_layer.cpp in Sources */,
 				B28D963E299643A00089F98F /* player.cpp in Sources */,
 				B2BD9DFE295C8A320076A2F9 /* editor_layer.cpp in Sources */,
+				B2D0C44B299A45F300F1635F /* item_factory.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
 				B25F617C2969A4A90042FE09 /* background.cpp in Sources */,
 				B21E4417299406F900D6CDFD /* create_game_data.cpp in Sources */,
-				B20D5E3929994E5A0089069D /* coin.cpp in Sources */,
+				B20D5E3929994E5A0089069D /* runtime_items.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

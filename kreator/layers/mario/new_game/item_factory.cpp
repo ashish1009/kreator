@@ -1,15 +1,16 @@
 //
-//  coin.cpp
+//  run_time_item.cpp
 //  kreator
 //
-//  Created by Ashish . on 12/02/23.
+//  Created by Ashish . on 13/02/23.
 //
 
-#include "coin.hpp"
+#include "item_factory.hpp"
+#include "runtime_items.hpp"
 
 namespace mario {
   
-  void Coin::CreateBlockCoin(EnttScene* scene, const glm::vec2& pos) {
+  void RuntimeItem::CreateBlockCoin(Items item, EnttScene* scene, const glm::vec2& pos) {
     static std::shared_ptr<Texture> icons = Renderer::GetTexture(AM::ClientAsset("textures/items.png"), false);
     
     auto coin_entity = scene->CreateEntity("Block Coin");
@@ -30,5 +31,6 @@ namespace mario {
       return false;
     });
   }
+
   
 }
