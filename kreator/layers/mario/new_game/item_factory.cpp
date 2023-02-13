@@ -7,6 +7,7 @@
 
 #include "item_factory.hpp"
 #include "runtime_items.hpp"
+#include "sprite_manager.hpp"
 
 namespace mario {
   
@@ -45,7 +46,7 @@ namespace mario {
   }
   
   void RuntimeItem::Create(Items item, EnttScene* scene, const glm::vec2& pos) {
-    static std::shared_ptr<Texture> icons = Renderer::GetTexture(AM::ClientAsset("textures/items.png"), false);
+    static std::shared_ptr<Texture> icons = SpriteManager::GetSpriteImage(SpriteType::Items);
     
     auto coin_entity = scene->CreateEntity(data->item_map.at(item).name);
     coin_entity.GetComponent<TransformComponent>().UpdateTranslation(glm::vec3(pos, 0.1f));

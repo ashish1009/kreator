@@ -7,11 +7,15 @@
 
 #pragma once
 
-#include "enums.h"
-
 namespace mario {
   
   using namespace ikan;
+  
+  enum class PlayerState;
+  
+  enum class SpriteType {
+    Player, Items
+  };
   
   class SpriteManager {
   public:
