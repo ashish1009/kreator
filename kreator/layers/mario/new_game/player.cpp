@@ -178,37 +178,9 @@ namespace mario {
   }
   
   void PlayerController::CheckOnGround() {
-    // TODO: Create main API in EnttScene and use wrapper here only
-    const auto& tc = entity_.GetComponent<TransformComponent>();
     float inner_player_width = player_width_ * 0.6f;
     float y_val = -(player_height_ / 2 + 0.10f);
-
-    glm::vec2 ray_cast_1_begin = { tc.Translation().x, tc.Translation().y };
-    ray_cast_1_begin -= glm::vec2(inner_player_width / 2.0f, 0.0f);
-    
-    glm::vec2 ray_cast_1_end = ray_cast_1_begin + glm::vec2(0.0f, y_val);
-    std::shared_ptr<RayCastInfo> info_1 = entity_.GetScene()->RayCast(&entity_,
-                                                                      {ray_cast_1_begin.x, ray_cast_1_begin.y},
-                                                                      {ray_cast_1_end.x, ray_cast_1_end.y});
-    
-    
-    glm::vec2 ray_cast_2_begin = ray_cast_1_begin + glm::vec2(inner_player_width, 0.0f);
-    glm::vec2 ray_cast_2_end = ray_cast_1_end + glm::vec2(inner_player_width, 0.0f);
-
-    std::shared_ptr<RayCastInfo> info_2 = entity_.GetScene()->RayCast(&entity_,
-                                                                      {ray_cast_2_begin.x, ray_cast_2_begin.y},
-                                                                      {ray_cast_2_end.x, ray_cast_2_end.y});
-    
-    on_ground_ = ((info_1->hit and info_1->hit_object and info_1->hit_object->HasComponent<RigidBodyComponent>()) or
-                  (info_2->hit and info_2->hit_object and info_2->hit_object->HasComponent<RigidBodyComponent>()));
-
-#if DEBUG_DRAW
-    const auto& cd = entity_.GetScene()->GetPrimaryCameraData();
-    BatchRenderer::BeginBatch(cd.scene_camera->GetProjection() * glm::inverse(cd.transform_matrix));
-    BatchRenderer::DrawLine(glm::vec3(ray_cast_1_begin, 0.0f), glm::vec3(ray_cast_1_end, 0.0f), {0, 1, 0, 1});
-    BatchRenderer::DrawLine(glm::vec3(ray_cast_2_begin, 0.0f), glm::vec3(ray_cast_2_end, 0.0f), {0, 1, 0, 1});
-    BatchRenderer::EndBatch();
-#endif
+    on_ground_ = entity_.GetScene()->CheckOnGround(&entity_, inner_player_width, y_val);
   }
   
   void PlayerController::BeginCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 contact_normal) {

@@ -119,7 +119,13 @@ namespace ikan {
     ///   - entity: Entity
     ///   - rb2d: Rigid Body reference
     void AddBodyToPhysicsWorld(Entity entity, RigidBodyComponent& rb2d);
-
+    /// This function checks the position is on ground or not
+    /// - Parameters:
+    ///   - entity: entity pointer
+    ///   - width: width of entity
+    ///   - height: height of entity
+    bool CheckOnGround(Entity* entity, float width, float height);
+    
     // ------------------
     // Getters
     // ------------------
