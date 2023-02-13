@@ -103,11 +103,19 @@ namespace mario {
         break;
     }
   }
+  
+  struct BlockData {
+    BlockController::Type type;
+    ScriptLoaderFn loader_fun;
+    uint32_t coin_count;
+    
+    BlockData() = default;
+    BlockData(BlockController::Type type, ScriptLoaderFn loader_fun, uint32_t coin_count)
+    : type(type), loader_fun(loader_fun), coin_count(coin_count) {}
+  };
 
   struct BlockScriptManagerData {
-    std::unordered_map<std::string, ScriptLoaderFn> loader_map;
-    std::unordered_map<std::string, BlockController::Type> type_map;
-    std::unordered_map<std::string, uint32_t> count_map;
+    std::unordered_map<std::string, BlockData> block_map;
   };
   static BlockScriptManagerData* data;
   
@@ -139,17 +147,9 @@ namespace mario {
     };
 
 
-    data->loader_map["Brick"] = brick_loader_fn;
-    data->loader_map["Coin"] = coin_loader_fn;
-    data->loader_map["MultiCoin"] = multi_coin_loader_fn;
-
-    data->type_map["Brick"] = BlockController::Type::Empty;
-    data->type_map["Coin"] = BlockController::Type::Coin;
-    data->type_map["MultiCoin"] = BlockController::Type::Coin;
-    
-    data->count_map["Brick"] = 0;
-    data->count_map["Coin"] = 1;
-    data->count_map["MultiCoin"] = 10;
+    data->block_map["Brick"] = {BlockController::Type::Empty, brick_loader_fn, 0};
+    data->block_map["Coin"] = {BlockController::Type::Coin, coin_loader_fn, 1};
+    data->block_map["MultiCoin"] = {BlockController::Type::Coin, multi_coin_loader_fn, 10};
   }
 
   void BlockScriptManager::Shutdown() {
@@ -157,15 +157,15 @@ namespace mario {
   }
 
   ScriptLoaderFn BlockScriptManager::GetLoaderFn(const std::string& tag) {
-    return data->loader_map.at(tag);
+    return data->block_map.at(tag).loader_fun;
   }
 
   BlockController::Type BlockScriptManager::GetType(const std::string& tag) {
-    return data->type_map.at(tag);
+    return data->block_map.at(tag).type;
   }
 
   uint32_t BlockScriptManager::GetCount(const std::string& tag) {
-    return data->count_map.at(tag);
+    return data->block_map.at(tag).coin_count;
   }
 
 }
