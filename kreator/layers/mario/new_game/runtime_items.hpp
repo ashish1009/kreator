@@ -25,8 +25,12 @@ namespace mario {
   public:
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
-    
+    void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& normal) override;
+
   private:
+    void ChangeDirection(const glm::vec2& contact_normal);
+    
+    const float fixed_vel = 8.0f;
     RigidBodyComponent* rigid_body_comp_;
     glm::vec2 velocity_;
   };

@@ -48,10 +48,10 @@ namespace ikan {
     template<typename T> bool HasComponent() { return entity_.HasComponent<T>(); }
 
     virtual void RenderGui() {}
-    virtual void BeginCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) {}
-    virtual void EndCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) {}
-    virtual void PreSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) {}
-    virtual void PostSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) {}
+    virtual void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {}
+    virtual void EndCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {}
+    virtual void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {}
+    virtual void PostSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {}
 
   protected:
     virtual void Create(Entity entity) { entity_ = entity; }

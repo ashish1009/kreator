@@ -22,11 +22,7 @@ namespace mario {
     
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
-    void BeginCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 contact_normal) override;
-    void EndCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
-    void PreSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
-    void PostSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
-    void RenderGui() override {}
+    void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
     
     void SetInactive() {
       auto& qc = entity_.GetComponent<QuadComponent>();

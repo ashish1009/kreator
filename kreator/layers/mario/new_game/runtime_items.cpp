@@ -7,6 +7,7 @@
 
 #include "runtime_items.hpp"
 #include "sprite_manager.hpp"
+#include "player.hpp"
 
 namespace mario {
 
@@ -28,12 +29,15 @@ namespace mario {
   }
   
   void MushroomController::Create(Entity entity) {
+    velocity_.x = fixed_vel;
+
     entity_ = entity;
     rigid_body_comp_ = &(entity_.AddComponent<RigidBodyComponent>());
     rigid_body_comp_->type = b2_dynamicBody;
     rigid_body_comp_->angular_velocity = 0.0f;
     rigid_body_comp_->fixed_rotation = true;
     
+    rigid_body_comp_->SetGravityScale(0.0f);
     auto& bcc = entity.AddComponent<BoxColloiderComponent>();
     bcc.runtime_fixture = &entity_;
     
@@ -41,21 +45,41 @@ namespace mario {
   }
   
   void MushroomController::Update(Timestep ts) {
-    static const float inner_player_width = 0.6f;
-    static const float y_val = -(0.60f);
+    static const float width = 0.8f;
+    static const float height = -(0.70f);
     
-    bool on_ground_ = entity_.GetScene()->CheckOnGround(&entity_, inner_player_width, y_val);
+    bool on_ground_ = entity_.GetScene()->CheckOnGround(&entity_, width, height);
     
     if (on_ground_) {
-      velocity_.x = 8.0f;
       velocity_.y = 0;
     }
     else {
-      velocity_.x = 0.0f;
       velocity_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * 2.7f;
     }
 
-    rigid_body_comp_->SetVelocity({8.0f, -10.0f});
+    rigid_body_comp_->SetVelocity(velocity_);
+  }
+  
+  void MushroomController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+    if (collided_entity->HasComponent<NativeScriptComponent>()) {
+      const auto &nsc = collided_entity->GetComponent<NativeScriptComponent>();
+      if (nsc.script_name == "mario::PlayerController") {
+        
+      }
+      else { // May be some block with Script
+        ChangeDirection(contact_normal);
+      }
+    }
+    else {
+      ChangeDirection(contact_normal);
+    }
+  }
+  
+  void MushroomController::ChangeDirection(const glm::vec2& contact_normal) {
+    if (contact_normal.x > 0.8f) // Right Collision
+      velocity_.x = -fixed_vel;
+    else  if (contact_normal.x < -0.8f) // left Collision
+      velocity_.x = fixed_vel;
   }
 
   struct ItemData {

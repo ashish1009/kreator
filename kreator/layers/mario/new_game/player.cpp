@@ -183,7 +183,7 @@ namespace mario {
     on_ground_ = entity_.GetScene()->CheckOnGround(&entity_, inner_player_width, y_val);
   }
   
-  void PlayerController::BeginCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 contact_normal) {
+  void PlayerController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
     if (is_dead_)
       return;
     

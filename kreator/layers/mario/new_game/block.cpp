@@ -59,7 +59,7 @@ namespace mario {
     }
   }
   
-  void BlockController::BeginCollision(Entity* collided_entity, b2Contact* contact, glm::vec2 contact_normal) {
+  void BlockController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
     PlayerController* pc = PlayerController::Get();
     if (active_ and pc and contact_normal.y < -0.8f) {
       animation_ = true;
