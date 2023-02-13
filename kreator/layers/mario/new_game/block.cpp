@@ -10,7 +10,7 @@
 
 namespace mario {
   
-  BlockController::BlockController(Type type) : type_(type) {
+  BlockController::BlockController(Type type, uint32_t count) : type_(type), count_(count) {
     switch (type_) {
       case Type::Empty : {
         break;
@@ -79,16 +79,18 @@ namespace mario {
       case Type::Coin : {
         auto& tc = entity_.GetComponent<TransformComponent>();
         Coin::CreateBlockCoin(entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
+        count_--;
         
-        auto& qc = entity_.GetComponent<QuadComponent>();
-        const auto& tex = qc.texture_comp.component;
-        qc.texture_comp.sprite = SubTexture::CreateFromCoords(tex, {27.0f, 27.0f});
-        
-        if (entity_.HasComponent<AnimationComponent>())
-          entity_.RemoveComponent<AnimationComponent>();
-        
-        active_ = false;
-        
+        if (count_ == 0) {
+          auto& qc = entity_.GetComponent<QuadComponent>();
+          const auto& tex = qc.texture_comp.component;
+          qc.texture_comp.sprite = SubTexture::CreateFromCoords(tex, {27.0f, 27.0f});
+          
+          if (entity_.HasComponent<AnimationComponent>())
+            entity_.RemoveComponent<AnimationComponent>();
+          
+          active_ = false; 
+        }
         break;
       }
       case Type::Star : {
@@ -105,6 +107,7 @@ namespace mario {
   struct BlockScriptManagerData {
     std::unordered_map<std::string, ScriptLoaderFn> loader_map;
     std::unordered_map<std::string, BlockController::Type> type_map;
+    std::unordered_map<std::string, uint32_t> count_map;
   };
   static BlockScriptManagerData* data;
   
@@ -113,7 +116,7 @@ namespace mario {
     
     auto brick_loader_fn = [](NativeScriptComponent* sc, const std::string& script_name) {
       if (script_name == "mario::BlockController") {
-        sc->Bind<mario::BlockController>(mario::BlockController::Type::Empty);
+        sc->Bind<mario::BlockController>(mario::BlockController::Type::Empty, 0);
         return true;
       }
       return false;
@@ -121,17 +124,32 @@ namespace mario {
     
     auto coin_loader_fn = [](NativeScriptComponent* sc, const std::string& script_name) {
       if (script_name == "mario::BlockController") {
-        sc->Bind<mario::BlockController>(mario::BlockController::Type::Coin);
+        sc->Bind<mario::BlockController>(mario::BlockController::Type::Coin, 1);
+        return true;
+      }
+      return false;
+    };
+    
+    auto multi_coin_loader_fn = [](NativeScriptComponent* sc, const std::string& script_name) {
+      if (script_name == "mario::BlockController") {
+        sc->Bind<mario::BlockController>(mario::BlockController::Type::Coin, 10);
         return true;
       }
       return false;
     };
 
+
     data->loader_map["Brick"] = brick_loader_fn;
     data->loader_map["Coin"] = coin_loader_fn;
-    
+    data->loader_map["MultiCoin"] = multi_coin_loader_fn;
+
     data->type_map["Brick"] = BlockController::Type::Empty;
     data->type_map["Coin"] = BlockController::Type::Coin;
+    data->type_map["MultiCoin"] = BlockController::Type::Coin;
+    
+    data->count_map["Brick"] = 0;
+    data->count_map["Coin"] = 1;
+    data->count_map["MultiCoin"] = 10;
   }
 
   void BlockScriptManager::Shutdown() {
@@ -146,5 +164,8 @@ namespace mario {
     return data->type_map.at(tag);
   }
 
+  uint32_t BlockScriptManager::GetCount(const std::string& tag) {
+    return data->count_map.at(tag);
+  }
 
 }

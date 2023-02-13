@@ -412,7 +412,7 @@ namespace mario {
   }
   
   bool IsBlock(const std::string& tag) {
-    return tag == "Brick" or tag == "Coin";
+    return tag == "Brick" or tag == "Coin" or tag == "MultiCoin";
   }
   
   void MarioData::AddingScriptsToEntities() {
@@ -426,10 +426,11 @@ namespace mario {
           auto& nsc = brick_entity.GetComponent<NativeScriptComponent>();
 
           nsc.loader_function = BlockScriptManager::GetLoaderFn(c.tag);
-          nsc.Bind<BlockController>(BlockScriptManager::GetType(c.tag));
+          nsc.Bind<BlockController>(BlockScriptManager::GetType(c.tag), BlockScriptManager::GetCount(c.tag));
         }
         else {
-          brick_entity.AddComponent<NativeScriptComponent>(BlockScriptManager::GetLoaderFn(c.tag)).Bind<BlockController>(BlockScriptManager::GetType(c.tag));
+          brick_entity.AddComponent<NativeScriptComponent>(BlockScriptManager::GetLoaderFn(c.tag)).Bind<BlockController>(BlockScriptManager::GetType(c.tag),
+                                                                                                                         BlockScriptManager::GetCount(c.tag));
         }
       }
     }

@@ -17,7 +17,7 @@ namespace mario {
       Empty, Coin, PowerUp, Star 
     };
     
-    BlockController(Type type);
+    BlockController(Type type, uint32_t count);
     ~BlockController() = default;
     
     void Create(Entity entity) override;
@@ -42,6 +42,7 @@ namespace mario {
     float speed_ = 3.0f;
     
     Type type_ = Type::Empty;
+    uint32_t count_ = 0;
   };
   
   class BlockScriptManager {
@@ -51,6 +52,7 @@ namespace mario {
     
     static ScriptLoaderFn GetLoaderFn(const std::string& tag);
     static BlockController::Type GetType(const std::string& tag);
-  };  
+    static uint32_t GetCount(const std::string& tag);
+  };
   
 }

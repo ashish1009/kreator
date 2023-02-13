@@ -22,7 +22,13 @@ namespace mario {
     qc.texture_comp.component = icons;
     qc.texture_comp.sprite = SubTexture::CreateFromCoords(icons, {0.0f, 14.0f});
     
-    coin_entity.AddComponent<NativeScriptComponent>().Bind<CoinController>();
+    coin_entity.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc, const std::string& script_name) {
+      if (script_name == "mario::CoinController") {
+        sc->Bind<mario::CoinController>();
+        return true;
+      }
+      return false;
+    }).Bind<CoinController>();
   }
   
 }

@@ -23035,9 +23035,9 @@ Entities:
       Restitution Threshold: 0.5
   - Entity: 9109634241827479526
     TagComponent:
-      Tag: Bonus
+      Tag: MultiCoin
     TransformComponent:
-      Translation: [-6, -5, 0]
+      Translation: [-6, -2, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:

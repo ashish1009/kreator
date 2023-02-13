@@ -140,7 +140,8 @@ namespace ikan_game {
 
     switch (event.GetKeyCode()) {
       case KeyCode::T:
-        PlayScene();
+        if (cmd)
+          PlayScene();
         break;
         
         // File Manager

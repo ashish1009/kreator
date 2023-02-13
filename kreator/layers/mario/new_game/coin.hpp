@@ -15,6 +15,7 @@ namespace mario {
   public:
     void Create(Entity entity) override {
       entity_ = entity;
+      printf("%d %x %x \n", (uint32_t)(entity_), entity_.GetScene(), this);
       const auto& tc = entity_.GetComponent<TransformComponent>().Translation();
       top_pos_ = {tc.x, tc.y + 5.0f};
     }
