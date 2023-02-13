@@ -129,7 +129,7 @@ namespace ikan {
     
     void RenderGui();
     
-    NativeScriptComponent(ScriptLoaderFn loader_fun = nullptr);
+    NativeScriptComponent(std::string name, ScriptLoaderFn loader_fun = nullptr);
     ~NativeScriptComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(NativeScriptComponent);
   };

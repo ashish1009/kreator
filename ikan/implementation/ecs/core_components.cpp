@@ -411,8 +411,8 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Native Script Component
   // -------------------------------------------------------------------------
-  NativeScriptComponent::NativeScriptComponent(ScriptLoaderFn loader_fun)
-  : loader_function(loader_fun) {
+  NativeScriptComponent::NativeScriptComponent(std::string name, ScriptLoaderFn loader_fun)
+  : script_name(name), loader_function(loader_fun) {
     
   }
   

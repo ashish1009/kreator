@@ -140,7 +140,7 @@ namespace mario {
       return false;
     };
     if (!player_entity.HasComponent<NativeScriptComponent>()) {
-      player_entity.AddComponent<NativeScriptComponent>(player_controler_loader_fn).Bind<mario::PlayerController>();
+      player_entity.AddComponent<NativeScriptComponent>("mario::PlayerController", player_controler_loader_fn);
     }
     else {
       auto& nsc = player_entity.GetComponent<NativeScriptComponent>();
@@ -429,8 +429,9 @@ namespace mario {
           nsc.Bind<BlockController>(BlockScriptManager::GetType(c.tag), BlockScriptManager::GetCount(c.tag));
         }
         else {
-          brick_entity.AddComponent<NativeScriptComponent>(BlockScriptManager::GetLoaderFn(c.tag)).Bind<BlockController>(BlockScriptManager::GetType(c.tag),
-                                                                                                                         BlockScriptManager::GetCount(c.tag));
+          brick_entity.AddComponent<NativeScriptComponent>("mario::BlockController",
+                                                           BlockScriptManager::GetLoaderFn(c.tag)).Bind<BlockController>(BlockScriptManager::GetType(c.tag),
+                                                                                                                                                   BlockScriptManager::GetCount(c.tag));
         }
       }
     }

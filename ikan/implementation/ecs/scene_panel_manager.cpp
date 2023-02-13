@@ -294,7 +294,7 @@ namespace ikan {
     AddComponentMenu<CameraComponent>("Scene Camera");
     ImGui::Separator();
     
-    AddComponentMenu<NativeScriptComponent>("Native Script");
+    AddComponentMenu<NativeScriptComponent>("Native Script", nullptr, "ikan::ScriptableEntity");
     
     ImGui::Separator();
     AddComponentMenu<RigidBodyComponent>("Rigid Body");

@@ -45,14 +45,14 @@ namespace mario {
       camera_comp.is_primary = true;
       camera_comp.camera->SetOrthographicSize(22.0f);
       
-      camera_entity.AddComponent<NativeScriptComponent>([](NativeScriptComponent* sc,
+      camera_entity.AddComponent<NativeScriptComponent>("mario::CameraController", [](NativeScriptComponent* sc,
                                                            const std::string& script_name) {
         if (script_name == "mario::CameraController") {
           sc->Bind<mario::CameraController>(60.0f);
           return true;
         }
         return false;
-      }).Bind<CameraController>(player_data::speed_);
+      });
     }
   }
   
