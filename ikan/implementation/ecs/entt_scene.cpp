@@ -223,6 +223,52 @@ namespace ikan {
     }
   }
   
+  void EnttScene::AddBodyToPhysicsWorld(Entity entity, RigidBodyComponent& rb2d) {
+    auto& transform = entity.GetComponent<TransformComponent>();
+    
+    b2BodyDef body_def;
+    body_def.type = rb2d.type;
+    body_def.position.Set(transform.Translation().x, transform.Translation().y);
+    body_def.angle = transform.Rotation().z;
+    
+    body_def.linearVelocity = {rb2d.velocity.x, rb2d.velocity.y};
+    body_def.angularVelocity = rb2d.angular_velocity;
+    body_def.linearDamping = rb2d.linear_damping;
+    body_def.angularDamping = rb2d.angular_damping;
+    body_def.gravityScale = rb2d.gravity_scale;
+    
+    //      body_def.userData.pointer;
+    
+    b2Body* body = physics_world_->CreateBody(&body_def);
+    body->SetFixedRotation(rb2d.fixed_rotation);
+    
+    rb2d.runtime_body = body;
+    
+    if (entity.HasComponent<BoxColloiderComponent>()) {
+      auto& bc2d = entity.GetComponent<BoxColloiderComponent>();
+      AddBoxColliderData(transform, bc2d, body);
+    }
+    
+    if (entity.HasComponent<CircleColloiderComponent>()) {
+      auto& cc2d = entity.GetComponent<CircleColloiderComponent>();
+      AddCircleColliderData(transform, cc2d, body);
+    }
+    
+    if (entity.HasComponent<PillBoxCollider>()) {
+      auto& cc2d = entity.GetComponent<PillBoxCollider>();
+      
+#if 0
+      cc2d.width = transform.Scale().x / 2.0f;
+      cc2d.height = transform.Scale().y / 2.0f;
+      cc2d.RecalculateColliders();
+#endif
+      AddBoxColliderData(transform, cc2d.bcc, body, true);
+      AddCircleColliderData(transform, cc2d.top_ccc, body, false);
+      AddCircleColliderData(transform, cc2d.bottom_ccc, body, false);
+    }
+
+  }
+  
   void EnttScene::RuntimeStart() {
     physics_world_ = new b2World({0.0f, -9.8f});
     if (client_listner_)
@@ -231,49 +277,8 @@ namespace ikan {
     auto view = registry_.view<RigidBodyComponent>();
     for (auto e : view) {
       Entity entity = { e, this };
-      auto& transform = entity.GetComponent<TransformComponent>();
       auto& rb2d = entity.GetComponent<RigidBodyComponent>();
-      
-      b2BodyDef body_def;
-      body_def.type = rb2d.type;
-      body_def.position.Set(transform.Translation().x, transform.Translation().y);
-      body_def.angle = transform.Rotation().z;
-      
-      body_def.linearVelocity = {rb2d.velocity.x, rb2d.velocity.y};
-      body_def.angularVelocity = rb2d.angular_velocity;
-      body_def.linearDamping = rb2d.linear_damping;
-      body_def.angularDamping = rb2d.angular_damping;
-      body_def.gravityScale = rb2d.gravity_scale;
-      
-      //      body_def.userData.pointer;
-      
-      b2Body* body = physics_world_->CreateBody(&body_def);
-      body->SetFixedRotation(rb2d.fixed_rotation);
-      
-      rb2d.runtime_body = body;
-      
-      if (entity.HasComponent<BoxColloiderComponent>()) {
-        auto& bc2d = entity.GetComponent<BoxColloiderComponent>();
-        AddBoxColliderData(transform, bc2d, body);
-      }
-      
-      if (entity.HasComponent<CircleColloiderComponent>()) {
-        auto& cc2d = entity.GetComponent<CircleColloiderComponent>();
-        AddCircleColliderData(transform, cc2d, body);
-      }
-      
-      if (entity.HasComponent<PillBoxCollider>()) {
-        auto& cc2d = entity.GetComponent<PillBoxCollider>();
-        
-#if 0
-        cc2d.width = transform.Scale().x / 2.0f;
-        cc2d.height = transform.Scale().y / 2.0f;
-        cc2d.RecalculateColliders();
-#endif
-        AddBoxColliderData(transform, cc2d.bcc, body, true);
-        AddCircleColliderData(transform, cc2d.top_ccc, body, false);
-        AddCircleColliderData(transform, cc2d.bottom_ccc, body, false);
-      }
+      AddBodyToPhysicsWorld(entity,rb2d);
     }
   }
   

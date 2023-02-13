@@ -42,7 +42,7 @@ namespace ikan {
   struct TransformComponent;
   struct BoxColloiderComponent;
   struct CircleColloiderComponent;
-  
+  struct RigidBodyComponent;
   struct CameraData {
     SceneCamera* scene_camera = nullptr;
     glm::vec3 position;
@@ -113,6 +113,12 @@ namespace ikan {
     /// This function update the selected entity
     /// - Parameter entity: entity
     void SetSelectedEntity(Entity* entity);
+    
+    /// This function adds the Rigid body to the physics worlds
+    /// - Parameters:
+    ///   - entity: Entity
+    ///   - rb2d: Rigid Body reference
+    void AddBodyToPhysicsWorld(Entity entity, RigidBodyComponent& rb2d);
 
     // ------------------
     // Getters
