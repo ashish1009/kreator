@@ -41,6 +41,20 @@ namespace mario {
   }
   
   void MushroomController::Update(Timestep ts) {
+    static const float inner_player_width = 0.6f;
+    static const float y_val = -(0.60f);
+    
+    bool on_ground_ = entity_.GetScene()->CheckOnGround(&entity_, inner_player_width, y_val);
+    
+    if (on_ground_) {
+      velocity_.x = 8.0f;
+      velocity_.y = 0;
+    }
+    else {
+      velocity_.x = 0.0f;
+      velocity_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * 2.7f;
+    }
+
     rigid_body_comp_->SetVelocity({8.0f, -10.0f});
   }
 

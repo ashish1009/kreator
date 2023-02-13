@@ -28,6 +28,7 @@ namespace mario {
     
   private:
     RigidBodyComponent* rigid_body_comp_;
+    glm::vec2 velocity_;
   };
 
   enum class Items {
