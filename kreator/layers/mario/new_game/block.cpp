@@ -78,7 +78,7 @@ namespace mario {
       }
       case Type::Coin : {
         auto& tc = entity_.GetComponent<TransformComponent>();
-        RuntimeItem::CreateBlockCoin(Items::Coin, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
+        RuntimeItem::Create(Items::Coin, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
         count_--;
         
         if (count_ == 0) {

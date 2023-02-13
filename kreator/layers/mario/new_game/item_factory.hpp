@@ -17,7 +17,9 @@ namespace mario {
   
   class RuntimeItem {
   public:
-    static void CreateBlockCoin(Items item, EnttScene* scene, const glm::vec2& pos);
+    static void Init();
+    static void Shutdown();
+    static void Create(Items item, EnttScene* scene, const glm::vec2& pos);
   };
   
 }

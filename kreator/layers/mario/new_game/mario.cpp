@@ -8,6 +8,7 @@
 #include "mario.hpp"
 #include "sprite_manager.hpp"
 #include "block.hpp"
+#include "item_factory.hpp"
 
 namespace mario {
 
@@ -24,6 +25,7 @@ namespace mario {
   MarioData::~MarioData() {
     SpriteManager::Shutdown();
     BlockScriptManager::Shutdown();
+    RuntimeItem::Shutdown();
   }
   
   void MarioData::Init() {
@@ -35,6 +37,7 @@ namespace mario {
     
     SpriteManager::Init();
     BlockScriptManager::Init();
+    RuntimeItem::Init();
   }
   
   void MarioData::SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
