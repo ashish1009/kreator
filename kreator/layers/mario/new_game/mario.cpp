@@ -8,7 +8,7 @@
 #include "mario.hpp"
 #include "sprite_manager.hpp"
 #include "block.hpp"
-#include "item_factory.hpp"
+#include "runtime_items.hpp"
 
 namespace mario {
 

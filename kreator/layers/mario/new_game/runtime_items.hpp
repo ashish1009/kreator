@@ -20,6 +20,17 @@ namespace mario {
     glm::vec2 top_pos_;
     float speed_ = 8.0f;
   };
+  
+  enum class Items {
+    Coin
+  };
+  
+  class RuntimeItem {
+  public:
+    static void Init();
+    static void Shutdown();
+    static void Create(Items item, EnttScene* scene, const glm::vec2& pos);
+  };
     
 }
 
