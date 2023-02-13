@@ -68,6 +68,7 @@ namespace mario {
   }
   
   void BlockController::PlayerHit(PlayerController* pc) {
+    auto& tc = entity_.GetComponent<TransformComponent>();
     switch (type_) {
       case Type::Empty : {
         if (!pc->IsSmall()) {
@@ -76,27 +77,20 @@ namespace mario {
         }
         break;
       }
-      case Type::Coin : {
-        auto& tc = entity_.GetComponent<TransformComponent>();
+      case Type::Coin: {
         RuntimeItem::Create(Items::Coin, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
         count_--;
-        
-        if (count_ == 0) {
-          auto& qc = entity_.GetComponent<QuadComponent>();
-          const auto& tex = qc.texture_comp.component;
-          qc.texture_comp.sprite = SubTexture::CreateFromCoords(tex, {27.0f, 27.0f});
-          
-          if (entity_.HasComponent<AnimationComponent>())
-            entity_.RemoveComponent<AnimationComponent>();
-          
-          active_ = false; 
-        }
+        if (count_ == 0)
+          SetInactive();
+
         break;
       }
-      case Type::Star : {
+      case Type::Star: {
         break;
       }
       case Type::PowerUp : {
+        RuntimeItem::Create(Items::Mushroom, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
+        SetInactive();
         break;
       }
       default:
@@ -146,10 +140,18 @@ namespace mario {
       return false;
     };
 
+    auto powerup_coin_loader_fn = [](NativeScriptComponent* sc, const std::string& script_name) {
+      if (script_name == "mario::BlockController") {
+        sc->Bind<mario::BlockController>(mario::BlockController::Type::PowerUp, 0);
+        return true;
+      }
+      return false;
+    };
 
     data->block_map["Brick"] = {BlockController::Type::Empty, brick_loader_fn, 0};
     data->block_map["Coin"] = {BlockController::Type::Coin, coin_loader_fn, 1};
     data->block_map["MultiCoin"] = {BlockController::Type::Coin, multi_coin_loader_fn, 10};
+    data->block_map["PowerUp"] = {BlockController::Type::PowerUp, powerup_coin_loader_fn, 0};
   }
 
   void BlockScriptManager::Shutdown() {

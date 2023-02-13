@@ -28,7 +28,16 @@ namespace mario {
     void PostSolve(Entity* collided_entity, b2Contact* contact, glm::vec2 normal) override {}
     void RenderGui() override {}
     
-    void SetInactive() { active_ = false; }
+    void SetInactive() {
+      auto& qc = entity_.GetComponent<QuadComponent>();
+      const auto& tex = qc.texture_comp.component;
+      qc.texture_comp.sprite = SubTexture::CreateFromCoords(tex, {27.0f, 27.0f});
+      
+      if (entity_.HasComponent<AnimationComponent>())
+        entity_.RemoveComponent<AnimationComponent>();
+      
+      active_ = false;
+    }
 
   private:
     void PlayerHit(PlayerController* pc);
@@ -54,5 +63,12 @@ namespace mario {
     static BlockController::Type GetType(const std::string& tag);
     static uint32_t GetCount(const std::string& tag);
   };
+  using BSM = BlockScriptManager;
   
+  inline bool IsBlock(const std::string& tag) {
+    return tag == "Brick" or
+    tag == "Coin" or tag == "MultiCoin" or
+    tag == "PowerUp";
+  }
+
 }

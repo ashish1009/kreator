@@ -413,11 +413,7 @@ namespace mario {
       c.bottom_ccc.runtime_fixture = (void*)entity;
     }
   }
-  
-  bool IsBlock(const std::string& tag) {
-    return tag == "Brick" or tag == "Coin" or tag == "MultiCoin";
-  }
-  
+    
   void MarioData::AddingScriptsToEntities() {
     auto tag_view = scene_->GetEntitesWith<TagComponent>();
 
@@ -428,13 +424,13 @@ namespace mario {
         if (brick_entity.HasComponent<NativeScriptComponent>()) {
           auto& nsc = brick_entity.GetComponent<NativeScriptComponent>();
 
-          nsc.loader_function = BlockScriptManager::GetLoaderFn(c.tag);
-          nsc.Bind<BlockController>(BlockScriptManager::GetType(c.tag), BlockScriptManager::GetCount(c.tag));
+          nsc.loader_function = BSM::GetLoaderFn(c.tag);
+          nsc.Bind<BlockController>(BSM::GetType(c.tag), BSM::GetCount(c.tag));
         }
         else {
           brick_entity.AddComponent<NativeScriptComponent>("mario::BlockController",
-                                                           BlockScriptManager::GetLoaderFn(c.tag)).Bind<BlockController>(BlockScriptManager::GetType(c.tag),
-                                                                                                                                                   BlockScriptManager::GetCount(c.tag));
+                                                           BSM::GetLoaderFn(c.tag)).Bind<BlockController>(BSM::GetType(c.tag),
+                                                                                                          BSM::GetCount(c.tag));
         }
       }
     }

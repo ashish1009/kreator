@@ -20,9 +20,15 @@ namespace mario {
     glm::vec2 top_pos_;
     float speed_ = 8.0f;
   };
-  
+
+  class MushroomController : public ScriptableEntity {
+  public:
+    void Create(Entity entity) override;
+    void Update(Timestep ts) override;
+  };
+
   enum class Items {
-    Coin
+    Coin, Mushroom
   };
   
   class RuntimeItem {

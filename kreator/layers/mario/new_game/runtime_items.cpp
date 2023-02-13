@@ -26,15 +26,23 @@ namespace mario {
       entity_.GetScene()->DestroyEntity(entity_);
     }
   }
+  
+  void MushroomController::Create(Entity entity) {
+    entity_ = entity;
+  }
+  
+  void MushroomController::Update(Timestep ts) {
+  }
 
   struct ItemData {
     std::string name;
+    std::string scrip_name;
     glm::vec2 coords;
     ScriptLoaderFn loader_fun;
     
     ItemData() = default;
-    ItemData(const std::string& name, glm::vec2 coords, ScriptLoaderFn fun)
-    : name(name), coords(coords), loader_fun(fun) {
+    ItemData(const std::string& name, const std::string& scrip_name, glm::vec2 coords, ScriptLoaderFn fun)
+    : name(name), scrip_name(scrip_name), coords(coords), loader_fun(fun) {
       
     }
   };
@@ -53,8 +61,17 @@ namespace mario {
       return false;
     };
     
+    static auto mushroom_script_loader = [](NativeScriptComponent* sc, const std::string& script_name) {
+      if (script_name == "mario::MushroomController") {
+        sc->Bind<mario::MushroomController>();
+        return true;
+      }
+      return false;
+    };
+    
     data = new RuntimeItemData();
-    data->item_map[Items::Coin] = { "Block Coin", glm::vec2(0.0f, 14.0f), coin_script_loader };
+    data->item_map[Items::Coin] = { "Block Coin", "mario::CoinController", glm::vec2(0.0f, 14.0f), coin_script_loader };
+    data->item_map[Items::Mushroom] = { "Mushroom", "mario::MushroomController", glm::vec2(0.0f, 20.0f), mushroom_script_loader };
   }
   
   void RuntimeItem::Shutdown() {
@@ -62,7 +79,7 @@ namespace mario {
   }
   
   void RuntimeItem::Create(Items item, EnttScene* scene, const glm::vec2& pos) {
-    static std::shared_ptr<Texture> icons = SpriteManager::GetSpriteImage(SpriteType::Items);
+    static std::shared_ptr<Texture> items = SpriteManager::GetSpriteImage(SpriteType::Items);
     
     auto coin_entity = scene->CreateEntity(data->item_map.at(item).name);
     coin_entity.GetComponent<TransformComponent>().UpdateTranslation(glm::vec3(pos, 0.1f));
@@ -71,10 +88,10 @@ namespace mario {
     qc.texture_comp.use = true;
     qc.texture_comp.use_sprite = true;
     qc.texture_comp.linear_edge = false;
-    qc.texture_comp.component = icons;
-    qc.texture_comp.sprite = SubTexture::CreateFromCoords(icons, data->item_map.at(item).coords);
+    qc.texture_comp.component = items;
+    qc.texture_comp.sprite = SubTexture::CreateFromCoords(items, data->item_map.at(item).coords);
     
-    coin_entity.AddComponent<NativeScriptComponent>("mario::CoinController", data->item_map.at(item).loader_fun);
+    coin_entity.AddComponent<NativeScriptComponent>(data->item_map.at(item).scrip_name, data->item_map.at(item).loader_fun);
   }
   
 }
