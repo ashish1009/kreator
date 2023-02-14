@@ -93,6 +93,15 @@ namespace mario {
     auto& ccc = entity.AddComponent<CircleColloiderComponent>();
     ccc.runtime_fixture = &entity_;
     
+    auto& ac = entity.AddComponent<AnimationComponent>(SpriteManager::GetSpriteImage(SpriteType::Items));
+    ac.animation = true;
+    ac.is_sprite = true;
+    ac.sprites.push_back(SubTexture::CreateFromCoords(ac.sprite_image, {0.0f, 18.0f}));
+    ac.sprites.push_back(SubTexture::CreateFromCoords(ac.sprite_image, {1.0f, 18.0f}));
+    ac.sprites.push_back(SubTexture::CreateFromCoords(ac.sprite_image, {2.0f, 18.0f}));
+    ac.sprites.push_back(SubTexture::CreateFromCoords(ac.sprite_image, {3.0f, 18.0f}));
+    ac.speed = 5.0f;
+    
     entity_.GetScene()->AddBodyToPhysicsWorld(entity_, *rigid_body_comp_);
   }
 
