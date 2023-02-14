@@ -15,16 +15,26 @@ namespace mario {
       case PlayerAction::Idle:
         break;
       case PlayerAction::Run: {
-        static const auto& sprites = SpriteManager::GetPlayerStateSprite(*player_state_, player_action_);
+        static const auto& small_run_sprites = SpriteManager::GetPlayerStateSprite(PlayerState::Small, player_action_);
+        static const auto& big_run_sprites = SpriteManager::GetPlayerStateSprite(PlayerState::Big, player_action_);
+        
         static const int32_t speed = 10;
         static int32_t anim_idx = 0;
 
         auto& qc = player_entity_->GetComponent<QuadComponent>();
         
-        if (anim_idx >= speed * sprites.size() or anim_idx < 1)
-          anim_idx = 0;
+        if (*player_state_ == PlayerState::Small) {
+          if (anim_idx >= speed * small_run_sprites.size() or anim_idx < 1)
+            anim_idx = 0;
           
-        qc.texture_comp.sprite = sprites[anim_idx / speed];
+          qc.texture_comp.sprite = small_run_sprites[anim_idx / speed];
+        }
+        else {
+          if (anim_idx >= speed * big_run_sprites.size() or anim_idx < 1)
+            anim_idx = 0;
+          
+          qc.texture_comp.sprite = big_run_sprites[anim_idx / speed];
+        }
 
         anim_idx++;
         break;
@@ -40,13 +50,13 @@ namespace mario {
     }
   }
   
-  void StateMachine::ChangeAction(PlayerAction state) {
+  void StateMachine::ChangeAction(PlayerAction action) {
 //    if (state_ == PlayerState::PowerUp) {
 //      state_ = state;
 //      return;
 //    }
 //
-    player_action_ = state;
+    player_action_ = action;
     if (player_action_ != PlayerAction::Run) {
       auto& qc = player_entity_->GetComponent<QuadComponent>();
       qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(*player_state_, player_action_)[0];
@@ -162,16 +172,6 @@ namespace mario {
                                           *pill_box_comp_);
       pill_box_comp_->reset_flag = false;
     }
-    
-//    if (state_machine_->GetState() == PlayerState::PowerUp) {
-//      if (power_up_time_ > 0.0f) {
-//        power_up_time_ -= ts;
-//        acceleration_.y = 12.0f;
-//      }
-//      else {
-//        state_machine_->ChangeState(PlayerState::BigIdle);
-//      }
-//    }
      
     velocity_.x += acceleration_.x * ts * 2.0f;
     velocity_.y += acceleration_.y * ts * 2.0f;
@@ -222,13 +222,12 @@ namespace mario {
       tc.UpdateScale_Y(player_height_);
       
       rigid_body_comp_->AddVelocity({0, 1000.0});
-      
       pill_box_comp_->SetHeight(pill_box_comp_->height * 2.0f);
       
       jumb_boost_ *= big_jump_boost_factor_;
       walk_speed_ *= big_jump_boost_factor_;
       
-      state_machine_->ChangeAction(PlayerAction::PowerUp);      
+      state_machine_->ChangeAction(PlayerAction::PowerUp);
     }
     else if (player_state_ == PlayerState::Big) {
       // Fire
