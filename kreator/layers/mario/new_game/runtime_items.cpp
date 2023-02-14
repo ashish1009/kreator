@@ -29,57 +29,56 @@ namespace mario {
   }
   
   void MushroomController::Create(Entity entity) {
-    velocity_.x = fixed_vel;
-
     entity_ = entity;
     rigid_body_comp_ = &(entity_.AddComponent<RigidBodyComponent>());
     rigid_body_comp_->type = b2_dynamicBody;
     rigid_body_comp_->angular_velocity = 0.0f;
     rigid_body_comp_->fixed_rotation = true;
-    
     rigid_body_comp_->SetGravityScale(0.0f);
-    auto& bcc = entity.AddComponent<BoxColloiderComponent>();
-    bcc.runtime_fixture = &entity_;
+
+    velocity_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * 3.7f;
+    
+    auto& ccc = entity.AddComponent<CircleColloiderComponent>();
+    ccc.runtime_fixture = &entity_;
     
     entity_.GetScene()->AddBodyToPhysicsWorld(entity_, *rigid_body_comp_);
   }
   
   void MushroomController::Update(Timestep ts) {
-    static const float width = 0.8f;
-    static const float height = -(0.70f);
-    
-    bool on_ground_ = entity_.GetScene()->CheckOnGround(&entity_, width, height);
-    
-    if (on_ground_) {
-      velocity_.y = 0;
+    if (destroy) {
+      entity_.GetScene()->DestroyEntity(entity_);
+      return;
     }
-    else {
-      velocity_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * 2.7f;
+      
+    if (going_right_ and std::abs(rigid_body_comp_->velocity.x) < max_speed_) {
+      rigid_body_comp_->AddVelocity(velocity_);
     }
-
-    rigid_body_comp_->SetVelocity(velocity_);
+    else if (!going_right_ and std::abs(rigid_body_comp_->velocity.x) < max_speed_) {
+      rigid_body_comp_->AddVelocity({-velocity_.x, velocity_.y});
+    }
   }
   
-  void MushroomController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+  void MushroomController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
     if (collided_entity->HasComponent<NativeScriptComponent>()) {
       const auto &nsc = collided_entity->GetComponent<NativeScriptComponent>();
       if (nsc.script_name == "mario::PlayerController") {
-        
+        contact->SetEnabled(false);
+        if (!hit_player_) {
+          auto pc = PlayerController::Get();
+          pc->Powerup();
+          hit_player_ = true;
+          
+          destroy = true;
+        }
+        return;
       }
       else { // May be some block with Script
-        ChangeDirection(contact_normal);
       }
     }
-    else {
-      ChangeDirection(contact_normal);
+
+    if (std::abs(contact_normal.y) < 0.1f) {
+      going_right_ = contact_normal.x < 0.0f;
     }
-  }
-  
-  void MushroomController::ChangeDirection(const glm::vec2& contact_normal) {
-    if (contact_normal.x > 0.8f) // Right Collision
-      velocity_.x = -fixed_vel;
-    else  if (contact_normal.x < -0.8f) // left Collision
-      velocity_.x = fixed_vel;
   }
 
   struct ItemData {

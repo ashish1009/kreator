@@ -10,7 +10,7 @@
 
 namespace mario {
     
-  void StateMachine::Update() {
+  void StateMachine::Update(Timestep ts) {
     switch (state_) {
       case PlayerState::Idle:
         break;
@@ -33,8 +33,6 @@ namespace mario {
         break;
       case PlayerState::Jump:
         break;
-      case PlayerState::Die:
-        break;
       case PlayerState::BigIdle:
         break;
       case PlayerState::BigRun:
@@ -51,12 +49,20 @@ namespace mario {
         break;
       case PlayerState::FireSwitchSide:
         break;
+      case PlayerState::Die:
+        break;
+      case PlayerState::PowerUp:
+        break;
     }
   }
   
   void StateMachine::ChangeState(PlayerState state) {
+//    if (state_ == PlayerState::PowerUp) {
+//      state_ = state;
+//      return;
+//    }
+//
     state_ = state;
-
     if (state_ != PlayerState::Run) {
       auto& qc = player_entity_->GetComponent<QuadComponent>();
       qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(state_)[0];
@@ -89,11 +95,11 @@ namespace mario {
   
   void PlayerController::Update(Timestep ts) { // Run Left
     auto& tc = entity_.GetComponent<TransformComponent>();
-    state_machine_->Update();
+    state_machine_->Update(ts);
     
     if (Input::IsKeyPressed(KeyCode::Left)) {
       tc.UpdateScale_X(-player_width_);
-      acceleration_.x = -warlk_speed_;
+      acceleration_.x = -walk_speed_;
       
       if (velocity_.x > 0) {
         velocity_.x -= slow_down_force_;
@@ -105,7 +111,7 @@ namespace mario {
     }
     else if (Input::IsKeyPressed(KeyCode::Right)) { // Run Right
       tc.UpdateScale_X(player_width_);
-      acceleration_.x = warlk_speed_;
+      acceleration_.x = walk_speed_;
       
       if (velocity_.x < 0) {
         velocity_.x += slow_down_force_;
@@ -159,6 +165,16 @@ namespace mario {
       acceleration_.y = 0;
       ground_debounce_ = ground_debounce_time_;
     }
+    
+//    if (state_machine_->GetState() == PlayerState::PowerUp) {
+//      if (power_up_time_ > 0.0f) {
+//        power_up_time_ -= ts;
+//        acceleration_.y = 12.0f;
+//      }
+//      else {
+//        state_machine_->ChangeState(PlayerState::BigIdle);
+//      }
+//    }
      
     velocity_.x += acceleration_.x * ts * 2.0f;
     velocity_.y += acceleration_.y * ts * 2.0f;
@@ -184,7 +200,7 @@ namespace mario {
   }
   
   void PlayerController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
-    if (is_dead_)
+    if (is_dead_ or !collided_entity or !collided_entity->GetScene())
       return;
     
     if (collided_entity->HasComponent<RigidBodyComponent>()) {
@@ -199,6 +215,28 @@ namespace mario {
     }
   }
   
+  void PlayerController::Powerup() {
+    if (player_size == PlayerSize::Small) {
+      player_size = PlayerSize::Big;
+      
+      player_height_ *= 2;
+      
+      auto& tc = entity_.GetComponent<TransformComponent>();
+      tc.UpdateScale_Y(player_height_);
+      
+      auto& pbc = entity_.GetComponent<PillBoxCollider>();
+      pbc.SetHeight(pbc.height * 2.0f);
+      
+      jumb_boost_ *= big_jump_boost_factor_;
+      walk_speed_ *= big_jump_boost_factor_;
+      
+      state_machine_->ChangeState(PlayerState::PowerUp);      
+    }
+    else if (player_size == PlayerSize::Big) {
+      // Fire
+    }
+  }
+  
   void PlayerController::RenderGui() {
     ImGui::Text(" Acc %f %f", acceleration_.x, acceleration_.y);
     ImGui::Text(" Vel %f %f", velocity_.x, velocity_.y);
@@ -208,7 +246,11 @@ namespace mario {
     ImGui::Text(" Ground Debouce %f", ground_debounce_);
     ImGui::Text(" Ground Debounce time %f", ground_debounce_time_);
     ImGui::Text(" Jump Boost %f", jumb_boost_);
-    
+
+    if(state_machine_)
+      ImGui::Text(" State %d", state_machine_->GetState());
+    ImGui::Text(" Power time %f", power_up_time_);
+
   }
   
 }

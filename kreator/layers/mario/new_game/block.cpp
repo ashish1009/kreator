@@ -89,8 +89,10 @@ namespace mario {
         break;
       }
       case Type::PowerUp : {
-        RuntimeItem::Create(Items::Mushroom, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.2});
-        SetInactive();
+        if (pc->IsSmall()) {
+          RuntimeItem::Create(Items::Mushroom, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.2});
+          SetInactive();
+        }
         break;
       }
       default:

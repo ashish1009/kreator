@@ -56,14 +56,19 @@ namespace mario {
     const auto& player_sprite = GetSpriteImage(SpriteType::Player);
     // Small Player
     data_->player_subtextures_map[PlayerState::Idle].push_back(SubTexture::CreateFromCoords(player_sprite, {6.0f, 30.0f}));
-    
     data_->player_subtextures_map[PlayerState::Run].push_back(SubTexture::CreateFromCoords(player_sprite, {0.0f, 30.0f}));
     data_->player_subtextures_map[PlayerState::Run].push_back(SubTexture::CreateFromCoords(player_sprite, {1.0f, 30.0f}));
     data_->player_subtextures_map[PlayerState::Run].push_back(SubTexture::CreateFromCoords(player_sprite, {2.0f, 30.0f}));
-    
     data_->player_subtextures_map[PlayerState::SwitchSide].push_back(SubTexture::CreateFromCoords(player_sprite, {3.0f, 30.0f}));
-    
     data_->player_subtextures_map[PlayerState::Jump].push_back(SubTexture::CreateFromCoords(player_sprite, {4.0f, 30.0f}));
+
+    // Big Player
+    data_->player_subtextures_map[PlayerState::BigIdle].push_back(SubTexture::CreateFromCoords(player_sprite, {6.0f, 31.0f}));
+    data_->player_subtextures_map[PlayerState::BigRun].push_back(SubTexture::CreateFromCoords(player_sprite, {0.0f, 31.0f}));
+    data_->player_subtextures_map[PlayerState::BigRun].push_back(SubTexture::CreateFromCoords(player_sprite, {1.0f, 31.0f}));
+    data_->player_subtextures_map[PlayerState::BigRun].push_back(SubTexture::CreateFromCoords(player_sprite, {2.0f, 31.0f}));
+    data_->player_subtextures_map[PlayerState::BigSwitchSide].push_back(SubTexture::CreateFromCoords(player_sprite, {3.0f, 31.0f}));
+    data_->player_subtextures_map[PlayerState::BigJump].push_back(SubTexture::CreateFromCoords(player_sprite, {4.0f, 31.0f}));
   }
   
 }
