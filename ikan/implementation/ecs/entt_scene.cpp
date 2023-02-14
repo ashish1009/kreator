@@ -571,7 +571,7 @@ namespace ikan {
     if (is_pill)
       circle_shape.m_radius = cc2d.radius;
     else
-      circle_shape.m_radius = tc.Scale().x * cc2d.radius;
+      circle_shape.m_radius = std::abs(tc.Scale().x) * cc2d.radius;
     
     b2FixtureDef fixture_def;
     fixture_def.shape = & circle_shape;
@@ -589,8 +589,8 @@ namespace ikan {
                                       const PillBoxCollider &pbc,
                                       RigidBodyComponent& rb2d) {
     AddBoxColliderData(tc, pbc.bcc, rb2d, true);
-    AddCircleColliderData(tc, pbc.top_ccc, rb2d, false);
-    AddCircleColliderData(tc, pbc.bottom_ccc, rb2d, false);
+    AddCircleColliderData(tc, pbc.top_ccc, rb2d, true);
+    AddCircleColliderData(tc, pbc.bottom_ccc, rb2d, true);
   }
   
   int32_t FixtureListSize(b2Body* body) {
@@ -611,8 +611,8 @@ namespace ikan {
     }
     
     AddPillColliderData(tc, pbc, *rb);
+    body->ResetMassData();
   }
-  
   
   float RayCastInfo::ReportFixture(b2Fixture *fixture, const b2Vec2 &hit_point, const b2Vec2 &normal, float fraction) {
     if ((Entity*)fixture->GetUserData().pointer == request_object) {

@@ -213,6 +213,7 @@ namespace ikan {
 
     void SetHeight(float height);
     void SetWidth(float width);
+    void SetSize(const glm::vec2& size);
     void RecalculateColliders();
     
     void RenderGui();

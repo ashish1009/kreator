@@ -715,6 +715,13 @@ namespace ikan {
     reset_flag = true;
   }
   
+  void PillBoxCollider::SetSize(const glm::vec2& size) {
+    this->height = size.y;
+    this->width = size.x;
+    RecalculateColliders();
+    reset_flag = true;
+  }
+  
   void PillBoxCollider::RecalculateColliders() {
     float circle_radius = width;
     float box_height = std::max((height - circle_radius), 0.1f);
@@ -725,7 +732,7 @@ namespace ikan {
     top_ccc.offset = offset + glm::vec2(0, box_height);
     bottom_ccc.offset = offset - glm::vec2(0, box_height);
     
-    bcc.size = {width - 0.01, box_height};
+    bcc.size = {width - 0.03, box_height};
     bcc.offset = offset;
   }
   

@@ -53,6 +53,7 @@ namespace mario {
       case PlayerAction::Die:
         break;
       case PlayerAction::PowerUp: {
+        // Animation for Flower collision
         if (*player_state_ == PlayerState::Fire) {
           auto& qc = player_entity_->GetComponent<QuadComponent>();
           static const int32_t speed = 10;
@@ -114,7 +115,7 @@ namespace mario {
     CheckOnGround();
     state_machine_->Update(ts);
 
-    // Freez until player power up complets
+    // Freeze until player power up complets
     if (state_machine_->GetAction() == PlayerAction::PowerUp) {
       freez_time_-= ts;
       if (freez_time_ >= 0) {
@@ -223,7 +224,9 @@ namespace mario {
   
   void PlayerController::CheckOnGround() {
     float inner_player_width = player_width_ * 0.6f;
-    float y_val = -(player_height_ / 2 + 0.05f);
+    float y_val = -(player_height_ / 2);
+    y_val -= (player_state_ == PlayerState::Small) ? 0.02f : 0.02f;
+    
     on_ground_ = entity_.GetScene()->CheckOnGround(&entity_, inner_player_width, y_val);
   }
   
@@ -251,8 +254,9 @@ namespace mario {
       auto& tc = entity_.GetComponent<TransformComponent>();
       tc.UpdateScale_Y(player_height_);
       
-      rigid_body_comp_->AddVelocity({0, 1000.0});
-      pill_box_comp_->SetHeight(pill_box_comp_->height * 2.0f);
+      // Add Impulse to push player out of ground while changing size
+      rigid_body_comp_->AddVelocity({velocity_.x, 1000.0});
+      pill_box_comp_->SetSize({0.5f, pill_box_comp_->height * 2.0f});
       
       jumb_boost_ *= big_jump_boost_factor_;
       walk_speed_ *= big_jump_boost_factor_;
