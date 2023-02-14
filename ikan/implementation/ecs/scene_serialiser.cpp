@@ -102,7 +102,7 @@ namespace ikan {
     return out;
   }
   
-  void DeserializeBoxCollider(BoxColloiderComponent& bcc, const YAML::Node& box_colloider_component, std::string identifier) {
+  void DeserializeBoxCollider(BoxColliderComponent& bcc, const YAML::Node& box_colloider_component, std::string identifier) {
     bcc.offset = box_colloider_component["Offset" + identifier].as<glm::vec2>();
     bcc.size = box_colloider_component["Size" + identifier].as<glm::vec2>();
     
@@ -120,7 +120,7 @@ namespace ikan {
     IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution Threshold | {0}", bcc.restitution_threshold);
   }
   
-  void DeserializeCircleCollider(CircleColloiderComponent& ccc, const YAML::Node& circle_colloider_component, std::string identifier) {
+  void DeserializeCircleCollider(CircleColliiderComponent& ccc, const YAML::Node& circle_colloider_component, std::string identifier) {
     ccc.offset = circle_colloider_component["Offset" + identifier].as<glm::vec2>();
     ccc.radius = circle_colloider_component["Radius" + identifier].as<float>();
     
@@ -138,7 +138,7 @@ namespace ikan {
     IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution Threshold | {0}", ccc.restitution_threshold);
   }
   
-  void SerializeBoxCollider(YAML::Emitter& out, const BoxColloiderComponent& bcc, std::string identifier) {
+  void SerializeBoxCollider(YAML::Emitter& out, const BoxColliderComponent& bcc, std::string identifier) {
     out << YAML::Key << "Offset" + identifier << YAML::Value << bcc.offset;
     out << YAML::Key << "Size" + identifier << YAML::Value << bcc.size;
     
@@ -148,7 +148,7 @@ namespace ikan {
     out << YAML::Key << "Restitution Threshold" + identifier << YAML::Value << bcc.restitution_threshold;
   }
   
-  void SerializeCircleCollider(YAML::Emitter& out, const CircleColloiderComponent& ccc, std::string identifier) {
+  void SerializeCircleCollider(YAML::Emitter& out, const CircleColliiderComponent& ccc, std::string identifier) {
     out << YAML::Key << "Offset" + identifier << YAML::Value << ccc.offset;
     out << YAML::Key << "Radius" + identifier << YAML::Value << ccc.radius;
     
@@ -315,32 +315,32 @@ namespace ikan {
       }
 
       // ------------------------------------------------------------------------
-      if (entity.HasComponent<BoxColloiderComponent>()) {
+      if (entity.HasComponent<BoxColliderComponent>()) {
         out << YAML::Key << "BoxColloiderComponent";
         out << YAML::BeginMap; // BoxColloiderComponent
         
-        auto& bcc = entity.GetComponent<BoxColloiderComponent>();
+        auto& bcc = entity.GetComponent<BoxColliderComponent>();
         SerializeBoxCollider(out, bcc, "");
         
         out << YAML::EndMap; // BoxColloiderComponent
       }
       // ------------------------------------------------------------------------
-      if (entity.HasComponent<CircleColloiderComponent>()) {
+      if (entity.HasComponent<CircleColliiderComponent>()) {
         out << YAML::Key << "CircleColloiderComponent";
         out << YAML::BeginMap; // CircleColloiderComponent
                 
-        auto& ccc = entity.GetComponent<CircleColloiderComponent>();
+        auto& ccc = entity.GetComponent<CircleColliiderComponent>();
         SerializeCircleCollider(out, ccc, "");
         
         out << YAML::EndMap; // CircleColloiderComponent
       }
       
       // ------------------------------------------------------------------------
-      if (entity.HasComponent<PillBoxCollider>()) {
+      if (entity.HasComponent<PillBoxColliderComponent>()) {
         out << YAML::Key << "PillBoxColliderComponent";
         out << YAML::BeginMap; // PillBoxColliderComponent
         
-        auto& pbc = entity.GetComponent<PillBoxCollider>();
+        auto& pbc = entity.GetComponent<PillBoxColliderComponent>();
         
         out << YAML::Key << "Offset" << YAML::Value << pbc.offset;
         out << YAML::Key << "Width" << YAML::Value << pbc.width;
@@ -582,21 +582,21 @@ namespace ikan {
         // --------------------------------------------------------------------
         auto box_colloider_component = entity["BoxColloiderComponent"];
         if (box_colloider_component) {
-          auto& bcc = deserialized_entity.AddComponent<BoxColloiderComponent>();
+          auto& bcc = deserialized_entity.AddComponent<BoxColliderComponent>();
           DeserializeBoxCollider(bcc, box_colloider_component, "");
         } // if (box_colloider_component)
 
         // --------------------------------------------------------------------
         auto circle_colloider_component = entity["CircleColloiderComponent"];
         if (circle_colloider_component) {
-          auto& ccc = deserialized_entity.AddComponent<CircleColloiderComponent>();
+          auto& ccc = deserialized_entity.AddComponent<CircleColliiderComponent>();
           DeserializeCircleCollider(ccc, circle_colloider_component, "");
         } // if (circle_colloider_component)
 
         // --------------------------------------------------------------------
         auto Pill_box_colloider_component = entity["PillBoxColliderComponent"];
         if (Pill_box_colloider_component) {
-          auto& pbc = deserialized_entity.AddComponent<PillBoxCollider>();
+          auto& pbc = deserialized_entity.AddComponent<PillBoxColliderComponent>();
           
           pbc.offset  = Pill_box_colloider_component["Offset"].as<glm::vec2>();
           pbc.width  = Pill_box_colloider_component["Width"].as<float>();

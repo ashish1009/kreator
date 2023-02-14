@@ -251,18 +251,18 @@ namespace ikan {
     body->SetFixedRotation(rb2d.fixed_rotation);
     rb2d.runtime_body = body;
     
-    if (entity.HasComponent<BoxColloiderComponent>()) {
-      auto& bc2d = entity.GetComponent<BoxColloiderComponent>();
+    if (entity.HasComponent<BoxColliderComponent>()) {
+      auto& bc2d = entity.GetComponent<BoxColliderComponent>();
       AddBoxColliderData(transform, bc2d, rb2d);
     }
     
-    if (entity.HasComponent<CircleColloiderComponent>()) {
-      auto& cc2d = entity.GetComponent<CircleColloiderComponent>();
+    if (entity.HasComponent<CircleColliiderComponent>()) {
+      auto& cc2d = entity.GetComponent<CircleColliiderComponent>();
       AddCircleColliderData(transform, cc2d, rb2d);
     }
     
-    if (entity.HasComponent<PillBoxCollider>()) {
-      auto& pbc = entity.GetComponent<PillBoxCollider>();
+    if (entity.HasComponent<PillBoxColliderComponent>()) {
+      auto& pbc = entity.GetComponent<PillBoxColliderComponent>();
       AddPillColliderData(transform, pbc, rb2d);
     }
   }
@@ -539,7 +539,7 @@ namespace ikan {
   }
   
   void EnttScene::AddBoxColliderData(const TransformComponent& tc,
-                                     const BoxColloiderComponent& bc2d,
+                                     const BoxColliderComponent& bc2d,
                                      RigidBodyComponent& rb2d,
                                      bool is_pill) {
     b2Body* body = rb2d.runtime_body;
@@ -562,7 +562,7 @@ namespace ikan {
   }
   
   void EnttScene::AddCircleColliderData(const TransformComponent& tc,
-                                        const CircleColloiderComponent& cc2d,
+                                        const CircleColliiderComponent& cc2d,
                                         RigidBodyComponent& rb2d,
                                         bool is_pill) {
     b2Body* body = rb2d.runtime_body;
@@ -586,7 +586,7 @@ namespace ikan {
   }
   
   void EnttScene::AddPillColliderData(const TransformComponent &tc,
-                                      const PillBoxCollider &pbc,
+                                      const PillBoxColliderComponent &pbc,
                                       RigidBodyComponent& rb2d) {
     AddBoxColliderData(tc, pbc.bcc, rb2d, true);
     AddCircleColliderData(tc, pbc.top_ccc, rb2d, true);
@@ -603,7 +603,7 @@ namespace ikan {
     return size;
   }
   
-  void EnttScene::ResetPillBoxColliderData(const TransformComponent &tc, RigidBodyComponent* rb, const PillBoxCollider &pbc) {
+  void EnttScene::ResetPillBoxColliderData(const TransformComponent &tc, RigidBodyComponent* rb, const PillBoxColliderComponent &pbc) {
     b2Body* body = rb->runtime_body;
     int32_t size = FixtureListSize(body);
     for (int32_t i = 0; i < size; i++) {

@@ -104,7 +104,7 @@ namespace mario {
     rigid_body_comp_ = &(GetComponent<RigidBodyComponent>());
     rigid_body_comp_->SetGravityScale(0.0f);
     
-    pill_box_comp_ = &(GetComponent<PillBoxCollider>());
+    pill_box_comp_ = &(GetComponent<PillBoxColliderComponent>());
 
     pill_box_comp_->bcc.runtime_fixture = (void*)&entity_;
     pill_box_comp_->top_ccc.runtime_fixture = (void*)&entity_;

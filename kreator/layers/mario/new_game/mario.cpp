@@ -132,8 +132,8 @@ namespace mario {
     }
     
     // Collider Component
-    if (!player_entity.HasComponent<PillBoxCollider>()) {
-      player_entity.AddComponent<PillBoxCollider>();
+    if (!player_entity.HasComponent<PillBoxColliderComponent>()) {
+      player_entity.AddComponent<PillBoxColliderComponent>();
     }
     
     auto player_controler_loader_fn = [](NativeScriptComponent* sc,
@@ -399,16 +399,16 @@ namespace mario {
   
   void MarioData::AddingRuntimeFixtureToColliders() {
     // Store the Entity in each box collider
-    auto box_view = scene_->GetEntitesWith<BoxColloiderComponent>();
+    auto box_view = scene_->GetEntitesWith<BoxColliderComponent>();
     for (auto e : box_view) {
-      auto &c = box_view.get<BoxColloiderComponent>(e);
+      auto &c = box_view.get<BoxColliderComponent>(e);
       Entity* entity = new Entity(e, scene_.get());
       c.runtime_fixture = (void*)entity;
     }
     
-    auto pill_view = scene_->GetEntitesWith<PillBoxCollider>();
+    auto pill_view = scene_->GetEntitesWith<PillBoxColliderComponent>();
     for (auto e : pill_view) {
-      auto &c = pill_view.get<PillBoxCollider>(e);
+      auto &c = pill_view.get<PillBoxColliderComponent>(e);
       Entity* entity = new Entity(e, scene_.get());
       c.bcc.runtime_fixture = (void*)entity;
       c.top_ccc.runtime_fixture = (void*)entity;

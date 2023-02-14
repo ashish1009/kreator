@@ -545,9 +545,9 @@ namespace ikan_game {
     }
     // Box coilider
     {
-      auto view = active_scene_->GetEntitesWith<TransformComponent, BoxColloiderComponent>();
+      auto view = active_scene_->GetEntitesWith<TransformComponent, BoxColliderComponent>();
       for (auto entity : view) {
-        auto [tc, bcc] = view.get<TransformComponent, BoxColloiderComponent>(entity);
+        auto [tc, bcc] = view.get<TransformComponent, BoxColliderComponent>(entity);
         
         glm::vec3 p = tc.Translation() + glm::vec3(bcc.offset, 0.001f);
         glm::vec3 s = tc.Scale() * glm::vec3((bcc.size * 2.0f), 1.0f); // We need diameter
@@ -558,9 +558,9 @@ namespace ikan_game {
 
     // Circle coilider
     {
-      auto view = active_scene_->GetEntitesWith<TransformComponent, CircleColloiderComponent>();
+      auto view = active_scene_->GetEntitesWith<TransformComponent, CircleColliiderComponent>();
       for (auto entity : view) {
-        auto [tc, ccc] = view.get<TransformComponent, CircleColloiderComponent>(entity);
+        auto [tc, ccc] = view.get<TransformComponent, CircleColliiderComponent>(entity);
         
         glm::vec3 p = tc.Translation() + glm::vec3(ccc.offset, 0.001f);
         glm::vec3 s = tc.Scale() * glm::vec3(ccc.radius * 2.0f); // We need diameter
@@ -573,9 +573,9 @@ namespace ikan_game {
     
     // Pill box coilider
     {
-      auto view = active_scene_->GetEntitesWith<TransformComponent, PillBoxCollider>();
+      auto view = active_scene_->GetEntitesWith<TransformComponent, PillBoxColliderComponent>();
       for (auto entity : view) {
-        auto [tc, pbc] = view.get<TransformComponent, PillBoxCollider>(entity);
+        auto [tc, pbc] = view.get<TransformComponent, PillBoxColliderComponent>(entity);
         pbc.RecalculateColliders();
         {
           const auto& bcc = pbc.bcc;

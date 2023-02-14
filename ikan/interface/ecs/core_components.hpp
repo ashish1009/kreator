@@ -164,7 +164,7 @@ namespace ikan {
     DEFINE_COPY_MOVE_CONSTRUCTORS(RigidBodyComponent);
   };
   
-  struct BoxColloiderComponent {
+  struct BoxColliderComponent {
     glm::vec2 offset = { 0.0f, 0.0f };
     glm::vec2 size = { 0.5f, 0.5f };
     
@@ -178,11 +178,11 @@ namespace ikan {
     void* runtime_fixture = nullptr;
 
     void RenderGui();
-    BoxColloiderComponent() = default;
-    DEFINE_COPY_MOVE_CONSTRUCTORS(BoxColloiderComponent);
+    BoxColliderComponent() = default;
+    DEFINE_COPY_MOVE_CONSTRUCTORS(BoxColliderComponent);
   };
   
-  struct CircleColloiderComponent {
+  struct CircleColliiderComponent {
     glm::vec2 offset = { 0.0f, 0.0f };
     float radius = 0.5f;
     
@@ -196,20 +196,20 @@ namespace ikan {
     void* runtime_fixture = nullptr;
 
     void RenderGui();
-    CircleColloiderComponent() = default;
-    DEFINE_COPY_MOVE_CONSTRUCTORS(CircleColloiderComponent);
+    CircleColliiderComponent() = default;
+    DEFINE_COPY_MOVE_CONSTRUCTORS(CircleColliiderComponent);
   };
   
-  struct PillBoxCollider {
+  struct PillBoxColliderComponent {
     float width = 0.5f;
     float height = 0.5f;
     glm::vec2 offset;
     
     bool reset_flag = false;
     
-    BoxColloiderComponent bcc;
-    CircleColloiderComponent top_ccc;
-    CircleColloiderComponent bottom_ccc;
+    BoxColliderComponent bcc;
+    CircleColliiderComponent top_ccc;
+    CircleColliiderComponent bottom_ccc;
 
     void SetHeight(float height);
     void SetWidth(float width);
@@ -217,8 +217,8 @@ namespace ikan {
     void RecalculateColliders();
     
     void RenderGui();
-    PillBoxCollider();
-    DEFINE_COPY_MOVE_CONSTRUCTORS(PillBoxCollider);
+    PillBoxColliderComponent();
+    DEFINE_COPY_MOVE_CONSTRUCTORS(PillBoxColliderComponent);
   };
   
   struct AnimationComponent {
@@ -246,6 +246,6 @@ namespace ikan {
   
   using AllComponents =
   ComponentGroup<TransformComponent, QuadComponent, CircleComponent, CameraComponent, NativeScriptComponent,
-  RigidBodyComponent, BoxColloiderComponent, CircleColloiderComponent, PillBoxCollider, AnimationComponent>;
+  RigidBodyComponent, BoxColliderComponent, CircleColliiderComponent, PillBoxColliderComponent, AnimationComponent>;
 
 }

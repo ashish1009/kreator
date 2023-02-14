@@ -40,10 +40,10 @@ namespace ikan {
   };
   
   struct TransformComponent;
-  struct BoxColloiderComponent;
-  struct CircleColloiderComponent;
+  struct BoxColliderComponent;
+  struct CircleColliiderComponent;
   struct RigidBodyComponent;
-  struct PillBoxCollider;
+  struct PillBoxColliderComponent;
   struct CameraData {
     SceneCamera* scene_camera = nullptr;
     glm::vec3 position;
@@ -128,7 +128,7 @@ namespace ikan {
     ///   - height: height of entity
     bool CheckOnGround(Entity* entity, float width, float height);
     
-    static void ResetPillBoxColliderData(const TransformComponent &tc, RigidBodyComponent* rb, const PillBoxCollider& pbc);
+    static void ResetPillBoxColliderData(const TransformComponent &tc, RigidBodyComponent* rb, const PillBoxColliderComponent& pbc);
 
     // ------------------
     // Getters
@@ -232,14 +232,14 @@ namespace ikan {
     ///   - bc2d: box data
     ///   - body: body
     ///   - is_pill: Is Pill Box
-    static void AddBoxColliderData(const TransformComponent& tc, const BoxColloiderComponent& bc2d, RigidBodyComponent& rb2d, bool is_pill = false);
+    static void AddBoxColliderData(const TransformComponent& tc, const BoxColliderComponent& bc2d, RigidBodyComponent& rb2d, bool is_pill = false);
     /// This function add the circle collider data to worlds body
     /// - Parameters:
     ///   - tc: transform of entity
     ///   - cc2d: circlw data
     ///   - body: body
     ///   - is_pill: is Pill Box
-    static void AddCircleColliderData(const TransformComponent& tc, const CircleColloiderComponent& cc2d, RigidBodyComponent& rb2d, bool is_pill = false);
+    static void AddCircleColliderData(const TransformComponent& tc, const CircleColliiderComponent& cc2d, RigidBodyComponent& rb2d, bool is_pill = false);
 
     /// This function add the circle collider data to worlds body
     /// - Parameters:
@@ -247,7 +247,7 @@ namespace ikan {
     ///   - cc2d: circlw data
     ///   - body: body
     ///   - is_pill: is Pill Box
-    static void AddPillColliderData(const TransformComponent& tc, const PillBoxCollider& pbc, RigidBodyComponent& rb2d);
+    static void AddPillColliderData(const TransformComponent& tc, const PillBoxColliderComponent& pbc, RigidBodyComponent& rb2d);
     
     // ------------------
     // Member variabls

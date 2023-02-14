@@ -38,7 +38,7 @@ namespace mario {
 
     velocity_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * 3.7f;
     
-    auto& ccc = entity.AddComponent<CircleColloiderComponent>();
+    auto& ccc = entity.AddComponent<CircleColliiderComponent>();
     ccc.runtime_fixture = &entity_;
     
     entity_.GetScene()->AddBodyToPhysicsWorld(entity_, *rigid_body_comp_);
@@ -90,7 +90,7 @@ namespace mario {
     rigid_body_comp_->fixed_rotation = true;
     rigid_body_comp_->SetGravityScale(0.0f);
     
-    auto& ccc = entity.AddComponent<CircleColloiderComponent>();
+    auto& ccc = entity.AddComponent<CircleColliiderComponent>();
     ccc.runtime_fixture = &entity_;
     
     auto& ac = entity.AddComponent<AnimationComponent>(SpriteManager::GetSpriteImage(SpriteType::Items));

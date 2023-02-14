@@ -549,7 +549,7 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Box Colloider Component
   // -------------------------------------------------------------------------
-  BoxColloiderComponent::BoxColloiderComponent(const BoxColloiderComponent& other) {
+  BoxColliderComponent::BoxColliderComponent(const BoxColliderComponent& other) {
     offset = other.offset;
     size = other.size;
     density = other.density;
@@ -559,28 +559,7 @@ namespace ikan {
     
     runtime_fixture = other.runtime_fixture;
   }
-  BoxColloiderComponent& BoxColloiderComponent::operator=(const BoxColloiderComponent& other) {
-    offset = other.offset;
-    size = other.size;
-    density = other.density;
-    friction = other.friction;
-    restitution = other.restitution;
-    restitution_threshold = other.restitution_threshold;
-    
-    runtime_fixture = other.runtime_fixture;
-    return *this;
-  }
-  BoxColloiderComponent::BoxColloiderComponent(BoxColloiderComponent&& other) {
-    offset = other.offset;
-    size = other.size;
-    density = other.density;
-    friction = other.friction;
-    restitution = other.restitution;
-    restitution_threshold = other.restitution_threshold;
-    
-    runtime_fixture = other.runtime_fixture;
-  }
-  BoxColloiderComponent& BoxColloiderComponent::operator=(BoxColloiderComponent&& other) {
+  BoxColliderComponent& BoxColliderComponent::operator=(const BoxColliderComponent& other) {
     offset = other.offset;
     size = other.size;
     density = other.density;
@@ -591,7 +570,28 @@ namespace ikan {
     runtime_fixture = other.runtime_fixture;
     return *this;
   }
-  void BoxColloiderComponent::RenderGui() {
+  BoxColliderComponent::BoxColliderComponent(BoxColliderComponent&& other) {
+    offset = other.offset;
+    size = other.size;
+    density = other.density;
+    friction = other.friction;
+    restitution = other.restitution;
+    restitution_threshold = other.restitution_threshold;
+    
+    runtime_fixture = other.runtime_fixture;
+  }
+  BoxColliderComponent& BoxColliderComponent::operator=(BoxColliderComponent&& other) {
+    offset = other.offset;
+    size = other.size;
+    density = other.density;
+    friction = other.friction;
+    restitution = other.restitution;
+    restitution_threshold = other.restitution_threshold;
+    
+    runtime_fixture = other.runtime_fixture;
+    return *this;
+  }
+  void BoxColliderComponent::RenderGui() {
     PropertyGrid::Float2("Offset", offset);
     PropertyGrid::Float2("Size", size);
     ImGui::Separator();
@@ -607,7 +607,7 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Circle Colloider Component
   // -------------------------------------------------------------------------
-  CircleColloiderComponent::CircleColloiderComponent(const CircleColloiderComponent& other) {
+  CircleColliiderComponent::CircleColliiderComponent(const CircleColliiderComponent& other) {
     offset = other.offset;
     radius = other.radius;
     density = other.density;
@@ -615,24 +615,7 @@ namespace ikan {
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
   }
-  CircleColloiderComponent& CircleColloiderComponent::operator=(const CircleColloiderComponent& other) {
-    offset = other.offset;
-    radius = other.radius;
-    density = other.density;
-    friction = other.friction;
-    restitution = other.restitution;
-    restitution_threshold = other.restitution_threshold;
-    return *this;
-  }
-  CircleColloiderComponent::CircleColloiderComponent(CircleColloiderComponent&& other) {
-    offset = other.offset;
-    radius = other.radius;
-    density = other.density;
-    friction = other.friction;
-    restitution = other.restitution;
-    restitution_threshold = other.restitution_threshold;
-  }
-  CircleColloiderComponent& CircleColloiderComponent::operator=(CircleColloiderComponent&& other) {
+  CircleColliiderComponent& CircleColliiderComponent::operator=(const CircleColliiderComponent& other) {
     offset = other.offset;
     radius = other.radius;
     density = other.density;
@@ -641,7 +624,24 @@ namespace ikan {
     restitution_threshold = other.restitution_threshold;
     return *this;
   }
-  void CircleColloiderComponent::RenderGui() {
+  CircleColliiderComponent::CircleColliiderComponent(CircleColliiderComponent&& other) {
+    offset = other.offset;
+    radius = other.radius;
+    density = other.density;
+    friction = other.friction;
+    restitution = other.restitution;
+    restitution_threshold = other.restitution_threshold;
+  }
+  CircleColliiderComponent& CircleColliiderComponent::operator=(CircleColliiderComponent&& other) {
+    offset = other.offset;
+    radius = other.radius;
+    density = other.density;
+    friction = other.friction;
+    restitution = other.restitution;
+    restitution_threshold = other.restitution_threshold;
+    return *this;
+  }
+  void CircleColliiderComponent::RenderGui() {
     PropertyGrid::Float2("Offset", offset);
     PropertyGrid::Float1("Radius", radius);
     ImGui::Separator();
@@ -657,10 +657,10 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Pill Box Colloider Component
   // -------------------------------------------------------------------------
-  PillBoxCollider::PillBoxCollider() {
+  PillBoxColliderComponent::PillBoxColliderComponent() {
     RecalculateColliders();
   }
-  PillBoxCollider::PillBoxCollider(const PillBoxCollider& other) {
+  PillBoxColliderComponent::PillBoxColliderComponent(const PillBoxColliderComponent& other) {
     offset = other.offset;
     width = other.width;
     height = other.height;
@@ -670,7 +670,7 @@ namespace ikan {
     bottom_ccc = other.bottom_ccc;
     RecalculateColliders();
   }
-  PillBoxCollider& PillBoxCollider::operator=(const PillBoxCollider& other) {
+  PillBoxColliderComponent& PillBoxColliderComponent::operator=(const PillBoxColliderComponent& other) {
     offset = other.offset;
     width = other.width;
     height = other.height;
@@ -681,7 +681,7 @@ namespace ikan {
     RecalculateColliders();
     return *this;
   }
-  PillBoxCollider::PillBoxCollider(PillBoxCollider&& other) {
+  PillBoxColliderComponent::PillBoxColliderComponent(PillBoxColliderComponent&& other) {
     offset = other.offset;
     width = other.width;
     height = other.height;
@@ -691,7 +691,7 @@ namespace ikan {
     bottom_ccc = other.bottom_ccc;
     RecalculateColliders();
   }
-  PillBoxCollider& PillBoxCollider::operator=(PillBoxCollider&& other) {
+  PillBoxColliderComponent& PillBoxColliderComponent::operator=(PillBoxColliderComponent&& other) {
     offset = other.offset;
     width = other.width;
     height = other.height;
@@ -703,26 +703,26 @@ namespace ikan {
     return *this;
   }
   
-  void PillBoxCollider::SetHeight(float height) {
+  void PillBoxColliderComponent::SetHeight(float height) {
     this->height = height;
     RecalculateColliders();
     reset_flag = true;
   }
 
-  void PillBoxCollider::SetWidth(float width) {
+  void PillBoxColliderComponent::SetWidth(float width) {
     this->width = width;
     RecalculateColliders();
     reset_flag = true;
   }
   
-  void PillBoxCollider::SetSize(const glm::vec2& size) {
+  void PillBoxColliderComponent::SetSize(const glm::vec2& size) {
     this->height = size.y;
     this->width = size.x;
     RecalculateColliders();
     reset_flag = true;
   }
   
-  void PillBoxCollider::RecalculateColliders() {
+  void PillBoxColliderComponent::RecalculateColliders() {
     float circle_radius = width;
     float box_height = std::max((height - circle_radius), 0.1f);
     
@@ -736,7 +736,7 @@ namespace ikan {
     bcc.offset = offset;
   }
   
-  void PillBoxCollider::RenderGui() {
+  void PillBoxColliderComponent::RenderGui() {
     if (PropertyGrid::Float2("Offset", offset))
       RecalculateColliders();
     if (PropertyGrid::Float1("Width ", width))
