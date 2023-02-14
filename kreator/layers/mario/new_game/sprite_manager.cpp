@@ -14,7 +14,7 @@ namespace mario {
     std::unordered_map<SpriteType, std::shared_ptr<Texture>> sprite_map;
     
     // Player
-    std::unordered_map<PlayerState, std::vector<std::shared_ptr<SubTexture>>> player_subtextures_map;
+    std::unordered_map<PlayerState, std::unordered_map<PlayerAction, std::vector<std::shared_ptr<SubTexture>>>> player_subtextures_map;
   };
   static SpriteData* data_;
   
@@ -41,34 +41,32 @@ namespace mario {
     return data_->sprite_map.at(type);
   }
   
-  std::vector<std::shared_ptr<SubTexture>> SpriteManager::GetPlayerStateSprite(PlayerState state) {
+  std::vector<std::shared_ptr<SubTexture>> SpriteManager::GetPlayerStateSprite(PlayerState state, PlayerAction action) {
     if (!data_)
       return {nullptr};
     
     if (data_->player_subtextures_map.find(state) == data_->player_subtextures_map.end())
       return {nullptr};
+    
+    const auto& player_map = data_->player_subtextures_map.at(state);
+    
+    if (player_map.find(action) == player_map.end())
+      return {nullptr};
 
-    return data_->player_subtextures_map.at(state);
+    return player_map.at(action);
   }
 
-  
   void SpriteManager::FillPlayerStateSprite() {
     const auto& player_sprite = GetSpriteImage(SpriteType::Player);
     // Small Player
-    data_->player_subtextures_map[PlayerState::Idle].push_back(SubTexture::CreateFromCoords(player_sprite, {6.0f, 30.0f}));
-    data_->player_subtextures_map[PlayerState::Run].push_back(SubTexture::CreateFromCoords(player_sprite, {0.0f, 30.0f}));
-    data_->player_subtextures_map[PlayerState::Run].push_back(SubTexture::CreateFromCoords(player_sprite, {1.0f, 30.0f}));
-    data_->player_subtextures_map[PlayerState::Run].push_back(SubTexture::CreateFromCoords(player_sprite, {2.0f, 30.0f}));
-    data_->player_subtextures_map[PlayerState::SwitchSide].push_back(SubTexture::CreateFromCoords(player_sprite, {3.0f, 30.0f}));
-    data_->player_subtextures_map[PlayerState::Jump].push_back(SubTexture::CreateFromCoords(player_sprite, {4.0f, 30.0f}));
-
-    // Big Player
-    data_->player_subtextures_map[PlayerState::BigIdle].push_back(SubTexture::CreateFromCoords(player_sprite, {6.0f, 31.0f}));
-    data_->player_subtextures_map[PlayerState::BigRun].push_back(SubTexture::CreateFromCoords(player_sprite, {0.0f, 31.0f}));
-    data_->player_subtextures_map[PlayerState::BigRun].push_back(SubTexture::CreateFromCoords(player_sprite, {1.0f, 31.0f}));
-    data_->player_subtextures_map[PlayerState::BigRun].push_back(SubTexture::CreateFromCoords(player_sprite, {2.0f, 31.0f}));
-    data_->player_subtextures_map[PlayerState::BigSwitchSide].push_back(SubTexture::CreateFromCoords(player_sprite, {3.0f, 31.0f}));
-    data_->player_subtextures_map[PlayerState::BigJump].push_back(SubTexture::CreateFromCoords(player_sprite, {4.0f, 31.0f}));
+    auto& small_player_map = data_->player_subtextures_map[PlayerState::Small];
+    
+    small_player_map[PlayerAction::Idle].push_back(SubTexture::CreateFromCoords(player_sprite, {6.0f, 30.0f}));
+    small_player_map[PlayerAction::Run].push_back(SubTexture::CreateFromCoords(player_sprite, {0.0f, 30.0f}));
+    small_player_map[PlayerAction::Run].push_back(SubTexture::CreateFromCoords(player_sprite, {1.0f, 30.0f}));
+    small_player_map[PlayerAction::Run].push_back(SubTexture::CreateFromCoords(player_sprite, {2.0f, 30.0f}));
+    small_player_map[PlayerAction::SwitchSide].push_back(SubTexture::CreateFromCoords(player_sprite, {3.0f, 30.0f}));
+    small_player_map[PlayerAction::Jump].push_back(SubTexture::CreateFromCoords(player_sprite, {4.0f, 30.0f}));
   }
   
 }

@@ -11,11 +11,11 @@
 namespace mario {
     
   void StateMachine::Update(Timestep ts) {
-    switch (state_) {
-      case PlayerState::Idle:
+    switch (player_action_) {
+      case PlayerAction::Idle:
         break;
-      case PlayerState::Run: {
-        static const auto& sprites = SpriteManager::GetPlayerStateSprite(state_);
+      case PlayerAction::Run: {
+        static const auto& sprites = SpriteManager::GetPlayerStateSprite(*player_state_, player_action_);
         static const int32_t speed = 10;
         static int32_t anim_idx = 0;
 
@@ -29,43 +29,27 @@ namespace mario {
         anim_idx++;
         break;
       }
-      case PlayerState::SwitchSide:
+      case PlayerAction::SwitchSide:
         break;
-      case PlayerState::Jump:
+      case PlayerAction::Jump:
         break;
-      case PlayerState::BigIdle:
+      case PlayerAction::Die:
         break;
-      case PlayerState::BigRun:
-        break;
-      case PlayerState::BigJump:
-        break;
-      case PlayerState::BigSwitchSide:
-        break;
-      case PlayerState::FireIdle:
-        break;
-      case PlayerState::FireRun:
-        break;
-      case PlayerState::FireJump:
-        break;
-      case PlayerState::FireSwitchSide:
-        break;
-      case PlayerState::Die:
-        break;
-      case PlayerState::PowerUp:
+      case PlayerAction::PowerUp:
         break;
     }
   }
   
-  void StateMachine::ChangeState(PlayerState state) {
+  void StateMachine::ChangeState(PlayerAction state) {
 //    if (state_ == PlayerState::PowerUp) {
 //      state_ = state;
 //      return;
 //    }
 //
-    state_ = state;
-    if (state_ != PlayerState::Run) {
+    player_action_ = state;
+    if (player_action_ != PlayerAction::Run) {
       auto& qc = player_entity_->GetComponent<QuadComponent>();
-      qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(state_)[0];
+      qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(*player_state_, player_action_)[0];
     }
   }
   
@@ -82,7 +66,7 @@ namespace mario {
   void PlayerController::Create(Entity entity)  {
     entity_ = entity;
 
-    state_machine_ = new StateMachine(&entity_);
+    state_machine_ = new StateMachine(&entity_, &player_state_);
 
     rigid_body_comp_ = &(GetComponent<RigidBodyComponent>());
     rigid_body_comp_->SetGravityScale(0.0f);
@@ -103,10 +87,10 @@ namespace mario {
       
       if (velocity_.x > 0) {
         velocity_.x -= slow_down_force_;
-        state_machine_->ChangeState(PlayerState::SwitchSide);
+        state_machine_->ChangeState(PlayerAction::SwitchSide);
       }
       else {
-        state_machine_->ChangeState(PlayerState::Run);
+        state_machine_->ChangeState(PlayerAction::Run);
       }
     }
     else if (Input::IsKeyPressed(KeyCode::Right)) { // Run Right
@@ -115,10 +99,10 @@ namespace mario {
       
       if (velocity_.x < 0) {
         velocity_.x += slow_down_force_;
-        state_machine_->ChangeState(PlayerState::SwitchSide);
+        state_machine_->ChangeState(PlayerAction::SwitchSide);
       }
       else {
-        state_machine_->ChangeState(PlayerState::Run);
+        state_machine_->ChangeState(PlayerAction::Run);
       }
     }
     else { // Friction Stop
@@ -131,7 +115,7 @@ namespace mario {
       }
       
       if (velocity_.x == 0) {
-        state_machine_->ChangeState(PlayerState::Idle);
+        state_machine_->ChangeState(PlayerAction::Idle);
       }
     }
 
@@ -186,7 +170,7 @@ namespace mario {
     rigid_body_comp_->SetAngularVelocity(0.0f);
     
     if (!on_ground_) {
-      state_machine_->ChangeState(PlayerState::Jump);
+      state_machine_->ChangeState(PlayerAction::Jump);
     }
     else {
 //      state_machine_->ChangeState(PlayerState::Idle);
@@ -216,8 +200,8 @@ namespace mario {
   }
   
   void PlayerController::Powerup() {
-    if (player_size == PlayerSize::Small) {
-      player_size = PlayerSize::Big;
+    if (player_state_ == PlayerState::Small) {
+      player_state_ = PlayerState::Big;
       
       player_height_ *= 2;
       
@@ -230,9 +214,9 @@ namespace mario {
       jumb_boost_ *= big_jump_boost_factor_;
       walk_speed_ *= big_jump_boost_factor_;
       
-      state_machine_->ChangeState(PlayerState::PowerUp);      
+      state_machine_->ChangeState(PlayerAction::PowerUp);      
     }
-    else if (player_size == PlayerSize::Big) {
+    else if (player_state_ == PlayerState::Big) {
       // Fire
     }
   }

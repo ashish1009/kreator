@@ -13,31 +13,31 @@ namespace mario {
   
   using namespace ikan;
   
-  enum class PlayerState {
-    Idle     = 0,  Run     = 1,   SwitchSide     = 2,   Jump     = 3,
-    BigIdle  = 4,  BigRun  = 5,   BigSwitchSide  = 6,   BigJump  = 7,
-    FireIdle = 8,  FireRun = 9,   FireSwitchSide = 10,  FireJump = 11,
-    Die      = 12, PowerUp = 13
+  enum class PlayerAction {
+    Idle, Run, SwitchSide, Jump,
+    Die, PowerUp
   };
   
-  enum class PlayerSize {
+  enum class PlayerState {
     Small = 0, Big = 1, Fire = 2, Invicible = 4
   };
   
   class StateMachine {
   public:
-    StateMachine(Entity* entity) {
+    StateMachine(Entity* entity, PlayerState* state) {
       player_entity_ = entity;
+      player_state_ = state;
     }
     
     void Update(Timestep ts);
     
-    void ChangeState(PlayerState state);
-    PlayerState GetState() const { return state_;}
+    void ChangeState(PlayerAction state);
+    PlayerAction GetState() const { return player_action_;}
     
   private:
-    PlayerState state_ = PlayerState::Idle;
+    PlayerAction player_action_ = PlayerAction::Idle;
     Entity* player_entity_;
+    PlayerState* player_state_;
   };
   
   class PlayerController : public ScriptableEntity {
@@ -51,7 +51,7 @@ namespace mario {
     void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& constact_normal) override;
     void Powerup();
     
-    bool IsSmall() const { return player_size == PlayerSize::Small; }
+    bool IsSmall() const { return player_state_ == PlayerState::Small; }
     
     static PlayerController* Get() { return instance_; }
 
@@ -82,7 +82,7 @@ namespace mario {
     
     float power_up_time_ = 10.0f;
 
-    PlayerSize player_size = PlayerSize::Small;
+    PlayerState player_state_ = PlayerState::Small;
     RigidBodyComponent* rigid_body_comp_;
     StateMachine* state_machine_;
     

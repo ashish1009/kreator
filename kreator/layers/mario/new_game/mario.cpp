@@ -116,7 +116,7 @@ namespace mario {
       qc.texture_comp.use_sprite = true;
       qc.texture_comp.linear_edge = false;
       qc.texture_comp.component = SpriteManager::GetSpriteImage(SpriteType::Player);
-      qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(PlayerState::Idle)[0]; // As we know only one image for idle state
+      qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(PlayerState::Small, PlayerAction::Idle)[0]; // As we know only one image for idle state
     }
     
     // Rigid Body Component
