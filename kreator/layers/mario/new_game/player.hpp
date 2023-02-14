@@ -33,9 +33,12 @@ namespace mario {
     
     void ChangeAction(PlayerAction state);
     PlayerAction GetAction() const { return player_action_;}
-    
+    PlayerAction GetPrevAction() const { return prev_action_;}
+
   private:
     PlayerAction player_action_ = PlayerAction::Idle;
+    PlayerAction prev_action_;
+
     Entity* player_entity_;
     PlayerState* player_state_;
   };
@@ -85,7 +88,7 @@ namespace mario {
     PlayerState player_state_ = PlayerState::Small;
     RigidBodyComponent* rigid_body_comp_;
     PillBoxCollider* pill_box_comp_;
-
+    
     StateMachine* state_machine_;
     
     static PlayerController* instance_;

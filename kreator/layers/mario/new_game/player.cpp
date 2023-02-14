@@ -51,6 +51,7 @@ namespace mario {
   }
   
   void StateMachine::ChangeAction(PlayerAction action) {
+    prev_action_ = player_action_;
     player_action_ = action;
     if (player_action_ != PlayerAction::Run and player_action_ != PlayerAction::PowerUp) {
       auto& qc = player_entity_->GetComponent<QuadComponent>();
@@ -94,7 +95,7 @@ namespace mario {
         return;
       }
       else {
-        state_machine_->ChangeAction(PlayerAction::Idle);
+        state_machine_->ChangeAction(state_machine_->GetPrevAction());
         freez_time_ = 0.1f;
       }
     }
@@ -195,7 +196,7 @@ namespace mario {
   
   void PlayerController::CheckOnGround() {
     float inner_player_width = player_width_ * 0.6f;
-    float y_val = -(player_height_ / 2 + 0.01f);
+    float y_val = -(player_height_ / 2 + 0.05f);
     on_ground_ = entity_.GetScene()->CheckOnGround(&entity_, inner_player_width, y_val);
   }
   
