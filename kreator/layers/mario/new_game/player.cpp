@@ -17,7 +17,8 @@ namespace mario {
       case PlayerAction::Run: {
         static const auto& small_run_sprites = SpriteManager::GetPlayerStateSprite(PlayerState::Small, player_action_);
         static const auto& big_run_sprites = SpriteManager::GetPlayerStateSprite(PlayerState::Big, player_action_);
-        
+        static const auto& fire_run_sprites = SpriteManager::GetPlayerStateSprite(PlayerState::Fire, player_action_);
+
         static const int32_t speed = 10;
         static int32_t anim_idx = 0;
 
@@ -29,11 +30,17 @@ namespace mario {
           
           qc.texture_comp.sprite = small_run_sprites[anim_idx / speed];
         }
-        else {
+        else if (*player_state_ == PlayerState::Big){
           if (anim_idx >= speed * big_run_sprites.size() or anim_idx < 1)
             anim_idx = 0;
           
           qc.texture_comp.sprite = big_run_sprites[anim_idx / speed];
+        }
+        else {
+          if (anim_idx >= speed * fire_run_sprites.size() or anim_idx < 1)
+            anim_idx = 0;
+          
+          qc.texture_comp.sprite = fire_run_sprites[anim_idx / speed];
         }
 
         anim_idx++;
@@ -222,7 +229,6 @@ namespace mario {
       player_state_ = PlayerState::Big;
       
       player_height_ *= 2;
-      
       auto& tc = entity_.GetComponent<TransformComponent>();
       tc.UpdateScale_Y(player_height_);
       
@@ -235,7 +241,8 @@ namespace mario {
       state_machine_->ChangeAction(PlayerAction::PowerUp);
     }
     else if (player_state_ == PlayerState::Big) {
-      // Fire
+      player_state_ = PlayerState::Fire;
+      state_machine_->ChangeAction(PlayerAction::PowerUp);
     }
   }
   
