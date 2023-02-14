@@ -151,8 +151,8 @@ namespace ikan {
     // Storage
     b2Body* runtime_body = nullptr;
     
-    void AddVelocity();
-    void AddImpulse();
+    void AddVelocity(const glm::vec2& force);
+    void AddImpulse(const glm::vec2& force);
     void SetVelocity(const glm::vec2& vel);
     void SetAngularVelocity(float ang_vel);
     void SetGravityScale(float scale);
@@ -209,6 +209,8 @@ namespace ikan {
     CircleColloiderComponent top_ccc;
     CircleColloiderComponent bottom_ccc;
 
+    void SetHeight(float height);
+    void SetWidth(float width);
     void RecalculateColliders();
     
     void RenderGui();

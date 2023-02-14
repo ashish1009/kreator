@@ -450,7 +450,7 @@ namespace ikan {
       script->RenderGui();
       ImGui::TreePop();
     }
-
+    
     ImGui::Separator();
     ImGui::PopID();
   }
@@ -477,15 +477,15 @@ namespace ikan {
     return *this;
   }
   
-  void RigidBodyComponent::AddVelocity() {
+  void RigidBodyComponent::AddVelocity(const glm::vec2& force) {
     if (runtime_body != nullptr) {
-      runtime_body->ApplyForceToCenter({velocity.x, velocity.y}, true);
+      runtime_body->ApplyForceToCenter({force.x, force.y}, true);
     }
   }
   
-  void RigidBodyComponent::AddImpulse() {
+  void RigidBodyComponent::AddImpulse(const glm::vec2& force) {
     if (runtime_body != nullptr) {
-      runtime_body->ApplyLinearImpulse({velocity.x, velocity.y}, runtime_body->GetWorldCenter(), true);
+      runtime_body->ApplyLinearImpulse({force.x, force.y}, runtime_body->GetWorldCenter(), true);
     }
   }
   
@@ -697,6 +697,16 @@ namespace ikan {
     bottom_ccc = other.bottom_ccc;
     RecalculateColliders();
     return *this;
+  }
+  
+  void PillBoxCollider::SetHeight(float height) {
+    this->height = height;
+    RecalculateColliders();
+  }
+
+  void PillBoxCollider::SetWidth(float width) {
+    this->width = width;
+    RecalculateColliders();
   }
   
   void PillBoxCollider::RecalculateColliders() {
