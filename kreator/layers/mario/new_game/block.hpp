@@ -29,8 +29,11 @@ namespace mario {
       const auto& tex = qc.texture_comp.component;
       qc.texture_comp.sprite = SubTexture::CreateFromCoords(tex, {27.0f, 27.0f});
       
-      if (entity_.HasComponent<AnimationComponent>())
+      if (entity_.HasComponent<AnimationComponent>()) {
+        auto& ac = entity_.GetComponent<AnimationComponent>();
+        ac.ClearSprites();
         entity_.RemoveComponent<AnimationComponent>();
+      }
       
       active_ = false;
     }

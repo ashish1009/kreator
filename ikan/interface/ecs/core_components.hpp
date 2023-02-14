@@ -233,6 +233,7 @@ namespace ikan {
     
     // TODO: Add Data for non_sprites....
 
+    void ClearSprites();
     void RenderGui();
     AnimationComponent(std::shared_ptr<Texture> sprite_image);
     ~AnimationComponent();

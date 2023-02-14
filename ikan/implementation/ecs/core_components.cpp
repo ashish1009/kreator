@@ -829,6 +829,10 @@ namespace ikan {
     }
     return *this;
   }
+  
+  void AnimationComponent::ClearSprites() {
+    sprites.clear();
+  }
   void AnimationComponent::RenderGui() {
     PropertyGrid::CheckBox("Animation", animation);
     if (animation) {
