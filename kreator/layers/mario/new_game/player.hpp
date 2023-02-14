@@ -31,8 +31,8 @@ namespace mario {
     
     void Update(Timestep ts);
     
-    void ChangeState(PlayerAction state);
-    PlayerAction GetState() const { return player_action_;}
+    void ChangeAction(PlayerAction state);
+    PlayerAction GetAction() const { return player_action_;}
     
   private:
     PlayerAction player_action_ = PlayerAction::Idle;

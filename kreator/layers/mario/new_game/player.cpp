@@ -40,7 +40,7 @@ namespace mario {
     }
   }
   
-  void StateMachine::ChangeState(PlayerAction state) {
+  void StateMachine::ChangeAction(PlayerAction state) {
 //    if (state_ == PlayerState::PowerUp) {
 //      state_ = state;
 //      return;
@@ -79,6 +79,13 @@ namespace mario {
   }
   
   void PlayerController::Update(Timestep ts) { // Run Left
+    CheckOnGround();
+    if (state_machine_->GetAction() == PlayerAction::PowerUp) {
+      if (!on_ground_)
+        state_machine_->ChangeAction(PlayerAction::Idle);
+      return;
+    }
+    
     auto& tc = entity_.GetComponent<TransformComponent>();
     state_machine_->Update(ts);
     
@@ -88,10 +95,10 @@ namespace mario {
       
       if (velocity_.x > 0) {
         velocity_.x -= slow_down_force_;
-        state_machine_->ChangeState(PlayerAction::SwitchSide);
+        state_machine_->ChangeAction(PlayerAction::SwitchSide);
       }
       else {
-        state_machine_->ChangeState(PlayerAction::Run);
+        state_machine_->ChangeAction(PlayerAction::Run);
       }
     }
     else if (Input::IsKeyPressed(KeyCode::Right)) { // Run Right
@@ -100,10 +107,10 @@ namespace mario {
       
       if (velocity_.x < 0) {
         velocity_.x += slow_down_force_;
-        state_machine_->ChangeState(PlayerAction::SwitchSide);
+        state_machine_->ChangeAction(PlayerAction::SwitchSide);
       }
       else {
-        state_machine_->ChangeState(PlayerAction::Run);
+        state_machine_->ChangeAction(PlayerAction::Run);
       }
     }
     else { // Friction Stop
@@ -116,12 +123,10 @@ namespace mario {
       }
       
       if (velocity_.x == 0) {
-        state_machine_->ChangeState(PlayerAction::Idle);
+        state_machine_->ChangeAction(PlayerAction::Idle);
       }
     }
 
-    CheckOnGround();
- 
     if (Input::IsKeyPressed(KeyCode::Space) and (jump_time_ > 0 or on_ground_ or ground_debounce_ > 0)) {
       if ((on_ground_ or ground_debounce_ > 0) and jump_time_ == 0) { // Just Press Jump Key
         // Play Sound
@@ -178,7 +183,7 @@ namespace mario {
     rigid_body_comp_->SetAngularVelocity(0.0f);
     
     if (!on_ground_) {
-      state_machine_->ChangeState(PlayerAction::Jump);
+      state_machine_->ChangeAction(PlayerAction::Jump);
     }
     else {
 //      state_machine_->ChangeState(PlayerState::Idle);
@@ -187,7 +192,7 @@ namespace mario {
   
   void PlayerController::CheckOnGround() {
     float inner_player_width = player_width_ * 0.6f;
-    float y_val = -(player_height_ / 2 + 0.10f);
+    float y_val = -(player_height_ / 2 + 0.01f);
     on_ground_ = entity_.GetScene()->CheckOnGround(&entity_, inner_player_width, y_val);
   }
   
@@ -216,12 +221,14 @@ namespace mario {
       auto& tc = entity_.GetComponent<TransformComponent>();
       tc.UpdateScale_Y(player_height_);
       
+      rigid_body_comp_->AddVelocity({0, 1000.0});
+      
       pill_box_comp_->SetHeight(pill_box_comp_->height * 2.0f);
       
       jumb_boost_ *= big_jump_boost_factor_;
       walk_speed_ *= big_jump_boost_factor_;
       
-      state_machine_->ChangeState(PlayerAction::PowerUp);      
+      state_machine_->ChangeAction(PlayerAction::PowerUp);      
     }
     else if (player_state_ == PlayerState::Big) {
       // Fire
@@ -239,7 +246,7 @@ namespace mario {
     ImGui::Text(" Jump Boost %f", jumb_boost_);
 
     if(state_machine_)
-      ImGui::Text(" State %d", state_machine_->GetState());
+      ImGui::Text(" State %d", state_machine_->GetAction());
     ImGui::Text(" Power time %f", power_up_time_);
 
   }
