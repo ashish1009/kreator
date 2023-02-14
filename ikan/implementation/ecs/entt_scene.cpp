@@ -136,9 +136,15 @@ namespace ikan {
     IK_CORE_WARN(LogModule::EnttScene, "  ID   | {0}", entity.GetComponent<IDComponent>().id);
     IK_CORE_WARN(LogModule::EnttScene, "  Number of entities Added in Scene | {0}", --num_entities_);
     
+    // Delete
+    if (entity.HasComponent<RigidBodyComponent>()) {
+      auto& rb = entity.GetComponent<RigidBodyComponent>();
+      physics_world_->DestroyBody(rb.runtime_body);
+      rb.runtime_body = nullptr;
+    }
+    
     // Delete the eneity from the map
     entity_id_map_.erase(entity);
-    
     registry_.destroy(entity);
   }
   
