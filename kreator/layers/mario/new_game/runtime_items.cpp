@@ -10,6 +10,44 @@
 #include "player.hpp"
 
 namespace mario {
+  
+  void CommonRuntimeData::AddRuntimeItemComponents(Entity* entity) {
+    rigid_body_comp_ = &(entity->AddComponent<RigidBodyComponent>());
+    rigid_body_comp_->type = b2_dynamicBody;
+    rigid_body_comp_->angular_velocity = 0.0f;
+    rigid_body_comp_->fixed_rotation = true;
+    rigid_body_comp_->SetGravityScale(0.0f);
+    
+    auto& ccc = entity->AddComponent<CircleColliiderComponent>();
+    ccc.runtime_fixture = entity;
+    
+    entity->GetScene()->AddBodyToPhysicsWorld(*entity, *rigid_body_comp_);
+  }
+  
+  void CommonRuntimeData::LivingEntityHitCheck(Entity* collided_entity, b2Contact* contact) {
+    if (collided_entity->HasComponent<NativeScriptComponent>()) {
+      const auto &nsc = collided_entity->GetComponent<NativeScriptComponent>();
+      if (nsc.script_name == "mario::PlayerController") {
+        contact->SetEnabled(false);
+        if (!hit_player_) {
+          auto pc = PlayerController::Get();
+          pc->Powerup();
+          hit_player_ = true;
+          destroy_ = true;
+        }
+        return;
+      }
+      else { // May be some block with Script
+      }
+    }
+  }
+  
+  void CommonRuntimeData::CheckAndDestroy(Entity* entity) {
+    if (destroy_) {
+      entity->GetScene()->DestroyEntity(*entity);
+      return;
+    }
+  }
 
   void CoinController::Create(Entity entity) {
     entity_ = entity;
@@ -30,53 +68,22 @@ namespace mario {
   
   void MushroomController::Create(Entity entity) {
     entity_ = entity;
-    rigid_body_comp_ = &(entity_.AddComponent<RigidBodyComponent>());
-    rigid_body_comp_->type = b2_dynamicBody;
-    rigid_body_comp_->angular_velocity = 0.0f;
-    rigid_body_comp_->fixed_rotation = true;
-    rigid_body_comp_->SetGravityScale(0.0f);
-
+    AddRuntimeItemComponents(&entity_);
     velocity_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * 3.7f;
-    
-    auto& ccc = entity.AddComponent<CircleColliiderComponent>();
-    ccc.runtime_fixture = &entity_;
-    
-    entity_.GetScene()->AddBodyToPhysicsWorld(entity_, *rigid_body_comp_);
   }
   
   void MushroomController::Update(Timestep ts) {
-    if (destroy_) {
-      entity_.GetScene()->DestroyEntity(entity_);
-      return;
-    }
-      
     if (going_right_ and std::abs(rigid_body_comp_->velocity.x) < max_speed_) {
       rigid_body_comp_->AddVelocity(velocity_);
     }
     else if (!going_right_ and std::abs(rigid_body_comp_->velocity.x) < max_speed_) {
       rigid_body_comp_->AddVelocity({-velocity_.x, velocity_.y});
     }
+    CheckAndDestroy(&entity_);
   }
   
   void MushroomController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
-    if (collided_entity->HasComponent<NativeScriptComponent>()) {
-      const auto &nsc = collided_entity->GetComponent<NativeScriptComponent>();
-      if (nsc.script_name == "mario::PlayerController") {
-        contact->SetEnabled(false);
-        if (!hit_player_) {
-          auto pc = PlayerController::Get();
-          if (pc->IsSmall()) {
-            pc->Powerup();
-            hit_player_ = true;
-          }            
-          destroy_ = true;
-        }
-        return;
-      }
-      else { // May be some block with Script
-      }
-    }
-
+    LivingEntityHitCheck(collided_entity, contact);
     if (std::abs(contact_normal.y) < 0.1f) {
       going_right_ = contact_normal.x < 0.0f;
     }
@@ -84,15 +91,8 @@ namespace mario {
   
   void FlowerController::Create(Entity entity) {
     entity_ = entity;
-    rigid_body_comp_ = &(entity_.AddComponent<RigidBodyComponent>());
-    rigid_body_comp_->type = b2_dynamicBody;
-    rigid_body_comp_->angular_velocity = 0.0f;
-    rigid_body_comp_->fixed_rotation = true;
-    rigid_body_comp_->SetGravityScale(0.0f);
-    
-    auto& ccc = entity.AddComponent<CircleColliiderComponent>();
-    ccc.runtime_fixture = &entity_;
-    
+    AddRuntimeItemComponents(&entity_);
+
     auto& ac = entity.AddComponent<AnimationComponent>(SpriteManager::GetSpriteImage(SpriteType::Items));
     ac.animation = true;
     ac.is_sprite = true;
@@ -101,32 +101,13 @@ namespace mario {
     ac.sprites.push_back(SubTexture::CreateFromCoords(ac.sprite_image, {2.0f, 18.0f}));
     ac.sprites.push_back(SubTexture::CreateFromCoords(ac.sprite_image, {3.0f, 18.0f}));
     ac.speed = 5.0f;
-    
-    entity_.GetScene()->AddBodyToPhysicsWorld(entity_, *rigid_body_comp_);
   }
 
   void FlowerController::Update(Timestep ts) {
-    if (destroy_) {
-      entity_.GetScene()->DestroyEntity(entity_);
-      return;
-    }
+    CheckAndDestroy(&entity_);
   }
   void FlowerController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
-    if (collided_entity->HasComponent<NativeScriptComponent>()) {
-      const auto &nsc = collided_entity->GetComponent<NativeScriptComponent>();
-      if (nsc.script_name == "mario::PlayerController") {
-        contact->SetEnabled(false);
-        if (!hit_player_) {
-          auto pc = PlayerController::Get();
-          pc->Powerup();
-          hit_player_ = true;
-          destroy_ = true;
-        }
-        return;
-      }
-      else { // May be some block with Script
-      }
-    }
+    LivingEntityHitCheck(collided_entity, contact);
   }
 
   struct ItemData {

@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "01CA3A46-4C0D-488D-98A8-0482705C3AE7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kreator/layers/mario/new_game/runtime_items.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "MushroomController::PreSolve(collided_entity, contact, contact_normal)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "F857203C-DD33-4D2E-BA24-5671ACA74450"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -55,38 +39,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E2A55DE8-AED1-4CFE-B063-85F5107B7D31"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kreator/layers/mario/new_game/runtime_items.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "MushroomController::PreSolve(collided_entity, contact, contact_normal)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BC0BC10D-4815-419D-9A37-5E616B465CB2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kreator/layers/mario/new_game/runtime_items.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "MushroomController::PreSolve(collided_entity, contact, contact_normal)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "16DCACC6-5F62-41EC-9506-D7A4484BF46A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -94,8 +46,8 @@
             filePath = "kreator/layers/mario/new_game/runtime_items.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "FlowerController::PreSolve(collided_entity, contact, contact_normal)"
             landmarkType = "7">
          </BreakpointContent>
@@ -321,6 +273,38 @@
             startingLineNumber = "821"
             endingLineNumber = "821"
             landmarkName = "AnimationComponent::operator=(other)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A0226593-31D1-4283-B059-62C3AFE9CB65"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kreator/layers/mario/new_game/runtime_items.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "CommonRuntimeData::LivingEntityHitCheck(collided_entity, contact)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CC399927-0E46-4E79-B42B-3620BE7A8A5D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kreator/layers/mario/new_game/runtime_items.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "CommonRuntimeData::LivingEntityHitCheck(collided_entity, contact)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

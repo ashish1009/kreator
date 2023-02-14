@@ -11,6 +11,18 @@ namespace mario {
   
   using namespace ikan;
   
+  class CommonRuntimeData {
+  public:
+    void AddRuntimeItemComponents(Entity* entity);
+    void LivingEntityHitCheck(Entity* collided_entity, b2Contact* contact);
+    void CheckAndDestroy(Entity* entity);
+    
+  protected:
+    RigidBodyComponent* rigid_body_comp_;
+    bool hit_player_ = false;
+    bool destroy_ = false;
+  };
+  
   class CoinController : public ScriptableEntity {
   public:
     void Create(Entity entity) override;
@@ -21,31 +33,23 @@ namespace mario {
     float speed_ = 8.0f;
   };
 
-  class MushroomController : public ScriptableEntity {
+  class MushroomController : public ScriptableEntity, CommonRuntimeData {
   public:
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& normal) override;
 
   private:
-    RigidBodyComponent* rigid_body_comp_;
     glm::vec2 velocity_ = { 4.0f, 0.0f };
     float max_speed_ = 8.0f;
     bool going_right_ = true;
-    bool hit_player_ = false;
-    
-    bool destroy_ = false;
   };
   
-  class FlowerController : public ScriptableEntity {
+  class FlowerController : public ScriptableEntity, CommonRuntimeData {
   public:
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& normal) override;
-  private:
-    RigidBodyComponent* rigid_body_comp_;
-    bool hit_player_ = false;
-    bool destroy_ = false;
   };
 
   enum class Items {
