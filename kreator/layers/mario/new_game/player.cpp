@@ -86,6 +86,8 @@ namespace mario {
   
   void PlayerController::Update(Timestep ts) { // Run Left
     CheckOnGround();
+    
+    // Freez until player power up complets
     if (state_machine_->GetAction() == PlayerAction::PowerUp) {
       freez_time_-= ts;
       if (freez_time_ >= 0) {
@@ -97,6 +99,12 @@ namespace mario {
       else {
         state_machine_->ChangeAction(state_machine_->GetPrevAction());
         freez_time_ = 0.1f;
+        
+        if (player_state_ == PlayerState::Big) {
+          // As our player powered up so reset the pill box size
+          EnttScene::ResetPillBoxColliderData(entity_.GetComponent<TransformComponent>(), rigid_body_comp_, *pill_box_comp_);
+          pill_box_comp_->reset_flag = false;
+        }
       }
     }
     
@@ -164,17 +172,10 @@ namespace mario {
       ground_debounce_ -= ts;
       acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * 2.7f;
     }
-    else {
+    else { // Landed on ground
       velocity_.y = 0;
       acceleration_.y = 0;
       ground_debounce_ = ground_debounce_time_;
-    }
-        
-    if (pill_box_comp_->reset_flag) {
-      EnttScene::ResetPillBoxColliderData(entity_.GetComponent<TransformComponent>(),
-                                          rigid_body_comp_,
-                                          *pill_box_comp_);
-      pill_box_comp_->reset_flag = false;
     }
      
     velocity_.x += acceleration_.x * ts * 2.0f;

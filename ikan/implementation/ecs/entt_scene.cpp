@@ -249,22 +249,21 @@ namespace ikan {
     
     b2Body* body = physics_world_->CreateBody(&body_def);
     body->SetFixedRotation(rb2d.fixed_rotation);
-    
     rb2d.runtime_body = body;
     
     if (entity.HasComponent<BoxColloiderComponent>()) {
       auto& bc2d = entity.GetComponent<BoxColloiderComponent>();
-      AddBoxColliderData(transform, bc2d, body);
+      AddBoxColliderData(transform, bc2d, rb2d);
     }
     
     if (entity.HasComponent<CircleColloiderComponent>()) {
       auto& cc2d = entity.GetComponent<CircleColloiderComponent>();
-      AddCircleColliderData(transform, cc2d, body);
+      AddCircleColliderData(transform, cc2d, rb2d);
     }
     
     if (entity.HasComponent<PillBoxCollider>()) {
       auto& pbc = entity.GetComponent<PillBoxCollider>();
-      AddPillColliderData(transform, pbc, body);
+      AddPillColliderData(transform, pbc, rb2d);
     }
   }
   
@@ -539,7 +538,11 @@ namespace ikan {
     client_listner_ = listener;
   }
   
-  void EnttScene::AddBoxColliderData(const TransformComponent& tc, const BoxColloiderComponent& bc2d, b2Body* body, bool is_pill) {
+  void EnttScene::AddBoxColliderData(const TransformComponent& tc,
+                                     const BoxColloiderComponent& bc2d,
+                                     RigidBodyComponent& rb2d,
+                                     bool is_pill) {
+    b2Body* body = rb2d.runtime_body;
     b2PolygonShape polygon_shape;
     if (is_pill)
       polygon_shape.SetAsBox(bc2d.size.x, bc2d.size.y, {bc2d.offset.x, bc2d.offset.y}, 0);
@@ -552,13 +555,17 @@ namespace ikan {
     fixture_def.friction = bc2d.friction;
     fixture_def.restitution = bc2d.restitution;
     fixture_def.restitutionThreshold = bc2d.restitution_threshold;
-    
+    fixture_def.isSensor = rb2d.is_sensor;
     fixture_def.userData.pointer = (uintptr_t)bc2d.runtime_fixture;
     
     body->CreateFixture(&fixture_def);
   }
   
-  void EnttScene::AddCircleColliderData(const TransformComponent& tc, const CircleColloiderComponent& cc2d, b2Body* body, bool is_pill) {
+  void EnttScene::AddCircleColliderData(const TransformComponent& tc,
+                                        const CircleColloiderComponent& cc2d,
+                                        RigidBodyComponent& rb2d,
+                                        bool is_pill) {
+    b2Body* body = rb2d.runtime_body;
     b2CircleShape circle_shape;
     circle_shape.m_p.Set(cc2d.offset.x, cc2d.offset.y);
     if (is_pill)
@@ -572,16 +579,18 @@ namespace ikan {
     fixture_def.friction = cc2d.friction;
     fixture_def.restitution = cc2d.restitution;
     fixture_def.restitutionThreshold = cc2d.restitution_threshold;
-    
+    fixture_def.isSensor = rb2d.is_sensor;
     fixture_def.userData.pointer = (uintptr_t)cc2d.runtime_fixture;
     
     body->CreateFixture(&fixture_def);
   }
   
-  void EnttScene::AddPillColliderData(const TransformComponent &tc, const PillBoxCollider &pbc, b2Body *body) {
-    AddBoxColliderData(tc, pbc.bcc, body, true);
-    AddCircleColliderData(tc, pbc.top_ccc, body, false);
-    AddCircleColliderData(tc, pbc.bottom_ccc, body, false);
+  void EnttScene::AddPillColliderData(const TransformComponent &tc,
+                                      const PillBoxCollider &pbc,
+                                      RigidBodyComponent& rb2d) {
+    AddBoxColliderData(tc, pbc.bcc, rb2d, true);
+    AddCircleColliderData(tc, pbc.top_ccc, rb2d, false);
+    AddCircleColliderData(tc, pbc.bottom_ccc, rb2d, false);
   }
   
   int32_t FixtureListSize(b2Body* body) {
@@ -601,7 +610,7 @@ namespace ikan {
       body->DestroyFixture(body->GetFixtureList());
     }
     
-    AddPillColliderData(tc, pbc, body);
+    AddPillColliderData(tc, pbc, *rb);
   }
   
   

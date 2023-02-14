@@ -34,11 +34,22 @@ namespace mario {
     bool going_right_ = true;
     bool hit_player_ = false;
     
-    bool destroy = false;
+    bool destroy_ = false;
+  };
+  
+  class FlowerController : public ScriptableEntity {
+  public:
+    void Create(Entity entity) override;
+    void Update(Timestep ts) override;
+    void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& normal) override;
+  private:
+    RigidBodyComponent* rigid_body_comp_;
+    bool hit_player_ = false;
+    bool destroy_ = false;
   };
 
   enum class Items {
-    Coin, Mushroom
+    Coin, Mushroom, Flower
   };
   
   class RuntimeItem {

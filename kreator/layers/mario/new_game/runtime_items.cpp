@@ -45,7 +45,7 @@ namespace mario {
   }
   
   void MushroomController::Update(Timestep ts) {
-    if (destroy) {
+    if (destroy_) {
       entity_.GetScene()->DestroyEntity(entity_);
       return;
     }
@@ -65,10 +65,11 @@ namespace mario {
         contact->SetEnabled(false);
         if (!hit_player_) {
           auto pc = PlayerController::Get();
-          pc->Powerup();
-          hit_player_ = true;
-          
-          destroy = true;
+          if (pc->IsSmall()) {
+            pc->Powerup();
+            hit_player_ = true;
+          }            
+          destroy_ = true;
         }
         return;
       }
@@ -78,6 +79,44 @@ namespace mario {
 
     if (std::abs(contact_normal.y) < 0.1f) {
       going_right_ = contact_normal.x < 0.0f;
+    }
+  }
+  
+  void FlowerController::Create(Entity entity) {
+    entity_ = entity;
+    rigid_body_comp_ = &(entity_.AddComponent<RigidBodyComponent>());
+    rigid_body_comp_->type = b2_dynamicBody;
+    rigid_body_comp_->angular_velocity = 0.0f;
+    rigid_body_comp_->fixed_rotation = true;
+    rigid_body_comp_->SetGravityScale(0.0f);
+    
+    auto& ccc = entity.AddComponent<CircleColloiderComponent>();
+    ccc.runtime_fixture = &entity_;
+    
+    entity_.GetScene()->AddBodyToPhysicsWorld(entity_, *rigid_body_comp_);
+  }
+
+  void FlowerController::Update(Timestep ts) {
+    if (destroy_) {
+      entity_.GetScene()->DestroyEntity(entity_);
+      return;
+    }
+  }
+  void FlowerController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+    if (collided_entity->HasComponent<NativeScriptComponent>()) {
+      const auto &nsc = collided_entity->GetComponent<NativeScriptComponent>();
+      if (nsc.script_name == "mario::PlayerController") {
+        contact->SetEnabled(false);
+        if (!hit_player_) {
+          auto pc = PlayerController::Get();
+          pc->Powerup();
+          hit_player_ = true;
+          destroy_ = true;
+        }
+        return;
+      }
+      else { // May be some block with Script
+      }
     }
   }
 
@@ -116,9 +155,18 @@ namespace mario {
       return false;
     };
     
+    static auto flower_script_loader = [](NativeScriptComponent* sc, const std::string& script_name) {
+      if (script_name == "mario::FlowerController") {
+        sc->Bind<mario::FlowerController>();
+        return true;
+      }
+      return false;
+    };
+    
     data = new RuntimeItemData();
     data->item_map[Items::Coin] = { "Block Coin", "mario::CoinController", glm::vec2(0.0f, 14.0f), coin_script_loader };
-    data->item_map[Items::Mushroom] = { "Mushroom", "mario::MushroomController", glm::vec2(0.0f, 20.0f), mushroom_script_loader };
+    data->item_map[Items::Mushroom] = { "Mushroom", "mario::MushroomController", glm::vec2(0.0f, 19.0f), mushroom_script_loader };
+    data->item_map[Items::Flower] = { "Flower", "mario::FlowerController", glm::vec2(0.0f, 18.0f), flower_script_loader };
   }
   
   void RuntimeItem::Shutdown() {
