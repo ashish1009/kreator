@@ -205,6 +205,8 @@ namespace ikan {
     float height = 0.5f;
     glm::vec2 offset;
     
+    bool reset_flag = false;
+    
     BoxColloiderComponent bcc;
     CircleColloiderComponent top_ccc;
     CircleColloiderComponent bottom_ccc;

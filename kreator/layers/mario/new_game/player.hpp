@@ -84,6 +84,8 @@ namespace mario {
 
     PlayerState player_state_ = PlayerState::Small;
     RigidBodyComponent* rigid_body_comp_;
+    PillBoxCollider* pill_box_comp_;
+
     StateMachine* state_machine_;
     
     static PlayerController* instance_;

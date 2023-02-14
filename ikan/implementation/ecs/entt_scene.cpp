@@ -263,16 +263,8 @@ namespace ikan {
     }
     
     if (entity.HasComponent<PillBoxCollider>()) {
-      auto& cc2d = entity.GetComponent<PillBoxCollider>();
-      
-#if 0
-      cc2d.width = transform.Scale().x / 2.0f;
-      cc2d.height = transform.Scale().y / 2.0f;
-      cc2d.RecalculateColliders();
-#endif
-      AddBoxColliderData(transform, cc2d.bcc, body, true);
-      AddCircleColliderData(transform, cc2d.top_ccc, body, false);
-      AddCircleColliderData(transform, cc2d.bottom_ccc, body, false);
+      auto& pbc = entity.GetComponent<PillBoxCollider>();
+      AddPillColliderData(transform, pbc, body);
     }
   }
   
@@ -584,6 +576,32 @@ namespace ikan {
     fixture_def.userData.pointer = (uintptr_t)cc2d.runtime_fixture;
     
     body->CreateFixture(&fixture_def);
+  }
+  
+  void EnttScene::AddPillColliderData(const TransformComponent &tc, const PillBoxCollider &pbc, b2Body *body) {
+    AddBoxColliderData(tc, pbc.bcc, body, true);
+    AddCircleColliderData(tc, pbc.top_ccc, body, false);
+    AddCircleColliderData(tc, pbc.bottom_ccc, body, false);
+  }
+  
+  int32_t FixtureListSize(b2Body* body) {
+    int32_t size = 0;
+    b2Fixture* fixture = body->GetFixtureList();
+    while (fixture) {
+      size++;
+      fixture = fixture->GetNext();
+    }
+    return size;
+  }
+  
+  void EnttScene::ResetPillBoxColliderData(const TransformComponent &tc, RigidBodyComponent* rb, const PillBoxCollider &pbc) {
+    b2Body* body = rb->runtime_body;
+    int32_t size = FixtureListSize(body);
+    for (int32_t i = 0; i < size; i++) {
+      body->DestroyFixture(body->GetFixtureList());
+    }
+    
+    AddPillColliderData(tc, pbc, body);
   }
   
   

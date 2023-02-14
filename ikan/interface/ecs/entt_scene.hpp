@@ -43,6 +43,7 @@ namespace ikan {
   struct BoxColloiderComponent;
   struct CircleColloiderComponent;
   struct RigidBodyComponent;
+  struct PillBoxCollider;
   struct CameraData {
     SceneCamera* scene_camera = nullptr;
     glm::vec3 position;
@@ -119,6 +120,7 @@ namespace ikan {
     ///   - entity: Entity
     ///   - rb2d: Rigid Body reference
     void AddBodyToPhysicsWorld(Entity entity, RigidBodyComponent& rb2d);
+    
     /// This function checks the position is on ground or not
     /// - Parameters:
     ///   - entity: entity pointer
@@ -126,6 +128,8 @@ namespace ikan {
     ///   - height: height of entity
     bool CheckOnGround(Entity* entity, float width, float height);
     
+    static void ResetPillBoxColliderData(const TransformComponent &tc, RigidBodyComponent* rb, const PillBoxCollider& pbc);
+
     // ------------------
     // Getters
     // ------------------
@@ -237,6 +241,14 @@ namespace ikan {
     ///   - is_pill: is Pill Box
     static void AddCircleColliderData(const TransformComponent& tc, const CircleColloiderComponent& cc2d, b2Body* body, bool is_pill = false);
 
+    /// This function add the circle collider data to worlds body
+    /// - Parameters:
+    ///   - tc: transform of entity
+    ///   - cc2d: circlw data
+    ///   - body: body
+    ///   - is_pill: is Pill Box
+    static void AddPillColliderData(const TransformComponent& tc, const PillBoxCollider& pbc, b2Body* body);
+    
     // ------------------
     // Member variabls
     // ------------------

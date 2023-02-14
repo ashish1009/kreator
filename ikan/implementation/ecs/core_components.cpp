@@ -664,6 +664,7 @@ namespace ikan {
     offset = other.offset;
     width = other.width;
     height = other.height;
+    reset_flag = other.reset_flag;
     bcc = other.bcc;
     top_ccc = other.top_ccc;
     bottom_ccc = other.bottom_ccc;
@@ -673,6 +674,7 @@ namespace ikan {
     offset = other.offset;
     width = other.width;
     height = other.height;
+    reset_flag = other.reset_flag;
     bcc = other.bcc;
     top_ccc = other.top_ccc;
     bottom_ccc = other.bottom_ccc;
@@ -683,6 +685,7 @@ namespace ikan {
     offset = other.offset;
     width = other.width;
     height = other.height;
+    reset_flag = other.reset_flag;
     bcc = other.bcc;
     top_ccc = other.top_ccc;
     bottom_ccc = other.bottom_ccc;
@@ -692,6 +695,7 @@ namespace ikan {
     offset = other.offset;
     width = other.width;
     height = other.height;
+    reset_flag = other.reset_flag;
     bcc = other.bcc;
     top_ccc = other.top_ccc;
     bottom_ccc = other.bottom_ccc;
@@ -702,11 +706,13 @@ namespace ikan {
   void PillBoxCollider::SetHeight(float height) {
     this->height = height;
     RecalculateColliders();
+    reset_flag = true;
   }
 
   void PillBoxCollider::SetWidth(float width) {
     this->width = width;
     RecalculateColliders();
+    reset_flag = true;
   }
   
   void PillBoxCollider::RecalculateColliders() {

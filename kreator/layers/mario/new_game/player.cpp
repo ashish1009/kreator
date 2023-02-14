@@ -70,11 +70,12 @@ namespace mario {
 
     rigid_body_comp_ = &(GetComponent<RigidBodyComponent>());
     rigid_body_comp_->SetGravityScale(0.0f);
+    
+    pill_box_comp_ = &(GetComponent<PillBoxCollider>());
 
-    auto& pbc = GetComponent<PillBoxCollider>();
-    pbc.bcc.runtime_fixture = (void*)&entity_;
-    pbc.top_ccc.runtime_fixture = (void*)&entity_;
-    pbc.bottom_ccc.runtime_fixture = (void*)&entity_;
+    pill_box_comp_->bcc.runtime_fixture = (void*)&entity_;
+    pill_box_comp_->top_ccc.runtime_fixture = (void*)&entity_;
+    pill_box_comp_->bottom_ccc.runtime_fixture = (void*)&entity_;
   }
   
   void PlayerController::Update(Timestep ts) { // Run Left
@@ -149,6 +150,13 @@ namespace mario {
       acceleration_.y = 0;
       ground_debounce_ = ground_debounce_time_;
     }
+        
+    if (pill_box_comp_->reset_flag) {
+      EnttScene::ResetPillBoxColliderData(entity_.GetComponent<TransformComponent>(),
+                                          rigid_body_comp_,
+                                          *pill_box_comp_);
+      pill_box_comp_->reset_flag = false;
+    }
     
 //    if (state_machine_->GetState() == PlayerState::PowerUp) {
 //      if (power_up_time_ > 0.0f) {
@@ -208,8 +216,7 @@ namespace mario {
       auto& tc = entity_.GetComponent<TransformComponent>();
       tc.UpdateScale_Y(player_height_);
       
-      auto& pbc = entity_.GetComponent<PillBoxCollider>();
-      pbc.SetHeight(pbc.height * 2.0f);
+      pill_box_comp_->SetHeight(pill_box_comp_->height * 2.0f);
       
       jumb_boost_ *= big_jump_boost_factor_;
       walk_speed_ *= big_jump_boost_factor_;
