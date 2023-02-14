@@ -19,31 +19,31 @@ namespace mario {
         static const auto& big_run_sprites = SpriteManager::GetPlayerStateSprite(PlayerState::Big, player_action_);
         static const auto& fire_run_sprites = SpriteManager::GetPlayerStateSprite(PlayerState::Fire, player_action_);
 
-        static const int32_t speed = 10;
-        static int32_t anim_idx = 0;
+        static const int32_t run_speed = 10;
+        static int32_t run_anim_idx = 0;
 
         auto& qc = player_entity_->GetComponent<QuadComponent>();
         
         if (*player_state_ == PlayerState::Small) {
-          if (anim_idx >= speed * small_run_sprites.size() or anim_idx < 1)
-            anim_idx = 0;
+          if (run_anim_idx >= run_speed * small_run_sprites.size() or run_anim_idx < 1)
+            run_anim_idx = 0;
           
-          qc.texture_comp.sprite = small_run_sprites[anim_idx / speed];
+          qc.texture_comp.sprite = small_run_sprites[run_anim_idx / run_speed];
         }
         else if (*player_state_ == PlayerState::Big){
-          if (anim_idx >= speed * big_run_sprites.size() or anim_idx < 1)
-            anim_idx = 0;
+          if (run_anim_idx >= run_speed * big_run_sprites.size() or run_anim_idx < 1)
+            run_anim_idx = 0;
           
-          qc.texture_comp.sprite = big_run_sprites[anim_idx / speed];
+          qc.texture_comp.sprite = big_run_sprites[run_anim_idx / run_speed];
         }
         else {
-          if (anim_idx >= speed * fire_run_sprites.size() or anim_idx < 1)
-            anim_idx = 0;
+          if (run_anim_idx >= run_speed * fire_run_sprites.size() or run_anim_idx < 1)
+            run_anim_idx = 0;
           
-          qc.texture_comp.sprite = fire_run_sprites[anim_idx / speed];
+          qc.texture_comp.sprite = fire_run_sprites[run_anim_idx / run_speed];
         }
 
-        anim_idx++;
+        run_anim_idx++;
         break;
       }
       case PlayerAction::SwitchSide:
@@ -52,17 +52,36 @@ namespace mario {
         break;
       case PlayerAction::Die:
         break;
-      case PlayerAction::PowerUp:
+      case PlayerAction::PowerUp: {
+        if (*player_state_ == PlayerState::Fire) {
+          auto& qc = player_entity_->GetComponent<QuadComponent>();
+          static const int32_t speed = 10;
+          static int32_t anim_idx = 0;
+          static float y_idx[5] = { 31, 28, 25, 22, 19 };
+          static auto sprite_image = SpriteManager::GetSpriteImage(SpriteType::Player);
+          
+          if (anim_idx >= speed * 5 or anim_idx < 1)
+            anim_idx = 0;
+          
+          qc.texture_comp.sprite = SubTexture::CreateFromCoords(sprite_image, {6.0f, y_idx[anim_idx / speed]}, {1.0f, 2.0f});
+          anim_idx++;
+        }
         break;
+      }
     }
   }
   
   void StateMachine::ChangeAction(PlayerAction action) {
     prev_action_ = player_action_;
     player_action_ = action;
+    auto& qc = player_entity_->GetComponent<QuadComponent>();
     if (player_action_ != PlayerAction::Run and player_action_ != PlayerAction::PowerUp) {
-      auto& qc = player_entity_->GetComponent<QuadComponent>();
       qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(*player_state_, player_action_)[0];
+    }
+    else {
+      if (player_action_ == PlayerAction::PowerUp) {
+        qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(*player_state_, prev_action_)[0];
+      }
     }
   }
   
@@ -93,7 +112,8 @@ namespace mario {
   
   void PlayerController::Update(Timestep ts) { // Run Left
     CheckOnGround();
-    
+    state_machine_->Update(ts);
+
     // Freez until player power up complets
     if (state_machine_->GetAction() == PlayerAction::PowerUp) {
       freez_time_-= ts;
@@ -105,7 +125,7 @@ namespace mario {
       }
       else {
         state_machine_->ChangeAction(state_machine_->GetPrevAction());
-        freez_time_ = 0.1f;
+        freez_time_ = 0.5f;
         
         if (player_state_ == PlayerState::Big) {
           // As our player powered up so reset the pill box size
@@ -116,7 +136,6 @@ namespace mario {
     }
     
     auto& tc = entity_.GetComponent<TransformComponent>();
-    state_machine_->Update(ts);
     
     if (Input::IsKeyPressed(KeyCode::Left)) {
       tc.UpdateScale_X(-player_width_);

@@ -234,6 +234,7 @@ namespace ikan {
 
     void RenderGui();
     AnimationComponent(std::shared_ptr<Texture> sprite_image);
+    ~AnimationComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(AnimationComponent);
   };
   

@@ -768,8 +768,14 @@ namespace ikan {
   // -------------------------------------------------------------------------
   AnimationComponent::AnimationComponent(std::shared_ptr<Texture> sprite_image) {
     this->sprite_image = sprite_image;
+    
+    sprites.clear();
   }
-
+  
+  AnimationComponent::~AnimationComponent() {
+    sprites.clear();
+  }
+  
   AnimationComponent::AnimationComponent(const AnimationComponent& other) {
     animation = other.animation;
     is_sprite = other.is_sprite;

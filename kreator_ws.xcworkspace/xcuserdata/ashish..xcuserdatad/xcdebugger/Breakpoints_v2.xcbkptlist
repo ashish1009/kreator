@@ -30,8 +30,8 @@
             filePath = "kreator/layers/mario/new_game/player.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "PlayerController::Powerup()"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,24 +46,8 @@
             filePath = "kreator/layers/mario/new_game/player.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "PlayerController::Update(ts)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2D6C89A2-E1BC-4679-BAAB-DC44330C2464"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kreator/layers/mario/new_game/player.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "PlayerController::Update(ts)"
             landmarkType = "7">
          </BreakpointContent>
@@ -128,6 +112,22 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
+            landmarkName = "StateMachine::Update(ts)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3E838E2E-2F8A-411C-90FB-DD431D212EF2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kreator/layers/mario/new_game/player.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "StateMachine::Update(ts)"
             landmarkType = "7">
          </BreakpointContent>
