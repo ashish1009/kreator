@@ -109,6 +109,8 @@ namespace mario {
       player_entity = scene_->CreateEntity(player_name);
     }
     
+    player_entity.GetComponent<TransformComponent>().UpdateTranslation_Z(0.1f);
+    
     // Quad Component
     if (!player_entity.HasComponent<QuadComponent>()) {
       auto& qc = player_entity.AddComponent<QuadComponent>();

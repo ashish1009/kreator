@@ -80,7 +80,7 @@ namespace mario {
     bool is_dead_ = false;
     int32_t enemy_bounce_ = 0;
     
-    float power_up_time_ = 10.0f;
+    float freez_time_ = 0.1f;
 
     PlayerState player_state_ = PlayerState::Small;
     RigidBodyComponent* rigid_body_comp_;

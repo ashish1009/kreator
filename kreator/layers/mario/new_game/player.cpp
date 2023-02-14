@@ -51,13 +51,8 @@ namespace mario {
   }
   
   void StateMachine::ChangeAction(PlayerAction action) {
-//    if (state_ == PlayerState::PowerUp) {
-//      state_ = state;
-//      return;
-//    }
-//
     player_action_ = action;
-    if (player_action_ != PlayerAction::Run) {
+    if (player_action_ != PlayerAction::Run and player_action_ != PlayerAction::PowerUp) {
       auto& qc = player_entity_->GetComponent<QuadComponent>();
       qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(*player_state_, player_action_)[0];
     }
@@ -91,9 +86,17 @@ namespace mario {
   void PlayerController::Update(Timestep ts) { // Run Left
     CheckOnGround();
     if (state_machine_->GetAction() == PlayerAction::PowerUp) {
-      if (!on_ground_)
+      freez_time_-= ts;
+      if (freez_time_ >= 0) {
+        if (!on_ground_) {
+          rigid_body_comp_->SetVelocity({0, 0});
+        }
+        return;
+      }
+      else {
         state_machine_->ChangeAction(PlayerAction::Idle);
-      return;
+        freez_time_ = 0.1f;
+      }
     }
     
     auto& tc = entity_.GetComponent<TransformComponent>();
@@ -246,7 +249,7 @@ namespace mario {
 
     if(state_machine_)
       ImGui::Text(" State %d", state_machine_->GetAction());
-    ImGui::Text(" Power time %f", power_up_time_);
+    ImGui::Text(" Power time %f", freez_time_);
 
   }
   
