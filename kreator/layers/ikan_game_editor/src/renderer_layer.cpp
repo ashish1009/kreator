@@ -25,6 +25,8 @@ namespace ikan_game {
     IK_INFO(game_data_->GameName(), "Attaching {0} Layer instance", game_data_->GameName().c_str());
     
     cbp_.AddFavouritPaths(game_data_->FavDirecotries());
+    
+    BatchRenderer::Init(100, 1000, 10000);
 
     // Decorate the Imgui Change the font of imgui
     ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
@@ -103,6 +105,7 @@ namespace ikan_game {
 
         Renderer::Framerate(&settings_.frame_rate);
         Renderer::RenderStatsGui(&settings_.stats, true);
+        Renderer::Render2DStatsGui(&settings_.stats_2d);
         viewport_.RenderGui(&settings_.viewport);
 
         cbp_.RenderGui(&settings_.cbp);

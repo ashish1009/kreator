@@ -10,6 +10,72 @@
 
 namespace ikan {
   
+  void Renderer2DStats::Reset() {
+    max_lines = 0;
+    max_quads = 0;
+    max_circles = 0;
+    circles = 0;
+    quads = 0;
+    lines = 0;
+  }
+  
+  void Renderer2DStats::ResetEachFrame() {
+    circles = 0;
+    quads = 0;
+    lines = 0;
+  }
+  
+  void Renderer2DStats::RenderGui(bool *is_open) {
+    if (is_open and *is_open == false) return;
+        
+    ImGui::Begin("Renderer 2D Stats", is_open);
+    ImGui::PushID("Renderer 2D Stats");
+    
+    ImGui::Columns(6);
+    
+    ImGui::SetColumnWidth(0, 80);
+    ImGui::Text("%d", max_quads);
+    PropertyGrid::HoveredMsg("Max Quads");
+    ImGui::NextColumn();
+    
+    ImGui::SetColumnWidth(1, 80);
+    ImGui::Text("%d", quads);
+    PropertyGrid::HoveredMsg("Num Quads Rendered");
+    ImGui::NextColumn();
+
+    ImGui::SetColumnWidth(2, 80);
+    ImGui::Text("%d", max_circles);
+    PropertyGrid::HoveredMsg("Max Circles");
+    ImGui::NextColumn();
+    
+    ImGui::SetColumnWidth(3, 80);
+    ImGui::Text("%d", circles);
+    PropertyGrid::HoveredMsg("Num Circles Rendered");
+    ImGui::NextColumn();
+
+    ImGui::SetColumnWidth(4, 80);
+    ImGui::Text("%d", max_lines);
+    PropertyGrid::HoveredMsg("Max Lines");
+    ImGui::NextColumn();
+    
+    ImGui::SetColumnWidth(5, 80);
+    ImGui::Text("%d", lines);
+    PropertyGrid::HoveredMsg("Num Lines Rendered");
+    ImGui::NextColumn();
+
+    
+    ImGui::NextColumn();
+    ImGui::Columns(1);
+
+    ImGui::PopID();
+    ImGui::End();
+  }
+  
+  Renderer2DStats& Renderer2DStats::Get() {
+    static Renderer2DStats instance;
+    return instance;
+  }
+
   void RendererStatistics::ResetEachFrame() {
     draw_calls = 0;
     index_count = 0;

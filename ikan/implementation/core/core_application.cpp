@@ -103,6 +103,7 @@ namespace ikan {
       
       // Reset the renderer stats each frame
       Renderer::ResetStatsEachFrame();
+      Renderer::Reset2DStatsEachFrame();
 
       // Updating all the attached layer
       for (auto& layer : layer_stack_)

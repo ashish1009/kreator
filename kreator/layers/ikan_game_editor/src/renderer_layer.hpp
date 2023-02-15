@@ -27,6 +27,7 @@ namespace ikan_game {
       bool frame_rate = true;
       bool viewport = true;
       bool stats = true;
+      bool stats_2d = true;
       
       bool save_scene = true;
       bool show_colliders = true;

@@ -170,6 +170,9 @@ namespace ikan {
   void Renderer::ResetStatsEachFrame() {
     RendererStatistics::Get().ResetEachFrame();
   }
+  void Renderer::Reset2DStatsEachFrame() {
+    Renderer2DStats::Get().ResetEachFrame();
+  }
   
   void Renderer::ResetStats() {
     RendererStatistics::Get().ResetAll();
@@ -178,7 +181,10 @@ namespace ikan {
   void Renderer::RenderStatsGui(bool *is_open, bool summary) {
     RendererStatistics::Get().RenderGui(is_open, summary);
   }
-  
+  void Renderer::Render2DStatsGui(bool *is_open) {
+    Renderer2DStats::Get().RenderGui(is_open);
+  }
+
   // -----------------
   // Gui Widgets
   // -----------------

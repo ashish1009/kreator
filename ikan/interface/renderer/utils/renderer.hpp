@@ -143,6 +143,8 @@ namespace ikan {
     /// NOTE: Only those stats will be reset that need to be reset each frame
     /// (Draw Calls, Index Count, Vertex Count)
     static void ResetStatsEachFrame();
+    /// This function resets the renderer Stats each frame
+    static void Reset2DStatsEachFrame();
     /// This function resets all the renderer stats
     static void ResetStats();
     /// This function renderers Imgui to show renderer stats
@@ -150,6 +152,10 @@ namespace ikan {
     ///   - is_open: flag to show or hide the widget
     ///   - summary: show stats in summary or detailed
     static void RenderStatsGui(bool *is_open = nullptr, bool summary = false);
+    /// This function renderers Imgui to show renderer stats
+    /// - Parameters:
+    ///   - is_open: flag to show or hide the widget
+    static void Render2DStatsGui(bool *is_open = nullptr);
 
     // -----------------
     // Gui Widgets

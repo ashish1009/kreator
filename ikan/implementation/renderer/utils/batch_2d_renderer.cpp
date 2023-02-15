@@ -331,6 +331,8 @@ namespace ikan {
     quad_data_->vertex_base_position[2] = {  0.5f,  0.5f, 0.0f, 1.0f };
     quad_data_->vertex_base_position[3] = { -0.5f,  0.5f, 0.0f, 1.0f };
     
+    Renderer2DStats::Get().max_quads = quad_data_->max_element;
+
     IK_CORE_INFO(LogModule::Batch2DRenderer, "Initialized Batch Renderer for Quad Data");
     IK_CORE_INFO(LogModule::Batch2DRenderer, "  ---------------------------------------------------------");
     IK_CORE_INFO(LogModule::Batch2DRenderer, "  Max Quads per Batch             | {0}", quad_data_->max_element);
@@ -419,6 +421,8 @@ namespace ikan {
     // Setup the Circle Shader
     circle_data_->shader = Renderer::GetShader(AM::CoreAsset("shaders/batch_circle_shader.glsl"));
     
+    Renderer2DStats::Get().max_circles = circle_data_->max_element;
+    
     IK_CORE_INFO(LogModule::Batch2DRenderer, "Initialized Batch Renderer for Circle Data");
     IK_CORE_INFO(LogModule::Batch2DRenderer, "  ---------------------------------------------------------");
     IK_CORE_INFO(LogModule::Batch2DRenderer, "  Max Circle per Batch            | {0}", max_circles);
@@ -466,6 +470,8 @@ namespace ikan {
     
     // Setup the Lines Shader
     line_data_->shader = Renderer::GetShader(AM::CoreAsset("shaders/batch_line_shader.glsl"));
+    
+    Renderer2DStats::Get().max_lines = line_data_->max_element;
     
     IK_CORE_INFO(LogModule::Batch2DRenderer, "Initialized Batch Renderer for Line Data");
     IK_CORE_INFO(LogModule::Batch2DRenderer, "  ---------------------------------------------------------");
@@ -678,6 +684,8 @@ namespace ikan {
     
     RendererStatistics::Get().index_count += BatchRendererData::IndicesForSingleElement;
     RendererStatistics::Get().vertex_count += BatchRendererData::VertexForSingleElement;
+    
+    Renderer2DStats::Get().quads++;
   }
   
   void BatchRenderer::DrawCircle(const glm::vec3& position,
@@ -788,6 +796,8 @@ namespace ikan {
     
     RendererStatistics::Get().index_count += BatchRendererData::IndicesForSingleElement;
     RendererStatistics::Get().vertex_count += BatchRendererData::VertexForSingleElement;
+    
+    Renderer2DStats::Get().circles++;
   }
   
   void BatchRenderer::DrawLine(const glm::vec3& p0,
@@ -803,6 +813,8 @@ namespace ikan {
     
     line_data_->vertex_count += LineData::kVertexForSingleLine;
     RendererStatistics::Get().vertex_count += LineData::kVertexForSingleLine;
+    
+    Renderer2DStats::Get().lines++;
   }
   
   void BatchRenderer::DrawRect(const glm::vec3& p0, const glm::vec3& p2, const glm::vec4& color) {
