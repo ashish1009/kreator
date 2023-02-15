@@ -136,6 +136,8 @@ namespace ikan {
   
   struct RigidBodyComponent {
     b2BodyType type = b2BodyType::b2_staticBody;
+    
+    bool is_ground = false;
     bool fixed_rotation = false;
     
     glm::vec2 velocity{0, 0};

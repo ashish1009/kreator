@@ -28,6 +28,8 @@ namespace ikan {
     }
     float ReportFixture(b2Fixture* fixture, const b2Vec2& hit_point, const b2Vec2& normal, float fraction) override;
     
+    bool OnGround();
+    
   public:
     b2Fixture* fixture = nullptr;
     b2Vec2 hit_point;

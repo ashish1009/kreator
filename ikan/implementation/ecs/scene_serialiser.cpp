@@ -299,6 +299,7 @@ namespace ikan {
         
         uint32_t type = (uint32_t)rc.type;
         out << YAML::Key << "Type" << YAML::Value << type;
+        out << YAML::Key << "Is Ground" << YAML::Value << rc.is_ground;
         out << YAML::Key << "Fixed Rotation" << YAML::Value << rc.fixed_rotation;
         
         out << YAML::Key << "Linear Velocity" << YAML::Value << rc.velocity;
@@ -563,6 +564,7 @@ namespace ikan {
           auto type = rigid_body_component["Type"].as<uint8_t>();
           rc.type = (b2BodyType)type;
           rc.fixed_rotation = rigid_body_component["Fixed Rotation"].as<bool>();
+          rc.is_ground = rigid_body_component["Is Ground"].as<bool>();
 
           rc.velocity         = rigid_body_component["Linear Velocity"].as<glm::vec2>();
           rc.angular_damping  = rigid_body_component["Angular Damping"].as<float>();

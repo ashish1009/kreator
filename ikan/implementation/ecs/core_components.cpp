@@ -460,20 +460,61 @@ namespace ikan {
   // -------------------------------------------------------------------------
   RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent& other) {
     type = other.type;
-    fixed_rotation = other.fixed_rotation;
+    
+    is_ground =  other.is_ground;
+    fixed_rotation =  other.fixed_rotation;
+    velocity =  other.velocity;
+    angular_damping =  other.angular_damping;
+    linear_damping =  other.linear_damping;
+    mass =  other.mass;
+    friction =  other.friction;
+    angular_velocity =  other.angular_velocity;
+    gravity_scale =  other.gravity_scale;
+    is_sensor =  other.is_sensor;
+    continuous_collision =  other.continuous_collision;
   }
   RigidBodyComponent& RigidBodyComponent::operator=(const RigidBodyComponent& other) {
     type = other.type;
-    fixed_rotation = other.fixed_rotation;
+    is_ground =  other.is_ground;
+    fixed_rotation =  other.fixed_rotation;
+    velocity =  other.velocity;
+    angular_damping =  other.angular_damping;
+    linear_damping =  other.linear_damping;
+    mass =  other.mass;
+    friction =  other.friction;
+    angular_velocity =  other.angular_velocity;
+    gravity_scale =  other.gravity_scale;
+    is_sensor =  other.is_sensor;
+    continuous_collision =  other.continuous_collision;
     return *this;
   }
   RigidBodyComponent::RigidBodyComponent(RigidBodyComponent&& other) {
     type = other.type;
-    fixed_rotation = other.fixed_rotation;
+    is_ground =  other.is_ground;
+    fixed_rotation =  other.fixed_rotation;
+    velocity =  other.velocity;
+    angular_damping =  other.angular_damping;
+    linear_damping =  other.linear_damping;
+    mass =  other.mass;
+    friction =  other.friction;
+    angular_velocity =  other.angular_velocity;
+    gravity_scale =  other.gravity_scale;
+    is_sensor =  other.is_sensor;
+    continuous_collision =  other.continuous_collision;
   }
   RigidBodyComponent& RigidBodyComponent::operator=(RigidBodyComponent&& other) {
     type = other.type;
-    fixed_rotation = other.fixed_rotation;
+    is_ground =  other.is_ground;
+    fixed_rotation =  other.fixed_rotation;
+    velocity =  other.velocity;
+    angular_damping =  other.angular_damping;
+    linear_damping =  other.linear_damping;
+    mass =  other.mass;
+    friction =  other.friction;
+    angular_velocity =  other.angular_velocity;
+    gravity_scale =  other.gravity_scale;
+    is_sensor =  other.is_sensor;
+    continuous_collision =  other.continuous_collision;
     return *this;
   }
   
@@ -540,6 +581,7 @@ namespace ikan {
     PropertyGrid::Float1("Gravity Scale", gravity_scale, nullptr, 0.1, 0.0f, 200.0f);
     
     ImGui::Separator();
+    PropertyGrid::CheckBox("Is Ground", is_ground, ImGui::GetWindowContentRegionMax().x / 2);
     PropertyGrid::CheckBox("Fixed Rotation", fixed_rotation, ImGui::GetWindowContentRegionMax().x / 2);
     PropertyGrid::CheckBox("Is Sensor", is_sensor, ImGui::GetWindowContentRegionMax().x / 2);
     PropertyGrid::CheckBox("Continuous Collision", continuous_collision, ImGui::GetWindowContentRegionMax().x / 2);

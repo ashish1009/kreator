@@ -285,8 +285,7 @@ namespace ikan {
                                                   {ray_cast_2_begin.x, ray_cast_2_begin.y},
                                                   {ray_cast_2_end.x, ray_cast_2_end.y});
     
-    bool on_ground = ((info_1->hit and info_1->hit_object and info_1->hit_object->HasComponent<RigidBodyComponent>()) or
-                      (info_2->hit and info_2->hit_object and info_2->hit_object->HasComponent<RigidBodyComponent>()));
+    bool on_ground = info_1->OnGround() or info_2->OnGround();
 
 #if DEBUG_DRAW
       const auto& cd = primary_camera_data_;
@@ -628,4 +627,9 @@ namespace ikan {
     
     return fraction;
   }
+  
+  bool RayCastInfo::OnGround() {
+    return hit and hit_object and hit_object->HasComponent<RigidBodyComponent>() and hit_object->GetComponent<RigidBodyComponent>().is_ground;
+  }
+
 }

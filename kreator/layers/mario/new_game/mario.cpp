@@ -465,11 +465,11 @@ namespace mario {
   void MarioData::MandleComponentHack() {
 #if 0
     // HACK to add components
-    auto v = scene_->GetEntitesWith<BoxColloiderComponent>();
+    auto v = scene_->GetEntitesWith<RigidBodyComponent, TagComponent>();
     for (auto e : v) {
-      auto &c = v.get<BoxColloiderComponent>(e);
-      Entity* entity = new Entity(e, scene_.get());
-      c.runtime_fixture = (void*)entity;
+      auto [r, c] = v.get<RigidBodyComponent, TagComponent>(e);
+      r.is_ground = true;
+//      if (c.tag == "Ground" or c.tag == "Step" or c.tag == "Bonus")
     }
 #endif
   }
