@@ -22,11 +22,22 @@ namespace mario {
     void Create(Entity entity) override;
     void Update(Timestep) override;
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
+
   private:
-    RigidBodyComponent* rigid_body_comp_;
-    glm::vec2 velocity_ = { 4.0f, 0.0f };
-    float max_speed_ = 8.0f;
+    void CheckOnGround();
+
+    bool is_dead_ = false;
     bool going_right_ = true;
+    bool on_ground_ = false;
+
+    float walk_speed_ = 4.0f;
+    float time_to_kill = 0.5f;
+
+    glm::vec2 acceleration_;
+    glm::vec2 velocity_;
+    glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
+
+    RigidBodyComponent* rigid_body_comp_;
   };
   
   class EnemyScriptManager {

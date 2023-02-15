@@ -370,14 +370,14 @@
 			isa = PBXGroup;
 			children = (
 				B28D963F299644770089F98F /* common.h */,
-				B2E047E12998BB5900EE71D0 /* sprite_manager.hpp */,
 				B2E047E02998BB5900EE71D0 /* sprite_manager.cpp */,
-				B21E44112993FC6C00D6CDFD /* mario.hpp */,
+				B2E047E12998BB5900EE71D0 /* sprite_manager.hpp */,
 				B21E441A299408E500D6CDFD /* mario.cpp */,
-				B28D963D299643A00089F98F /* player.hpp */,
+				B21E44112993FC6C00D6CDFD /* mario.hpp */,
 				B28D963C299643A00089F98F /* player.cpp */,
-				B2EB5AFD2999206600BEBFC6 /* block.hpp */,
+				B28D963D299643A00089F98F /* player.hpp */,
 				B20D5E352999484C0089069D /* block.cpp */,
+				B2EB5AFD2999206600BEBFC6 /* block.hpp */,
 				B20D5E3729994E5A0089069D /* runtime_items.cpp */,
 				B20D5E3829994E5A0089069D /* runtime_items.hpp */,
 				B2FFCEE8299BFF4800552B6A /* enemy.cpp */,

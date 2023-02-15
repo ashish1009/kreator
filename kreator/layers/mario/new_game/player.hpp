@@ -63,7 +63,6 @@ namespace mario {
 
     float walk_speed_ = 4.0f;
     float slow_down_force_ = 0.08f;
-    glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
     
     bool on_ground_ = false;
     float ground_debounce_ = 0.0f; // Seconds
@@ -80,6 +79,8 @@ namespace mario {
     
     glm::vec2 acceleration_;
     glm::vec2 velocity_;
+    glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
+
     bool is_dead_ = false;
     int32_t enemy_bounce_ = 0;
     
