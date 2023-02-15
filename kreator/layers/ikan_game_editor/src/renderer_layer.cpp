@@ -12,13 +12,13 @@ namespace ikan_game {
 #define is_playing settings_.play
   
   RendererLayer::RendererLayer(GameType type) : Layer("ikan Game"), game_data_(CreateGameData(type, &viewport_)) {
-    if (!game_data_)
-      game_data_ = std::make_unique<GameData>();
-    
-    cbp_.SetRootData(game_data_->CbpRootDir());
-
-    game_data_->Init();
-    
+//  if (!game_data_)
+//      game_data_ = std::make_unique<GameData>();
+//
+//    cbp_.SetRootData(game_data_->CbpRootDir());
+//
+//    game_data_->Init();
+//
     IK_INFO(game_data_->GameName(), "Creating {0} Layer instance ... ", game_data_->GameName().c_str());
   }
   
@@ -29,16 +29,16 @@ namespace ikan_game {
   void RendererLayer::Attach() {
     IK_INFO(game_data_->GameName(), "Attaching {0} Layer instance", game_data_->GameName().c_str());
     
-    cbp_.AddFavouritPaths(game_data_->FavDirecotries());
-
-    // Decorate the Imgui Change the font of imgui
-    ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
-    // TODO: Add File Menu
-    ImguiAPI::SetLightGreyThemeColors();
-
-    if (!OpenScene(game_data_->OpenSavedScene())) {
-      NewScene(AM::ClientAsset("scenes/New_scene"));
-    }
+//    cbp_.AddFavouritPaths(game_data_->FavDirecotries());
+//
+//    // Decorate the Imgui Change the font of imgui
+//    ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
+//    // TODO: Add File Menu
+//    ImguiAPI::SetLightGreyThemeColors();
+//
+//    if (!OpenScene(game_data_->OpenSavedScene())) {
+//      NewScene(AM::ClientAsset("scenes/New_scene"));
+//    }
   }
   
   void RendererLayer::Detach() {
@@ -46,86 +46,86 @@ namespace ikan_game {
   }
     
   void RendererLayer::Update(Timestep ts) {
-    if (!active_scene_)
-      return;
-    
-    viewport_.UpdateMousePos();
-    
-    if (is_playing) {      
-      Renderer::Clear(game_data_->GetBgColor());
-      RenderScene(ts);
-    }
-    else {
-      if (viewport_.IsFramebufferResized()) {
-        viewport_width = viewport_.width;
-        viewport_height = viewport_.height;
-        
-        viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
-        active_scene_->SetViewport(viewport_width, viewport_height);
-        
-        game_data_->SetViewportSize(viewport_width, viewport_height);
-      }
-
-      viewport_.framebuffer->Bind();
-      Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
-      
-      RenderScene(ts);
-      
-      if (settings_.show_grids)
-        RenderGrid();
-
-      if (settings_.show_colliders)
-        OverlayRender();
-      
-      viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
-      viewport_.framebuffer->Unbind();
-    }
+//    if (!active_scene_)
+//      return;
+//
+//    viewport_.UpdateMousePos();
+//
+//    if (is_playing) {
+//      Renderer::Clear(game_data_->GetBgColor());
+//      RenderScene(ts);
+//    }
+//    else {
+//      if (viewport_.IsFramebufferResized()) {
+//        viewport_width = viewport_.width;
+//        viewport_height = viewport_.height;
+//
+//        viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
+//        active_scene_->SetViewport(viewport_width, viewport_height);
+//
+//        game_data_->SetViewportSize(viewport_width, viewport_height);
+//      }
+//
+//      viewport_.framebuffer->Bind();
+//      Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
+//
+//      RenderScene(ts);
+//
+//      if (settings_.show_grids)
+//        RenderGrid();
+//
+//      if (settings_.show_colliders)
+//        OverlayRender();
+//
+//      viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
+//      viewport_.framebuffer->Unbind();
+//    }
   }
   
   void RendererLayer::EventHandler(Event& event) {
-    if (active_scene_)
-      active_scene_->EventHandler(event);
-    
-    game_data_->EventHandler(event);
-
-    EventDispatcher dispatcher(event);
-    dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::KeyPressed));
-    dispatcher.Dispatch<WindowResizeEvent>(IK_BIND_EVENT_FN(RendererLayer::WindowResized));
-    dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::MouseButtonPressed));
+//    if (active_scene_)
+//      active_scene_->EventHandler(event);
+//
+//    game_data_->EventHandler(event);
+//
+//    EventDispatcher dispatcher(event);
+//    dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::KeyPressed));
+//    dispatcher.Dispatch<WindowResizeEvent>(IK_BIND_EVENT_FN(RendererLayer::WindowResized));
+//    dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::MouseButtonPressed));
   }
   
   void RendererLayer::RenderGui() {
-    if (is_playing) {
-    }
-    else {
-      ImguiAPI::StartDcocking();
-
-      ShowMenu();
-      GamePlayButton();
-      
-      if (active_scene_) {
-        ShowSettings();
-        
-        active_scene_->RenderGui();
-
-        Renderer::Framerate(&settings_.frame_rate);
-        Renderer::RenderStatsGui(&settings_.stats, true);
-        viewport_.RenderGui(&settings_.viewport);
-
-        cbp_.RenderGui(&settings_.cbp);
-        spm_.RenderGui();
-        game_data_->RenderGui();
-
-        if (active_scene_->IsEditing()) {
-          SaveScene();
-        }
-        
-        ScenePlayPauseButton();
-        RenderViewport();
-      }
-
-      ImguiAPI::EndDcocking();
-    }
+//    if (is_playing) {
+//    }
+//    else {
+//      ImguiAPI::StartDcocking();
+//
+//      ShowMenu();
+//      GamePlayButton();
+//
+//      if (active_scene_) {
+//        ShowSettings();
+//
+//        active_scene_->RenderGui();
+//
+//        Renderer::Framerate(&settings_.frame_rate);
+//        Renderer::RenderStatsGui(&settings_.stats, true);
+//        viewport_.RenderGui(&settings_.viewport);
+//
+//        cbp_.RenderGui(&settings_.cbp);
+//        spm_.RenderGui();
+//        game_data_->RenderGui();
+//
+//        if (active_scene_->IsEditing()) {
+//          SaveScene();
+//        }
+//
+//        ScenePlayPauseButton();
+//        RenderViewport();
+//      }
+//
+//      ImguiAPI::EndDcocking();
+//    }
   }
   
   bool RendererLayer::KeyPressed(KeyPressedEvent& event) {

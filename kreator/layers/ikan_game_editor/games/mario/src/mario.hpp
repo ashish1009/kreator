@@ -14,7 +14,7 @@ namespace mario {
   
   using namespace ikan;
   
-  class MarioData : public ikan_game::GameData {
+  class Mario : public ikan_game::GameData {
   };
   
 }
