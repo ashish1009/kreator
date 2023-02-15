@@ -48,18 +48,37 @@ namespace mario {
     ~Mario();
 
     void Init() override;
+    void SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) override;
+    void Update(Timestep ts) override;
+    void EventHandler(Event& event) override;
+    void RenderGui() override;
     void SetViewportSize(uint32_t width, uint32_t height) override;
+    void SetState(bool is_playing) override { is_playing_ = is_playing; }
 
     // Getters
     std::vector<std::filesystem::path> FavDirecotries() const override;
     ImguiFont RegularFontData() const override;
     ImguiFont BoldFontData() const override;
     std::string OpenSavedScene() const override { return AM::ClientAsset("scenes/Mario_Scene.ikanScene"); }
+    std::string CbpRootDir() const override { return AM::ClientAsset("scenes/"); };
+    glm::vec4 GetBgColor() const override { return level_bg_; }
+    std::string GameName() const override { return "Mario"; }
 
     static Mario& Get() { return *instance_; }
 
   private:
+    /// This function handles the Key button event
+    /// - Parameter e: Key pressed event
+    bool KeyPressEvent(KeyPressedEvent& e);
+    /// This function handles the MouseButton event
+    /// - Parameter e: MouseButton pressed event
+    bool MouseButtonPressEvent(MouseButtonPressedEvent& e);
+
+    // Mario Data
+    glm::vec4 level_bg_ = {0.2, 0.4, 0.6, 1.0f};
+    
     // Renderer Data
+    bool is_playing_ = false;
     std::string font_path_ = "fonts/mario.ttf";
     TextData text_data_;
 

@@ -30,7 +30,7 @@ namespace ikan_game {
     ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
     ImguiAPI::SetLightGreyThemeColors();
 
-//    if (!OpenScene(game_data_->OpenSavedScene()))
+    if (!OpenScene(game_data_->OpenSavedScene()))
       NewScene(AM::ClientAsset("scenes/New_scene"));
   }
   
@@ -76,49 +76,49 @@ namespace ikan_game {
   }
   
   void RendererLayer::EventHandler(Event& event) {
-//    if (active_scene_)
-//      active_scene_->EventHandler(event);
-//
-//    game_data_->EventHandler(event);
-//
-//    EventDispatcher dispatcher(event);
-//    dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::KeyPressed));
-//    dispatcher.Dispatch<WindowResizeEvent>(IK_BIND_EVENT_FN(RendererLayer::WindowResized));
-//    dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::MouseButtonPressed));
+    if (active_scene_)
+      active_scene_->EventHandler(event);
+
+    game_data_->EventHandler(event);
+
+    EventDispatcher dispatcher(event);
+    dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::KeyPressed));
+    dispatcher.Dispatch<WindowResizeEvent>(IK_BIND_EVENT_FN(RendererLayer::WindowResized));
+    dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::MouseButtonPressed));
   }
   
   void RendererLayer::RenderGui() {
-//    if (is_playing) {
-//    }
-//    else {
-//      ImguiAPI::StartDcocking();
-//
-//      ShowMenu();
-//      GamePlayButton();
-//
-//      if (active_scene_) {
-//        ShowSettings();
-//
-//        active_scene_->RenderGui();
-//
-//        Renderer::Framerate(&settings_.frame_rate);
-//        Renderer::RenderStatsGui(&settings_.stats, true);
-//        viewport_.RenderGui(&settings_.viewport);
-//
-//        cbp_.RenderGui(&settings_.cbp);
-//        spm_.RenderGui();
-//        game_data_->RenderGui();
-//
-//        if (active_scene_->IsEditing()) {
-//          SaveScene();
-//        }
-//
-//        ScenePlayPauseButton();
-//        RenderViewport();
-//      }
-//
-//      ImguiAPI::EndDcocking();
-//    }
+    if (is_playing) {
+    }
+    else {
+      ImguiAPI::StartDcocking();
+
+      ShowMenu();
+      GamePlayButton();
+
+      if (active_scene_) {
+        ShowSettings();
+
+        active_scene_->RenderGui();
+
+        Renderer::Framerate(&settings_.frame_rate);
+        Renderer::RenderStatsGui(&settings_.stats, true);
+        viewport_.RenderGui(&settings_.viewport);
+
+        cbp_.RenderGui(&settings_.cbp);
+        spm_.RenderGui();
+        game_data_->RenderGui();
+
+        if (active_scene_->IsEditing()) {
+          SaveScene();
+        }
+
+        ScenePlayPauseButton();
+        RenderViewport();
+      }
+
+      ImguiAPI::EndDcocking();
+    }
   }
   
   bool RendererLayer::KeyPressed(KeyPressedEvent& event) {

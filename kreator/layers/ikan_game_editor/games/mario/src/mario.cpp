@@ -33,6 +33,29 @@ namespace mario {
     BatchRenderer::Init(2000, 0, 0);
   }
   
+  void Mario::SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
+  }
+  
+  void Mario::Update(Timestep ts) {
+  }
+  
+  void Mario::RenderGui() {
+  }
+  
+  void Mario::EventHandler(Event& event) {
+    EventDispatcher dispatcher(event);
+    dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(Mario::KeyPressEvent));
+    dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(Mario::MouseButtonPressEvent));
+  }
+  
+  bool Mario::KeyPressEvent(KeyPressedEvent &e) {
+    return false;
+  }
+  
+  bool Mario::MouseButtonPressEvent(MouseButtonPressedEvent& e) {
+    return false;
+  }
+  
   void Mario::SetViewportSize(uint32_t width, uint32_t height) {
     viewport_width_ = width;
     viewport_height_ = height;

@@ -112,6 +112,11 @@ namespace ikan {
   EnttScene::~EnttScene() {
     IK_CORE_WARN(LogModule::EnttScene, "Destroying Scene!!!");
     IK_CORE_WARN(LogModule::EnttScene, "  Name | {0}", name_);
+    
+    delete physics_world_;
+    delete contact_listner_;
+    physics_world_ = nullptr;
+    contact_listner_ = nullptr;
   }
   
   Entity EnttScene::CreateEntity(const std::string& name, UUID uuid) {
@@ -390,6 +395,7 @@ namespace ikan {
     delete physics_world_;
     delete contact_listner_;
     physics_world_ = nullptr;
+    contact_listner_ = nullptr;
   }
   
   void EnttScene::UpdatePrimaryCameraData() {
