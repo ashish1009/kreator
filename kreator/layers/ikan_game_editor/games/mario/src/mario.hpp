@@ -76,6 +76,7 @@ namespace mario {
     /// - Parameter e: MouseButton pressed event
     bool MouseButtonPressEvent(MouseButtonPressedEvent& e);
 
+    // Debug APIS
     /// This function render the rectangle when clicg drag mouse
     void SelectEntities();
     /// This function moves the selected entities
@@ -90,7 +91,13 @@ namespace mario {
     void DeleteSelectedEntities();
     /// This function Duplicate the selected entities
     void DuplicateSelectedEntities();
+    /// This hack moves the camera without camera controller with keys
+    /// - Parameter ts: time step
+    void MoveCameraDebug(Timestep ts);
 
+    // ----------------------
+    // Member variables
+    // ----------------------
     // Mario Data
     static const uint32_t MaxTime = 100;
     glm::vec4 level_bg_ = {0.2, 0.4, 0.6, 1.0f};

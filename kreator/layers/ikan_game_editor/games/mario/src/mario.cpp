@@ -47,6 +47,7 @@ namespace mario {
   void Mario::Update(Timestep ts) {
     if (!is_playing_) {
       SelectEntities();
+      MoveCameraDebug(ts);
     }
     else {
       // Timer
@@ -251,6 +252,26 @@ namespace mario {
       }
     }
   }
+  
+  void Mario::MoveCameraDebug(Timestep ts) {
+    // Move Camera for debug
+    auto& cd = scene_->GetPrimaryCameraData();
+    auto& cam = cd.scene_camera;
+    auto& tc = cd.transform_comp;
+    
+    bool shift = Input::IsKeyPressed(KeyCode::RightShift);
+    if (shift) {
+      if (Input::IsKeyPressed(KeyCode::A)) tc->UpdateTranslation_X(tc->Translation().x - (cam->GetZoom() * ts));
+      if (Input::IsKeyPressed(KeyCode::D)) tc->UpdateTranslation_X(tc->Translation().x + (cam->GetZoom() * ts));
+      
+      if (Input::IsKeyPressed(KeyCode::W)) tc->UpdateTranslation_Y(tc->Translation().y + (cam->GetZoom() * ts));
+      if (Input::IsKeyPressed(KeyCode::S)) tc->UpdateTranslation_Y(tc->Translation().y - (cam->GetZoom() * ts));
+      
+      if (Input::IsKeyPressed(KeyCode::Q)) cam->SetOrthographicSize(cam->GetOrthographicSize() + 1.0f);
+      if (Input::IsKeyPressed(KeyCode::E)) cam->SetOrthographicSize(cam->GetOrthographicSize() - 1.0f);
+    }
+  }
+
 
   void Mario::SetViewportSize(uint32_t width, uint32_t height) {
     viewport_width_ = width;
