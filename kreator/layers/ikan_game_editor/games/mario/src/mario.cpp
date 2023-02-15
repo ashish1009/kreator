@@ -43,6 +43,34 @@ namespace mario {
   }
   
   void Mario::Update(Timestep ts) {
+    if (!is_playing_) {
+    }
+    else {
+      // Timer
+      timer_ += ts;
+      time_left_ = MaxTime - (uint32_t)timer_;
+    }
+    
+    // Score and All text
+    TextRenderer::BeginBatch(text_data_.still_camera_projection);
+    
+    text_data_.Render("MARIO", 0, 0);
+    text_data_.Render(std::to_string(score_), 1, 0);
+    
+    BatchRenderer::BeginBatch(text_data_.still_camera_projection);
+    BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, 0, 0}, {0, 0, 0}, {10, 10, 10}), {1, 1,1 ,1});
+    BatchRenderer::EndBatch();
+    text_data_.Render("x " + std::to_string(coins_), 1, 1);
+    
+    text_data_.Render("WORLD", 0, 2);
+    text_data_.Render(std::to_string(world_) + " - " + std::to_string(level_), 1, 2);
+    
+    text_data_.Render("TIME", 0, 3);
+    text_data_.Render(std::to_string(time_left_), 1, 3);
+    
+    TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)), { 5.0f, 5.0f, 0.3f }, { 0.35f, 0.35f }, { 0, 0, 1, 1 });
+    
+    TextRenderer::EndBatch();
   }
   
   void Mario::RenderGui() {

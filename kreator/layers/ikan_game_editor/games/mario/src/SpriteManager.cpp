@@ -22,8 +22,7 @@ namespace mario {
     data_->sprite_map[SpriteType::Items] = Renderer::GetTexture(AM::ClientAsset("textures/item.png"), false);
     data_->sprite_map[SpriteType::Enemy] = Renderer::GetTexture(AM::ClientAsset("textures/enemy.png"), false);
     data_->sprite_map[SpriteType::Tile] = Renderer::GetTexture(AM::ClientAsset("textures/tile.png"), false);
-    data_->sprite_map[SpriteType::StartScreen] = Renderer::GetTexture(AM::ClientAsset("textures/start_screen.png"), false);
-    
+    data_->sprite_map[SpriteType::StartScreen] = Renderer::GetTexture(AM::ClientAsset("textures/start_screen.png"), false);    
   }
   
   std::shared_ptr<Texture> SpriteManager::GetSpriteImage(SpriteType type) {

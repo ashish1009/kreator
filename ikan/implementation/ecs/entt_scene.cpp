@@ -339,6 +339,7 @@ namespace ikan {
   }
   
   void EnttScene::RenderImguiRuntime() {
+#if 0
     if (primary_camera_data_.scene_camera) {
       ImGui::Begin("Primary Camera");
       ImGui::PushID("Primary Camera");
@@ -350,6 +351,7 @@ namespace ikan {
       ImGui::PopID();
       ImGui::End();
     }
+#endif
   }
   
   void EnttScene::SetViewport(uint32_t width, uint32_t height) {

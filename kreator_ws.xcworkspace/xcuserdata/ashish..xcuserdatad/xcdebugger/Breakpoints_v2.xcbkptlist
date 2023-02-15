@@ -94,8 +94,8 @@
             filePath = "ikan/implementation/ecs/entt_scene.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "599"
-            endingLineNumber = "599"
+            startingLineNumber = "601"
+            endingLineNumber = "601"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -525,8 +525,8 @@
             filePath = "ikan/implementation/ecs/entt_scene.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
+            startingLineNumber = "397"
+            endingLineNumber = "397"
             landmarkName = "EnttScene::EditScene()"
             landmarkType = "7">
          </BreakpointContent>
