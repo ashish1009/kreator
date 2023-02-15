@@ -51,9 +51,9 @@ namespace ikan_game {
     /// This function returns the path of scene you want to open in begining
     virtual std::string OpenSavedScene() {return "";};
     /// This function returns the path of regular GUI fornt
-    virtual ImguiFont RegularFontData() {return {AM::ProjectPath("kreator/layers/ikan_game/game_assets/fonts/Opensans/Regular.ttf"), 14};};
+    virtual ImguiFont RegularFontData() {return {AM::ProjectPath("kreator/layers/ikan_game_editor/game_assets/fonts/Opensans/Regular.ttf"), 14};};
     /// This function returns the path of bold GUI fornt
-    virtual ImguiFont BoldFontData() {return {AM::ProjectPath("kreator/layers/ikan_game/game_assets/fonts/Opensans/Bold.ttf"), 14};};
+    virtual ImguiFont BoldFontData() {return {AM::ProjectPath("kreator/layers/ikan_game_editor/game_assets/fonts/Opensans/Bold.ttf"), 14};};
     /// This function returns the paths of directory you want in content browser panel
     virtual std::vector<std::filesystem::path> FavDirecotries() {return {};};
   };

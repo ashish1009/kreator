@@ -24,6 +24,7 @@ public:
     
     switch (application_type) {
       case LayerType::Editor :
+        PushLayer(std::make_shared<ikan_game::RendererLayer>());
         break;
       case LayerType::RayTracing :
         PushLayer(std::make_shared<ray_tracing::RendererLayer>());
@@ -38,7 +39,7 @@ public:
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Set up the type of applicaiton we want to create
-  LayerType application_type = LayerType::RayTracing;
+  LayerType application_type = LayerType::Editor;
   
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;
@@ -62,8 +63,8 @@ std::unique_ptr<ikan::Application> CreateApplication() {
     case LayerType::Editor :
       application_spec.name = "Kreator";
       application_spec.window_specification.title = "Kreator";
-      application_spec.client_asset_path = "../../../kreator/layers/ecs_editor/editor_assets/";
-      application_spec.save_ini_file_path = "../../../kreator/layers/ecs_editor/ecs.ini";
+      application_spec.client_asset_path = "../../../kreator/layers/ikan_game_editor/editor_assets/";
+      application_spec.save_ini_file_path = "../../../kreator/layers/ikan_game_editor/ikan_game_editor.ini";
       break;
     case LayerType::RayTracing :
       application_spec.name = "RayTracing";

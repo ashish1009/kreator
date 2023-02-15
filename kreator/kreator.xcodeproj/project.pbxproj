@@ -12,7 +12,6 @@
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
 		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
 		B2918462299CEFCB008B9D71 /* create_game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2918452299CEFCB008B9D71 /* create_game_data.cpp */; };
-		B2918463299CEFCB008B9D71 /* game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2918456299CEFCB008B9D71 /* game_data.cpp */; };
 		B2918464299CEFCB008B9D71 /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2918457299CEFCB008B9D71 /* renderer_layer.cpp */; };
 		B2918465299CEFCB008B9D71 /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2918461299CEFCB008B9D71 /* renderer_layer.cpp */; };
 		B2BD9DC7295C7C290076A2F9 /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -78,7 +77,6 @@
 		B2918452299CEFCB008B9D71 /* create_game_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = create_game_data.cpp; sourceTree = "<group>"; };
 		B2918454299CEFCB008B9D71 /* renderer_layer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
 		B2918455299CEFCB008B9D71 /* game_data.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = game_data.hpp; sourceTree = "<group>"; };
-		B2918456299CEFCB008B9D71 /* game_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game_data.cpp; sourceTree = "<group>"; };
 		B2918457299CEFCB008B9D71 /* renderer_layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
 		B291845A299CEFCB008B9D71 /* ray_tracing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ray_tracing.png; sourceTree = "<group>"; };
 		B291845C299CEFCB008B9D71 /* ray_tracing_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ray_tracing_1.jpg; sourceTree = "<group>"; };
@@ -263,10 +261,9 @@
 		B2918453299CEFCB008B9D71 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				B2918457299CEFCB008B9D71 /* renderer_layer.cpp */,
 				B2918454299CEFCB008B9D71 /* renderer_layer.hpp */,
 				B2918455299CEFCB008B9D71 /* game_data.hpp */,
-				B2918456299CEFCB008B9D71 /* game_data.cpp */,
-				B2918457299CEFCB008B9D71 /* renderer_layer.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -397,7 +394,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
-				B2918463299CEFCB008B9D71 /* game_data.cpp in Sources */,
 				B2918465299CEFCB008B9D71 /* renderer_layer.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
 				B2918464299CEFCB008B9D71 /* renderer_layer.cpp in Sources */,
