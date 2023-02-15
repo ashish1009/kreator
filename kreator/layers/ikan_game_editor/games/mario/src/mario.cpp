@@ -7,6 +7,8 @@
 
 #include "mario.hpp"
 
+#include "SpriteManager.hpp"
+
 namespace mario {
   
   static const std::string MarioLogTag = "Mario";
@@ -23,6 +25,8 @@ namespace mario {
   
   Mario::~Mario() {
     IK_WARN(MarioLogTag, "Destroying Mario Game Data ... ");
+    
+    SpriteManager::Shutdown();
   }
   
   void Mario::Init() {
@@ -31,6 +35,8 @@ namespace mario {
     // Change Text renderer Font
     TextRenderer::LoadFreetype(AM::ClientAsset(font_path_));
     BatchRenderer::Init(2000, 0, 0);
+    
+    SpriteManager::Init();
   }
   
   void Mario::SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {

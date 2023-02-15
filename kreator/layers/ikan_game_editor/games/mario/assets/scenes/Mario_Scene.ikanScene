@@ -1,6 +1,20 @@
 Scene: Untitled
 Setting_editor_camera: true
 Setting_scene_data: true
-Use_editor_camera: true
+Use_editor_camera: false
 Entities:
-  []
+  - Entity: 12243948371409516112
+    TagComponent:
+      Tag: Primary Camera
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 10
+      Near: -1
+      Far: 1

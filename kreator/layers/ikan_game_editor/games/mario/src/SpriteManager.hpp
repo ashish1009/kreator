@@ -1,0 +1,28 @@
+//
+//  SpriteManager.hpp
+//  kreator
+//
+//  Created by Ashish . on 15/02/23.
+//
+
+#pragma once
+
+namespace mario {
+  
+  using namespace ikan;
+  
+  enum class SpriteType {
+    Player, Items, Enemy, Tile, StartScreen
+  };
+
+  class SpriteManager {
+  public:
+    static void Init();
+    static void Shutdown();
+    
+    static std::shared_ptr<Texture> GetSpriteImage(SpriteType type);
+
+    MAKE_PURE_STATIC(SpriteManager);
+  };
+
+}
