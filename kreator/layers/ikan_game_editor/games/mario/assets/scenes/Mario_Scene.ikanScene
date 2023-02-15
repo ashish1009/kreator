@@ -3,6 +3,58 @@ Setting_editor_camera: true
 Setting_scene_data: true
 Use_editor_camera: false
 Entities:
+  - Entity: 6174172262685870855
+    TagComponent:
+      Tag: CoinBlock
+    TransformComponent:
+      Translation: [-12, -3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
+      Coords: [24, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Is Ground: true
+      Fixed Rotation: true
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Mass: 0
+      Friction: 0
+      Gravity Scale: 1
+      Is Sensor: false
+      Continous Collision: true
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0
+      Restitution: 0
+      Restitution Threshold: 0.5
+    AnimationComponent:
+      Animation: true
+      Sprite: true
+      Speed: 15
+      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
+      Coords0: [24, 27]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Coords1: [25, 27]
+      Sprite_Size1: [1, 1]
+      Cell_Size1: [16, 16]
+      Coords2: [26, 27]
+      Sprite_Size2: [1, 1]
+      Cell_Size2: [16, 16]
+      Num_Coords: 3
   - Entity: 637154339045385511
     TagComponent:
       Tag: Brick
@@ -53,43 +105,6 @@ Entities:
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords: [1, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: true
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 18364304989584038837
-    TagComponent:
-      Tag: BonusBlock
-    TransformComponent:
-      Translation: [-3, -3, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [24, 27]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
@@ -4679,46 +4694,9 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 7042673078209803567
+  - Entity: 9336509857520278268
     TagComponent:
-      Tag: CoimBlock
-    TransformComponent:
-      Translation: [-9, -3, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [24, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: true
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 5646036757516050563
-    TagComponent:
-      Tag: CoimBlock
+      Tag: CoinBlock
     TransformComponent:
       Translation: [-1, -3, 0]
       Rotation: [0, 0, 0]
@@ -4753,77 +4731,18 @@ Entities:
       Friction: 0
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 185323692590068868
-    TagComponent:
-      Tag: CoimBlock
-    TransformComponent:
-      Translation: [-2, 2, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
+    AnimationComponent:
+      Animation: true
+      Sprite: true
+      Speed: 15
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [24, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: true
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 9336509857520278268
-    TagComponent:
-      Tag: CoimBlock
-    TransformComponent:
-      Translation: [-12, -3, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [24, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: true
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0
-      Restitution: 0
-      Restitution Threshold: 0.5
+      Coords0: [24, 27]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Coords1: [25, 27]
+      Sprite_Size1: [1, 1]
+      Cell_Size1: [16, 16]
+      Coords2: [26, 27]
+      Sprite_Size2: [1, 1]
+      Cell_Size2: [16, 16]
+      Num_Coords: 3

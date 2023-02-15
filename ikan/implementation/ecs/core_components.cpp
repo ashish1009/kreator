@@ -868,7 +868,6 @@ namespace ikan {
   // -------------------------------------------------------------------------
   AnimationComponent::AnimationComponent(std::shared_ptr<Texture> sprite_image) {
     this->sprite_image = sprite_image;
-    
     sprites.clear();
   }
   
@@ -893,6 +892,7 @@ namespace ikan {
     speed = other.speed;
     
     sprite_image = Renderer::GetTexture(other.sprite_image->GetfilePath());
+    sprites.clear();
     for (const auto& sprite : other.sprites) {
       sprites.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
                                                      sprite->GetSpriteSize(), sprite->GetCellSize()));
@@ -916,6 +916,7 @@ namespace ikan {
     speed = other.speed;
     
     sprite_image = Renderer::GetTexture(other.sprite_image->GetfilePath());
+    sprites.clear();
     for (const auto& sprite : other.sprites) {
       sprites.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
                                                      sprite->GetSpriteSize(), sprite->GetCellSize()));
