@@ -7,7 +7,199 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A300DAFD-E7CF-4114-89E6-5CA2E6AFD6BA"
+            uuid = "59608E3A-00FA-4D2B-9C6A-D71F7236B0B6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/ecs/core_components.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "767"
+            endingLineNumber = "767"
+            landmarkName = "PillBoxColliderComponent::PillBoxColliderComponent(entity)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7A6D8C9B-69B2-48BF-B736-E66256A94628"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/ecs/core_components.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "766"
+            endingLineNumber = "766"
+            landmarkName = "PillBoxColliderComponent::PillBoxColliderComponent(entity)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7A6D8C9B-69B2-48BF-B736-E66256A94628 - 69a69cec58cf0fe3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ikan::PillBoxColliderComponent::PillBoxColliderComponent(ikan::Entity)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/kreator/ikan/interface/ecs/core_components.hpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "7A6D8C9B-69B2-48BF-B736-E66256A94628 - c170821b9ad3462b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ikan::PillBoxColliderComponent::PillBoxColliderComponent(ikan::Entity)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/kreator/ikan/implementation/ecs/core_components.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "766"
+                  endingLineNumber = "766"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1779418A-BE3F-4A5D-97A7-CF98612A4302"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kreator/layers/ikan_game_editor/games/mario/src/mario.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
+            landmarkName = "Mario::SearchOrCreatePlayer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D56B6DBA-C663-4297-AE56-013087523302"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kreator/layers/ikan_game_editor/src/renderer_layer.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "605"
+            endingLineNumber = "605"
+            landmarkName = "RendererLayer::PlayScene()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3E451323-AEDA-4170-8B1E-87316E793A84"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/ecs/core_components.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "770"
+            endingLineNumber = "770"
+            landmarkName = "PillBoxColliderComponent::PillBoxColliderComponent(other)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3E451323-AEDA-4170-8B1E-87316E793A84 - a2ff5bb8e0aa339f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ikan::PillBoxColliderComponent::PillBoxColliderComponent(ikan::PillBoxColliderComponent const&amp;)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/kreator/ikan/interface/ecs/core_components.hpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "3E451323-AEDA-4170-8B1E-87316E793A84 - a29454f22b679d3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ikan::PillBoxColliderComponent::PillBoxColliderComponent(ikan::PillBoxColliderComponent const&amp;)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/kreator/ikan/implementation/ecs/core_components.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "770"
+                  endingLineNumber = "770"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AD7086EA-3029-4505-ADCC-9994A1A5D4D2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/ecs/core_components.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "689"
+            endingLineNumber = "689"
+            landmarkName = "CircleColliiderComponent::CircleColliiderComponent(other)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5D3E703E-58B5-4469-BDE9-E882FAE5EF48"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/ecs/core_components.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "698"
+            endingLineNumber = "698"
+            landmarkName = "CircleColliiderComponent::CircleColliiderComponent(other)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2E5FF3B0-9369-4EF7-AB39-0C79D1196F23"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/ecs/core_components.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "613"
+            endingLineNumber = "613"
+            landmarkName = "BoxColliderComponent::BoxColliderComponent(other)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "33A8D4BC-40DC-4CF4-BD4C-518BA8369C41"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -23,144 +215,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EEABF2BD-7C55-42F8-9804-44E6AC862F45"
+            uuid = "1181101D-9FE1-4237-A9DE-391DBFB18541"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "601"
-            endingLineNumber = "601"
-            landmarkName = "BoxColliderComponent::BoxColliderComponent(entity)"
+            startingLineNumber = "681"
+            endingLineNumber = "681"
+            landmarkName = "CircleColliiderComponent::~CircleColliiderComponent()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D0B60299-0E66-48E6-9C66-DC2EDAA24819"
+            uuid = "736A9DAD-7684-4F3E-A246-933F4C3EEAE9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/ecs/core_components.cpp"
+            filePath = "kreator/layers/ikan_game_editor/src/renderer_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "604"
-            endingLineNumber = "604"
-            landmarkName = "BoxColliderComponent::BoxColliderComponent(other)"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
+            landmarkName = "RendererLayer::ScenePlayPauseButton()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A9B5A4EC-B312-4833-A690-1131209F0E4A"
+            uuid = "D6679242-57DF-4B8E-80AB-DCCB7E5524EA"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/ecs/core_components.cpp"
+            filePath = "kreator/layers/ikan_game_editor/games/mario/src/mario.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "617"
-            endingLineNumber = "617"
-            landmarkName = "BoxColliderComponent::operator=(other)"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "Mario::SetScene(scene, panel)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0274397F-F167-4C32-B12F-CCC254B4A873"
+            uuid = "0D232590-300C-4948-83FD-EC12D23348A8"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/ecs/core_components.cpp"
+            filePath = "kreator/layers/ikan_game_editor/src/renderer_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "632"
-            endingLineNumber = "632"
-            landmarkName = "BoxColliderComponent::BoxColliderComponent(other)"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
+            landmarkName = "RendererLayer::OpenScene(scene_path)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "76CD3B1D-983F-43F2-A638-CEED9C7D0C10"
+            uuid = "DDAA7D34-4AA7-441D-917A-6B566B6AEBC7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/ecs/core_components.cpp"
+            filePath = "kreator/layers/ikan_game_editor/src/renderer_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "645"
-            endingLineNumber = "645"
-            landmarkName = "BoxColliderComponent::operator=(other)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E161D4EF-717C-4D66-873F-5B1EC9231C54"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/ecs/core_components.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "646"
-            endingLineNumber = "646"
-            landmarkName = "BoxColliderComponent::operator=(other)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7A6B76EA-F907-43F9-8F27-D5A29CA8BC5C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/ecs/core_components.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "601"
-            endingLineNumber = "601"
-            landmarkName = "BoxColliderComponent::BoxColliderComponent(entity)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B14DA85F-A12E-4284-89FD-5139F335CE08"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/ecs/scene_panel_manager.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "ScenePanelManager::ScenePannel()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "23739FC7-6F25-4B96-A6FE-C0C9C78C54F7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/ecs/scene_panel_manager.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "ScenePanelManager::ScenePannel()"
+            startingLineNumber = "606"
+            endingLineNumber = "606"
+            landmarkName = "RendererLayer::PlayScene()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

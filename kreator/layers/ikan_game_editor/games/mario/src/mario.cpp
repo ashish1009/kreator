@@ -305,12 +305,15 @@ namespace mario {
     
     // Rigid Body Component
     if (!player_entity.HasComponent<RigidBodyComponent>()) {
-      player_entity.AddComponent<RigidBodyComponent>().fixed_rotation = true;
+      auto& rb = player_entity.AddComponent<RigidBodyComponent>();
+      rb.type = b2_dynamicBody;
+      rb.fixed_rotation = true;
     }
 
     // Collider Component
     if (!player_entity.HasComponent<PillBoxColliderComponent>()) {
-      player_entity.AddComponent<PillBoxColliderComponent>(player_entity);
+      auto& pbc = player_entity.AddComponent<PillBoxColliderComponent>(player_entity);
+      pbc.width = 0.4f;
     }
 
     // Native script
