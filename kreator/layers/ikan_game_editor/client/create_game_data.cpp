@@ -11,7 +11,7 @@
 std::unique_ptr<ikan_game::GameData> ikan_game::CreateGameData(GameType type, const ikan::Viewport* const viewport) {
   switch (type) {
     case ikan_game::GameType::Editor: return std::make_unique<ikan_game::GameData>();
-    case ikan_game::GameType::Mario: return std::make_unique<mario::Mario>();
+    case ikan_game::GameType::Mario: return std::make_unique<mario::Mario>(viewport);
     IK_ASSERT(false);
   }
 }

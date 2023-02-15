@@ -15,6 +15,15 @@ namespace mario {
   using namespace ikan;
   
   class Mario : public ikan_game::GameData {
+  public:
+    Mario(const Viewport* const viewport);
+    ~Mario();
+    
+    static Mario& Get() { return *instance_; }
+
+  private:
+    const Viewport* const viewport_;
+    static Mario* instance_;
   };
   
 }
