@@ -29,8 +29,6 @@ namespace ikan_game {
   void RendererLayer::Attach() {
     IK_INFO(game_data_->GameName(), "Attaching {0} Layer instance", game_data_->GameName().c_str());
     
-    contact_listner_ = new GameContactListner;
-
     cbp_.AddFavouritPaths(game_data_->FavDirecotries());
 
     // Decorate the Imgui Change the font of imgui
@@ -45,7 +43,6 @@ namespace ikan_game {
   
   void RendererLayer::Detach() {
     IK_WARN(game_data_->GameName(), "Detaching {0} Layer instance ", game_data_->GameName().c_str());
-    delete contact_listner_;
   }
     
   void RendererLayer::Update(Timestep ts) {
@@ -613,7 +610,6 @@ namespace ikan_game {
     spm_.SetSceneContext(active_scene_.get());
     
     game_data_->SetScene(active_scene_, &spm_);
-    active_scene_->SetContactListner(contact_listner_);
     
     // After Set contact listner
     active_scene_->PlayScene();

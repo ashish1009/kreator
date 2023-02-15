@@ -102,7 +102,9 @@ namespace ikan {
     IK_CORE_DEBUG(LogModule::IndexBuffer, "  Number of Indices | {0}", count_);
     IK_CORE_DEBUG(LogModule::IndexBuffer, "  Size              | {0} Bytes ({1} KB, {2} MB)",
                   size_, size_ / 1000, size_ / 1000000);
+#ifdef IK_DEBUG_FEATURE
     uint32_t total_size = RendererStatistics::Get().index_buffer_size;
+#endif
     IK_CORE_DEBUG(LogModule::IndexBuffer, "  Total Size Used   | {0} Bytes ({1} KB {2} MB)",
                   total_size, total_size / 1000, total_size / 1000000);
   }

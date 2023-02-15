@@ -65,6 +65,8 @@
 		B25F61882969A8440042FE09 /* aabb.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B25F61862969A8440042FE09 /* aabb.hpp */; };
 		B27CF12A295EC6E000837A36 /* uuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27CF128295EC6E000837A36 /* uuid.cpp */; };
 		B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B27CF129295EC6E000837A36 /* uuid.hpp */; };
+		B2918483299CFD36008B9D71 /* contact_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2918481299CFD36008B9D71 /* contact_listener.cpp */; };
+		B2918484299CFD36008B9D71 /* contact_listener.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2918482299CFD36008B9D71 /* contact_listener.hpp */; };
 		B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */; };
 		B2B6CDB72958D8AD00AE609E /* imgui_layer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2B6CDB52958D8AD00AE609E /* imgui_layer.hpp */; };
 		B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B6CDB82958D8B800AE609E /* imgui_build.cpp */; };
@@ -259,6 +261,8 @@
 		B25F61862969A8440042FE09 /* aabb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = aabb.hpp; sourceTree = "<group>"; };
 		B27CF128295EC6E000837A36 /* uuid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = uuid.cpp; sourceTree = "<group>"; };
 		B27CF129295EC6E000837A36 /* uuid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = uuid.hpp; sourceTree = "<group>"; };
+		B2918481299CFD36008B9D71 /* contact_listener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = contact_listener.cpp; sourceTree = "<group>"; };
+		B2918482299CFD36008B9D71 /* contact_listener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = contact_listener.hpp; sourceTree = "<group>"; };
 		B2A342F32976A1010015641F /* physics_2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = physics_2d.xcodeproj; path = physics_2d/physics_2d.xcodeproj; sourceTree = "<group>"; };
 		B2B6CDAA2958D7D400AE609E /* imgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imgui.xcodeproj; path = imgui/imgui.xcodeproj; sourceTree = "<group>"; };
 		B2B6CDB42958D8AD00AE609E /* imgui_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_layer.cpp; sourceTree = "<group>"; };
@@ -551,6 +555,7 @@
 				B25F616F29699D610042FE09 /* scriptable_entity.hpp */,
 				B2C78407296AF2E5003F343E /* scene_serialiser.hpp */,
 				B25F5DDD2966D3450030DE03 /* scene_panel_manager.hpp */,
+				B2918482299CFD36008B9D71 /* contact_listener.hpp */,
 			);
 			path = ecs;
 			sourceTree = "<group>";
@@ -565,6 +570,7 @@
 				B25F617529699FC80042FE09 /* scriptable_entity.cpp */,
 				B2C78406296AF2E5003F343E /* scene_serialiser.cpp */,
 				B25F5DDC2966D3450030DE03 /* scene_panel_manager.cpp */,
+				B2918481299CFD36008B9D71 /* contact_listener.cpp */,
 			);
 			path = ecs;
 			sourceTree = "<group>";
@@ -868,6 +874,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B25F617029699D610042FE09 /* scriptable_entity.hpp in Headers */,
+				B2918484299CFD36008B9D71 /* contact_listener.hpp in Headers */,
 				B251B3FA295E15D300508210 /* viewport.hpp in Headers */,
 				B2F4956B29630B8F003F9CB0 /* entt_scene.hpp in Headers */,
 				B2FC3EB42958892200447A1A /* layer_stack.hpp in Headers */,
@@ -1086,6 +1093,7 @@
 				B2584ECF295B7B3E00234714 /* maths.cpp in Sources */,
 				B216B25C295B2F7400C05392 /* texture.cpp in Sources */,
 				B251B3F8295E15CA00508210 /* viewport.cpp in Sources */,
+				B2918483299CFD36008B9D71 /* contact_listener.cpp in Sources */,
 				B2C0D8092959E161003F168B /* property_grid.cpp in Sources */,
 				B216B265295B516A00C05392 /* batch_2d_renderer.cpp in Sources */,
 				B2C78066296AE470003F343E /* aabb_renderer.cpp in Sources */,

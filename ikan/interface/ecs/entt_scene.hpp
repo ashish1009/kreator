@@ -10,6 +10,7 @@
 // This file includes the scene class to store data of active scene
 
 #include <entt.hpp>
+#include "contact_listener.hpp"
 
 #include "camera/editor_camera.hpp"
 #include "camera/scene_camera.hpp"
@@ -130,6 +131,8 @@ namespace ikan {
     ///   - height: height of entity
     bool CheckOnGround(Entity* entity, float width, float height);
     
+    /// This function reset the ficture in body
+    /// - Parameter body: <#body description#>
     static void ResetFixture(b2Body* body);
     /// This function reset the Pill Box collider fixture
     /// - Parameters:
@@ -183,9 +186,6 @@ namespace ikan {
     
     /// This function retirns the physics 2D World pointer
     b2World* GetPhysicsWorld();
-    /// This funciton takes client contact listener and add to physics world
-    /// - Parameter listener: client contact listener
-    void SetContactListner(b2ContactListener* listener);
     
     /// This function callback the world raycast
     /// - Parameters:
@@ -306,7 +306,7 @@ namespace ikan {
     
     // Physics Data
     b2World* physics_world_ = nullptr;
-    b2ContactListener* client_listner_ = nullptr;
+    b2ContactListener* contact_listner_ = nullptr;
     
     friend class Entity;
     friend class ScenePanelManager;

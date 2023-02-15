@@ -302,8 +302,8 @@ namespace ikan {
   
   void EnttScene::RuntimeStart() {
     physics_world_ = new b2World({0.0f, -9.8f});
-    if (client_listner_)
-      physics_world_->SetContactListener(client_listner_);
+    contact_listner_ = new ContactListner();
+    physics_world_->SetContactListener(contact_listner_);
     
     auto view = registry_.view<RigidBodyComponent>();
     for (auto e : view) {
@@ -388,6 +388,7 @@ namespace ikan {
     render_imgui_ = std::bind(&EnttScene::RenderImguiEditor, this);
     
     delete physics_world_;
+    delete contact_listner_;
     physics_world_ = nullptr;
   }
   
@@ -534,10 +535,6 @@ namespace ikan {
   bool EnttScene::UseEditorCamera() const { return setting_.use_editor_camera; }
   
   b2World* EnttScene::GetPhysicsWorld() { return physics_world_; }
-  void EnttScene::SetContactListner(b2ContactListener *listener) {
-    IK_CORE_ASSERT(listener);
-    client_listner_ = listener;
-  }
   
   void EnttScene::AddBoxColliderData(const TransformComponent& tc,
                                      const BoxColliderComponent& bc2d,
