@@ -20,8 +20,83 @@ namespace mario {
     Small, Big, Fire, Invicible, Luigi
   };
   
+  class StateMachine {
+  public:
+    StateMachine(Entity* entity, PlayerState* state) {
+      player_entity_ = entity;
+      player_state_ = state;
+    }
+    
+    void Update(Timestep ts);
+    
+    void ChangeAction(PlayerAction state);
+    PlayerAction GetAction() const { return player_action_;}
+    PlayerAction GetPrevAction() const { return prev_action_;}
+    
+  private:
+    PlayerAction player_action_ = PlayerAction::Idle;
+    PlayerAction prev_action_;
+    
+    Entity* player_entity_;
+    PlayerState* player_state_;
+  };
+  
   class PlayerController : public ScriptableEntity {
   public:
+    PlayerController();
+    ~PlayerController();
+    
+    void Create(Entity entity) override;
+    void Update(Timestep ts) override;
+    void RenderGui() override;
+    void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& constact_normal) override;
+    void Powerup();
+    
+    void EnemyBounce() { enemy_bounce_ = 18; }
+    
+    bool IsSmall() const { return player_state_ == PlayerState::Small; }
+    bool IsDead() const { return is_dead_; }
+    bool IsHurt() const { return is_hurt_; }
+    
+    static PlayerController* Get() { return instance_; }
+
+  private:
+    void CheckOnGround();
+    
+    bool on_ground_ = false;
+    bool is_dead_ = false;
+    bool is_hurt_ = false;
+    
+    float walk_speed_ = 4.0f;
+    float slow_down_force_ = 0.08f;
+    
+    float free_fall_factor = 2.7f;
+    
+    float ground_debounce_ = 0.0f; // Seconds
+    float ground_debounce_time_ = 0.1f; // Seconds
+    
+    float player_width_ = 1.0f;
+    float player_height_ = 1.0f;
+    
+    float freez_time_ = 0.5f;
+    
+    float jumb_boost_ = 1.0f;
+    float big_jump_boost_ = 1.0f;
+    float jump_impuls_ = 10.0f;
+    float big_jump_boost_factor_ = 2.0f;
+    
+    int32_t enemy_bounce_ = 0;
+    int32_t jump_time_ = 0;
+    
+    glm::vec2 acceleration_;
+    glm::vec2 velocity_;
+    glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
+
+    RigidBodyComponent* rigid_body_comp_;
+    PlayerState player_state_ = PlayerState::Small;
+    StateMachine* state_machine_;
+
+    static PlayerController* instance_;
   };
   
 }

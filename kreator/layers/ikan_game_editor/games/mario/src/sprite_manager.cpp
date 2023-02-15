@@ -5,7 +5,7 @@
 //  Created by Ashish . on 15/02/23.
 //
 
-#include "SpriteManager.hpp"
+#include "sprite_manager.hpp"
 #include "player.hpp"
 
 namespace mario {
