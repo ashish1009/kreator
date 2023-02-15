@@ -14,12 +14,41 @@ namespace mario {
   
   using namespace ikan;
   
+  struct TextData {
+    glm::vec2 size = { 0.6f, 0.6f };
+    const glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
+    
+    glm::mat4 still_camera_projection;
+    float pos_row[2];
+    float pos_col[4];
+    
+    void Update(float width, float height) {
+      still_camera_projection = glm::ortho( 0.0f, (float)width, 0.0f, (float)height);
+      
+      static const glm::vec2 size_ref = { 0.6f, 0.6f };
+      size = size_ref * width / 1600.0f;
+      
+      pos_row[0] = (float)height - 50;
+      pos_row[1] = (float)height - 80;
+      
+      pos_col[0] = 50.0f;
+      pos_col[1] = ((float)width * (1.0f / 4.0f)) + 50.0f;
+      pos_col[2] = ((float)width * (2.0f / 4.0f)) + 50.0f;
+      pos_col[3] = ((float)width * (3.0f / 4.0f)) + 50.0f;
+    }
+    
+    void Render(const std::string& title, uint32_t row, uint32_t col) {
+      TextRenderer::RenderText(title, { pos_col[col], pos_row[row], 0.3f }, size, color);
+    }
+  };
+  
   class Mario : public ikan_game::GameData {
   public:
     Mario(const Viewport* const viewport);
     ~Mario();
 
     void Init() override;
+    void SetViewportSize(uint32_t width, uint32_t height) override;
 
     // Getters
     std::vector<std::filesystem::path> FavDirecotries() const override;
@@ -30,9 +59,11 @@ namespace mario {
     static Mario& Get() { return *instance_; }
 
   private:
+    // Renderer Data
     std::string font_path_ = "fonts/mario.ttf";
-
+    TextData text_data_;
     const Viewport* const viewport_;
+    
     static Mario* instance_;
   };
   

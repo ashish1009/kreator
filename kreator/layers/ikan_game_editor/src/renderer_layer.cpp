@@ -30,9 +30,8 @@ namespace ikan_game {
     ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
     ImguiAPI::SetLightGreyThemeColors();
 
-    if (!OpenScene(game_data_->OpenSavedScene())) {
+//    if (!OpenScene(game_data_->OpenSavedScene()))
       NewScene(AM::ClientAsset("scenes/New_scene"));
-    }
   }
   
   void RendererLayer::Detach() {
