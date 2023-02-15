@@ -593,9 +593,10 @@ namespace ikan {
   // Box Colloider Component
   // -------------------------------------------------------------------------
   BoxColliderComponent::~BoxColliderComponent() {
+    delete (Entity*)runtime_fixture;
   }
   BoxColliderComponent::BoxColliderComponent(Entity entity) {
-    
+    runtime_fixture = (Entity*)(new Entity((entt::entity)(entity), entity.GetScene()));
   }
   BoxColliderComponent::BoxColliderComponent(const BoxColliderComponent& other) {
     offset = other.offset;
@@ -660,17 +661,23 @@ namespace ikan {
     PropertyGrid::Float1("Friction", friction);
     PropertyGrid::Float1("Restitution", restitution);
     PropertyGrid::Float1("Restitution Threshold", restitution_threshold);
-    
     ImGui::Separator();
+    
+    if (runtime_fixture) {
+      Entity* e = (Entity*)runtime_fixture;
+      PropertyGrid::ReadOnlyTextBox("Entity Name", e->GetComponent<TagComponent>().tag.c_str());
+      ImGui::Separator();
+    }
   }
   
   // -------------------------------------------------------------------------
   // Circle Colloider Component
   // -------------------------------------------------------------------------
   CircleColliiderComponent::~CircleColliiderComponent() {
+    delete (Entity*)runtime_fixture;
   }
   CircleColliiderComponent::CircleColliiderComponent(Entity entity) {
-    
+    runtime_fixture = (Entity*)(new Entity((entt::entity)(entity), entity.GetScene()));
   }
   CircleColliiderComponent::CircleColliiderComponent(const CircleColliiderComponent& other) {
     offset = other.offset;
