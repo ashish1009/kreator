@@ -33,6 +33,13 @@ namespace mario {
     BatchRenderer::Init(2000, 0, 0);
   }
   
+  void Mario::SetViewportSize(uint32_t width, uint32_t height) {
+    viewport_width_ = width;
+    viewport_height_ = height;
+    
+    text_data_.Update(viewport_width_, viewport_height_);
+  }
+
   ImguiFont Mario::RegularFontData() const {
     return { AM::ClientAsset(font_path_), 14.0f };
   }

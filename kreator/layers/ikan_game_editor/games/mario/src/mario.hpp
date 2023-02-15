@@ -62,6 +62,10 @@ namespace mario {
     // Renderer Data
     std::string font_path_ = "fonts/mario.ttf";
     TextData text_data_;
+
+    // Viewport Data
+    uint32_t viewport_width_ = Application::Get().GetWindow().GetWidth();
+    uint32_t viewport_height_ = Application::Get().GetWindow().GetHeight();
     const Viewport* const viewport_;
     
     static Mario* instance_;

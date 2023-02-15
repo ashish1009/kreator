@@ -39,40 +39,40 @@ namespace ikan_game {
   }
     
   void RendererLayer::Update(Timestep ts) {
-//    if (!active_scene_)
-//      return;
-//
-//    viewport_.UpdateMousePos();
-//
-//    if (is_playing) {
-//      Renderer::Clear(game_data_->GetBgColor());
-//      RenderScene(ts);
-//    }
-//    else {
-//      if (viewport_.IsFramebufferResized()) {
-//        viewport_width = viewport_.width;
-//        viewport_height = viewport_.height;
-//
-//        viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
-//        active_scene_->SetViewport(viewport_width, viewport_height);
-//
-//        game_data_->SetViewportSize(viewport_width, viewport_height);
-//      }
-//
-//      viewport_.framebuffer->Bind();
-//      Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
-//
-//      RenderScene(ts);
-//
-//      if (settings_.show_grids)
-//        RenderGrid();
-//
-//      if (settings_.show_colliders)
-//        OverlayRender();
-//
-//      viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
-//      viewport_.framebuffer->Unbind();
-//    }
+    if (!active_scene_)
+      return;
+
+    viewport_.UpdateMousePos();
+
+    if (is_playing) {
+      Renderer::Clear(game_data_->GetBgColor());
+      RenderScene(ts);
+    }
+    else {
+      if (viewport_.IsFramebufferResized()) {
+        viewport_width = viewport_.width;
+        viewport_height = viewport_.height;
+
+        viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
+        active_scene_->SetViewport(viewport_width, viewport_height);
+
+        game_data_->SetViewportSize(viewport_width, viewport_height);
+      }
+
+      viewport_.framebuffer->Bind();
+      Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
+
+      RenderScene(ts);
+
+      if (settings_.show_grids)
+        RenderGrid();
+
+      if (settings_.show_colliders)
+        OverlayRender();
+
+      viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
+      viewport_.framebuffer->Unbind();
+    }
   }
   
   void RendererLayer::EventHandler(Event& event) {
