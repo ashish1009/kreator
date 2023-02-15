@@ -24,5 +24,12 @@ namespace mario {
   Mario::~Mario() {
     IK_WARN(MarioLogTag, "Destroying Mario Game Data ... ");
   }
+  
+  void Mario::Init() {
+    IK_INFO(MarioLogTag, "Initializing Mario Game Data ... ");
 
+    // Change Text renderer Font
+    TextRenderer::LoadFreetype(AM::ClientAsset(font_path_));
+    BatchRenderer::Init(2000, 0, 0);
+  }
 }

@@ -12,8 +12,8 @@ namespace ikan_game {
 #define is_playing settings_.play
   
   RendererLayer::RendererLayer(GameType type) : Layer("ikan Game"), game_data_(CreateGameData(type, &viewport_)) {
-//    cbp_.SetRootData(game_data_->CbpRootDir());
-//    game_data_->Init();
+    cbp_.SetRootData(game_data_->CbpRootDir());
+    game_data_->Init();
     IK_INFO(game_data_->GameName(), "Creating {0} Layer instance ... ", game_data_->GameName().c_str());
   }
   

@@ -18,10 +18,14 @@ namespace mario {
   public:
     Mario(const Viewport* const viewport);
     ~Mario();
-    
+
+    void Init() override;
+
     static Mario& Get() { return *instance_; }
 
   private:
+    std::string font_path_ = "fonts/mario.ttf";
+
     const Viewport* const viewport_;
     static Mario* instance_;
   };
