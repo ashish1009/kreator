@@ -107,7 +107,7 @@ Entities:
     TagComponent:
       Tag: Goomba
     TransformComponent:
-      Translation: [10, -3, 0]
+      Translation: [3, -1, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -23818,7 +23818,7 @@ Entities:
     TagComponent:
       Tag: Primary Camera
     TransformComponent:
-      Translation: [14.107872, -8.33652878, 0]
+      Translation: [2.10845184, -3.1114006, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
@@ -23826,7 +23826,7 @@ Entities:
       Primary: true
       ProjectionType: 1
       PerspectiveFOV: 0.785398185
-      OrthographicSize: 40
+      OrthographicSize: 16
       Near: -1
       Far: 1
     NativeScriptComponent:
@@ -24159,7 +24159,7 @@ Entities:
     TagComponent:
       Tag: Ground
     TransformComponent:
-      Translation: [-2, -7, 0]
+      Translation: [-2, -6, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -48843,6 +48843,42 @@ Entities:
       Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
       Coords: [0, 18]
       Sprite_Size: [2, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Fixed Rotation: false
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Mass: 0
+      Friction: 0
+      Gravity Scale: 1
+      Is Sensor: false
+      Continous Collision: true
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 1509921223556362083
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [-2, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/tiles.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]

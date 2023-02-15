@@ -40,9 +40,10 @@ namespace mario {
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& normal) override;
 
   private:
-    glm::vec2 velocity_ = { 4.0f, 0.0f };
-    float max_speed_ = 8.0f;
     bool going_right_ = true;
+    float max_speed_ = 8.0f;
+    float free_fall_factor = 1.0f;
+    glm::vec2 velocity_ = { 4.0f, 0.0f };
   };
   
   class FlowerController : public ScriptableEntity, CommonRuntimeData {

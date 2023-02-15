@@ -22,7 +22,8 @@ namespace mario {
     void Create(Entity entity) override;
     void Update(Timestep) override;
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
-
+    void RenderGui() override;
+    
   private:
     void CheckOnGround();
 
@@ -30,6 +31,7 @@ namespace mario {
     bool going_right_ = true;
     bool on_ground_ = false;
 
+    float free_fall_factor = 1.0f;
     float walk_speed_ = 4.0f;
     float time_to_kill = 0.5f;
 

@@ -15,7 +15,7 @@ namespace mario {
     rigid_body_comp_ = &(GetComponent<RigidBodyComponent>());
     rigid_body_comp_->SetGravityScale(0.0f);
     
-    acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * 2.7f;
+    acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * 0.5;
   }
   void GoombaController::Update(Timestep ts) {
     // Camera check
@@ -24,6 +24,12 @@ namespace mario {
     }
     
     CheckOnGround();
+    if (on_ground_) {
+      acceleration_.y = 0;
+      velocity_.y = 0;
+    } else {
+      velocity_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * free_fall_factor;
+    }
 
     if (going_right_) {
       velocity_.x = walk_speed_;
@@ -53,6 +59,13 @@ namespace mario {
     
     on_ground_ = entity_.GetScene()->CheckOnGround(&entity_, inner_player_width, y_val);
   }
+  
+  void GoombaController::RenderGui() {
+    ImGui::Text(" Acc %f %f", acceleration_.x, acceleration_.y);
+    ImGui::Text(" Vel %f %f", velocity_.x, velocity_.y);
+    ImGui::Text(" On Ground %d", on_ground_);
+  }
+
 
   struct EnemyData {
     ScriptLoaderFn loader_fun;

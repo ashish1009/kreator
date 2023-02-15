@@ -197,7 +197,7 @@ namespace mario {
         jump_time_ = 0;
       }
       ground_debounce_ -= ts;
-      acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * 2.7f;
+      acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * free_fall_factor;
     }
     else { // Landed on ground
       velocity_.y = 0;

@@ -20,6 +20,7 @@ namespace mario {
     
     auto& ccc = entity->AddComponent<CircleColliiderComponent>();
     ccc.runtime_fixture = entity;
+    ccc.friction = 0.0f;
     
     entity->GetScene()->AddBodyToPhysicsWorld(*entity, *rigid_body_comp_);
   }
@@ -69,15 +70,15 @@ namespace mario {
   void MushroomController::Create(Entity entity) {
     entity_ = entity;
     AddRuntimeItemComponents(&entity_);
-    velocity_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * 3.7f;
+    velocity_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * free_fall_factor;
   }
   
   void MushroomController::Update(Timestep ts) {
     if (going_right_ and std::abs(rigid_body_comp_->velocity.x) < max_speed_) {
-      rigid_body_comp_->AddVelocity(velocity_);
+      rigid_body_comp_->SetVelocity(velocity_);
     }
     else if (!going_right_ and std::abs(rigid_body_comp_->velocity.x) < max_speed_) {
-      rigid_body_comp_->AddVelocity({-velocity_.x, velocity_.y});
+      rigid_body_comp_->SetVelocity({-velocity_.x, velocity_.y});
     }
     CheckAndDestroy(&entity_);
   }
