@@ -21,6 +21,12 @@ namespace mario {
 
     void Init() override;
 
+    // Getters
+    std::vector<std::filesystem::path> FavDirecotries() const override;
+    ImguiFont RegularFontData() const override;
+    ImguiFont BoldFontData() const override;
+    std::string OpenSavedScene() const override { return AM::ClientAsset("scenes/Mario_Scene.ikanScene"); }
+
     static Mario& Get() { return *instance_; }
 
   private:

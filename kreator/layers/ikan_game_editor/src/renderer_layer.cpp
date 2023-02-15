@@ -24,16 +24,15 @@ namespace ikan_game {
   void RendererLayer::Attach() {
     IK_INFO(game_data_->GameName(), "Attaching {0} Layer instance", game_data_->GameName().c_str());
     
-//    cbp_.AddFavouritPaths(game_data_->FavDirecotries());
-//
-//    // Decorate the Imgui Change the font of imgui
-//    ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
-//    // TODO: Add File Menu
-//    ImguiAPI::SetLightGreyThemeColors();
-//
-//    if (!OpenScene(game_data_->OpenSavedScene())) {
-//      NewScene(AM::ClientAsset("scenes/New_scene"));
-//    }
+    cbp_.AddFavouritPaths(game_data_->FavDirecotries());
+
+    // Decorate the Imgui Change the font of imgui
+    ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
+    ImguiAPI::SetLightGreyThemeColors();
+
+    if (!OpenScene(game_data_->OpenSavedScene())) {
+      NewScene(AM::ClientAsset("scenes/New_scene"));
+    }
   }
   
   void RendererLayer::Detach() {

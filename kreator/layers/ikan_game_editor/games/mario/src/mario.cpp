@@ -32,4 +32,20 @@ namespace mario {
     TextRenderer::LoadFreetype(AM::ClientAsset(font_path_));
     BatchRenderer::Init(2000, 0, 0);
   }
+  
+  ImguiFont Mario::RegularFontData() const {
+    return { AM::ClientAsset(font_path_), 14.0f };
+  }
+  
+  ImguiFont Mario::BoldFontData() const {
+    return { AM::ClientAsset(font_path_), 14.0f };
+  }
+
+  std::vector<std::filesystem::path> Mario::FavDirecotries() const {
+    return {
+      AM::ProjectPath("kreator/layers/ikan_game_editor/games/mario/assets"),
+      AM::ClientAsset("scenes"),
+    };
+  }
+
 }
