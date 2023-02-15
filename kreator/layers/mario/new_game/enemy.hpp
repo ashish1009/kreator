@@ -17,6 +17,10 @@ namespace mario {
     Goomba
   };
   
+  enum class EnemyState {
+    Dead
+  };
+  
   class GoombaController : public ScriptableEntity {
   public:
     void Create(Entity entity) override;

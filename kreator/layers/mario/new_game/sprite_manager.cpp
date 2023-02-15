@@ -7,6 +7,7 @@
 
 #include "sprite_manager.hpp"
 #include "player.hpp"
+#include "enemy.hpp"
 
 namespace mario {
     
@@ -15,6 +16,7 @@ namespace mario {
     
     // Player
     std::unordered_map<PlayerState, std::unordered_map<PlayerAction, std::vector<std::shared_ptr<SubTexture>>>> player_subtextures_map;
+    std::unordered_map<EnemyState, std::shared_ptr<SubTexture>> enemy_subtextures_map;
   };
   static SpriteData* data_;
   
@@ -23,8 +25,9 @@ namespace mario {
     
     data_->sprite_map[SpriteType::Player] = Renderer::GetTexture(AM::ClientAsset("textures/player.png"), false);
     data_->sprite_map[SpriteType::Items] = Renderer::GetTexture(AM::ClientAsset("textures/items.png"), false);
-    
-    FillPlayerStateSprite();
+    data_->sprite_map[SpriteType::Enemy] = Renderer::GetTexture(AM::ClientAsset("textures/enemies.png"), false);
+
+    FillStateSprite();
   }
   
   void SpriteManager::Shutdown() {
@@ -56,7 +59,17 @@ namespace mario {
     return player_map.at(action);
   }
 
-  void SpriteManager::FillPlayerStateSprite() {
+  std::shared_ptr<SubTexture> SpriteManager::GetGoombaSprite(EnemyState state) {
+    if (!data_)
+      return nullptr;
+
+    if (data_->enemy_subtextures_map.find(state) == data_->enemy_subtextures_map.end())
+      return nullptr;
+    
+    return data_->enemy_subtextures_map.at(state);
+  }
+
+  void SpriteManager::FillStateSprite() {
     const auto& player_sprite = GetSpriteImage(SpriteType::Player);
     
     // Small Player
@@ -86,6 +99,8 @@ namespace mario {
     fire_player_map[PlayerAction::SwitchSide].push_back(SubTexture::CreateFromCoords(player_sprite, {3.0f, 28.0f}, {1.0f, 2.0f}));
     fire_player_map[PlayerAction::Jump].push_back(SubTexture::CreateFromCoords(player_sprite, {4.0f, 28.0f}, {1.0f, 2.0f}));
 
+    const auto& enemy_sprite = GetSpriteImage(SpriteType::Enemy);
+    data_->enemy_subtextures_map[EnemyState::Dead] = SubTexture::CreateFromCoords(enemy_sprite, {2.0f, 6.0f});
   }
   
 }

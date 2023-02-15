@@ -12,21 +12,33 @@
 namespace mario {
   
   void CommonRuntimeData::AddRuntimeItemComponents(Entity* entity) {
-    rigid_body_comp_ = &(entity->AddComponent<RigidBodyComponent>());
+    if (entity->HasComponent<RigidBodyComponent>())
+      rigid_body_comp_ = &(entity->GetComponent<RigidBodyComponent>());
+    else
+      rigid_body_comp_ = &(entity->AddComponent<RigidBodyComponent>());
+    
     rigid_body_comp_->type = b2_dynamicBody;
     rigid_body_comp_->angular_velocity = 0.0f;
     rigid_body_comp_->fixed_rotation = true;
     rigid_body_comp_->SetGravityScale(0.0f);
-    
-    auto& ccc = entity->AddComponent<CircleColliiderComponent>();
-    ccc.runtime_fixture = entity;
-    ccc.friction = 0.0f;
-    
+
+    if (entity->HasComponent<CircleColliiderComponent>()) {
+      auto& ccc = entity->GetComponent<CircleColliiderComponent>();
+      ccc.runtime_fixture = entity;
+      ccc.friction = 0.0f;
+    }
+    else {
+      auto& ccc = entity->AddComponent<CircleColliiderComponent>();
+      ccc.runtime_fixture = entity;
+      ccc.friction = 0.0f;
+    }
+
     entity->GetScene()->AddBodyToPhysicsWorld(*entity, *rigid_body_comp_);
   }
   
   void CommonRuntimeData::LivingEntityHitCheck(Entity* collided_entity, b2Contact* contact) {
     if (PlayerController* pc = PlayerController::Get();
+        collided_entity->GetScene() and
         collided_entity->HasComponent<NativeScriptComponent>() and
         collided_entity->GetComponent<NativeScriptComponent>().script.get() == pc) {
       contact->SetEnabled(false);
@@ -91,14 +103,16 @@ namespace mario {
     entity_ = entity;
     AddRuntimeItemComponents(&entity_);
 
-    auto& ac = entity.AddComponent<AnimationComponent>(SpriteManager::GetSpriteImage(SpriteType::Items));
-    ac.animation = true;
-    ac.is_sprite = true;
-    ac.sprites.push_back(SubTexture::CreateFromCoords(ac.sprite_image, {0.0f, 18.0f}));
-    ac.sprites.push_back(SubTexture::CreateFromCoords(ac.sprite_image, {1.0f, 18.0f}));
-    ac.sprites.push_back(SubTexture::CreateFromCoords(ac.sprite_image, {2.0f, 18.0f}));
-    ac.sprites.push_back(SubTexture::CreateFromCoords(ac.sprite_image, {3.0f, 18.0f}));
-    ac.speed = 5.0f;
+    if (!entity.HasComponent<AnimationComponent>()) {
+      auto& ac = entity.AddComponent<AnimationComponent>(SpriteManager::GetSpriteImage(SpriteType::Items));
+      ac.animation = true;
+      ac.is_sprite = true;
+      ac.sprites.push_back(SubTexture::CreateFromCoords(ac.sprite_image, {0.0f, 18.0f}));
+      ac.sprites.push_back(SubTexture::CreateFromCoords(ac.sprite_image, {1.0f, 18.0f}));
+      ac.sprites.push_back(SubTexture::CreateFromCoords(ac.sprite_image, {2.0f, 18.0f}));
+      ac.sprites.push_back(SubTexture::CreateFromCoords(ac.sprite_image, {3.0f, 18.0f}));
+      ac.speed = 5.0f;
+    }
   }
 
   void FlowerController::Update(Timestep ts) {

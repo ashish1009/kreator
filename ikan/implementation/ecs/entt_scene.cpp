@@ -139,6 +139,8 @@ namespace ikan {
     // Delete
     if (physics_world_ and entity.HasComponent<RigidBodyComponent>()) {
       auto& rb = entity.GetComponent<RigidBodyComponent>();
+      ResetFixture(rb.runtime_body);
+      
       physics_world_->DestroyBody(rb.runtime_body);
       rb.runtime_body = nullptr;
     }
@@ -601,36 +603,31 @@ namespace ikan {
     }
     return size;
   }
-
-  void EnttScene::ResetBoxColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const BoxColliderComponent &pbc) {
-    b2Body* body = rb->runtime_body;
+  
+  void EnttScene::ResetFixture(b2Body* body) {
     int32_t size = FixtureListSize(body);
     for (int32_t i = 0; i < size; i++) {
       body->DestroyFixture(body->GetFixtureList());
     }
-    
+  }
+
+  void EnttScene::ResetBoxColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const BoxColliderComponent &pbc) {
+    b2Body* body = rb->runtime_body;
+    ResetFixture(body);
     AddBoxColliderData(tc, pbc, *rb);
     body->ResetMassData();
   }
 
   void EnttScene::ResetCircleColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const CircleColliiderComponent &pbc) {
     b2Body* body = rb->runtime_body;
-    int32_t size = FixtureListSize(body);
-    for (int32_t i = 0; i < size; i++) {
-      body->DestroyFixture(body->GetFixtureList());
-    }
-    
+    ResetFixture(body);
     AddCircleColliderData(tc, pbc, *rb);
     body->ResetMassData();
   }
   
   void EnttScene::ResetPillBoxColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const PillBoxColliderComponent &pbc) {
     b2Body* body = rb->runtime_body;
-    int32_t size = FixtureListSize(body);
-    for (int32_t i = 0; i < size; i++) {
-      body->DestroyFixture(body->GetFixtureList());
-    }
-    
+    ResetFixture(body);
     AddPillColliderData(tc, pbc, *rb);
     body->ResetMassData();
   }

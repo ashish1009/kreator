@@ -130,6 +130,7 @@ namespace ikan {
     ///   - height: height of entity
     bool CheckOnGround(Entity* entity, float width, float height);
     
+    static void ResetFixture(b2Body* body);
     /// This function reset the Pill Box collider fixture
     /// - Parameters:
     ///   - tc: transform oif body

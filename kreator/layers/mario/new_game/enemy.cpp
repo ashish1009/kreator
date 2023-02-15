@@ -7,6 +7,7 @@
 
 #include "enemy.hpp"
 #include "player.hpp"
+#include "sprite_manager.hpp"
 
 namespace mario {
   
@@ -24,6 +25,13 @@ namespace mario {
     if (is_dead_) {
       EnttScene::ResetCircleColliderFixture(entity_.GetComponent<TransformComponent>(),
                                             rigid_body_comp_, entity_.GetComponent<CircleColliiderComponent>());
+      
+      time_to_kill -= ts;
+      rigid_body_comp_->SetVelocity({0., 0});
+      if (time_to_kill <= 0) {
+        entity_.GetScene()->DestroyEntity(entity_);
+      }
+      return;
     }
     
     CheckOnGround();
@@ -84,9 +92,13 @@ namespace mario {
     rigid_body_comp_->SetAngularVelocity(0.0f);
     rigid_body_comp_->is_sensor = true;
     
-//    if (playSound) {
-//      AssetPool.getSound("assets/sounds/bump.ogg").play();
-//    }
+    entity_.GetComponent<AnimationComponent>().ClearSprites();
+    entity_.RemoveComponent<AnimationComponent>();
+    
+    auto& qc = entity_.GetComponent<QuadComponent>();
+    qc.texture_comp.sprite = SpriteManager::GetGoombaSprite(EnemyState::Dead);
+    
+    // Play Sound
   }
   
   void GoombaController::CheckOnGround() {

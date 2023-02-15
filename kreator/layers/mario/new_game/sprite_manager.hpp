@@ -13,9 +13,10 @@ namespace mario {
   
   enum class PlayerAction;
   enum class PlayerState;
+  enum class EnemyState;
   
   enum class SpriteType {
-    Player, Items
+    Player, Items, Enemy
   };
   
   class SpriteManager {
@@ -25,11 +26,12 @@ namespace mario {
     
     static std::shared_ptr<Texture> GetSpriteImage(SpriteType type);
     static std::vector<std::shared_ptr<SubTexture>> GetPlayerStateSprite(PlayerState state, PlayerAction action);
-
+    static std::shared_ptr<SubTexture> GetGoombaSprite(EnemyState state);
+    
     MAKE_PURE_STATIC(SpriteManager);
     
   private:
-    static void FillPlayerStateSprite();
+    static void FillStateSprite();
   };
   
 }
