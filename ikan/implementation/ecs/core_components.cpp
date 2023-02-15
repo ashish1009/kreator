@@ -619,6 +619,7 @@ namespace ikan {
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
     
+    delete (Entity*)runtime_fixture;
     if (other.runtime_fixture) {
       Entity* e = (Entity*)other.runtime_fixture;
       runtime_fixture = new Entity((entt::entity)(*e), e->GetScene());
@@ -645,7 +646,8 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
-    
+        
+    delete (Entity*)runtime_fixture;
     if (other.runtime_fixture) {
       Entity* e = (Entity*)other.runtime_fixture;
       runtime_fixture = new Entity((entt::entity)(*e), e->GetScene());
@@ -700,6 +702,7 @@ namespace ikan {
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
     
+    delete (Entity*)runtime_fixture;
     if (other.runtime_fixture) {
       Entity* e = (Entity*)other.runtime_fixture;
       runtime_fixture = new Entity((entt::entity)(*e), e->GetScene());
@@ -727,6 +730,7 @@ namespace ikan {
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
     
+    delete (Entity*)runtime_fixture;
     if (other.runtime_fixture) {
       Entity* e = (Entity*)other.runtime_fixture;
       runtime_fixture = new Entity((entt::entity)(*e), e->GetScene());
