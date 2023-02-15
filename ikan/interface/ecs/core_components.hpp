@@ -180,7 +180,7 @@ namespace ikan {
     void* runtime_fixture = nullptr;
 
     void RenderGui();
-    BoxColliderComponent() = default;
+    BoxColliderComponent(Entity entity);
     ~BoxColliderComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(BoxColliderComponent);
   };
@@ -199,7 +199,7 @@ namespace ikan {
     void* runtime_fixture = nullptr;
 
     void RenderGui();
-    CircleColliiderComponent() = default;
+    CircleColliiderComponent(Entity entity);
     ~CircleColliiderComponent();
 
     DEFINE_COPY_MOVE_CONSTRUCTORS(CircleColliiderComponent);
@@ -222,7 +222,7 @@ namespace ikan {
     void RecalculateColliders();
     
     void RenderGui();
-    PillBoxColliderComponent();
+    PillBoxColliderComponent(Entity entity);
     DEFINE_COPY_MOVE_CONSTRUCTORS(PillBoxColliderComponent);
   };
   

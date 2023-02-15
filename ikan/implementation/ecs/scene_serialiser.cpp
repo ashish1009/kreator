@@ -584,21 +584,21 @@ namespace ikan {
         // --------------------------------------------------------------------
         auto box_colloider_component = entity["BoxColloiderComponent"];
         if (box_colloider_component) {
-          auto& bcc = deserialized_entity.AddComponent<BoxColliderComponent>();
+          auto& bcc = deserialized_entity.AddComponent<BoxColliderComponent>(deserialized_entity);
           DeserializeBoxCollider(bcc, box_colloider_component, "");
         } // if (box_colloider_component)
 
         // --------------------------------------------------------------------
         auto circle_colloider_component = entity["CircleColloiderComponent"];
         if (circle_colloider_component) {
-          auto& ccc = deserialized_entity.AddComponent<CircleColliiderComponent>();
+          auto& ccc = deserialized_entity.AddComponent<CircleColliiderComponent>(deserialized_entity);
           DeserializeCircleCollider(ccc, circle_colloider_component, "");
         } // if (circle_colloider_component)
 
         // --------------------------------------------------------------------
         auto Pill_box_colloider_component = entity["PillBoxColliderComponent"];
         if (Pill_box_colloider_component) {
-          auto& pbc = deserialized_entity.AddComponent<PillBoxColliderComponent>();
+          auto& pbc = deserialized_entity.AddComponent<PillBoxColliderComponent>(deserialized_entity);
           
           pbc.offset  = Pill_box_colloider_component["Offset"].as<glm::vec2>();
           pbc.width  = Pill_box_colloider_component["Width"].as<float>();

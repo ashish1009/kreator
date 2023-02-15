@@ -594,6 +594,9 @@ namespace ikan {
   // -------------------------------------------------------------------------
   BoxColliderComponent::~BoxColliderComponent() {
   }
+  BoxColliderComponent::BoxColliderComponent(Entity entity) {
+    
+  }
   BoxColliderComponent::BoxColliderComponent(const BoxColliderComponent& other) {
     offset = other.offset;
     size = other.size;
@@ -666,6 +669,9 @@ namespace ikan {
   // -------------------------------------------------------------------------
   CircleColliiderComponent::~CircleColliiderComponent() {
   }
+  CircleColliiderComponent::CircleColliiderComponent(Entity entity) {
+    
+  }
   CircleColliiderComponent::CircleColliiderComponent(const CircleColliiderComponent& other) {
     offset = other.offset;
     radius = other.radius;
@@ -736,17 +742,16 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Pill Box Colloider Component
   // -------------------------------------------------------------------------
-  PillBoxColliderComponent::PillBoxColliderComponent() {
+  PillBoxColliderComponent::PillBoxColliderComponent(Entity entity)
+  : bcc(entity), top_ccc(entity), bottom_ccc(entity) {
     RecalculateColliders();
   }
-  PillBoxColliderComponent::PillBoxColliderComponent(const PillBoxColliderComponent& other) {
+  PillBoxColliderComponent::PillBoxColliderComponent(const PillBoxColliderComponent& other)
+  : bcc(other.bcc), top_ccc(other.top_ccc), bottom_ccc(other.bottom_ccc) {
     offset = other.offset;
     width = other.width;
     height = other.height;
     reset_flag = other.reset_flag;
-    bcc = other.bcc;
-    top_ccc = other.top_ccc;
-    bottom_ccc = other.bottom_ccc;
     RecalculateColliders();
   }
   PillBoxColliderComponent& PillBoxColliderComponent::operator=(const PillBoxColliderComponent& other) {
@@ -760,14 +765,12 @@ namespace ikan {
     RecalculateColliders();
     return *this;
   }
-  PillBoxColliderComponent::PillBoxColliderComponent(PillBoxColliderComponent&& other) {
+  PillBoxColliderComponent::PillBoxColliderComponent(PillBoxColliderComponent&& other) 
+    : bcc(other.bcc), top_ccc(other.top_ccc), bottom_ccc(other.bottom_ccc) {
     offset = other.offset;
     width = other.width;
     height = other.height;
     reset_flag = other.reset_flag;
-    bcc = other.bcc;
-    top_ccc = other.top_ccc;
-    bottom_ccc = other.bottom_ccc;
     RecalculateColliders();
   }
   PillBoxColliderComponent& PillBoxColliderComponent::operator=(PillBoxColliderComponent&& other) {

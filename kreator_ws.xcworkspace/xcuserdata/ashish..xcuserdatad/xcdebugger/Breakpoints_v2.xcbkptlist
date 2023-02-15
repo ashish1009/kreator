@@ -142,8 +142,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "866"
-            endingLineNumber = "866"
+            startingLineNumber = "869"
+            endingLineNumber = "869"
             landmarkName = "AnimationComponent::AnimationComponent(other)"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "872"
-            endingLineNumber = "872"
+            startingLineNumber = "875"
+            endingLineNumber = "875"
             landmarkName = "AnimationComponent::AnimationComponent(other)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "876"
-            endingLineNumber = "876"
+            startingLineNumber = "879"
+            endingLineNumber = "879"
             landmarkName = "AnimationComponent::operator=(other)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,8 +190,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "887"
-            endingLineNumber = "887"
+            startingLineNumber = "890"
+            endingLineNumber = "890"
             landmarkName = "AnimationComponent::operator=(other)"
             landmarkType = "7">
          </BreakpointContent>
@@ -206,8 +206,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "899"
-            endingLineNumber = "899"
+            startingLineNumber = "902"
+            endingLineNumber = "902"
             landmarkName = "AnimationComponent::operator=(other)"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,8 +222,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "910"
-            endingLineNumber = "910"
+            startingLineNumber = "913"
+            endingLineNumber = "913"
             landmarkName = "AnimationComponent::operator=(other)"
             landmarkType = "7">
          </BreakpointContent>
@@ -429,8 +429,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "716"
-            endingLineNumber = "716"
+            startingLineNumber = "722"
+            endingLineNumber = "722"
             landmarkName = "CircleColliiderComponent::operator=(other)"
             landmarkType = "7">
          </BreakpointContent>
@@ -445,8 +445,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "703"
-            endingLineNumber = "703"
+            startingLineNumber = "709"
+            endingLineNumber = "709"
             landmarkName = "CircleColliiderComponent::CircleColliiderComponent(other)"
             landmarkType = "7">
          </BreakpointContent>
@@ -461,8 +461,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "690"
-            endingLineNumber = "690"
+            startingLineNumber = "696"
+            endingLineNumber = "696"
             landmarkName = "CircleColliiderComponent::operator=(other)"
             landmarkType = "7">
          </BreakpointContent>
@@ -477,8 +477,8 @@
             filePath = "ikan/implementation/ecs/core_components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "677"
-            endingLineNumber = "677"
+            startingLineNumber = "683"
+            endingLineNumber = "683"
             landmarkName = "CircleColliiderComponent::CircleColliiderComponent(other)"
             landmarkType = "7">
          </BreakpointContent>
