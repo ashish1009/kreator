@@ -11,6 +11,8 @@ namespace ikan_game {
   
   using namespace ikan;
   
+  enum class GameType;
+  
   class GameData {
   public:
     virtual ~GameData() = default;
@@ -61,6 +63,6 @@ namespace ikan_game {
   };
   
   /// This function is the defination of game data. Implementaiton should be at client
-  std::unique_ptr<GameData> CreateGameData(const Viewport* const viewport);
+  std::unique_ptr<GameData> CreateGameData(GameType game_type, const Viewport* const viewport);
   
 }

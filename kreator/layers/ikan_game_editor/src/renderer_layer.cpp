@@ -11,7 +11,7 @@ namespace ikan_game {
 
 #define is_playing settings_.play
   
-  RendererLayer::RendererLayer() : Layer("ikan Game"), game_data_(CreateGameData(&viewport_)) {
+  RendererLayer::RendererLayer(GameType type) : Layer("ikan Game"), game_data_(CreateGameData(type, &viewport_)) {
     if (!game_data_)
       game_data_ = std::make_unique<GameData>();
     

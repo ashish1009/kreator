@@ -7,6 +7,6 @@
 
 #include "layers/ikan_game_editor/src/renderer_layer.hpp"
 
-std::unique_ptr<ikan_game::GameData> ikan_game::CreateGameData(const ikan::Viewport* const viewport) {
+std::unique_ptr<ikan_game::GameData> ikan_game::CreateGameData(GameType type, const ikan::Viewport* const viewport) {
   return nullptr;// std::make_unique<mario::MarioData>(viewport);
 }

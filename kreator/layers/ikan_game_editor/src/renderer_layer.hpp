@@ -12,6 +12,10 @@
 namespace ikan_game {
   
   using namespace ikan;
+
+  enum class GameType {
+    Editor, Mario
+  };
   
   class GameContactListner : public b2ContactListener {
   public:
@@ -106,7 +110,7 @@ namespace ikan_game {
     };
     
     /// Layer Default Constructor to store the name of layer
-    RendererLayer();
+    RendererLayer(GameType type);
     /// Default Destructor
     ~RendererLayer();
     
