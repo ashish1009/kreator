@@ -3,6 +3,206 @@ Setting_editor_camera: true
 Setting_scene_data: true
 Use_editor_camera: false
 Entities:
+  - Entity: 4547669100763461343
+    TagComponent:
+      Tag: Goomba
+    TransformComponent:
+      Translation: [29, -3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/enemies.png
+      Coords: [0, 6]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::GoombaController
+    RigidBodyComponent:
+      Type: 2
+      Fixed Rotation: true
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Mass: 0
+      Friction: 0
+      Gravity Scale: 1
+      Is Sensor: false
+      Continous Collision: true
+    CircleColloiderComponent:
+      Offset: [0, 0]
+      Radius: 0.5
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+    AnimationComponent:
+      Animation: true
+      Sprite: true
+      Speed: 30
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/enemies.png
+      Coords0: [1, 6]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Coords1: [0, 6]
+      Sprite_Size1: [1, 1]
+      Cell_Size1: [16, 16]
+      Num_Coords: 2
+  - Entity: 14654678821228159340
+    TagComponent:
+      Tag: Goomba
+    TransformComponent:
+      Translation: [18, -3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/enemies.png
+      Coords: [0, 6]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::GoombaController
+    RigidBodyComponent:
+      Type: 2
+      Fixed Rotation: true
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Mass: 0
+      Friction: 0
+      Gravity Scale: 1
+      Is Sensor: false
+      Continous Collision: true
+    CircleColloiderComponent:
+      Offset: [0, 0]
+      Radius: 0.5
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+    AnimationComponent:
+      Animation: true
+      Sprite: true
+      Speed: 30
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/enemies.png
+      Coords0: [1, 6]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Coords1: [0, 6]
+      Sprite_Size1: [1, 1]
+      Cell_Size1: [16, 16]
+      Num_Coords: 2
+  - Entity: 3844981981188574903
+    TagComponent:
+      Tag: Goomba
+    TransformComponent:
+      Translation: [10, -3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/enemies.png
+      Coords: [0, 6]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::GoombaController
+    RigidBodyComponent:
+      Type: 2
+      Fixed Rotation: true
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Mass: 0
+      Friction: 0
+      Gravity Scale: 1
+      Is Sensor: false
+      Continous Collision: true
+    CircleColloiderComponent:
+      Offset: [0, 0]
+      Radius: 0.5
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+    AnimationComponent:
+      Animation: true
+      Sprite: true
+      Speed: 30
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/enemies.png
+      Coords0: [1, 6]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Coords1: [0, 6]
+      Sprite_Size1: [1, 1]
+      Cell_Size1: [16, 16]
+      Num_Coords: 2
+  - Entity: 1809455961644319580
+    TagComponent:
+      Tag: Goomba
+    TransformComponent:
+      Translation: [39, -3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/enemies.png
+      Coords: [0, 6]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::GoombaController
+    RigidBodyComponent:
+      Type: 2
+      Fixed Rotation: true
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Mass: 0
+      Friction: 0
+      Gravity Scale: 1
+      Is Sensor: false
+      Continous Collision: true
+    CircleColloiderComponent:
+      Offset: [0, 0]
+      Radius: 0.5
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+    AnimationComponent:
+      Animation: true
+      Sprite: true
+      Speed: 30
+      Texture_Path: ../../../kreator/layers/mario/assets/textures/enemies.png
+      Coords0: [1, 6]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Coords1: [0, 6]
+      Sprite_Size1: [1, 1]
+      Cell_Size1: [16, 16]
+      Num_Coords: 2
   - Entity: 9499652077841338023
     TagComponent:
       Tag: Brick
@@ -81,7 +281,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [39, -12.5, 0]
+      Translation: [34, -12.5, 0]
       Rotation: [0, 0, 0]
       Scale: [2, -1, 1]
     QuadComponent:
@@ -117,7 +317,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [39, -13.5, 0]
+      Translation: [34, -13.5, 0]
       Rotation: [0, 0, 0]
       Scale: [2, -1, 1]
     QuadComponent:
@@ -153,7 +353,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [54, -24.5, 0]
+      Translation: [49, -24.5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 2, 1]
     QuadComponent:
@@ -189,7 +389,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [56, -13, 0]
+      Translation: [51, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -225,7 +425,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [56, -14, 0]
+      Translation: [51, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -261,7 +461,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [56, -15, 0]
+      Translation: [51, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -297,7 +497,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [56, -16, 0]
+      Translation: [51, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -333,7 +533,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [56, -17, 0]
+      Translation: [51, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -369,7 +569,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [56, -18, 0]
+      Translation: [51, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -405,7 +605,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [56, -19, 0]
+      Translation: [51, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -441,7 +641,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [56, -20, 0]
+      Translation: [51, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -477,7 +677,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [56, -21, 0]
+      Translation: [51, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -513,7 +713,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [56, -22, 0]
+      Translation: [51, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -549,7 +749,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [56, -23, 0]
+      Translation: [51, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -585,7 +785,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [56, -24.5, 0]
+      Translation: [51, -24.5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 2, 1]
     QuadComponent:
@@ -621,7 +821,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [43, -12, 0]
+      Translation: [38, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -659,7 +859,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [44, -12, 0]
+      Translation: [39, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -697,7 +897,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -27, 0]
+      Translation: [58, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -735,7 +935,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -26, 0]
+      Translation: [58, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -773,7 +973,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -25, 0]
+      Translation: [58, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -811,7 +1011,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -24, 0]
+      Translation: [58, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -849,7 +1049,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -23, 0]
+      Translation: [58, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -887,7 +1087,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -19, 0]
+      Translation: [58, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -925,7 +1125,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -22, 0]
+      Translation: [58, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -963,7 +1163,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -21, 0]
+      Translation: [58, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1001,7 +1201,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -20, 0]
+      Translation: [58, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1039,7 +1239,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -18, 0]
+      Translation: [58, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1077,7 +1277,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -17, 0]
+      Translation: [58, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1115,7 +1315,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -27, 0]
+      Translation: [60, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1153,7 +1353,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -16, 0]
+      Translation: [58, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1191,7 +1391,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -17, 0]
+      Translation: [60, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1229,7 +1429,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -15, 0]
+      Translation: [58, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1267,7 +1467,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -14, 0]
+      Translation: [58, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1305,7 +1505,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -13, 0]
+      Translation: [58, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1343,7 +1543,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [63, -12, 0]
+      Translation: [58, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1381,7 +1581,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -16, 0]
+      Translation: [59, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1419,7 +1619,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -27, 0]
+      Translation: [59, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1457,7 +1657,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -26, 0]
+      Translation: [59, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1495,7 +1695,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -25, 0]
+      Translation: [59, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1533,7 +1733,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -24, 0]
+      Translation: [59, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1571,7 +1771,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -23, 0]
+      Translation: [59, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1609,7 +1809,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -22, 0]
+      Translation: [59, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1647,7 +1847,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -21, 0]
+      Translation: [59, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1685,7 +1885,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -20, 0]
+      Translation: [59, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1723,7 +1923,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -19, 0]
+      Translation: [59, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1761,7 +1961,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -18, 0]
+      Translation: [59, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1799,7 +1999,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -17, 0]
+      Translation: [59, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1837,7 +2037,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -15, 0]
+      Translation: [59, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1875,7 +2075,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -14, 0]
+      Translation: [59, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1913,7 +2113,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -13, 0]
+      Translation: [59, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1951,7 +2151,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [64, -12, 0]
+      Translation: [59, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -1989,7 +2189,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -26, 0]
+      Translation: [60, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2027,7 +2227,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -25, 0]
+      Translation: [60, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2065,7 +2265,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -24, 0]
+      Translation: [60, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2103,7 +2303,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -23, 0]
+      Translation: [60, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2141,7 +2341,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -22, 0]
+      Translation: [60, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2179,7 +2379,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -21, 0]
+      Translation: [60, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2217,7 +2417,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -20, 0]
+      Translation: [60, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2255,7 +2455,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -19, 0]
+      Translation: [60, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2293,7 +2493,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -18, 0]
+      Translation: [60, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2331,7 +2531,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -16, 0]
+      Translation: [60, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2369,7 +2569,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -15, 0]
+      Translation: [60, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2407,7 +2607,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -14, 0]
+      Translation: [60, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2445,7 +2645,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -13, 0]
+      Translation: [60, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2483,7 +2683,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [65, -12, 0]
+      Translation: [60, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2521,7 +2721,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -27, 0]
+      Translation: [55, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2559,7 +2759,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -26, 0]
+      Translation: [55, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2597,7 +2797,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -25, 0]
+      Translation: [55, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2635,7 +2835,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -24, 0]
+      Translation: [55, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2673,7 +2873,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -23, 0]
+      Translation: [55, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2711,7 +2911,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -19, 0]
+      Translation: [55, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2749,7 +2949,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -22, 0]
+      Translation: [55, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2787,7 +2987,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -21, 0]
+      Translation: [55, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2825,7 +3025,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -20, 0]
+      Translation: [55, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2863,7 +3063,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -18, 0]
+      Translation: [55, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2901,7 +3101,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -17, 0]
+      Translation: [55, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2939,7 +3139,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -27, 0]
+      Translation: [57, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -2977,7 +3177,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -16, 0]
+      Translation: [55, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3015,7 +3215,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -17, 0]
+      Translation: [57, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3053,7 +3253,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -15, 0]
+      Translation: [55, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3091,7 +3291,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -14, 0]
+      Translation: [55, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3129,7 +3329,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -13, 0]
+      Translation: [55, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3167,7 +3367,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [60, -12, 0]
+      Translation: [55, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3205,7 +3405,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -16, 0]
+      Translation: [56, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3243,7 +3443,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -27, 0]
+      Translation: [56, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3281,7 +3481,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -26, 0]
+      Translation: [56, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3319,7 +3519,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -25, 0]
+      Translation: [56, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3357,7 +3557,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -24, 0]
+      Translation: [56, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3395,7 +3595,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -23, 0]
+      Translation: [56, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3433,7 +3633,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -22, 0]
+      Translation: [56, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3471,7 +3671,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -21, 0]
+      Translation: [56, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3509,7 +3709,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -20, 0]
+      Translation: [56, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3547,7 +3747,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -19, 0]
+      Translation: [56, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3585,7 +3785,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -18, 0]
+      Translation: [56, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3623,7 +3823,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -17, 0]
+      Translation: [56, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3661,7 +3861,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -15, 0]
+      Translation: [56, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3699,7 +3899,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -14, 0]
+      Translation: [56, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3737,7 +3937,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -13, 0]
+      Translation: [56, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3775,7 +3975,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [61, -12, 0]
+      Translation: [56, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3813,7 +4013,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -26, 0]
+      Translation: [57, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3851,7 +4051,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -25, 0]
+      Translation: [57, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3889,7 +4089,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -24, 0]
+      Translation: [57, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3927,7 +4127,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -23, 0]
+      Translation: [57, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3965,7 +4165,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -22, 0]
+      Translation: [57, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4003,7 +4203,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -21, 0]
+      Translation: [57, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4041,7 +4241,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -20, 0]
+      Translation: [57, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4079,7 +4279,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -19, 0]
+      Translation: [57, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4117,7 +4317,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -18, 0]
+      Translation: [57, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4155,7 +4355,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -16, 0]
+      Translation: [57, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4193,7 +4393,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -15, 0]
+      Translation: [57, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4231,7 +4431,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -14, 0]
+      Translation: [57, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4269,7 +4469,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -13, 0]
+      Translation: [57, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4307,7 +4507,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [62, -12, 0]
+      Translation: [57, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4345,7 +4545,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -27, 0]
+      Translation: [52, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4383,7 +4583,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -26, 0]
+      Translation: [52, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4497,7 +4697,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -23, 0]
+      Translation: [52, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4535,7 +4735,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -19, 0]
+      Translation: [52, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4573,7 +4773,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -22, 0]
+      Translation: [52, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4611,7 +4811,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -21, 0]
+      Translation: [52, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4649,7 +4849,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -20, 0]
+      Translation: [52, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4687,7 +4887,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -18, 0]
+      Translation: [52, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4725,7 +4925,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -17, 0]
+      Translation: [52, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4763,7 +4963,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -27, 0]
+      Translation: [54, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4801,7 +5001,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -16, 0]
+      Translation: [52, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4839,7 +5039,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -17, 0]
+      Translation: [54, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4877,7 +5077,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -15, 0]
+      Translation: [52, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4915,7 +5115,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -14, 0]
+      Translation: [52, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4953,7 +5153,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -13, 0]
+      Translation: [52, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -4991,7 +5191,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -12, 0]
+      Translation: [52, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5029,7 +5229,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -16, 0]
+      Translation: [53, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5067,7 +5267,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -27, 0]
+      Translation: [53, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5105,7 +5305,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -26, 0]
+      Translation: [53, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5219,7 +5419,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -23, 0]
+      Translation: [53, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5257,7 +5457,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -22, 0]
+      Translation: [53, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5295,7 +5495,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -21, 0]
+      Translation: [53, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5333,7 +5533,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -20, 0]
+      Translation: [53, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5371,7 +5571,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -19, 0]
+      Translation: [53, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5409,7 +5609,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -18, 0]
+      Translation: [53, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5447,7 +5647,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -17, 0]
+      Translation: [53, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5485,7 +5685,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -15, 0]
+      Translation: [53, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5523,7 +5723,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -14, 0]
+      Translation: [53, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5561,7 +5761,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -13, 0]
+      Translation: [53, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5599,7 +5799,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -12, 0]
+      Translation: [53, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5637,7 +5837,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -26, 0]
+      Translation: [54, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5675,7 +5875,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -25, 0]
+      Translation: [54, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5713,7 +5913,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -24, 0]
+      Translation: [54, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5751,7 +5951,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -23, 0]
+      Translation: [54, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5789,7 +5989,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -22, 0]
+      Translation: [54, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5827,7 +6027,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -21, 0]
+      Translation: [54, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5865,7 +6065,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -20, 0]
+      Translation: [54, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5903,7 +6103,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -19, 0]
+      Translation: [54, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5941,7 +6141,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -18, 0]
+      Translation: [54, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -5979,7 +6179,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -16, 0]
+      Translation: [54, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6017,7 +6217,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -15, 0]
+      Translation: [54, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6055,7 +6255,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -14, 0]
+      Translation: [54, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6093,7 +6293,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -13, 0]
+      Translation: [54, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6131,7 +6331,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [59, -12, 0]
+      Translation: [54, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6169,7 +6369,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -15, 0]
+      Translation: [61, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6207,7 +6407,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -14, 0]
+      Translation: [61, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6245,7 +6445,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -15, 0]
+      Translation: [62, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6283,7 +6483,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -14, 0]
+      Translation: [62, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6321,7 +6521,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -15, 0]
+      Translation: [63, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6359,7 +6559,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -14, 0]
+      Translation: [63, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6397,7 +6597,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [50, -25, 0]
+      Translation: [45, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6435,7 +6635,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [50, -24, 0]
+      Translation: [45, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6473,7 +6673,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [50, -23, 0]
+      Translation: [45, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6511,7 +6711,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [41, -27, 0]
+      Translation: [36, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6549,7 +6749,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [41, -26, 0]
+      Translation: [36, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6587,7 +6787,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [40, -27, 0]
+      Translation: [35, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6625,7 +6825,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [40, -26, 0]
+      Translation: [35, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6663,7 +6863,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [39, -26, 0]
+      Translation: [34, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6701,7 +6901,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [39, -27, 0]
+      Translation: [34, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6739,7 +6939,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [48, -12, 0]
+      Translation: [43, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6777,7 +6977,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [47, -12, 0]
+      Translation: [42, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6815,7 +7015,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [45, -12, 0]
+      Translation: [40, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6853,7 +7053,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [46, -12, 0]
+      Translation: [41, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6891,7 +7091,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [56, -12, 0]
+      Translation: [51, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -6963,7 +7163,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -19, 0]
+      Translation: [61, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7001,7 +7201,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -17, 0]
+      Translation: [63, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7039,7 +7239,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -18, 0]
+      Translation: [61, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7077,7 +7277,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [48, -23, 0]
+      Translation: [43, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7115,7 +7315,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -17, 0]
+      Translation: [61, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7153,7 +7353,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -17, 0]
+      Translation: [62, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7191,7 +7391,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [45, -25, 0]
+      Translation: [40, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7229,7 +7429,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -19, 0]
+      Translation: [62, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7267,7 +7467,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -18, 0]
+      Translation: [62, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7305,7 +7505,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -19, 0]
+      Translation: [63, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7343,7 +7543,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -18, 0]
+      Translation: [63, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7381,7 +7581,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -22, 0]
+      Translation: [61, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7419,7 +7619,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -20, 0]
+      Translation: [63, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7457,7 +7657,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -21, 0]
+      Translation: [61, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7495,7 +7695,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -20, 0]
+      Translation: [61, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7533,7 +7733,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -20, 0]
+      Translation: [62, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7571,7 +7771,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -22, 0]
+      Translation: [62, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7609,7 +7809,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -21, 0]
+      Translation: [62, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7647,7 +7847,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -22, 0]
+      Translation: [63, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7685,7 +7885,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -21, 0]
+      Translation: [63, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7723,7 +7923,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -25, 0]
+      Translation: [62, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7761,7 +7961,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -12, 0]
+      Translation: [62, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7799,7 +7999,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -24, 0]
+      Translation: [62, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7837,7 +8037,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -23, 0]
+      Translation: [62, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7875,7 +8075,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -16, 0]
+      Translation: [62, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7913,7 +8113,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -13, 0]
+      Translation: [62, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7951,7 +8151,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -25, 0]
+      Translation: [63, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -7989,7 +8189,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -12, 0]
+      Translation: [63, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8027,7 +8227,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -24, 0]
+      Translation: [63, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8065,7 +8265,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -23, 0]
+      Translation: [63, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8103,7 +8303,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -16, 0]
+      Translation: [63, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8141,7 +8341,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -13, 0]
+      Translation: [63, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8179,7 +8379,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -26, 0]
+      Translation: [62, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8217,7 +8417,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [56, -27, 0]
+      Translation: [51, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8255,7 +8455,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [56, -26, 0]
+      Translation: [51, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8293,7 +8493,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -27, 0]
+      Translation: [61, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8331,7 +8531,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [67, -27, 0]
+      Translation: [62, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8369,7 +8569,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -26, 0]
+      Translation: [61, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8407,7 +8607,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [55, -26, 0]
+      Translation: [50, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8445,7 +8645,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [53, -27, 0]
+      Translation: [48, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8483,7 +8683,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [53, -26, 0]
+      Translation: [48, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8521,7 +8721,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [54, -27, 0]
+      Translation: [49, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8559,7 +8759,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [55, -27, 0]
+      Translation: [50, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8597,7 +8797,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [54, -26, 0]
+      Translation: [49, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8635,7 +8835,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [52, -26, 0]
+      Translation: [47, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8673,7 +8873,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [50, -27, 0]
+      Translation: [45, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8711,7 +8911,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [50, -26, 0]
+      Translation: [45, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8749,7 +8949,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [51, -27, 0]
+      Translation: [46, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8787,7 +8987,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [52, -27, 0]
+      Translation: [47, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8825,7 +9025,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [51, -26, 0]
+      Translation: [46, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8863,7 +9063,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [49, -26, 0]
+      Translation: [44, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8901,7 +9101,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [47, -27, 0]
+      Translation: [42, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8939,7 +9139,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [47, -26, 0]
+      Translation: [42, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -8977,7 +9177,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [48, -27, 0]
+      Translation: [43, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9015,7 +9215,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [49, -27, 0]
+      Translation: [44, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9053,7 +9253,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [48, -26, 0]
+      Translation: [43, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9091,7 +9291,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [46, -26, 0]
+      Translation: [41, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9129,7 +9329,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [44, -27, 0]
+      Translation: [39, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9167,7 +9367,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [44, -26, 0]
+      Translation: [39, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9205,7 +9405,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [45, -27, 0]
+      Translation: [40, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9243,7 +9443,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [46, -27, 0]
+      Translation: [41, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9281,7 +9481,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [45, -26, 0]
+      Translation: [40, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9319,7 +9519,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [43, -26, 0]
+      Translation: [38, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9357,7 +9557,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [38, -27, 0]
+      Translation: [33, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9395,7 +9595,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [38, -26, 0]
+      Translation: [33, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9433,7 +9633,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [42, -27, 0]
+      Translation: [37, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9471,7 +9671,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [43, -27, 0]
+      Translation: [38, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9509,7 +9709,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [42, -26, 0]
+      Translation: [37, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9547,7 +9747,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -16, 0]
+      Translation: [30, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9585,7 +9785,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -14, 0]
+      Translation: [32, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9623,7 +9823,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -15, 0]
+      Translation: [30, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9661,7 +9861,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -16, 0]
+      Translation: [31, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9699,7 +9899,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -12, 0]
+      Translation: [32, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9737,7 +9937,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -15, 0]
+      Translation: [31, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9775,7 +9975,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -15, 0]
+      Translation: [32, -15, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9813,7 +10013,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -14, 0]
+      Translation: [31, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9851,7 +10051,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -16, 0]
+      Translation: [32, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9889,7 +10089,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -19, 0]
+      Translation: [30, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9927,7 +10127,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -17, 0]
+      Translation: [32, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -9965,7 +10165,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -18, 0]
+      Translation: [30, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10003,7 +10203,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -19, 0]
+      Translation: [31, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10041,7 +10241,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -17, 0]
+      Translation: [30, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10079,7 +10279,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -18, 0]
+      Translation: [31, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10117,7 +10317,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -18, 0]
+      Translation: [32, -18, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10155,7 +10355,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -17, 0]
+      Translation: [31, -17, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10193,7 +10393,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -19, 0]
+      Translation: [32, -19, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10231,7 +10431,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -22, 0]
+      Translation: [30, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10269,7 +10469,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -20, 0]
+      Translation: [32, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10307,7 +10507,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -21, 0]
+      Translation: [30, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10345,7 +10545,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -22, 0]
+      Translation: [31, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10383,7 +10583,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -20, 0]
+      Translation: [30, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10421,7 +10621,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -21, 0]
+      Translation: [31, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10459,7 +10659,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -21, 0]
+      Translation: [32, -21, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10497,7 +10697,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -20, 0]
+      Translation: [31, -20, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10535,7 +10735,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -22, 0]
+      Translation: [32, -22, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10573,7 +10773,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -27, 0]
+      Translation: [31, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10611,7 +10811,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -23, 0]
+      Translation: [31, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10649,7 +10849,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -25, 0]
+      Translation: [31, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10687,7 +10887,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -26, 0]
+      Translation: [31, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10725,7 +10925,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -24, 0]
+      Translation: [31, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10763,7 +10963,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -25, 0]
+      Translation: [52, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10801,7 +11001,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [57, -24, 0]
+      Translation: [52, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10839,7 +11039,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -27, 0]
+      Translation: [30, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10877,7 +11077,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -23, 0]
+      Translation: [30, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10915,7 +11115,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -25, 0]
+      Translation: [30, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10953,7 +11153,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -26, 0]
+      Translation: [30, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -10991,7 +11191,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -24, 0]
+      Translation: [30, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -21048,7 +21248,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -14, 0]
+      Translation: [30, -14, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -23618,7 +23818,7 @@ Entities:
     TagComponent:
       Tag: Primary Camera
     TransformComponent:
-      Translation: [0, 1, 0]
+      Translation: [14.107872, -8.33652878, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
@@ -23626,7 +23826,7 @@ Entities:
       Primary: true
       ProjectionType: 1
       PerspectiveFOV: 0.785398185
-      OrthographicSize: 19
+      OrthographicSize: 40
       Near: -1
       Far: 1
     NativeScriptComponent:
@@ -26153,7 +26353,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [49, -24, 0]
+      Translation: [44, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -26227,7 +26427,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [48, -24, 0]
+      Translation: [43, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -26301,7 +26501,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [47, -23, 0]
+      Translation: [42, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -26375,7 +26575,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [47, -24, 0]
+      Translation: [42, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -26449,7 +26649,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [46, -24, 0]
+      Translation: [41, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -26523,7 +26723,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [46, -23, 0]
+      Translation: [41, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -26633,7 +26833,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [49, -12, 0]
+      Translation: [44, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -26707,7 +26907,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [49, -23, 0]
+      Translation: [44, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -26781,7 +26981,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [45, -23, 0]
+      Translation: [40, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -26891,7 +27091,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [49, -25, 0]
+      Translation: [44, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -27001,7 +27201,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [47, -25, 0]
+      Translation: [42, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -27075,7 +27275,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -12, 0]
+      Translation: [31, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -27346,7 +27546,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -13, 0]
+      Translation: [30, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -27384,7 +27584,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [55, -24.5, 0]
+      Translation: [50, -24.5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 2, 1]
     QuadComponent:
@@ -29270,7 +29470,7 @@ Entities:
     TagComponent:
       Tag: Pipe
     TransformComponent:
-      Translation: [39, -11.5, 0]
+      Translation: [34, -11.5, 0]
       Rotation: [0, 0, 0]
       Scale: [2, -1, 1]
     QuadComponent:
@@ -32206,7 +32406,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -12, 0]
+      Translation: [61, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -38408,7 +38608,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -27, 0]
+      Translation: [63, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -39094,7 +39294,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [50, -12, 0]
+      Translation: [45, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -39168,7 +39368,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [36, -13, 0]
+      Translation: [31, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -39314,7 +39514,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -13, 0]
+      Translation: [32, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -39532,7 +39732,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [45, -24, 0]
+      Translation: [40, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -41406,7 +41606,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [48, -25, 0]
+      Translation: [43, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -41768,7 +41968,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [46, -25, 0]
+      Translation: [41, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -43176,7 +43376,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -25, 0]
+      Translation: [53, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -43286,7 +43486,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -23, 0]
+      Translation: [32, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -43468,7 +43668,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -25, 0]
+      Translation: [32, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -43578,7 +43778,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -26, 0]
+      Translation: [32, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -43652,7 +43852,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -27, 0]
+      Translation: [32, -27, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -44328,7 +44528,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [68, -26, 0]
+      Translation: [63, -26, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -44402,7 +44602,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -25, 0]
+      Translation: [61, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -44476,7 +44676,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -24, 0]
+      Translation: [61, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -44550,7 +44750,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -23, 0]
+      Translation: [61, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -44624,7 +44824,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -16, 0]
+      Translation: [61, -16, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -44698,7 +44898,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [66, -13, 0]
+      Translation: [61, -13, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -45022,7 +45222,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [58, -24, 0]
+      Translation: [53, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -48241,7 +48441,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [37, -24, 0]
+      Translation: [32, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -48279,7 +48479,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [35, -12, 0]
+      Translation: [30, -12, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -48317,7 +48517,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [44, -23, 0]
+      Translation: [39, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -48355,7 +48555,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [43, -24, 0]
+      Translation: [38, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -48393,7 +48593,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [43, -23, 0]
+      Translation: [38, -23, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -48431,7 +48631,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [43, -25, 0]
+      Translation: [38, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -48469,7 +48669,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [44, -25, 0]
+      Translation: [39, -25, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -48507,7 +48707,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [44, -24, 0]
+      Translation: [39, -24, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:

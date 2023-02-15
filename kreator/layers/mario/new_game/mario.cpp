@@ -9,6 +9,7 @@
 #include "sprite_manager.hpp"
 #include "block.hpp"
 #include "runtime_items.hpp"
+#include "enemy.hpp"
 
 namespace mario {
 
@@ -26,6 +27,7 @@ namespace mario {
     SpriteManager::Shutdown();
     BlockScriptManager::Shutdown();
     RuntimeItem::Shutdown();
+    EnemyScriptManager::Shutdown();
   }
   
   void MarioData::Init() {
@@ -38,6 +40,7 @@ namespace mario {
     SpriteManager::Init();
     BlockScriptManager::Init();
     RuntimeItem::Init();
+    EnemyScriptManager::Init();
   }
   
   void MarioData::SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
@@ -405,7 +408,15 @@ namespace mario {
       Entity* entity = new Entity(e, scene_.get());
       c.runtime_fixture = (void*)entity;
     }
-    
+
+    // Store the Entity in each circle collider
+    auto circle_view = scene_->GetEntitesWith<CircleColliiderComponent>();
+    for (auto e : circle_view) {
+      auto &c = circle_view.get<CircleColliiderComponent>(e);
+      Entity* entity = new Entity(e, scene_.get());
+      c.runtime_fixture = (void*)entity;
+    }
+
     auto pill_view = scene_->GetEntitesWith<PillBoxColliderComponent>();
     for (auto e : pill_view) {
       auto &c = pill_view.get<PillBoxColliderComponent>(e);
@@ -433,6 +444,19 @@ namespace mario {
           brick_entity.AddComponent<NativeScriptComponent>("mario::BlockController",
                                                            BSM::GetLoaderFn(c.tag)).Bind<BlockController>(BSM::GetType(c.tag),
                                                                                                           BSM::GetCount(c.tag));
+        }
+      }
+      else if (IsEnemy(c.tag)) {
+        Entity brick_entity = Entity(e, scene_.get());
+        if (brick_entity.HasComponent<NativeScriptComponent>()) {
+          auto& nsc = brick_entity.GetComponent<NativeScriptComponent>();
+          
+          nsc.loader_function = ESM::GetLoaderFn(EnemyType::Goomba);
+          nsc.Bind<GoombaController>();
+        }
+        else {
+          brick_entity.AddComponent<NativeScriptComponent>("mario::GoombaController",
+                                                           ESM::GetLoaderFn(EnemyType::Goomba)).Bind<GoombaController>();
         }
       }
     }

@@ -137,7 +137,7 @@ namespace ikan {
     IK_CORE_WARN(LogModule::EnttScene, "  Number of entities Added in Scene | {0}", --num_entities_);
     
     // Delete
-    if (entity.HasComponent<RigidBodyComponent>()) {
+    if (physics_world_ and entity.HasComponent<RigidBodyComponent>()) {
       auto& rb = entity.GetComponent<RigidBodyComponent>();
       physics_world_->DestroyBody(rb.runtime_body);
       rb.runtime_body = nullptr;
