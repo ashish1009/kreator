@@ -6,7 +6,7 @@
 //
 
 #include "mario.hpp"
-
+#include "player.hpp"
 #include "SpriteManager.hpp"
 
 namespace mario {
@@ -42,6 +42,8 @@ namespace mario {
   void Mario::SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
     scene_ = scene;
     panel_ = panel;
+    
+    SearchOrCreatePlayer();
   }
   
   void Mario::Update(Timestep ts) {
@@ -83,7 +85,6 @@ namespace mario {
   void Mario::EventHandler(Event& event) {
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(Mario::KeyPressEvent));
-    dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(Mario::MouseButtonPressEvent));
   }
   
   bool Mario::KeyPressEvent(KeyPressedEvent &e) {
@@ -106,11 +107,7 @@ namespace mario {
     }
     return false;
   }
-  
-  bool Mario::MouseButtonPressEvent(MouseButtonPressedEvent& e) {
-    return false;
-  }
-  
+    
   void Mario::SelectEntities() {
     if (!(viewport_->mouse_pos_x >= 0 and viewport_->mouse_pos_y >= 0 and
           viewport_->mouse_pos_x <= viewport_->width and viewport_->mouse_pos_y <= viewport_->height)) {
@@ -272,7 +269,68 @@ namespace mario {
     }
   }
 
+  void Mario::SearchOrCreatePlayer() {
+    const std::string player_name = "Mario Player";
+    bool found_player = false;
+    Entity player_entity;
 
+    auto player_view = scene_->GetEntitesWith<TagComponent>();
+    for (auto entity : player_view) {
+      auto& player_tag = player_view.get<TagComponent>(entity).tag;
+      // - Note: This has to be the payer Name in the game
+      if (player_tag == player_name) {
+        found_player = true;
+        player_entity = Entity(entity, scene_.get());
+        break;
+      }
+    }
+    
+    if (!found_player) {
+      player_entity = scene_->CreateEntity(player_name);
+    }
+    
+    // Player should be in front
+    player_entity.GetComponent<TransformComponent>().UpdateTranslation_Z(0.1f);
+
+    // Quad Component
+    if (!player_entity.HasComponent<QuadComponent>()) {
+      auto& qc = player_entity.AddComponent<QuadComponent>();
+      qc.texture_comp.use = true;
+      qc.texture_comp.use_sprite = true;
+      qc.texture_comp.linear_edge = false;
+      qc.texture_comp.component = SpriteManager::GetSpriteImage(SpriteType::Player);
+      qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(PlayerState::Small,
+                                                                  PlayerAction::Idle).at(0); // As we know only one image for idle state
+    }
+    
+    // Rigid Body Component
+    if (!player_entity.HasComponent<RigidBodyComponent>()) {
+      player_entity.AddComponent<RigidBodyComponent>().fixed_rotation = true;
+    }
+
+    // Collider Component
+    if (!player_entity.HasComponent<PillBoxColliderComponent>()) {
+      player_entity.AddComponent<PillBoxColliderComponent>(player_entity);
+    }
+
+    // Native script
+    auto player_controler_loader_fn = [](NativeScriptComponent* sc, const std::string& script_name) {
+      if (script_name == "mario::PlayerController") {
+        sc->Bind<mario::PlayerController>();
+        return true;
+      }
+      return false;
+    };
+    if (!player_entity.HasComponent<NativeScriptComponent>()) {
+      player_entity.AddComponent<NativeScriptComponent>("mario::PlayerController", player_controler_loader_fn);
+    }
+    else {
+      auto& nsc = player_entity.GetComponent<NativeScriptComponent>();
+      nsc.loader_function = player_controler_loader_fn;
+      nsc.Bind<PlayerController>();
+    }
+  }
+  
   void Mario::SetViewportSize(uint32_t width, uint32_t height) {
     viewport_width_ = width;
     viewport_height_ = height;

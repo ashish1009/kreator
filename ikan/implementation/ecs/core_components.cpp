@@ -425,6 +425,7 @@ namespace ikan {
   NativeScriptComponent& NativeScriptComponent::operator=(const NativeScriptComponent& other) {
     loader_function = other.loader_function;
     script_name = other.script_name;
+    
     ScriptManager::UpdateScript(this, script_name, loader_function);
     return *this;
   }
@@ -436,6 +437,7 @@ namespace ikan {
   NativeScriptComponent& NativeScriptComponent::operator=(NativeScriptComponent&& other) {
     loader_function = other.loader_function;
     script_name = other.script_name;
+    
     ScriptManager::UpdateScript(this, script_name, loader_function);
     return *this;
   }
@@ -746,8 +748,13 @@ namespace ikan {
     PropertyGrid::Float1("Friction", friction);
     PropertyGrid::Float1("Restitution", restitution);
     PropertyGrid::Float1("Restitution Threshold", restitution_threshold);
-    
     ImGui::Separator();
+    
+    if (runtime_fixture) {
+      Entity* e = (Entity*)runtime_fixture;
+      PropertyGrid::ReadOnlyTextBox("Entity Name", e->GetComponent<TagComponent>().tag.c_str());
+      ImGui::Separator();
+    }
   }
   
   // -------------------------------------------------------------------------

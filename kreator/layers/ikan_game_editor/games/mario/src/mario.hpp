@@ -72,10 +72,10 @@ namespace mario {
     /// This function handles the Key button event
     /// - Parameter e: Key pressed event
     bool KeyPressEvent(KeyPressedEvent& e);
-    /// This function handles the MouseButton event
-    /// - Parameter e: MouseButton pressed event
-    bool MouseButtonPressEvent(MouseButtonPressedEvent& e);
 
+    /// This function Finds the player entity "Named as Mario Player". And add the player Controller with its entity. If not created then it creates one with all the required components
+    void SearchOrCreatePlayer();
+    
     // Debug APIS
     /// This function render the rectangle when clicg drag mouse
     void SelectEntities();
@@ -94,7 +94,7 @@ namespace mario {
     /// This hack moves the camera without camera controller with keys
     /// - Parameter ts: time step
     void MoveCameraDebug(Timestep ts);
-
+    
     // ----------------------
     // Member variables
     // ----------------------
