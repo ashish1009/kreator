@@ -22,6 +22,8 @@ namespace mario {
     // Camera check
     
     if (is_dead_) {
+      EnttScene::ResetCircleColliderFixture(entity_.GetComponent<TransformComponent>(),
+                                            rigid_body_comp_, entity_.GetComponent<CircleColliiderComponent>());
     }
     
     CheckOnGround();
@@ -58,7 +60,8 @@ namespace mario {
         collided_entity->GetComponent<NativeScriptComponent>().script.get() == pc) {
       if (!pc->IsDead() && !pc->IsHurt() && contact_normal.y > 0.58f) {
         pc->EnemyBounce();
-        //        stomp();
+        stomp();
+        contact->SetEnabled(false);
       } else if (!pc->IsDead() && !pc->IsHurt()) {
         //        playerController.die();
         //        if (!playerController.isDead()) {
@@ -72,6 +75,18 @@ namespace mario {
     else if (std::abs(contact_normal.y) < 0.1f) {
       going_right_ = contact_normal.x < 0.0f;
     }
+  }
+  
+  void GoombaController::stomp() {
+    is_dead_ = true;
+    velocity_ = {0.0f, 0.0f};
+    rigid_body_comp_->SetVelocity(velocity_);
+    rigid_body_comp_->SetAngularVelocity(0.0f);
+    rigid_body_comp_->is_sensor = true;
+    
+//    if (playSound) {
+//      AssetPool.getSound("assets/sounds/bump.ogg").play();
+//    }
   }
   
   void GoombaController::CheckOnGround() {

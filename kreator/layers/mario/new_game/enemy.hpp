@@ -25,6 +25,7 @@ namespace mario {
     void RenderGui() override;
     
   private:
+    void stomp();
     void CheckOnGround();
 
     bool is_dead_ = false;

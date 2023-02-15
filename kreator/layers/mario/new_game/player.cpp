@@ -130,7 +130,7 @@ namespace mario {
         
         if (player_state_ == PlayerState::Big) {
           // As our player powered up so reset the pill box size
-          EnttScene::ResetPillBoxColliderData(entity_.GetComponent<TransformComponent>(), rigid_body_comp_, *pill_box_comp_);
+          EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), rigid_body_comp_, *pill_box_comp_);
           pill_box_comp_->reset_flag = false;
         }
       }

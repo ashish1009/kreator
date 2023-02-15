@@ -130,7 +130,24 @@ namespace ikan {
     ///   - height: height of entity
     bool CheckOnGround(Entity* entity, float width, float height);
     
-    static void ResetPillBoxColliderData(const TransformComponent &tc, RigidBodyComponent* rb, const PillBoxColliderComponent& pbc);
+    /// This function reset the Pill Box collider fixture
+    /// - Parameters:
+    ///   - tc: transform oif body
+    ///   - rb: rigid body
+    ///   - pbc: pill box
+    static void ResetPillBoxColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const PillBoxColliderComponent& pbc);
+    /// This function reset the  Box collider fixture
+    /// - Parameters:
+    ///   - tc: transform oif body
+    ///   - rb: rigid body
+    ///   - pbc: box box
+    static void ResetBoxColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const BoxColliderComponent &pbc);
+    /// This function reset the Circle collider fixture
+    /// - Parameters:
+    ///   - tc: transform oif body
+    ///   - rb: rigid body
+    ///   - pbc: circle box
+    static void ResetCircleColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const CircleColliiderComponent &pbc);
 
     // ------------------
     // Getters

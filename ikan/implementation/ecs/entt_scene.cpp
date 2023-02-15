@@ -601,8 +601,30 @@ namespace ikan {
     }
     return size;
   }
+
+  void EnttScene::ResetBoxColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const BoxColliderComponent &pbc) {
+    b2Body* body = rb->runtime_body;
+    int32_t size = FixtureListSize(body);
+    for (int32_t i = 0; i < size; i++) {
+      body->DestroyFixture(body->GetFixtureList());
+    }
+    
+    AddBoxColliderData(tc, pbc, *rb);
+    body->ResetMassData();
+  }
+
+  void EnttScene::ResetCircleColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const CircleColliiderComponent &pbc) {
+    b2Body* body = rb->runtime_body;
+    int32_t size = FixtureListSize(body);
+    for (int32_t i = 0; i < size; i++) {
+      body->DestroyFixture(body->GetFixtureList());
+    }
+    
+    AddCircleColliderData(tc, pbc, *rb);
+    body->ResetMassData();
+  }
   
-  void EnttScene::ResetPillBoxColliderData(const TransformComponent &tc, RigidBodyComponent* rb, const PillBoxColliderComponent &pbc) {
+  void EnttScene::ResetPillBoxColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const PillBoxColliderComponent &pbc) {
     b2Body* body = rb->runtime_body;
     int32_t size = FixtureListSize(body);
     for (int32_t i = 0; i < size; i++) {
