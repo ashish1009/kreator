@@ -8,6 +8,7 @@
 #include "core_components.hpp"
 #include "editor/property_grid.hpp"
 #include "ecs/scriptable_entity.hpp"
+#include "ecs/entity.hpp"
 
 namespace ikan {
   
@@ -591,6 +592,8 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Box Colloider Component
   // -------------------------------------------------------------------------
+  BoxColliderComponent::~BoxColliderComponent() {
+  }
   BoxColliderComponent::BoxColliderComponent(const BoxColliderComponent& other) {
     offset = other.offset;
     size = other.size;
@@ -599,7 +602,10 @@ namespace ikan {
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
     
-    runtime_fixture = other.runtime_fixture;
+    if (other.runtime_fixture) {
+      Entity* e = (Entity*)other.runtime_fixture;
+      runtime_fixture = new Entity((entt::entity)(*e), e->GetScene());
+    }
   }
   BoxColliderComponent& BoxColliderComponent::operator=(const BoxColliderComponent& other) {
     offset = other.offset;
@@ -609,7 +615,10 @@ namespace ikan {
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
     
-    runtime_fixture = other.runtime_fixture;
+    if (other.runtime_fixture) {
+      Entity* e = (Entity*)other.runtime_fixture;
+      runtime_fixture = new Entity((entt::entity)(*e), e->GetScene());
+    }
     return *this;
   }
   BoxColliderComponent::BoxColliderComponent(BoxColliderComponent&& other) {
@@ -620,7 +629,10 @@ namespace ikan {
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
     
-    runtime_fixture = other.runtime_fixture;
+    if (other.runtime_fixture) {
+      Entity* e = (Entity*)other.runtime_fixture;
+      runtime_fixture = new Entity((entt::entity)(*e), e->GetScene());
+    }
   }
   BoxColliderComponent& BoxColliderComponent::operator=(BoxColliderComponent&& other) {
     offset = other.offset;
@@ -630,7 +642,10 @@ namespace ikan {
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
     
-    runtime_fixture = other.runtime_fixture;
+    if (other.runtime_fixture) {
+      Entity* e = (Entity*)other.runtime_fixture;
+      runtime_fixture = new Entity((entt::entity)(*e), e->GetScene());
+    }
     return *this;
   }
   void BoxColliderComponent::RenderGui() {
@@ -649,6 +664,8 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Circle Colloider Component
   // -------------------------------------------------------------------------
+  CircleColliiderComponent::~CircleColliiderComponent() {
+  }
   CircleColliiderComponent::CircleColliiderComponent(const CircleColliiderComponent& other) {
     offset = other.offset;
     radius = other.radius;
@@ -656,6 +673,11 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    
+    if (other.runtime_fixture) {
+      Entity* e = (Entity*)other.runtime_fixture;
+      runtime_fixture = new Entity((entt::entity)(*e), e->GetScene());
+    }
   }
   CircleColliiderComponent& CircleColliiderComponent::operator=(const CircleColliiderComponent& other) {
     offset = other.offset;
@@ -664,6 +686,11 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    
+    if (other.runtime_fixture) {
+      Entity* e = (Entity*)other.runtime_fixture;
+      runtime_fixture = new Entity((entt::entity)(*e), e->GetScene());
+    }
     return *this;
   }
   CircleColliiderComponent::CircleColliiderComponent(CircleColliiderComponent&& other) {
@@ -673,6 +700,11 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    
+    if (other.runtime_fixture) {
+      Entity* e = (Entity*)other.runtime_fixture;
+      runtime_fixture = new Entity((entt::entity)(*e), e->GetScene());
+    }
   }
   CircleColliiderComponent& CircleColliiderComponent::operator=(CircleColliiderComponent&& other) {
     offset = other.offset;
@@ -681,6 +713,11 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    
+    if (other.runtime_fixture) {
+      Entity* e = (Entity*)other.runtime_fixture;
+      runtime_fixture = new Entity((entt::entity)(*e), e->GetScene());
+    }
     return *this;
   }
   void CircleColliiderComponent::RenderGui() {

@@ -181,6 +181,7 @@ namespace ikan {
 
     void RenderGui();
     BoxColliderComponent() = default;
+    ~BoxColliderComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(BoxColliderComponent);
   };
   
@@ -199,6 +200,8 @@ namespace ikan {
 
     void RenderGui();
     CircleColliiderComponent() = default;
+    ~CircleColliiderComponent();
+
     DEFINE_COPY_MOVE_CONSTRUCTORS(CircleColliiderComponent);
   };
   

@@ -23,8 +23,7 @@ namespace mario {
     // Camera check
     
     if (is_dead_) {
-      EnttScene::ResetCircleColliderFixture(entity_.GetComponent<TransformComponent>(),
-                                            rigid_body_comp_, entity_.GetComponent<CircleColliiderComponent>());
+      EnttScene::ResetFixture(rigid_body_comp_->runtime_body);
       
       time_to_kill -= ts;
       rigid_body_comp_->SetVelocity({0., 0});
@@ -57,12 +56,12 @@ namespace mario {
     rigid_body_comp_->SetVelocity(velocity_);
     rigid_body_comp_->SetAngularVelocity(0.0f);
   }
+  
   void GoombaController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
     if (is_dead_) {
       return;
     }
-
-    
+  
     if (PlayerController* pc = PlayerController::Get();
         collided_entity->HasComponent<NativeScriptComponent>() and
         collided_entity->GetComponent<NativeScriptComponent>().script.get() == pc) {
