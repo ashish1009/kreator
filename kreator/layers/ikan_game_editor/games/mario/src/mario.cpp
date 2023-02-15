@@ -40,10 +40,13 @@ namespace mario {
   }
   
   void Mario::SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
+    scene_ = scene;
+    panel_ = panel;
   }
   
   void Mario::Update(Timestep ts) {
     if (!is_playing_) {
+      SelectEntities();
     }
     else {
       // Timer
@@ -83,6 +86,23 @@ namespace mario {
   }
   
   bool Mario::KeyPressEvent(KeyPressedEvent &e) {
+    if (!is_playing_) {
+      bool shift = Input::IsKeyPressed(KeyCode::LeftShift);
+      if (shift) {
+        switch (e.GetKeyCode()) {
+          case KeyCode::D:          DuplicateSelectedEntities();  break;
+          case KeyCode::Backspace:  DeleteSelectedEntities();     break;
+          case KeyCode::Escape:     ClearSelectedEntities();      break;
+            
+          case KeyCode::Left:     MoveEntities(Left);   break;
+          case KeyCode::Right:    MoveEntities(Right);  break;
+          case KeyCode::Up:       MoveEntities(Up);     break;
+          case KeyCode::Down:     MoveEntities(Down);   break;
+            
+          default: break;
+        } // switch (e.GetKeyCode())
+      } // if (shift)
+    }
     return false;
   }
   
@@ -90,6 +110,148 @@ namespace mario {
     return false;
   }
   
+  void Mario::SelectEntities() {
+    if (!(viewport_->mouse_pos_x >= 0 and viewport_->mouse_pos_y >= 0 and
+          viewport_->mouse_pos_x <= viewport_->width and viewport_->mouse_pos_y <= viewport_->height)) {
+      ClearSelectedEntities();
+      return;
+    }
+    
+    if (!Input::IsKeyPressed(KeyCode::LeftShift) or Input::IsKeyPressed(KeyCode::LeftControl))
+      return;
+    
+    static bool first_clicked = true;
+    
+    static glm::vec2 initial_mouse_position_ = glm::vec2(0.0f);
+    static glm::vec2 final_mouse_position_ = glm::vec2(0.0f);
+    
+    static glm::vec2 initial_block_position_ = glm::vec2(0.0f);
+    static glm::vec2 final_block_position_ = glm::vec2(0.0f);
+    
+    const auto& cd = scene_->GetPrimaryCameraData();
+    float zoom = cd.scene_camera->GetZoom();
+    float aspect_ratio = cd.scene_camera->GetAspectRatio();
+    
+    if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft)) {
+      if (first_clicked) {
+        ClearSelectedEntities();
+        
+        first_clicked = false;
+        initial_mouse_position_ = { viewport_->mouse_pos_x, viewport_->mouse_pos_y };
+        initial_block_position_ = {
+          viewport_->mouse_pos_x - ((float)viewport_->width / 2),
+          viewport_->mouse_pos_y - ((float)viewport_->height / 2)
+        };
+        initial_block_position_ *= ((zoom * aspect_ratio) / viewport_->width);
+      }
+      
+      final_mouse_position_ = { viewport_->mouse_pos_x, viewport_->mouse_pos_y };
+      final_block_position_ = {
+        viewport_->mouse_pos_x - ((float)viewport_->width / 2),
+        viewport_->mouse_pos_y - ((float)viewport_->height / 2)
+      };
+      final_block_position_ *= ((zoom * aspect_ratio) / viewport_->width);
+      
+      // Render the outline rectangle
+      BatchRenderer::BeginBatch(scene_->GetPrimaryCameraData().scene_camera->GetProjection() *
+                                glm::inverse(scene_->GetPrimaryCameraData().transform_matrix));
+      BatchRenderer::DrawRect({initial_block_position_.x + cd.position.x, initial_block_position_.y + cd.position.y, 0.1},
+                              {final_block_position_.x + cd.position.x, final_block_position_.y + cd.position.y, 0.1},
+                              {1, 1, 1, 1});
+      BatchRenderer::EndBatch();
+      
+    }
+    if (Input::IsMouseButtonReleased(MouseButton::ButtonLeft)) {
+      if (!first_clicked) {
+        // Store entites present in selected entitity
+        float min_x = std::min(initial_mouse_position_.x, final_mouse_position_.x);
+        float max_x = std::max(initial_mouse_position_.x, final_mouse_position_.x);
+        float min_y = std::min(initial_mouse_position_.y, final_mouse_position_.y);
+        float max_y = std::max(initial_mouse_position_.y, final_mouse_position_.y);
+        
+        for (float i_x = min_x; i_x <= max_x; i_x ++) {
+          for (float i_y = min_y; i_y <= max_y; i_y++) {
+            // Get pixel from rednerer
+            int32_t pixel = -1;
+            
+            Renderer::GetEntityIdFromPixels(i_x, i_y, viewport_->framebuffer->GetPixelIdIndex(), pixel);
+#if 0
+            MARIO_TRACE("X : {0}, Y : {1}, Pixel : {2}", i_x, i_y, pixel);
+#endif
+            
+            if (scene_) {
+              if (pixel <= (int32_t)scene_->GetMaxEntityId()) {
+                if (selected_entities_.find((entt::entity)pixel) == selected_entities_.end()){
+                  selected_entities_[(entt::entity)pixel] = scene_->GetEnitityFromId(pixel);
+                }
+              }
+            }
+          }
+        }
+        
+        // TODO: Do it while adding to vector? or keep separate???
+        HighlightSelectedEntities(true);
+      }
+      first_clicked = true;
+    }
+  }
+  
+  void Mario::MoveEntities(Direction direction) {
+    for (auto& [entt, entity] : selected_entities_) {
+      if(!entity) continue;
+      
+      auto& tc = entity->GetComponent<TransformComponent>();
+      switch (direction) {
+        case Down:      tc.UpdateTranslation_Y(tc.Translation().y - 1.0f);     break;
+        case Up:        tc.UpdateTranslation_Y(tc.Translation().y + 1.0f);     break;
+        case Right:     tc.UpdateTranslation_X(tc.Translation().x + 1.0f);     break;
+        case Left:      tc.UpdateTranslation_X(tc.Translation().x - 1.0f);     break;
+        default: break;
+      }
+    }
+  }
+
+  void Mario::DuplicateSelectedEntities() {
+    HighlightSelectedEntities(false);
+    for (auto& [entt, entity] : selected_entities_) {
+      scene_->DuplicateEntity(*entity);
+    }
+    HighlightSelectedEntities(true);
+  }
+  
+  void Mario::ClearSelectedEntities() {
+    HighlightSelectedEntities(false);
+    selected_entities_.clear();
+  }
+  
+  void Mario::DeleteSelectedEntities() {
+    for (auto& [entt, entity] : selected_entities_) {
+      if (panel_->GetSelectedEntity() and *(panel_->GetSelectedEntity()) == *entity) {
+        panel_->SetSelectedEntity(nullptr);
+      }
+      scene_->DestroyEntity(*entity);
+    }
+    selected_entities_.clear();
+  }
+  
+  void Mario::HighlightSelectedEntities(bool enable) {
+    for (auto& [entt, entity] : selected_entities_) {
+      if(!entity) continue;
+      
+      auto& tc = entity->GetComponent<TransformComponent>();
+      auto& qc = entity->GetComponent<QuadComponent>();
+      
+      if (enable) {
+        tc.UpdateTranslation_Z(0.1f);
+        qc.color.a -=0.2f;
+      }
+      else {
+        tc.UpdateTranslation_Z(0.0f);
+        qc.color.a +=0.2f;
+      }
+    }
+  }
+
   void Mario::SetViewportSize(uint32_t width, uint32_t height) {
     viewport_width_ = width;
     viewport_height_ = height;

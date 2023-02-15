@@ -67,12 +67,29 @@ namespace mario {
     static Mario& Get() { return *instance_; }
 
   private:
+    enum Direction {Left, Right, Up, Down};
+
     /// This function handles the Key button event
     /// - Parameter e: Key pressed event
     bool KeyPressEvent(KeyPressedEvent& e);
     /// This function handles the MouseButton event
     /// - Parameter e: MouseButton pressed event
     bool MouseButtonPressEvent(MouseButtonPressedEvent& e);
+
+    /// This function render the rectangle when clicg drag mouse
+    void SelectEntities();
+    /// This function moves the selected entities
+    /// - Parameter direction: Direction of movement
+    void MoveEntities(Direction direction);
+    /// This function highlight the selected entiies
+    /// - Parameter enable: flag to set or unset
+    void HighlightSelectedEntities(bool enable);
+    /// This function clear the selected entities
+    void ClearSelectedEntities();
+    /// This function Delete the selected entities
+    void DeleteSelectedEntities();
+    /// This function Duplicate the selected entities
+    void DuplicateSelectedEntities();
 
     // Mario Data
     static const uint32_t MaxTime = 100;
@@ -95,6 +112,12 @@ namespace mario {
     uint32_t viewport_width_ = Application::Get().GetWindow().GetWidth();
     uint32_t viewport_height_ = Application::Get().GetWindow().GetHeight();
     const Viewport* const viewport_;
+    
+    std::shared_ptr<EnttScene> scene_;
+    ScenePanelManager* panel_;
+
+    // Debug Data
+    std::unordered_map<entt::entity, Entity*> selected_entities_;
     
     static Mario* instance_;
   };
