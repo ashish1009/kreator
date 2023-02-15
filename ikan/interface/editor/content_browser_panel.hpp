@@ -24,6 +24,10 @@ namespace ikan {
     /// This function renders Imgui for Contenct browser panel
     /// - Parameter is_open: flag to show or hide widget
     void RenderGui(bool* is_open = nullptr);
+    
+    /// This function update the root path of CBP
+    /// - Parameter root_path: root path
+    void SetRootData(const std::string& root_path);
     /// This funcfion add the favourit paths to the pannel
     /// - Parameter favourite_paths: paths
     void AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths);

@@ -28,6 +28,11 @@ namespace ikan {
     IK_CORE_WARN(LogModule::ContentBrowserPanel, "  Root Path : {0}", root_path_.string());
   }
   
+  void ContentBrowserPanel::SetRootData(const std::string& root_path) {
+    root_path_ = root_path;
+    current_directory_ = root_path;
+  }
+
   void ContentBrowserPanel::AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths) {
     for (const auto& path : favourite_paths)
       favourite_paths_.emplace_back(path);

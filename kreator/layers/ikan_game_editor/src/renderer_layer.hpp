@@ -189,7 +189,7 @@ namespace ikan_game {
     Setting settings_;
     Viewport viewport_;
     // TODO: Temp using Game DIR .Later will change to project DIR
-    ContentBrowserPanel cbp_ = ContentBrowserPanel("../../../kreator/layers/ikan_game_editor/");
+    ContentBrowserPanel cbp_;
     ScenePanelManager spm_;
     std::shared_ptr<EnttScene> active_scene_, editor_scene_;
     

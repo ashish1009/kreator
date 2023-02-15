@@ -45,17 +45,19 @@ namespace ikan_game {
     virtual void SetViewportSize(uint32_t width, uint32_t height) {}
     
     /// This function return your viewport background color
-    virtual glm::vec4 GetBgColor() { return {0.2f, 0.2f, 0.2f, 1.0f}; }
+    virtual glm::vec4 GetBgColor() const { return {0.2f, 0.2f, 0.2f, 1.0f}; }
     /// This function returns name of your game
-    virtual std::string GameName() {return "ikan Game";};
+    virtual std::string GameName() const {return "ikan Game";};
     /// This function returns the path of scene you want to open in begining
-    virtual std::string OpenSavedScene() {return "";};
+    virtual std::string OpenSavedScene() const {return "";};
     /// This function returns the path of regular GUI fornt
-    virtual ImguiFont RegularFontData() {return {AM::ProjectPath("kreator/layers/ikan_game_editor/game_assets/fonts/Opensans/Regular.ttf"), 14};};
+    virtual ImguiFont RegularFontData() const {return {AM::ProjectPath("kreator/layers/ikan_game_editor/game_assets/fonts/Opensans/Regular.ttf"), 14};};
     /// This function returns the path of bold GUI fornt
-    virtual ImguiFont BoldFontData() {return {AM::ProjectPath("kreator/layers/ikan_game_editor/game_assets/fonts/Opensans/Bold.ttf"), 14};};
+    virtual ImguiFont BoldFontData() const {return {AM::ProjectPath("kreator/layers/ikan_game_editor/game_assets/fonts/Opensans/Bold.ttf"), 14};};
     /// This function returns the paths of directory you want in content browser panel
-    virtual std::vector<std::filesystem::path> FavDirecotries() {return {};};
+    virtual std::vector<std::filesystem::path> FavDirecotries() const {return {};};
+    /// This function returns the paths of directory you want in content browser panel
+    virtual std::string CbpRootDir() const { return "../../../kreator/layers/ikan_game_editor/"; };
   };
   
   /// This function is the defination of game data. Implementaiton should be at client

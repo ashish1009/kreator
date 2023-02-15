@@ -14,6 +14,8 @@ namespace ikan_game {
   RendererLayer::RendererLayer() : Layer("ikan Game"), game_data_(CreateGameData(&viewport_)) {
     if (!game_data_)
       game_data_ = std::make_unique<GameData>();
+    
+    cbp_.SetRootData(game_data_->CbpRootDir());
 
     game_data_->Init();
     

@@ -14,6 +14,10 @@ enum class LayerType : uint8_t {
   /* Add More with time */
 };
 
+enum class GameType : uint8_t {
+  Editor, Mario
+};
+
 bool new_mario = true;
 
 class KreatorApp : public ikan::Application {
@@ -23,9 +27,11 @@ public:
     IK_INFO("Kreator Application", "Creating Kreator Application Instance ...");
     
     switch (application_type) {
-      case LayerType::Editor :
+      case LayerType::Editor : {
         PushLayer(std::make_shared<ikan_game::RendererLayer>());
         break;
+      }
+        
       case LayerType::RayTracing :
         PushLayer(std::make_shared<ray_tracing::RendererLayer>());
         break;
@@ -40,6 +46,7 @@ public:
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Set up the type of applicaiton we want to create
   LayerType application_type = LayerType::Editor;
+  GameType game_type = GameType::Mario;
   
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;
@@ -61,11 +68,24 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   // Create the instance of applciaiton based on the type of suppored applucaiton
   switch (application_type) {
     case LayerType::Editor :
-      application_spec.name = "Kreator";
-      application_spec.window_specification.title = "Kreator";
-      application_spec.client_asset_path = "../../../kreator/layers/ikan_game_editor/editor_assets/";
-      application_spec.save_ini_file_path = "../../../kreator/layers/ikan_game_editor/ikan_game_editor.ini";
+      switch (game_type) {
+        case GameType::Editor: {
+          application_spec.name = "ikan Editor";
+          application_spec.window_specification.title = "ikan Editor";
+          application_spec.client_asset_path = "../../../kreator/layers/ikan_game_editor/game_assets/";
+          application_spec.save_ini_file_path = "../../../kreator/layers/ikan_game_editor/game_assets/ini/ikan_game_editor.ini";
+          break;
+        }
+        case GameType::Mario: {
+          application_spec.name = "ikan Mario";
+          application_spec.window_specification.title = "ikan Mario";
+          application_spec.client_asset_path = "../../../kreator/layers/ikan_game_editor/games/mario/assets/";
+          application_spec.save_ini_file_path = "../../../kreator/layers/ikan_game_editor/games/mario/assets/ini/ikan_mario.ini";
+          break;
+        }
+      };
       break;
+      
     case LayerType::RayTracing :
       application_spec.name = "RayTracing";
       application_spec.window_specification.title = "RayTracing";
