@@ -26,20 +26,17 @@ namespace mario {
   }
   
   void CommonRuntimeData::LivingEntityHitCheck(Entity* collided_entity, b2Contact* contact) {
-    if (collided_entity->HasComponent<NativeScriptComponent>()) {
-      const auto &nsc = collided_entity->GetComponent<NativeScriptComponent>();
-      if (nsc.script_name == "mario::PlayerController") {
-        contact->SetEnabled(false);
-        if (!hit_player_) {
-          auto pc = PlayerController::Get();
-          pc->Powerup();
-          hit_player_ = true;
-          destroy_ = true;
-        }
-        return;
+    if (PlayerController* pc = PlayerController::Get();
+        collided_entity->HasComponent<NativeScriptComponent>() and
+        collided_entity->GetComponent<NativeScriptComponent>().script.get() == pc) {
+      contact->SetEnabled(false);
+      if (!hit_player_) {
+        auto pc = PlayerController::Get();
+        pc->Powerup();
+        hit_player_ = true;
+        destroy_ = true;
       }
-      else { // May be some block with Script
-      }
+      return;
     }
   }
   

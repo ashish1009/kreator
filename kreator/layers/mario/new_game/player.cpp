@@ -191,6 +191,10 @@ namespace mario {
       }
       ground_debounce_ = 0.0f;
     }
+    else if (enemy_bounce_ > 0) {
+      enemy_bounce_--;
+      velocity_.y = ((enemy_bounce_ / 2.2f) * jumb_boost_);
+    }
     else if (!on_ground_) {
       if (jump_time_ > 0) {
         velocity_.y *= 0.35f;
@@ -245,7 +249,7 @@ namespace mario {
       }
     }
   }
-  
+    
   void PlayerController::Powerup() {
     if (player_state_ == PlayerState::Small) {
       player_state_ = PlayerState::Big;

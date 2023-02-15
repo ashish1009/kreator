@@ -6,6 +6,7 @@
 //
 
 #include "enemy.hpp"
+#include "player.hpp"
 
 namespace mario {
   
@@ -47,8 +48,28 @@ namespace mario {
     rigid_body_comp_->SetAngularVelocity(0.0f);
   }
   void GoombaController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
-//    LivingEntityHitCheck(collided_entity, contact);
-    if (std::abs(contact_normal.y) < 0.1f) {
+    if (is_dead_) {
+      return;
+    }
+
+    
+    if (PlayerController* pc = PlayerController::Get();
+        collided_entity->HasComponent<NativeScriptComponent>() and
+        collided_entity->GetComponent<NativeScriptComponent>().script.get() == pc) {
+      if (!pc->IsDead() && !pc->IsHurt() && contact_normal.y > 0.58f) {
+        pc->EnemyBounce();
+        //        stomp();
+      } else if (!pc->IsDead() && !pc->IsHurt()) {
+        //        playerController.die();
+        //        if (!playerController.isDead()) {
+        //          contact.setEnabled(false);
+        //        }
+      } else if (!pc->IsDead() && pc->IsHurt()) {
+        //        contact.setEnabled(false);
+      }
+    }
+
+    else if (std::abs(contact_normal.y) < 0.1f) {
       going_right_ = contact_normal.x < 0.0f;
     }
   }

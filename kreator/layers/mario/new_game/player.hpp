@@ -54,7 +54,11 @@ namespace mario {
     void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& constact_normal) override;
     void Powerup();
     
+    void EnemyBounce() { enemy_bounce_ = 18; }
+    
     bool IsSmall() const { return player_state_ == PlayerState::Small; }
+    bool IsDead() const { return is_dead_; }
+    bool IsHurt() const { return is_hurt_; }
     
     static PlayerController* Get() { return instance_; }
 
@@ -63,7 +67,8 @@ namespace mario {
 
     bool on_ground_ = false;
     bool is_dead_ = false;
-
+    bool is_hurt_ = false;
+    
     float walk_speed_ = 4.0f;
     float slow_down_force_ = 0.08f;
 
