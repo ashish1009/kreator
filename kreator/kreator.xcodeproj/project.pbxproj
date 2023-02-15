@@ -90,6 +90,7 @@
 		B2918475299CF8AA008B9D71 /* mario.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario.hpp; sourceTree = "<group>"; };
 		B2918485299D0FF9008B9D71 /* SpriteManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteManager.cpp; sourceTree = "<group>"; };
 		B2918486299D0FF9008B9D71 /* SpriteManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SpriteManager.hpp; sourceTree = "<group>"; };
+		B291848B299D3B3E008B9D71 /* Mario_Scene.ikanScene */ = {isa = PBXFileReference; lastKnownFileType = text; name = Mario_Scene.ikanScene; path = layers/ikan_game_editor/games/mario/assets/scenes/Mario_Scene.ikanScene; sourceTree = SOURCE_ROOT; };
 		B2BD9DCB295C7D3C0076A2F9 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.dylib; sourceTree = "<group>"; };
 		B2BD9DCD295C7D3C0076A2F9 /* libpng16.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = libpng16.pc; sourceTree = "<group>"; };
 		B2BD9DCE295C7D3C0076A2F9 /* libpng.pc */ = {isa = PBXFileReference; lastKnownFileType = text; path = libpng.pc; sourceTree = "<group>"; };
@@ -370,6 +371,7 @@
 		B2918472299CF8A1008B9D71 /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				B291848B299D3B3E008B9D71 /* Mario_Scene.ikanScene */,
 			);
 			path = scene;
 			sourceTree = "<group>";
