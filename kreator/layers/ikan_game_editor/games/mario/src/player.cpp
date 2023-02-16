@@ -93,6 +93,7 @@ namespace mario {
   }
   
   PlayerController::~PlayerController() {
+    delete state_machine_;
   }
 
   void PlayerController::Create(Entity entity)  {

@@ -300,16 +300,16 @@ namespace ikan {
     AddComponentMenu<RigidBodyComponent>("Rigid Body");
     AddComponentMenu<BoxColliderComponent>("Box Collider", [this]() {
       return selected_entity_.HasComponent<PillBoxColliderComponent>();
-    }, selected_entity_);
+    });
     
     AddComponentMenu<CircleColliiderComponent>("Circle Collider", [this]() {
       return selected_entity_.HasComponent<PillBoxColliderComponent>();
-    }, selected_entity_);
+    });
     AddComponentMenu<PillBoxColliderComponent>("Pill Box Collider", [this]() {
       return selected_entity_.HasComponent<BoxColliderComponent>() or
       selected_entity_.HasComponent<CircleColliiderComponent>() or
       selected_entity_.HasComponent<PillBoxColliderComponent>();
-    }, selected_entity_);
+    });
 
     ImGui::Separator();
     if (selected_entity_.HasComponent<QuadComponent>() and selected_entity_.GetComponent<QuadComponent>().texture_comp.component) {

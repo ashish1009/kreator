@@ -51,6 +51,7 @@
 		B2250CD6295860BC0067C43B /* entry_point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
 		B2250CE2295863840067C43B /* kreator_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kreator_application.cpp; sourceTree = "<group>"; };
 		B232147C2978052700845848 /* ikan_log.ikan_log */ = {isa = PBXFileReference; lastKnownFileType = text; path = ikan_log.ikan_log; sourceTree = "<group>"; wrapsLines = 0; };
+		B2565EFA299E238C0087BCEC /* Mario_Scene.ikanScene */ = {isa = PBXFileReference; lastKnownFileType = text; path = Mario_Scene.ikanScene; sourceTree = "<group>"; };
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2918437299CEFCA008B9D71 /* LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LightItalic.ttf; sourceTree = "<group>"; };
 		B2918438299CEFCA008B9D71 /* SemiMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SemiMedium.ttf; sourceTree = "<group>"; };
@@ -183,6 +184,14 @@
 			);
 			name = log;
 			path = ../log;
+			sourceTree = "<group>";
+		};
+		B2565EF8299E238C0087BCEC /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B2565EFA299E238C0087BCEC /* Mario_Scene.ikanScene */,
+			);
+			path = scenes;
 			sourceTree = "<group>";
 		};
 		B2918432299CEFCA008B9D71 /* layers */ = {
@@ -344,6 +353,7 @@
 		B291846E299CF85A008B9D71 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				B2565EF8299E238C0087BCEC /* scenes */,
 				B291846F299CF85A008B9D71 /* ini */,
 			);
 			path = assets;

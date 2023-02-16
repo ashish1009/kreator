@@ -15,7 +15,9 @@
 #include "box2d/b2_body.h"
 
 namespace ikan {
-    
+  
+  class Entity;
+  
   struct IDComponent {
     UUID id = 0;
     IDComponent(const UUID& id);
@@ -177,11 +179,11 @@ namespace ikan {
     float restitution_threshold = 0.5f;
 
     // Storage for runtime
-    void* runtime_fixture = nullptr;
+    Entity* runtime_fixture = nullptr;
 
     void RenderGui();
-    BoxColliderComponent(Entity entity);
-    ~BoxColliderComponent();
+    BoxColliderComponent() = default;
+    ~BoxColliderComponent() = default;
     DEFINE_COPY_MOVE_CONSTRUCTORS(BoxColliderComponent);
   };
   
@@ -196,11 +198,11 @@ namespace ikan {
     float restitution_threshold = 0.5f;
 
     // Storage for runtime
-    void* runtime_fixture = nullptr;
+    Entity* runtime_fixture = nullptr;
 
     void RenderGui();
-    CircleColliiderComponent(Entity entity);
-    ~CircleColliiderComponent();
+    CircleColliiderComponent() = default;
+    ~CircleColliiderComponent() = default;
 
     DEFINE_COPY_MOVE_CONSTRUCTORS(CircleColliiderComponent);
   };
@@ -222,7 +224,7 @@ namespace ikan {
     void RecalculateColliders();
     
     void RenderGui();
-    PillBoxColliderComponent(Entity entity);
+    PillBoxColliderComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(PillBoxColliderComponent);
   };
   

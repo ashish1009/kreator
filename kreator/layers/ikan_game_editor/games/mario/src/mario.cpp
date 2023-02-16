@@ -312,7 +312,7 @@ namespace mario {
 
     // Collider Component
     if (!player_entity.HasComponent<PillBoxColliderComponent>()) {
-      auto& pbc = player_entity.AddComponent<PillBoxColliderComponent>(player_entity);
+      auto& pbc = player_entity.AddComponent<PillBoxColliderComponent>();
       pbc.width = 0.4f;
     }
 

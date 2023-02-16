@@ -113,6 +113,8 @@ namespace ikan {
     IK_CORE_WARN(LogModule::EnttScene, "Destroying Scene!!!");
     IK_CORE_WARN(LogModule::EnttScene, "  Name | {0}", name_);
     
+    RemoveRuntimeFixtureToColliders();
+
     delete physics_world_;
     delete contact_listner_;
     physics_world_ = nullptr;
@@ -305,10 +307,73 @@ namespace ikan {
 
   }
   
+  void EnttScene::AddRuntimeFixtureToColliders() {
+    // Store the Entity in each box collider
+    auto box_view = registry_.view<BoxColliderComponent>();
+    for (auto e : box_view) {
+      auto &c = box_view.get<BoxColliderComponent>(e);
+      delete c.runtime_fixture;
+      c.runtime_fixture = new Entity(e, this);
+    }
+    
+    // Store the Entity in each circle collider
+    auto circle_view = registry_.view<CircleColliiderComponent>();
+    for (auto e : circle_view) {
+      auto &c = circle_view.get<CircleColliiderComponent>(e);
+      delete c.runtime_fixture;
+      c.runtime_fixture = new Entity(e, this);
+    }
+    
+    auto pill_view = registry_.view<PillBoxColliderComponent>();
+    for (auto e : pill_view) {
+      auto &c = pill_view.get<PillBoxColliderComponent>(e);
+
+      delete c.bcc.runtime_fixture;
+      c.bcc.runtime_fixture = new Entity(e, this);
+      delete c.top_ccc.runtime_fixture;
+      c.top_ccc.runtime_fixture = new Entity(e, this);
+      delete c.top_ccc.runtime_fixture;
+      c.bottom_ccc.runtime_fixture = new Entity(e, this);
+    }
+  }
+  
+  void EnttScene::RemoveRuntimeFixtureToColliders() {
+    // Store the Entity in each box collider
+    auto box_view = registry_.view<BoxColliderComponent>();
+    for (auto e : box_view) {
+      auto &c = box_view.get<BoxColliderComponent>(e);
+      delete c.runtime_fixture;
+      c.runtime_fixture = nullptr;
+    }
+    
+    // Store the Entity in each circle collider
+    auto circle_view = registry_.view<CircleColliiderComponent>();
+    for (auto e : circle_view) {
+      auto &c = circle_view.get<CircleColliiderComponent>(e);
+      delete c.runtime_fixture;
+      c.runtime_fixture = nullptr;
+    }
+    
+    auto pill_view = registry_.view<PillBoxColliderComponent>();
+    for (auto e : pill_view) {
+      auto &c = pill_view.get<PillBoxColliderComponent>(e);
+      
+      delete c.bcc.runtime_fixture;
+      c.bcc.runtime_fixture = nullptr;
+      delete c.top_ccc.runtime_fixture;
+      c.top_ccc.runtime_fixture = nullptr;
+      delete c.top_ccc.runtime_fixture;
+      c.bottom_ccc.runtime_fixture = nullptr;
+    }
+  }
+
+  
   void EnttScene::RuntimeStart() {
     physics_world_ = new b2World({0.0f, -9.8f});
     contact_listner_ = new ContactListner();
     physics_world_->SetContactListener(contact_listner_);
+    
+    AddRuntimeFixtureToColliders();
     
     auto view = registry_.view<RigidBodyComponent>();
     for (auto e : view) {
@@ -393,6 +458,8 @@ namespace ikan {
     update_ = std::bind(&EnttScene::UpdateEditor, this, std::placeholders::_1);
     event_handler_ = std::bind(&EnttScene::EventHandlerEditor, this, std::placeholders::_1);
     render_imgui_ = std::bind(&EnttScene::RenderImguiEditor, this);
+    
+    RemoveRuntimeFixtureToColliders();
     
     delete physics_world_;
     delete contact_listner_;
@@ -546,7 +613,7 @@ namespace ikan {
   
   void EnttScene::AddBoxColliderData(const TransformComponent& tc,
                                      const BoxColliderComponent& bc2d,
-                                     RigidBodyComponent& rb2d,
+                                     const RigidBodyComponent& rb2d,
                                      bool is_pill) {
     b2Body* body = rb2d.runtime_body;
     b2PolygonShape polygon_shape;
@@ -569,7 +636,7 @@ namespace ikan {
   
   void EnttScene::AddCircleColliderData(const TransformComponent& tc,
                                         const CircleColliiderComponent& cc2d,
-                                        RigidBodyComponent& rb2d,
+                                        const RigidBodyComponent& rb2d,
                                         bool is_pill) {
     b2Body* body = rb2d.runtime_body;
     b2CircleShape circle_shape;
@@ -593,7 +660,7 @@ namespace ikan {
   
   void EnttScene::AddPillColliderData(const TransformComponent &tc,
                                       const PillBoxColliderComponent &pbc,
-                                      RigidBodyComponent& rb2d) {
+                                      const RigidBodyComponent& rb2d) {
     AddBoxColliderData(tc, pbc.bcc, rb2d, true);
     AddCircleColliderData(tc, pbc.top_ccc, rb2d, true);
     AddCircleColliderData(tc, pbc.bottom_ccc, rb2d, true);

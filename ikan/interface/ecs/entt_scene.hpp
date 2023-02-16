@@ -236,7 +236,11 @@ namespace ikan {
     /// This functuion Insantiates all the native script
     /// - Parameter ts: time step of each frame
     void InstantiateScript(Timestep ts);
-
+    /// This function adds the runtime fixture to colliders
+    void AddRuntimeFixtureToColliders();
+    /// This function removes the runtime fixture from colliders
+    void RemoveRuntimeFixtureToColliders();
+    
     /// This function renders the 2D Entities
     /// - Parameter camera_view_projection_mat: camera view projection matrix
     void Render2DEntities(const glm::mat4& camera_view_projection_mat);
@@ -252,14 +256,20 @@ namespace ikan {
     ///   - bc2d: box data
     ///   - body: body
     ///   - is_pill: Is Pill Box
-    static void AddBoxColliderData(const TransformComponent& tc, const BoxColliderComponent& bc2d, RigidBodyComponent& rb2d, bool is_pill = false);
+    static void AddBoxColliderData(const TransformComponent& tc,
+                                   const BoxColliderComponent& bc2d,
+                                   const RigidBodyComponent& rb2d,
+                                   bool is_pill = false);
     /// This function add the circle collider data to worlds body
     /// - Parameters:
     ///   - tc: transform of entity
     ///   - cc2d: circlw data
     ///   - body: body
     ///   - is_pill: is Pill Box
-    static void AddCircleColliderData(const TransformComponent& tc, const CircleColliiderComponent& cc2d, RigidBodyComponent& rb2d, bool is_pill = false);
+    static void AddCircleColliderData(const TransformComponent& tc,
+                                      const CircleColliiderComponent& cc2d,
+                                      const RigidBodyComponent& rb2d,
+                                      bool is_pill = false);
 
     /// This function add the circle collider data to worlds body
     /// - Parameters:
@@ -267,7 +277,9 @@ namespace ikan {
     ///   - cc2d: circlw data
     ///   - body: body
     ///   - is_pill: is Pill Box
-    static void AddPillColliderData(const TransformComponent& tc, const PillBoxColliderComponent& pbc, RigidBodyComponent& rb2d);
+    static void AddPillColliderData(const TransformComponent& tc,
+                                    const PillBoxColliderComponent& pbc,
+                                    const RigidBodyComponent& rb2d);
     
     // ------------------
     // Member variabls
