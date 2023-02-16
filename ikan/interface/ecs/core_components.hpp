@@ -21,16 +21,19 @@ namespace ikan {
   struct IDComponent {
     UUID id = 0;
     IDComponent(const UUID& id);
+    ~IDComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(IDComponent);
   };
   
   struct TagComponent {
     std::string tag = "Default Entity";
     TagComponent(const std::string& tag);
+    ~TagComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(TagComponent);
   };
   
   struct TransformComponent {
+    ~TransformComponent();
     TransformComponent(const glm::vec3& translation = { 0.0f, 0.0f, 0.0f });
     void RenderGui();
     
@@ -70,13 +73,14 @@ namespace ikan {
     void RenderGui();
 
     QuadComponent();
+    ~QuadComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(QuadComponent);
   };
   
   struct SpriteComponent {
     std::shared_ptr<SubTexture> sub_texture;
     SpriteComponent(std::shared_ptr<SubTexture> sub_tex = nullptr);
-    
+    ~SpriteComponent();
     void RenderGui();
 
     DEFINE_COPY_MOVE_CONSTRUCTORS(SpriteComponent);
@@ -92,6 +96,7 @@ namespace ikan {
     void RenderGui();
 
     CircleComponent();
+    ~CircleComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(CircleComponent);
   };
   
@@ -102,6 +107,7 @@ namespace ikan {
     
     void RenderGui();
     
+    ~CameraComponent();
     CameraComponent(SceneCamera::ProjectionType proj_type = SceneCamera::ProjectionType::Orthographic);
     DEFINE_COPY_MOVE_CONSTRUCTORS(CameraComponent);
   };
@@ -164,7 +170,8 @@ namespace ikan {
     void SetNotSensor(bool flag);
     
     void RenderGui();
-    RigidBodyComponent() = default;
+    RigidBodyComponent();
+    ~RigidBodyComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(RigidBodyComponent);
   };
   
@@ -182,8 +189,8 @@ namespace ikan {
     Entity* runtime_fixture = nullptr;
 
     void RenderGui();
-    BoxColliderComponent() = default;
-    ~BoxColliderComponent() = default;
+    BoxColliderComponent();
+    ~BoxColliderComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(BoxColliderComponent);
   };
   
@@ -201,8 +208,8 @@ namespace ikan {
     Entity* runtime_fixture = nullptr;
 
     void RenderGui();
-    CircleColliiderComponent() = default;
-    ~CircleColliiderComponent() = default;
+    CircleColliiderComponent();
+    ~CircleColliiderComponent();
 
     DEFINE_COPY_MOVE_CONSTRUCTORS(CircleColliiderComponent);
   };
@@ -225,6 +232,7 @@ namespace ikan {
     
     void RenderGui();
     PillBoxColliderComponent();
+    ~PillBoxColliderComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(PillBoxColliderComponent);
   };
   
