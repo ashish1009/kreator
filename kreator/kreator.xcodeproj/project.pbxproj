@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
+		B2565EFE299E41E40087BCEC /* block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2565EFC299E41E40087BCEC /* block.cpp */; };
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
 		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
 		B2918462299CEFCB008B9D71 /* create_game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2918452299CEFCB008B9D71 /* create_game_data.cpp */; };
@@ -52,6 +53,8 @@
 		B2250CE2295863840067C43B /* kreator_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kreator_application.cpp; sourceTree = "<group>"; };
 		B232147C2978052700845848 /* ikan_log.ikan_log */ = {isa = PBXFileReference; lastKnownFileType = text; path = ikan_log.ikan_log; sourceTree = "<group>"; wrapsLines = 0; };
 		B2565EFA299E238C0087BCEC /* Mario_Scene.ikanScene */ = {isa = PBXFileReference; lastKnownFileType = text; path = Mario_Scene.ikanScene; sourceTree = "<group>"; };
+		B2565EFC299E41E40087BCEC /* block.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = block.cpp; sourceTree = "<group>"; };
+		B2565EFD299E41E40087BCEC /* block.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = block.hpp; sourceTree = "<group>"; };
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2918437299CEFCA008B9D71 /* LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LightItalic.ttf; sourceTree = "<group>"; };
 		B2918438299CEFCA008B9D71 /* SemiMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SemiMedium.ttf; sourceTree = "<group>"; };
@@ -376,6 +379,8 @@
 				B2918486299D0FF9008B9D71 /* sprite_manager.hpp */,
 				B291848D299D414E008B9D71 /* player.cpp */,
 				B291848E299D414E008B9D71 /* player.hpp */,
+				B2565EFC299E41E40087BCEC /* block.cpp */,
+				B2565EFD299E41E40087BCEC /* block.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -463,6 +468,7 @@
 			files = (
 				B291848F299D414E008B9D71 /* player.cpp in Sources */,
 				B2918476299CF8AA008B9D71 /* mario.cpp in Sources */,
+				B2565EFE299E41E40087BCEC /* block.cpp in Sources */,
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
 				B2918465299CEFCB008B9D71 /* renderer_layer.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
