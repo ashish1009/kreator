@@ -733,10 +733,10 @@ namespace ikan {
   }
   
   bool RayCastInfo::OnGround() {
-    if (hit_object) {
-      auto& r = hit_object->GetComponent<RigidBodyComponent>();
-      IK_WARN("", "{0}, {1}", r.is_ground, hit_object->GetComponent<TagComponent>().tag.c_str());
-    }
+//    if (hit_object) {
+//      auto& r = hit_object->GetComponent<RigidBodyComponent>();
+//      IK_WARN("", "{0}, {1}", r.is_ground, hit_object->GetComponent<TagComponent>().tag.c_str());
+//    }
     return hit and hit_object and hit_object->HasComponent<RigidBodyComponent>() and hit_object->GetComponent<RigidBodyComponent>().is_ground;
   }
 

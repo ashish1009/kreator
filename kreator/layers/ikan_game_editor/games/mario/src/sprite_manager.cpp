@@ -63,7 +63,7 @@ namespace mario {
     fire_player_map[PlayerAction::Jump].push_back(SubTexture::CreateFromCoords(player_sprite, {4.0f, 28.0f}, {1.0f, 2.0f}));
     
     
-    const auto& enemy_sprite = GetSpriteImage(SpriteType::Player);
+    const auto& enemy_sprite = GetSpriteImage(SpriteType::Enemy);
     auto& goomba_sprite = data_->enemy_subtextures_map[EnemyType::Goomba];
     goomba_sprite[EnemyState::Dead] = SubTexture::CreateFromCoords(enemy_sprite, {2.0f, 6.0f});
   }
