@@ -19,7 +19,7 @@
 #include "box2d/b2_circle_shape.h"
 #include "box2d/b2_fixture.h"
 
-#define DEBUG_DRAW 1
+#define DEBUG_DRAW 0
 
 namespace ikan {
   

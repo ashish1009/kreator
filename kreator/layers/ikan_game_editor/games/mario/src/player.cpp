@@ -114,14 +114,14 @@ namespace mario {
     
     // Freeze until player power up complets
     if (state_machine_->GetAction() == PlayerAction::PowerUp) {
-      freez_time_-= ts;
-      if (freez_time_ >= 0) {
-        if (!on_ground_) {
-          rigid_body_comp_->SetVelocity({0, 0});
-        }
-        return;
-      }
-      else {
+//      freez_time_-= ts;
+//      if (freez_time_ >= 0) {
+//        if (!on_ground_) {
+//          rigid_body_comp_->SetVelocity({0, 0});
+//        }
+//        return;
+//      }
+//      else {
         state_machine_->ChangeAction(state_machine_->GetPrevAction());
         freez_time_ = 0.5f;
         
@@ -130,7 +130,7 @@ namespace mario {
           const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
           EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), rigid_body_comp_, pbc);
         }
-      }
+//      }
     }
     
     auto& tc = entity_.GetComponent<TransformComponent>();

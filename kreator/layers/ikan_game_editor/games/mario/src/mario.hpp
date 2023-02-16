@@ -97,6 +97,8 @@ namespace mario {
     /// - Parameter ts: time step
     void MoveCameraDebug(Timestep ts);
     
+    void MandleComponentHack();
+    
     // ----------------------
     // Member variables
     // ----------------------

@@ -54,6 +54,9 @@ namespace mario {
     
     SearchOrCreatePlayer();
     AddScriptsToEntities();
+    
+    // Debug
+    MandleComponentHack();
   }
   
   void Mario::Update(Timestep ts) {
@@ -377,6 +380,17 @@ namespace mario {
         }
       }
     }
+  }
+  
+  void Mario::MandleComponentHack() {
+#if 0
+    // HACK to add components
+    auto v = scene_->GetEntitesWith<TagComponent, TransformComponent>();
+    for (auto e : v) {
+      auto [n, t] = v.get<TagComponent, TransformComponent>(e);
+      t.UpdateTranslation_Z(-0.1f);
+    }
+#endif
   }
   
   void Mario::SetViewportSize(uint32_t width, uint32_t height) {
