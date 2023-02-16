@@ -21,6 +21,24 @@ namespace ikan {
 
     IK_CORE_TRACE(LogModule::ContentBrowserPanel, "Creating Content Browser Panel ... ");
     IK_CORE_TRACE(LogModule::ContentBrowserPanel, "  Root Path : {0}", root_path_.string());
+    
+    forward_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/forward.png"));
+    home_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/home.png"));
+    back_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/back.png"));
+    
+    folder_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/folder.png"));
+    file_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/file.png"));
+    jpg_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/jpg.png"));
+    png_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/png.png"));
+    
+    obj_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/obj.png"));
+    fbx_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/fbx.png"));
+    
+    font_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/font.png"));
+    
+    cpp_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/cpp.png"));
+    c_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/c.png"));
+    h_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/h.png"));
   }
   
   ContentBrowserPanel::~ContentBrowserPanel() {
@@ -29,6 +47,7 @@ namespace ikan {
   }
   
   void ContentBrowserPanel::SetRootData(const std::string& root_path) {
+    IK_CORE_INFO(LogModule::ContentBrowserPanel, "New Root path of Content browser panel {0} ", root_path);
     root_path_ = root_path;
     current_directory_ = root_path;
   }
@@ -149,20 +168,6 @@ namespace ikan {
   }
   
   void ContentBrowserPanel::MainArea() {
-    static std::shared_ptr<Texture> folder_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/folder.png"));
-    static std::shared_ptr<Texture> file_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/file.png"));
-    static std::shared_ptr<Texture> jpg_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/jpg.png"));
-    static std::shared_ptr<Texture> png_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/png.png"));
-    
-    static std::shared_ptr<Texture> obj_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/obj.png"));
-    static std::shared_ptr<Texture> fbx_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/fbx.png"));
-    
-    static std::shared_ptr<Texture> font_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/font.png"));
-    
-    static std::shared_ptr<Texture> cpp_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/cpp.png"));
-    static std::shared_ptr<Texture> c_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/c.png"));
-    static std::shared_ptr<Texture> h_texture = Renderer::GetTexture(AM::CoreAsset("textures/content_browser/h.png"));
-
     // Push style
     ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, RoundFactor);
     ImGui::BeginChild("MainArea",
@@ -278,7 +283,6 @@ namespace ikan {
   }
   
   void ContentBrowserPanel::Back() {
-    static std::shared_ptr<Texture> back_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/back.png"));
     if (PropertyGrid::ImageButton("Back",
                                   back_texture->GetRendererID(),
                                   { 18.0f, 18.0f })) {
@@ -299,7 +303,6 @@ namespace ikan {
   }
   
   void ContentBrowserPanel::Forward() {
-    static std::shared_ptr<Texture> forward_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/forward.png"));
     if (PropertyGrid::ImageButton("Forward",
                                   forward_texture->GetRendererID(),
                                   { 18.0f, 18.0f })) {
@@ -320,7 +323,6 @@ namespace ikan {
   }
   
   void ContentBrowserPanel::Home() {
-    static std::shared_ptr<Texture> home_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/home.png"));
     if (PropertyGrid::ImageButton("home",
                                   home_texture->GetRendererID(),
                                   { 18.0f, 18.0f })) {

@@ -7,7 +7,7 @@
 
 #pragma once
 
-// This class includes the Content browser panel class
+#include "renderer/graphics/texture.hpp"
 
 namespace ikan {
   
@@ -76,6 +76,24 @@ namespace ikan {
     std::vector<std::filesystem::path> back_path_history_;
     std::vector<std::filesystem::path> forward_path_history_;
     std::vector<std::filesystem::path> path_hierarchy_;
+    
+    std::shared_ptr<Texture> folder_texture;
+    std::shared_ptr<Texture> file_texture;
+    std::shared_ptr<Texture> jpg_texture;
+    std::shared_ptr<Texture> png_texture;
+    
+    std::shared_ptr<Texture> obj_texture;
+    std::shared_ptr<Texture> fbx_texture;
+    
+    std::shared_ptr<Texture> font_texture;
+    
+    std::shared_ptr<Texture> cpp_texture;
+    std::shared_ptr<Texture> c_texture;
+    std::shared_ptr<Texture> h_texture;
+
+    std::shared_ptr<Texture> forward_texture;
+    std::shared_ptr<Texture> home_texture;
+    std::shared_ptr<Texture> back_texture;
   };
   
 }
