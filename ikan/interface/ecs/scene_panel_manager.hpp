@@ -60,10 +60,6 @@ namespace ikan {
     /// This function adds the component in the selected entity
     void AddComponent();
     
-    /// This Function update the selected entity of scene
-    /// - Parameter entity: new selected entity
-    void SetSelectedEntity(Entity entity);
-
     template <typename T, typename... Args>
     /// This function create menu for add component
     /// - Parameters:
@@ -72,21 +68,21 @@ namespace ikan {
     void AddComponentMenu(const std::string& menu_item, std::function<bool()> exclusive_func = nullptr, Args&&... args) {
       if (!exclusive_func) {
         exclusive_func = [this]() {
-          return selected_entity_.HasComponent<T>();
+          return selected_entity_->HasComponent<T>();
         };
       }
       if (ImGui::MenuItem(menu_item.c_str(),
                           nullptr, // Shortcut
                           false, // Selected
                           !exclusive_func())) {
-        selected_entity_.AddComponent<T>(std::forward<Args>(args)...);
+        selected_entity_->AddComponent<T>(std::forward<Args>(args)...);
         ImGui::CloseCurrentPopup();
       }
     }
 
     // Member Variables
     EnttScene* scene_context_;
-    Entity selected_entity_;
+    Entity* selected_entity_;
     Setting setting_;
 
     bool delete_entity_ = false;
