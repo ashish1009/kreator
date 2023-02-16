@@ -151,7 +151,19 @@ namespace ikan {
       physics_world_->DestroyBody(rb.runtime_body);
       rb.runtime_body = nullptr;
     }
-    
+
+    if (entity.HasComponent<CircleColliiderComponent>()) {
+      auto& rb = entity.GetComponent<CircleColliiderComponent>();
+      delete rb.runtime_fixture;
+      rb.runtime_fixture = nullptr;
+    }
+
+    if (entity.HasComponent<BoxColliderComponent>()) {
+      auto& rb = entity.GetComponent<BoxColliderComponent>();
+      delete rb.runtime_fixture;
+      rb.runtime_fixture = nullptr;
+    }
+
     // Delete the eneity from the map
     entity_id_map_.erase(entity);
     registry_.destroy(entity);
@@ -705,7 +717,8 @@ namespace ikan {
   }
   
   float RayCastInfo::ReportFixture(b2Fixture *fixture, const b2Vec2 &hit_point, const b2Vec2 &normal, float fraction) {
-    if ((Entity*)fixture->GetUserData().pointer == request_object) {
+    if (((Entity*)(fixture->GetUserData().pointer))->GetComponent<IDComponent>().id ==
+        request_object->GetComponent<IDComponent>().id) {
       return 1;
     }
     
@@ -720,7 +733,9 @@ namespace ikan {
   }
   
   bool RayCastInfo::OnGround() {
-    return hit and hit_object and hit_object->HasComponent<RigidBodyComponent>() and hit_object->GetComponent<RigidBodyComponent>().is_ground;
+    return hit and hit_object and
+    hit_object->HasComponent<RigidBodyComponent>() and
+    hit_object->GetComponent<RigidBodyComponent>().is_ground;
   }
 
 }

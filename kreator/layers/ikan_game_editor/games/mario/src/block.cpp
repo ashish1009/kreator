@@ -6,7 +6,7 @@
 //
 
 #include "block.hpp"
-//#include "runtime_items.hpp"
+#include "runtime_item.hpp"
 
 namespace mario {
   
@@ -82,17 +82,17 @@ namespace mario {
 //        count_--;
 //        if (count_ == 0)
 //          SetInactive();
-        
+//
         break;
       }
       case Type::Star: {
         break;
       }
       case Type::PowerUp : {
-//        if (pc->IsSmall()) {
-//          RuntimeItem::Create(Items::Mushroom, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0});
-//          SetInactive();
-//        }
+        if (pc->IsSmall()) {
+          RuntimeItem::Create(Items::Mushroom, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0});
+          SetInactive();
+        }
 //        else {
 //          RuntimeItem::Create(Items::Flower, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0});
 //          SetInactive();

@@ -1030,6 +1030,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -1067,6 +1069,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -1119,6 +1123,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -1156,6 +1162,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -1193,6 +1201,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -1230,6 +1240,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2155,6 +2167,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2192,6 +2206,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2229,6 +2245,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2266,6 +2284,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2303,6 +2323,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2340,6 +2362,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2377,6 +2401,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2414,6 +2440,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2451,6 +2479,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2488,6 +2518,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2525,6 +2557,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2562,6 +2596,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2599,6 +2635,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2636,6 +2674,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -2688,6 +2728,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -8223,6 +8265,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -8275,6 +8319,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -8312,6 +8358,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -10569,6 +10617,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -12647,6 +12697,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -12699,6 +12751,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -12751,6 +12805,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -15916,6 +15972,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -15953,6 +16011,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -15990,6 +16050,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -16042,6 +16104,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -16094,6 +16158,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -16146,6 +16212,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -16861,6 +16929,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -16898,6 +16968,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -16935,6 +17007,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -19118,6 +19192,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -19155,6 +19231,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -19192,6 +19270,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -19244,6 +19324,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -19296,6 +19378,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -19348,6 +19432,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -19385,6 +19471,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -19422,6 +19510,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -24326,43 +24416,6 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 3947614634267962821
-    TagComponent:
-      Tag: pipe
-    TransformComponent:
-      Translation: [5, -7, 0]
-      Rotation: [0, 0, 0]
-      Scale: [2, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [0, 18]
-      Sprite_Size: [2, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: true
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0
-      Restitution: 0
-      Restitution Threshold: 0.5
   - Entity: 6749096153445912803
     TagComponent:
       Tag: pipe
@@ -28925,6 +28978,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -28977,6 +29032,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -29014,6 +29071,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -29051,6 +29110,8 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
     RigidBodyComponent:
       Type: 0
       Is Ground: true
@@ -35357,3 +35418,40 @@ Entities:
       Offset: [0, 0]
       Width: 0.400000006
       Height: 0.5
+  - Entity: 2288602192052795028
+    TagComponent:
+      Tag: pipe
+    TransformComponent:
+      Translation: [5, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
+      Coords: [0, 18]
+      Sprite_Size: [2, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Is Ground: true
+      Fixed Rotation: true
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Mass: 0
+      Friction: 0
+      Gravity Scale: 1
+      Is Sensor: false
+      Continous Collision: true
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0
+      Restitution: 0
+      Restitution Threshold: 0.5

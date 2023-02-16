@@ -40,6 +40,7 @@ namespace ikan {
     
     Entity* hit_object = nullptr;
     Entity* request_object = nullptr;
+    UUID request_obj_id_;
   };
   
   struct TransformComponent;
