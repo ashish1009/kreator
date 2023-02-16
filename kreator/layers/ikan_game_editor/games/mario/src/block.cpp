@@ -78,11 +78,11 @@ namespace mario {
         break;
       }
       case Type::Coin: {
-//        RuntimeItem::Create(Items::Coin, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
-//        count_--;
-//        if (count_ == 0)
-//          SetInactive();
-//
+        RuntimeItem::Create(Items::Coin, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
+        count_--;
+        if (count_ == 0)
+          SetInactive();
+
         break;
       }
       case Type::Star: {
@@ -93,10 +93,10 @@ namespace mario {
           RuntimeItem::Create(Items::Mushroom, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0});
           SetInactive();
         }
-//        else {
-//          RuntimeItem::Create(Items::Flower, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0});
-//          SetInactive();
-//        }
+        else {
+          RuntimeItem::Create(Items::Flower, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0});
+          SetInactive();
+        }
         break;
       }
       default:
