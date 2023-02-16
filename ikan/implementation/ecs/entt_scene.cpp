@@ -84,7 +84,7 @@ namespace ikan {
     for (auto e : id_view) {
       UUID uuid = src_scene_registry.get<IDComponent>(e).id;
       const auto& name = src_scene_registry.get<TagComponent>(e).tag;
-      Entity& new_entity = new_scene->CreateEntity(name, uuid);
+      Entity new_entity = new_scene->CreateEntity(name, uuid);
       entt_map[uuid] = (entt::entity)new_entity;
     }
     
@@ -121,7 +121,7 @@ namespace ikan {
     contact_listner_ = nullptr;
   }
   
-  Entity& EnttScene::CreateEntity(const std::string& name, UUID uuid) {
+  Entity EnttScene::CreateEntity(const std::string& name, UUID uuid) {
     Entity entity = CreateNewEmptyEntity(uuid);
     
     entity.AddComponent<TagComponent>(name);
@@ -135,7 +135,7 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::EnttScene, "  Number of entities Added in Scene | {0}", ++num_entities_);
     IK_CORE_TRACE(LogModule::EnttScene, "  Max ID given to entity            | {0}", max_entity_id_);
     
-    return entity_id_map_.at(entity);
+    return entity;
   }
   
   void EnttScene::DestroyEntity(Entity entity) {
@@ -171,12 +171,13 @@ namespace ikan {
     registry_.destroy(entity);
   }
   
-  Entity& EnttScene::DuplicateEntity(Entity entity) {
+  Entity EnttScene::DuplicateEntity(Entity entity) {
     Entity new_entity = CreateNewEmptyEntity(UUID());
     CopySingleComponentIfExists<TagComponent>(new_entity, entity);
+    
     CopyComponentIfExists(AllComponents{}, new_entity, entity);
     
-    return entity_id_map_.at(entity);
+    return new_entity;
   }
   
   Entity EnttScene::CreateNewEmptyEntity(UUID uuid) {
@@ -390,9 +391,9 @@ namespace ikan {
     
     auto view = registry_.view<RigidBodyComponent>();
     for (auto e : view) {
-      Entity& entity = entity_id_map_.at(e);
+      Entity entity = { e, this };
       auto& rb2d = entity.GetComponent<RigidBodyComponent>();
-      AddBodyToPhysicsWorld(entity, rb2d);
+      AddBodyToPhysicsWorld(entity,rb2d);
     }
   }
   

@@ -134,7 +134,7 @@ namespace ikan {
     // Delete the entity
     if (delete_entity_) {
       // Delete entity from scene
-      scene_context_->DestroyEntity(*selected_entity_);
+      scene_context_->DestroyEntity(selected_entity_);
       
       SetSelectedEntity({});
       delete_entity_ = false;
@@ -153,9 +153,9 @@ namespace ikan {
     
     if (selected_entity_) {
       // Tag
-      auto& tag = selected_entity_->GetComponent<TagComponent>().tag;
+      auto& tag = selected_entity_.GetComponent<TagComponent>().tag;
       PropertyGrid::TextBox(tag, "", 3);
-      PropertyGrid::HoveredMsg(("Entity ID : " + std::to_string((uint32_t)(*selected_entity_))).c_str());
+      PropertyGrid::HoveredMsg(("Entity ID : " + std::to_string((uint32_t)selected_entity_)).c_str());
       auto text_box_size = ImGui::GetItemRectSize();
       
       // Add Component Icon
@@ -178,16 +178,16 @@ namespace ikan {
       ImGui::Separator();
       
       // Draw other components
-      DrawComponent<TransformComponent>("Transform", *selected_entity_, [](auto& tc) { tc.RenderGui(); });
-      DrawComponent<QuadComponent>("Qaad", *selected_entity_, [](auto& qc) { qc.RenderGui(); });
-      DrawComponent<CircleComponent>("Circle", *selected_entity_, [this](auto& cc) { cc.RenderGui(); });
-      DrawComponent<CameraComponent>("Camera", *selected_entity_, [this](auto& cc) { cc.RenderGui(); });
-      DrawComponent<NativeScriptComponent>("Native Script", *selected_entity_, [this](auto& nsc) { nsc.RenderGui(); });
-      DrawComponent<RigidBodyComponent>("Rigid Body", *selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
-      DrawComponent<BoxColliderComponent>("Box Collider", *selected_entity_, [this](auto& bcc) { bcc.RenderGui(); });
-      DrawComponent<CircleColliiderComponent>("Circle Collider", *selected_entity_, [this](auto& ccc) { ccc.RenderGui(); });
-      DrawComponent<PillBoxColliderComponent>("Pill Box Collider", *selected_entity_, [this](auto& pbc) { pbc.RenderGui(); });
-      DrawComponent<AnimationComponent>("Animation", *selected_entity_, [this](auto& ac) { ac.RenderGui(); });
+      DrawComponent<TransformComponent>("Transform", selected_entity_, [](auto& tc) { tc.RenderGui(); });
+      DrawComponent<QuadComponent>("Qaad", selected_entity_, [](auto& qc) { qc.RenderGui(); });
+      DrawComponent<CircleComponent>("Circle", selected_entity_, [this](auto& cc) { cc.RenderGui(); });
+      DrawComponent<CameraComponent>("Camera", selected_entity_, [this](auto& cc) { cc.RenderGui(); });
+      DrawComponent<NativeScriptComponent>("Native Script", selected_entity_, [this](auto& nsc) { nsc.RenderGui(); });
+      DrawComponent<RigidBodyComponent>("Rigid Body", selected_entity_, [this](auto& rbc) { rbc.RenderGui(); });
+      DrawComponent<BoxColliderComponent>("Box Collider", selected_entity_, [this](auto& bcc) { bcc.RenderGui(); });
+      DrawComponent<CircleColliiderComponent>("Circle Collider", selected_entity_, [this](auto& ccc) { ccc.RenderGui(); });
+      DrawComponent<PillBoxColliderComponent>("Pill Box Collider", selected_entity_, [this](auto& pbc) { pbc.RenderGui(); });
+      DrawComponent<AnimationComponent>("Animation", selected_entity_, [this](auto& ac) { ac.RenderGui(); });
     }
     
     ImGui::PopID();
@@ -196,7 +196,7 @@ namespace ikan {
   
   void ScenePanelManager::DrawEntityTreeNode(entt::entity entity_id) {
     Entity& entity = scene_context_->entity_id_map_.at(entity_id);
-    ImGuiTreeNodeFlags flags = ((selected_entity_ and ((entt::entity)(*selected_entity_) == entity_id)) ?
+    ImGuiTreeNodeFlags flags = ((selected_entity_ == entity) ?
                                 ImGuiTreeNodeFlags_Selected : 0)
     | ImGuiTreeNodeFlags_SpanAvailWidth;
     const std::string& tag = entity.GetComponent<TagComponent>().tag;
@@ -206,13 +206,13 @@ namespace ikan {
     
     // Update the selected entity if item is clicked
     if (ImGui::IsItemClicked() or ImGui::IsItemClicked(1))
-      SetSelectedEntity(&entity);
+      SetSelectedEntity(entity);
 
     // Right click of mouse option
     if (ImGui::BeginPopupContextItem()) {
       // Duplicate Entity
       if (ImGui::MenuItem("Duplicate Entity")) {
-        selected_entity_ = (&scene_context_->DuplicateEntity(*selected_entity_));
+        selected_entity_ = scene_context_->DuplicateEntity(selected_entity_);
       }
 
       // Delete Entity
@@ -230,16 +230,22 @@ namespace ikan {
   
   void ScenePanelManager::SetSelectedEntity(Entity* entity) {
     if (entity) {
-      selected_entity_ = entity;
+      selected_entity_ = *entity;
     }
     else if (selected_entity_) {
-      selected_entity_ = nullptr;
+      selected_entity_ = {};
     }
-    scene_context_->SetSelectedEntity(selected_entity_);
+    scene_context_->SetSelectedEntity(&selected_entity_);
+  }
+  
+  void ScenePanelManager::SetSelectedEntity(Entity entity) {
+    SetSelectedEntity(&entity);
   }
   
   Entity* ScenePanelManager::GetSelectedEntity() {
-    return selected_entity_;
+    if (selected_entity_ == (entt::entity)entt::null)
+      return nullptr;
+    return &selected_entity_;
   }
   
   EnttScene* ScenePanelManager::GetContext() {
@@ -250,24 +256,24 @@ namespace ikan {
     if (ImGui::BeginMenu("New Entity")) {
       // Show option of Empty Entity
       if (ImGui::MenuItem("Empty Entity")) {
-        SetSelectedEntity(&scene_context_->CreateEntity("Empty Entity"));
+        SetSelectedEntity(scene_context_->CreateEntity("Empty Entity"));
       }
       // Show option for adding camera
       ImGui::Separator();
 
       if (ImGui::BeginMenu("2D Entity")) {
         if (ImGui::MenuItem("Quad")) {
-          SetSelectedEntity(&scene_context_->CreateEntity("Quad"));
-          selected_entity_->AddComponent<QuadComponent>();
+          SetSelectedEntity(scene_context_->CreateEntity("Quad"));
+          selected_entity_.AddComponent<QuadComponent>();
         }
         if (ImGui::MenuItem("Circle")) {
-          SetSelectedEntity(&scene_context_->CreateEntity("Circle"));
-          selected_entity_->AddComponent<CircleComponent>();
+          SetSelectedEntity(scene_context_->CreateEntity("Circle"));
+          selected_entity_.AddComponent<CircleComponent>();
         }
         ImGui::Separator();
         if (ImGui::MenuItem("Camera")) {
-          SetSelectedEntity(&scene_context_->CreateEntity("Camera"));
-          selected_entity_->AddComponent<CameraComponent>();
+          SetSelectedEntity(scene_context_->CreateEntity("Camera"));
+          selected_entity_.AddComponent<CameraComponent>();
         }
 
         ImGui::EndMenu(); // 2D Entity
@@ -278,10 +284,10 @@ namespace ikan {
 
   void ScenePanelManager::AddComponent() {
     AddComponentMenu<QuadComponent>("Quad", [this]() {
-      return selected_entity_->HasComponent<QuadComponent>() or selected_entity_->HasComponent<CircleComponent>();
+      return selected_entity_.HasComponent<QuadComponent>() or selected_entity_.HasComponent<CircleComponent>();
     });
     AddComponentMenu<CircleComponent>("Circle", [this]() {
-      return selected_entity_->HasComponent<QuadComponent>() or selected_entity_->HasComponent<CircleComponent>();
+      return selected_entity_.HasComponent<QuadComponent>() or selected_entity_.HasComponent<CircleComponent>();
     });
     ImGui::Separator();
     
@@ -293,21 +299,21 @@ namespace ikan {
     ImGui::Separator();
     AddComponentMenu<RigidBodyComponent>("Rigid Body");
     AddComponentMenu<BoxColliderComponent>("Box Collider", [this]() {
-      return selected_entity_->HasComponent<PillBoxColliderComponent>();
+      return selected_entity_.HasComponent<PillBoxColliderComponent>();
     });
     
     AddComponentMenu<CircleColliiderComponent>("Circle Collider", [this]() {
-      return selected_entity_->HasComponent<PillBoxColliderComponent>();
+      return selected_entity_.HasComponent<PillBoxColliderComponent>();
     });
     AddComponentMenu<PillBoxColliderComponent>("Pill Box Collider", [this]() {
-      return selected_entity_->HasComponent<BoxColliderComponent>() or
-      selected_entity_->HasComponent<CircleColliiderComponent>() or
-      selected_entity_->HasComponent<PillBoxColliderComponent>();
+      return selected_entity_.HasComponent<BoxColliderComponent>() or
+      selected_entity_.HasComponent<CircleColliiderComponent>() or
+      selected_entity_.HasComponent<PillBoxColliderComponent>();
     });
 
     ImGui::Separator();
-    if (selected_entity_->HasComponent<QuadComponent>() and selected_entity_->GetComponent<QuadComponent>().texture_comp.component) {
-      AddComponentMenu<AnimationComponent>("Animation", nullptr, selected_entity_->GetComponent<QuadComponent>().texture_comp.component);
+    if (selected_entity_.HasComponent<QuadComponent>() and selected_entity_.GetComponent<QuadComponent>().texture_comp.component) {
+      AddComponentMenu<AnimationComponent>("Animation", nullptr, selected_entity_.GetComponent<QuadComponent>().texture_comp.component);
     }
   }
   

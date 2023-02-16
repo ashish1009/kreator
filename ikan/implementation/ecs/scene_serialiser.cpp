@@ -423,7 +423,7 @@ namespace ikan {
           name = tag_component["Tag"].as<std::string>();
         }
         
-        Entity& deserialized_entity = scene_->CreateEntity(name, uuid);
+        Entity deserialized_entity = scene_->CreateEntity(name, uuid);
         IK_CORE_INFO(LogModule::SceneSerializer, "  Deserialising Entity");
         IK_CORE_INFO(LogModule::SceneSerializer, "  ID    | {0}", uuid);
         IK_CORE_INFO(LogModule::SceneSerializer, "  Name  | {0}", name);
