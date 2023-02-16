@@ -129,8 +129,9 @@ namespace ikan {
     
     // Debug Logs
     IK_CORE_TRACE(LogModule::EnttScene, "Stored Entity in Scene");
-    IK_CORE_TRACE(LogModule::EnttScene, "  Name | {0}", entity.GetComponent<TagComponent>().tag.c_str());
-    IK_CORE_TRACE(LogModule::EnttScene, "  ID   | {0}", entity.GetComponent<IDComponent>().id);
+    IK_CORE_TRACE(LogModule::EnttScene, "  Name   | {0}", entity.GetComponent<TagComponent>().tag.c_str());
+    IK_CORE_TRACE(LogModule::EnttScene, "  Handle | {0}", (uint32_t)entity);
+    IK_CORE_TRACE(LogModule::EnttScene, "  ID     | {0}", entity.GetComponent<IDComponent>().id);
     IK_CORE_TRACE(LogModule::EnttScene, "  Number of entities Added in Scene | {0}", ++num_entities_);
     IK_CORE_TRACE(LogModule::EnttScene, "  Max ID given to entity            | {0}", max_entity_id_);
     
@@ -139,8 +140,9 @@ namespace ikan {
   
   void EnttScene::DestroyEntity(Entity entity) {
     IK_CORE_WARN(LogModule::EnttScene, "Removed Entity from Scene");
-    IK_CORE_WARN(LogModule::EnttScene, "  Name | {0}", entity.GetComponent<TagComponent>().tag.c_str());
-    IK_CORE_WARN(LogModule::EnttScene, "  ID   | {0}", entity.GetComponent<IDComponent>().id);
+    IK_CORE_WARN(LogModule::EnttScene, "  Name   | {0}", entity.GetComponent<TagComponent>().tag.c_str());
+    IK_CORE_WARN(LogModule::EnttScene, "  Handle | {0}", (uint32_t)entity);
+    IK_CORE_WARN(LogModule::EnttScene, "  ID     | {0}", entity.GetComponent<IDComponent>().id);
     IK_CORE_WARN(LogModule::EnttScene, "  Number of entities Added in Scene | {0}", --num_entities_);
     
     // Delete

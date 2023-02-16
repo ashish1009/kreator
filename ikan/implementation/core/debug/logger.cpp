@@ -84,6 +84,8 @@ namespace ikan {
     std::cout << "    Intiializing SPD Logger for Core with log level : '" << GetLogLevelStringFromSpdLevel(spd_core_log_level) << "'" << std::endl;
     std::cout << "    Intiializing SPD Logger for Client with log level : '" << GetLogLevelStringFromSpdLevel(spd_client_log_level) << "'" << std::endl;
     std::cout << " ------------------------------------------------------------- " << std::endl;
+    
+    SetLogModule();
   }
   
   const char* Logger::GetLogLevelStringFromSpdLevel(spdlog::level::level_enum level) {
@@ -128,7 +130,7 @@ namespace ikan {
     return enabled_tags_;
   }
   
-  const Logger::TagDetails& Logger::GetDetail(const std::string& tag) {
+  Logger::TagDetails& Logger::GetDetail(const std::string& tag) {
     if (HasTag(tag))
       return enabled_tags_.at(tag);
     else

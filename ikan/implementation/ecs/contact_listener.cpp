@@ -11,6 +11,8 @@
 
 #include <box2d/box2d.h>
 
+#define DEBUG_LOG 1
+
 namespace ikan {
   
   void ContactListner::BeginContact(b2Contact* contact) {
@@ -23,6 +25,14 @@ namespace ikan {
     glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
     glm::vec2 b_normal = a_normal * -1.0f;
     
+#if DEBUG_LOG
+    if (entity_a) {
+      const auto& tag = entity_a->GetComponent<TagComponent>().tag;
+    }
+    if (entity_b) {
+      const auto& tag = entity_b->GetComponent<TagComponent>().tag;
+    }
+#endif
     if (entity_a and entity_a->GetScene() and entity_a->HasComponent<NativeScriptComponent>())
       entity_a->GetComponent<NativeScriptComponent>().script->BeginCollision(entity_b, contact, a_normal);
     if (entity_b and entity_b->GetScene() and entity_b->HasComponent<NativeScriptComponent>())

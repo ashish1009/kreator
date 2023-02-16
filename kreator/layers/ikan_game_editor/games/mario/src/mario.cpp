@@ -388,7 +388,10 @@ namespace mario {
     auto v = scene_->GetEntitesWith<TagComponent, TransformComponent>();
     for (auto e : v) {
       auto [n, t] = v.get<TagComponent, TransformComponent>(e);
-      t.UpdateTranslation_Z(-0.1f);
+      if (n.tag == "Grass" or n.tag == "Cloud" or n.tag == "Forest")
+        t.UpdateTranslation_Z(-0.1f);
+      else
+        t.UpdateTranslation_Z(0.0f);
     }
 #endif
   }

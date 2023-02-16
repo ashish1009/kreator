@@ -12,6 +12,8 @@
 
 namespace ikan {
   
+  void SetLogModule();
+  
   /// This class is the wrapper the wrapepr class for logging. This wrapper class is using submodule
   /// spd-log from "https://github.com/gabime/spdlog"
   class Logger {
@@ -75,6 +77,10 @@ namespace ikan {
     /// - Parameter tag: tag name to be enabled:
     static void EnableModule(LogModule tag);
 
+    /// Get the detail of a module tag
+    /// - Parameter - tag of log module:
+    static TagDetails& GetDetail(const std::string& tag);
+    
     template<typename... Args>
     /// This function stores the log with tag of module
     /// - Parameter -  type of log project:
@@ -104,10 +110,6 @@ namespace ikan {
     /// This function return the enabled tags
     static std::map<std::string, TagDetails>& GetEnabledTags();
     
-    /// Get the detail of a module tag
-    /// - Parameter - tag of log module:
-    static const TagDetails& GetDetail(const std::string& tag);
-    
     template<typename... Args>
     /// This function stores the log with tag of module
     /// - Parameter - type of log project:
@@ -116,6 +118,7 @@ namespace ikan {
     /// - Parameter - Log string with argument:
     static void PrintMessageImpl(Type type, Level level, std::string tag, Args&&... args);
 
+    friend void SetLogModule();
   };
   
 } // namespace ikan
@@ -187,6 +190,45 @@ namespace ikan {
           break;
       }
     }
+  }
+  
+  static std::unordered_map<LogModule, bool> module_mask;
+  inline void SetLogModule() {
+    Logger::GetDetail(GetModuleName(LogModule::Assert)).enabled =                 true;
+    Logger::GetDetail(GetModuleName(LogModule::Event)).enabled =                  true;
+    Logger::GetDetail(GetModuleName(LogModule::AssetManager)).enabled =           true;
+    Logger::GetDetail(GetModuleName(LogModule::Window)).enabled =                 true;
+    Logger::GetDetail(GetModuleName(LogModule::LayerStack)).enabled =             true;
+    Logger::GetDetail(GetModuleName(LogModule::Application)).enabled =            true;
+    Logger::GetDetail(GetModuleName(LogModule::Profiler)).enabled =               true;
+    Logger::GetDetail(GetModuleName(LogModule::StringUtils)).enabled =            true;
+    Logger::GetDetail(GetModuleName(LogModule::Renderer)).enabled =               true;
+    Logger::GetDetail(GetModuleName(LogModule::Batch2DRenderer)).enabled =        true;
+    Logger::GetDetail(GetModuleName(LogModule::Text)).enabled =                   true;
+    Logger::GetDetail(GetModuleName(LogModule::AABBRenderer)).enabled =           true;
+    Logger::GetDetail(GetModuleName(LogModule::FrameBuffer)).enabled =            true;
+    Logger::GetDetail(GetModuleName(LogModule::Pipeline)).enabled =               true;
+    Logger::GetDetail(GetModuleName(LogModule::VertexBuffer)).enabled =           true;
+    Logger::GetDetail(GetModuleName(LogModule::IndexBuffer)).enabled =            true;
+    Logger::GetDetail(GetModuleName(LogModule::Shader)).enabled =                 true;
+    Logger::GetDetail(GetModuleName(LogModule::Texture)).enabled =                true;
+    Logger::GetDetail(GetModuleName(LogModule::CharTexture)).enabled =            true;
+    Logger::GetDetail(GetModuleName(LogModule::SubTexture)).enabled =             true;
+    Logger::GetDetail(GetModuleName(LogModule::RendererContext)).enabled =        true;
+    Logger::GetDetail(GetModuleName(LogModule::Entity)).enabled =                 true;
+    Logger::GetDetail(GetModuleName(LogModule::Component)).enabled =              true;
+    Logger::GetDetail(GetModuleName(LogModule::EnttScene)).enabled =              true;
+    Logger::GetDetail(GetModuleName(LogModule::SceneCamera)).enabled =            true;
+    Logger::GetDetail(GetModuleName(LogModule::SceneSerializer)).enabled =        true;
+    Logger::GetDetail(GetModuleName(LogModule::EditorCamera)).enabled =           true;
+    Logger::GetDetail(GetModuleName(LogModule::ContentBrowserPanel)).enabled =    true;
+    Logger::GetDetail(GetModuleName(LogModule::ScenePanelManager)).enabled =      true;
+    Logger::GetDetail(GetModuleName(LogModule::HitPayload)).enabled =             true;
+    Logger::GetDetail(GetModuleName(LogModule::Ray)).enabled =                    true;
+    Logger::GetDetail(GetModuleName(LogModule::Sphere)).enabled =                 true;
+    Logger::GetDetail(GetModuleName(LogModule::RayMaterial)).enabled =            true;
+    Logger::GetDetail(GetModuleName(LogModule::Imgui)).enabled =                  true;
+    Logger::GetDetail(GetModuleName(LogModule::Physics)).enabled =                true;
   }
 
 }
