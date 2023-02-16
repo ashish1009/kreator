@@ -12,17 +12,26 @@
 namespace mario {
   
   void CommonRuntimeData::AddRuntimeItemComponents(Entity* entity) {
-    rigid_body_comp_ = &(entity->AddComponent<RigidBodyComponent>());
+    if (entity->HasComponent<RigidBodyComponent>())
+      rigid_body_comp_ = &(entity->GetComponent<RigidBodyComponent>());
+    else
+      rigid_body_comp_ = &(entity->AddComponent<RigidBodyComponent>());
     
     rigid_body_comp_->type = b2_dynamicBody;
     rigid_body_comp_->angular_velocity = 0.0f;
     rigid_body_comp_->fixed_rotation = true;
     rigid_body_comp_->SetGravityScale(0.0f);
     
-    auto& ccc = entity->AddComponent<CircleColliiderComponent>();
-    ccc.runtime_fixture = new Entity((entt::entity)(*entity), entity->GetScene());
-    ccc.friction = 0.0f;
-    
+    if (entity->HasComponent<CircleColliiderComponent>()) {
+      auto& ccc = entity->GetComponent<CircleColliiderComponent>();
+      ccc.runtime_fixture = new Entity((entt::entity)(*entity), entity->GetScene());
+      ccc.friction = 0.0f;
+    }
+    else {
+      auto& ccc = entity->AddComponent<CircleColliiderComponent>();
+      ccc.runtime_fixture = new Entity((entt::entity)(*entity), entity->GetScene());
+      ccc.friction = 0.0f;
+    }
     entity->GetScene()->AddBodyToPhysicsWorld(*entity, *rigid_body_comp_);
   }
   
@@ -33,7 +42,7 @@ namespace mario {
         collided_entity->GetComponent<NativeScriptComponent>().script.get() == pc) {
       contact->SetEnabled(false);
       if (!hit_player_) {
-        pc->Powerup();
+        pc->SetPowerup();
         hit_player_ = true;
         destroy_ = true;
       }

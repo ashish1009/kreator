@@ -7,7 +7,7 @@ Entities:
     TagComponent:
       Tag: Goomba
     TransformComponent:
-      Translation: [10, -7, 0]
+      Translation: [0, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -20,12 +20,10 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-    NativeScriptComponent:
-      Script_name_: mario::EnemyController
     RigidBodyComponent:
-      Type: 2
+      Type: 0
       Is Ground: false
-      Fixed Rotation: true
+      Fixed Rotation: false
       Linear Velocity: [0, 0]
       Angular Damping: 0.800000012
       Angular Velocity: 0
@@ -42,18 +40,6 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-    AnimationComponent:
-      Animation: true
-      Sprite: true
-      Speed: 40
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/enemy.png
-      Coords0: [0, 6]
-      Sprite_Size0: [1, 1]
-      Cell_Size0: [16, 16]
-      Coords1: [1, 6]
-      Sprite_Size1: [1, 1]
-      Cell_Size1: [16, 16]
-      Num_Coords: 2
   - Entity: 16238520641227094373
     TagComponent:
       Tag: Ground

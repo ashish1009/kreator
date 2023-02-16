@@ -7,12 +7,14 @@
 
 #include "sprite_manager.hpp"
 #include "player.hpp"
+#include "enemy.hpp"
 
 namespace mario {
 
   struct SpriteData {
     std::unordered_map<SpriteType, std::shared_ptr<Texture>> sprite_map;
     std::unordered_map<PlayerState, std::unordered_map<PlayerAction, std::vector<std::shared_ptr<SubTexture>>>> player_subtextures_map;
+    std::unordered_map<EnemyType, std::unordered_map<EnemyState, std::shared_ptr<SubTexture>>> enemy_subtextures_map;
   };
   static SpriteData* data_;
 
@@ -59,6 +61,22 @@ namespace mario {
     fire_player_map[PlayerAction::Run].push_back(SubTexture::CreateFromCoords(player_sprite, {2.0f, 28.0f}, {1.0f, 2.0f}));
     fire_player_map[PlayerAction::SwitchSide].push_back(SubTexture::CreateFromCoords(player_sprite, {3.0f, 28.0f}, {1.0f, 2.0f}));
     fire_player_map[PlayerAction::Jump].push_back(SubTexture::CreateFromCoords(player_sprite, {4.0f, 28.0f}, {1.0f, 2.0f}));
+    
+    
+    const auto& enemy_sprite = GetSpriteImage(SpriteType::Player);
+    auto& goomba_sprite = data_->enemy_subtextures_map[EnemyType::Goomba];
+    goomba_sprite[EnemyState::Dead] = SubTexture::CreateFromCoords(enemy_sprite, {2.0f, 6.0f});
+  }
+  
+  std::shared_ptr<SubTexture> SpriteManager::GetEnemySprite(EnemyType type, EnemyState state) {
+    if (data_ and data_->enemy_subtextures_map.find(type) != data_->enemy_subtextures_map.end()) {
+      const auto& goomba_map = data_->enemy_subtextures_map.at(type);
+      if (goomba_map.find(state) != goomba_map.end()) {
+        return goomba_map.at(state);
+      }
+    }
+     
+    return nullptr;
   }
   
   std::shared_ptr<Texture> SpriteManager::GetSpriteImage(SpriteType type) {

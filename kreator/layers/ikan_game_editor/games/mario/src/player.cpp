@@ -109,6 +109,9 @@ namespace mario {
     CheckOnGround();
     state_machine_->Update(ts);
     
+    if (power_up_)
+      Powerup();
+    
     // Freeze until player power up complets
     if (state_machine_->GetAction() == PlayerAction::PowerUp) {
       freez_time_-= ts;
@@ -232,7 +235,7 @@ namespace mario {
     if (is_dead_ or !collided_entity or !collided_entity->GetScene())
       return;
     
-    if (collided_entity->HasComponent<RigidBodyComponent>()) {
+//    if (collided_entity->HasComponent<RigidBodyComponent>()) {
       if (std::abs(contact_normal.x) > 0.8f) {
         velocity_.x = 0.0f;
       }
@@ -241,7 +244,7 @@ namespace mario {
         acceleration_.y = 0;
         jump_time_ = 0;
       }
-    }
+//    }
   }
   
   void PlayerController::Powerup() {
@@ -266,6 +269,8 @@ namespace mario {
       player_state_ = PlayerState::Fire;
       state_machine_->ChangeAction(PlayerAction::PowerUp);
     }
+    
+    power_up_ = false;
   }
   
   void PlayerController::RenderGui() {

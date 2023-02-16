@@ -50,8 +50,8 @@ namespace mario {
     void Update(Timestep ts) override;
     void RenderGui() override;
     void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& constact_normal) override;
-    void Powerup();
-    
+
+    void SetPowerup() { power_up_ = true; }
     void EnemyBounce() { enemy_bounce_ = 18; }
     
     bool IsSmall() const { return player_state_ == PlayerState::Small; }
@@ -62,7 +62,9 @@ namespace mario {
 
   private:
     void CheckOnGround();
+    void Powerup();
     
+    bool power_up_ = false;
     bool on_ground_ = false;
     bool is_dead_ = false;
     bool is_hurt_ = false;
