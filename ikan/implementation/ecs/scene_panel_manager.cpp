@@ -74,9 +74,6 @@ namespace ikan {
   
   ScenePanelManager::ScenePanelManager(EnttScene* context) : scene_context_(context) {
     IK_CORE_TRACE(LogModule::ScenePanelManager, "Creating Scene pannel Manager ...");
-    
-    close_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/gear.png"));
-    add_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/plus.png"));
   }
   
   ScenePanelManager::~ScenePanelManager() {
@@ -165,6 +162,7 @@ namespace ikan {
       // NOTE: we are adjusting this with text box, this would be next column of text box
       ImGui::NextColumn();
       ImGui::SetColumnWidth(2, 2 * text_box_size.y);
+      static std::shared_ptr<Texture> add_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/plus.png"));
       if (PropertyGrid::ImageButton("Add",
                                     add_texture->GetRendererID(),
                                     { text_box_size.y, text_box_size.y } // Size

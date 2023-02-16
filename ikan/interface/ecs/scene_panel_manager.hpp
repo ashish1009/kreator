@@ -86,9 +86,6 @@ namespace ikan {
     Setting setting_;
 
     bool delete_entity_ = false;
-    
-    std::shared_ptr<Texture> close_texture;
-    std::shared_ptr<Texture> add_texture;
   };
   
 }
