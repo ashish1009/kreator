@@ -15,9 +15,6 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // ID Component
   // -------------------------------------------------------------------------
-  IDComponent::~IDComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Destroying ID Component !!!");
-  }
   IDComponent::IDComponent(const UUID& id) : id(id) {
     IK_CORE_TRACE(LogModule::Component, "Creating ID Component ...");
   }
@@ -43,9 +40,6 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Tag Component
   // -------------------------------------------------------------------------
-  TagComponent::~TagComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Destroying Tag Component !!!");
-  }
   TagComponent::TagComponent(const std::string& tag)
   : tag(tag) {
     IK_CORE_TRACE(LogModule::Component, "Creating Tag Component ...");
@@ -72,9 +66,6 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Transform Component
   // -------------------------------------------------------------------------
-  TransformComponent::~TransformComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Destroying Transform Component !!!");
-  }
   TransformComponent::TransformComponent(const glm::vec3& translation)
   : translation(translation) {
     IK_CORE_TRACE(LogModule::Component, "Creating Transform Component ...");
@@ -157,9 +148,6 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Quad Component
   // -------------------------------------------------------------------------
-  QuadComponent::~QuadComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Destroying Quad Component !!!");
-  }
   QuadComponent::QuadComponent() {
     IK_CORE_TRACE(LogModule::Component, "Creating Quad Component ...");
   }
@@ -283,9 +271,6 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Sprite Component
   // -------------------------------------------------------------------------
-  SpriteComponent::~SpriteComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Destroying Sprite Component !!!");
-  }
   SpriteComponent::SpriteComponent(std::shared_ptr<SubTexture> sub_tex)
   : sub_texture(sub_tex) {
     IK_CORE_TRACE(LogModule::Component, "Creating Sprite Component ...");
@@ -320,9 +305,6 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Circle Component
   // -------------------------------------------------------------------------
-  CircleComponent::~CircleComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Destroying Circle Component !!!");
-  }
   CircleComponent::CircleComponent() {
     IK_CORE_TRACE(LogModule::Component, "Creating Circle Component ...");
   }
@@ -382,23 +364,17 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Camera Component
   // -------------------------------------------------------------------------
-  CameraComponent::~CameraComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Destroying Camera Component !!!");
-  }
   CameraComponent::CameraComponent(const CameraComponent& other)
   : is_primary(other.is_primary), is_fixed_aspect_ratio(other.is_fixed_aspect_ratio) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Camera Component ...");
     camera = std::make_shared<SceneCamera>();
     *(camera.get()) = *(other.camera.get());
   }
   CameraComponent::CameraComponent(CameraComponent&& other)
   : is_primary(other.is_primary), is_fixed_aspect_ratio(other.is_fixed_aspect_ratio) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Camera Component ...");
     camera = std::make_shared<SceneCamera>();
     *(camera.get()) = *(other.camera.get());
   }
   CameraComponent& CameraComponent::operator=(const CameraComponent& other) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Camera Component uisng operator = ...");
     is_primary = other.is_primary;
     is_fixed_aspect_ratio = other.is_fixed_aspect_ratio;
     camera = std::make_shared<SceneCamera>();
@@ -406,7 +382,6 @@ namespace ikan {
     return *this;
   }
   CameraComponent& CameraComponent::operator=(CameraComponent&& other) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Camera Component uisng operator = ...");
     is_primary = other.is_primary;
     is_fixed_aspect_ratio = other.is_fixed_aspect_ratio;
     camera = std::make_shared<SceneCamera>();
@@ -415,7 +390,6 @@ namespace ikan {
     return *this;
   }
   CameraComponent::CameraComponent(SceneCamera::ProjectionType proj_type) {
-    IK_CORE_TRACE(LogModule::Component, "Creating Camera Component ...");
     camera = std::make_shared<SceneCamera>(proj_type);
   }
   void CameraComponent::RenderGui() {
@@ -438,22 +412,17 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Native Script Component
   // -------------------------------------------------------------------------
-  NativeScriptComponent::~NativeScriptComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Destroying Native Script Component !!!");
-  }
   NativeScriptComponent::NativeScriptComponent(std::string name, ScriptLoaderFn loader_fun)
   : script_name(name), loader_function(loader_fun) {
-    IK_CORE_TRACE(LogModule::Component, "Creating {0} Native Script Component ", name);
+    
   }
   
   NativeScriptComponent::NativeScriptComponent(const NativeScriptComponent& other) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Native Script Component ...");
     loader_function = other.loader_function;
     script_name = other.script_name;
     ScriptManager::UpdateScript(this, script_name, loader_function);
   }
   NativeScriptComponent& NativeScriptComponent::operator=(const NativeScriptComponent& other) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Native Script Component using = operator ...");
     loader_function = other.loader_function;
     script_name = other.script_name;
     
@@ -461,18 +430,19 @@ namespace ikan {
     return *this;
   }
   NativeScriptComponent::NativeScriptComponent(NativeScriptComponent&& other) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Native Script Component ...");
     loader_function = other.loader_function;
     script_name = other.script_name;
     ScriptManager::UpdateScript(this, script_name, loader_function);
   }
   NativeScriptComponent& NativeScriptComponent::operator=(NativeScriptComponent&& other) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Native Script Component using = operator ...");
     loader_function = other.loader_function;
     script_name = other.script_name;
     
     ScriptManager::UpdateScript(this, script_name, loader_function);
     return *this;
+  }
+  
+  NativeScriptComponent::~NativeScriptComponent() {
   }
   
   void NativeScriptComponent::RenderGui() {
@@ -491,14 +461,7 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Rigid Body Component
   // -------------------------------------------------------------------------
-  RigidBodyComponent::~RigidBodyComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Destroying Rigir Body Component !!!");
-  }
-  RigidBodyComponent::RigidBodyComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Creating Rigir Body Component ...");
-  }
   RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent& other) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Rigir Body Component ...");
     type = other.type;
     
     is_ground =  other.is_ground;
@@ -514,7 +477,6 @@ namespace ikan {
     continuous_collision =  other.continuous_collision;
   }
   RigidBodyComponent& RigidBodyComponent::operator=(const RigidBodyComponent& other) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Rigir Body Component using = operator ...");
     type = other.type;
     is_ground =  other.is_ground;
     fixed_rotation =  other.fixed_rotation;
@@ -530,7 +492,6 @@ namespace ikan {
     return *this;
   }
   RigidBodyComponent::RigidBodyComponent(RigidBodyComponent&& other) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Rigir Body Component ...");
     type = other.type;
     is_ground =  other.is_ground;
     fixed_rotation =  other.fixed_rotation;
@@ -545,7 +506,6 @@ namespace ikan {
     continuous_collision =  other.continuous_collision;
   }
   RigidBodyComponent& RigidBodyComponent::operator=(RigidBodyComponent&& other) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Rigir Body Component using = operator ...");
     type = other.type;
     is_ground =  other.is_ground;
     fixed_rotation =  other.fixed_rotation;
@@ -634,15 +594,7 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Box Colloider Component
   // -------------------------------------------------------------------------
-  BoxColliderComponent::~BoxColliderComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Destroying Box Colldier Component !!!");
-  }
-  BoxColliderComponent::BoxColliderComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Creating Box Colldier Component ...");
-
-  }
   BoxColliderComponent::BoxColliderComponent(const BoxColliderComponent& other) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Box Colldier Component ...");
     offset = other.offset;
     size = other.size;
     density = other.density;
@@ -651,7 +603,6 @@ namespace ikan {
     restitution_threshold = other.restitution_threshold;
   }
   BoxColliderComponent& BoxColliderComponent::operator=(const BoxColliderComponent& other) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Box Colldier Component using = operator ...");
     offset = other.offset;
     size = other.size;
     density = other.density;
@@ -661,7 +612,6 @@ namespace ikan {
     return *this;
   }
   BoxColliderComponent::BoxColliderComponent(BoxColliderComponent&& other) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Box Colldier Component ...");
     offset = other.offset;
     size = other.size;
     density = other.density;
@@ -670,7 +620,6 @@ namespace ikan {
     restitution_threshold = other.restitution_threshold;
   }
   BoxColliderComponent& BoxColliderComponent::operator=(BoxColliderComponent&& other) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Box Colldier Component using = operator ...");
     offset = other.offset;
     size = other.size;
     density = other.density;
@@ -700,14 +649,7 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Circle Colloider Component
   // -------------------------------------------------------------------------
-  CircleColliiderComponent::~CircleColliiderComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Destroying Circle Collider Component !!!");
-  }
-  CircleColliiderComponent::CircleColliiderComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Creating Circle Collider Component ...");
-  }
   CircleColliiderComponent::CircleColliiderComponent(const CircleColliiderComponent& other) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Circle Collider Component ...");
     offset = other.offset;
     radius = other.radius;
     density = other.density;
@@ -716,7 +658,6 @@ namespace ikan {
     restitution_threshold = other.restitution_threshold;
   }
   CircleColliiderComponent& CircleColliiderComponent::operator=(const CircleColliiderComponent& other) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Circle Collider Component using = operator ...");
     offset = other.offset;
     radius = other.radius;
     density = other.density;
@@ -726,7 +667,6 @@ namespace ikan {
     return *this;
   }
   CircleColliiderComponent::CircleColliiderComponent(CircleColliiderComponent&& other) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Circle Collider Component ...");
     offset = other.offset;
     radius = other.radius;
     density = other.density;
@@ -735,7 +675,6 @@ namespace ikan {
     restitution_threshold = other.restitution_threshold;
   }
   CircleColliiderComponent& CircleColliiderComponent::operator=(CircleColliiderComponent&& other) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Native Script Component using = operator ...");
     offset = other.offset;
     radius = other.radius;
     density = other.density;
@@ -765,16 +704,11 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Pill Box Colloider Component
   // -------------------------------------------------------------------------
-  PillBoxColliderComponent::~PillBoxColliderComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Destroying Pill Box Collider Component !!!");
-  }
   PillBoxColliderComponent::PillBoxColliderComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Creating Pill Box Collider Component ...");
     RecalculateColliders();
   }
   PillBoxColliderComponent::PillBoxColliderComponent(const PillBoxColliderComponent& other)
   : bcc(other.bcc), top_ccc(other.top_ccc), bottom_ccc(other.bottom_ccc) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Pill Box Collider Component ...");
     offset = other.offset;
     width = other.width;
     height = other.height;
@@ -782,7 +716,6 @@ namespace ikan {
     RecalculateColliders();
   }
   PillBoxColliderComponent& PillBoxColliderComponent::operator=(const PillBoxColliderComponent& other) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Pill Box Collider Component using = operator ...");
     offset = other.offset;
     width = other.width;
     height = other.height;
@@ -795,7 +728,6 @@ namespace ikan {
   }
   PillBoxColliderComponent::PillBoxColliderComponent(PillBoxColliderComponent&& other) 
     : bcc(other.bcc), top_ccc(other.top_ccc), bottom_ccc(other.bottom_ccc) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Pill Box Collider Component ...");
     offset = other.offset;
     width = other.width;
     height = other.height;
@@ -803,8 +735,6 @@ namespace ikan {
     RecalculateColliders();
   }
   PillBoxColliderComponent& PillBoxColliderComponent::operator=(PillBoxColliderComponent&& other) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Pill Box Collider Component using = operator ...");
-
     offset = other.offset;
     width = other.width;
     height = other.height;
@@ -886,18 +816,16 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Animation Component
   // -------------------------------------------------------------------------
-  AnimationComponent::~AnimationComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Destroying Animation Component !!!");
-    sprites.clear();
-  }
   AnimationComponent::AnimationComponent(std::shared_ptr<Texture> sprite_image) {
-    IK_CORE_TRACE(LogModule::Component, "Creating Animation Component ...");
     this->sprite_image = sprite_image;
     sprites.clear();
   }
   
+  AnimationComponent::~AnimationComponent() {
+    sprites.clear();
+  }
+  
   AnimationComponent::AnimationComponent(const AnimationComponent& other) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Animation Component ...");
     animation = other.animation;
     is_sprite = other.is_sprite;
     speed = other.speed;
@@ -909,7 +837,6 @@ namespace ikan {
     }
   }
   AnimationComponent& AnimationComponent::operator=(const AnimationComponent& other) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Animation Component using = operator ...");
     animation = other.animation;
     is_sprite = other.is_sprite;
     speed = other.speed;
@@ -923,7 +850,6 @@ namespace ikan {
     return *this;
   }
   AnimationComponent::AnimationComponent(AnimationComponent&& other) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Animation Component ...");
     animation = other.animation;
     is_sprite = other.is_sprite;
     speed = other.speed;
@@ -935,7 +861,6 @@ namespace ikan {
     }
   }
   AnimationComponent& AnimationComponent::operator=(AnimationComponent&& other) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Animation Component using = operator ...");
     animation = other.animation;
     is_sprite = other.is_sprite;
     speed = other.speed;

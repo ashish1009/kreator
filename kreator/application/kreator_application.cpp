@@ -40,7 +40,7 @@ public:
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Set up the type of applicaiton we want to create
   LayerType application_type = LayerType::Editor;
-  ikan_game::GameType game_type = ikan_game::GameType::Editor;
+  ikan_game::GameType game_type = ikan_game::GameType::Mario;
   
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;
