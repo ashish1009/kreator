@@ -94,7 +94,6 @@ namespace mario {
     glm::vec2 velocity_;
     glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
 
-    RigidBodyComponent* rigid_body_comp_;
     PlayerState player_state_ = PlayerState::Small;
     StateMachine* state_machine_;
 

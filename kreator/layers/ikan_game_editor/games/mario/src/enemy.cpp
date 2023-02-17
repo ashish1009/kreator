@@ -14,8 +14,8 @@ namespace mario {
   void EnemyController::Create(Entity entity) {
     entity_ = entity;
     
-    rigid_body_comp_ = &(GetComponent<RigidBodyComponent>());
-    rigid_body_comp_->SetGravityScale(0.0f);
+    auto& rb = GetComponent<RigidBodyComponent>();
+    rb.SetGravityScale(0.0f);
     
     acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * 0.5;
   }
@@ -23,10 +23,11 @@ namespace mario {
     // Camera check
     
     if (is_dead_) {
-      EnttScene::ResetFixture(rigid_body_comp_->runtime_body);
+      auto& rb = GetComponent<RigidBodyComponent>();
+      EnttScene::ResetFixture(rb.runtime_body);
       
       time_to_kill -= ts;
-      rigid_body_comp_->SetVelocity({0., 0});
+      rb.SetVelocity({0., 0});
       if (time_to_kill <= 0) {
         entity_.GetScene()->DestroyEntity(entity_);
       }
@@ -53,8 +54,9 @@ namespace mario {
     velocity_.x = std::max(std::min(velocity_.x, terminal_velocity_.x), -terminal_velocity_.x);
     velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
     
-    rigid_body_comp_->SetVelocity(velocity_);
-    rigid_body_comp_->SetAngularVelocity(0.0f);
+    auto& rb = entity_.GetComponent<RigidBodyComponent>();
+    rb.SetVelocity(velocity_);
+    rb.SetAngularVelocity(0.0f);
   }
   
   void EnemyController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
@@ -87,11 +89,11 @@ namespace mario {
   void EnemyController::stomp() {
     is_dead_ = true;
     velocity_ = {0.0f, 0.0f};
-    rigid_body_comp_->SetVelocity(velocity_);
-    rigid_body_comp_->SetAngularVelocity(0.0f);
-    rigid_body_comp_->is_sensor = true;
+    auto& rb = entity_.GetComponent<RigidBodyComponent>();
+    rb.SetVelocity(velocity_);
+    rb.SetAngularVelocity(0.0f);
+    rb.is_sensor = true;
     
-    entity_.GetComponent<AnimationComponent>().ClearSprites();
     entity_.RemoveComponent<AnimationComponent>();
     
     auto& qc = entity_.GetComponent<QuadComponent>();

@@ -16,23 +16,18 @@ namespace ikan {
   // ID Component
   // -------------------------------------------------------------------------
   IDComponent::IDComponent(const UUID& id) : id(id) {
-    IK_CORE_TRACE(LogModule::Component, "Creating ID Component ...");
   }
   IDComponent::IDComponent(const IDComponent& other)
   : id(other.id) {
-    IK_CORE_TRACE(LogModule::Component, "Copying ID Component ...");
   }
   IDComponent::IDComponent(IDComponent&& other)
   : id(other.id) {
-    IK_CORE_TRACE(LogModule::Component, "Moving ID Component ...");
   }
   IDComponent& IDComponent::operator=(const IDComponent& other) {
-    IK_CORE_TRACE(LogModule::Component, "Copying ID Component using = operator ...");
     id = other.id;
     return *this;
   }
   IDComponent& IDComponent::operator=(IDComponent&& other) {
-    IK_CORE_TRACE(LogModule::Component, "Moving ID Component using = operator ...");
     id = other.id;
     return *this;
   }
@@ -42,23 +37,18 @@ namespace ikan {
   // -------------------------------------------------------------------------
   TagComponent::TagComponent(const std::string& tag)
   : tag(tag) {
-    IK_CORE_TRACE(LogModule::Component, "Creating Tag Component ...");
   }
   TagComponent::TagComponent(const TagComponent& other)
   : tag(other.tag) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Tag Component ...");
   }
   TagComponent::TagComponent(TagComponent&& other)
   : tag(other.tag) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Tag Ccomponent ...");
   }
   TagComponent& TagComponent::operator=(const TagComponent& other) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Tag Component using = operator...");
     tag = other.tag;
     return *this;
   }
   TagComponent& TagComponent::operator=(TagComponent&& other) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Tag Component using = operator ...");
     tag = other.tag;
     return *this;
   }
@@ -68,17 +58,14 @@ namespace ikan {
   // -------------------------------------------------------------------------
   TransformComponent::TransformComponent(const glm::vec3& translation)
   : translation(translation) {
-    IK_CORE_TRACE(LogModule::Component, "Creating Transform Component ...");
     transform = Math::GetTransformMatrix(translation, rotation, scale);
   }
   TransformComponent::TransformComponent(const TransformComponent& other)
   : translation(other.Translation()), scale(other.Scale()), rotation(other.Rotation()) {
-    IK_CORE_TRACE(LogModule::Component, "Copying Transform Component ...");
     transform = Math::GetTransformMatrix(translation, rotation, scale);
   }
   TransformComponent::TransformComponent(TransformComponent&& other)
   : translation(other.Translation()), scale(other.Scale()), rotation(other.Rotation()) {
-    IK_CORE_TRACE(LogModule::Component, "Moving Transform Component ...");
     transform = Math::GetTransformMatrix(translation, rotation, scale);
   }
   TransformComponent& TransformComponent::operator=(const TransformComponent& other) {
@@ -86,7 +73,6 @@ namespace ikan {
     scale = other.Scale();
     rotation = other.Rotation();
     transform = Math::GetTransformMatrix(translation, rotation, scale);
-    IK_CORE_TRACE(LogModule::Component, "Copying Transform Component using = operator...");
     return *this;
   }
   TransformComponent& TransformComponent::operator=(TransformComponent&& other) {
@@ -94,7 +80,6 @@ namespace ikan {
     scale = other.Scale();
     rotation = other.Rotation();
     transform = Math::GetTransformMatrix(translation, rotation, scale);
-    IK_CORE_TRACE(LogModule::Component, "Moving Transform Component using = operator...");
     return *this;
   }
   
@@ -149,28 +134,23 @@ namespace ikan {
   // Quad Component
   // -------------------------------------------------------------------------
   QuadComponent::QuadComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Creating Quad Component ...");
   }
   QuadComponent::QuadComponent(const QuadComponent& other)
   : color(other.color) {
     texture_comp = other.texture_comp;
-    IK_CORE_TRACE(LogModule::Component, "Copying Quad Component ...");
   }
   QuadComponent::QuadComponent(QuadComponent&& other)
   : color(other.color) {
     texture_comp = other.texture_comp;
-    IK_CORE_TRACE(LogModule::Component, "Moving Quad Component ...");
   }
   QuadComponent& QuadComponent::operator=(const QuadComponent& other) {
     color = other.color;
     texture_comp = other.texture_comp;
-    IK_CORE_TRACE(LogModule::Component, "Copying Quad Component using = operator...");
     return *this;
   }
   QuadComponent& QuadComponent::operator=(QuadComponent&& other) {
     color = other.color;
     texture_comp = other.texture_comp;
-    IK_CORE_TRACE(LogModule::Component, "Moving Quad Component using = operator...");
     return *this;
   }
   
@@ -273,28 +253,23 @@ namespace ikan {
   // -------------------------------------------------------------------------
   SpriteComponent::SpriteComponent(std::shared_ptr<SubTexture> sub_tex)
   : sub_texture(sub_tex) {
-    IK_CORE_TRACE(LogModule::Component, "Creating Sprite Component ...");
   }
   SpriteComponent::SpriteComponent(const SpriteComponent& other) {
     if (other.sub_texture)
       sub_texture = other.sub_texture;
-    IK_CORE_TRACE(LogModule::Component, "Copying Sprite Component ...");
   }
   SpriteComponent::SpriteComponent(SpriteComponent&& other) {
     if (other.sub_texture)
       sub_texture = other.sub_texture;
-    IK_CORE_TRACE(LogModule::Component, "Moving Sprite Component ...");
   }
   SpriteComponent& SpriteComponent::operator=(const SpriteComponent& other) {
     if (other.sub_texture)
       sub_texture = other.sub_texture;
-    IK_CORE_TRACE(LogModule::Component, "Copying Sprite Component using = operator...");
     return *this;
   }
   SpriteComponent& SpriteComponent::operator=(SpriteComponent&& other) {
     if (other.sub_texture)
       sub_texture = other.sub_texture;
-    IK_CORE_TRACE(LogModule::Component, "Moving Sprite Component using = operator...");
     return *this;
   }
   
@@ -306,7 +281,6 @@ namespace ikan {
   // Circle Component
   // -------------------------------------------------------------------------
   CircleComponent::CircleComponent() {
-    IK_CORE_TRACE(LogModule::Component, "Creating Circle Component ...");
   }
   CircleComponent::CircleComponent(const CircleComponent& other)
   : color(other.color), thickness(other.thickness), fade(other.fade) {
@@ -315,7 +289,6 @@ namespace ikan {
       texture_comp.tiling_factor = other.texture_comp.tiling_factor;
       texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
     }
-    IK_CORE_TRACE(LogModule::Component, "Copying Circle Component ...");
   }
   CircleComponent::CircleComponent(CircleComponent&& other)
   : color(other.color), thickness(other.thickness), fade(other.fade) {
@@ -324,7 +297,6 @@ namespace ikan {
       texture_comp.tiling_factor = other.texture_comp.tiling_factor;
       texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
     }
-    IK_CORE_TRACE(LogModule::Component, "Moving Circle Component ...");
   }
   CircleComponent& CircleComponent::operator=(const CircleComponent& other) {
     color = other.color;
@@ -335,7 +307,6 @@ namespace ikan {
       texture_comp.tiling_factor = other.texture_comp.tiling_factor;
       texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
     }
-    IK_CORE_TRACE(LogModule::Component, "Copying Circle Component using = operator...");
     return *this;
   }
   CircleComponent& CircleComponent::operator=(CircleComponent&& other) {
@@ -347,7 +318,6 @@ namespace ikan {
       texture_comp.tiling_factor = other.texture_comp.tiling_factor;
       texture_comp.component = Renderer::GetTexture(other.texture_comp.component->GetfilePath());
     }
-    IK_CORE_TRACE(LogModule::Component, "Moving Quad Component using = operator...");
     return *this;
   }
   
@@ -463,7 +433,6 @@ namespace ikan {
   // -------------------------------------------------------------------------
   RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent& other) {
     type = other.type;
-    
     is_ground =  other.is_ground;
     fixed_rotation =  other.fixed_rotation;
     velocity =  other.velocity;
@@ -475,6 +444,7 @@ namespace ikan {
     gravity_scale =  other.gravity_scale;
     is_sensor =  other.is_sensor;
     continuous_collision =  other.continuous_collision;
+    runtime_body = other.runtime_body;
   }
   RigidBodyComponent& RigidBodyComponent::operator=(const RigidBodyComponent& other) {
     type = other.type;
@@ -489,6 +459,7 @@ namespace ikan {
     gravity_scale =  other.gravity_scale;
     is_sensor =  other.is_sensor;
     continuous_collision =  other.continuous_collision;
+    runtime_body = other.runtime_body;
     return *this;
   }
   RigidBodyComponent::RigidBodyComponent(RigidBodyComponent&& other) {
@@ -504,6 +475,7 @@ namespace ikan {
     gravity_scale =  other.gravity_scale;
     is_sensor =  other.is_sensor;
     continuous_collision =  other.continuous_collision;
+    runtime_body = other.runtime_body;
   }
   RigidBodyComponent& RigidBodyComponent::operator=(RigidBodyComponent&& other) {
     type = other.type;
@@ -518,6 +490,7 @@ namespace ikan {
     gravity_scale =  other.gravity_scale;
     is_sensor =  other.is_sensor;
     continuous_collision =  other.continuous_collision;
+    runtime_body = other.runtime_body;
     return *this;
   }
   

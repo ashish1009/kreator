@@ -71,32 +71,32 @@ namespace mario {
     auto& tc = entity_.GetComponent<TransformComponent>();
     switch (type_) {
       case Type::Empty : {
-        if (!pc->IsSmall()) {
+//        if (!pc->IsSmall()) {
           // Play sound // Break
           // Destory the object
-        }
+//        }
         break;
       }
       case Type::Coin: {
-        RuntimeItem::Create(Items::Coin, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
-        count_--;
-        if (count_ == 0)
-          SetInactive();
-
+//        RuntimeItem::Create(Items::Coin, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
+//        count_--;
+//        if (count_ == 0)
+//          SetInactive();
+//
         break;
       }
       case Type::Star: {
         break;
       }
       case Type::PowerUp : {
-        if (pc->IsSmall()) {
-          RuntimeItem::Create(Items::Mushroom, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0});
-          SetInactive();
-        }
-        else {
-          RuntimeItem::Create(Items::Flower, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0});
-          SetInactive();
-        }
+//        if (pc->IsSmall()) {
+//          RuntimeItem::Create(Items::Mushroom, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0});
+//          SetInactive();
+//        }
+//        else {
+//          RuntimeItem::Create(Items::Flower, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0});
+//          SetInactive();
+//        }
         break;
       }
       default:

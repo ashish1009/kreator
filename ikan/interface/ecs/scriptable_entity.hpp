@@ -58,6 +58,8 @@ namespace ikan {
     virtual void Destroy() {}
     virtual void Update(Timestep ts) {}
     
+    DELETE_COPY_MOVE_CONSTRUCTORS(ScriptableEntity);
+    
   protected:
     Entity entity_;
     EnttScene* scene_;

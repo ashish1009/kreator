@@ -101,8 +101,8 @@ namespace mario {
     
     state_machine_ = new StateMachine(&entity_, &player_state_);
     
-    rigid_body_comp_ = &(GetComponent<RigidBodyComponent>());
-    rigid_body_comp_->SetGravityScale(0.0f);
+    auto& rb = GetComponent<RigidBodyComponent>();
+    rb.SetGravityScale(0.0f);
   }
 
   void PlayerController::Update(Timestep ts) { // Run Left
@@ -128,7 +128,8 @@ namespace mario {
         if (player_state_ == PlayerState::Big) {
           // As our player powered up so reset the pill box size
           const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
-          EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), rigid_body_comp_, pbc);
+          auto& rb = entity_.GetComponent<RigidBodyComponent>();
+          EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, pbc);
         }
 //      }
     }
@@ -212,8 +213,9 @@ namespace mario {
     velocity_.x = std::max(std::min(velocity_.x, terminal_velocity_.x), -terminal_velocity_.x);
     velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
     
-    rigid_body_comp_->SetVelocity(velocity_);
-    rigid_body_comp_->SetAngularVelocity(0.0f);
+    auto& rb = entity_.GetComponent<RigidBodyComponent>();
+    rb.SetVelocity(velocity_);
+    rb.SetAngularVelocity(0.0f);
     
     if (!on_ground_) {
       state_machine_->ChangeAction(PlayerAction::Jump);
@@ -256,7 +258,7 @@ namespace mario {
       tc.UpdateScale_Y(player_height_);
       
       // Add Impulse to push player out of ground while changing size
-      rigid_body_comp_->AddVelocity({velocity_.x, 1000.0});
+      entity_.GetComponent<RigidBodyComponent>().AddVelocity({velocity_.x, 1000.0});
       auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
       pbc.SetSize({0.5f, pbc.height * 2.0f});
       

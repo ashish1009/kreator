@@ -29,6 +29,8 @@ namespace mario {
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
     void RenderGui() override;
     
+    DELETE_COPY_MOVE_CONSTRUCTORS(EnemyController);
+    
   private:
     void stomp();
     void CheckOnGround();
@@ -46,8 +48,6 @@ namespace mario {
     glm::vec2 acceleration_;
     glm::vec2 velocity_;
     glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
-    
-    RigidBodyComponent* rigid_body_comp_;
   };
   
   struct EnemyData {

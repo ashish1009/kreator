@@ -145,6 +145,18 @@ namespace ikan {
     IK_CORE_WARN(LogModule::EnttScene, "  ID     | {0}", entity.GetComponent<IDComponent>().id);
     IK_CORE_WARN(LogModule::EnttScene, "  Number of entities Added in Scene | {0}", --num_entities_);
     
+    if (entity.HasComponent<CircleColliiderComponent>()) {
+      auto& rb = entity.GetComponent<CircleColliiderComponent>();
+      delete rb.runtime_fixture;
+      rb.runtime_fixture = nullptr;
+    }
+    
+    if (entity.HasComponent<BoxColliderComponent>()) {
+      auto& rb = entity.GetComponent<BoxColliderComponent>();
+      delete rb.runtime_fixture;
+      rb.runtime_fixture = nullptr;
+    }
+    
     // Delete
     if (physics_world_ and entity.HasComponent<RigidBodyComponent>()) {
       auto& rb = entity.GetComponent<RigidBodyComponent>();
@@ -152,18 +164,6 @@ namespace ikan {
       
       physics_world_->DestroyBody(rb.runtime_body);
       rb.runtime_body = nullptr;
-    }
-
-    if (entity.HasComponent<CircleColliiderComponent>()) {
-      auto& rb = entity.GetComponent<CircleColliiderComponent>();
-      delete rb.runtime_fixture;
-      rb.runtime_fixture = nullptr;
-    }
-
-    if (entity.HasComponent<BoxColliderComponent>()) {
-      auto& rb = entity.GetComponent<BoxColliderComponent>();
-      delete rb.runtime_fixture;
-      rb.runtime_fixture = nullptr;
     }
 
     // Delete the eneity from the map

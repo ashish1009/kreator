@@ -154,7 +154,7 @@ namespace ikan {
     if (selected_entity_) {
       // Tag
       auto& tag = selected_entity_.GetComponent<TagComponent>().tag;
-      PropertyGrid::TextBox(tag, "", 3);
+      PropertyGrid::TextBox(tag, std::to_string((uint32_t)selected_entity_).c_str(), 3);
       PropertyGrid::HoveredMsg(("Entity ID : " + std::to_string((uint32_t)selected_entity_)).c_str());
       auto text_box_size = ImGui::GetItemRectSize();
       
