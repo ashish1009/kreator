@@ -12,15 +12,18 @@
 namespace mario {
   
   void CommonRuntimeData::AddRuntimeItemComponents(Entity* entity) {
-    if (entity->HasComponent<RigidBodyComponent>())
-      rigid_body_comp_ = &(entity->GetComponent<RigidBodyComponent>());
-    else
-      rigid_body_comp_ = &(entity->AddComponent<RigidBodyComponent>());
+    RigidBodyComponent* rb;
+    if (entity->HasComponent<RigidBodyComponent>()) {
+      rb = &(entity->GetComponent<RigidBodyComponent>());
+    }
+    else {
+      rb = &(entity->AddComponent<RigidBodyComponent>());
+    }
     
-    rigid_body_comp_->type = b2_dynamicBody;
-    rigid_body_comp_->angular_velocity = 0.0f;
-    rigid_body_comp_->fixed_rotation = true;
-    rigid_body_comp_->SetGravityScale(0.0f);
+    rb->type = b2_dynamicBody;
+    rb->angular_velocity = 0.0f;
+    rb->fixed_rotation = true;
+    rb->SetGravityScale(0.0f);
     
     if (entity->HasComponent<CircleColliiderComponent>()) {
       auto& ccc = entity->GetComponent<CircleColliiderComponent>();
@@ -32,7 +35,7 @@ namespace mario {
       ccc.runtime_fixture = new Entity((entt::entity)(*entity), entity->GetScene());
       ccc.friction = 0.0f;
     }
-    entity->GetScene()->AddBodyToPhysicsWorld(*entity, *rigid_body_comp_);
+    entity->GetScene()->AddBodyToPhysicsWorld(*entity, *rb);
   }
   
   void CommonRuntimeData::LivingEntityHitCheck(Entity* collided_entity, b2Contact* contact) {
@@ -81,18 +84,33 @@ namespace mario {
   }
   
   void MushroomController::Update(Timestep ts) {
-    if (going_right_ and std::abs(rigid_body_comp_->velocity.x) < max_speed_) {
-      rigid_body_comp_->SetVelocity(velocity_);
+    auto& rb = entity_.GetComponent<RigidBodyComponent>();
+
+    if (going_right_ and std::abs(rb.velocity.x) < max_speed_) {
+      rb.SetVelocity(velocity_);
     }
-    else if (!going_right_ and std::abs(rigid_body_comp_->velocity.x) < max_speed_) {
-      rigid_body_comp_->SetVelocity({-velocity_.x, velocity_.y});
+    else if (!going_right_ and std::abs(rb.velocity.x) < max_speed_) {
+      rb.SetVelocity({-velocity_.x, velocity_.y});
     }
     
     CheckAndDestroy(&entity_);
   }
   
   void MushroomController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
-    LivingEntityHitCheck(collided_entity, contact);
+//    LivingEntityHitCheck(collided_entity, contact);
+    if (PlayerController* pc = PlayerController::Get();
+        collided_entity->GetScene() and
+        collided_entity->HasComponent<NativeScriptComponent>() and
+        collided_entity->GetComponent<NativeScriptComponent>().script.get() == pc) {
+      contact->SetEnabled(false);
+      if (!hit_player_) {
+        pc->SetPowerup();
+        hit_player_ = true;
+        destroy_ = true;
+      }
+      return;
+    }
+
     if (std::abs(contact_normal.y) < 0.1f) {
       going_right_ = contact_normal.x < 0.0f;
     }

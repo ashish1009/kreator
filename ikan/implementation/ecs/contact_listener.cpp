@@ -14,6 +14,10 @@
 #define DEBUG_LOG 1
 
 namespace ikan {
+
+  bool IsValidEntity(Entity* e) {
+    return e and e->GetScene()->IsEntityPresentInMap((entt::entity)(*e)) and e->HasComponent<NativeScriptComponent>();
+  }
   
   void ContactListner::BeginContact(b2Contact* contact) {
     Entity* entity_a = (Entity*)contact->GetFixtureA()->GetUserData().pointer;
@@ -25,17 +29,9 @@ namespace ikan {
     glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
     glm::vec2 b_normal = a_normal * -1.0f;
     
-#if DEBUG_LOG
-    if (entity_a) {
-      const auto& tag = entity_a->GetComponent<TagComponent>().tag;
-    }
-    if (entity_b) {
-      const auto& tag = entity_b->GetComponent<TagComponent>().tag;
-    }
-#endif
-    if (entity_a and entity_a->GetScene() and entity_a->HasComponent<NativeScriptComponent>())
+    if (IsValidEntity(entity_a))
       entity_a->GetComponent<NativeScriptComponent>().script->BeginCollision(entity_b, contact, a_normal);
-    if (entity_b and entity_b->GetScene() and entity_b->HasComponent<NativeScriptComponent>())
+    if (IsValidEntity(entity_b))
       entity_b->GetComponent<NativeScriptComponent>().script->BeginCollision(entity_a, contact, b_normal);
   }
   
@@ -48,10 +44,10 @@ namespace ikan {
     
     glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
     glm::vec2 b_normal = a_normal * -1.0f;
-    
-    if (entity_a and entity_a->GetScene() and entity_a->HasComponent<NativeScriptComponent>())
+
+    if (IsValidEntity(entity_a))
       entity_a->GetComponent<NativeScriptComponent>().script->EndCollision(entity_b, contact, a_normal);
-    if (entity_b and entity_b->GetScene() and entity_b->HasComponent<NativeScriptComponent>())
+    if (IsValidEntity(entity_b))
       entity_b->GetComponent<NativeScriptComponent>().script->EndCollision(entity_a, contact, b_normal);
   }
   
@@ -65,9 +61,9 @@ namespace ikan {
     glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
     glm::vec2 b_normal = a_normal * -1.0f;
     
-    if (entity_a and entity_a->GetScene() and entity_a->HasComponent<NativeScriptComponent>())
+    if (IsValidEntity(entity_a))
       entity_a->GetComponent<NativeScriptComponent>().script->PreSolve(entity_b, contact, a_normal);
-    if (entity_b and entity_b->GetScene() and entity_b->HasComponent<NativeScriptComponent>())
+    if (IsValidEntity(entity_b))
       entity_b->GetComponent<NativeScriptComponent>().script->PreSolve(entity_a, contact, b_normal);
   }
   
@@ -80,10 +76,10 @@ namespace ikan {
     
     glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
     glm::vec2 b_normal = a_normal * -1.0f;
-    
-    if (entity_a and entity_a->GetScene() and entity_a->HasComponent<NativeScriptComponent>())
+
+    if (IsValidEntity(entity_a))
       entity_a->GetComponent<NativeScriptComponent>().script->PostSolve(entity_b, contact, a_normal);
-    if (entity_b and entity_b->GetScene() and entity_b->HasComponent<NativeScriptComponent>())
+    if (IsValidEntity(entity_b))
       entity_b->GetComponent<NativeScriptComponent>().script->PostSolve(entity_a, contact, b_normal);
   }
   

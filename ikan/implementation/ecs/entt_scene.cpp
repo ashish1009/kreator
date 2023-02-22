@@ -145,6 +145,15 @@ namespace ikan {
     IK_CORE_WARN(LogModule::EnttScene, "  ID     | {0}", entity.GetComponent<IDComponent>().id);
     IK_CORE_WARN(LogModule::EnttScene, "  Number of entities Added in Scene | {0}", --num_entities_);
     
+    // Delete
+    if (physics_world_ and entity.HasComponent<RigidBodyComponent>()) {
+      auto& rb = entity.GetComponent<RigidBodyComponent>();
+      ResetFixture(rb.runtime_body);
+      
+      physics_world_->DestroyBody(rb.runtime_body);
+      rb.runtime_body = nullptr;
+    }
+
     if (entity.HasComponent<CircleColliiderComponent>()) {
       auto& rb = entity.GetComponent<CircleColliiderComponent>();
       delete rb.runtime_fixture;
@@ -155,15 +164,6 @@ namespace ikan {
       auto& rb = entity.GetComponent<BoxColliderComponent>();
       delete rb.runtime_fixture;
       rb.runtime_fixture = nullptr;
-    }
-    
-    // Delete
-    if (physics_world_ and entity.HasComponent<RigidBodyComponent>()) {
-      auto& rb = entity.GetComponent<RigidBodyComponent>();
-      ResetFixture(rb.runtime_body);
-      
-      physics_world_->DestroyBody(rb.runtime_body);
-      rb.runtime_body = nullptr;
     }
 
     // Delete the eneity from the map
@@ -180,6 +180,11 @@ namespace ikan {
     return new_entity;
   }
   
+  bool EnttScene::IsEntityPresentInMap(entt::entity entity) {
+    return entity_id_map_.find(entity) != entity_id_map_.end();
+    return false;
+  }
+
   Entity EnttScene::CreateNewEmptyEntity(UUID uuid) {
     Entity entity {registry_.create(), this};
     

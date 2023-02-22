@@ -18,7 +18,6 @@ namespace mario {
     void CheckAndDestroy(Entity* entity);
     
   protected:
-    RigidBodyComponent* rigid_body_comp_;
     bool hit_player_ = false;
     bool destroy_ = false;
   };

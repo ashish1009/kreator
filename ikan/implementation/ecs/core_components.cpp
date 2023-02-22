@@ -574,6 +574,7 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    runtime_fixture = other.runtime_fixture;
   }
   BoxColliderComponent& BoxColliderComponent::operator=(const BoxColliderComponent& other) {
     offset = other.offset;
@@ -582,6 +583,7 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    runtime_fixture = other.runtime_fixture;
     return *this;
   }
   BoxColliderComponent::BoxColliderComponent(BoxColliderComponent&& other) {
@@ -591,6 +593,7 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    runtime_fixture = other.runtime_fixture;
   }
   BoxColliderComponent& BoxColliderComponent::operator=(BoxColliderComponent&& other) {
     offset = other.offset;
@@ -599,6 +602,7 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    runtime_fixture = other.runtime_fixture;
     return *this;
   }
   void BoxColliderComponent::RenderGui() {
@@ -629,6 +633,7 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    runtime_fixture = other.runtime_fixture;
   }
   CircleColliiderComponent& CircleColliiderComponent::operator=(const CircleColliiderComponent& other) {
     offset = other.offset;
@@ -637,6 +642,7 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    runtime_fixture = other.runtime_fixture;
     return *this;
   }
   CircleColliiderComponent::CircleColliiderComponent(CircleColliiderComponent&& other) {
@@ -646,6 +652,7 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    runtime_fixture = other.runtime_fixture;
   }
   CircleColliiderComponent& CircleColliiderComponent::operator=(CircleColliiderComponent&& other) {
     offset = other.offset;
@@ -654,6 +661,7 @@ namespace ikan {
     friction = other.friction;
     restitution = other.restitution;
     restitution_threshold = other.restitution_threshold;
+    runtime_fixture = other.runtime_fixture;
     return *this;
   }
   void CircleColliiderComponent::RenderGui() {

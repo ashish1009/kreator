@@ -132,8 +132,12 @@ namespace ikan {
     ///   - height: height of entity
     bool CheckOnGround(Entity* entity, float width, float height);
     
+    /// This function check is entity present in the scene as we delete the entity from scene in other frame
+    /// - Parameter entity: eneity
+    bool IsEntityPresentInMap(entt::entity entity);
+    
     /// This function reset the ficture in body
-    /// - Parameter body: <#body description#>
+    /// - Parameter body:
     static void ResetFixture(b2Body* body);
     /// This function reset the Pill Box collider fixture
     /// - Parameters:
