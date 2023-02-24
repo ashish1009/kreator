@@ -116,6 +116,19 @@ namespace mario {
     }
   }
   
+  void MushroomController::Copy(void* script) {
+    if (!script)
+      return;
+    
+    MushroomController* mushroom_script = reinterpret_cast<MushroomController*>(script);
+    IK_ASSERT(mushroom_script);
+    
+    going_right_ = mushroom_script->going_right_;
+    max_speed_ = mushroom_script->max_speed_;
+    free_fall_factor = mushroom_script->free_fall_factor;
+    velocity_ = mushroom_script->velocity_;
+  }
+  
   void FlowerController::Create(Entity entity) {
     entity_ = entity;
     AddRuntimeItemComponents(&entity_);
@@ -138,7 +151,7 @@ namespace mario {
   void FlowerController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
     LivingEntityHitCheck(collided_entity, contact);
   }
-  
+    
   struct ItemData {
     std::string name;
     std::string scrip_name;

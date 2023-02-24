@@ -19,9 +19,7 @@ namespace ikan {
     "ikan::CameraController"
   };
 
-  void ScriptManager::UpdateScript(NativeScriptComponent* sc,
-                                   const std::string& script_name,
-                                   ScriptLoaderFn loader_function) {
+  void ScriptManager::UpdateScript(NativeScriptComponent* sc, const std::string& script_name, ScriptLoaderFn loader_function) {
     if (script_name == "ikan::CameraController") {
       sc->Bind<ikan::CameraController>();
     }

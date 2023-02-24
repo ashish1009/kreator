@@ -28,6 +28,7 @@ namespace mario {
     void Update(Timestep) override;
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
     void RenderGui() override;
+    void Copy(void* script) override;
     
     DELETE_COPY_MOVE_CONSTRUCTORS(EnemyController);
     

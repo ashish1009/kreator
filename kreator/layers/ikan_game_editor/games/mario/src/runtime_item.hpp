@@ -34,13 +34,11 @@ namespace mario {
   
   class MushroomController : public ScriptableEntity, CommonRuntimeData {
   public:
-    ~MushroomController() {
-      
-    }
-    
+    ~MushroomController() = default;
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& normal) override;
+    void Copy(void* script) override;
     
   private:
     bool going_right_ = true;

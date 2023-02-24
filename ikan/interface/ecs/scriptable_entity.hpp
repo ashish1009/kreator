@@ -52,14 +52,13 @@ namespace ikan {
     virtual void EndCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {}
     virtual void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {}
     virtual void PostSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {}
+    virtual void Copy(void* script) {}
 
   protected:
     virtual void Create(Entity entity) { entity_ = entity; }
     virtual void Destroy() {}
     virtual void Update(Timestep ts) {}
-    
-    DELETE_COPY_MOVE_CONSTRUCTORS(ScriptableEntity);
-    
+        
   protected:
     Entity entity_;
     EnttScene* scene_;
@@ -70,7 +69,16 @@ namespace ikan {
   public:
     void Update(Timestep ts) override;
     void RenderGui() override;
-    
+    void Copy(void* script) override {
+      if (!script)
+        return;
+      
+      CameraController* camera_script = reinterpret_cast<CameraController*>(script);
+      IK_ASSERT(camera_script);
+      
+      speed_ = camera_script->speed_;
+    }
+
   private:
     float speed_ = 10.0f;
   };

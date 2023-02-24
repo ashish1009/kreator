@@ -159,6 +159,25 @@ namespace mario {
     data->block_map["PowerUpBlock"] = {BlockController::Type::PowerUp, powerup_coin_loader_fn, 0};
   }
   
+  void BlockController::Copy(void* script) {
+    if (!script)
+      return;
+    
+    BlockController* block_script = reinterpret_cast<BlockController*>(script);
+    IK_ASSERT(block_script);
+    
+    going_up_ = block_script->going_up_;
+    animation_ = block_script->animation_;
+    start_pos_ = block_script->start_pos_;
+    end_pos_ = block_script->end_pos_;
+    
+    active_ = block_script->active_;
+    speed_ = block_script->speed_;
+    
+    type_ = block_script->type_;
+    count_ = block_script->count_;
+  }
+  
   void BlockScriptManager::Shutdown() {
     delete data;
   }
@@ -173,6 +192,10 @@ namespace mario {
   
   uint32_t BlockScriptManager::GetCount(const std::string& tag) {
     return data->block_map.at(tag).coin_count;
+  }
+  
+  void BlockController::RenderGui() {
+    ImGui::Text("%d", active_);
   }
   
 }

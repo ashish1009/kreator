@@ -274,7 +274,7 @@ namespace mario {
     
     power_up_ = false;
   }
-  
+    
   void PlayerController::RenderGui() {
     ImGui::Text(" Acc %f %f", acceleration_.x, acceleration_.y);
     ImGui::Text(" Vel %f %f", velocity_.x, velocity_.y);
@@ -290,4 +290,5 @@ namespace mario {
     ImGui::Text(" Power time %f", freez_time_);
     
   }
+  
 }

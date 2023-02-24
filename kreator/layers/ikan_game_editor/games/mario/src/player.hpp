@@ -59,7 +59,7 @@ namespace mario {
     bool IsHurt() const { return is_hurt_; }
     
     static PlayerController* Get() { return instance_; }
-
+    
   private:
     void CheckOnGround();
     void Powerup();

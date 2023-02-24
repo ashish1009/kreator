@@ -109,6 +109,28 @@ namespace mario {
     on_ground_ = entity_.GetScene()->CheckOnGround(&entity_, inner_player_width, y_val);
   }
   
+  void EnemyController::Copy(void* script) {
+    if (!script)
+      return;
+    
+    EnemyController* enemy_script = reinterpret_cast<EnemyController*>(script);
+    IK_ASSERT(enemy_script);
+    
+    type_ = enemy_script->type_;
+    
+    is_dead_ = enemy_script->is_dead_;
+    going_right_ = enemy_script->going_right_;
+    on_ground_ = enemy_script->on_ground_;
+    
+    free_fall_factor = enemy_script->free_fall_factor;
+    walk_speed_ = enemy_script->walk_speed_;
+    time_to_kill = enemy_script->time_to_kill;
+    
+    acceleration_ = enemy_script->acceleration_;
+    velocity_ = enemy_script->velocity_;
+    terminal_velocity_ = enemy_script->terminal_velocity_;
+  }
+
   void EnemyController::RenderGui() {
     ImGui::Text(" Acc %f %f", acceleration_.x, acceleration_.y);
     ImGui::Text(" Vel %f %f", velocity_.x, velocity_.y);

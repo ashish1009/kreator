@@ -391,24 +391,29 @@ namespace ikan {
     loader_function = other.loader_function;
     script_name = other.script_name;
     ScriptManager::UpdateScript(this, script_name, loader_function);
+    
+    script->Copy((void*)other.script.get());
   }
   NativeScriptComponent& NativeScriptComponent::operator=(const NativeScriptComponent& other) {
     loader_function = other.loader_function;
     script_name = other.script_name;
     
     ScriptManager::UpdateScript(this, script_name, loader_function);
+    script->Copy((void*)other.script.get());
     return *this;
   }
   NativeScriptComponent::NativeScriptComponent(NativeScriptComponent&& other) {
     loader_function = other.loader_function;
     script_name = other.script_name;
     ScriptManager::UpdateScript(this, script_name, loader_function);
+    script->Copy((void*)other.script.get());
   }
   NativeScriptComponent& NativeScriptComponent::operator=(NativeScriptComponent&& other) {
     loader_function = other.loader_function;
     script_name = other.script_name;
     
     ScriptManager::UpdateScript(this, script_name, loader_function);
+    script->Copy((void*)other.script.get());
     return *this;
   }
   
