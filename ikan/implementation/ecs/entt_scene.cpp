@@ -724,6 +724,9 @@ namespace ikan {
   }
   
   float RayCastInfo::ReportFixture(b2Fixture *fixture, const b2Vec2 &hit_point, const b2Vec2 &normal, float fraction) {
+    if (!Entity::IsValid((Entity*)(fixture->GetUserData().pointer)))
+      return 1;
+    
     if (((Entity*)(fixture->GetUserData().pointer))->GetComponent<IDComponent>().id ==
         request_object->GetComponent<IDComponent>().id) {
       return 1;
@@ -740,10 +743,6 @@ namespace ikan {
   }
   
   bool RayCastInfo::OnGround() {
-//    if (hit_object) {
-//      auto& r = hit_object->GetComponent<RigidBodyComponent>();
-//      IK_WARN("", "{0}, {1}", r.is_ground, hit_object->GetComponent<TagComponent>().tag.c_str());
-//    }
     return hit and hit_object and hit_object->HasComponent<RigidBodyComponent>() and hit_object->GetComponent<RigidBodyComponent>().is_ground;
   }
 

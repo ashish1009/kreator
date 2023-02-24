@@ -94,6 +94,8 @@ namespace ikan {
     /// This function returns the scens pointer
     EnttScene* GetScene();
     
+    static bool IsValid(Entity* e);
+    
   private:
     entt::entity entity_handle_{ entt::null };
     EnttScene* scene_;

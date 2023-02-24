@@ -15,8 +15,8 @@
 
 namespace ikan {
 
-  bool IsValidEntity(Entity* e) {
-    return e and e->GetScene()->IsEntityPresentInMap((entt::entity)(*e)) and e->HasComponent<NativeScriptComponent>();
+  bool IsValidScriptEntity(Entity* e) {
+    return Entity::IsValid(e) and e->HasComponent<NativeScriptComponent>();
   }
   
   void ContactListner::BeginContact(b2Contact* contact) {
@@ -29,9 +29,9 @@ namespace ikan {
     glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
     glm::vec2 b_normal = a_normal * -1.0f;
     
-    if (IsValidEntity(entity_a))
+    if (IsValidScriptEntity(entity_a))
       entity_a->GetComponent<NativeScriptComponent>().script->BeginCollision(entity_b, contact, a_normal);
-    if (IsValidEntity(entity_b))
+    if (IsValidScriptEntity(entity_b))
       entity_b->GetComponent<NativeScriptComponent>().script->BeginCollision(entity_a, contact, b_normal);
   }
   
@@ -45,9 +45,9 @@ namespace ikan {
     glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
     glm::vec2 b_normal = a_normal * -1.0f;
 
-    if (IsValidEntity(entity_a))
+    if (IsValidScriptEntity(entity_a))
       entity_a->GetComponent<NativeScriptComponent>().script->EndCollision(entity_b, contact, a_normal);
-    if (IsValidEntity(entity_b))
+    if (IsValidScriptEntity(entity_b))
       entity_b->GetComponent<NativeScriptComponent>().script->EndCollision(entity_a, contact, b_normal);
   }
   
@@ -61,9 +61,9 @@ namespace ikan {
     glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
     glm::vec2 b_normal = a_normal * -1.0f;
     
-    if (IsValidEntity(entity_a))
+    if (IsValidScriptEntity(entity_a))
       entity_a->GetComponent<NativeScriptComponent>().script->PreSolve(entity_b, contact, a_normal);
-    if (IsValidEntity(entity_b))
+    if (IsValidScriptEntity(entity_b))
       entity_b->GetComponent<NativeScriptComponent>().script->PreSolve(entity_a, contact, b_normal);
   }
   
@@ -77,9 +77,9 @@ namespace ikan {
     glm::vec2 a_normal = {world_manifold.normal.x, world_manifold.normal.y};
     glm::vec2 b_normal = a_normal * -1.0f;
 
-    if (IsValidEntity(entity_a))
+    if (IsValidScriptEntity(entity_a))
       entity_a->GetComponent<NativeScriptComponent>().script->PostSolve(entity_b, contact, a_normal);
-    if (IsValidEntity(entity_b))
+    if (IsValidScriptEntity(entity_b))
       entity_b->GetComponent<NativeScriptComponent>().script->PostSolve(entity_a, contact, b_normal);
   }
   
