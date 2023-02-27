@@ -14,7 +14,7 @@ namespace mario {
   using namespace ikan;
   
   enum class EnemyType {
-    Goomba
+    Goomba, Duck
   };
   
   enum class EnemyState {
@@ -58,7 +58,6 @@ namespace mario {
     EnemyData(EnemyType type, ScriptLoaderFn fun) : type(type), loader_fun(fun) { }
   };
   
-  
   class EnemyScriptManager {
   public:
     static void Init();
@@ -70,11 +69,12 @@ namespace mario {
   
   
   inline bool IsEnemy(const std::string& tag) {
-    return tag == "Goomba";
+    return tag == "Goomba" or tag == "Duck";
   }
   
   inline EnemyType GetType(const std::string& tag) {
     if (tag == "Goomba") return EnemyType::Goomba;
+    if (tag == "Duck") return EnemyType::Duck;
     return EnemyType::Goomba;
   }
   

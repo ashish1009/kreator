@@ -104,7 +104,37 @@ namespace mario {
     rb.SetGravityScale(0.0f);
   }
 
-  void PlayerController::Update(Timestep ts) { // Run Left
+  void PlayerController::Update(Timestep ts) {
+    auto& rb = entity_.GetComponent<RigidBodyComponent>();
+    const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
+
+    if (is_dead_) {
+      EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, pbc);
+
+      auto& tc = entity_.GetComponent<TransformComponent>();
+      if (tc.Translation().y < dead_max_height_ and dead_going_up_) {
+        tc.UpdateTranslation_Y(tc.Translation().y + (ts * walk_speed_ * 2.0f));
+      }
+      else if (tc.Translation().y >= dead_max_height_ and dead_going_up_) {
+        dead_going_up_ = false;
+      }
+      else if (!dead_going_up_) {
+        rb.type = b2_kinematicBody;
+        EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, pbc);
+        
+        acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * free_fall_factor;
+
+        velocity_.x = 0.0f;
+        velocity_.y += acceleration_.y * ts * 2.0f;
+        velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
+        
+        rb.SetVelocity(velocity_);
+        rb.SetAngularVelocity(0.0f);
+      }
+      // Stop at some point . End game reset level
+      return;
+    }
+    
     CheckOnGround();
     state_machine_->Update(ts);
     
@@ -114,7 +144,6 @@ namespace mario {
     // Freeze until player power up complets
     if (state_machine_->GetAction() == PlayerAction::PowerUp) {
       freez_time_-= ts;
-      auto& rb = entity_.GetComponent<RigidBodyComponent>();
       if (freez_time_ >= 0) {
         if (!on_ground_) {
           rb.SetVelocity({0, 0});
@@ -127,7 +156,6 @@ namespace mario {
         
         if (player_state_ == PlayerState::Big) {
           // As our player powered up so reset the pill box size
-          const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
           EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, pbc);
         }
       }
@@ -212,7 +240,6 @@ namespace mario {
     velocity_.x = std::max(std::min(velocity_.x, terminal_velocity_.x), -terminal_velocity_.x);
     velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
     
-    auto& rb = entity_.GetComponent<RigidBodyComponent>();
     rb.SetVelocity(velocity_);
     rb.SetAngularVelocity(0.0f);
     
@@ -272,6 +299,55 @@ namespace mario {
     }
     
     power_up_ = false;
+  }
+  
+  void PlayerController::Die() {
+    // State Machine animation
+    
+    if (player_state_ == PlayerState::Small) {
+      state_machine_->ChangeAction(PlayerAction::Die);
+      
+      velocity_ = {0.0, 0.0f};
+      acceleration_ = {0.0, 0.0f};
+      dead_going_up_ = true;
+      is_dead_ = true;
+
+      auto& rb = entity_.GetComponent<RigidBodyComponent>();
+      rb.SetVelocity(velocity_);
+      rb.is_sensor = true;
+      rb.type = b2_staticBody;
+      
+      const auto& tc = entity_.GetComponent<TransformComponent>();
+      dead_max_height_ = tc.Translation().y + 2.0f;
+      
+      // TODO: Below what lebel
+      // if (tc.Translation().y > 0) {
+      //  dead_min_height_ = 0.25f;
+      // }
+      
+      // Play sound
+    }
+    else if (player_state_ == PlayerState::Big) {
+      player_state_ = PlayerState::Small;
+      
+      player_height_ = 1.0f;
+      entity_.GetComponent<TransformComponent>().UpdateScale_Y(player_height_);
+      jumb_boost_ /= big_jump_boost_factor_;
+      walk_speed_ /= big_jump_boost_factor_;
+
+      auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
+      pbc.SetHeight(0.4f);
+      
+      hurt_invincibility_time_left_ = hurt_invincibility_time_;
+      
+      // Play Sound
+    } else if (player_state_ == PlayerState::Fire) {
+      player_state_ = PlayerState::Big;
+
+      hurt_invincibility_time_left_ = hurt_invincibility_time_;
+      
+      // Play Sound
+    }
   }
     
   void PlayerController::RenderGui() {

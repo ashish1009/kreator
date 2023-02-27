@@ -34,6 +34,11 @@ namespace mario {
       return;
     }
     
+    if (type_ == EnemyType::Duck) {
+      auto& tc = entity_.GetComponent<TransformComponent>();
+      tc.UpdateScale_X(going_right_ ? -1.0f : 1.0f);
+    }
+    
     CheckOnGround();
     if (on_ground_) {
       acceleration_.y = 0;
@@ -67,17 +72,15 @@ namespace mario {
     if (PlayerController* pc = PlayerController::Get();
         collided_entity->HasComponent<NativeScriptComponent>() and
         collided_entity->GetComponent<NativeScriptComponent>().script.get() == pc) {
-      if (!pc->IsDead() && !pc->IsHurt() && contact_normal.y > 0.58f) {
+      if (!pc->IsDead() && !pc->IsHurtInvincible() && contact_normal.y > 0.58f) {
         pc->EnemyBounce();
         stomp();
         contact->SetEnabled(false);
-      } else if (!pc->IsDead() && !pc->IsHurt()) {
-        //        playerController.die();
+      } else if (!pc->IsDead() && !pc->IsInvincible()) {
+        pc->Die();
         //        if (!playerController.isDead()) {
         //          contact.setEnabled(false);
         //        }
-      } else if (!pc->IsDead() && pc->IsHurt()) {
-        //        contact.setEnabled(false);
       }
     }
     
@@ -87,6 +90,15 @@ namespace mario {
   }
   
   void EnemyController::stomp() {
+    if (type_ == EnemyType::Duck) {
+      entity_.GetComponent<TransformComponent>().UpdateScale_Y(1.0f);
+      auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
+      pbc.height = 0.5f;
+      pbc.offset.y = 0.0f;
+      pbc.RecalculateColliders();
+      return;
+    }
+
     is_dead_ = true;
     velocity_ = {0.0f, 0.0f};
     auto& rb = entity_.GetComponent<RigidBodyComponent>();
@@ -135,6 +147,7 @@ namespace mario {
     ImGui::Text(" Acc %f %f", acceleration_.x, acceleration_.y);
     ImGui::Text(" Vel %f %f", velocity_.x, velocity_.y);
     ImGui::Text(" On Ground %d", on_ground_);
+    ImGui::Text(" Goin Right %d", going_right_);
   }
   
   struct EnemyScriptData {
@@ -148,7 +161,7 @@ namespace mario {
   void EnemyScriptManager::Init() {
     data = new EnemyScriptData();
     
-    static auto goomba_load_fn = [](NativeScriptComponent* sc, const std::string& script_name) {
+    static auto enemy_load_fn = [](NativeScriptComponent* sc, const std::string& script_name) {
       if (script_name == "mario::EnemyController") {
         sc->Bind<mario::EnemyController>(EnemyType::Goomba);
         return true;
@@ -156,7 +169,8 @@ namespace mario {
       return false;
     };
     
-    data->script_map[EnemyType::Goomba] = {EnemyType::Goomba, goomba_load_fn};
+    data->script_map[EnemyType::Goomba] = {EnemyType::Goomba, enemy_load_fn};
+    data->script_map[EnemyType::Duck] = {EnemyType::Duck, enemy_load_fn};
   }
   void EnemyScriptManager::Shutdown() {
     delete data;
