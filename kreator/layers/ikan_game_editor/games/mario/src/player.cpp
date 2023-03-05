@@ -119,28 +119,18 @@ namespace mario {
 
       auto& tc = entity_.GetComponent<TransformComponent>();
       if (tc.Translation().y < dead_max_height_ and dead_going_up_) {
-        acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y;
-
-        velocity_.y += acceleration_.y * ts * 2.0f;
-        velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
-
-        rb.SetVelocity({velocity_.x, -velocity_.y});
-        rb.SetAngularVelocity(0.0f);
+        tc.UpdateTranslation_Y(tc.Translation().y + (ts * walk_speed_ * 3.0f));
       }
       else if (tc.Translation().y >= dead_max_height_ and dead_going_up_) {
         dead_going_up_ = false;
       }
       else if (!dead_going_up_) {
-        acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y;
-
-        velocity_.y += acceleration_.y * ts * 2.0f;
-        velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
-
-        rb.SetVelocity(velocity_);
-        rb.SetAngularVelocity(0.0f);
-      }
-      else if (tc.Translation().y <= dead_min_height_) {
-        // End Game
+        if (tc.Translation().y >= dead_min_height_) {
+          tc.UpdateTranslation_Y(tc.Translation().y - (ts * walk_speed_ * 4.0f));
+        }
+        else {
+          // End Game
+        }
       }
       return;
     }
@@ -155,10 +145,6 @@ namespace mario {
       }
       else {
         qc.color.a = 1.0f;
-        
-        auto& rb = entity_.GetComponent<RigidBodyComponent>();
-        rb.is_sensor = false;
-        reset_fixture_ = true;
       }
     }
     else {
@@ -292,16 +278,14 @@ namespace mario {
     if (is_dead_ or !collided_entity or !collided_entity->GetScene())
       return;
     
-//    if (collided_entity->HasComponent<RigidBodyComponent>()) {
-      if (std::abs(contact_normal.x) > 0.8f) {
-        velocity_.x = 0.0f;
-      }
-      else if (contact_normal.y > 0.8f) {
-        velocity_.y = 0;
-        acceleration_.y = 0;
-        jump_time_ = 0;
-      }
-//    }
+    if (std::abs(contact_normal.x) > 0.8f) {
+      velocity_.x = 0.0f;
+    }
+    else if (contact_normal.y > 0.8f) {
+      velocity_.y = 0;
+      acceleration_.y = 0;
+      jump_time_ = 0;
+    }
   }
   
   void PlayerController::Powerup() {
@@ -335,7 +319,7 @@ namespace mario {
   void PlayerController::Die() {
     // State Machine animation
     
-    if (player_state_ == PlayerState::Small and blink_time_ <= 0.0f) {
+    if (player_state_ == PlayerState::Small) {
       state_machine_->ChangeAction(PlayerAction::Die);
       
       velocity_ = {0.0, 0.0f};
@@ -344,15 +328,13 @@ namespace mario {
       is_dead_ = true;
 
       auto& rb = entity_.GetComponent<RigidBodyComponent>();
+      rb.type = b2_staticBody;
       rb.SetVelocity(velocity_);
       rb.is_sensor = true;
       
       const auto& tc = entity_.GetComponent<TransformComponent>();
       dead_max_height_ = tc.Translation().y + 4.0f;
-      
-      if (tc.Translation().y > 0) {
-        dead_min_height_ = tc.Translation().y - 4.0f;
-      }
+      dead_min_height_ = tc.Translation().y - 4.0f;
       
       // Play sound
     }
@@ -368,9 +350,6 @@ namespace mario {
 
       auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
       pbc.SetSize({0.4f, player_height_ / 2.0f});
-
-      auto& rb = entity_.GetComponent<RigidBodyComponent>();
-      rb.is_sensor = true;
 
       // Play Sound
     } else if (player_state_ == PlayerState::Fire) {

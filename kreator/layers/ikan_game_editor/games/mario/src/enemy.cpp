@@ -78,9 +78,9 @@ namespace mario {
         contact->SetEnabled(false);
       } else if (!pc->IsDead() && !pc->IsInvincible()) {
         pc->Die();
-        //        if (!playerController.isDead()) {
-        //          contact.setEnabled(false);
-        //        }
+        if (!pc->IsDead()) {
+          contact->SetEnabled(false);
+        }
       }
     }
     
