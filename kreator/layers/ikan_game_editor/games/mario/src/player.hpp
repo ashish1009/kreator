@@ -67,15 +67,22 @@ namespace mario {
     void CheckOnGround();
     void Powerup();
     
+    const float a_[2] = {0, 1};
+
     bool power_up_ = false;
     bool on_ground_ = false;
     bool is_dead_ = false;
+    
+    bool reset_fixture_ = false;
 
     bool dead_going_up_ = false;
-    float hurt_invincibility_time_ = 1.0f;
+    float hurt_invincibility_time_ = 5.0f;
     float hurt_invincibility_time_left_ = 0.0f;
-    float blink_time_ = 1.0f;
+    float blink_time_ = 1.5f;
 
+    int32_t blink_speed_ = 10;
+    int32_t blink_a_idx_ = 0;
+    
     float dead_max_height_ = 0.0f;
     float dead_min_height_ = 0.0f;
 

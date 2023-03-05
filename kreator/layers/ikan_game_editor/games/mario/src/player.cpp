@@ -107,32 +107,56 @@ namespace mario {
   void PlayerController::Update(Timestep ts) {
     auto& rb = entity_.GetComponent<RigidBodyComponent>();
     const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
-
-    if (is_dead_) {
+    
+    if (reset_fixture_) {
       EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, pbc);
+      reset_fixture_ = false;
+    }
 
-      auto& tc = entity_.GetComponent<TransformComponent>();
-      if (tc.Translation().y < dead_max_height_ and dead_going_up_) {
-        tc.UpdateTranslation_Y(tc.Translation().y + (ts * walk_speed_ * 2.0f));
+//    if (is_dead_) {
+//      EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, pbc);
+//      velocity_.x = 0.0f;
+//
+//      auto& tc = entity_.GetComponent<TransformComponent>();
+//      if (tc.Translation().y < dead_max_height_ and dead_going_up_) {
+//        acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y;
+//
+//        velocity_.y += acceleration_.y * ts * 2.0f;
+//        velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
+//
+//        rb.SetVelocity({velocity_.x, -velocity_.y});
+//        rb.SetAngularVelocity(0.0f);
+//      }
+//      else if (tc.Translation().y >= dead_max_height_ and dead_going_up_) {
+//        dead_going_up_ = false;
+//      }
+//      else if (!dead_going_up_) {
+//        acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y;
+//
+//        velocity_.y += acceleration_.y * ts * 2.0f;
+//        velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
+//
+//        rb.SetVelocity(velocity_);
+//        rb.SetAngularVelocity(0.0f);
+//      }
+//      // Stop at some point . End game reset level
+//      return;
+//    }
+    
+    if (hurt_invincibility_time_left_ > 0) {
+      hurt_invincibility_time_left_ -= ts;
+      blink_time_ -= ts;
+      
+      auto& qc = entity_.GetComponent<QuadComponent>();
+      if (blink_time_ >= 0) {
+        qc.color.a = a_[(blink_a_idx_++ / blink_speed_) % 2];
       }
-      else if (tc.Translation().y >= dead_max_height_ and dead_going_up_) {
-        dead_going_up_ = false;
+      else {
+        qc.color.a = 1.0f;
       }
-      else if (!dead_going_up_) {
-        rb.type = b2_kinematicBody;
-        EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, pbc);
-        
-        acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y * free_fall_factor;
-
-        velocity_.x = 0.0f;
-        velocity_.y += acceleration_.y * ts * 2.0f;
-        velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
-        
-        rb.SetVelocity(velocity_);
-        rb.SetAngularVelocity(0.0f);
-      }
-      // Stop at some point . End game reset level
-      return;
+    }
+    else {
+      
     }
     
     CheckOnGround();
@@ -156,7 +180,7 @@ namespace mario {
         
         if (player_state_ == PlayerState::Big) {
           // As our player powered up so reset the pill box size
-          EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, pbc);
+          reset_fixture_ = true;
         }
       }
     }
@@ -292,6 +316,8 @@ namespace mario {
       walk_speed_ *= big_jump_boost_factor_;
       
       state_machine_->ChangeAction(PlayerAction::PowerUp);
+      
+      blink_time_ = 1.5f;
     }
     else if (player_state_ == PlayerState::Big) {
       player_state_ = PlayerState::Fire;
@@ -304,7 +330,7 @@ namespace mario {
   void PlayerController::Die() {
     // State Machine animation
     
-    if (player_state_ == PlayerState::Small) {
+    if (player_state_ == PlayerState::Small and blink_time_ <= 0.0f) {
       state_machine_->ChangeAction(PlayerAction::Die);
       
       velocity_ = {0.0, 0.0f};
@@ -315,7 +341,6 @@ namespace mario {
       auto& rb = entity_.GetComponent<RigidBodyComponent>();
       rb.SetVelocity(velocity_);
       rb.is_sensor = true;
-      rb.type = b2_staticBody;
       
       const auto& tc = entity_.GetComponent<TransformComponent>();
       dead_max_height_ = tc.Translation().y + 2.0f;
@@ -334,12 +359,15 @@ namespace mario {
       entity_.GetComponent<TransformComponent>().UpdateScale_Y(player_height_);
       jumb_boost_ /= big_jump_boost_factor_;
       walk_speed_ /= big_jump_boost_factor_;
+      hurt_invincibility_time_left_ = hurt_invincibility_time_;
+      reset_fixture_ = true;
 
       auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
       pbc.SetHeight(0.4f);
       
-      hurt_invincibility_time_left_ = hurt_invincibility_time_;
-      
+      auto& rb = entity_.GetComponent<RigidBodyComponent>();
+      rb.is_sensor = true;
+
       // Play Sound
     } else if (player_state_ == PlayerState::Fire) {
       player_state_ = PlayerState::Big;
@@ -363,6 +391,9 @@ namespace mario {
     if(state_machine_)
       ImGui::Text(" State %d", state_machine_->GetAction());
     ImGui::Text(" Power time %f", freez_time_);
+    
+    ImGui::Text(" Blink Time %f", blink_time_);
+    ImGui::Text(" Color A %f", entity_.GetComponent<QuadComponent>().color.a);
     
   }
   
