@@ -19,8 +19,6 @@
 #include "box2d/b2_circle_shape.h"
 #include "box2d/b2_fixture.h"
 
-#define DEBUG_DRAW 0
-
 namespace ikan {
   
   template<typename... Component>
@@ -314,16 +312,17 @@ namespace ikan {
                                                   {ray_cast_2_end.x, ray_cast_2_end.y});
     
     bool on_ground = info_1->OnGround() or info_2->OnGround();
-
-#if DEBUG_DRAW
+    
+    
+    if (setting_.debug_draw_) {
       const auto& cd = primary_camera_data_;
       BatchRenderer::BeginBatch(cd.scene_camera->GetProjection() * glm::inverse(cd.transform_matrix));
       BatchRenderer::DrawLine(glm::vec3(ray_cast_1_begin, 0.0f), glm::vec3(ray_cast_1_end, 0.0f), {0, 1, 0, 1});
       BatchRenderer::DrawLine(glm::vec3(ray_cast_2_begin, 0.0f), glm::vec3(ray_cast_2_end, 0.0f), {0, 1, 0, 1});
       BatchRenderer::EndBatch();
-#endif
-    return on_ground;
+    }
 
+    return on_ground;
   }
   
   void EnttScene::AddRuntimeFixtureToColliders() {

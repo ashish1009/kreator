@@ -153,10 +153,13 @@ namespace mario {
       }
       else {
         qc.color.a = 1.0f;
+        
+        auto& rb = entity_.GetComponent<RigidBodyComponent>();
+        rb.is_sensor = false;
+        reset_fixture_ = true;
       }
     }
     else {
-      
     }
     
     CheckOnGround();

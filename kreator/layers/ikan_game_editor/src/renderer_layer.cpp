@@ -618,6 +618,7 @@ namespace ikan_game {
     if (active_scene_->GetSetting().use_editor_camera)
       PropertyGrid::CheckBox("Show Editor Camera", active_scene_->GetSetting().editor_camera);
     PropertyGrid::CheckBox("Show Colliders", settings_.show_colliders);
+    PropertyGrid::CheckBox("Scene Debug Draw", active_scene_->GetSetting().debug_draw_);
     PropertyGrid::CheckBox("Show Grids", settings_.show_grids);
 
     ImGui::Separator();
