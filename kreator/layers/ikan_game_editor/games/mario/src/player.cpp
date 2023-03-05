@@ -113,35 +113,37 @@ namespace mario {
       reset_fixture_ = false;
     }
 
-//    if (is_dead_) {
-//      EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, pbc);
-//      velocity_.x = 0.0f;
-//
-//      auto& tc = entity_.GetComponent<TransformComponent>();
-//      if (tc.Translation().y < dead_max_height_ and dead_going_up_) {
-//        acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y;
-//
-//        velocity_.y += acceleration_.y * ts * 2.0f;
-//        velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
-//
-//        rb.SetVelocity({velocity_.x, -velocity_.y});
-//        rb.SetAngularVelocity(0.0f);
-//      }
-//      else if (tc.Translation().y >= dead_max_height_ and dead_going_up_) {
-//        dead_going_up_ = false;
-//      }
-//      else if (!dead_going_up_) {
-//        acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y;
-//
-//        velocity_.y += acceleration_.y * ts * 2.0f;
-//        velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
-//
-//        rb.SetVelocity(velocity_);
-//        rb.SetAngularVelocity(0.0f);
-//      }
-//      // Stop at some point . End game reset level
-//      return;
-//    }
+    if (is_dead_) {
+      EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, pbc);
+      velocity_.x = 0.0f;
+
+      auto& tc = entity_.GetComponent<TransformComponent>();
+      if (tc.Translation().y < dead_max_height_ and dead_going_up_) {
+        acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y;
+
+        velocity_.y += acceleration_.y * ts * 2.0f;
+        velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
+
+        rb.SetVelocity({velocity_.x, -velocity_.y});
+        rb.SetAngularVelocity(0.0f);
+      }
+      else if (tc.Translation().y >= dead_max_height_ and dead_going_up_) {
+        dead_going_up_ = false;
+      }
+      else if (!dead_going_up_) {
+        acceleration_.y = entity_.GetScene()->GetPhysicsWorld()->GetGravity().y;
+
+        velocity_.y += acceleration_.y * ts * 2.0f;
+        velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
+
+        rb.SetVelocity(velocity_);
+        rb.SetAngularVelocity(0.0f);
+      }
+      else if (tc.Translation().y <= dead_min_height_) {
+        // End Game
+      }
+      return;
+    }
     
     if (hurt_invincibility_time_left_ > 0) {
       hurt_invincibility_time_left_ -= ts;
@@ -346,12 +348,11 @@ namespace mario {
       rb.is_sensor = true;
       
       const auto& tc = entity_.GetComponent<TransformComponent>();
-      dead_max_height_ = tc.Translation().y + 2.0f;
+      dead_max_height_ = tc.Translation().y + 4.0f;
       
-      // TODO: Below what lebel
-      // if (tc.Translation().y > 0) {
-      //  dead_min_height_ = 0.25f;
-      // }
+      if (tc.Translation().y > 0) {
+        dead_min_height_ = tc.Translation().y - 4.0f;
+      }
       
       // Play sound
     }
@@ -366,7 +367,7 @@ namespace mario {
       reset_fixture_ = true;
 
       auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
-      pbc.SetSize({0.4f, player_height_ / 2.0f  });
+      pbc.SetSize({0.4f, player_height_ / 2.0f});
 
       auto& rb = entity_.GetComponent<RigidBodyComponent>();
       rb.is_sensor = true;
