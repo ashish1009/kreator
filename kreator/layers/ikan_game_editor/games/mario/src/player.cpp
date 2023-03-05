@@ -313,14 +313,14 @@ namespace mario {
       // Add Impulse to push player out of ground while changing size
       entity_.GetComponent<RigidBodyComponent>().AddVelocity({velocity_.x, 1000.0});
       auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
-      pbc.SetSize({0.5f, pbc.height * 2.0f});
+      pbc.SetSize({0.5f, player_height_ / 2.0f});
       
       jumb_boost_ *= big_jump_boost_factor_;
       walk_speed_ *= big_jump_boost_factor_;
       
       state_machine_->ChangeAction(PlayerAction::PowerUp);
       
-      blink_time_ = 1.5f;
+      blink_time_ = hurt_invincibility_time_;
     }
     else if (player_state_ == PlayerState::Big) {
       player_state_ = PlayerState::Fire;
@@ -366,8 +366,8 @@ namespace mario {
       reset_fixture_ = true;
 
       auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
-      pbc.SetHeight(0.4f);
-      
+      pbc.SetSize({0.4f, player_height_ / 2.0f  });
+
       auto& rb = entity_.GetComponent<RigidBodyComponent>();
       rb.is_sensor = true;
 

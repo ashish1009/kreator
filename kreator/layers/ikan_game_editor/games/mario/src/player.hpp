@@ -76,7 +76,7 @@ namespace mario {
     bool reset_fixture_ = false;
 
     bool dead_going_up_ = false;
-    float hurt_invincibility_time_ = 5.0f;
+    float hurt_invincibility_time_ = 1.5f;
     float hurt_invincibility_time_left_ = 0.0f;
     float blink_time_ = 1.5f;
 
