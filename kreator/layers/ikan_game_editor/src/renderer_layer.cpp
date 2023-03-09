@@ -13,7 +13,6 @@ namespace ikan_game {
   
   RendererLayer::RendererLayer(GameType type) : Layer("ikan Game"), game_data_(CreateGameData(type, &viewport_)) {
     cbp_.SetRootData(game_data_->CbpRootDir());
-    game_data_->Init();
     IK_INFO(game_data_->GameName(), "Creating {0} Layer instance ... ", game_data_->GameName().c_str());
   }
   
@@ -227,7 +226,7 @@ namespace ikan_game {
         active_scene_ = editor_scene_;
         active_scene_->EditScene();
 
-        game_data_->SetScene(active_scene_, &spm_);
+        game_data_->Init(active_scene_, &spm_);
         spm_.SetSceneContext(active_scene_.get());
       }
     }
@@ -338,7 +337,7 @@ namespace ikan_game {
         
     active_scene_ = editor_scene_;
     spm_.SetSceneContext(active_scene_.get());
-    game_data_->SetScene(active_scene_, &spm_);
+    game_data_->Init(active_scene_, &spm_);
 
     return result;
   }
@@ -589,7 +588,7 @@ namespace ikan_game {
     active_scene_ = EnttScene::Copy(editor_scene_);
     spm_.SetSceneContext(active_scene_.get());
     
-    game_data_->SetScene(active_scene_, &spm_);
+    game_data_->Init(active_scene_, &spm_);
     
     // After Set contact listner
     active_scene_->PlayScene();

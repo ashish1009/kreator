@@ -9,7 +9,6 @@
 #pragma once
 
 #include "layers/ikan_game_editor/src/renderer_layer.hpp"
-#include "player.hpp"
 
 namespace mario {
   
@@ -20,8 +19,7 @@ namespace mario {
     Mario(const Viewport* const viewport);
     ~Mario();
 
-    void Init() override;
-    void SetScene(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) override;
+    void Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) override;
     void Update(Timestep ts) override;
     void EventHandler(Event& event) override;
     void RenderGui() override;
@@ -39,6 +37,13 @@ namespace mario {
     static Mario& Get() { return *instance_; }
 
   private:
+    /// This function search the primary camera in the scene if not present then cretate one
+    /// Adds the camera controller script to the camera entity
+    void CreateOrSearchCamera();
+    
+    std::shared_ptr<EnttScene> scene_;
+    ScenePanelManager* panel_;
+
     glm::vec4 level_bg_ = {0.2, 0.4, 0.6, 1.0f};
     std::string font_path_ = "fonts/mario.ttf";
 

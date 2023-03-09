@@ -12,12 +12,12 @@
 #include <box2d/b2_contact.h>
 
 namespace ikan {
-    
+  
   class NativeScriptComponent;
-
+  
   // Using Typedefs
   using ScriptLoaderFn = std::function<bool(NativeScriptComponent* sc, const std::string& script_name)>;
-
+  
   // ---------------------------------------------------------------------------
   // This file holds all the native scripts. For now we are using only C type
   // Scripts so we have to pre define all of them. No Runtime script is supported
@@ -31,9 +31,7 @@ namespace ikan {
     /// - Parameters:
     ///   - sc: Native script component pointer
     ///   - script_name: Script name
-    static void UpdateScript(NativeScriptComponent* sc,
-                             const std::string& script_name,
-                             ScriptLoaderFn loader_function);
+    static void UpdateScript(NativeScriptComponent* sc, const std::string& script_name, ScriptLoaderFn loader_function);
     
     MAKE_PURE_STATIC(ScriptManager);
   };
@@ -43,44 +41,26 @@ namespace ikan {
     template <typename... Args>
     ScriptableEntity(Args... args) {}
     virtual ~ScriptableEntity() {}
-
+    
     template<typename T> T& GetComponent() { return entity_.GetComponent<T>(); }
     template<typename T> bool HasComponent() { return entity_.HasComponent<T>(); }
-
+    
     virtual void RenderGui() {}
     virtual void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {}
     virtual void EndCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {}
     virtual void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {}
     virtual void PostSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {}
     virtual void Copy(void* script) {}
-
+    
   protected:
     virtual void Create(Entity entity) { entity_ = entity; }
     virtual void Destroy() {}
     virtual void Update(Timestep ts) {}
-        
+    
   protected:
     Entity entity_;
     EnttScene* scene_;
     friend class EnttScene;
-  };
-  
-  class CameraController : public ScriptableEntity {
-  public:
-    void Update(Timestep ts) override;
-    void RenderGui() override;
-    void Copy(void* script) override {
-      if (!script)
-        return;
-      
-      CameraController* camera_script = reinterpret_cast<CameraController*>(script);
-      IK_ASSERT(camera_script);
-      
-      speed_ = camera_script->speed_;
-    }
-
-  private:
-    float speed_ = 10.0f;
   };
   
 }

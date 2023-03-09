@@ -435,16 +435,6 @@ namespace ikan {
   void NativeScriptComponent::RenderGui() {
     ImGui::PushID("Natiove Script Component");
     
-    int32_t new_script_idx = -1;
-    new_script_idx = PropertyGrid::ComboDrop("Add Script", ScriptManager::scripts_, 0, ImGui::GetWindowContentRegionMax().x / 2);
-    if (new_script_idx > 0) {
-      const auto script_name = ScriptManager::scripts_[new_script_idx];
-      if (this->script_name != script_name)
-        ScriptManager::UpdateScript(this, script_name, nullptr);
-      else
-        IK_CORE_TRACE(LogModule::Component, "Script {0} already loaded to current entity", script_name.c_str());
-    }
-
     bool opened = ImGui::TreeNodeEx(script_name.c_str(), ImGuiTreeNodeFlags_Bullet);
     if (opened) {
       if (script)
