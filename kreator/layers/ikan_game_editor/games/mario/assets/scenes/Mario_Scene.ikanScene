@@ -3,4 +3,20 @@ Setting_editor_camera: true
 Setting_scene_data: true
 Use_editor_camera: true
 Entities:
-  []
+  - Entity: 9053785394237920494
+    TagComponent:
+      Tag: Camera
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 19
+      Near: -1
+      Far: 1
+    NativeScriptComponent:
+      Script_name_: ikan::CameraController
