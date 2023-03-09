@@ -113,7 +113,7 @@ namespace mario {
       reset_fixture_ = false;
     }
 
-    if (is_dead_) {
+    if (is_dying_) {
       EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, pbc);
       velocity_.x = 0.0f;
 
@@ -129,7 +129,7 @@ namespace mario {
           tc.UpdateTranslation_Y(tc.Translation().y - (ts * walk_speed_ * 4.0f));
         }
         else {
-          // End Game
+          is_dead_ = true;
         }
       }
       return;
@@ -262,7 +262,6 @@ namespace mario {
       state_machine_->ChangeAction(PlayerAction::Jump);
     }
     else {
-//      state_machine_->ChangeState(PlayerState::Idle);
     }
   }
   
@@ -275,7 +274,7 @@ namespace mario {
   }
 
   void PlayerController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
-    if (is_dead_ or !collided_entity or !collided_entity->GetScene())
+    if (is_dying_ or !collided_entity or !collided_entity->GetScene())
       return;
     
     if (std::abs(contact_normal.x) > 0.8f) {
@@ -325,7 +324,7 @@ namespace mario {
       velocity_ = {0.0, 0.0f};
       acceleration_ = {0.0, 0.0f};
       dead_going_up_ = true;
-      is_dead_ = true;
+      is_dying_ = true;
 
       auto& rb = entity_.GetComponent<RigidBodyComponent>();
       rb.type = b2_staticBody;

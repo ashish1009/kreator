@@ -18,7 +18,7 @@ namespace mario {
   };
   
   enum class EnemyState {
-    Dead
+    Dying, Dead
   };
   
   class EnemyController : public ScriptableEntity {
@@ -38,14 +38,18 @@ namespace mario {
     
     EnemyType type_;
     
+    bool reset_fixture_ = false;
+
     bool is_dead_ = false;
+    bool is_dying_ = false;
     bool going_right_ = true;
     bool on_ground_ = false;
     
     float free_fall_factor = 1.0f;
     float walk_speed_ = 4.0f;
     float time_to_kill = 0.5f;
-    
+    float time_to_revive_ = 1.5f;
+
     glm::vec2 acceleration_;
     glm::vec2 velocity_;
     glm::vec2 terminal_velocity_ = {8.1f, 18.1f};

@@ -90,6 +90,10 @@ namespace mario {
     TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)), { 5.0f, 5.0f, 0.3f }, { 0.35f, 0.35f }, { 0, 0, 1, 1 });
     
     TextRenderer::EndBatch();
+    
+    if (player_->IsDead()) {
+      
+    }
   }
   
   void Mario::RenderGui() {
@@ -345,6 +349,8 @@ namespace mario {
       nsc.loader_function = player_controler_loader_fn;
       nsc.Bind<PlayerController>();
     }
+    
+    player_ = PlayerController::Get();
   }
   
   void Mario::AddScriptsToEntities() {

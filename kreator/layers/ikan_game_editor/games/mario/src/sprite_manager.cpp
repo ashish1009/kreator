@@ -69,7 +69,7 @@ namespace mario {
     goomba_sprite[EnemyState::Dead] = SubTexture::CreateFromCoords(enemy_sprite, {2.0f, 6.0f});
 
     auto& duck_sprite = data_->enemy_subtextures_map[EnemyType::Duck];
-    duck_sprite[EnemyState::Dead] = SubTexture::CreateFromCoords(enemy_sprite, {10.0f, 6.0f});
+    duck_sprite[EnemyState::Dying] = SubTexture::CreateFromCoords(enemy_sprite, {10.0f, 6.0f});
   }
   
   std::shared_ptr<SubTexture> SpriteManager::GetEnemySprite(EnemyType type, EnemyState state) {

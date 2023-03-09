@@ -9,6 +9,7 @@
 #pragma once
 
 #include "layers/ikan_game_editor/src/renderer_layer.hpp"
+#include "player.hpp"
 
 namespace mario {
   
@@ -126,6 +127,8 @@ namespace mario {
     
     std::shared_ptr<EnttScene> scene_;
     ScenePanelManager* panel_;
+    
+    PlayerController* player_;
 
     // Debug Data
     std::unordered_map<entt::entity, Entity*> selected_entities_;

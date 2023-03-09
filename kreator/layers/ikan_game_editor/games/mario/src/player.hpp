@@ -57,6 +57,7 @@ namespace mario {
     void EnemyBounce() { enemy_bounce_ = 18; }
     
     bool IsSmall() const { return player_state_ == PlayerState::Small; }
+    bool IsDying() const { return is_dying_; }
     bool IsDead() const { return is_dead_; }
     bool IsHurtInvincible() const { return hurt_invincibility_time_left_ > 0.0f; }
     bool IsInvincible() const { return player_state_ == PlayerState::Invicible or IsHurtInvincible(); }
@@ -72,7 +73,8 @@ namespace mario {
     bool power_up_ = false;
     bool on_ground_ = false;
     bool is_dead_ = false;
-    
+    bool is_dying_ = false;
+
     bool reset_fixture_ = false;
     bool dead_going_up_ = false;
     
