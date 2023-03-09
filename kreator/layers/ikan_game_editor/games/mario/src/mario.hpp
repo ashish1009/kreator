@@ -27,12 +27,11 @@ namespace mario {
     void RenderGui() override;
     void SetViewportSize(uint32_t width, uint32_t height) override;
 
-    
     // Getters
     std::vector<std::filesystem::path> FavDirecotries() const override;
     ImguiFont RegularFontData() const override;
     ImguiFont BoldFontData() const override;
-//    std::string OpenSavedScene() const override { return AM::ClientAsset("scenes/Mario_Scene.ikanScene"); }
+    std::string OpenSavedScene() const override { return AM::ClientAsset("scenes/Mario_Scene.ikanScene"); }
     std::string CbpRootDir() const override { return AM::ClientAsset("scenes/"); };
     glm::vec4 GetBgColor() const override { return level_bg_; }
     std::string GameName() const override { return "Mario"; }

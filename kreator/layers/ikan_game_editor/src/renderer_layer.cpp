@@ -128,53 +128,37 @@ namespace ikan_game {
     if (event.GetRepeatCount() > 0)
       return false;
 
-    // Set control key
     bool ctrl = Input::IsKeyPressed(KeyCode::LeftControl) or Input::IsKeyPressed(KeyCode::RightControl);
-    // Set command key
     bool cmd = Input::IsKeyPressed(KeyCode::LeftSuper) or Input::IsKeyPressed(KeyCode::RightSuper);
 
-    switch (event.GetKeyCode()) {
-      case KeyCode::T:
-        if (cmd)
-          PlayScene();
-        break;
-        
+    if (cmd) {
+      switch (event.GetKeyCode()) {
+        case KeyCode::T: PlayScene();   break;
+        case KeyCode::R: SetPlay(true); break;
+          
         // File Manager
-      case KeyCode::N:
-        if (cmd)
-          NewScene();
-        break;
-      case KeyCode::X:
-        if (cmd)
-          CloseScene();
-        break;
-
-        // Guizmo
-      case KeyCode::Q:
-        if (ctrl)
-          viewport_.guizmo_type = -1;
-        break;
-      case KeyCode::W:
-        if (ctrl)
-          viewport_.guizmo_type = ImGuizmo::OPERATION::TRANSLATE;
-        break;
-      case KeyCode::E:
-        if (ctrl)
-          viewport_.guizmo_type = ImGuizmo::OPERATION::ROTATE;
-        break;
-      case KeyCode::R:
-        if (ctrl)
-          viewport_.guizmo_type = ImGuizmo::OPERATION::SCALE;
-        break;
-
-        // Game Play controller
-      case KeyCode::Escape:
-        SetPlay(false);
-        break;
-
-      default:
-        break;
+        case KeyCode::N: NewScene();   break;
+        case KeyCode::X: CloseScene(); break;
+          
+        default: break;
+      };
     }
+    
+    if (ctrl) {
+      switch (event.GetKeyCode()) {
+        case KeyCode::Q: viewport_.guizmo_type = -1;                              break;
+        case KeyCode::W: viewport_.guizmo_type = ImGuizmo::OPERATION::TRANSLATE;  break;
+        case KeyCode::E: viewport_.guizmo_type = ImGuizmo::OPERATION::ROTATE;     break;
+        case KeyCode::R: viewport_.guizmo_type = ImGuizmo::OPERATION::SCALE;      break;
+        default: break;
+      }
+    }
+    
+    switch (event.GetKeyCode()) {
+      case KeyCode::Escape: SetPlay(false); break;
+      default: break;
+    }
+    
     return false;
   }
   
