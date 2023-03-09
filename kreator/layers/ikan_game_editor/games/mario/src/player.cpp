@@ -119,14 +119,14 @@ namespace mario {
 
       auto& tc = entity_.GetComponent<TransformComponent>();
       if (tc.Translation().y < dead_max_height_ and dead_going_up_) {
-        tc.UpdateTranslation_Y(tc.Translation().y + (ts * walk_speed_ * 3.0f));
+        tc.AddTranslation_Y(ts * walk_speed_ * 3.0f);
       }
       else if (tc.Translation().y >= dead_max_height_ and dead_going_up_) {
         dead_going_up_ = false;
       }
       else if (!dead_going_up_) {
         if (tc.Translation().y >= dead_min_height_) {
-          tc.UpdateTranslation_Y(tc.Translation().y - (ts * walk_speed_ * 4.0f));
+          tc.UpdateTranslation_Y(-(ts * walk_speed_ * 4.0f));
         }
         else {
           is_dead_ = true;

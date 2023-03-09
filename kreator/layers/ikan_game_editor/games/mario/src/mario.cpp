@@ -217,10 +217,10 @@ namespace mario {
       
       auto& tc = entity->GetComponent<TransformComponent>();
       switch (direction) {
-        case Down:      tc.UpdateTranslation_Y(tc.Translation().y - 1.0f);     break;
-        case Up:        tc.UpdateTranslation_Y(tc.Translation().y + 1.0f);     break;
-        case Right:     tc.UpdateTranslation_X(tc.Translation().x + 1.0f);     break;
-        case Left:      tc.UpdateTranslation_X(tc.Translation().x - 1.0f);     break;
+        case Down:      tc.AddTranslation_Y(- 1.0f);     break;
+        case Up:        tc.AddTranslation_Y(1.0f);       break;
+        case Right:     tc.AddTranslation_X(1.0f);       break;
+        case Left:      tc.AddTranslation_X(- 1.0f);     break;
         default: break;
       }
     }
@@ -275,11 +275,11 @@ namespace mario {
     
     bool shift = Input::IsKeyPressed(KeyCode::RightShift);
     if (shift) {
-      if (Input::IsKeyPressed(KeyCode::A)) tc->UpdateTranslation_X(tc->Translation().x - (cam->GetZoom() * ts));
-      if (Input::IsKeyPressed(KeyCode::D)) tc->UpdateTranslation_X(tc->Translation().x + (cam->GetZoom() * ts));
+      if (Input::IsKeyPressed(KeyCode::A)) tc->AddTranslation_X(-(cam->GetZoom() * ts));
+      if (Input::IsKeyPressed(KeyCode::D)) tc->AddTranslation_X(cam->GetZoom() * ts);
       
-      if (Input::IsKeyPressed(KeyCode::W)) tc->UpdateTranslation_Y(tc->Translation().y + (cam->GetZoom() * ts));
-      if (Input::IsKeyPressed(KeyCode::S)) tc->UpdateTranslation_Y(tc->Translation().y - (cam->GetZoom() * ts));
+      if (Input::IsKeyPressed(KeyCode::W)) tc->AddTranslation_Y(cam->GetZoom() * ts);
+      if (Input::IsKeyPressed(KeyCode::S)) tc->AddTranslation_Y(-(cam->GetZoom() * ts));
       
       if (Input::IsKeyPressed(KeyCode::Q)) cam->SetOrthographicSize(cam->GetOrthographicSize() + 1.0f);
       if (Input::IsKeyPressed(KeyCode::E)) cam->SetOrthographicSize(cam->GetOrthographicSize() - 1.0f);

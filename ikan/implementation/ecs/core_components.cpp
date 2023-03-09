@@ -99,7 +99,19 @@ namespace ikan {
   void TransformComponent::UpdateTranslation_Z(float value) { UpdateTranslation({translation.x, translation.y, value} ); }
   void TransformComponent::UpdateRotation_Z(float value) { UpdateRotation({rotation.x, rotation.y, value} ); }
   void TransformComponent::UpdateScale_Z(float value) { UpdateScale({scale.x, scale.y, value} ); }
+
+  void TransformComponent::AddTranslation_X(float value) { UpdateTranslation({ translation.x + value, translation.y, translation.z} ); }
+  void TransformComponent::AddRotation_X(float value) { UpdateRotation({rotation.x + value, rotation.y, rotation.z} ); }
+  void TransformComponent::AddScale_X(float value) { UpdateScale({scale.x + value, scale.y, scale.z} ); }
   
+  void TransformComponent::AddTranslation_Y(float value) { UpdateTranslation({translation.x, translation.y + value, translation.z} ); }
+  void TransformComponent::AddRotation_Y(float value) { UpdateRotation({rotation.x, rotation.y + value, rotation.z} ); }
+  void TransformComponent::AddScale_Y(float value) { UpdateScale({scale.x, scale.y + value, scale.z} ); }
+  
+  void TransformComponent::AddTranslation_Z(float value) { UpdateTranslation({translation.x, translation.y, translation.z + value} ); }
+  void TransformComponent::AddRotation_Z(float value) { UpdateRotation({rotation.x, rotation.y, rotation.z + value} ); }
+  void TransformComponent::AddScale_Z(float value) { UpdateScale({scale.x, scale.y, scale.z + value} ); }
+
   void TransformComponent::UpdateTranslation(const glm::vec3& value) {
     translation = value;
     transform = Math::GetTransformMatrix(translation, rotation, scale);

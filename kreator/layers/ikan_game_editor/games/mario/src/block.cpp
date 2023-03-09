@@ -40,7 +40,7 @@ namespace mario {
     if (animation_) {
       if (going_up_) {
         if (tc.Translation().y < end_pos_.y) {
-          tc.UpdateTranslation_Y(tc.Translation().y + (ts * speed_));
+          tc.AddTranslation_Y(ts * speed_);
         }
         else {
           going_up_ = false;
@@ -48,7 +48,7 @@ namespace mario {
       }
       else {
         if (tc.Translation().y > start_pos_.y) {
-          tc.UpdateTranslation_Y(tc.Translation().y - (ts * speed_));
+          tc.AddTranslation_Y(-(ts * speed_));
         }
         else {
           tc.UpdateTranslation_Y(start_pos_.y);

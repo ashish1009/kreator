@@ -51,6 +51,18 @@ namespace ikan {
     void UpdateRotation_Z(float value);
     void UpdateScale_Z(float value);
 
+    void AddTranslation_X(float value);
+    void AddRotation_X(float value);
+    void AddScale_X(float value);
+    
+    void AddTranslation_Y(float value);
+    void AddRotation_Y(float value);
+    void AddScale_Y(float value);
+    
+    void AddTranslation_Z(float value);
+    void AddRotation_Z(float value);
+    void AddScale_Z(float value);
+
     void UpdateTranslation(const glm::vec3& value);
     void UpdateRotation(const glm::vec3& value);
     void UpdateScale(const glm::vec3& value);

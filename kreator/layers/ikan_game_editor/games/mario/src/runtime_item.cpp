@@ -69,8 +69,8 @@ namespace mario {
   void CoinController::Update(Timestep ts) {
     auto& tc = entity_.GetComponent<TransformComponent>();
     if (tc.Translation().y < top_pos_.y) {
-      tc.UpdateTranslation_Y(tc.Translation().y + ts * speed_);
-      tc.UpdateScale_X(tc.Scale().x - fmod((2.5f * ts), -1.0f));
+      tc.AddTranslation_Y(ts * speed_);
+      tc.AddScale_X(-fmod((2.5f * ts), -1.0f));
     }
     else {
       entity_.GetScene()->DestroyEntity(entity_);
