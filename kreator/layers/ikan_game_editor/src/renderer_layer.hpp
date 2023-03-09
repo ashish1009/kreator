@@ -66,6 +66,8 @@ namespace ikan_game {
     void EventHandler(Event& event) override;
     
   private:
+    enum Direction {Left, Right, Up, Down};
+    
     /// This function handles the key button press event
     /// - Parameter e key button pressed event
     bool KeyPressed(KeyPressedEvent& event);
@@ -117,6 +119,21 @@ namespace ikan_game {
     /// This function wraps the scene play
     void PlayScene();
     
+    /// This function render the rectangle when click drag mouse and select the entities
+    void SelectEntities();
+    /// This function clear the selected entities
+    void ClearSelectedEntities();
+    /// This function highlight the selected entiies
+    /// - Parameter enable: flag to set or unset
+    void HighlightSelectedEntities(bool enable);
+    /// This function Delete the selected entities
+    void DeleteSelectedEntities();
+    /// This function Duplicate the selected entities
+    void DuplicateSelectedEntities();
+    /// This function moves the selected entities
+    /// - Parameter direction: Direction of movement
+    void MoveEntities(Direction direction);
+
     // ------------------
     // Member variables
     // ------------------
@@ -136,6 +153,9 @@ namespace ikan_game {
       Light, Dark, Grey, LightGrey
     };
     Theme current_theme_ = Theme::LightGrey;
+    
+    // Debug Data
+    std::unordered_map<entt::entity, Entity*> selected_entities_;
   };
   
 }

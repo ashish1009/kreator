@@ -64,6 +64,10 @@ namespace ikan_game {
       Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
 
       RenderScene(ts);
+      
+      if (!game_data_->IsPlaying()) {
+        SelectEntities();
+      }
 
       if (settings_.show_grids)
         RenderGrid();
@@ -127,8 +131,9 @@ namespace ikan_game {
     if (event.GetRepeatCount() > 0)
       return false;
 
-    bool ctrl = Input::IsKeyPressed(KeyCode::LeftControl) or Input::IsKeyPressed(KeyCode::RightControl);
-    bool cmd = Input::IsKeyPressed(KeyCode::LeftSuper) or Input::IsKeyPressed(KeyCode::RightSuper);
+    bool ctrl  = Input::IsKeyPressed(KeyCode::LeftControl) or Input::IsKeyPressed(KeyCode::RightControl);
+    bool cmd   = Input::IsKeyPressed(KeyCode::LeftSuper) or Input::IsKeyPressed(KeyCode::RightSuper);
+    bool shift = Input::IsKeyPressed(KeyCode::LeftShift);
 
     if (cmd) {
       switch (event.GetKeyCode()) {
@@ -153,6 +158,21 @@ namespace ikan_game {
       }
     }
     
+    if (shift) {
+      switch (event.GetKeyCode()) {
+        case KeyCode::D:          DuplicateSelectedEntities();  break;
+        case KeyCode::Backspace:  DeleteSelectedEntities();     break;
+        case KeyCode::Escape:     ClearSelectedEntities();      break;
+          
+        case KeyCode::Left:     MoveEntities(Left);   break;
+        case KeyCode::Right:    MoveEntities(Right);  break;
+        case KeyCode::Up:       MoveEntities(Up);     break;
+        case KeyCode::Down:     MoveEntities(Down);   break;
+          
+        default: break;
+      } // switch (e.GetKeyCode())
+    } // if (shift)
+
     switch (event.GetKeyCode()) {
       case KeyCode::Escape: SetPlay(false); break;
       default: break;
@@ -623,4 +643,144 @@ namespace ikan_game {
     ImGui::End();
   }
   
+  void RendererLayer::SelectEntities() {
+    if (!(viewport_.mouse_pos_x >= 0 and viewport_.mouse_pos_y >= 0 and
+          viewport_.mouse_pos_x <= viewport_.width and viewport_.mouse_pos_y <= viewport_.height)) {
+      ClearSelectedEntities();
+      return;
+    }
+    
+    if (!Input::IsKeyPressed(KeyCode::LeftShift) or Input::IsKeyPressed(KeyCode::LeftControl))
+      return;
+    
+    static bool first_clicked = true;
+    
+    static glm::vec2 initial_mouse_position_ = glm::vec2(0.0f);
+    static glm::vec2 final_mouse_position_ = glm::vec2(0.0f);
+    
+    static glm::vec2 initial_block_position_ = glm::vec2(0.0f);
+    static glm::vec2 final_block_position_ = glm::vec2(0.0f);
+    
+    const auto& cd = active_scene_->GetPrimaryCameraData();
+    float zoom = cd.scene_camera->GetZoom();
+    float aspect_ratio = cd.scene_camera->GetAspectRatio();
+
+    if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft)) {
+      if (first_clicked) {
+        ClearSelectedEntities();
+        
+        first_clicked = false;
+        initial_mouse_position_ = { viewport_.mouse_pos_x, viewport_.mouse_pos_y };
+        initial_block_position_ = {
+          viewport_.mouse_pos_x - ((float)viewport_.width / 2),
+          viewport_.mouse_pos_y - ((float)viewport_.height / 2)
+        };
+        initial_block_position_ *= ((zoom * aspect_ratio) / viewport_.width);
+      }
+      
+      final_mouse_position_ = { viewport_.mouse_pos_x, viewport_.mouse_pos_y };
+      final_block_position_ = {
+        viewport_.mouse_pos_x - ((float)viewport_.width / 2),
+        viewport_.mouse_pos_y - ((float)viewport_.height / 2)
+      };
+      final_block_position_ *= ((zoom * aspect_ratio) / viewport_.width);
+      
+      // Render the outline rectangle
+      BatchRenderer::BeginBatch(active_scene_->GetPrimaryCameraData().scene_camera->GetProjection() *
+                                glm::inverse(active_scene_->GetPrimaryCameraData().transform_matrix));
+      BatchRenderer::DrawRect({initial_block_position_.x + cd.position.x, initial_block_position_.y + cd.position.y, 0.1},
+                              {final_block_position_.x + cd.position.x, final_block_position_.y + cd.position.y, 0.1},
+                              {1, 1, 1, 1});
+      BatchRenderer::EndBatch();
+      
+    }
+    if (Input::IsMouseButtonReleased(MouseButton::ButtonLeft)) {
+      if (!first_clicked) {
+        // Store entites present in selected entitity
+        float min_x = std::min(initial_mouse_position_.x, final_mouse_position_.x);
+        float max_x = std::max(initial_mouse_position_.x, final_mouse_position_.x);
+        float min_y = std::min(initial_mouse_position_.y, final_mouse_position_.y);
+        float max_y = std::max(initial_mouse_position_.y, final_mouse_position_.y);
+        
+        for (float i_x = min_x; i_x <= max_x; i_x ++) {
+          for (float i_y = min_y; i_y <= max_y; i_y++) {
+            // Get pixel from rednerer
+            int32_t pixel = -1;
+            
+            Renderer::GetEntityIdFromPixels(i_x, i_y, viewport_.framebuffer->GetPixelIdIndex(), pixel);
+#if 0
+            IK_TRACE(game_data_->GameName(), "X : {0}, Y : {1}, Pixel : {2}", i_x, i_y, pixel);
+#endif
+            
+            if (pixel <= (int32_t)active_scene_->GetMaxEntityId()) {
+              if (selected_entities_.find((entt::entity)pixel) == selected_entities_.end()){
+                selected_entities_[(entt::entity)pixel] = active_scene_->GetEnitityFromId(pixel);
+              }
+            }
+          }
+        }
+        
+        // TODO: Do it while adding to vector? or keep separate???
+        HighlightSelectedEntities(true);
+      }
+      first_clicked = true;
+    }
+  }
+  
+  void RendererLayer::MoveEntities(Direction direction) {
+    for (auto& [entt, entity] : selected_entities_) {
+      if(!entity) continue;
+      
+      auto& tc = entity->GetComponent<TransformComponent>();
+      switch (direction) {
+        case Down:      tc.AddTranslation_Y(- 1.0f);     break;
+        case Up:        tc.AddTranslation_Y(1.0f);       break;
+        case Right:     tc.AddTranslation_X(1.0f);       break;
+        case Left:      tc.AddTranslation_X(- 1.0f);     break;
+        default: break;
+      }
+    }
+  }
+  
+  void RendererLayer::DeleteSelectedEntities() {
+    for (auto& [entt, entity] : selected_entities_) {
+      if (spm_.GetSelectedEntity() and *(spm_.GetSelectedEntity()) == *entity) {
+        spm_.SetSelectedEntity(nullptr);
+      }
+      active_scene_->DestroyEntity(*entity);
+    }
+    selected_entities_.clear();
+  }
+  
+  void RendererLayer::DuplicateSelectedEntities() {
+    HighlightSelectedEntities(false);
+    for (auto& [entt, entity] : selected_entities_) {
+      active_scene_->DuplicateEntity(*entity);
+    }
+    HighlightSelectedEntities(true);
+  }
+  
+  void RendererLayer::ClearSelectedEntities() {
+    HighlightSelectedEntities(false);
+    selected_entities_.clear();
+  }
+  
+  void RendererLayer::HighlightSelectedEntities(bool enable) {
+    for (auto& [entt, entity] : selected_entities_) {
+      if(!entity) continue;
+      
+      auto& tc = entity->GetComponent<TransformComponent>();
+      auto& qc = entity->GetComponent<QuadComponent>();
+      
+      if (enable) {
+        tc.UpdateTranslation_Z(0.1f);
+        qc.color.a -=0.2f;
+      }
+      else {
+        tc.UpdateTranslation_Z(0.0f);
+        qc.color.a +=0.2f;
+      }
+    }
+  }
+
 }

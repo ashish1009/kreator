@@ -1,8 +1,25 @@
 Scene: Untitled
 Setting_editor_camera: true
 Setting_scene_data: true
-Use_editor_camera: true
+Use_editor_camera: false
 Entities:
+  - Entity: 5003055804920660460
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
   - Entity: 13082797260767108171
     TagComponent:
       Tag: Mario Primary Camera

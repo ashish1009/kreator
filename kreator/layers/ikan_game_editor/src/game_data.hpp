@@ -58,6 +58,11 @@ namespace ikan_game {
     virtual std::vector<std::filesystem::path> FavDirecotries() const {return {};};
     /// This function returns the paths of directory you want in content browser panel
     virtual std::string CbpRootDir() const { return "../../../kreator/layers/ikan_game_editor/"; };
+    
+    bool IsPlaying() { return is_playing_; }
+    
+  private:
+    bool is_playing_ = false;
   };
   
   /// This function is the defination of game data. Implementaiton should be at client
