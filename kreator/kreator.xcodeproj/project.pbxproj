@@ -54,7 +54,6 @@
 		B2250CD6295860BC0067C43B /* entry_point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
 		B2250CE2295863840067C43B /* kreator_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kreator_application.cpp; sourceTree = "<group>"; };
 		B232147C2978052700845848 /* ikan_log.ikan_log */ = {isa = PBXFileReference; lastKnownFileType = text; path = ikan_log.ikan_log; sourceTree = "<group>"; wrapsLines = 0; };
-		B2565EFA299E238C0087BCEC /* Mario_Scene.ikanScene */ = {isa = PBXFileReference; lastKnownFileType = text; path = Mario_Scene.ikanScene; sourceTree = "<group>"; };
 		B2565EFC299E41E40087BCEC /* block.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = block.cpp; sourceTree = "<group>"; };
 		B2565EFD299E41E40087BCEC /* block.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = block.hpp; sourceTree = "<group>"; };
 		B2565EFF299E47990087BCEC /* runtime_item.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = runtime_item.cpp; sourceTree = "<group>"; };
@@ -198,7 +197,6 @@
 		B2565EF8299E238C0087BCEC /* scenes */ = {
 			isa = PBXGroup;
 			children = (
-				B2565EFA299E238C0087BCEC /* Mario_Scene.ikanScene */,
 			);
 			path = scenes;
 			sourceTree = "<group>";

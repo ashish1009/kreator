@@ -11,25 +11,5 @@ namespace mario {
   
   using namespace ikan;
   
-  enum class PlayerAction;
-  enum class PlayerState;
-  enum class EnemyState;
-  enum class EnemyType;
-  
-  enum class SpriteType {
-    Player, Items, Enemy, Tile, StartScreen
-  };
-
-  class SpriteManager {
-  public:
-    static void Init();
-    static void Shutdown();
-    
-    static std::shared_ptr<Texture> GetSpriteImage(SpriteType type);
-    static std::vector<std::shared_ptr<SubTexture>> GetPlayerStateSprite(PlayerState state, PlayerAction action);
-    static std::shared_ptr<SubTexture> GetEnemySprite(EnemyType type, EnemyState state);
-
-    MAKE_PURE_STATIC(SpriteManager);
-  };
 
 }
