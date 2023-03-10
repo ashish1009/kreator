@@ -769,17 +769,11 @@ namespace ikan_game {
     for (auto& [entt, entity] : selected_entities_) {
       if(!entity) continue;
       
-      auto& tc = entity->GetComponent<TransformComponent>();
       auto& qc = entity->GetComponent<QuadComponent>();
-      
-      if (enable) {
-        tc.UpdateTranslation_Z(0.1f);
+      if (enable)
         qc.color.a -=0.2f;
-      }
-      else {
-        tc.UpdateTranslation_Z(0.0f);
+      else
         qc.color.a +=0.2f;
-      }
     }
   }
 

@@ -97,7 +97,7 @@ namespace mario {
       nsc.Bind<CameraController>();
     }
     else {
-      auto& nsc = camera_entity.AddComponent<NativeScriptComponent>("mario::CameraController", camera_controler_loader_fn);
+      camera_entity.AddComponent<NativeScriptComponent>("mario::CameraController", camera_controler_loader_fn);
     }
   }
 

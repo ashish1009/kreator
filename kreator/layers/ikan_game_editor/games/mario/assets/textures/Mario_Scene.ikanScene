@@ -3,730 +3,11 @@ Setting_editor_camera: true
 Setting_scene_data: true
 Use_editor_camera: false
 Entities:
-  - Entity: 15603225282467196729
-    TagComponent:
-      Tag: Pipe
-    TransformComponent:
-      Translation: [12, -7, 0]
-      Rotation: [0, 0, 0]
-      Scale: [2, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [0, 18]
-      Sprite_Size: [2, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: false
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.400000006, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 8218723574956907874
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [12, -8, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: false
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 3531707967763535628
-    TagComponent:
-      Tag: Brick
-    TransformComponent:
-      Translation: [2, -3, 2.38418579e-07]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [13, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: false
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 15267288568321776802
-    TagComponent:
-      Tag: Brick
-    TransformComponent:
-      Translation: [0, -3, 2.38418579e-07]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [13, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: false
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 4558967300984763943
-    TagComponent:
-      Tag: Coin Bonus
-    TransformComponent:
-      Translation: [3, -3, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [24, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: false
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-    AnimationComponent:
-      Animation: true
-      Sprite: true
-      Speed: 30
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords0: [24, 27]
-      Sprite_Size0: [1, 1]
-      Cell_Size0: [16, 16]
-      Coords1: [25, 27]
-      Sprite_Size1: [1, 1]
-      Cell_Size1: [16, 16]
-      Coords2: [26, 27]
-      Sprite_Size2: [1, 1]
-      Cell_Size2: [16, 16]
-      Num_Coords: 3
-  - Entity: 14687813765632525987
-    TagComponent:
-      Tag: PowerUp Bonus
-    TransformComponent:
-      Translation: [1, -3, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [24, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: false
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-    AnimationComponent:
-      Animation: true
-      Sprite: true
-      Speed: 30
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords0: [24, 27]
-      Sprite_Size0: [1, 1]
-      Cell_Size0: [16, 16]
-      Coords1: [25, 27]
-      Sprite_Size1: [1, 1]
-      Cell_Size1: [16, 16]
-      Coords2: [26, 27]
-      Sprite_Size2: [1, 1]
-      Cell_Size2: [16, 16]
-      Num_Coords: 3
-  - Entity: 15251071467877487362
-    TagComponent:
-      Tag: Coin Bonus
-    TransformComponent:
-      Translation: [-6, -3, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [24, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: false
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-    AnimationComponent:
-      Animation: true
-      Sprite: true
-      Speed: 30
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords0: [24, 27]
-      Sprite_Size0: [1, 1]
-      Cell_Size0: [16, 16]
-      Coords1: [25, 27]
-      Sprite_Size1: [1, 1]
-      Cell_Size1: [16, 16]
-      Coords2: [26, 27]
-      Sprite_Size2: [1, 1]
-      Cell_Size2: [16, 16]
-      Num_Coords: 3
-  - Entity: 4104236090057559922
-    TagComponent:
-      Tag: PowerUp Bonus
-    TransformComponent:
-      Translation: [2, 2, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [24, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: false
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-    AnimationComponent:
-      Animation: true
-      Sprite: true
-      Speed: 30
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords0: [24, 27]
-      Sprite_Size0: [1, 1]
-      Cell_Size0: [16, 16]
-      Coords1: [25, 27]
-      Sprite_Size1: [1, 1]
-      Cell_Size1: [16, 16]
-      Coords2: [26, 27]
-      Sprite_Size2: [1, 1]
-      Cell_Size2: [16, 16]
-      Num_Coords: 3
-  - Entity: 8579400230524359273
-    TagComponent:
-      Tag: Brick
-    TransformComponent:
-      Translation: [4, -3, 2.38418579e-07]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [13, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: false
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 6573970622975242381
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [-6, -8, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: true
-      Fixed Rotation: false
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Mass: 0
-      Friction: 0
-      Gravity Scale: 1
-      Is Sensor: false
-      Continous Collision: true
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
-  - Entity: 15277352988707936174
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [3, 6, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [1, 6]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 6484719264932932553
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [3, 7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [1, 7]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 6679258032784431497
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [2, 6, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [0, 6]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 1372680911995937140
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [2, 7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [0, 7]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 15315166152748416497
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [6, 7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [2, 7]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 15797635814922161519
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [6, 6, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [2, 6]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 14027064896073015787
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [5, 7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [1, 7]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 10258979901926015354
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [5, 6, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [1, 6]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 4506535424969847850
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [8, -7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [8, 18]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 13628055538707419417
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [24, -7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [8, 18]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 8322095151039488463
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [23, -6, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [8, 18]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 3764256074371252107
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [22, -7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [8, 18]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 12087724878840432974
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [25, -7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [10, 19]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 389305578996831971
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [21, -7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [8, 19]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 13430654117105752048
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [7, -7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [8, 19]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 3090075196573202817
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [8, -6, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [9, 19]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 3296278469914749174
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [9, -7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [10, 19]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 7012629879928788810
+  - Entity: 14146034977701467092
     TagComponent:
       Tag: Grass
     TransformComponent:
-      Translation: [30, -7, -0.100000001]
+      Translation: [-12, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -739,28 +20,11 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 15527509505556421954
+  - Entity: 10776169280671460953
     TagComponent:
       Tag: Grass
     TransformComponent:
-      Translation: [31, -7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [13, 18]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 14146034977701467092
-    TagComponent:
-      Tag: Grass
-    TransformComponent:
-      Translation: [27, -7, -0.100000001]
+      Translation: [-13, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -769,6 +33,23 @@ Entities:
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords: [11, 18]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 9408437800335162612
+    TagComponent:
+      Tag: Grass
+    TransformComponent:
+      Translation: [-11, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
+      Coords: [13, 18]
       Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
@@ -1530,6 +811,43 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
+  - Entity: 14881402702261783049
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [-6, -8, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+    RigidBodyComponent:
+      Type: 0
+      Is Ground: true
+      Fixed Rotation: false
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Mass: 0
+      Friction: 0
+      Gravity Scale: 1
+      Is Sensor: false
+      Continous Collision: true
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
   - Entity: 8443693369634923845
     TagComponent:
       Tag: Ground
@@ -1789,23 +1107,6 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 6571800891540652305
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [4, 6, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [1, 6]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
   - Entity: 7918151564392135872
     TagComponent:
       Tag: Ground
@@ -1843,23 +1144,6 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 3011026032339843106
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [-12, 7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [0, 6]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
   - Entity: 15266349459708299272
     TagComponent:
       Tag: Ground
@@ -1897,23 +1181,6 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 545798434980266985
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [-10, 7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [2, 6]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
   - Entity: 15965416005410778288
     TagComponent:
       Tag: Ground
@@ -2025,23 +1292,6 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 17594415599679497724
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [-12, 8, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [0, 7]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
   - Entity: 15804518298596370746
     TagComponent:
       Tag: Ground
@@ -2153,23 +1403,6 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 7661598911426976053
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [-11, 7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [1, 6]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
   - Entity: 11216466535727116320
     TagComponent:
       Tag: Ground
@@ -2207,23 +1440,6 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 8676229990881639581
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [-11, 8, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [1, 7]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
   - Entity: 5080381174995470272
     TagComponent:
       Tag: Ground
@@ -2335,23 +1551,6 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 9021308697365233262
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [4, 7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [1, 7]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
   - Entity: 17210116161531274263
     TagComponent:
       Tag: Ground
@@ -2648,23 +1847,6 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 13522220770979834645
-    TagComponent:
-      Tag: Cloud
-    TransformComponent:
-      Translation: [-10, 8, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [2, 7]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
   - Entity: 5027393052324372769
     TagComponent:
       Tag: Ground
@@ -2963,18 +2145,18 @@ Entities:
       Restitution Threshold: 0.5
   - Entity: 2897831606076727828
     TagComponent:
-      Tag: Pipe
+      Tag: Ground
     TransformComponent:
-      Translation: [12, -6, 0]
+      Translation: [12, -8, 0]
       Rotation: [0, 0, 0]
-      Scale: [2, 1, 1]
+      Scale: [1, 1, 1]
     QuadComponent:
       Texture_Use: true
       Sprite_Use: true
       Linear_Edge: false
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [0, 19]
-      Sprite_Size: [2, 1]
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
@@ -3183,156 +2365,3 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 11948556436844377834
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [24, -6, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [10, 19]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 6554456910254199368
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [23, -5, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [9, 19]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 11587259615622993261
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [22, -6, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [8, 19]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 17228157681911613960
-    TagComponent:
-      Tag: Grass
-    TransformComponent:
-      Translation: [29, -7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [12, 18]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 6937103258241975079
-    TagComponent:
-      Tag: Grass
-    TransformComponent:
-      Translation: [28, -7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [12, 18]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 4311411182977867061
-    TagComponent:
-      Tag: Grass
-    TransformComponent:
-      Translation: [-11, -7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [13, 18]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 7220247884892828305
-    TagComponent:
-      Tag: Grass
-    TransformComponent:
-      Translation: [-12, -7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [12, 18]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 18383372893688393423
-    TagComponent:
-      Tag: Grass
-    TransformComponent:
-      Translation: [-13, -7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [11, 18]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-  - Entity: 4828854474685945341
-    TagComponent:
-      Tag: Forest
-    TransformComponent:
-      Translation: [23, -7, -0.100000001]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
-      Coords: [9, 18]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
