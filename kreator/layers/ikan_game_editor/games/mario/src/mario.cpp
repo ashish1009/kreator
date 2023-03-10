@@ -19,6 +19,10 @@ namespace mario {
     instance_ = this;
 
     IK_INFO(MarioLogTag, "Creating Mario Game Data ... ");
+    
+    // Change Text renderer Font
+    TextRenderer::LoadFreetype(AM::ClientAsset(font_path_));
+    BatchRenderer::Init(2000, 0, 0);
   }
   
   Mario::~Mario() {
