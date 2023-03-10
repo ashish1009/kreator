@@ -6,6 +6,7 @@
 //
 
 #include "player.hpp"
+#include "sprite_manager.hpp"
 
 namespace mario {
 
@@ -123,13 +124,14 @@ namespace mario {
     else if (state_machine_->State() == PlayerState::Big) {
       player_width_ = 1.0f;
       player_height_ = 2.0f;
+
+      // Add Impulse to push player out of ground while changing size
+      entity_.GetComponent<RigidBodyComponent>().AddVelocity({velocity_.x, 1000.0});
     }
     
     auto& tc = entity_.GetComponent<TransformComponent>();
     tc.UpdateScale_Y(player_height_);
 
-    // Add Impulse to push player out of ground while changing size
-    entity_.GetComponent<RigidBodyComponent>().AddVelocity({velocity_.x, 1000.0});
     auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
     pbc.SetSize({0.5f, player_height_ / 2.0f});
     

@@ -7,6 +7,7 @@
 
 #include "mario.hpp"
 #include "camera_controller.hpp"
+#include "sprite_manager.hpp"
 
 namespace mario {
   
@@ -24,10 +25,14 @@ namespace mario {
     // Change Text renderer Font
     TextRenderer::LoadFreetype(AM::ClientAsset(font_path_));
     BatchRenderer::Init(2000, 0, 0);
+    
+    SpriteManager::Init();
   }
   
   Mario::~Mario() {
     IK_WARN(MarioLogTag, "Destroying Mario Game Data ... ");
+
+    SpriteManager::Shutdown();
   }
     
   void Mario::Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
@@ -137,6 +142,8 @@ namespace mario {
       qc.texture_comp.use = true;
       qc.texture_comp.use_sprite = true;
       qc.texture_comp.linear_edge = false;
+      qc.texture_comp.component = SpriteManager::GetSpriteImage(SpriteType::Player);
+      qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(PlayerState::Small, PlayerAction::Idle).at(0); 
     }
     
     // Rigid Body Component
