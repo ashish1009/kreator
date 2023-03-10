@@ -466,6 +466,11 @@ namespace ikan {
     event_handler_ = std::bind(&EnttScene::EventHandlerRuntime, this, std::placeholders::_1);
     render_imgui_ = std::bind(&EnttScene::RenderImguiRuntime, this);
     
+    setting_.debug_draw_ = false;
+    setting_.use_editor_camera = false;
+    setting_.editor_camera = false;
+    setting_.scene_data = false;
+    
     RuntimeStart();
   }
   

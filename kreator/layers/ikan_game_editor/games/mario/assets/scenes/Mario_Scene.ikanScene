@@ -5990,7 +5990,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
@@ -10827,7 +10827,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
@@ -10881,7 +10881,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
@@ -10935,7 +10935,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
@@ -13483,7 +13483,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
@@ -13537,7 +13537,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
@@ -13591,7 +13591,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
@@ -13645,7 +13645,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
@@ -16873,7 +16873,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
@@ -16927,7 +16927,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
@@ -16981,7 +16981,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
@@ -17033,7 +17033,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
@@ -25949,7 +25949,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
@@ -27554,7 +27554,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
@@ -28623,7 +28623,7 @@ Entities:
     AnimationComponent:
       Animation: true
       Sprite: true
-      Speed: 15
+      Speed: 35
       Texture_Path: ../../../kreator/layers/ikan_game_editor/games/mario/assets/textures/tile.png
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]

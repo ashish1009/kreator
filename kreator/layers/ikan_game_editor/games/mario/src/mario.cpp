@@ -11,7 +11,7 @@
 namespace mario {
   
   static const std::string MarioLogTag = "Mario";
-  static const float game_start_pos_ = -15.0f;
+  static const float game_start_pos_ = -13.0f;
 
   Mario* Mario::instance_ = nullptr;
   

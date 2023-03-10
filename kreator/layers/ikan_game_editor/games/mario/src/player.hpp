@@ -14,11 +14,23 @@ namespace mario {
   enum class PlayerState {
     Small, Big, Fire, Invicible, Luigi
   };
+  
+  class StateMachine {
+  public:
+    StateMachine(Entity* entity);
+
+    friend class PlayerController;
+    
+  private:
+    Entity* player_entity_;
+    PlayerState player_state_ = PlayerState::Small;
+  };
 
   class PlayerController : public ScriptableEntity {
   public:
     PlayerController();
-  
+    ~PlayerController();
+    
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
     void RenderGui() override;
@@ -33,7 +45,7 @@ namespace mario {
     
     float player_width_ = 1.0f, player_height_ = 1.0f;;
 
-    PlayerState player_state_ = PlayerState::Small;
+    StateMachine* state_machine_;
 
     static PlayerController* instance_;
   };

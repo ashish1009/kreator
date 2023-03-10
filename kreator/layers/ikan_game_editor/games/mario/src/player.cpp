@@ -11,8 +11,16 @@ namespace mario {
 
   PlayerController* PlayerController::instance_ = nullptr;
   
+  StateMachine::StateMachine(Entity* entity) {
+    player_entity_ = entity;
+  }
+  
   PlayerController::PlayerController() {
     instance_ = this;
+  }
+  
+  PlayerController::~PlayerController() {
+    delete state_machine_;
   }
   
   PlayerController* PlayerController::Get() {
@@ -21,12 +29,13 @@ namespace mario {
 
   void PlayerController::Create(Entity entity)  {
     entity_ = entity;
-    
-    if (player_state_ == PlayerState::Small) {
+    state_machine_ = new StateMachine(&entity_);
+
+    if (state_machine_->player_state_ == PlayerState::Small) {
       player_width_ = 1.0f;
       player_height_ = 1.0f;
     }
-    else if (player_state_ == PlayerState::Big) {
+    else if (state_machine_->player_state_ == PlayerState::Big) {
       player_width_ = 1.0f;
       player_height_ = 2.0f;
     }
@@ -39,7 +48,7 @@ namespace mario {
   void PlayerController::CheckOnGround() {
     float inner_player_width = player_width_ * 0.6f;
     float y_val = -(player_height_ / 2);
-    y_val -= (player_state_ == PlayerState::Small) ? 0.02f : 0.02f;
+    y_val -= (state_machine_->player_state_ == PlayerState::Small) ? 0.02f : 0.02f;
     
     on_ground_ = entity_.GetScene()->CheckOnGround(&entity_, inner_player_width, y_val);
   }
