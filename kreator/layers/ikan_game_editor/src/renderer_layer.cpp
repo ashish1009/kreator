@@ -216,7 +216,6 @@ namespace ikan_game {
     // Button action
     if (PropertyGrid::ImageButton("Game Play", play_texture->GetRendererID(), { size, size })) {
       SetPlay(true);
-      PlayScene();
     }
     PropertyGrid::HoveredMsg("Play Button for Game");
     ImGui::End();
@@ -522,6 +521,10 @@ namespace ikan_game {
     is_playing = is_play;
     game_data_->SetState(is_play);
     Application::Get().MaximizeWindow();
+    
+    if (is_play) {
+      PlayScene();
+    }
   }
   
   void RendererLayer::OverlayRender() {

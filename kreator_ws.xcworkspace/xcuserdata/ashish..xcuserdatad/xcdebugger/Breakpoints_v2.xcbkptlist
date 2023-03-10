@@ -14,9 +14,25 @@
             filePath = "kreator/layers/ikan_game_editor/src/renderer_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "648"
-            endingLineNumber = "648"
-            landmarkName = "RendererLayer::SelectEntities()"
+            startingLineNumber = "651"
+            endingLineNumber = "651"
+            landmarkName = "RendererLayer::ShowSettings()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3DF9B9A6-E3DD-41BE-A25A-9C7ECED74F0F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kreator/layers/ikan_game_editor/games/mario/src/player.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "PlayerController::ChangeState(new_state)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
