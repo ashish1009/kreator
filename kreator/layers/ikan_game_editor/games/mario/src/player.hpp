@@ -16,7 +16,7 @@ namespace mario {
   };
 
   enum class PlayerState {
-    Invalid, Small, Big, Fire, Invicible, Luigi
+    Invalid, Small, Big, Fire, Invicible
   };
   
   class StateMachine {
@@ -50,6 +50,9 @@ namespace mario {
 
     void SetAction(PlayerAction new_action);
     void Update(Timestep ts);
+    
+    std::string StateString() const;
+    std::string ActionString() const;
 
   private:
     Entity* player_entity_;
@@ -81,7 +84,14 @@ namespace mario {
     
     float player_width_ = 1.0f, player_height_ = 1.0f;;
 
+    float free_fall_factor = 2.7f;
+
+    float walk_speed_ = 4.0f;
+    float slow_down_force_ = 0.08f;
+
+    glm::vec2 acceleration_;
     glm::vec2 velocity_;
+    glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
 
     StateMachine* state_machine_;
 

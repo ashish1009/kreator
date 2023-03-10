@@ -17,6 +17,28 @@ namespace mario {
     SetAction(PlayerAction::Idle);
   }
   
+  std::string StateMachine::StateString() const {
+    switch (player_state_) {
+      case PlayerState::Invalid:      IK_ASSERT(false);
+      case PlayerState::Small:        return "Small";
+      case PlayerState::Big:          return "Big";
+      case PlayerState::Fire:         return "Fire";
+      case PlayerState::Invicible:    return "Invicible";
+    }
+  }
+  
+  std::string StateMachine::ActionString() const {
+    switch (player_action_) {
+      case PlayerAction::Invalid:     IK_ASSERT(false);
+      case PlayerAction::Idle:        return "Idle";
+      case PlayerAction::Run:         return "Running";
+      case PlayerAction::SwitchSide:  return "Switch Side";
+      case PlayerAction::Jump:        return "Jumping";
+      case PlayerAction::Die:         return "Dying";
+      case PlayerAction::PowerUp:     return "PowerUp";
+    }
+  }
+  
   void StateMachine::Update(Timestep ts) {
     switch (player_action_) {
       case PlayerAction::Invalid: {
@@ -115,7 +137,23 @@ namespace mario {
   }
 
   void PlayerController::RenderGui() {
-    ImGui::Text(" On Ground     | %s", on_ground_ ? "True" : "False");
+    if (state_machine_) {
+      ImGui::Text(" State             | %s", state_machine_->StateString().c_str());
+      ImGui::Text(" Action            | %s", state_machine_->ActionString().c_str());
+    }
+    
+    ImGui::Text(" On Ground         | %s", on_ground_ ? "True" : "False");
+
+    ImGui::Text(" Width             | %f", player_width_);
+    ImGui::Text(" Height            | %f", player_height_);
+
+    ImGui::Text(" Accelaration      | %f - %f", acceleration_.x, acceleration_.y);
+    ImGui::Text(" Velocity          | %f - %f", velocity_.x, velocity_.y);
+    ImGui::Text(" Terminal Velocity | %f - %f", terminal_velocity_.x, terminal_velocity_.y);
+
+    ImGui::Text(" Walk Speed        | %f", walk_speed_);
+    ImGui::Text(" Slow Down Force   | %f", slow_down_force_);
+    ImGui::Text(" Free Fall Factor  | %f", free_fall_factor);
   }
   
 }
