@@ -11,6 +11,7 @@
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
 		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
+		B26C428329BB1F5500B7F0D1 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B26C428129BB1F5500B7F0D1 /* player.cpp */; };
 		B27566C329BA17B800DF05E2 /* camera_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27566C129BA17B800DF05E2 /* camera_controller.cpp */; };
 		B2918462299CEFCB008B9D71 /* create_game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2918452299CEFCB008B9D71 /* create_game_data.cpp */; };
 		B2918464299CEFCB008B9D71 /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2918457299CEFCB008B9D71 /* renderer_layer.cpp */; };
@@ -51,6 +52,8 @@
 		B2250CE2295863840067C43B /* kreator_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kreator_application.cpp; sourceTree = "<group>"; };
 		B232147C2978052700845848 /* ikan_log.ikan_log */ = {isa = PBXFileReference; lastKnownFileType = text; path = ikan_log.ikan_log; sourceTree = "<group>"; wrapsLines = 0; };
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
+		B26C428129BB1F5500B7F0D1 /* player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
+		B26C428229BB1F5500B7F0D1 /* player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
 		B27566C129BA17B800DF05E2 /* camera_controller.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera_controller.cpp; sourceTree = "<group>"; };
 		B27566C229BA17B800DF05E2 /* camera_controller.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = camera_controller.hpp; sourceTree = "<group>"; };
 		B27566C429BA193000DF05E2 /* Mario_Scene.ikanScene */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Mario_Scene.ikanScene; sourceTree = "<group>"; };
@@ -371,6 +374,8 @@
 				B2918475299CF8AA008B9D71 /* mario.hpp */,
 				B27566C129BA17B800DF05E2 /* camera_controller.cpp */,
 				B27566C229BA17B800DF05E2 /* camera_controller.hpp */,
+				B26C428129BB1F5500B7F0D1 /* player.cpp */,
+				B26C428229BB1F5500B7F0D1 /* player.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -456,6 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B26C428329BB1F5500B7F0D1 /* player.cpp in Sources */,
 				B2918476299CF8AA008B9D71 /* mario.cpp in Sources */,
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
 				B2918465299CEFCB008B9D71 /* renderer_layer.cpp in Sources */,

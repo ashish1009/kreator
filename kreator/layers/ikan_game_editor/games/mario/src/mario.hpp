@@ -9,6 +9,7 @@
 #pragma once
 
 #include "layers/ikan_game_editor/src/renderer_layer.hpp"
+#include "player.hpp"
 
 namespace mario {
   
@@ -37,15 +38,18 @@ namespace mario {
     static Mario& Get() { return *instance_; }
 
   private:
-    /// This function search the primary camera in the scene if not present then cretate one
-    /// Adds the camera controller script to the camera entity
+    /// This function search the primary camera in the scene if not present then cretate one Adds the camera controller script to the camera entity
     void CreateOrSearchCamera();
-    
+    /// This function Finds the player entity "Named as Mario Player". And add the player Controller with its entity. If not created then it creates one with all the required components
+    void SearchOrCreatePlayer();
+
     std::shared_ptr<EnttScene> scene_;
     ScenePanelManager* panel_;
 
     glm::vec4 level_bg_ = {0.2, 0.4, 0.6, 1.0f};
     std::string font_path_ = "fonts/mario.ttf";
+    
+    PlayerController* player_controller_;
 
     static Mario* instance_;
   };
