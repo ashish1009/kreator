@@ -133,6 +133,9 @@ namespace ikan_game {
     /// This function moves the selected entities
     /// - Parameter direction: Direction of movement
     void MoveEntities(Direction direction);
+    /// This hack moves the camera without camera controller with keys
+    /// - Parameter ts: time step
+    void MoveCameraDebug(Timestep ts);
 
     // ------------------
     // Member variables

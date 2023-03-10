@@ -67,6 +67,7 @@ namespace ikan_game {
       
       if (!game_data_->IsPlaying()) {
         SelectEntities();
+        MoveCameraDebug(ts);
       }
 
       if (settings_.show_grids)
@@ -216,7 +217,6 @@ namespace ikan_game {
     if (PropertyGrid::ImageButton("Game Play", play_texture->GetRendererID(), { size, size })) {
       SetPlay(true);
       PlayScene();
-      Application::Get().MaximizeWindow();
     }
     PropertyGrid::HoveredMsg("Play Button for Game");
     ImGui::End();
@@ -521,6 +521,7 @@ namespace ikan_game {
   void RendererLayer::SetPlay(bool is_play) {
     is_playing = is_play;
     game_data_->SetState(is_play);
+    Application::Get().MaximizeWindow();
   }
   
   void RendererLayer::OverlayRender() {
@@ -774,6 +775,27 @@ namespace ikan_game {
         qc.color.a -=0.2f;
       else
         qc.color.a +=0.2f;
+    }
+  }
+  
+  void RendererLayer::MoveCameraDebug(Timestep ts) {
+    // Move Camera for debug
+    auto& cd = active_scene_->GetPrimaryCameraData();
+    if (cd.scene_camera) {
+      auto& cam = cd.scene_camera;
+      auto& tc = cd.transform_comp;
+      
+      bool shift = Input::IsKeyPressed(KeyCode::RightShift);
+      if (shift) {
+        if (Input::IsKeyPressed(KeyCode::A)) tc->AddTranslation_X(-(cam->GetZoom() * ts));
+        if (Input::IsKeyPressed(KeyCode::D)) tc->AddTranslation_X(cam->GetZoom() * ts);
+        
+        if (Input::IsKeyPressed(KeyCode::W)) tc->AddTranslation_Y(cam->GetZoom() * ts);
+        if (Input::IsKeyPressed(KeyCode::S)) tc->AddTranslation_Y(-(cam->GetZoom() * ts));
+        
+        if (Input::IsKeyPressed(KeyCode::Q)) cam->SetOrthographicSize(cam->GetOrthographicSize() + 1.0f);
+        if (Input::IsKeyPressed(KeyCode::E)) cam->SetOrthographicSize(cam->GetOrthographicSize() - 1.0f);
+      }
     }
   }
 
