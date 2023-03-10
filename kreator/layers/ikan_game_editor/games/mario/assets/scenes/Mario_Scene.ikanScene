@@ -2,12 +2,13 @@ Scene: Untitled
 Setting_editor_camera: true
 Setting_scene_data: true
 Use_editor_camera: false
+Debug_draw: true
 Entities:
   - Entity: 14176764378815214168
     TagComponent:
       Tag: Mario Player
     TransformComponent:
-      Translation: [-20, 0, 0]
+      Translation: [-15, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
