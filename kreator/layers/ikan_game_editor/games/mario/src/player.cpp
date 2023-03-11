@@ -53,11 +53,11 @@ namespace mario {
         break;
       
       case PlayerAction::Run: {
+        // Animation of player while running
         static const int32_t run_speed = 10;
         static int32_t run_anim_idx = 0;
 
         auto& qc = player_entity_->GetComponent<QuadComponent>();
-
         if (run_anim_idx >= run_speed * running_player_sprites_->size() or run_anim_idx < 1)
           run_anim_idx = 0;
           
@@ -73,6 +73,7 @@ namespace mario {
     player_prev_state_ = player_state_;
     player_state_ = new_state;
     
+    // Store the running player animation sprite based on the state of player
     running_player_sprites_ = &SpriteManager::GetPlayerStateSprite(player_state_, PlayerAction::Run);
   }
   
@@ -134,6 +135,16 @@ namespace mario {
     
     rb.SetVelocity(velocity_);
     rb.SetAngularVelocity(0.0f);
+  }
+  
+  void PlayerController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+    if (is_dying_)
+      return;
+
+    // Immediatly kill all forward velocity as player hits the obstacle of block
+    if (std::abs(contact_normal.x) > 0.8f) {
+      velocity_.x = 0.0f;
+    }
   }
   
   void PlayerController::Run(Timestep ts) {

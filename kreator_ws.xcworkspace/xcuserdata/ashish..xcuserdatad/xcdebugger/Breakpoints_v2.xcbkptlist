@@ -30,9 +30,9 @@
             filePath = "kreator/layers/ikan_game_editor/games/mario/src/player.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
-            landmarkName = "PlayerController::JumpAndBounce(ts)"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
+            landmarkName = "PlayerController::SetState(new_state)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -62,9 +62,9 @@
             filePath = "kreator/layers/ikan_game_editor/games/mario/src/player.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "StateMachine::Update(ts)"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "StateMachine::SetState(new_state)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

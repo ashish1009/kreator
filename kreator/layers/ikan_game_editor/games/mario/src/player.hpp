@@ -70,18 +70,26 @@ namespace mario {
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
     void RenderGui() override;
+    void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
 
     static PlayerController* Get();
     
   private:
+    /// This function checks the player hits the ground rigid body
     void CheckOnGround();
+    /// This function update the new state of player. Wrapper to set the state in state machine
+    /// - Parameter new_state: new state
     void SetState(PlayerState new_state);
+    /// This function jumps the player on polling the space button. Also check the ground debounce time and enemy bounce
     void JumpAndBounce(Timestep ts);
+    /// This function runs the player on polling the left right buttons
     void Run(Timestep ts);
     
     bool reset_fixture_ = false;
     bool on_ground_ = false;
-    
+    bool is_dead_ = false;
+    bool is_dying_ = false;
+
     float player_width_ = 1.0f, player_height_ = 1.0f;;
 
     float free_fall_factor = 2.7f;
