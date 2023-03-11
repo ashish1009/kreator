@@ -62,8 +62,8 @@
             filePath = "kreator/layers/ikan_game_editor/games/mario/src/mario.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "Mario::Update(ts)"
             landmarkType = "7">
          </BreakpointContent>

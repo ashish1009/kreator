@@ -10,6 +10,7 @@
 #include "sprite_manager.hpp"
 #include "block.hpp"
 #include "runtime_item.hpp"
+#include "enemy.hpp"
 
 namespace mario {
   
@@ -31,6 +32,7 @@ namespace mario {
     SpriteManager::Init();
     BlockScriptManager::Init();
     RuntimeItem::Init();
+    EnemyScriptManager::Init();
   }
   
   Mario::~Mario() {
@@ -39,6 +41,7 @@ namespace mario {
     SpriteManager::Shutdown();
     BlockScriptManager::Shutdown();
     RuntimeItem::Shutdown();
+    EnemyScriptManager::Shutdown();
   }
     
   void Mario::Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
@@ -232,6 +235,21 @@ namespace mario {
                                                                                                           BSM::GetCount(c.tag));
         }
       }
+      
+      else if (IsEnemy(c.tag)) {
+        Entity brick_entity = Entity(e, scene_.get());
+        if (brick_entity.HasComponent<NativeScriptComponent>()) {
+          auto& nsc = brick_entity.GetComponent<NativeScriptComponent>();
+          
+          nsc.loader_function = ESM::GetData(GetType(c.tag)).loader_fun;
+          nsc.Bind<EnemyController>(ESM::GetData(GetType(c.tag)).type);
+        }
+        else {
+          brick_entity.AddComponent<NativeScriptComponent>("mario::EnemyController",
+                                                           ESM::GetData(GetType(c.tag)).loader_fun) .Bind<EnemyController>(EnemyType::Goomba);
+        }
+      }
+
     }
   }
   

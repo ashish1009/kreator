@@ -13,6 +13,7 @@
 		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
 		B267BAB229BC8EC30018D9E1 /* block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B267BAB029BC8EC30018D9E1 /* block.cpp */; };
 		B267BAB529BC917F0018D9E1 /* runtime_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B267BAB329BC917F0018D9E1 /* runtime_item.cpp */; };
+		B267BAB829BCA9A30018D9E1 /* enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B267BAB629BCA9A30018D9E1 /* enemy.cpp */; };
 		B26C428329BB1F5500B7F0D1 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B26C428129BB1F5500B7F0D1 /* player.cpp */; };
 		B26C428629BB74A900B7F0D1 /* sprite_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B26C428429BB74A900B7F0D1 /* sprite_manager.cpp */; };
 		B27566C329BA17B800DF05E2 /* camera_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27566C129BA17B800DF05E2 /* camera_controller.cpp */; };
@@ -59,6 +60,8 @@
 		B267BAB129BC8EC30018D9E1 /* block.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = block.hpp; sourceTree = "<group>"; };
 		B267BAB329BC917F0018D9E1 /* runtime_item.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = runtime_item.cpp; sourceTree = "<group>"; };
 		B267BAB429BC917F0018D9E1 /* runtime_item.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = runtime_item.hpp; sourceTree = "<group>"; };
+		B267BAB629BCA9A30018D9E1 /* enemy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = enemy.cpp; sourceTree = "<group>"; };
+		B267BAB729BCA9A30018D9E1 /* enemy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = enemy.hpp; sourceTree = "<group>"; };
 		B26C428129BB1F5500B7F0D1 /* player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
 		B26C428229BB1F5500B7F0D1 /* player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
 		B26C428429BB74A900B7F0D1 /* sprite_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sprite_manager.cpp; sourceTree = "<group>"; };
@@ -391,6 +394,8 @@
 				B267BAB129BC8EC30018D9E1 /* block.hpp */,
 				B267BAB329BC917F0018D9E1 /* runtime_item.cpp */,
 				B267BAB429BC917F0018D9E1 /* runtime_item.hpp */,
+				B267BAB629BCA9A30018D9E1 /* enemy.cpp */,
+				B267BAB729BCA9A30018D9E1 /* enemy.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -484,6 +489,7 @@
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
 				B2918464299CEFCB008B9D71 /* renderer_layer.cpp in Sources */,
 				B27566C329BA17B800DF05E2 /* camera_controller.cpp in Sources */,
+				B267BAB829BCA9A30018D9E1 /* enemy.cpp in Sources */,
 				B267BAB229BC8EC30018D9E1 /* block.cpp in Sources */,
 				B26C428629BB74A900B7F0D1 /* sprite_manager.cpp in Sources */,
 				B2918462299CEFCB008B9D71 /* create_game_data.cpp in Sources */,
