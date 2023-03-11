@@ -76,9 +76,15 @@ namespace mario {
 
     void PowerUp(Timestep ts);
 
-    bool IsSmall() const { return state_machine_->IsSmall(); }
     void SetPowerup() { power_up_ = true; };
-    
+    void EnemyBounce() { enemy_bounce_ = 18; }
+
+    bool IsSmall() const { return state_machine_->IsSmall(); }
+    bool IsDying() const { return is_dying_; }
+    bool IsDead() const { return is_dead_; }
+    bool IsHurtInvincible() const { return hurt_invincibility_time_left_ > 0.0f; }
+    bool IsInvincible() const { return state_machine_->State() == PlayerState::Invicible or IsHurtInvincible(); }
+
     static PlayerController* Get();
     
   private:

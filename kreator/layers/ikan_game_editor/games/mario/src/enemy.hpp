@@ -34,6 +34,7 @@ namespace mario {
     DELETE_COPY_MOVE_CONSTRUCTORS(EnemyController);
 
   private:
+    void Stomp();
     void CheckOnGround();
 
     EnemyType type_;

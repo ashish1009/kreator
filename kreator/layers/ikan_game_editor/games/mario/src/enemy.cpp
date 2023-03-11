@@ -35,6 +35,43 @@ namespace mario {
       auto& tc = entity_.GetComponent<TransformComponent>();
       tc.UpdateScale_X(going_right_ ? -1.0f : 1.0f);
     }
+    
+    // Destory the entity if enemy is dead
+    if (is_dead_) {
+      auto& rb = GetComponent<RigidBodyComponent>();
+      EnttScene::ResetFixture(rb.runtime_body);
+      
+      time_to_kill -= ts;
+      rb.SetVelocity({0., 0});
+      if (time_to_kill <= 0) {
+        entity_.GetScene()->DestroyEntity(entity_);
+      }
+      return;
+    }
+    
+    // If Duck is dying then make it stationary
+    if (is_dying_) {
+      if (type_ == EnemyType::Duck) {
+        time_to_revive_ -= ts;
+        
+        // Revive the duck if not killed properly
+        if (time_to_revive_ <= 0.0f) {
+          entity_.GetComponent<TransformComponent>().UpdateScale_Y(2.0f);
+          auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
+          pbc.height = 0.8f;
+          pbc.offset.y = -0.20f;
+          pbc.RecalculateColliders();
+          
+          entity_.GetComponent<AnimationComponent>().animation = true;
+          
+          // Add Impulse to push e out of ground while changing size
+          entity_.GetComponent<RigidBodyComponent>().AddVelocity({0, 1000.0});
+          
+          is_dying_ = false;
+          reset_fixture_ = true;
+        }
+      }
+    }
 
     CheckOnGround();
 
@@ -71,7 +108,24 @@ namespace mario {
       return;
     }
 
-    if (std::abs(contact_normal.y) < 0.1f) {
+    if (PlayerController* pc = PlayerController::Get();
+        collided_entity->HasComponent<NativeScriptComponent>() and
+        collided_entity->GetComponent<NativeScriptComponent>().script.get() == pc) {
+      if (!pc->IsDying() && !pc->IsHurtInvincible() && contact_normal.y > 0.58f) {
+        pc->EnemyBounce();
+        Stomp();
+        contact->SetEnabled(false);
+      } else if (!pc->IsDying() && !pc->IsInvincible()) {
+#if 0
+        pc->Die();
+        if (!pc->IsDying()) {
+          contact->SetEnabled(false);
+        }
+#endif
+      }
+    }
+    
+    else if (std::abs(contact_normal.y) < 0.1f) {
       going_right_ = contact_normal.x < 0.0f;
     }
   }
@@ -99,6 +153,37 @@ namespace mario {
   }
   
   void EnemyController::RenderGui() {
+  }
+  
+  void EnemyController::Stomp() {
+    auto& qc = entity_.GetComponent<QuadComponent>();
+    
+    if (type_ == EnemyType::Duck) {
+      entity_.GetComponent<TransformComponent>().UpdateScale_Y(1.0f);
+      auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
+      pbc.height = 0.5f;
+      pbc.offset.y = 0.0f;
+      pbc.RecalculateColliders();
+      
+      is_dying_ = true;
+      time_to_revive_ = 1.5f;
+      reset_fixture_ = true;
+      
+      entity_.GetComponent<AnimationComponent>().animation = false;
+      qc.texture_comp.sprite = SpriteManager::GetEnemySprite(type_, EnemyState::Dying);
+      return;
+    }
+    
+    is_dead_ = true;
+    velocity_ = {0.0f, 0.0f};
+    auto& rb = entity_.GetComponent<RigidBodyComponent>();
+    rb.SetVelocity(velocity_);
+    rb.SetAngularVelocity(0.0f);
+    rb.is_sensor = true;
+    
+    entity_.RemoveComponent<AnimationComponent>();
+    
+    qc.texture_comp.sprite = SpriteManager::GetEnemySprite(type_, EnemyState::Dead);
   }
  
   void EnemyController::CheckOnGround() {
