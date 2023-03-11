@@ -89,6 +89,17 @@ namespace mario {
     float walk_speed_ = 4.0f;
     float slow_down_force_ = 0.08f;
 
+    float ground_debounce_ = 0.0f; // Seconds
+    float ground_debounce_time_ = 0.1f; // Seconds
+
+    float jumb_boost_ = 1.0f;
+    float big_jump_boost_ = 1.0f;
+    float jump_impuls_ = 10.0f;
+    float big_jump_boost_factor_ = 2.0f;
+    
+    int32_t enemy_bounce_ = 0;
+    int32_t jump_time_ = 0;
+
     glm::vec2 acceleration_;
     glm::vec2 velocity_;
     glm::vec2 terminal_velocity_ = {8.1f, 18.1f};

@@ -108,16 +108,45 @@ namespace mario {
 
     CheckOnGround();
         
-    if (!on_ground_) {
+    if (Input::IsKeyPressed(KeyCode::Space) and (jump_time_ > 0 or on_ground_ or ground_debounce_ > 0)) {
+      if ((on_ground_ or ground_debounce_ > 0) and jump_time_ == 0) {
+        jump_time_ = 55;
+        velocity_.y = jump_impuls_;
+      }
+      else if (jump_time_ > 0) {
+        jump_time_--;
+        velocity_.y = (jump_time_ / 2.2f) * jumb_boost_;
+      }
+      else {
+        velocity_.y = 0.0f;
+      }
+      ground_debounce_ = 0.0f;
+      
       // Player State is Jumping if player is on Air
       state_machine_->SetAction(PlayerAction::Jump);
-      
+    }
+    else if (enemy_bounce_ > 0) {
+      enemy_bounce_--;
+      velocity_.y = ((enemy_bounce_ / 2.2f) * jumb_boost_);
+    }
+    else if (!on_ground_) {
+      if (jump_time_ > 0) {
+        velocity_.y *= 0.35f;
+        jump_time_ = 0;
+      }
+      ground_debounce_ -= ts;
+
       // Free fall with scene gravity
       acceleration_.y = entity_.GetScene()->GetGravity().y * free_fall_factor;
+      
+      // Player State is Jumping if player is on Air
+      state_machine_->SetAction(PlayerAction::Jump);
     }
     else {
       velocity_.y = 0;
       acceleration_.y = 0;
+      ground_debounce_ = ground_debounce_time_;
+      state_machine_->SetAction(PlayerAction::Idle);
     }
     
     velocity_.x += acceleration_.x * ts * 2.0f;
