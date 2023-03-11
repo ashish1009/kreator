@@ -42,6 +42,8 @@ namespace mario {
     void CreateOrSearchCamera();
     /// This function Finds the player entity "Named as Mario Player". And add the player Controller with its entity. If not created then it creates one with all the required components
     void SearchOrCreatePlayer();
+    /// This function add the scripts to entites
+    void AddScriptsToEntities();
 
     std::shared_ptr<EnttScene> scene_;
     ScenePanelManager* panel_;

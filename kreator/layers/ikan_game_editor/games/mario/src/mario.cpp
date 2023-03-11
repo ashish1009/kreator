@@ -8,6 +8,7 @@
 #include "mario.hpp"
 #include "camera_controller.hpp"
 #include "sprite_manager.hpp"
+#include "block.hpp"
 
 namespace mario {
   
@@ -27,12 +28,14 @@ namespace mario {
     BatchRenderer::Init(2000, 0, 0);
     
     SpriteManager::Init();
+    BlockScriptManager::Init();
   }
   
   Mario::~Mario() {
     IK_WARN(MarioLogTag, "Destroying Mario Game Data ... ");
 
     SpriteManager::Shutdown();
+    BlockScriptManager::Shutdown();
   }
     
   void Mario::Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {
@@ -43,6 +46,7 @@ namespace mario {
 
     CreateOrSearchCamera();
     SearchOrCreatePlayer();
+    AddScriptsToEntities();
   }
   
   void Mario::Update(Timestep ts) {
@@ -177,6 +181,28 @@ namespace mario {
     }
     
     player_controller_ = PlayerController::Get();
+  }
+  
+  void Mario::AddScriptsToEntities() {
+    auto tag_view = scene_->GetEntitesWith<TagComponent>();
+    
+    for (auto e : tag_view) {
+      const auto &c = tag_view.get<TagComponent>(e);
+      if (IsBlock(c.tag)) {
+        Entity brick_entity = Entity(e, scene_.get());
+        if (brick_entity.HasComponent<NativeScriptComponent>()) {
+          auto& nsc = brick_entity.GetComponent<NativeScriptComponent>();
+          
+          nsc.loader_function = BSM::GetLoaderFn(c.tag);
+          nsc.Bind<BlockController>(BSM::GetType(c.tag), BSM::GetCount(c.tag));
+        }
+        else {
+          brick_entity.AddComponent<NativeScriptComponent>("mario::BlockController",
+                                                           BSM::GetLoaderFn(c.tag)).Bind<BlockController>(BSM::GetType(c.tag),
+                                                                                                          BSM::GetCount(c.tag));
+        }
+      }
+    }
   }
   
 }
