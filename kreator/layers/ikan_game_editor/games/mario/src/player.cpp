@@ -45,25 +45,35 @@ namespace mario {
       case PlayerAction::Invalid: {
         IK_ASSERT(false);
       }
-      case PlayerAction::Idle: {
+      case PlayerAction::Idle:
+      case PlayerAction::SwitchSide:
+      case PlayerAction::Jump:
+      case PlayerAction::Die:
+      case PlayerAction::PowerUp:
         break;
-      }
+      
       case PlayerAction::Run: {
-        break;
-      }
-      case PlayerAction::SwitchSide: {
-        break;
-      }
-      case PlayerAction::Jump: {
-        break;
-      }
-      case PlayerAction::Die: {
-        break;
-      }
-      case PlayerAction::PowerUp: {
+        static const int32_t run_speed = 10;
+        static int32_t run_anim_idx = 0;
+
+        auto& qc = player_entity_->GetComponent<QuadComponent>();
+
+        if (run_anim_idx >= run_speed * running_player_sprites_->size() or run_anim_idx < 1)
+          run_anim_idx = 0;
+          
+        qc.texture_comp.sprite = running_player_sprites_->at(run_anim_idx / run_speed);
+        run_anim_idx++;
+
         break;
       }
     }
+  }
+  
+  void StateMachine::SetState(PlayerState new_state) {
+    player_prev_state_ = player_state_;
+    player_state_ = new_state;
+    
+    running_player_sprites_ = &SpriteManager::GetPlayerStateSprite(player_state_, PlayerAction::Run);
   }
   
   void StateMachine::SetAction(PlayerAction new_action) {
@@ -71,7 +81,11 @@ namespace mario {
     player_action_ = new_action;
     
     auto& qc = player_entity_->GetComponent<QuadComponent>();
-    qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(player_state_, player_action_)[0];
+    // We want an animation while running and powerup so not changing sprite while changing the action
+    // Sprite animation taken  care at state_machine update function
+    if (player_action_ != PlayerAction::Run and player_action_ != PlayerAction::PowerUp) {
+      qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(player_state_, player_action_)[0];
+    }
   }
   
   PlayerController::PlayerController() {
@@ -106,7 +120,10 @@ namespace mario {
       reset_fixture_ = false;
     }
 
+    state_machine_->Update(ts);
+
     CheckOnGround();
+    Run(ts);
     JumpAndBounce(ts);
     
     velocity_.x += acceleration_.x * ts * 2.0f;
@@ -117,6 +134,48 @@ namespace mario {
     
     rb.SetVelocity(velocity_);
     rb.SetAngularVelocity(0.0f);
+  }
+  
+  void PlayerController::Run(Timestep ts) {
+    auto& tc = entity_.GetComponent<TransformComponent>();
+
+    if (Input::IsKeyPressed(KeyCode::Left)) {
+      tc.UpdateScale_X(-player_width_);
+      acceleration_.x = -walk_speed_;
+      
+      if (velocity_.x > 0) {
+        velocity_.x -= slow_down_force_;
+        state_machine_->SetAction(PlayerAction::SwitchSide);
+      }
+      else {
+        state_machine_->SetAction(PlayerAction::Run);
+      }
+    }
+    else if (Input::IsKeyPressed(KeyCode::Right)) { // Run Right
+      tc.UpdateScale_X(player_width_);
+      acceleration_.x = walk_speed_;
+      
+      if (velocity_.x < 0) {
+        velocity_.x += slow_down_force_;
+        state_machine_->SetAction(PlayerAction::SwitchSide);
+      }
+      else {
+        state_machine_->SetAction(PlayerAction::Run);
+      }
+    }
+    else { // Friction Stop
+      acceleration_.x = 0;
+      if (velocity_.x > 0) {
+        velocity_.x = std::max(0.0f, velocity_.x - slow_down_force_);
+      }
+      else if (velocity_.x < 0) {
+        velocity_.x = std::min(0.0f, velocity_.x + slow_down_force_);
+      }
+      
+      if (velocity_.x == 0) {
+        state_machine_->SetAction(PlayerAction::Idle);
+      }
+    }
   }
   
   void PlayerController::JumpAndBounce(Timestep ts) {
@@ -158,7 +217,6 @@ namespace mario {
       velocity_.y = 0;
       acceleration_.y = 0;
       ground_debounce_ = ground_debounce_time_;
-      state_machine_->SetAction(PlayerAction::Idle);
     }
   }
   

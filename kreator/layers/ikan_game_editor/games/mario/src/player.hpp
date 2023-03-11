@@ -33,11 +33,6 @@ namespace mario {
       return player_prev_state_;
     }
     
-    void SetState(PlayerState new_state) {
-      player_prev_state_ = player_state_;
-      player_state_ = new_state;
-    }
-
     PlayerAction Action() const {
       IK_ASSERT(player_action_ != PlayerAction::Invalid);
       return player_action_;
@@ -49,6 +44,7 @@ namespace mario {
     }
 
     void SetAction(PlayerAction new_action);
+    void SetState(PlayerState new_state);
     void Update(Timestep ts);
     
     std::string StateString() const;
@@ -62,6 +58,8 @@ namespace mario {
     
     PlayerAction player_action_ = PlayerAction::Idle;
     PlayerAction player_prev_action_ = PlayerAction::Invalid;
+    
+    const std::vector<std::shared_ptr<SubTexture>>* running_player_sprites_;
   };
 
   class PlayerController : public ScriptableEntity {
@@ -79,6 +77,7 @@ namespace mario {
     void CheckOnGround();
     void SetState(PlayerState new_state);
     void JumpAndBounce(Timestep ts);
+    void Run(Timestep ts);
     
     bool reset_fixture_ = false;
     bool on_ground_ = false;

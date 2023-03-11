@@ -24,7 +24,7 @@ namespace mario {
     static void Shutdown();
     
     static std::shared_ptr<Texture> GetSpriteImage(SpriteType type);
-    static std::vector<std::shared_ptr<SubTexture>> GetPlayerStateSprite(PlayerState state, PlayerAction action);
+    static const std::vector<std::shared_ptr<SubTexture>>& GetPlayerStateSprite(PlayerState state, PlayerAction action);
     
     MAKE_PURE_STATIC(SpriteManager);
   };

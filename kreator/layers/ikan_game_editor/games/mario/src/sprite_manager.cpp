@@ -68,14 +68,13 @@ namespace mario {
     return nullptr;
   }
   
-  std::vector<std::shared_ptr<SubTexture>> SpriteManager::GetPlayerStateSprite(PlayerState state, PlayerAction action) {
-    if (data_ and data_->player_subtextures_map.find(state) != data_->player_subtextures_map.end()) {
-      const auto& player_map = data_->player_subtextures_map.at(state);
-      if (player_map.find(action) != player_map.end()) {
-        return player_map.at(action);
-      }
-    }
-    return {nullptr};
+  const std::vector<std::shared_ptr<SubTexture>>& SpriteManager::GetPlayerStateSprite(PlayerState state, PlayerAction action) {
+    IK_ASSERT(data_ or data_->player_subtextures_map.find(state) != data_->player_subtextures_map.end());
+    
+    const auto& player_map = data_->player_subtextures_map.at(state);
+    IK_ASSERT(player_map.find(action) != player_map.end());
+
+    return player_map.at(action);
   }
   
   void SpriteManager::Shutdown() {
