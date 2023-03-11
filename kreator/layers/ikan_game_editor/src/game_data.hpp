@@ -61,7 +61,7 @@ namespace ikan_game {
     
     bool IsPlaying() { return is_playing_; }
     
-  private:
+  protected:
     bool is_playing_ = false;
   };
   
