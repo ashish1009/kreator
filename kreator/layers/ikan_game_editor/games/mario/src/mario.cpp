@@ -9,6 +9,7 @@
 #include "camera_controller.hpp"
 #include "sprite_manager.hpp"
 #include "block.hpp"
+#include "runtime_item.hpp"
 
 namespace mario {
   
@@ -29,6 +30,7 @@ namespace mario {
     
     SpriteManager::Init();
     BlockScriptManager::Init();
+    RuntimeItem::Init();
   }
   
   Mario::~Mario() {
@@ -36,6 +38,7 @@ namespace mario {
 
     SpriteManager::Shutdown();
     BlockScriptManager::Shutdown();
+    RuntimeItem::Shutdown();
   }
     
   void Mario::Init(const std::shared_ptr<EnttScene> scene, ScenePanelManager* panel) {

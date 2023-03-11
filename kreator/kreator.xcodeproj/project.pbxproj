@@ -12,6 +12,7 @@
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
 		B2584ED9295B826900234714 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2584ED8295B826900234714 /* libfreetype.6.dylib */; };
 		B267BAB229BC8EC30018D9E1 /* block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B267BAB029BC8EC30018D9E1 /* block.cpp */; };
+		B267BAB529BC917F0018D9E1 /* runtime_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B267BAB329BC917F0018D9E1 /* runtime_item.cpp */; };
 		B26C428329BB1F5500B7F0D1 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B26C428129BB1F5500B7F0D1 /* player.cpp */; };
 		B26C428629BB74A900B7F0D1 /* sprite_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B26C428429BB74A900B7F0D1 /* sprite_manager.cpp */; };
 		B27566C329BA17B800DF05E2 /* camera_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27566C129BA17B800DF05E2 /* camera_controller.cpp */; };
@@ -56,6 +57,8 @@
 		B2584ED8295B826900234714 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B267BAB029BC8EC30018D9E1 /* block.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = block.cpp; sourceTree = "<group>"; };
 		B267BAB129BC8EC30018D9E1 /* block.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = block.hpp; sourceTree = "<group>"; };
+		B267BAB329BC917F0018D9E1 /* runtime_item.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = runtime_item.cpp; sourceTree = "<group>"; };
+		B267BAB429BC917F0018D9E1 /* runtime_item.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = runtime_item.hpp; sourceTree = "<group>"; };
 		B26C428129BB1F5500B7F0D1 /* player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
 		B26C428229BB1F5500B7F0D1 /* player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
 		B26C428429BB74A900B7F0D1 /* sprite_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sprite_manager.cpp; sourceTree = "<group>"; };
@@ -386,6 +389,8 @@
 				B26C428529BB74A900B7F0D1 /* sprite_manager.hpp */,
 				B267BAB029BC8EC30018D9E1 /* block.cpp */,
 				B267BAB129BC8EC30018D9E1 /* block.hpp */,
+				B267BAB329BC917F0018D9E1 /* runtime_item.cpp */,
+				B267BAB429BC917F0018D9E1 /* runtime_item.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -472,6 +477,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B26C428329BB1F5500B7F0D1 /* player.cpp in Sources */,
+				B267BAB529BC917F0018D9E1 /* runtime_item.cpp in Sources */,
 				B2918476299CF8AA008B9D71 /* mario.cpp in Sources */,
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
 				B2918465299CEFCB008B9D71 /* renderer_layer.cpp in Sources */,

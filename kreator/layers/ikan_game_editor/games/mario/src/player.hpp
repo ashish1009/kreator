@@ -47,6 +47,8 @@ namespace mario {
     void SetState(PlayerState new_state);
     void Update(Timestep ts);
     
+    bool IsSmall() const { return player_state_ == PlayerState::Small; }
+    
     std::string StateString() const;
     std::string ActionString() const;
 
@@ -72,6 +74,8 @@ namespace mario {
     void RenderGui() override;
     void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
 
+    bool IsSmall() const { return state_machine_->IsSmall(); }
+    
     static PlayerController* Get();
     
   private:

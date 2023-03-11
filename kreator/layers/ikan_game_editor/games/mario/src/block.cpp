@@ -6,6 +6,7 @@
 //
 
 #include "block.hpp"
+#include "runtime_item.hpp"
 
 namespace mario {
   
@@ -52,17 +53,30 @@ namespace mario {
   }
 
   void BlockController::PlayerHit(PlayerController* pc) {
+    auto& tc = entity_.GetComponent<TransformComponent>();
     switch (type_) {
       case BlockType::Empty : {
         break;
       }
       case BlockType::Coin: {
+        RuntimeItem::Create(Items::Coin, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
+        count_--;
+        if (count_ == 0)
+          SetInactive();
         break;
       }
       case BlockType::Star: {
         break;
       }
       case BlockType::PowerUp : {
+        if (pc->IsSmall()) {
+          RuntimeItem::Create(Items::Mushroom, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0});
+          SetInactive();
+        }
+        else {
+          RuntimeItem::Create(Items::Flower, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0});
+          SetInactive();
+        }
         break;
       }
       default:
