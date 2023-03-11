@@ -69,6 +69,9 @@ namespace mario {
   void StateMachine::SetAction(PlayerAction new_action) {
     player_prev_action_ = player_action_;
     player_action_ = new_action;
+    
+    auto& qc = player_entity_->GetComponent<QuadComponent>();
+    qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(player_state_, player_action_)[0];
   }
   
   PlayerController::PlayerController() {
@@ -88,7 +91,7 @@ namespace mario {
     state_machine_ = new StateMachine(&entity_);
 
     // Set the state of player
-    ChangeState(PlayerState::Small);
+    SetState(PlayerState::Small);
         
     // Disbale Gravity on player
     GetComponent<RigidBodyComponent>().SetGravityScale(0.0f);
@@ -104,6 +107,27 @@ namespace mario {
     }
 
     CheckOnGround();
+        
+    if (!on_ground_) {
+      // Player State is Jumping if player is on Air
+      state_machine_->SetAction(PlayerAction::Jump);
+      
+      // Free fall with scene gravity
+      acceleration_.y = entity_.GetScene()->GetGravity().y * free_fall_factor;
+    }
+    else {
+      velocity_.y = 0;
+      acceleration_.y = 0;
+    }
+    
+    velocity_.x += acceleration_.x * ts * 2.0f;
+    velocity_.y += acceleration_.y * ts * 2.0f;
+    
+    velocity_.x = std::max(std::min(velocity_.x, terminal_velocity_.x), -terminal_velocity_.x);
+    velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
+    
+    rb.SetVelocity(velocity_);
+    rb.SetAngularVelocity(0.0f);
   }
   
   void PlayerController::CheckOnGround() {
@@ -114,12 +138,14 @@ namespace mario {
     on_ground_ = entity_.GetScene()->CheckOnGround(&entity_, inner_player_width, y_val);
   }
   
-  void PlayerController::ChangeState(PlayerState new_state) {
+  void PlayerController::SetState(PlayerState new_state) {
     state_machine_->SetState(new_state);
     
+    auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
     if (state_machine_->State() == PlayerState::Small) {
       player_width_ = 1.0f;
       player_height_ = 1.0f;
+      pbc.SetSize({0.4f, player_height_ / 2.0f});
     }
     else if (state_machine_->State() == PlayerState::Big) {
       player_width_ = 1.0f;
@@ -127,14 +153,10 @@ namespace mario {
 
       // Add Impulse to push player out of ground while changing size
       entity_.GetComponent<RigidBodyComponent>().AddVelocity({velocity_.x, 1000.0});
+      pbc.SetSize({0.5f, player_height_ / 2.0f});
     }
-    
-    auto& tc = entity_.GetComponent<TransformComponent>();
-    tc.UpdateScale_Y(player_height_);
+    entity_.GetComponent<TransformComponent>().UpdateScale_Y(player_height_);
 
-    auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
-    pbc.SetSize({0.5f, player_height_ / 2.0f});
-    
     reset_fixture_ = true;
   }
 
@@ -143,19 +165,7 @@ namespace mario {
       ImGui::Text(" State             | %s", state_machine_->StateString().c_str());
       ImGui::Text(" Action            | %s", state_machine_->ActionString().c_str());
     }
-    
     ImGui::Text(" On Ground         | %s", on_ground_ ? "True" : "False");
-
-    ImGui::Text(" Width             | %f", player_width_);
-    ImGui::Text(" Height            | %f", player_height_);
-
-    ImGui::Text(" Accelaration      | %f - %f", acceleration_.x, acceleration_.y);
-    ImGui::Text(" Velocity          | %f - %f", velocity_.x, velocity_.y);
-    ImGui::Text(" Terminal Velocity | %f - %f", terminal_velocity_.x, terminal_velocity_.y);
-
-    ImGui::Text(" Walk Speed        | %f", walk_speed_);
-    ImGui::Text(" Slow Down Force   | %f", slow_down_force_);
-    ImGui::Text(" Free Fall Factor  | %f", free_fall_factor);
   }
   
 }

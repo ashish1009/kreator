@@ -77,7 +77,7 @@ namespace mario {
     
   private:
     void CheckOnGround();
-    void ChangeState(PlayerState new_state);
+    void SetState(PlayerState new_state);
     
     bool reset_fixture_ = false;
     bool on_ground_ = false;

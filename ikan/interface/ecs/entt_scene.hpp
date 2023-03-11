@@ -193,6 +193,9 @@ namespace ikan {
     /// This function retirns the physics 2D World pointer
     b2World* GetPhysicsWorld();
     
+    /// This function returns the physics world gravity
+    const b2Vec2& GetGravity() const;
+    
     /// This function callback the world raycast
     /// - Parameters:
     ///   - requesting_obj: requesting object type
