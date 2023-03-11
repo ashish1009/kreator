@@ -107,7 +107,19 @@ namespace mario {
     }
 
     CheckOnGround();
-        
+    JumpAndBounce(ts);
+    
+    velocity_.x += acceleration_.x * ts * 2.0f;
+    velocity_.y += acceleration_.y * ts * 2.0f;
+    
+    velocity_.x = std::max(std::min(velocity_.x, terminal_velocity_.x), -terminal_velocity_.x);
+    velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
+    
+    rb.SetVelocity(velocity_);
+    rb.SetAngularVelocity(0.0f);
+  }
+  
+  void PlayerController::JumpAndBounce(Timestep ts) {
     if (Input::IsKeyPressed(KeyCode::Space) and (jump_time_ > 0 or on_ground_ or ground_debounce_ > 0)) {
       if ((on_ground_ or ground_debounce_ > 0) and jump_time_ == 0) {
         jump_time_ = 55;
@@ -135,7 +147,7 @@ namespace mario {
         jump_time_ = 0;
       }
       ground_debounce_ -= ts;
-
+      
       // Free fall with scene gravity
       acceleration_.y = entity_.GetScene()->GetGravity().y * free_fall_factor;
       
@@ -148,15 +160,6 @@ namespace mario {
       ground_debounce_ = ground_debounce_time_;
       state_machine_->SetAction(PlayerAction::Idle);
     }
-    
-    velocity_.x += acceleration_.x * ts * 2.0f;
-    velocity_.y += acceleration_.y * ts * 2.0f;
-    
-    velocity_.x = std::max(std::min(velocity_.x, terminal_velocity_.x), -terminal_velocity_.x);
-    velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
-    
-    rb.SetVelocity(velocity_);
-    rb.SetAngularVelocity(0.0f);
   }
   
   void PlayerController::CheckOnGround() {

@@ -78,6 +78,7 @@ namespace mario {
   private:
     void CheckOnGround();
     void SetState(PlayerState new_state);
+    void JumpAndBounce(Timestep ts);
     
     bool reset_fixture_ = false;
     bool on_ground_ = false;
