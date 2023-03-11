@@ -30,8 +30,8 @@
             filePath = "kreator/layers/ikan_game_editor/games/mario/src/player.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
             landmarkName = "PlayerController::SetState(new_state)"
             landmarkType = "7">
          </BreakpointContent>

@@ -45,9 +45,9 @@ namespace mario {
         collided_entity->GetComponent<NativeScriptComponent>().script.get() == pc) {
       contact->SetEnabled(false);
       if (!hit_player_) {
-//        pc->SetPowerup();
-//        hit_player_ = true;
-//        destroy_ = true;
+        pc->SetPowerup();
+        hit_player_ = true;
+        destroy_ = true;
       }
       return;
     }

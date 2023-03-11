@@ -74,7 +74,10 @@ namespace mario {
     void RenderGui() override;
     void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
 
+    void PowerUp(Timestep ts);
+
     bool IsSmall() const { return state_machine_->IsSmall(); }
+    void SetPowerup() { power_up_ = true; };
     
     static PlayerController* Get();
     
@@ -93,6 +96,11 @@ namespace mario {
     bool on_ground_ = false;
     bool is_dead_ = false;
     bool is_dying_ = false;
+    bool power_up_ = false;
+    
+    float hurt_invincibility_time_ = 1.5f;
+    float hurt_invincibility_time_left_ = 0.0f;
+    float blink_time_ = 1.5f;
 
     float player_width_ = 1.0f, player_height_ = 1.0f;;
 
@@ -109,6 +117,8 @@ namespace mario {
     float jump_impuls_ = 10.0f;
     float big_jump_boost_factor_ = 2.0f;
     
+    float freez_time_ = 0.5f;
+
     int32_t enemy_bounce_ = 0;
     int32_t jump_time_ = 0;
 

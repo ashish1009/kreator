@@ -87,6 +87,11 @@ namespace mario {
     if (player_action_ != PlayerAction::Run and player_action_ != PlayerAction::PowerUp) {
       qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(player_state_, player_action_)[0];
     }
+    else {
+      if (player_action_ == PlayerAction::PowerUp) {
+        qc.texture_comp.sprite = SpriteManager::GetPlayerStateSprite(player_state_, player_prev_action_)[0];
+      }
+    }
   }
   
   PlayerController::PlayerController() {
@@ -116,17 +121,51 @@ namespace mario {
     auto& rb = entity_.GetComponent<RigidBodyComponent>();
     const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
     
+    // Following should be in same order
+
+    // 1. Reset the fixture if size changed
     if (reset_fixture_) {
       EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, pbc);
       reset_fixture_ = false;
     }
-
+    
+    // 2. Update the state machine
     state_machine_->Update(ts);
 
+    // 3. Check player on ground or not
     CheckOnGround();
+    
+    // 4. Check is player hits the powerup item
+    if (power_up_)
+      PowerUp(ts);
+    
+    // 5. Freeze until player power up completes
+    if (state_machine_->Action() == PlayerAction::PowerUp) {
+      freez_time_-= ts;
+      if (freez_time_ >= 0) {
+        if (!on_ground_) {
+          rb.SetVelocity({0, 0});
+        }
+        return;
+      }
+      else {
+        state_machine_->SetAction(state_machine_->PrevAction());
+        freez_time_ = 0.5f;
+        
+        if (state_machine_->State() == PlayerState::Big) {
+          // As our player powered up so reset the pill box size
+          reset_fixture_ = true;
+        }
+      }
+    }
+
+    // 6. Poll the buttons for Running the player
     Run(ts);
+    
+    // 7. Poll the button for Running the jumping
     JumpAndBounce(ts);
     
+    // 8. Add Velocity to player body
     velocity_.x += acceleration_.x * ts * 2.0f;
     velocity_.y += acceleration_.y * ts * 2.0f;
     
@@ -151,6 +190,21 @@ namespace mario {
       acceleration_.y = 0;
       jump_time_ = 0;
     }
+  }
+  
+  void PlayerController::PowerUp(Timestep ts) {
+    if (IsSmall()) {
+      SetState(PlayerState::Big);
+      
+      jumb_boost_ *= big_jump_boost_factor_;
+      walk_speed_ *= big_jump_boost_factor_;
+      
+      state_machine_->SetAction(PlayerAction::PowerUp);
+      
+      // When player will hurt it will blink for this time
+      blink_time_ = hurt_invincibility_time_;
+    }
+    power_up_ = false;
   }
   
   void PlayerController::Run(Timestep ts) {
