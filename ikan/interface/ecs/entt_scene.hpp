@@ -194,7 +194,7 @@ namespace ikan {
     b2World* GetPhysicsWorld();
     
     /// This function returns the physics world gravity
-    const b2Vec2& GetGravity() const;
+    b2Vec2 GetGravity() const;
     
     /// This function callback the world raycast
     /// - Parameters:

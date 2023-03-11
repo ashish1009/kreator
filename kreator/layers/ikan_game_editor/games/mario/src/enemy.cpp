@@ -67,6 +67,7 @@ namespace mario {
           // Add Impulse to push e out of ground while changing size
           entity_.GetComponent<RigidBodyComponent>().AddVelocity({0, 1000.0});
           
+          SetAppliedForce(false);
           is_dying_ = false;
           reset_fixture_ = true;
         }
@@ -81,8 +82,8 @@ namespace mario {
     } else {
       acceleration_.y = entity_.GetScene()->GetGravity().y * free_fall_factor;
     }
-
-    if (!is_dying_ and !is_dead_) {
+    
+    if (!is_dying_ or (is_dying_ and force_applied_)) {
       if (going_right_) {
         velocity_.x = walk_speed_;
       }
@@ -111,11 +112,17 @@ namespace mario {
     if (PlayerController* pc = PlayerController::Get();
         collided_entity->HasComponent<NativeScriptComponent>() and
         collided_entity->GetComponent<NativeScriptComponent>().script.get() == pc) {
-      if (!pc->IsDying() && !pc->IsHurtInvincible() && contact_normal.y > 0.58f) {
+            
+      if (!pc->IsDying() and !pc->IsHurtInvincible() and contact_normal.y > 0.58f) {
         pc->EnemyBounce();
         Stomp();
         contact->SetEnabled(false);
-      } else if (!pc->IsDying() && !pc->IsInvincible()) {
+      } else if (!pc->IsDying() and !pc->IsInvincible()) {
+        // Apply force to duck if is dying
+        if (is_dying_) {
+          going_right_ = (contact_normal.x < 0);
+          SetAppliedForce(true);
+        }
 #if 0
         pc->Die();
         if (!pc->IsDying()) {
@@ -150,9 +157,23 @@ namespace mario {
     acceleration_ = enemy_script->acceleration_;
     velocity_ = enemy_script->velocity_;
     terminal_velocity_ = enemy_script->terminal_velocity_;
+    
+    force_applied_ = enemy_script->force_applied_;
   }
   
   void EnemyController::RenderGui() {
+    ImGui::Text(" Acc %f %f", acceleration_.x, acceleration_.y);
+    ImGui::Text(" Vel %f %f", velocity_.x, velocity_.y);
+  }
+  
+  void EnemyController::SetAppliedForce(bool force) {
+    force_applied_ = force;
+    if (force) {
+      walk_speed_ = 8.0f;
+    }
+    else {
+      walk_speed_ = 4.0f;
+    }
   }
   
   void EnemyController::Stomp() {
@@ -166,8 +187,9 @@ namespace mario {
       pbc.RecalculateColliders();
       
       is_dying_ = true;
-      time_to_revive_ = 1.5f;
+      time_to_revive_ = 16.5f;
       reset_fixture_ = true;
+      SetAppliedForce(false);
       
       entity_.GetComponent<AnimationComponent>().animation = false;
       qc.texture_comp.sprite = SpriteManager::GetEnemySprite(type_, EnemyState::Dying);

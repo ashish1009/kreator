@@ -36,6 +36,7 @@ namespace mario {
   private:
     void Stomp();
     void CheckOnGround();
+    void SetAppliedForce(bool force);
 
     EnemyType type_;
     
@@ -45,6 +46,7 @@ namespace mario {
     bool is_dying_ = false;
     bool going_right_ = true;
     bool on_ground_ = false;
+    bool force_applied_ = false;
     
     float free_fall_factor = 1.0f;
     float walk_speed_ = 4.0f;

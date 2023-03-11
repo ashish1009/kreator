@@ -633,7 +633,7 @@ namespace ikan {
   bool EnttScene::UseEditorCamera() const { return setting_.use_editor_camera; }
   
   b2World* EnttScene::GetPhysicsWorld() { return physics_world_; }
-  const b2Vec2& EnttScene::GetGravity() const { return physics_world_->GetGravity(); }
+  b2Vec2 EnttScene::GetGravity() const { return physics_world_->GetGravity(); }
 
   void EnttScene::AddBoxColliderData(const TransformComponent& tc,
                                      const BoxColliderComponent& bc2d,
