@@ -41,6 +41,8 @@ namespace mario {
   }
   
   void StateMachine::Update(Timestep ts) {
+    auto& qc = player_entity_->GetComponent<QuadComponent>();
+
     switch (player_action_) {
       case PlayerAction::Invalid: {
         IK_ASSERT(false);
@@ -49,15 +51,32 @@ namespace mario {
       case PlayerAction::SwitchSide:
       case PlayerAction::Jump:
       case PlayerAction::Die:
-      case PlayerAction::PowerUp:
         break;
-      
+      case PlayerAction::PowerUp: {
+        // Animation of player while powerup fire
+        if (player_state_ == PlayerState::Fire) {
+          static const int32_t invince_speed = 10;
+          static int32_t invinc_anim_idx = 0;
+          static std::array<float, 5> incince_sprite_y_idx = { 31, 28, 25, 22, 19 };
+          static auto sprite_image = SpriteManager::GetSpriteImage(SpriteType::Player);
+          static auto prev_sprite_x_coord = qc.texture_comp.sprite->GetCoords().x;
+          
+          if (invinc_anim_idx >= invince_speed * incince_sprite_y_idx.size() or invinc_anim_idx < 1)
+            invinc_anim_idx = 0;
+          
+          qc.texture_comp.sprite = SubTexture::CreateFromCoords(sprite_image,
+                                                                {prev_sprite_x_coord, incince_sprite_y_idx[invinc_anim_idx / invince_speed]},
+                                                                {1.0f, 2.0f});
+          invinc_anim_idx++;
+        }
+        break;
+      }
+        
       case PlayerAction::Run: {
         // Animation of player while running
         static const int32_t run_speed = 10;
         static int32_t run_anim_idx = 0;
 
-        auto& qc = player_entity_->GetComponent<QuadComponent>();
         if (run_anim_idx >= run_speed * running_player_sprites_->size() or run_anim_idx < 1)
           run_anim_idx = 0;
           
@@ -199,11 +218,14 @@ namespace mario {
       jumb_boost_ *= big_jump_boost_factor_;
       walk_speed_ *= big_jump_boost_factor_;
       
-      state_machine_->SetAction(PlayerAction::PowerUp);
-      
       // When player will hurt it will blink for this time
       blink_time_ = hurt_invincibility_time_;
     }
+    else {
+      SetState(PlayerState::Fire);
+    }
+    
+    state_machine_->SetAction(PlayerAction::PowerUp);
     power_up_ = false;
   }
   
@@ -315,6 +337,9 @@ namespace mario {
       // Add Impulse to push player out of ground while changing size
       entity_.GetComponent<RigidBodyComponent>().AddVelocity({velocity_.x, 1000.0});
       pbc.SetSize({0.5f, player_height_ / 2.0f});
+    }
+    else if (state_machine_->State() == PlayerState::Fire) {
+      // Do Nothing for Fire for now
     }
     entity_.GetComponent<TransformComponent>().UpdateScale_Y(player_height_);
 
