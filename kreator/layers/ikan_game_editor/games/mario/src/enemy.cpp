@@ -50,19 +50,28 @@ namespace mario {
     }
     
     // If Duck is dying then make it stationary
-    if (is_dying_) {
+    if (is_dying_ and !force_applied_) {
       if (type_ == EnemyType::Duck) {
         time_to_revive_ -= ts;
         
         // Revive the duck if not killed properly
-        if (time_to_revive_ <= 0.0f) {
+        if (time_to_revive_ <= 1.0f and time_to_revive_ >= 0.0f) {
+          auto& ac = entity_.GetComponent<AnimationComponent>();
+          ac.sprites = SpriteManager::GetEnemySprite(EnemyType::Duck, EnemyState::Dying);
+          ac.speed = 15;
+          ac.animation = true;
+        }
+        else if (time_to_revive_ <= 0.0f) {
           entity_.GetComponent<TransformComponent>().UpdateScale_Y(2.0f);
           auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
           pbc.height = 0.8f;
           pbc.offset.y = -0.20f;
           pbc.RecalculateColliders();
           
-          entity_.GetComponent<AnimationComponent>().animation = true;
+          auto& ac = entity_.GetComponent<AnimationComponent>();
+          ac.sprites = SpriteManager::GetEnemySprite(EnemyType::Duck, EnemyState::Alive);
+          ac.speed = 50.0f;
+          ac.animation = true;
           
           // Add Impulse to push e out of ground while changing size
           entity_.GetComponent<RigidBodyComponent>().AddVelocity({0, 1000.0});
@@ -162,12 +171,11 @@ namespace mario {
   }
   
   void EnemyController::RenderGui() {
-    ImGui::Text(" Acc %f %f", acceleration_.x, acceleration_.y);
-    ImGui::Text(" Vel %f %f", velocity_.x, velocity_.y);
   }
   
   void EnemyController::SetAppliedForce(bool force) {
     force_applied_ = force;
+    is_deadly_ = force;
     if (force) {
       walk_speed_ = 8.0f;
     }
@@ -187,12 +195,12 @@ namespace mario {
       pbc.RecalculateColliders();
       
       is_dying_ = true;
-      time_to_revive_ = 16.5f;
+      time_to_revive_ = 5.0f;
       reset_fixture_ = true;
       SetAppliedForce(false);
       
       entity_.GetComponent<AnimationComponent>().animation = false;
-      qc.texture_comp.sprite = SpriteManager::GetEnemySprite(type_, EnemyState::Dying);
+      qc.texture_comp.sprite = SpriteManager::GetEnemySprite(type_, EnemyState::Dying).at(0);
       return;
     }
     
@@ -205,7 +213,7 @@ namespace mario {
     
     entity_.RemoveComponent<AnimationComponent>();
     
-    qc.texture_comp.sprite = SpriteManager::GetEnemySprite(type_, EnemyState::Dead);
+    qc.texture_comp.sprite = SpriteManager::GetEnemySprite(type_, EnemyState::Dead).at(0);
   }
  
   void EnemyController::CheckOnGround() {

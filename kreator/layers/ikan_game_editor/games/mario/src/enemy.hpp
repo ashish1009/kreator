@@ -18,7 +18,7 @@ namespace mario {
   };
   
   enum class EnemyState {
-    Dying, Dead
+    Alive, Dying, Dead
   };
 
   class EnemyController : public ScriptableEntity {
@@ -47,6 +47,7 @@ namespace mario {
     bool going_right_ = true;
     bool on_ground_ = false;
     bool force_applied_ = false;
+    bool is_deadly_ = false;
     
     float free_fall_factor = 1.0f;
     float walk_speed_ = 4.0f;

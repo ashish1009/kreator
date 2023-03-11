@@ -14,7 +14,7 @@ namespace mario {
   struct SpriteData {
     std::unordered_map<SpriteType, std::shared_ptr<Texture>> sprite_map;
     std::unordered_map<PlayerState, std::unordered_map<PlayerAction, std::vector<std::shared_ptr<SubTexture>>>> player_subtextures_map;
-    std::unordered_map<EnemyType, std::unordered_map<EnemyState, std::shared_ptr<SubTexture>>> enemy_subtextures_map;
+    std::unordered_map<EnemyType, std::unordered_map<EnemyState, std::vector<std::shared_ptr<SubTexture>>>> enemy_subtextures_map;
   };
   static SpriteData* data_;
   
@@ -65,10 +65,14 @@ namespace mario {
     
     const auto& enemy_sprite = GetSpriteImage(SpriteType::Enemy);
     auto& goomba_sprite = data_->enemy_subtextures_map[EnemyType::Goomba];
-    goomba_sprite[EnemyState::Dead] = SubTexture::CreateFromCoords(enemy_sprite, {2.0f, 6.0f});
+    goomba_sprite[EnemyState::Dead].push_back(SubTexture::CreateFromCoords(enemy_sprite, {2.0f, 6.0f}));
     
     auto& duck_sprite = data_->enemy_subtextures_map[EnemyType::Duck];
-    duck_sprite[EnemyState::Dying] = SubTexture::CreateFromCoords(enemy_sprite, {10.0f, 6.0f});
+    duck_sprite[EnemyState::Dying].push_back(SubTexture::CreateFromCoords(enemy_sprite, {10.0f, 6.0f}));
+    duck_sprite[EnemyState::Dying].push_back(SubTexture::CreateFromCoords(enemy_sprite, {11.0f, 6.0f}));
+
+    duck_sprite[EnemyState::Alive].push_back(SubTexture::CreateFromCoords(enemy_sprite, {6.0f, 6.0f}, {1.0f, 2.0f}));
+    duck_sprite[EnemyState::Alive].push_back(SubTexture::CreateFromCoords(enemy_sprite, {7.0f, 6.0f}, {1.0f, 2.0f}));
   }
   
   std::shared_ptr<Texture> SpriteManager::GetSpriteImage(SpriteType type) {
@@ -86,14 +90,13 @@ namespace mario {
     return player_map.at(action);
   }
   
-  std::shared_ptr<SubTexture> SpriteManager::GetEnemySprite(EnemyType type, EnemyState state) {
-    if (data_ and data_->enemy_subtextures_map.find(type) != data_->enemy_subtextures_map.end()) {
-      const auto& goomba_map = data_->enemy_subtextures_map.at(type);
-      if (goomba_map.find(state) != goomba_map.end()) {
-        return goomba_map.at(state);
-      }
-    }
-    return nullptr;
+  const std::vector<std::shared_ptr<SubTexture>>& SpriteManager::GetEnemySprite(EnemyType type, EnemyState state) {
+    IK_ASSERT(data_ or data_->enemy_subtextures_map.find(type) != data_->enemy_subtextures_map.end());
+
+    const auto& enemy_map = data_->enemy_subtextures_map.at(type);
+    IK_ASSERT(enemy_map.find(state) != enemy_map.end());
+
+    return enemy_map.at(state);
   }
   
   void SpriteManager::Shutdown() {
