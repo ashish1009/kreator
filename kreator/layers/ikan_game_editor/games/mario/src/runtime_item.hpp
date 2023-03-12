@@ -54,8 +54,18 @@ namespace mario {
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& normal) override;
   };
   
+  class ScoreController : public ScriptableEntity {
+  public:
+    void Create(Entity entity) override;
+    void Update(Timestep ts) override;
+    
+  private:
+    glm::vec2 top_pos_;
+    float speed_ = 8.0f;
+  };
+  
   enum class Items {
-    Coin, Mushroom, Flower
+    Coin, Mushroom, Flower, Score
   };
   
   class RuntimeItem {

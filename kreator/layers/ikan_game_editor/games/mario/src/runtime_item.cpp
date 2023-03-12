@@ -139,6 +139,28 @@ namespace mario {
     LivingEntityHitCheck(collided_entity, contact);
   }
   
+  void ScoreController::Create(Entity entity) {
+    entity_ = entity;
+    if (entity_.HasComponent<TextComponent>()) {
+      entity_.GetComponent<TextComponent>().text = "100";
+    }
+    else {
+      entity_.AddComponent<TextComponent>().text = "100";
+    }
+    
+    const auto& tc = entity_.GetComponent<TransformComponent>().Translation();
+    top_pos_ = {tc.x, tc.y + 5.0f};
+  }
+  void ScoreController::Update(Timestep ts) {
+    auto& tc = entity_.GetComponent<TransformComponent>();
+    if (tc.Translation().y < top_pos_.y) {
+      tc.AddTranslation_Y(ts * speed_);
+    }
+    else {
+      entity_.GetScene()->DestroyEntity(entity_);
+    }
+  }
+  
   struct ItemData {
     std::string name;
     std::string scrip_name;
@@ -181,11 +203,20 @@ namespace mario {
       }
       return false;
     };
-    
+
+    static auto score_script_loader = [](NativeScriptComponent* sc, const std::string& script_name) {
+      if (script_name == "mario::ScoreController") {
+        sc->Bind<mario::ScoreController>();
+        return true;
+      }
+      return false;
+    };
+
     data = new RuntimeItemData();
     data->item_map[Items::Coin] = { "Block Coin", "mario::CoinController", glm::vec2(0.0f, 14.0f), coin_script_loader };
     data->item_map[Items::Mushroom] = { "Mushroom", "mario::MushroomController", glm::vec2(0.0f, 19.0f), mushroom_script_loader };
     data->item_map[Items::Flower] = { "Flower", "mario::FlowerController", glm::vec2(0.0f, 18.0f), flower_script_loader };
+    data->item_map[Items::Score] = { "Score", "mario::ScoreController", glm::vec2(0.0f, 0.0f), score_script_loader };
   }
   
   void RuntimeItem::Shutdown() {
@@ -195,17 +226,23 @@ namespace mario {
   void RuntimeItem::Create(Items item, EnttScene* scene, const glm::vec2& pos) {
     static std::shared_ptr<Texture> items = SpriteManager::GetSpriteImage(SpriteType::Items);
     
-    auto coin_entity = scene->CreateEntity(data->item_map.at(item).name);
-    coin_entity.GetComponent<TransformComponent>().UpdateTranslation(glm::vec3(pos, 0.1f));
+    auto run_time_entity = scene->CreateEntity(data->item_map.at(item).name);
+    auto& tc = run_time_entity.GetComponent<TransformComponent>();
+    tc.UpdateTranslation(glm::vec3(pos, 0.1f));
     
-    auto & qc = coin_entity.AddComponent<QuadComponent>();
-    qc.texture_comp.use = true;
-    qc.texture_comp.use_sprite = true;
-    qc.texture_comp.linear_edge = false;
-    qc.texture_comp.component = items;
-    qc.texture_comp.sprite = SubTexture::CreateFromCoords(items, data->item_map.at(item).coords);
+    if (item != Items::Score) {
+      auto & qc = run_time_entity.AddComponent<QuadComponent>();
+      qc.texture_comp.use = true;
+      qc.texture_comp.use_sprite = true;
+      qc.texture_comp.linear_edge = false;
+      qc.texture_comp.component = items;
+      qc.texture_comp.sprite = SubTexture::CreateFromCoords(items, data->item_map.at(item).coords);
+    }
+    else {
+      tc.UpdateScale({0.3, 0.3, 1.0f});
+    }
     
-    coin_entity.AddComponent<NativeScriptComponent>(data->item_map.at(item).scrip_name, data->item_map.at(item).loader_fun);
+    run_time_entity.AddComponent<NativeScriptComponent>(data->item_map.at(item).scrip_name, data->item_map.at(item).loader_fun);
   }
   
 }
