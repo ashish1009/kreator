@@ -963,4 +963,20 @@ namespace ikan {
     } // if (animation)
   }
   
+  BulletComponent::BulletComponent(const BulletComponent& other) {
+    is_bullet = other.is_bullet;
+  }
+  
+  BulletComponent::BulletComponent(BulletComponent&& other) {
+    is_bullet = other.is_bullet;
+  }
+  
+  BulletComponent& BulletComponent::operator=(const BulletComponent& other) {
+    is_bullet = other.is_bullet;
+    return *this;
+  }
+  BulletComponent& BulletComponent::operator=(BulletComponent&& other) {
+    is_bullet = other.is_bullet;
+    return *this;
+  }
 }

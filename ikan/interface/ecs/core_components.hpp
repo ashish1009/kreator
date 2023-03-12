@@ -259,12 +259,19 @@ namespace ikan {
     DEFINE_COPY_MOVE_CONSTRUCTORS(AnimationComponent);
   };
   
+  struct BulletComponent {
+    bool is_bullet = true;
+    BulletComponent() = default;
+    ~BulletComponent() = default;
+    DEFINE_COPY_MOVE_CONSTRUCTORS(BulletComponent);
+  };
+  
   template<typename... Component>
   struct ComponentGroup {
   };
   
   using AllComponents =
   ComponentGroup<TransformComponent, QuadComponent, CircleComponent, CameraComponent, NativeScriptComponent,
-  RigidBodyComponent, BoxColliderComponent, CircleColliiderComponent, PillBoxColliderComponent, AnimationComponent>;
+  RigidBodyComponent, BoxColliderComponent, CircleColliiderComponent, PillBoxColliderComponent, AnimationComponent, BulletComponent>;
 
 }
