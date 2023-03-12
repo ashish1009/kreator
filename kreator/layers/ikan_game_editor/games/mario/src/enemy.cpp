@@ -25,22 +25,24 @@ namespace mario {
     auto& rb = entity_.GetComponent<RigidBodyComponent>();
     
     if (reset_fixture_) {
-      const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
-      EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, pbc);
+      if (type_ == EnemyType::Goomba) {
+        EnttScene::ResetFixture(rb.runtime_body);
+      }
+      else if (type_ == EnemyType::Turtule) {
+        const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
+        EnttScene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, pbc);
+      }
       reset_fixture_ = false;
     }
     
-    // Change the direction of duck. No need for Goomba
-    if (type_ == EnemyType::Duck) {
+    // Change the direction of turtule. No need for Goomba
+    if (type_ == EnemyType::Turtule) {
       auto& tc = entity_.GetComponent<TransformComponent>();
       tc.UpdateScale_X(going_right_ ? -1.0f : 1.0f);
     }
     
     // Destory the entity if enemy is dead
     if (is_dead_) {
-      auto& rb = GetComponent<RigidBodyComponent>();
-      EnttScene::ResetFixture(rb.runtime_body);
-      
       time_to_kill -= ts;
       rb.SetVelocity({0., 0});
       if (time_to_kill <= 0) {
@@ -49,15 +51,15 @@ namespace mario {
       return;
     }
     
-    // If Duck is dying then make it stationary
+    // If Turtule is dying then make it stationary
     if (is_dying_ and !force_applied_) {
-      if (type_ == EnemyType::Duck) {
+      if (type_ == EnemyType::Turtule) {
         time_to_revive_ -= ts;
         
-        // Revive the duck if not killed properly
+        // Revive the turtule if not killed properly
         if (time_to_revive_ <= 1.0f and time_to_revive_ >= 0.0f) {
           auto& ac = entity_.GetComponent<AnimationComponent>();
-          ac.sprites = SpriteManager::GetEnemySprite(EnemyType::Duck, EnemyState::Dying);
+          ac.sprites = SpriteManager::GetEnemySprite(EnemyType::Turtule, EnemyState::Dying);
           ac.speed = 15;
           ac.animation = true;
         }
@@ -69,7 +71,7 @@ namespace mario {
           pbc.RecalculateColliders();
           
           auto& ac = entity_.GetComponent<AnimationComponent>();
-          ac.sprites = SpriteManager::GetEnemySprite(EnemyType::Duck, EnemyState::Alive);
+          ac.sprites = SpriteManager::GetEnemySprite(EnemyType::Turtule, EnemyState::Alive);
           ac.speed = 50.0f;
           ac.animation = true;
           
@@ -127,7 +129,7 @@ namespace mario {
         Stomp();
         contact->SetEnabled(false);
       } else if (!pc->IsDying() and !pc->IsInvincible()) {
-        // Apply force to duck if is dying
+        // Apply force to turtule if is dying
         if (is_dying_) {
           going_right_ = (contact_normal.x < 0);
           SetAppliedForce(true);
@@ -185,9 +187,10 @@ namespace mario {
   }
   
   void EnemyController::Stomp() {
+    reset_fixture_ = true;
+
     auto& qc = entity_.GetComponent<QuadComponent>();
-    
-    if (type_ == EnemyType::Duck) {
+    if (type_ == EnemyType::Turtule) {
       entity_.GetComponent<TransformComponent>().UpdateScale_Y(1.0f);
       auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
       pbc.height = 0.5f;
@@ -196,7 +199,6 @@ namespace mario {
       
       is_dying_ = true;
       time_to_revive_ = 5.0f;
-      reset_fixture_ = true;
       SetAppliedForce(false);
       
       entity_.GetComponent<AnimationComponent>().animation = false;
@@ -243,7 +245,7 @@ namespace mario {
     };
     
     data->script_map[EnemyType::Goomba] = {EnemyType::Goomba, enemy_load_fn};
-    data->script_map[EnemyType::Duck] = {EnemyType::Duck, enemy_load_fn};
+    data->script_map[EnemyType::Turtule] = {EnemyType::Turtule, enemy_load_fn};
   }
   void EnemyScriptManager::Shutdown() {
     delete data;

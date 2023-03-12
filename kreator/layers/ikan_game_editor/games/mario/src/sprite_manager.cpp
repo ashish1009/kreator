@@ -67,12 +67,12 @@ namespace mario {
     auto& goomba_sprite = data_->enemy_subtextures_map[EnemyType::Goomba];
     goomba_sprite[EnemyState::Dead].push_back(SubTexture::CreateFromCoords(enemy_sprite, {2.0f, 6.0f}));
     
-    auto& duck_sprite = data_->enemy_subtextures_map[EnemyType::Duck];
-    duck_sprite[EnemyState::Dying].push_back(SubTexture::CreateFromCoords(enemy_sprite, {10.0f, 6.0f}));
-    duck_sprite[EnemyState::Dying].push_back(SubTexture::CreateFromCoords(enemy_sprite, {11.0f, 6.0f}));
+    auto& turtule_sprite = data_->enemy_subtextures_map[EnemyType::Turtule];
+    turtule_sprite[EnemyState::Dying].push_back(SubTexture::CreateFromCoords(enemy_sprite, {10.0f, 6.0f}));
+    turtule_sprite[EnemyState::Dying].push_back(SubTexture::CreateFromCoords(enemy_sprite, {11.0f, 6.0f}));
 
-    duck_sprite[EnemyState::Alive].push_back(SubTexture::CreateFromCoords(enemy_sprite, {6.0f, 6.0f}, {1.0f, 2.0f}));
-    duck_sprite[EnemyState::Alive].push_back(SubTexture::CreateFromCoords(enemy_sprite, {7.0f, 6.0f}, {1.0f, 2.0f}));
+    turtule_sprite[EnemyState::Alive].push_back(SubTexture::CreateFromCoords(enemy_sprite, {6.0f, 6.0f}, {1.0f, 2.0f}));
+    turtule_sprite[EnemyState::Alive].push_back(SubTexture::CreateFromCoords(enemy_sprite, {7.0f, 6.0f}, {1.0f, 2.0f}));
   }
   
   std::shared_ptr<Texture> SpriteManager::GetSpriteImage(SpriteType type) {

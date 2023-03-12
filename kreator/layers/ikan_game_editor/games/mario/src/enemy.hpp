@@ -14,7 +14,7 @@ namespace mario {
   using namespace ikan;
   
   enum class EnemyType {
-    Goomba, Duck
+    Goomba, Turtule
   };
   
   enum class EnemyState {
@@ -77,12 +77,12 @@ namespace mario {
   
   
   inline bool IsEnemy(const std::string& tag) {
-    return tag == "Goomba" or tag == "Duck";
+    return tag == "Goomba" or tag == "Turtule";
   }
   
   inline EnemyType GetType(const std::string& tag) {
     if (tag == "Goomba") return EnemyType::Goomba;
-    if (tag == "Duck") return EnemyType::Duck;
+    if (tag == "Turtule") return EnemyType::Turtule;
     return EnemyType::Goomba;
   }
 

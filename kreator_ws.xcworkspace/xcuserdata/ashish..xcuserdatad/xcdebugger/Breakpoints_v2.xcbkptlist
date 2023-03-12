@@ -78,8 +78,24 @@
             filePath = "kreator/layers/ikan_game_editor/games/mario/src/enemy.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "EnemyController::Copy(script)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE2C6126-7689-4168-A049-3C166E7DC13D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kreator/layers/ikan_game_editor/games/mario/src/enemy.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "EnemyController::PreSolve(collided_entity, contact, contact_normal)"
             landmarkType = "7">
          </BreakpointContent>

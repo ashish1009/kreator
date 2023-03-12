@@ -123,7 +123,7 @@ Entities:
       Restitution Threshold: 0.5
   - Entity: 18127737726908101087
     TagComponent:
-      Tag: Duck
+      Tag: Turtule
     TransformComponent:
       Translation: [-12, -6.5, 0]
       Rotation: [0, 0, 0]
@@ -312,7 +312,7 @@ Entities:
       Num_Coords: 2
   - Entity: 6635266317201980476
     TagComponent:
-      Tag: Duck
+      Tag: Turtule
     TransformComponent:
       Translation: [-19, -6.5, 0]
       Rotation: [0, 0, 0]
