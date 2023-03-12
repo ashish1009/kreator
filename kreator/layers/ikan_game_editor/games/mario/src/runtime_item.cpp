@@ -8,6 +8,7 @@
 #include "runtime_item.hpp"
 #include "sprite_manager.hpp"
 #include "player.hpp"
+#include "runtime_item.hpp"
 
 namespace mario {
   
@@ -38,7 +39,7 @@ namespace mario {
     entity->GetScene()->AddBodyToPhysicsWorld(*entity, *rb);
   }
   
-  void CommonRuntimeData::LivingEntityHitCheck(Entity* collided_entity, b2Contact* contact) {
+  void CommonRuntimeData::LivingEntityHitCheck(Entity* collided_entity, b2Contact* contact, Entity* curr_entity) {
     if (PlayerController* pc = PlayerController::Get();
         collided_entity->GetScene() and
         collided_entity->HasComponent<NativeScriptComponent>() and
@@ -48,6 +49,9 @@ namespace mario {
         pc->SetPowerup();
         hit_player_ = true;
         destroy_ = true;
+        
+        auto& tc = curr_entity->GetComponent<TransformComponent>();
+        RuntimeItem::Create(Items::Score, curr_entity->GetScene(), {tc.Translation().x - 0.5, tc.Translation().y + 1}, 1000);
       }
       return;
     }
@@ -97,7 +101,7 @@ namespace mario {
   }
   
   void MushroomController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
-    LivingEntityHitCheck(collided_entity, contact);
+    LivingEntityHitCheck(collided_entity, contact, &entity_);
     if (std::abs(contact_normal.y) < 0.1f) {
       going_right_ = contact_normal.x < 0.0f;
     }
@@ -136,7 +140,7 @@ namespace mario {
     CheckAndDestroy(&entity_);
   }
   void FlowerController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
-    LivingEntityHitCheck(collided_entity, contact);
+    LivingEntityHitCheck(collided_entity, contact, &entity_);
   }
   
   void ScoreController::Create(Entity entity) {

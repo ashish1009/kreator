@@ -14,7 +14,7 @@ namespace mario {
   class CommonRuntimeData {
   public:
     void AddRuntimeItemComponents(Entity* entity);
-    void LivingEntityHitCheck(Entity* collided_entity, b2Contact* contact);
+    void LivingEntityHitCheck(Entity* collided_entity, b2Contact* contact, Entity* curr_entity);
     void CheckAndDestroy(Entity* entity);
     
   protected:
