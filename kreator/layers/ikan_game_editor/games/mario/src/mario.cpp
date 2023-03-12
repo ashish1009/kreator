@@ -79,7 +79,7 @@ namespace mario {
     text_data_.Render("TIME", 0, 3);
     text_data_.Render(std::to_string(time_left_), 1, 3);
     
-    TextRenderer::RenderText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)), { 5.0f, 5.0f, 0.3f }, { 0.35f, 0.35f }, { 0, 0, 1, 1 });
+    TextRenderer::RenderFixedViewText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)), { 5.0f, 5.0f, 0.3f }, { 0.35f, 0.35f }, { 0, 0, 1, 1 });
     
     TextRenderer::EndBatch();
   }

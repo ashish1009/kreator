@@ -39,7 +39,7 @@ namespace mario {
     }
     
     void Render(const std::string& title, uint32_t row, uint32_t col) {
-      TextRenderer::RenderText(title, { pos_col[col], pos_row[row], 0.3f }, size, color);
+      TextRenderer::RenderFixedViewText(title, { pos_col[col], pos_row[row], 0.3f }, size, color);
     }
   };
 

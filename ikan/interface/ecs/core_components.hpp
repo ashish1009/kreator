@@ -267,7 +267,10 @@ namespace ikan {
   };
   
   struct TextComponent {
-    std::string text;
+    std::string text = "New Text";
+    glm::vec4 color = glm::vec4(1.0f);
+    void RenderGui();
+
     TextComponent() = default;
     ~TextComponent() = default;
     DEFINE_COPY_MOVE_CONSTRUCTORS(TextComponent);

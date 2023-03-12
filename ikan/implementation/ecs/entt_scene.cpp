@@ -13,6 +13,7 @@
 #include "renderer/utils/batch_2d_renderer.hpp"
 #include "renderer/utils/renderer.hpp"
 #include "renderer/utils/aabb_renderer.hpp"
+#include "renderer/utils/text_renderer.hpp"
 #include "renderer/graphics/texture.hpp"
 
 #include "box2d/b2_polygon_shape.h"
@@ -605,6 +606,17 @@ namespace ikan {
                               (uint32_t)sprite_entity);
     } // for (const auto& entity : sprite_view)
     BatchRenderer::EndBatch();
+    
+    TextRenderer::BeginBatch(primary_camera_data_.scene_camera->GetProjection() * glm::inverse(primary_camera_data_.transform_matrix));
+    
+    auto text_view = registry_.view<TransformComponent, TextComponent>();
+    // For all text entity
+    for (const auto& text_entity : text_view) {
+      const auto& [transform_component, text_component] = text_view.get<TransformComponent, TextComponent>(text_entity);
+      TextRenderer::RenderText(text_component.text, transform_component.Translation(), transform_component.Scale(), text_component.color);
+    } // for (const auto& entity : sprite_view)
+    
+    TextRenderer::EndBatch();
   }
   
   std::shared_ptr<RayCastInfo> EnttScene::RayCast(Entity* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal) {

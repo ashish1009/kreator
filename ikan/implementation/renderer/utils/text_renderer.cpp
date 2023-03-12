@@ -170,10 +170,16 @@ namespace ikan {
     Renderer::DrawArrays(text_data_->pipeline, 6 * text_data_->num_slots_used);
   }
 
-  void TextRenderer::RenderText(std::string text,
-                                glm::vec3 position,
-                                const glm::vec2& scale,
-                                const glm::vec4& color) {
+  void TextRenderer::RenderFixedViewText(std::string text, glm::vec3 position, const glm::vec2& scale, const glm::vec4& color) {
+    RenderTextImpl(text, position, scale, color);
+  }
+  
+  void TextRenderer::RenderText(std::string text, glm::vec3 position, const glm::vec2& original_scale, const glm::vec4& color) {
+    glm::vec2 scale = { original_scale.x * 0.035, original_scale.y * 0.035 };
+    RenderTextImpl(text, position, scale, color);
+  }
+  
+  void TextRenderer::RenderTextImpl(std::string text, glm::vec3 position, const glm::vec2& scale, const glm::vec4& color) {
     float a = 0.0f;
     for (std::string::const_iterator c = text.begin(); c != text.end(); c++) {
       if (text_data_->num_slots_used >= kMaxTextureSlotsInShader) {

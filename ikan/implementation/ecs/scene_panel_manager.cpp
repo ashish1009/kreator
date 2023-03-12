@@ -188,6 +188,7 @@ namespace ikan {
       DrawComponent<CircleColliiderComponent>("Circle Collider", selected_entity_, [this](auto& ccc) { ccc.RenderGui(); });
       DrawComponent<PillBoxColliderComponent>("Pill Box Collider", selected_entity_, [this](auto& pbc) { pbc.RenderGui(); });
       DrawComponent<AnimationComponent>("Animation", selected_entity_, [this](auto& ac) { ac.RenderGui(); });
+      DrawComponent<TextComponent>("Text", selected_entity_, [this](auto& tc) { tc.RenderGui(); });
     }
     
     ImGui::PopID();
@@ -275,6 +276,11 @@ namespace ikan {
           SetSelectedEntity(scene_context_->CreateEntity("Camera"));
           selected_entity_.AddComponent<CameraComponent>();
         }
+        ImGui::Separator();
+        if (ImGui::MenuItem("Text")) {
+          SetSelectedEntity(scene_context_->CreateEntity("Text"));
+          selected_entity_.AddComponent<TextComponent>();
+        }
 
         ImGui::EndMenu(); // 2D Entity
       } //if (ImGui::BeginMenu("2D Entity"))
@@ -315,6 +321,12 @@ namespace ikan {
     if (selected_entity_.HasComponent<QuadComponent>() and selected_entity_.GetComponent<QuadComponent>().texture_comp.component) {
       AddComponentMenu<AnimationComponent>("Animation", nullptr, selected_entity_.GetComponent<QuadComponent>().texture_comp.component);
     }
+    ImGui::Separator();
+    AddComponentMenu<QuadComponent>("Quad", [this]() {
+      return selected_entity_.HasComponent<QuadComponent>() or
+      selected_entity_.HasComponent<CircleComponent>() or
+      selected_entity_.HasComponent<TextComponent>();
+    });
   }
   
   ScenePanelManager::Setting& ScenePanelManager::GetSetting() { return setting_; }

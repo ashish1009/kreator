@@ -986,16 +986,31 @@ namespace ikan {
   // -------------------------------------------------------------------------
   TextComponent::TextComponent(const TextComponent& other) {
     text = other.text;
+    color = other.color;
   }
   TextComponent::TextComponent(TextComponent&& other) {
     text = other.text;
+    color = other.color;
   }
   TextComponent& TextComponent::operator=(const TextComponent& other) {
     text = other.text;
+    color = other.color;
     return *this;
   }
   TextComponent& TextComponent::operator=(TextComponent&& other) {
     text = other.text;
+    color = other.color;
     return *this;
   }
+  void TextComponent::RenderGui() {
+    PropertyGrid::TextBox(text, "Text ");
+    ImGui::Columns(2);
+    ImGui::SetColumnWidth(0, 100.0f);
+    ImGui::Text("Color");
+    ImGui::NextColumn();
+    ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
+    ImGui::Columns(1);
+    ImGui::Separator();
+  }
+
 }
