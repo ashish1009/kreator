@@ -248,6 +248,9 @@ namespace mario {
     entity_.RemoveComponent<AnimationComponent>();
     
     qc.texture_comp.sprite = SpriteManager::GetEnemySprite(type_, EnemyState::Dead).at(0);
+    
+    const auto& tc = entity_.GetComponent<TransformComponent>();
+    RuntimeItem::Create(Items::Score, entity_.GetScene(), {tc.Translation().x - 0.5, tc.Translation().y + 1}, 200);
   }
  
   void EnemyController::Die() {

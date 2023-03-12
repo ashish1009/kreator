@@ -142,14 +142,14 @@ namespace mario {
   void ScoreController::Create(Entity entity) {
     entity_ = entity;
     if (entity_.HasComponent<TextComponent>()) {
-      entity_.GetComponent<TextComponent>().text = "100";
+      entity_.GetComponent<TextComponent>().text = std::to_string(score_);
     }
     else {
-      entity_.AddComponent<TextComponent>().text = "100";
+      entity_.AddComponent<TextComponent>().text = std::to_string(score_);
     }
     
     const auto& tc = entity_.GetComponent<TransformComponent>().Translation();
-    top_pos_ = {tc.x, tc.y + 5.0f};
+    top_pos_ = {tc.x, tc.y + 2.0f};
   }
   void ScoreController::Update(Timestep ts) {
     auto& tc = entity_.GetComponent<TransformComponent>();
@@ -160,6 +160,17 @@ namespace mario {
       entity_.GetScene()->DestroyEntity(entity_);
     }
   }
+  void ScoreController::Copy(void* script) {
+    if (!script)
+      return;
+    
+    ScoreController* score_script = reinterpret_cast<ScoreController*>(script);
+    IK_ASSERT(score_script);
+
+    top_pos_ = score_script->top_pos_;
+    speed_ = score_script->speed_;
+    score_ = score_script->score_;
+  }
   
   struct ItemData {
     std::string name;
@@ -169,9 +180,7 @@ namespace mario {
     
     ItemData() = default;
     ItemData(const std::string& name, const std::string& scrip_name, glm::vec2 coords, ScriptLoaderFn fun)
-    : name(name), scrip_name(scrip_name), coords(coords), loader_fun(fun) {
-      
-    }
+    : name(name), scrip_name(scrip_name), coords(coords), loader_fun(fun) { }
   };
   
   struct RuntimeItemData {
@@ -206,7 +215,7 @@ namespace mario {
 
     static auto score_script_loader = [](NativeScriptComponent* sc, const std::string& script_name) {
       if (script_name == "mario::ScoreController") {
-        sc->Bind<mario::ScoreController>();
+        sc->Bind<mario::ScoreController>(100);
         return true;
       }
       return false;
@@ -223,7 +232,7 @@ namespace mario {
     delete data;
   }
   
-  void RuntimeItem::Create(Items item, EnttScene* scene, const glm::vec2& pos) {
+  void RuntimeItem::Create(Items item, EnttScene* scene, const glm::vec2& pos, int32_t score) {
     static std::shared_ptr<Texture> items = SpriteManager::GetSpriteImage(SpriteType::Items);
     
     auto run_time_entity = scene->CreateEntity(data->item_map.at(item).name);
@@ -237,12 +246,21 @@ namespace mario {
       qc.texture_comp.linear_edge = false;
       qc.texture_comp.component = items;
       qc.texture_comp.sprite = SubTexture::CreateFromCoords(items, data->item_map.at(item).coords);
+      
+      run_time_entity.AddComponent<NativeScriptComponent>(data->item_map.at(item).scrip_name, data->item_map.at(item).loader_fun);
     }
     else {
+      tc.AddTranslation_Z(0.1f);
       tc.UpdateScale({0.3, 0.3, 1.0f});
+      
+      auto score_script_loader = [score](NativeScriptComponent* sc, const std::string& script_name) {
+        if (script_name == "mario::ScoreController") {
+          sc->Bind<mario::ScoreController>(score);
+          return true;
+        }
+        return false;
+      };
+      run_time_entity.AddComponent<NativeScriptComponent>("mario::ScoreController", score_script_loader);
     }
-    
-    run_time_entity.AddComponent<NativeScriptComponent>(data->item_map.at(item).scrip_name, data->item_map.at(item).loader_fun);
   }
-  
 }

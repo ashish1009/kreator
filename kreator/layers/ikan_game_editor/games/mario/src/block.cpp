@@ -60,7 +60,7 @@ namespace mario {
       }
       case BlockType::Coin: {
         RuntimeItem::Create(Items::Coin, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
-        RuntimeItem::Create(Items::Score, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
+        RuntimeItem::Create(Items::Score, entity_.GetScene(), {tc.Translation().x - 0.5, tc.Translation().y + 1});
         count_--;
         if (count_ == 0)
           SetInactive();

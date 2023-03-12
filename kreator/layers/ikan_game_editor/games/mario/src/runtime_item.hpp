@@ -56,12 +56,15 @@ namespace mario {
   
   class ScoreController : public ScriptableEntity {
   public:
+    ScoreController(int32_t score) : score_(score) {}
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
-    
+    void Copy(void* script) override;
+
   private:
     glm::vec2 top_pos_;
     float speed_ = 8.0f;
+    int32_t score_ = 0;
   };
   
   enum class Items {
@@ -72,7 +75,7 @@ namespace mario {
   public:
     static void Init();
     static void Shutdown();
-    static void Create(Items item, EnttScene* scene, const glm::vec2& pos);
+    static void Create(Items item, EnttScene* scene, const glm::vec2& pos, int32_t score = 100);
   };
   
 }
