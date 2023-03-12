@@ -34,6 +34,7 @@ namespace mario {
     DELETE_COPY_MOVE_CONSTRUCTORS(EnemyController);
 
   private:
+    void Die();
     void Stomp();
     void CheckOnGround();
     void SetAppliedForce(bool force);
@@ -48,12 +49,14 @@ namespace mario {
     bool on_ground_ = false;
     bool force_applied_ = false;
     bool is_deadly_ = false;
+    bool die_animation_ = false;
     
     float free_fall_factor = 1.0f;
     float walk_speed_ = 4.0f;
     float time_to_kill = 0.5f;
     float time_to_revive_ = 1.5f;
-    
+    float die_animation_time_ = 1.0f;
+
     glm::vec2 acceleration_;
     glm::vec2 velocity_;
     glm::vec2 terminal_velocity_ = {8.1f, 18.1f};

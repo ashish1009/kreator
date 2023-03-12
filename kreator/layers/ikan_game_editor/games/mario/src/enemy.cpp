@@ -19,6 +19,12 @@ namespace mario {
 
     // Free fall with scene gravity
     acceleration_.y = entity_.GetScene()->GetGravity().y * free_fall_factor;
+    
+    // Change the direction of turtule. No need for Goomba
+    if (type_ == EnemyType::Turtule) {
+      auto& tc = entity_.GetComponent<TransformComponent>();
+      tc.UpdateScale_X(going_right_ ? -1.0f : 1.0f);
+    }
   }
 
   void EnemyController::Update(Timestep ts) {
@@ -26,7 +32,8 @@ namespace mario {
     
     if (reset_fixture_) {
       if (type_ == EnemyType::Goomba) {
-        EnttScene::ResetFixture(rb.runtime_body);
+        const auto& cc = entity_.GetComponent<CircleColliiderComponent>();
+        EnttScene::ResetCircleColliderFixture(entity_.GetComponent<TransformComponent>(), &rb, cc);
       }
       else if (type_ == EnemyType::Turtule) {
         const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
@@ -34,14 +41,23 @@ namespace mario {
       }
       reset_fixture_ = false;
     }
-    
-    // Change the direction of turtule. No need for Goomba
-    if (type_ == EnemyType::Turtule) {
-      auto& tc = entity_.GetComponent<TransformComponent>();
-      tc.UpdateScale_X(going_right_ ? -1.0f : 1.0f);
+        
+    if (die_animation_) {
+      die_animation_time_ -= ts;
+      if (die_animation_time_ > 0.8f) {
+        rb.AddVelocity({1.0f, 20.0f});
+      }
+      else if (die_animation_time_ <= 0.8f and die_animation_time_ > 0.0f) {
+        rb.AddVelocity({0.0f, -20.0f});
+      }
+      else if (die_animation_time_ <= 0.0f) {
+        entity_.GetScene()->DestroyEntity(entity_);
+        die_animation_ = false;
+      }
+      return;
     }
     
-    // Destory the entity if enemy is dead
+    // Destory the entity if enemy is dead after stomp
     if (is_dead_) {
       time_to_kill -= ts;
       rb.SetVelocity({0., 0});
@@ -119,6 +135,10 @@ namespace mario {
     if (is_dead_) {
       return;
     }
+    
+    if (collided_entity->HasComponent<BulletComponent>()) {
+      Die();
+    }
 
     if (PlayerController* pc = PlayerController::Get();
         collided_entity->HasComponent<NativeScriptComponent>() and
@@ -145,6 +165,12 @@ namespace mario {
     
     else if (std::abs(contact_normal.y) < 0.1f) {
       going_right_ = contact_normal.x < 0.0f;
+      
+      // Change the direction of turtule. No need for Goomba
+      if (type_ == EnemyType::Turtule) {
+        auto& tc = entity_.GetComponent<TransformComponent>();
+        tc.UpdateScale_X(going_right_ ? -1.0f : 1.0f);
+      }
     }
   }
   
@@ -170,6 +196,8 @@ namespace mario {
     terminal_velocity_ = enemy_script->terminal_velocity_;
     
     force_applied_ = enemy_script->force_applied_;
+    die_animation_ = enemy_script->die_animation_;
+    die_animation_time_ = enemy_script->die_animation_time_;
   }
   
   void EnemyController::RenderGui() {
@@ -180,9 +208,13 @@ namespace mario {
     is_deadly_ = force;
     if (force) {
       walk_speed_ = 8.0f;
+      if (!entity_.HasComponent<BulletComponent>())
+        entity_.AddComponent<BulletComponent>();
     }
     else {
       walk_speed_ = 4.0f;
+      if (entity_.HasComponent<BulletComponent>())
+        entity_.RemoveComponent<BulletComponent>();
     }
   }
   
@@ -218,6 +250,17 @@ namespace mario {
     qc.texture_comp.sprite = SpriteManager::GetEnemySprite(type_, EnemyState::Dead).at(0);
   }
  
+  void EnemyController::Die() {
+    auto& tc = entity_.GetComponent<TransformComponent>();
+    tc.UpdateScale_Y(tc.Scale().y * -1.0f);
+    
+    auto& rb = entity_.GetComponent<RigidBodyComponent>();
+    rb.is_sensor = true;
+    
+    die_animation_ = true;
+    reset_fixture_ = true;
+  }
+  
   void EnemyController::CheckOnGround() {
     static float inner_player_width = 0.6f;
     static float y_val = -0.52;
