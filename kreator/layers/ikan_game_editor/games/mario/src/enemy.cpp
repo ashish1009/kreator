@@ -251,6 +251,13 @@ namespace mario {
   }
  
   void EnemyController::Die() {
+    if (type_ == EnemyType::Turtule) {
+      entity_.GetComponent<TransformComponent>().UpdateScale_Y(1.0f);
+      entity_.GetComponent<QuadComponent>().texture_comp.sprite = SpriteManager::GetEnemySprite(type_, EnemyState::Dying).at(0);
+    }
+
+    entity_.GetComponent<AnimationComponent>().animation = false;
+    
     auto& tc = entity_.GetComponent<TransformComponent>();
     tc.UpdateScale_Y(tc.Scale().y * -1.0f);
     
