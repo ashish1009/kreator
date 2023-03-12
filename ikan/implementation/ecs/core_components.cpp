@@ -99,7 +99,7 @@ namespace ikan {
   void TransformComponent::UpdateTranslation_Z(float value) { UpdateTranslation({translation.x, translation.y, value} ); }
   void TransformComponent::UpdateRotation_Z(float value) { UpdateRotation({rotation.x, rotation.y, value} ); }
   void TransformComponent::UpdateScale_Z(float value) { UpdateScale({scale.x, scale.y, value} ); }
-
+  
   void TransformComponent::AddTranslation_X(float value) { UpdateTranslation({ translation.x + value, translation.y, translation.z} ); }
   void TransformComponent::AddRotation_X(float value) { UpdateRotation({rotation.x + value, rotation.y, rotation.z} ); }
   void TransformComponent::AddScale_X(float value) { UpdateScale({scale.x + value, scale.y, scale.z} ); }
@@ -111,7 +111,7 @@ namespace ikan {
   void TransformComponent::AddTranslation_Z(float value) { UpdateTranslation({translation.x, translation.y, translation.z + value} ); }
   void TransformComponent::AddRotation_Z(float value) { UpdateRotation({rotation.x, rotation.y, rotation.z + value} ); }
   void TransformComponent::AddScale_Z(float value) { UpdateScale({scale.x, scale.y, scale.z + value} ); }
-
+  
   void TransformComponent::UpdateTranslation(const glm::vec3& value) {
     translation = value;
     transform = Math::GetTransformMatrix(translation, rotation, scale);
@@ -723,8 +723,8 @@ namespace ikan {
     RecalculateColliders();
     return *this;
   }
-  PillBoxColliderComponent::PillBoxColliderComponent(PillBoxColliderComponent&& other) 
-    : bcc(other.bcc), top_ccc(other.top_ccc), bottom_ccc(other.bottom_ccc) {
+  PillBoxColliderComponent::PillBoxColliderComponent(PillBoxColliderComponent&& other)
+  : bcc(other.bcc), top_ccc(other.top_ccc), bottom_ccc(other.bottom_ccc) {
     offset = other.offset;
     width = other.width;
     height = other.height;
@@ -748,7 +748,7 @@ namespace ikan {
     RecalculateColliders();
     reset_flag = true;
   }
-
+  
   void PillBoxColliderComponent::SetWidth(float width) {
     this->width = width;
     RecalculateColliders();
@@ -768,7 +768,7 @@ namespace ikan {
     
     top_ccc.radius = circle_radius;
     bottom_ccc.radius = circle_radius;
-
+    
     top_ccc.offset = offset + glm::vec2(0, box_height);
     bottom_ccc.offset = offset - glm::vec2(0, box_height);
     
@@ -789,19 +789,19 @@ namespace ikan {
     const ImGuiTreeNodeFlags tree_node_flags = ImGuiTreeNodeFlags_SpanAvailWidth |
     ImGuiTreeNodeFlags_AllowItemOverlap |
     ImGuiTreeNodeFlags_FramePadding;
-
+    
     bool box_open = ImGui::TreeNodeEx("Box Collider", tree_node_flags);
     if (box_open) {
       bcc.RenderGui();
       ImGui::TreePop();
     }
-
+    
     bool top_circle_open = ImGui::TreeNodeEx("Top Circle Collider", tree_node_flags);
     if (top_circle_open) {
       top_ccc.RenderGui();
       ImGui::TreePop();
     }
-
+    
     bool bottom_circle_open = ImGui::TreeNodeEx("Bottom Circle Collider", tree_node_flags);
     if (bottom_circle_open) {
       bottom_ccc.RenderGui();
@@ -963,20 +963,39 @@ namespace ikan {
     } // if (animation)
   }
   
+  // -------------------------------------------------------------------------
+  // BulletComponent Component
+  // -------------------------------------------------------------------------
   BulletComponent::BulletComponent(const BulletComponent& other) {
     is_bullet = other.is_bullet;
   }
-  
   BulletComponent::BulletComponent(BulletComponent&& other) {
     is_bullet = other.is_bullet;
   }
-  
   BulletComponent& BulletComponent::operator=(const BulletComponent& other) {
     is_bullet = other.is_bullet;
     return *this;
   }
   BulletComponent& BulletComponent::operator=(BulletComponent&& other) {
     is_bullet = other.is_bullet;
+    return *this;
+  }
+    
+  // -------------------------------------------------------------------------
+  // TextComponent Component
+  // -------------------------------------------------------------------------
+  TextComponent::TextComponent(const TextComponent& other) {
+    text = other.text;
+  }
+  TextComponent::TextComponent(TextComponent&& other) {
+    text = other.text;
+  }
+  TextComponent& TextComponent::operator=(const TextComponent& other) {
+    text = other.text;
+    return *this;
+  }
+  TextComponent& TextComponent::operator=(TextComponent&& other) {
+    text = other.text;
     return *this;
   }
 }

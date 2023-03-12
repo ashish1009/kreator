@@ -266,12 +266,20 @@ namespace ikan {
     DEFINE_COPY_MOVE_CONSTRUCTORS(BulletComponent);
   };
   
+  struct TextComponent {
+    std::string text;
+    TextComponent() = default;
+    ~TextComponent() = default;
+    DEFINE_COPY_MOVE_CONSTRUCTORS(TextComponent);
+  };
+  
   template<typename... Component>
   struct ComponentGroup {
   };
   
   using AllComponents =
   ComponentGroup<TransformComponent, QuadComponent, CircleComponent, CameraComponent, NativeScriptComponent,
-  RigidBodyComponent, BoxColliderComponent, CircleColliiderComponent, PillBoxColliderComponent, AnimationComponent, BulletComponent>;
+  RigidBodyComponent, BoxColliderComponent, CircleColliiderComponent, PillBoxColliderComponent, AnimationComponent,
+  BulletComponent, TextComponent>;
 
 }
