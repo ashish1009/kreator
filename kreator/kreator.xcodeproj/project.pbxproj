@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B21AD56E29BF5A0B00359747 /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21AD56C29BF5A0B00359747 /* renderer_layer.cpp */; };
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
@@ -39,6 +40,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B21AD56C29BF5A0B00359747 /* renderer_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
+		B21AD56D29BF5A0B00359747 /* renderer_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
 		B2250CAA29584CE00067C43B /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCC29584D1A0067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CD029585E890067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
@@ -77,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B21AD56B29BF59FD00359747 /* layers */ = {
+			isa = PBXGroup;
+			children = (
+				B21AD56C29BF5A0B00359747 /* renderer_layer.cpp */,
+				B21AD56D29BF5A0B00359747 /* renderer_layer.hpp */,
+			);
+			path = layers;
+			sourceTree = "<group>";
+		};
 		B2250CA129584CE00067C43B = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +96,7 @@
 				B232147B2978052700845848 /* log */,
 				B2250CD5295860700067C43B /* entry_point */,
 				B2250CE12958636C0067C43B /* application */,
+				B21AD56B29BF59FD00359747 /* layers */,
 				B2250CAB29584CE00067C43B /* Products */,
 				B2250CCB29584D1A0067C43B /* Frameworks */,
 			);
@@ -220,6 +233,7 @@
 			files = (
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
+				B21AD56E29BF5A0B00359747 /* renderer_layer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
