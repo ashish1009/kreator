@@ -85,15 +85,6 @@
 #include <editor/property_grid.hpp>
 #include <editor/content_browser_panel.hpp>
 
-// ECS
-#include <ecs/viewport.hpp>
-#include <ecs/entity.hpp>
-#include <ecs/entt_scene.hpp>
-#include <ecs/core_components.hpp>
-#include <ecs/scriptable_entity.hpp>
-#include <ecs/scene_serialiser.hpp>
-#include <ecs/scene_panel_manager.hpp>
-
 // Imgui API
 #include <imgui/imgui_api.hpp>
 
