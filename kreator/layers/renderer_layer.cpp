@@ -9,7 +9,7 @@
 
 namespace kreator {
   
-  RendererLayer::RendererLayer() : Layer("ikan Game") {
+  RendererLayer::RendererLayer(GameType game_type) : Layer("ikan Game"), game_data_(CreateGameData(game_type)) {
   }
   
   RendererLayer::~RendererLayer() {

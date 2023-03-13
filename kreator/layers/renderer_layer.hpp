@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "game_data.hpp"
+
 namespace kreator {
   
   using namespace ikan;
@@ -14,7 +16,8 @@ namespace kreator {
   class RendererLayer : public Layer {
   public:
     /// Layer Default Constructor to store the name of layer
-    RendererLayer();
+    /// - Parameter game_type: Type of game to render using this layer
+    RendererLayer(GameType game_type);
     /// Default Destructor
     ~RendererLayer();
     
@@ -34,6 +37,9 @@ namespace kreator {
     /// - Note Core Application is taking care to call the EventHandler(event) API for all Layers
     /// - Parameter event: Event (Base class) intance. Dispatch event from Event Dispatcher
     void EventHandler(Event& event) override;
+    
+  private:
+    std::unique_ptr<GameData> game_data_;
   };
   
 }

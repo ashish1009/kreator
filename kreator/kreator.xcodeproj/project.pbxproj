@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B21AD56E29BF5A0B00359747 /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21AD56C29BF5A0B00359747 /* renderer_layer.cpp */; };
+		B21AD57629BF5E5F00359747 /* mario_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21AD57429BF5E5F00359747 /* mario_main.cpp */; };
+		B21AD57829BF5F5200359747 /* game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21AD57729BF5F5200359747 /* game_data.cpp */; };
 		B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD6295860BC0067C43B /* entry_point.cpp */; };
 		B2250CE3295863840067C43B /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CE2295863840067C43B /* kreator_application.cpp */; };
 		B2581113295ACCF800B0EDA7 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2250CCC29584D1A0067C43B /* libikan.a */; };
@@ -42,6 +44,10 @@
 /* Begin PBXFileReference section */
 		B21AD56C29BF5A0B00359747 /* renderer_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
 		B21AD56D29BF5A0B00359747 /* renderer_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
+		B21AD56F29BF5D7100359747 /* game_data.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = game_data.hpp; sourceTree = "<group>"; };
+		B21AD57429BF5E5F00359747 /* mario_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario_main.cpp; sourceTree = "<group>"; };
+		B21AD57529BF5E5F00359747 /* mario_main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario_main.hpp; sourceTree = "<group>"; };
+		B21AD57729BF5F5200359747 /* game_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = game_data.cpp; sourceTree = "<group>"; };
 		B2250CAA29584CE00067C43B /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCC29584D1A0067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CD029585E890067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
@@ -85,8 +91,42 @@
 			children = (
 				B21AD56C29BF5A0B00359747 /* renderer_layer.cpp */,
 				B21AD56D29BF5A0B00359747 /* renderer_layer.hpp */,
+				B21AD57729BF5F5200359747 /* game_data.cpp */,
+				B21AD56F29BF5D7100359747 /* game_data.hpp */,
 			);
 			path = layers;
+			sourceTree = "<group>";
+		};
+		B21AD57129BF5E2900359747 /* mario */ = {
+			isa = PBXGroup;
+			children = (
+				B21AD57229BF5E4000359747 /* assets */,
+				B21AD57329BF5E4F00359747 /* src */,
+			);
+			path = mario;
+			sourceTree = "<group>";
+		};
+		B21AD57229BF5E4000359747 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		B21AD57329BF5E4F00359747 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B21AD57429BF5E5F00359747 /* mario_main.cpp */,
+				B21AD57529BF5E5F00359747 /* mario_main.hpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		B21AD57929BF616800359747 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = assets;
 			sourceTree = "<group>";
 		};
 		B2250CA129584CE00067C43B = {
@@ -96,7 +136,9 @@
 				B232147B2978052700845848 /* log */,
 				B2250CD5295860700067C43B /* entry_point */,
 				B2250CE12958636C0067C43B /* application */,
+				B21AD57929BF616800359747 /* assets */,
 				B21AD56B29BF59FD00359747 /* layers */,
+				B21AD57129BF5E2900359747 /* mario */,
 				B2250CAB29584CE00067C43B /* Products */,
 				B2250CCB29584D1A0067C43B /* Frameworks */,
 			);
@@ -233,7 +275,9 @@
 			files = (
 				B2250CD7295860BC0067C43B /* entry_point.cpp in Sources */,
 				B2250CE3295863840067C43B /* kreator_application.cpp in Sources */,
+				B21AD57629BF5E5F00359747 /* mario_main.cpp in Sources */,
 				B21AD56E29BF5A0B00359747 /* renderer_layer.cpp in Sources */,
+				B21AD57829BF5F5200359747 /* game_data.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
