@@ -51,7 +51,7 @@ namespace mario {
         destroy_ = true;
         
         auto& tc = curr_entity->GetComponent<TransformComponent>();
-        RuntimeItem::Create(Items::Score, curr_entity->GetScene(), {tc.Translation().x - 0.5, tc.Translation().y + 1}, 1000);
+        RuntimeItem::Create(Items::Score, curr_entity->GetScene(), {tc.Translation().x - 0.5, tc.Translation().y + 1}, BonusScore);
       }
       return;
     }
@@ -60,6 +60,7 @@ namespace mario {
   void CommonRuntimeData::CheckAndDestroy(Entity* entity) {
     if (destroy_) {
       entity->GetScene()->DestroyEntity(*entity);
+      PlayerController::Get()->AddScore(BonusScore);
       return;
     }
   }
@@ -78,6 +79,7 @@ namespace mario {
     }
     else {
       entity_.GetScene()->DestroyEntity(entity_);
+      PlayerController::Get()->AddCoin();
     }
   }
   

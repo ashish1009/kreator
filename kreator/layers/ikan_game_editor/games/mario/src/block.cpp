@@ -63,8 +63,6 @@ namespace mario {
         RuntimeItem::Create(Items::Coin, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1}, NoScore);
         RuntimeItem::Create(Items::Score, entity_.GetScene(), {tc.Translation().x - 0.5, tc.Translation().y + 1}, CoinScore);
         
-        PlayerController::Get()->AddCoin();
-        
         count_--;
         if (count_ == 0)
           SetInactive();

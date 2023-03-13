@@ -63,6 +63,7 @@ namespace mario {
       rb.SetVelocity({0., 0});
       if (time_to_kill <= 0) {
         entity_.GetScene()->DestroyEntity(entity_);
+        PlayerController::Get()->AddScore(EnemyKillScore);
       }
       return;
     }
@@ -250,7 +251,7 @@ namespace mario {
     qc.texture_comp.sprite = SpriteManager::GetEnemySprite(type_, EnemyState::Dead).at(0);
     
     const auto& tc = entity_.GetComponent<TransformComponent>();
-    RuntimeItem::Create(Items::Score, entity_.GetScene(), {tc.Translation().x - 0.5, tc.Translation().y + 1}, 200);
+    RuntimeItem::Create(Items::Score, entity_.GetScene(), {tc.Translation().x - 0.5, tc.Translation().y + 1}, EnemyKillScore);
   }
  
   void EnemyController::Die() {

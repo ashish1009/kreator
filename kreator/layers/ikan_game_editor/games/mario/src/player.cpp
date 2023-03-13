@@ -345,6 +345,51 @@ namespace mario {
 
     reset_fixture_ = true;
   }
+  
+  void PlayerController::Copy(void *script) {
+    if (!script)
+      return;
+    
+    PlayerController* player_script = reinterpret_cast<PlayerController*>(script);
+    IK_ASSERT(player_script);
+
+    reset_fixture_ = player_script->reset_fixture_;
+    on_ground_ = player_script->on_ground_;
+    is_dead_ = player_script->is_dead_;
+    is_dying_ = player_script->is_dying_;
+    power_up_ = player_script->power_up_;
+    
+    hurt_invincibility_time_ = player_script->hurt_invincibility_time_;
+    hurt_invincibility_time_left_ = player_script->hurt_invincibility_time_left_;
+    blink_time_ = player_script->blink_time_;
+    
+    player_width_ = player_script->player_width_;
+    
+    free_fall_factor = player_script->free_fall_factor;
+    
+    walk_speed_ = player_script->walk_speed_;
+    slow_down_force_ = player_script->slow_down_force_;
+    
+    ground_debounce_ = player_script->ground_debounce_;
+    ground_debounce_time_ = player_script->ground_debounce_time_;
+    
+    jumb_boost_ = player_script->jumb_boost_;
+    big_jump_boost_ = player_script->big_jump_boost_;
+    jump_impuls_ = player_script->jump_impuls_;
+    big_jump_boost_factor_ = player_script->big_jump_boost_factor_;
+    
+    freez_time_ = player_script->freez_time_;
+    
+    enemy_bounce_ = player_script->enemy_bounce_;
+    jump_time_ = player_script->jump_time_;
+    
+    acceleration_ = player_script->acceleration_;
+    velocity_ = player_script->velocity_;
+    terminal_velocity_ = player_script->terminal_velocity_;
+    
+    score_ = player_script->score_;
+    coins_ = player_script->coins_;
+  }
 
   void PlayerController::RenderGui() {
     if (state_machine_) {

@@ -75,6 +75,7 @@ namespace mario {
     void Update(Timestep ts) override;
     void RenderGui() override;
     void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
+    void Copy(void* script) override;
 
     void PowerUp(Timestep ts);
 
@@ -94,6 +95,8 @@ namespace mario {
       coins_++;
       score_ += CoinScore;
     }
+    
+    void AddScore(uint32_t score) { score_ += score; }
 
     static PlayerController* Get();
     
