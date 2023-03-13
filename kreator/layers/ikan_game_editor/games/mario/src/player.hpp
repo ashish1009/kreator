@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "common.h"
+
 namespace mario {
   
   using namespace ikan;
@@ -84,6 +86,14 @@ namespace mario {
     bool IsDead() const { return is_dead_; }
     bool IsHurtInvincible() const { return hurt_invincibility_time_left_ > 0.0f; }
     bool IsInvincible() const { return state_machine_->State() == PlayerState::Invicible or IsHurtInvincible(); }
+    
+    uint32_t Score() const { return score_; }
+    uint32_t Coins() const { return coins_; }
+    
+    void AddCoin() {
+      coins_++;
+      score_ += CoinScore;
+    }
 
     static PlayerController* Get();
     
@@ -133,7 +143,10 @@ namespace mario {
     glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
 
     StateMachine* state_machine_;
-
+    
+    uint32_t score_ = 0;
+    uint32_t coins_ = 0;
+    
     static PlayerController* instance_;
   };
   

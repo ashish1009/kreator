@@ -75,7 +75,7 @@ namespace mario {
   public:
     static void Init();
     static void Shutdown();
-    static void Create(Items item, EnttScene* scene, const glm::vec2& pos, int32_t score = 100);
+    static void Create(Items item, EnttScene* scene, const glm::vec2& pos, int32_t score);
   };
   
 }

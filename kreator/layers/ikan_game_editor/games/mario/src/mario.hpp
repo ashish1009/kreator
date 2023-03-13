@@ -78,10 +78,8 @@ namespace mario {
 
     static const uint32_t MaxTime = 100;
 
-    uint32_t score_ = 0;
     uint32_t world_ = 1;
     uint32_t level_ = 1;
-    uint32_t coins_ = 0;
     uint32_t time_left_ = 0;
     
     float timer_ = 0;

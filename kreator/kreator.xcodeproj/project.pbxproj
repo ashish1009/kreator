@@ -49,6 +49,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B21AD4B229BEE8D200359747 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		B2250CAA29584CE00067C43B /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCC29584D1A0067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CD029585E890067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
@@ -382,6 +383,7 @@
 		B2918471299CF873008B9D71 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				B21AD4B229BEE8D200359747 /* common.h */,
 				B2918474299CF8AA008B9D71 /* mario.cpp */,
 				B2918475299CF8AA008B9D71 /* mario.hpp */,
 				B27566C129BA17B800DF05E2 /* camera_controller.cpp */,

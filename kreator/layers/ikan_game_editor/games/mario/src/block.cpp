@@ -7,6 +7,7 @@
 
 #include "block.hpp"
 #include "runtime_item.hpp"
+#include "player.hpp"
 
 namespace mario {
   
@@ -59,8 +60,11 @@ namespace mario {
         break;
       }
       case BlockType::Coin: {
-        RuntimeItem::Create(Items::Coin, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1});
-        RuntimeItem::Create(Items::Score, entity_.GetScene(), {tc.Translation().x - 0.5, tc.Translation().y + 1});
+        RuntimeItem::Create(Items::Coin, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1}, NoScore);
+        RuntimeItem::Create(Items::Score, entity_.GetScene(), {tc.Translation().x - 0.5, tc.Translation().y + 1}, CoinScore);
+        
+        PlayerController::Get()->AddCoin();
+        
         count_--;
         if (count_ == 0)
           SetInactive();
@@ -71,11 +75,11 @@ namespace mario {
       }
       case BlockType::PowerUp : {
         if (pc->IsSmall()) {
-          RuntimeItem::Create(Items::Mushroom, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0});
+          RuntimeItem::Create(Items::Mushroom, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0}, NoScore);
           SetInactive();
         }
         else {
-          RuntimeItem::Create(Items::Flower, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0});
+          RuntimeItem::Create(Items::Flower, entity_.GetScene(), {tc.Translation().x, tc.Translation().y + 1.0}, NoScore);
           SetInactive();
         }
         break;

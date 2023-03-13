@@ -56,6 +56,8 @@ namespace mario {
   }
   
   void Mario::Update(Timestep ts) {
+    player_controller_ = PlayerController::Get();
+
     if (is_playing_) {
       // Timer
       timer_ += ts;
@@ -66,12 +68,12 @@ namespace mario {
     TextRenderer::BeginBatch(text_data_.still_camera_projection);
     
     text_data_.Render("MARIO", 0, 0);
-    text_data_.Render(std::to_string(score_), 1, 0);
+    text_data_.Render(std::to_string(player_controller_->Score()), 1, 0);
     
     BatchRenderer::BeginBatch(text_data_.still_camera_projection);
     BatchRenderer::DrawQuad(Math::GetTransformMatrix({0, 0, 0}, {0, 0, 0}, {10, 10, 10}), {1, 1,1 ,1});
     BatchRenderer::EndBatch();
-    text_data_.Render("x " + std::to_string(coins_), 1, 1);
+    text_data_.Render("x " + std::to_string(player_controller_->Coins()), 1, 1);
     
     text_data_.Render("WORLD", 0, 2);
     text_data_.Render(std::to_string(world_) + " - " + std::to_string(level_), 1, 2);
@@ -212,8 +214,6 @@ namespace mario {
       nsc.loader_function = player_controler_loader_fn;
       nsc.Bind<PlayerController>();
     }
-    
-    player_controller_ = PlayerController::Get();
   }
   
   void Mario::AddScriptsToEntities() {
