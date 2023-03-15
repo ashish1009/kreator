@@ -21,6 +21,10 @@ namespace kreator {
   void RendererLayer::Attach() {
     IK_INFO(game_data_->GameName(), "Attaching {0} Layer instance", game_data_->GameName().c_str());
     cbp_.AddFavouritPaths(game_data_->FavDirecotries());
+    
+    // Decorate the Imgui Change the font of imgui
+    ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
+    ImguiAPI::SetLightGreyThemeColors();
   }
   
   void RendererLayer::Detach() {
@@ -36,16 +40,32 @@ namespace kreator {
   }
   
   void RendererLayer::RenderGui() {
-    if (setting_.play) {
+    if (is_playing_) {
       
     }
     else {
       ImguiAPI::StartDcocking();
       
       ShowMenu();
+      GamePlayButton();
 
       ImguiAPI::EndDcocking();
     }
+  }
+  
+  void RendererLayer::GamePlayButton() {
+    static std::shared_ptr<Texture> play_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/play.png"));
+    ImGui::Begin("Game Play", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+    
+    float size = ImGui::GetWindowHeight() - 12.0f; // 12 just random number
+    ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 0.5f));
+    
+    // Button action
+    if (PropertyGrid::ImageButton("Game Play", play_texture->GetRendererID(), { size, size })) {
+      SetPlay(true);
+    }
+    PropertyGrid::HoveredMsg("Play Button for Game");
+    ImGui::End();
   }
   
   void RendererLayer::ShowMenu() {
@@ -54,6 +74,17 @@ namespace kreator {
       //  File Menu
       // -------------------------------------------------------------
       if (ImGui::BeginMenu("File")) {
+        if (ImGui::BeginMenu("Scene")) {
+          if (ImGui::MenuItem("New", "Cmd + N"))    NewScene();
+          if (ImGui::MenuItem("Close", "Cmd + X"))  CloseScene();
+          
+          ImGui::EndMenu(); // if (ImGui::BeginMenu("Scene"))
+        } // if (ImGui::BeginMenu("Scene"))
+          // -------------------------------
+        ImGui::Separator();
+        if (ImGui::MenuItem("Exit", "Cmd + Q")) {
+          Application::Get().Close();
+        }
         ImGui::EndMenu(); // ImGui::BeginMenu("File")
       } // if (ImGui::BeginMenu("File"))
       
@@ -61,6 +92,21 @@ namespace kreator {
       //  Property Menu
       // -------------------------------------------------------------
       if (ImGui::BeginMenu("Properties")) {
+        if (ImGui::BeginMenu("Theme")) {
+          if (ImGui::MenuItem("Light", nullptr)) {
+            ImguiAPI::SetLightThemeColors();
+          }
+          if (ImGui::MenuItem("Dark", nullptr)) {
+            ImguiAPI::SetDarkThemeColors();
+          }
+          if (ImGui::MenuItem("Grey", nullptr)) {
+            ImguiAPI::SetGreyThemeColors();
+          }
+          if (ImGui::MenuItem("Light Grey", nullptr)) {
+            ImguiAPI::SetLightGreyThemeColors();
+          }
+          ImGui::EndMenu(); // ImGui::BeginMenu("Theme")
+        } // if (ImGui::BeginMenu("Theme"))
         ImGui::EndMenu(); // ImGui::BeginMenu("Properties")
       } // if (ImGui::BeginMenu("Properties"))
       
@@ -116,4 +162,8 @@ namespace kreator {
     spm_.SetSceneContext(active_scene_.get());
   }
   
+  void RendererLayer::SetPlay(bool is_play) {
+    is_playing_ = is_play;
+  }
+
 }

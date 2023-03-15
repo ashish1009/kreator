@@ -28,7 +28,6 @@ static dispatch_queue_t loop_dispactch_queue_ = dispatch_get_global_queue(DISPAT
 #define ToString(x)     #x                      /// This MACRO convert x in string
 #define INT2VOIDP(i)    (void*)(uintptr_t)(i)   /// This MACRO Cast uint32_t into void pointer
 
-
 // -------------------------------------------
 // Copy and Move Constructors and Operators
 // -------------------------------------------

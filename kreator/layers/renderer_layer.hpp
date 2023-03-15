@@ -16,7 +16,25 @@ namespace kreator {
   class RendererLayer : public Layer {
   public:
     struct Setting {
-      bool play = false;
+      bool cbp = true;
+      
+      bool frame_rate = true;
+      bool viewport = true;
+      bool stats = true;
+      bool stats_2d = true;
+      
+      bool save_scene = true;
+      bool show_colliders = true;
+      bool show_grids = true;
+      
+      /// This function changes the flag of setting for menu
+      /// - Parameters:
+      ///   - tag: tag of menu
+      ///   - flag: flag
+      static void UpdateSetting(std::string tag, bool& flag) {
+        if (ImGui::MenuItem(tag.c_str(), nullptr, flag))
+          flag = (flag) ? false : true;
+      }
     };
     
     /// Layer Default Constructor to store the name of layer
@@ -63,9 +81,20 @@ namespace kreator {
     /// This function render the menue bar
     void ShowMenu();
 
+    /// This function renders the play buttorn for  game
+    void GamePlayButton();
+
+    /// This function set the game state
+    /// - Parameter is_play: game state
+    void SetPlay(bool is_play);
+    /// This function wraps the scene play
+    void PlayScene();
+
     // ------------------
     // Member variables
     // ------------------
+    bool is_playing_ = false;
+
     std::unique_ptr<GameData> game_data_;
     Setting setting_;
     

@@ -24,6 +24,15 @@ namespace mario {
         AM::ClientAsset("scenes"),
       };
     }
+    ImguiFont RegularFontData() const override {
+      return { AM::ClientAsset(font_path_), 14.0f };
+    }
+    ImguiFont BoldFontData() const override {
+      return { AM::ClientAsset(font_path_), 14.0f };
+    }
+
+  private:
+    std::string font_path_ = "fonts/mario.ttf";
   };
   
 }
