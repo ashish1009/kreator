@@ -48,9 +48,26 @@ namespace kreator {
       
       ShowMenu();
       GamePlayButton();
+      
+      if (active_scene_) {
+        ShowSettings();
+      }
 
       ImguiAPI::EndDcocking();
     }
+  }
+  
+  void RendererLayer::ShowSettings() {
+    ImGui::Begin("Settings");
+    
+    SettingWrapper* setting_data = ((SettingWrapper*)&setting_);
+    
+    static uint32_t loop_limit = sizeof(Setting) /  sizeof(SettingWrapper);
+    for (uint32_t setting_idx = 0; setting_idx < loop_limit; setting_idx++) {
+      PropertyGrid::CheckBox((setting_data + setting_idx)->name.c_str(), (setting_data + setting_idx)->flag);
+    }
+
+    ImGui::End();
   }
   
   void RendererLayer::GamePlayButton() {

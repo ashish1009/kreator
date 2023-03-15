@@ -15,17 +15,23 @@ namespace kreator {
 
   class RendererLayer : public Layer {
   public:
+    struct SettingWrapper {
+      bool flag = true;
+      std::string name;
+      SettingWrapper(bool flag, const std::string& name) : flag(flag), name(name) {}
+    };
+    
     struct Setting {
-      bool cbp = true;
+      SettingWrapper show_grids{true, "Show Grids"};
+      SettingWrapper show_colliders{true, "Show Colliders"};
+
+      SettingWrapper save_scene{true, "Save Scene"};
+      SettingWrapper cbp{true, "Content Browser Panel"};
       
-      bool frame_rate = true;
-      bool viewport = true;
-      bool stats = true;
-      bool stats_2d = true;
-      
-      bool save_scene = true;
-      bool show_colliders = true;
-      bool show_grids = true;
+      SettingWrapper frame_rate{true, "Frame Rate"};
+      SettingWrapper viewport{true, "View Port Data"};
+      SettingWrapper stats{true, "Renderer Stats"};
+      SettingWrapper stats_2d{true, "Renderer 2D Stats"};
       
       /// This function changes the flag of setting for menu
       /// - Parameters:
@@ -80,6 +86,8 @@ namespace kreator {
 
     /// This function render the menue bar
     void ShowMenu();
+    /// This function renders the setting Widget
+    void ShowSettings();
 
     /// This function renders the play buttorn for  game
     void GamePlayButton();
