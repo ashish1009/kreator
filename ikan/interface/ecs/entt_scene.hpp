@@ -8,6 +8,7 @@
 #pragma once
 
 #include <entt.hpp>
+#include "core/utils/time_step.hpp"
 
 namespace ikan {
 
@@ -23,6 +24,10 @@ namespace ikan {
     EnttScene(const std::string& file_path = "Unsaved Scene");
     /// This destructor destoyes the scene instance
     ~EnttScene();
+    
+    /// This function update the scene
+    /// - Parameter ts: time step
+    void Update(Timestep ts);
     
     /// This function sets the Scene as play mode
     void PlayScene();
@@ -41,6 +46,16 @@ namespace ikan {
     bool IsEditing() const;
 
   private:
+    // ------------------
+    // Member functions
+    // ------------------
+    /// This function updates the scene in edit mode
+    /// - Parameter ts time step
+    void UpdateEditor(Timestep ts);
+    /// This function updates the scene in play
+    /// - Parameter ts time step
+    void UpdateRuntime(Timestep ts);
+
     // ------------------
     // Member variables
     // ------------------

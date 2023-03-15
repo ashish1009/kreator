@@ -6,3 +6,12 @@
 //
 
 #include "mario_main.hpp"
+
+namespace mario {
+  
+  void Mario::Update(Timestep ts) {
+    
+  }
+
+  
+}

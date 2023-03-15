@@ -20,6 +20,21 @@ namespace ikan {
     IK_CORE_WARN(LogModule::EnttScene, "  Name | {0}", name_);
   }
   
+  void EnttScene::Update(Timestep ts) {
+    if (IsEditing()) {
+      UpdateEditor(ts);
+    }
+    else {
+      UpdateRuntime(ts);
+    }
+  }
+  
+  void EnttScene::UpdateEditor(Timestep ts) {
+  }
+  
+  void EnttScene::UpdateRuntime(Timestep ts) {
+  }
+  
   void EnttScene::PlayScene() {
     
   }

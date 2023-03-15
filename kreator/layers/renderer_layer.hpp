@@ -76,6 +76,8 @@ namespace kreator {
     void RenderViewport();
     /// This function renders the scene data
     void RenderScene(Timestep ts);
+    /// This function renders the debug overlay
+    void OverlayRender();
 
     // Scene Manager
     /// This function creates a new scene instance

@@ -18,6 +18,11 @@ namespace kreator {
   class GameData {
   public:
     virtual ~GameData() = default;
+
+    /// This funcion calls each frame in renderer Pass. Update or debug render your game.
+    /// - Parameter ts: tiem step of frames
+    virtual void Update(Timestep ts) = 0;
+
     /// This function returns name of your game
     virtual std::string GameName() const = 0;
     /// This function returns the paths of directory you want in content browser panel
@@ -30,14 +35,19 @@ namespace kreator {
     virtual ImguiFont BoldFontData() const = 0;
     /// This function returns the path of scene you want to open in begining
     virtual std::string SavedScenePath() const = 0;
+    /// This function return your viewport background color
+    virtual glm::vec4 GetBgColor() const = 0;
   };
   
   class GameDataImpl : public GameData {
   public:
+    virtual void Update(Timestep ts) override {};
+
     std::string GameName() const override { return "Kreator Editor"; }
     std::string CbpRootDir() const override { return "../../../kreator/layers/ikan_game_editor/"; };
     std::string SavedScenePath() const override { return ""; };
-    
+    glm::vec4 GetBgColor() const override { return {0.2f, 0.2f, 0.2f, 1.0f}; }
+
     std::vector<std::filesystem::path> FavDirecotries() const override { return {}; };
     ImguiFont RegularFontData() const override {
       return {AM::ProjectPath("kreator/layers/ikan_game_editor/game_assets/fonts/Opensans/Regular.ttf"), 14};

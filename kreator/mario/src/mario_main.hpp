@@ -15,10 +15,13 @@ namespace mario {
   
   class Mario : public kreator::GameData {
   public:
+    virtual void Update(Timestep ts);
+
     // Getters
     std::string GameName() const override { return "ikan_mario"; }
     std::string CbpRootDir() const override { return AM::ClientAsset("scenes/"); };
     std::string SavedScenePath() const override { return AM::ClientAsset("scenes/Mario_Scene.ikanScene"); };
+    glm::vec4 GetBgColor() const override { return level_bg_; }
     std::vector<std::filesystem::path> FavDirecotries() const override {
       return {
         AM::ProjectPath("kreator/mario/assets"),
@@ -33,6 +36,7 @@ namespace mario {
     }
 
   private:
+    glm::vec4 level_bg_ = {0.2, 0.4, 0.6, 1.0f};
     std::string font_path_ = "fonts/mario.ttf";
   };
   

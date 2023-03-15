@@ -41,6 +41,8 @@ namespace kreator {
     viewport_.UpdateMousePos();
 
     if (is_playing_) {
+      Renderer::Clear(game_data_->GetBgColor());
+      RenderScene(ts);
     }
     else {
       if (viewport_.IsFramebufferResized()) {
@@ -50,14 +52,20 @@ namespace kreator {
       viewport_.framebuffer->Bind();
       Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
 
+      RenderScene(ts);
+
       viewport_.framebuffer->Unbind();
     }
-
   }
   
   void RendererLayer::EventHandler(Event& event) {
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::KeyPressed));
+  }
+  
+  void RendererLayer::RenderScene(Timestep ts) {
+    active_scene_->Update(ts);
+    game_data_->Update(ts);
   }
   
   void RendererLayer::RenderGui() {
