@@ -85,6 +85,10 @@
 #include <editor/property_grid.hpp>
 #include <editor/content_browser_panel.hpp>
 
+// Entt
+#include <ecs/entt_scene.hpp>
+#include <ecs/scene_panel_manager.hpp>
+
 // Imgui API
 #include <imgui/imgui_api.hpp>
 

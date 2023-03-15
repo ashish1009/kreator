@@ -43,8 +43,26 @@ namespace kreator {
     void EventHandler(Event& event) override;
     
   private:
+    // ------------------
+    // Member functions
+    // ------------------
+    bool KeyPressed(KeyPressedEvent& event);
+
+      // Scene Manager
+    /// This function creates a new scene instance
+    /// - Parameter scene_path: path of new scene
+    const void NewScene(const std::string& scene_path = "Unsaved Scene");
+    /// This function closes the current scene
+    void CloseScene();
+
+    // ------------------
+    // Member variables
+    // ------------------
     std::unique_ptr<GameData> game_data_;
     Setting setting_;
+    
+    std::shared_ptr<EnttScene> active_scene_, editor_scene_;
+    ScenePanelManager spm_;
   };
   
 }

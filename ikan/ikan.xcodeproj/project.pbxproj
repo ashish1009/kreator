@@ -17,6 +17,10 @@
 		B216B25D295B2F7400C05392 /* texture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B216B25B295B2F7400C05392 /* texture.hpp */; };
 		B216B265295B516A00C05392 /* batch_2d_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B216B263295B516A00C05392 /* batch_2d_renderer.cpp */; };
 		B216B266295B516A00C05392 /* batch_2d_renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B216B264295B516A00C05392 /* batch_2d_renderer.hpp */; };
+		B2243A3C29C18C270068E4DD /* entt_scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2243A3A29C18C270068E4DD /* entt_scene.cpp */; };
+		B2243A3D29C18C270068E4DD /* entt_scene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2243A3B29C18C270068E4DD /* entt_scene.hpp */; };
+		B2243A4629C190920068E4DD /* scene_panel_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2243A4429C190920068E4DD /* scene_panel_manager.cpp */; };
+		B2243A4729C190920068E4DD /* scene_panel_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2243A4529C190920068E4DD /* scene_panel_manager.hpp */; };
 		B2250CCF29585E310067C43B /* prefix_header.pch in Headers */ = {isa = PBXBuildFile; fileRef = B2250CCE29585E310067C43B /* prefix_header.pch */; };
 		B2250CD4295860420067C43B /* core_entry_point.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CD3295860420067C43B /* core_entry_point.h */; };
 		B2250CDB295861BF0067C43B /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD9295861BF0067C43B /* core_application.cpp */; };
@@ -193,6 +197,10 @@
 		B216B268295B590900C05392 /* batch_line_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = batch_line_shader.glsl; sourceTree = "<group>"; };
 		B216B269295B590900C05392 /* batch_circle_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = batch_circle_shader.glsl; sourceTree = "<group>"; };
 		B216B26A295B5C0000C05392 /* batch_quad_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = batch_quad_shader.glsl; sourceTree = "<group>"; };
+		B2243A3A29C18C270068E4DD /* entt_scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entt_scene.cpp; sourceTree = "<group>"; };
+		B2243A3B29C18C270068E4DD /* entt_scene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = entt_scene.hpp; sourceTree = "<group>"; };
+		B2243A4429C190920068E4DD /* scene_panel_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_panel_manager.cpp; sourceTree = "<group>"; };
+		B2243A4529C190920068E4DD /* scene_panel_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_panel_manager.hpp; sourceTree = "<group>"; };
 		B2250CBD29584D060067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCE29585E310067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		B2250CD3295860420067C43B /* core_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_entry_point.h; sourceTree = "<group>"; };
@@ -346,6 +354,8 @@
 		B21AD57A29BF64A800359747 /* ecs */ = {
 			isa = PBXGroup;
 			children = (
+				B2243A3B29C18C270068E4DD /* entt_scene.hpp */,
+				B2243A4529C190920068E4DD /* scene_panel_manager.hpp */,
 			);
 			path = ecs;
 			sourceTree = "<group>";
@@ -353,6 +363,8 @@
 		B21AD57B29BF64AF00359747 /* ecs */ = {
 			isa = PBXGroup;
 			children = (
+				B2243A3A29C18C270068E4DD /* entt_scene.cpp */,
+				B2243A4429C190920068E4DD /* scene_panel_manager.cpp */,
 			);
 			path = ecs;
 			sourceTree = "<group>";
@@ -857,6 +869,7 @@
 				B2250D042958751E0067C43B /* core_logger.h in Headers */,
 				B2B6CDD22958DF7700AE609E /* imgui_api.hpp in Headers */,
 				B24E79952976CFB000EACF95 /* maths.hpp in Headers */,
+				B2243A4729C190920068E4DD /* scene_panel_manager.hpp in Headers */,
 				B27CF12B295EC6E000837A36 /* uuid.hpp in Headers */,
 				B216B256295B2F6B00C05392 /* open_gl_texture.hpp in Headers */,
 				B2C78067296AE470003F343E /* aabb_renderer.hpp in Headers */,
@@ -887,6 +900,7 @@
 				B2FC3E8E2958839600447A1A /* time_step.hpp in Headers */,
 				B2B6CDB72958D8AD00AE609E /* imgui_layer.hpp in Headers */,
 				B2E7600D2958D38100ADBE79 /* mac_os_window.hpp in Headers */,
+				B2243A3D29C18C270068E4DD /* entt_scene.hpp in Headers */,
 				B2250CD4295860420067C43B /* core_entry_point.h in Headers */,
 				B2250D00295873330067C43B /* logger.hpp in Headers */,
 				B2250CDC295861BF0067C43B /* core_application.hpp in Headers */,
@@ -1028,6 +1042,7 @@
 				B2FC3E892958826C00447A1A /* profiler.cpp in Sources */,
 				B24DD8392963045400525941 /* stb_image.cpp in Sources */,
 				B2FC40242958BAC400447A1A /* renderer_context.cpp in Sources */,
+				B2243A4629C190920068E4DD /* scene_panel_manager.cpp in Sources */,
 				B2B6CDB92958D8B800AE609E /* imgui_build.cpp in Sources */,
 				B2FC40622958BD6100447A1A /* renderer_api.cpp in Sources */,
 				B2B6CDB62958D8AD00AE609E /* imgui_layer.cpp in Sources */,
@@ -1054,6 +1069,7 @@
 				B2C0D815295A01D5003F168B /* open_gl_pipeline.cpp in Sources */,
 				B2FC3EA1295887FF00447A1A /* application_event.cpp in Sources */,
 				B2250CDB295861BF0067C43B /* core_application.cpp in Sources */,
+				B2243A3C29C18C270068E4DD /* entt_scene.cpp in Sources */,
 				B24DD8182962FD9800525941 /* ray_material.cpp in Sources */,
 				B2F526632959777F00A83C65 /* shader_uniform.cpp in Sources */,
 				B25F61872969A8440042FE09 /* aabb.cpp in Sources */,
