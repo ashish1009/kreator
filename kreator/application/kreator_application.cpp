@@ -23,7 +23,7 @@ public:
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Type of game to be run on application
-  kreator::GameType game_type = kreator::GameType::None;
+  kreator::GameType game_type = kreator::GameType::Mario;
   
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;

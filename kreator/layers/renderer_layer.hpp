@@ -15,6 +15,10 @@ namespace kreator {
 
   class RendererLayer : public Layer {
   public:
+    struct Setting {
+      bool play = false;
+    };
+    
     /// Layer Default Constructor to store the name of layer
     /// - Parameter game_type: Type of game to render using this layer
     RendererLayer(GameType game_type);
@@ -40,6 +44,7 @@ namespace kreator {
     
   private:
     std::unique_ptr<GameData> game_data_;
+    Setting setting_;
   };
   
 }

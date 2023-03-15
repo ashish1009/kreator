@@ -343,6 +343,20 @@
 			path = ../../../ikan_ws/ikan/vendor/stb_image;
 			sourceTree = "<group>";
 		};
+		B21AD57A29BF64A800359747 /* ecs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ecs;
+			sourceTree = "<group>";
+		};
+		B21AD57B29BF64AF00359747 /* ecs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ecs;
+			sourceTree = "<group>";
+		};
 		B2250CB429584D060067C43B = {
 			isa = PBXGroup;
 			children = (
@@ -371,6 +385,7 @@
 				B2250D01295873A70067C43B /* ikan_common.h */,
 				B2FC3E852958796F00447A1A /* ikan_headers.h */,
 				B2250CD82958616B0067C43B /* core */,
+				B21AD57A29BF64A800359747 /* ecs */,
 				B2FC400E2958B00B00447A1A /* renderer */,
 				B2C0D8062959E151003F168B /* editor */,
 				B2A27BF7298146A10034F4DF /* camera */,
@@ -385,6 +400,7 @@
 			children = (
 				B2250CE42958639D0067C43B /* core */,
 				B2FC400F2958B01900447A1A /* renderer */,
+				B21AD57B29BF64AF00359747 /* ecs */,
 				B2C0D8042959E13C003F168B /* editor */,
 				B2A27BF0298146940034F4DF /* camera */,
 				B24DD80B2962FD9800525941 /* ray_tracing */,

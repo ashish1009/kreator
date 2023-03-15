@@ -14,6 +14,8 @@ namespace mario {
   using namespace ikan;
   
   class Mario : public kreator::GameData {
+  public:
+    std::string GameName() const override { return "ikan_mario"; }
   };
   
 }
