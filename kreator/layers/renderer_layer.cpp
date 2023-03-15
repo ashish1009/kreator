@@ -35,6 +35,24 @@ namespace kreator {
   }
   
   void RendererLayer::Update(Timestep ts) {
+    if (!active_scene_)
+      return;
+    
+    viewport_.UpdateMousePos();
+
+    if (is_playing_) {
+    }
+    else {
+      if (viewport_.IsFramebufferResized()) {
+        viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
+      }
+
+      viewport_.framebuffer->Bind();
+      Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
+
+      viewport_.framebuffer->Unbind();
+    }
+
   }
   
   void RendererLayer::EventHandler(Event& event) {
@@ -58,6 +76,7 @@ namespace kreator {
         Renderer::Framerate(&setting_.frame_rate.flag);
         Renderer::RenderStatsGui(&setting_.stats.flag, true);
         Renderer::Render2DStatsGui(&setting_.stats_2d.flag);
+        viewport_.RenderGui(&setting_.viewport.flag);
 
         cbp_.RenderGui(&setting_.cbp.flag);
         spm_.RenderGui();
@@ -65,10 +84,45 @@ namespace kreator {
         if (active_scene_->IsEditing()) {
           SaveScene();
         }
+        
+        RenderViewport();
       }
 
       ImguiAPI::EndDcocking();
     }
+  }
+  
+  void RendererLayer::RenderViewport() {
+    // Viewport
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
+    ImGui::Begin("Kreator Viewport");
+    ImGui::PushID("Kreator Viewport");
+    
+    viewport_.focused = ImGui::IsWindowFocused();
+    viewport_.hovered = ImGui::IsWindowHovered();
+    
+    ImVec2 viewport_panel_size = ImGui::GetContentRegionAvail();
+    viewport_.width = viewport_panel_size.x;
+    viewport_.height = viewport_panel_size.y;
+    
+    size_t textureID = viewport_.framebuffer->GetColorAttachmentIds().at(0);
+    ImGui::Image((void*)textureID, viewport_panel_size, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+    
+    if (active_scene_->IsEditing()) {
+      PropertyGrid::DropConent([this](const std::string& path)
+                               {
+        if (StringUtils::GetExtensionFromFilePath(path) == "ikanScene")
+          OpenScene(path);
+        else
+          IK_WARN("Invalid file for Scene {0}", path.c_str());
+      });
+    }
+    
+    viewport_.UpdateBound();
+    
+    ImGui::PopStyleVar();
+    ImGui::PopID();
+    ImGui::End();
   }
   
   void RendererLayer::ShowSettings() {
@@ -124,15 +178,19 @@ namespace kreator {
       if (ImGui::BeginMenu("Properties")) {
         if (ImGui::BeginMenu("Theme")) {
           if (ImGui::MenuItem("Light", nullptr)) {
+            viewport_.framebuffer->UpdateSpecificationColor({0.82f, 0.82f, 0.82f, 1.0f});
             ImguiAPI::SetLightThemeColors();
           }
           if (ImGui::MenuItem("Dark", nullptr)) {
+            viewport_.framebuffer->UpdateSpecificationColor({0.08f, 0.08f, 0.08f, 1.0f});
             ImguiAPI::SetDarkThemeColors();
           }
           if (ImGui::MenuItem("Grey", nullptr)) {
+            viewport_.framebuffer->UpdateSpecificationColor({0.18f, 0.18f, 0.18f, 1.0f});
             ImguiAPI::SetGreyThemeColors();
           }
           if (ImGui::MenuItem("Light Grey", nullptr)) {
+            viewport_.framebuffer->UpdateSpecificationColor({0.25f, 0.25f, 0.25f, 1.0f});
             ImguiAPI::SetLightGreyThemeColors();
           }
           ImGui::EndMenu(); // ImGui::BeginMenu("Theme")

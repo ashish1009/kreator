@@ -72,7 +72,12 @@ namespace kreator {
     // ------------------
     bool KeyPressed(KeyPressedEvent& event);
 
-      // Scene Manager
+    /// This function render the viewport captured in framebuffer
+    void RenderViewport();
+    /// This function renders the scene data
+    void RenderScene(Timestep ts);
+
+    // Scene Manager
     /// This function creates a new scene instance
     /// - Parameter scene_path: path of new scene
     const void NewScene(const std::string& scene_path = "Unsaved Scene");
@@ -105,7 +110,8 @@ namespace kreator {
 
     std::unique_ptr<GameData> game_data_;
     Setting setting_;
-    
+    Viewport viewport_;
+
     std::shared_ptr<EnttScene> active_scene_, editor_scene_;
     ScenePanelManager spm_;
     ContentBrowserPanel cbp_;

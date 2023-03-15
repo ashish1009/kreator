@@ -23,6 +23,8 @@
 		B2243A4729C190920068E4DD /* scene_panel_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2243A4529C190920068E4DD /* scene_panel_manager.hpp */; };
 		B2243A4A29C191820068E4DD /* scene_serializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2243A4829C191820068E4DD /* scene_serializer.cpp */; };
 		B2243A4B29C191820068E4DD /* scene_serializer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2243A4929C191820068E4DD /* scene_serializer.hpp */; };
+		B2243A4F29C1BB1A0068E4DD /* viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2243A4D29C1BB1A0068E4DD /* viewport.cpp */; };
+		B2243A5029C1BB1A0068E4DD /* viewport.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2243A4E29C1BB1A0068E4DD /* viewport.hpp */; };
 		B2250CCF29585E310067C43B /* prefix_header.pch in Headers */ = {isa = PBXBuildFile; fileRef = B2250CCE29585E310067C43B /* prefix_header.pch */; };
 		B2250CD4295860420067C43B /* core_entry_point.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CD3295860420067C43B /* core_entry_point.h */; };
 		B2250CDB295861BF0067C43B /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD9295861BF0067C43B /* core_application.cpp */; };
@@ -205,6 +207,8 @@
 		B2243A4529C190920068E4DD /* scene_panel_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_panel_manager.hpp; sourceTree = "<group>"; };
 		B2243A4829C191820068E4DD /* scene_serializer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_serializer.cpp; sourceTree = "<group>"; };
 		B2243A4929C191820068E4DD /* scene_serializer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_serializer.hpp; sourceTree = "<group>"; };
+		B2243A4D29C1BB1A0068E4DD /* viewport.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = viewport.cpp; sourceTree = "<group>"; };
+		B2243A4E29C1BB1A0068E4DD /* viewport.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = viewport.hpp; sourceTree = "<group>"; };
 		B2250CBD29584D060067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCE29585E310067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		B2250CD3295860420067C43B /* core_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_entry_point.h; sourceTree = "<group>"; };
@@ -361,6 +365,7 @@
 				B2243A3B29C18C270068E4DD /* entt_scene.hpp */,
 				B2243A4529C190920068E4DD /* scene_panel_manager.hpp */,
 				B2243A4929C191820068E4DD /* scene_serializer.hpp */,
+				B2243A4E29C1BB1A0068E4DD /* viewport.hpp */,
 			);
 			path = ecs;
 			sourceTree = "<group>";
@@ -371,6 +376,7 @@
 				B2243A3A29C18C270068E4DD /* entt_scene.cpp */,
 				B2243A4429C190920068E4DD /* scene_panel_manager.cpp */,
 				B2243A4829C191820068E4DD /* scene_serializer.cpp */,
+				B2243A4D29C1BB1A0068E4DD /* viewport.cpp */,
 			);
 			path = ecs;
 			sourceTree = "<group>";
@@ -885,6 +891,7 @@
 				B2C0D8002959E02B003F168B /* renderer_stats.hpp in Headers */,
 				B2584ED4295B7FE200234714 /* text_renderer.hpp in Headers */,
 				B2FC3E98295886EC00447A1A /* key_codes.h in Headers */,
+				B2243A5029C1BB1A0068E4DD /* viewport.hpp in Headers */,
 				B2F526642959777F00A83C65 /* shader_uniform.hpp in Headers */,
 				B2FC40252958BAC400447A1A /* renderer_context.hpp in Headers */,
 				B2C0D8122959FB92003F168B /* renderer_buffer.hpp in Headers */,
@@ -1093,6 +1100,7 @@
 				B2F526522959774B00A83C65 /* open_gl_shader_compiler.cpp in Sources */,
 				B2FC3EA0295887FF00447A1A /* key_event.cpp in Sources */,
 				B20303D92965ADCE00563A34 /* content_browser_panel.cpp in Sources */,
+				B2243A4F29C1BB1A0068E4DD /* viewport.cpp in Sources */,
 				B24DD81A2962FD9800525941 /* ray_sphere.cpp in Sources */,
 				B24DD8192962FD9800525941 /* ray_renderer.cpp in Sources */,
 				B2FC3E912958840D00447A1A /* buffers.cpp in Sources */,

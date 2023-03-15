@@ -89,6 +89,7 @@
 #include <ecs/entt_scene.hpp>
 #include <ecs/scene_panel_manager.hpp>
 #include <ecs/scene_serializer.hpp>
+#include <ecs/viewport.hpp>
 
 // Imgui API
 #include <imgui/imgui_api.hpp>
