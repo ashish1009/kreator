@@ -60,6 +60,9 @@ namespace kreator {
     /// This function Renders an Imgui widget that helps in saving scene
     const void SaveScene();
 
+    /// This function render the menue bar
+    void ShowMenu();
+
     // ------------------
     // Member variables
     // ------------------
@@ -68,6 +71,7 @@ namespace kreator {
     
     std::shared_ptr<EnttScene> active_scene_, editor_scene_;
     ScenePanelManager spm_;
+    ContentBrowserPanel cbp_;
   };
   
 }

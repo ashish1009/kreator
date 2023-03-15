@@ -10,6 +10,7 @@
 namespace kreator {
   
   RendererLayer::RendererLayer(GameType game_type) : Layer("Kreator"), game_data_(CreateGameData(game_type)) {
+    cbp_.SetRootData(game_data_->CbpRootDir());
     IK_INFO(game_data_->GameName(), "Creating {0} Layer instance ... ", game_data_->GameName().c_str());
   }
   
@@ -19,6 +20,7 @@ namespace kreator {
   
   void RendererLayer::Attach() {
     IK_INFO(game_data_->GameName(), "Attaching {0} Layer instance", game_data_->GameName().c_str());
+    cbp_.AddFavouritPaths(game_data_->FavDirecotries());
   }
   
   void RendererLayer::Detach() {
@@ -39,8 +41,37 @@ namespace kreator {
     }
     else {
       ImguiAPI::StartDcocking();
+      
+      ShowMenu();
+
       ImguiAPI::EndDcocking();
     }
+  }
+  
+  void RendererLayer::ShowMenu() {
+    if (ImGui::BeginMenuBar()) {
+      // -------------------------------------------------------------
+      //  File Menu
+      // -------------------------------------------------------------
+      if (ImGui::BeginMenu("File")) {
+        ImGui::EndMenu(); // ImGui::BeginMenu("File")
+      } // if (ImGui::BeginMenu("File"))
+      
+      // -------------------------------------------------------------
+      //  Property Menu
+      // -------------------------------------------------------------
+      if (ImGui::BeginMenu("Properties")) {
+        ImGui::EndMenu(); // ImGui::BeginMenu("Properties")
+      } // if (ImGui::BeginMenu("Properties"))
+      
+      // -------------------------------------------------------------
+      //  Setting Menu
+      // -------------------------------------------------------------
+      if (ImGui::BeginMenu("Setting", active_scene_ and active_scene_->IsEditing())) {
+        ImGui::EndMenu(); // ImGui::BeginMenu("Setting")
+      }
+      ImGui::EndMenuBar(); // ImGui::BeginMenuBar()
+    } // if (ImGui::BeginMenuBar())
   }
   
   bool RendererLayer::KeyPressed(KeyPressedEvent& event) {

@@ -20,5 +20,16 @@ namespace ikan {
     IK_CORE_WARN(LogModule::EnttScene, "  Name | {0}", name_);
   }
   
+  void EnttScene::PlayScene() {
+    
+  }
+  
+  void EnttScene::EditScene() {
+    
+  }
+  
   const std::string& EnttScene::GetName() const { return name_; }
+  const std::string& EnttScene::GetFilePath() const { return file_path_; }
+  bool EnttScene::IsEditing() const { return state_ == EnttScene::State::Edit; }
+  
 }
