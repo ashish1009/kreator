@@ -93,11 +93,50 @@ namespace kreator {
           SaveScene();
         }
         
+        ScenePlayPauseButton();
         RenderViewport();
       }
 
       ImguiAPI::EndDcocking();
     }
+  }
+  
+  void RendererLayer::ScenePlayPauseButton() {
+    // Texture for Play and Pause button
+    static std::shared_ptr<Texture> pause_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/pause.png"));
+    static std::shared_ptr<Texture> play_texture = Renderer::GetTexture(AM::CoreAsset("textures/icons/play.png"));
+    
+    // Play Pause Buttom
+    ImGui::Begin("Scene Play/Pause", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+    ImGui::PushID("Scene Play/pause");
+    
+    // Update the texture id based on the state of scene
+    uint32_t tex_id = active_scene_->IsEditing() ? play_texture->GetRendererID() : pause_texture->GetRendererID();
+    
+    float size = ImGui::GetWindowHeight() - 12.0f; // 12 just random number
+    ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 0.5f));
+    
+    // Button action
+    if (PropertyGrid::ImageButton("Scene Play/Pause", tex_id, { size, size })) {
+      if (active_scene_->IsEditing()) {
+        PlayScene();
+      }
+      else {
+        active_scene_ = editor_scene_;
+        active_scene_->EditScene();
+        
+        spm_.SetSceneContext(active_scene_.get());
+      }
+    }
+    PropertyGrid::HoveredMsg("Play Button for Scene (Debug Scene in play mode)");
+    ImGui::PopID();
+    ImGui::End();
+  }
+  
+  void RendererLayer::PlayScene() {
+    active_scene_ = EnttScene::Copy(editor_scene_);
+    spm_.SetSceneContext(active_scene_.get());
+    active_scene_->PlayScene();
   }
   
   void RendererLayer::RenderViewport() {
@@ -312,6 +351,11 @@ namespace kreator {
   
   void RendererLayer::SetPlay(bool is_play) {
     is_playing_ = is_play;
+    
+    if (is_playing_) {
+      Application::Get().MaximizeWindow();
+      PlayScene();
+    }
   }
 
 }

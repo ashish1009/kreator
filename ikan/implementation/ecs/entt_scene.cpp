@@ -9,6 +9,11 @@
 
 namespace ikan {
   
+  std::shared_ptr<EnttScene> EnttScene::Copy(std::shared_ptr<EnttScene> other) {
+    std::shared_ptr<EnttScene> new_scene = std::make_shared<EnttScene>(other->file_path_);
+    return new_scene;
+  }
+  
   EnttScene::EnttScene(const std::string& file_path)
   : file_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)) {
     IK_CORE_INFO(LogModule::EnttScene, "Creating Scene ...");
@@ -33,6 +38,21 @@ namespace ikan {
   }
   
   void EnttScene::UpdateRuntime(Timestep ts) {
+  }
+  
+  void EnttScene::RenderGui() {
+    if (IsEditing()) {
+      RenderGuiEditor();
+    }
+    else {
+      RenderGuiRuntime();
+    }
+  }
+
+  void EnttScene::RenderGuiEditor() {
+  }
+  
+  void EnttScene::RenderGuiRuntime() {
   }
   
   void EnttScene::PlayScene() {

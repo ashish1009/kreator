@@ -15,7 +15,7 @@ namespace mario {
   
   class Mario : public kreator::GameData {
   public:
-    virtual void Update(Timestep ts);
+    void Update(Timestep ts) override;
 
     // Getters
     std::string GameName() const override { return "ikan_mario"; }

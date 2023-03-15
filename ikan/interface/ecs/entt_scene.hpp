@@ -28,7 +28,9 @@ namespace ikan {
     /// This function update the scene
     /// - Parameter ts: time step
     void Update(Timestep ts);
-    
+    /// This function renders the GUI Window for this layer. To be called each frame from application.
+    void RenderGui();
+
     /// This function sets the Scene as play mode
     void PlayScene();
     /// This function sets the Scene as edit mode
@@ -45,6 +47,10 @@ namespace ikan {
     /// This finction return is scene is in edit state
     bool IsEditing() const;
 
+    /// This function create new scene copy the scene data from argument
+    /// - Parameter other: copy scene
+    static std::shared_ptr<EnttScene> Copy(std::shared_ptr<EnttScene> other);
+
   private:
     // ------------------
     // Member functions
@@ -55,6 +61,11 @@ namespace ikan {
     /// This function updates the scene in play
     /// - Parameter ts time step
     void UpdateRuntime(Timestep ts);
+
+    /// This function renderes the imgui of the scene in edit mode
+    void RenderGuiEditor();
+    /// This function renderes the imgui of the scene in play mode
+    void RenderGuiRuntime();
 
     // ------------------
     // Member variables

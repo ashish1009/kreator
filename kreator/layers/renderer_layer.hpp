@@ -98,6 +98,8 @@ namespace kreator {
 
     /// This function renders the play buttorn for  game
     void GamePlayButton();
+    /// This function renders the play/pause buttorn for active scene
+    void ScenePlayPauseButton();
 
     /// This function set the game state
     /// - Parameter is_play: game state
