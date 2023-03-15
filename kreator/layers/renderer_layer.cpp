@@ -51,6 +51,16 @@ namespace kreator {
       
       if (active_scene_) {
         ShowSettings();
+        
+        Renderer::Framerate(&setting_.frame_rate.flag);
+        Renderer::RenderStatsGui(&setting_.stats.flag, true);
+        Renderer::Render2DStatsGui(&setting_.stats_2d.flag);
+
+        cbp_.RenderGui(&setting_.cbp.flag);
+        
+        if (active_scene_->IsEditing()) {
+          SaveScene();
+        }
       }
 
       ImguiAPI::EndDcocking();
@@ -183,6 +193,35 @@ namespace kreator {
 
     spm_.SetSceneContext(active_scene_.get());
   }
+  
+  const void RendererLayer::SaveScene() {
+    if (!setting_ .save_scene.flag)
+      return;
+    
+    ImGui::Begin("Save File", &setting_.save_scene.flag);
+    ImGui::PushID("Save File");
+    
+    const auto& relative_path = (std::filesystem::relative(cbp_.GetCurrentDir(), cbp_.GetRootDir())).string();
+    PropertyGrid::ReadOnlyTextBox("Scene Directory", relative_path, "File will be saved at the Current directory in the active scene", 150.0f);
+    
+    static std::string file_name = "";
+    bool modified = PropertyGrid::TextBox(file_name, "Scene Name", 2, 150.0f);
+    
+    if (modified) {
+      std::string file_path = cbp_.GetCurrentDir().string() + "/" + file_name + ".ikanScene";
+      
+      IK_INFO(game_data_->GameName(), "Saving Scene at {0}", file_path.c_str());
+      if (!file_path.empty()) {
+        active_scene_->SetFilePath(file_path);
+        SceneSerializer serializer(active_scene_.get());
+        serializer.Serialize(file_path);
+      }
+    }
+    
+    ImGui::PopID();
+    ImGui::End();
+  }
+
   
   void RendererLayer::SetPlay(bool is_play) {
     is_playing_ = is_play;

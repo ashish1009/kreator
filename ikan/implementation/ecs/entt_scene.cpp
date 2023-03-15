@@ -28,6 +28,11 @@ namespace ikan {
     
   }
   
+  void EnttScene::SetFilePath(const std::string& file_path) {
+    file_path_ = file_path;
+    name_ = StringUtils::GetNameFromFilePath(file_path_);
+  }
+  
   const std::string& EnttScene::GetName() const { return name_; }
   const std::string& EnttScene::GetFilePath() const { return file_path_; }
   bool EnttScene::IsEditing() const { return state_ == EnttScene::State::Edit; }

@@ -29,6 +29,10 @@ namespace ikan {
     /// This function sets the Scene as edit mode
     void EditScene();
     
+    /// This function update the scene path
+    /// - Parameter file_path: file path
+    void SetFilePath(const std::string& file_path);
+
     /// This function returns the name of scene
     const std::string& GetName() const;
     /// This finction return File path of scene

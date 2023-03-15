@@ -20,7 +20,7 @@ namespace mario {
     std::string CbpRootDir() const override { return AM::ClientAsset("scenes/"); };
     std::vector<std::filesystem::path> FavDirecotries() const override {
       return {
-        AM::ProjectPath("kreator/layers/ikan_game_editor/games/mario/assets"),
+        AM::ProjectPath("kreator/mario/assets"),
         AM::ClientAsset("scenes"),
       };
     }
