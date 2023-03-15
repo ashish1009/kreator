@@ -28,17 +28,21 @@ namespace kreator {
     virtual ImguiFont RegularFontData() const = 0;
     /// This function returns the path of bold GUI fornt
     virtual ImguiFont BoldFontData() const = 0;
+    /// This function returns the path of scene you want to open in begining
+    virtual std::string SavedScenePath() const = 0;
   };
   
   class GameDataImpl : public GameData {
   public:
     std::string GameName() const override { return "Kreator Editor"; }
     std::string CbpRootDir() const override { return "../../../kreator/layers/ikan_game_editor/"; };
-    virtual std::vector<std::filesystem::path> FavDirecotries() const override { return {}; };
-    virtual ImguiFont RegularFontData() const override {
+    std::string SavedScenePath() const override { return ""; };
+    
+    std::vector<std::filesystem::path> FavDirecotries() const override { return {}; };
+    ImguiFont RegularFontData() const override {
       return {AM::ProjectPath("kreator/layers/ikan_game_editor/game_assets/fonts/Opensans/Regular.ttf"), 14};
     };
-    virtual ImguiFont BoldFontData() const override {
+    ImguiFont BoldFontData() const override {
       return {AM::ProjectPath("kreator/layers/ikan_game_editor/game_assets/fonts/Opensans/Bold.ttf"), 14};
     };
   };

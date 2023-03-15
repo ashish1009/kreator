@@ -25,6 +25,9 @@ namespace kreator {
     // Decorate the Imgui Change the font of imgui
     ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
     ImguiAPI::SetLightGreyThemeColors();
+    
+    if (!OpenScene(game_data_->SavedScenePath()))
+      NewScene(AM::ClientAsset("scenes/New_scene"));
   }
   
   void RendererLayer::Detach() {
@@ -57,7 +60,8 @@ namespace kreator {
         Renderer::Render2DStatsGui(&setting_.stats_2d.flag);
 
         cbp_.RenderGui(&setting_.cbp.flag);
-        
+        spm_.RenderGui();
+
         if (active_scene_->IsEditing()) {
           SaveScene();
         }
@@ -221,7 +225,24 @@ namespace kreator {
     ImGui::PopID();
     ImGui::End();
   }
-
+  
+  const bool RendererLayer::OpenScene(const std::string& scene_path) {
+    IK_INFO(game_data_->GameName(), "Opening saved scene from {0}", scene_path.c_str());
+    
+    // Close the current scene
+    CloseScene();
+    
+    editor_scene_ = std::make_shared<EnttScene>(scene_path);
+    
+    SceneSerializer serializer(editor_scene_.get());
+    
+    bool result = serializer.Deserialize(scene_path);
+    
+    active_scene_ = editor_scene_;
+    spm_.SetSceneContext(active_scene_.get());
+    
+    return result;
+  }
   
   void RendererLayer::SetPlay(bool is_play) {
     is_playing_ = is_play;

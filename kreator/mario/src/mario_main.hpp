@@ -18,6 +18,7 @@ namespace mario {
     // Getters
     std::string GameName() const override { return "ikan_mario"; }
     std::string CbpRootDir() const override { return AM::ClientAsset("scenes/"); };
+    std::string SavedScenePath() const override { return AM::ClientAsset("scenes/Mario_Scene.ikanScene"); };
     std::vector<std::filesystem::path> FavDirecotries() const override {
       return {
         AM::ProjectPath("kreator/mario/assets"),
