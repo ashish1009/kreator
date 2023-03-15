@@ -26,7 +26,9 @@ namespace ikan {
     // Member variables
     // ------------------
     // Utils Memebers
-    std::string file_path_ = "Unknown Path", name_ = "Unsaved Scene";    
+    std::string file_path_ = "Unknown Path", name_ = "Unsaved Scene";
+    
+    friend class SceneSerializer;
   };
   
 }

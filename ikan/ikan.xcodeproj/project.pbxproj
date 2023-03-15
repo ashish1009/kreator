@@ -21,6 +21,8 @@
 		B2243A3D29C18C270068E4DD /* entt_scene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2243A3B29C18C270068E4DD /* entt_scene.hpp */; };
 		B2243A4629C190920068E4DD /* scene_panel_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2243A4429C190920068E4DD /* scene_panel_manager.cpp */; };
 		B2243A4729C190920068E4DD /* scene_panel_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2243A4529C190920068E4DD /* scene_panel_manager.hpp */; };
+		B2243A4A29C191820068E4DD /* scene_serializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2243A4829C191820068E4DD /* scene_serializer.cpp */; };
+		B2243A4B29C191820068E4DD /* scene_serializer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2243A4929C191820068E4DD /* scene_serializer.hpp */; };
 		B2250CCF29585E310067C43B /* prefix_header.pch in Headers */ = {isa = PBXBuildFile; fileRef = B2250CCE29585E310067C43B /* prefix_header.pch */; };
 		B2250CD4295860420067C43B /* core_entry_point.h in Headers */ = {isa = PBXBuildFile; fileRef = B2250CD3295860420067C43B /* core_entry_point.h */; };
 		B2250CDB295861BF0067C43B /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2250CD9295861BF0067C43B /* core_application.cpp */; };
@@ -201,6 +203,8 @@
 		B2243A3B29C18C270068E4DD /* entt_scene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = entt_scene.hpp; sourceTree = "<group>"; };
 		B2243A4429C190920068E4DD /* scene_panel_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_panel_manager.cpp; sourceTree = "<group>"; };
 		B2243A4529C190920068E4DD /* scene_panel_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_panel_manager.hpp; sourceTree = "<group>"; };
+		B2243A4829C191820068E4DD /* scene_serializer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_serializer.cpp; sourceTree = "<group>"; };
+		B2243A4929C191820068E4DD /* scene_serializer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_serializer.hpp; sourceTree = "<group>"; };
 		B2250CBD29584D060067C43B /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2250CCE29585E310067C43B /* prefix_header.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_header.pch; sourceTree = "<group>"; };
 		B2250CD3295860420067C43B /* core_entry_point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_entry_point.h; sourceTree = "<group>"; };
@@ -356,6 +360,7 @@
 			children = (
 				B2243A3B29C18C270068E4DD /* entt_scene.hpp */,
 				B2243A4529C190920068E4DD /* scene_panel_manager.hpp */,
+				B2243A4929C191820068E4DD /* scene_serializer.hpp */,
 			);
 			path = ecs;
 			sourceTree = "<group>";
@@ -365,6 +370,7 @@
 			children = (
 				B2243A3A29C18C270068E4DD /* entt_scene.cpp */,
 				B2243A4429C190920068E4DD /* scene_panel_manager.cpp */,
+				B2243A4829C191820068E4DD /* scene_serializer.cpp */,
 			);
 			path = ecs;
 			sourceTree = "<group>";
@@ -894,6 +900,7 @@
 				B24DD8262962FDA000525941 /* ray_renderer.hpp in Headers */,
 				B24DD8292962FDA000525941 /* ray_scene.hpp in Headers */,
 				B2FC3E8A2958826C00447A1A /* profiler.hpp in Headers */,
+				B2243A4B29C191820068E4DD /* scene_serializer.hpp in Headers */,
 				B2FC3E922958840D00447A1A /* buffers.hpp in Headers */,
 				B2FC40632958BD6100447A1A /* renderer_api.hpp in Headers */,
 				B2250CEA29586A770067C43B /* core_asserts.h in Headers */,
@@ -1069,6 +1076,7 @@
 				B2C0D815295A01D5003F168B /* open_gl_pipeline.cpp in Sources */,
 				B2FC3EA1295887FF00447A1A /* application_event.cpp in Sources */,
 				B2250CDB295861BF0067C43B /* core_application.cpp in Sources */,
+				B2243A4A29C191820068E4DD /* scene_serializer.cpp in Sources */,
 				B2243A3C29C18C270068E4DD /* entt_scene.cpp in Sources */,
 				B24DD8182962FD9800525941 /* ray_material.cpp in Sources */,
 				B2F526632959777F00A83C65 /* shader_uniform.cpp in Sources */,

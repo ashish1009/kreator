@@ -54,6 +54,11 @@ namespace kreator {
     const void NewScene(const std::string& scene_path = "Unsaved Scene");
     /// This function closes the current scene
     void CloseScene();
+    /// This function opens already saved scene from path
+    /// - Parameter scene_file_path: scene file path
+    const bool OpenScene(const std::string& scene_file_path);
+    /// This function Renders an Imgui widget that helps in saving scene
+    const void SaveScene();
 
     // ------------------
     // Member variables
